@@ -4,4 +4,37 @@
 PresetManager:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_DefaultPresets: {}
+  m_DefaultPresets:
+  - first:
+      m_NativeTypeID: 1020
+      m_ManagedTypePPtr: {fileID: 0}
+      m_ManagedTypeFallback: 
+    second:
+    - m_Preset: {fileID: 2655988077585873504, guid: 1b23ddec5585bef4fb17cc31d9654f9c,
+        type: 2}
+      m_Filter: Aud_
+  - first:
+      m_NativeTypeID: 1006
+      m_ManagedTypePPtr: {fileID: 0}
+      m_ManagedTypeFallback: 
+    second:
+    - m_Preset: {fileID: 2655988077585873504, guid: 67be7c9833cfb424d891b098777ed1fb,
+        type: 2}
+      m_Filter: Spr_
+    - m_Preset: {fileID: 2655988077585873504, guid: 67be7c9833cfb424d891b098777ed1fb,
+        type: 2}
+      m_Filter: SprSht_
+    - m_Preset: {fileID: 2655988077585873504, guid: 110bbb5304161f842872dd3bba3367dd,
+        type: 2}
+      m_Filter: Text_
+  - first:
+      m_NativeTypeID: 1041
+      m_ManagedTypePPtr: {fileID: 0}
+      m_ManagedTypeFallback: 
+    second:
+    - m_Preset: {fileID: 2655988077585873504, guid: ec23d80e608cddc4c96f3813691c890f,
+        type: 2}
+      m_Filter: 3Dstat_
+    - m_Preset: {fileID: 2655988077585873504, guid: 4d7076ea87f209945a1574b68616c38c,
+        type: 2}
+      m_Filter: 3Drig_
