@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace OceanEntity
+namespace OceanEntities
 {
     /// <summary>
     /// Thomas Depraz - 25/03/2021 - Sea Level is an enum describing the entity's sea level, meanig the environment in which they evolve.
