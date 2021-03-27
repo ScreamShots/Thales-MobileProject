@@ -10,6 +10,10 @@ namespace OceanEntities
 
         [HideInInspector]public Transform currentTargetPoint;
 
+        private Vector2 waitingPoint = new Vector2();
+        private Vector2 waitingCircleVector;
+        public float waitingRoutineRadius;
+
         void Start()
         {
             movementType = MovementType.air;
@@ -21,6 +25,10 @@ namespace OceanEntities
             if(currentTargetPoint != null)
             {
                 Move((Vector2)currentTargetPoint.position);
+            }
+            else
+            {
+                Waiting();
             }
         }
         public override void Move(Vector2 targetPosition)
@@ -39,12 +47,32 @@ namespace OceanEntities
         {
             throw new System.NotImplementedException();
         }
-
+        
         public override void Waiting()
         {
-            throw new System.NotImplementedException();
-        }
+            if(waitingPoint == null)
+            {
+                waitingPoint = coords.position;
+            }
+            else
+            {
+                waitingCircleVector = coords.position - waitingPoint;
 
+                if (waitingCircleVector.magnitude > waitingRoutineRadius)
+                {
+                    coords.direction = new Vector2(waitingCircleVector.y, -waitingCircleVector.x);
 
+                    _transform.position += (Vector3)coords.direction.normalized * speed * Time.deltaTime;
+
+                    _transform.position += (Vector3)(waitingCircleVector.normalized * waitingRoutineRadius) - (Vector3)waitingCircleVector;
+                 
+                    coords.position = _transform.position;
+                }
+                else
+                {
+                    Move(Vector2.up * waitingRoutineRadius);
+                }
+            }
+       }
     }
 }
