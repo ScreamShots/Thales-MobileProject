@@ -25,6 +25,10 @@ namespace OceanEntities
             if(currentTargetPoint != null)
             {
                 Move((Vector2)currentTargetPoint.position);
+                if(waitingPoint != null)
+                {
+                    waitingPoint = Vector2.zero;
+                }
             }
             else
             {
@@ -41,6 +45,11 @@ namespace OceanEntities
             
             //Store the new position in the coords.
             coords.position = _transform.position;
+
+            if (coords.position == targetPosition)
+            {
+                currentTargetPoint = null;
+            }
         }
 
         public override void PathFinding()
@@ -50,7 +59,7 @@ namespace OceanEntities
         
         public override void Waiting()
         {
-            if(waitingPoint == null)
+            if(waitingPoint == Vector2.zero)
             {
                 waitingPoint = coords.position;
             }

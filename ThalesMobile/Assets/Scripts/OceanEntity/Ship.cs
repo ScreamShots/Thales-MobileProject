@@ -33,6 +33,11 @@ namespace OceanEntities
 
             //Store the new position in the coords.
             coords.position = _transform.position;
+
+            if (coords.position == targetPosition)
+            {
+                currentTargetPoint = null;
+            }
         }
 
         public override void PathFinding()
