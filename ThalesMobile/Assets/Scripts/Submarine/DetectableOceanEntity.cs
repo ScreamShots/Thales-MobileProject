@@ -13,7 +13,7 @@ public enum DetectableState
 }
 
 /// <summary>
-/// Antoine Leroux - 27/03/2021 - DetectableOceanEntity is the root class for every entity which can be detected 
+/// Antoine Leroux - 27/03/2021 - DetectableOceanEntity is the root class for every entity which can be detected.
 /// </summary>
 public abstract class DetectableOceanEntity : OceanEntity
 {
