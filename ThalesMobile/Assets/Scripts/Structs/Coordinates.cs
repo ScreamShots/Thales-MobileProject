@@ -15,13 +15,24 @@ public struct Coordinates
     /// <summary>
     /// Default constructor for the Coordinates struct. 
     /// </summary>
-    /// <param name="position">OceanEntity position</param>
-    /// <param name="direction">OceanEntity direction</param>
+    /// <param name="_position">OceanEntity position</param>
+    /// <param name="_direction">OceanEntity direction</param>
     /// <param name="rotation">OceanEntity rotation</param>
-    public Coordinates(Vector2 position, Vector2 direction, float rotation)
+    public Coordinates(Vector3 _position, Vector2 _direction, float rotation)
     {
-        this.position = position;
-        this.direction = direction;
+        position = ConvertWorldToVector2(_position);
+        direction =_direction;
         this.rotation = rotation;
     }
+
+    public static Vector2 ConvertWorldToVector2(Vector3 vector)
+    {
+        return new Vector2(vector.x,vector.z);
+    }
+
+    public static Vector3 ConvertVector2ToWorld(Vector2 vector)
+    {
+        return new Vector3(vector.x, 0, vector.y);
+    }
+
 }
