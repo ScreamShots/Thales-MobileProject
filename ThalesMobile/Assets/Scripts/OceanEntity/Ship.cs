@@ -14,27 +14,29 @@ namespace OceanEntities
         {
             movementType = MovementType.sea;
             _transform = transform;
+
+            coords = new Coordinates(_transform.position, Vector2.up, 0);
         }
 
         void Update()
         {
             if (currentTargetPoint != null)
             {
-                Move((Vector2)currentTargetPoint.position);
+                Move(Coordinates.ConvertWorldToVector2 (currentTargetPoint.position));
             }
         }
         public override void Move(Vector2 targetPosition)
         {
             //Calculate direction to target and store it in coords.
-            coords.direction = targetPosition - (Vector2)_transform.position;
+            coords.direction = targetPosition - coords.position;
 
             //Update the plane's position.
-            _transform.position += (Vector3)coords.direction.normalized * speed * Time.deltaTime;
+           coords.position += coords.direction.normalized * speed * Time.deltaTime;
 
             //Store the new position in the coords.
-            coords.position = _transform.position;
+            _transform.position = Coordinates.ConvertVector2ToWorld(coords.position);
 
-            if (coords.position == targetPosition)
+            if ((targetPosition - coords.position).magnitude < 0.1f)
             {
                 currentTargetPoint = null;
             }
