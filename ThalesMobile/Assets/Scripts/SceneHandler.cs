@@ -46,7 +46,4 @@ public class SceneHandler : MonoBehaviour
             finishedFade = true;
         }    
     }
-
-
-
 }
