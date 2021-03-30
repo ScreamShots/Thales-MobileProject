@@ -509,7 +509,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1155534488}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4, z: 0}
+  m_LocalPosition: {x: 0, y: 4, z: 10.53}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -576,23 +576,123 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusPoint: {fileID: 1595606993}
   cam: {fileID: 23866467}
+  lookAtTraget: 0
   target: {fileID: 1155534492}
-  lookAtTraget: 1
   zoomIntensity: 0
-  minAngle: 30
-  maxAngle: 90
-  minHeight: 3
-  maxHeight: 20
-  minTargetProximity: -5
-  maxTargetProximity: 0
-  minFov: 60
-  maxFov: 110
+  camSett:
+    minAngle: 45
+    maxAngle: 90
+    angleEvolve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    minHeight: 3
+    maxHeight: 15
+    heightEvolve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    minTargetProximity: -3.5
+    maxTargetProximity: 0
+    proximityEvolve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    minFov: 60
+    maxFov: 110
+    fovEvolve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
   aimLerpSpeed: 0.05
-  debugDir: {x: 0, y: 0}
   moveSpeed: 10
-  boundary: {x: 20, y: 40}
-  offSet: {x: 0, y: 0}
+  refocusSpeed: 100
   mouvLerpSpeed: 0.1
+  debug: 0
+  debugDir: {x: 0, y: 0}
+  limit:
+    size: {x: 20, y: 40}
+    offSet: {x: 0, y: 0}
 --- !u!4 &2142819331
 Transform:
   m_ObjectHideFlags: 0

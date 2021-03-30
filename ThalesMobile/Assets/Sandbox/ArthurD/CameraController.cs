@@ -1,158 +1,176 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    [Header("Component")]
     public Transform focusPoint = null;
     public Camera cam = null;
-
-    public Transform target = null;
+    [Space(10)]
     public bool lookAtTraget = false;
+    public Transform target = null;
 
     [Header("Zoom Parameter")]
     [Range(0, 1)] public float zoomIntensity;
-
-    public float minAngle = 30f;
-    public float maxAngle = 90f;
-
-    public float minHeight = 3f;
-    public float maxHeight = 20f;
-
-    public float minTargetProximity = -5f;
-    public float maxTargetProximity = 0f;
-
-    public float minFov = 60f;
-    public float maxFov = 110f;
-
+    public CameraSettings camSett = new CameraSettings();
+    private float aimAngle;
+    private float aimHeight;
+    private float aimPromimity;
+    private float aimFov;
+    [Space(10)]
     public float aimLerpSpeed = 0.05f;
 
-    float aimHeight;
-    float aimPromimity;
-
     [Header("Move Parameter")]
-    [SerializeField] Vector2 debugDir = Vector2.zero;
     public float moveSpeed = 10f;
-
-    public Vector2 boundary = new Vector2(8, 10);
-    public Vector2 offSet = new Vector2(0, 0);
-
+    public float refocusSpeed = 100f;
+    [Space(10)]
     public float mouvLerpSpeed = 0.1f;
+    private Vector3 aimPos = Vector3.zero;
+    [Space(5)]
+    [SerializeField] bool debug = false;
+    [SerializeField] Vector2 debugDir = Vector2.zero;
+
+    [Header("Map Limits")]
+    public CameraBoundary limit = new CameraBoundary();
 
     void Start()
     {
-        //Create the focus point
-        if(focusPoint == null)
-        {
-            focusPoint = Instantiate(new GameObject(), new Vector3(transform.position.x, 0, transform.position.z), Quaternion.identity, transform).transform;
-        }
-
         cam = Camera.main;
+        InitializeFocusPoint();
     }
-
     void Update()
     {
         debugDir = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
         if (lookAtTraget)
         {
-            Targeting(target);
+            FocusOnTraget();
         }
         else
         {
             MoveFocusPoint(debugDir);
         }
 
-        Zoom(zoomIntensity);
-        FollowFocusPoint();
+        ZoomCalcul(zoomIntensity);
+        ZoomApplication();
     }
-
     private void OnDrawGizmos()
     {
-        DebugBoundary();
+        DebugBoundary(4f, 8);
     }
 
-    public void ChangeTarget(Transform newTarget)
+    [ContextMenu("testTo1")]
+    public void Test()
     {
-        target = newTarget;
+        SetZoom(1, 1);
     }
-
-    public void Targeting(Transform target)
+    [ContextMenu("testTo0")]
+    public void Test2()
     {
-        Vector3 toTarget = target.position - focusPoint.position;
+        SetZoom(0, 1);
+    }
+    public void SetZoom(float zoomdesired, float speed)
+    {
+        StopAllCoroutines();
+        StartCoroutine(ZoomLeveling(zoomdesired, speed));
+    }
+    private IEnumerator ZoomLeveling(float value, float speed)
+    {
+        float time = 0f;
+        float distance = value - zoomIntensity;
+        float distAbsolute = Mathf.Abs(distance);
+        float baseZoom = zoomIntensity;
 
-        Vector3 wantedPos = focusPoint.position + toTarget;
-        focusPoint.position = Vector3.Lerp(focusPoint.position, wantedPos, mouvLerpSpeed);
+        while (time < distAbsolute)
+        {
+            time += speed * Time.deltaTime;
+            zoomIntensity = Mathf.Lerp(baseZoom, baseZoom + distance, time);
+            yield return null;
+        }
     }
 
-    private void Zoom(float zoom)
+    public void SetTraget(Transform target)
+    {
+        this.target = target;
+    }
+    public void SetIsTargeting(bool value)
+    {
+        lookAtTraget = value;
+    }
+    public void ToogleTargeting()
+    {
+        lookAtTraget = !lookAtTraget;
+    }
+
+    private void InitializeFocusPoint()
+    {
+        if (focusPoint == null)
+        {
+            focusPoint = Instantiate(new GameObject(), new Vector3(transform.position.x, 0, transform.position.z), Quaternion.identity).transform;
+            focusPoint.name = "New_CamFocusPoint";
+        }
+    }
+    private void ZoomCalcul(float zoom)
     {
         zoom = Mathf.Clamp01(zoom);
-
-        float aimAngle = Mathf.Lerp(minAngle, maxAngle, zoom);
-        aimHeight = Mathf.Lerp(minHeight, maxHeight, zoom);
-        aimPromimity = Mathf.Lerp(minTargetProximity, maxTargetProximity, zoom);
-        float aimFov = Mathf.Lerp(minFov, maxFov, zoom);
-
-        /*Déplacement
-        Vector3 wantedPos = focusPoint.position + new Vector3(0, aimHeight, aimPromimity);
-        transform.position = Vector3.Lerp(transform.position, wantedPos, aimLerpSpeed);
-        */
-
+        //Position
+        aimHeight = camSett.EvalHeight(zoom);
+        aimPromimity = camSett.EvalPromimity(zoom);
         //Fov
-        cam.fieldOfView = Mathf.Lerp(cam.fieldOfView,aimFov, aimLerpSpeed);
-        
+        aimFov = camSett.EvalFieldOfView(zoom);
         //Rotation 
-        Quaternion aimLook = Quaternion.Euler(aimAngle, transform.rotation.y, transform.rotation.z);
-        //Slerp and not Lerp (https://youtu.be/uNHIPVOnt-Y)
-        transform.rotation = Quaternion.Slerp(transform.rotation, aimLook, aimLerpSpeed);
+        aimAngle = camSett.EvalAngle(zoom);
     }
+    private void ZoomApplication()
+    {
+        //ApplyPos
+        aimPos = focusPoint.position + new Vector3(0, aimHeight, aimPromimity);
+        transform.position = Vector3.Lerp(transform.position, aimPos, mouvLerpSpeed);
 
+        //Apply Fov
+        cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, aimFov, aimLerpSpeed);
+
+        //Apply Rotation
+        Quaternion aimLook = Quaternion.Euler(aimAngle, transform.rotation.y, transform.rotation.z);
+        transform.rotation = Quaternion.Slerp(transform.rotation, aimLook, aimLerpSpeed); //Slerp and not Lerp (https://youtu.be/uNHIPVOnt-Y)
+    }
     private void MoveFocusPoint(Vector2 dir)
     {
         dir = dir.normalized;
 
         Vector3 mouvement = new Vector3(dir.x, 0, dir.y) * moveSpeed * Time.deltaTime;
-
         Vector3 wantedPos = focusPoint.position + mouvement;
 
         if (!InBoundary(wantedPos))
         {
-            /*
-            wantedPos = focusPoint.position;
-            Vector3 newMouv = Vector3.zero;
-
-            //Do max 10 iteration to find the closest point
-            while (InBoundary(wantedPos))
-            {
-                newMouv += mouvement.normalized * (0.1f * mouvement.magnitude);
-                wantedPos = focusPoint.position + newMouv;
-            }
-            newMouv -= mouvement.normalized * (0.1f * mouvement.magnitude);
-            */
-
-            wantedPos.x = Mathf.Clamp(wantedPos.x, -(boundary.x * 0.5f) + offSet.x, +(boundary.x * 0.5f) + offSet.x);
-            wantedPos.z = Mathf.Clamp(wantedPos.z, -(boundary.y * 0.5f) + offSet.y, +(boundary.y * 0.5f) + offSet.y);
-
+            wantedPos.x = Mathf.Clamp(wantedPos.x, limit.left, limit.right);
+            wantedPos.z = Mathf.Clamp(wantedPos.z, limit.down, limit.up);
         }
 
         focusPoint.position = wantedPos;
     }
-
-    private void FollowFocusPoint()
+    private void FocusOnTraget()
     {
-        Vector3 wantedPos = focusPoint.position + new Vector3(0, aimHeight, aimPromimity);
-        transform.position = Vector3.Lerp(transform.position, wantedPos, mouvLerpSpeed);
-    }
+        Vector3 toTarget = (target.position - focusPoint.position);
+        if (toTarget.magnitude > 0.5f)
+        {
+            toTarget = toTarget.normalized * refocusSpeed * Time.deltaTime;
+        }
 
-    private bool InBoundary (Vector3 pos)
+        Vector3 wantedPos = focusPoint.position + toTarget;
+
+        focusPoint.position = wantedPos;
+    }
+    private bool InBoundary(Vector3 pos)
     {
         //Est ce que je dépasse en x ?
-        if(pos.x < -(boundary.x * 0.5f) + offSet.x || boundary.x * 0.5f + offSet.x < pos.x)
+        if (pos.x < limit.left || limit.right < pos.x)
         {
             return false;
         }
         else
         //Est ce que je dépasse en y ?
-        if (pos.z < -(boundary.y * 0.5f) + offSet.y || boundary.y * 0.5f + offSet.y < pos.z)
+        if (pos.z < limit.down || limit.up < pos.z)
         {
             return false;
         }
@@ -161,38 +179,37 @@ public class CameraController : MonoBehaviour
             return true;
         }
     }
-
-    private void DebugBoundary()
+    private void DebugBoundary(float height, int step)
     {
-        float height = 2f;
+        float ratio = height / step;
 
-        for (float tempHeight = 0; tempHeight <= height; tempHeight += 0.5f)
+        for (float tempHeight = 0; tempHeight <= height; tempHeight += ratio)
         {
-            //Top Left
-            Vector3 drawPos = new Vector3(-(boundary.x * 0.5f) + offSet.x, tempHeight, +(boundary.y * 0.5f) + offSet.y);
-            Debug.DrawRay(drawPos, Vector3.right * boundary.x, Color.red);
-
-            //TopRight
-            drawPos += Vector3.right * boundary.x;
-            Debug.DrawRay(drawPos, Vector3.back * boundary.y, Color.red);
-
-            //BotoomRight
-            drawPos += Vector3.back * boundary.y;
-            Debug.DrawRay(drawPos, Vector3.left * boundary.x, Color.red);
-
-            //BotoomLeft
-            drawPos += Vector3.left * boundary.x;
-            Debug.DrawRay(drawPos, Vector3.forward * boundary.y, Color.red);
+            //Draw the rectangle
+            // _  
+            Vector3 drawPos = new Vector3(limit.left, tempHeight, limit.up);
+            Debug.DrawRay(drawPos, Vector3.right * limit.size.x, Color.red);
+            // _
+            //  |
+            drawPos += Vector3.right * limit.size.x;
+            Debug.DrawRay(drawPos, Vector3.back * limit.size.y, Color.red);
+            // _
+            // _|
+            drawPos += Vector3.back * limit.size.y;
+            Debug.DrawRay(drawPos, Vector3.left * limit.size.x, Color.red);
+            // _
+            //|_|
+            drawPos += Vector3.left * limit.size.x;
+            Debug.DrawRay(drawPos, Vector3.forward * limit.size.y, Color.red);
         }
 
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireCube(new Vector3(offSet.x, height * 0.5f, offSet.y), new Vector3(boundary.x, height, boundary.y));
+        Gizmos.DrawWireCube(new Vector3(limit.offSet.x, height * 0.5f, limit.offSet.y), new Vector3(limit.size.x, height, limit.size.y));
 
-        if(focusPoint != null)
+        if (focusPoint != null)
         {
             Gizmos.color = Color.green;
             Gizmos.DrawWireSphere(new Vector3(focusPoint.position.x, height, focusPoint.position.z), 0.5f);
         }
     }
-
 }
