@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour
     public InputManager inputManager;
     public PlayerController playerController;
 
+    [Header("Camera")]
+    public CameraController cameraController;
+
     private void Awake()
     {
         #region Singleton Declaration / DDOL

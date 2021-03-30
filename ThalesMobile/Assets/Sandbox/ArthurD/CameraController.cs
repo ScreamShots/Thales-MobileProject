@@ -27,8 +27,7 @@ public class CameraController : MonoBehaviour
     public float mouvLerpSpeed = 0.1f;
     private Vector3 aimPos = Vector3.zero;
     [Space(5)]
-    [SerializeField] bool debug = false;
-    [SerializeField] Vector2 debugDir = Vector2.zero;
+    public Vector2 moveDirection = Vector2.zero;
 
     [Header("Map Limits")]
     public CameraBoundary limit = new CameraBoundary();
@@ -40,7 +39,7 @@ public class CameraController : MonoBehaviour
     }
     void Update()
     {
-        debugDir = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        //moveDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
         if (lookAtTraget)
         {
@@ -48,7 +47,7 @@ public class CameraController : MonoBehaviour
         }
         else
         {
-            MoveFocusPoint(debugDir);
+            MoveFocusPoint(moveDirection);
         }
 
         ZoomCalcul(zoomIntensity);
@@ -69,6 +68,7 @@ public class CameraController : MonoBehaviour
     {
         SetZoom(0, 1);
     }
+
     public void SetZoom(float zoomdesired, float speed)
     {
         StopAllCoroutines();
@@ -89,17 +89,10 @@ public class CameraController : MonoBehaviour
         }
     }
 
-    public void SetTraget(Transform target)
+    public void SetTarget(Transform target)
     {
         this.target = target;
-    }
-    public void SetIsTargeting(bool value)
-    {
-        lookAtTraget = value;
-    }
-    public void ToogleTargeting()
-    {
-        lookAtTraget = !lookAtTraget;
+        lookAtTraget = true;
     }
 
     private void InitializeFocusPoint()
@@ -155,6 +148,10 @@ public class CameraController : MonoBehaviour
         if (toTarget.magnitude > 0.5f)
         {
             toTarget = toTarget.normalized * refocusSpeed * Time.deltaTime;
+        }
+        else
+        {
+            lookAtTraget = false;
         }
 
         Vector3 wantedPos = focusPoint.position + toTarget;
