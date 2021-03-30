@@ -28,6 +28,7 @@ public class Submarine : DetectableOceanEntity
     protected override void Start()
     {
         _transform = transform;
+        coords.position = Coordinates.ConvertWorldToVector2(_transform.position);
         currentSeaLevel = OceanEntities.SeaLevel.submarine;
         PickRandomInterrestPoint();
     }
@@ -51,7 +52,7 @@ public class Submarine : DetectableOceanEntity
         }
         else
         {
-            //LE JOUEUR A PERDU
+            // Player lose.
         }
     }
 
@@ -85,21 +86,20 @@ public class Submarine : DetectableOceanEntity
             currentSpeed += acceleration * Time.deltaTime;
         }
 
-         //Calculate direction to target and store it in coords.
-            coords.direction = targetPosition - coords.position;
+        //Calculate direction to target and store it in coords.
+        coords.direction = targetPosition - coords.position;
 
-            //Update the plane's position.
-           coords.position += coords.direction.normalized * currentSpeed * Time.deltaTime;
+        //Update the plane's position.
+        coords.position += coords.direction.normalized * currentSpeed * Time.deltaTime;
 
-            //Store the new position in the coords.
-            _transform.position = Coordinates.ConvertVector2ToWorld(coords.position);
+        //Store the new position in the coords.
+        _transform.position = Coordinates.ConvertVector2ToWorld(coords.position);
 
-            if ((targetPosition - coords.position).magnitude < 0.1f)
-            {
-                movingToNextPoint = false;
-                currentSpeed = 0;
-            }
-            
+        if ((targetPosition - coords.position).magnitude < 0.1f)
+        {
+            movingToNextPoint = false;
+            currentSpeed = 0;
+        }        
     }
 
     public override void PathFinding()
