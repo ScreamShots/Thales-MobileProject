@@ -8,11 +8,11 @@ namespace OceanEntities
     {
         private Transform _transform;
 
-        /*[HideInInspector]*/public Transform currentTargetPoint;
-
         private Vector2 waitingPoint = new Vector2();
         private Vector2 waitingCircleVector;
         public float waitingRoutineRadius;
+
+        
 
         void Start()
         {
@@ -22,9 +22,9 @@ namespace OceanEntities
 
         void Update()
         {
-            if(currentTargetPoint != null)
+            if(currentTargetPoint != nullVector)
             {
-                Move(Coordinates.ConvertWorldToVector2(currentTargetPoint.position));
+                Move(currentTargetPoint);
                 if (waitingPoint != null)
                 {
                     waitingPoint = Vector2.zero;
@@ -48,7 +48,7 @@ namespace OceanEntities
 
             if ((targetPosition - coords.position).magnitude < 0.1f)
             {
-                currentTargetPoint = null;
+                currentTargetPoint = nullVector;
             }
         }
 

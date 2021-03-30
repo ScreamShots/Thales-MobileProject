@@ -19,9 +19,9 @@ public class PlayerController : MonoBehaviour
         
     }
 
-    public void SetEntityMoveTarget(PlayerOceanEntity entity, Vector2 target)
+    public void SetEntityMoveTarget(Vector2 target)
     {
-        
+        currentSelectedEntity.currentTargetPoint = target;
     }
 
 

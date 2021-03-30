@@ -7,7 +7,6 @@ namespace OceanEntities
     public class Helicopter : PlayerOceanEntity
     {
         private Transform _transform;
-        [HideInInspector] public Transform currentTargetPoint;
 
         public float preparationDuration;
         public float alertDuration;
@@ -28,9 +27,9 @@ namespace OceanEntities
 
         void Update()
         {
-            if(currentTargetPoint != null && inFlight)
+            if(currentTargetPoint != nullVector && inFlight)
             {
-                Move(Coordinates.ConvertWorldToVector2(currentTargetPoint.position));
+                Move(currentTargetPoint);
             }
 
             //If flight ended then go back to the ship
@@ -55,7 +54,7 @@ namespace OceanEntities
 
             if ((targetPosition - coords.position).magnitude < 0.1f)
             {
-                currentTargetPoint = null;
+                currentTargetPoint = nullVector;
             
                 if (!inFlight)
                 {

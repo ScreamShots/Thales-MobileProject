@@ -12,7 +12,7 @@ public class InputManager : MonoBehaviour
 
     [Header("Game")]
     public LayerMask selectableEntity;
-    [HideInInspector] public bool getEntityTarget; 
+    [HideInInspector] public bool getEntityTarget = false; 
 
     Vector2 touchedSeaPosition;
     Touch touch;
@@ -34,7 +34,8 @@ public class InputManager : MonoBehaviour
             {
                 //Get the sea position and pass it to the player controller
                 touchedSeaPosition = GetSeaPosition();
-                GameManager.Instance.playerController.target = touchedSeaPosition;
+                GameManager.Instance.playerController.SetEntityMoveTarget(touchedSeaPosition);
+                print(touchedSeaPosition);
             }
             else
             {
@@ -47,12 +48,13 @@ public class InputManager : MonoBehaviour
                     if(Physics.Raycast(touchRay, out hit, 200f, selectableEntity))
                     {
                         GameManager.Instance.playerController.currentSelectedEntity = hit.collider.gameObject.GetComponent<PlayerOceanEntity>();
+                        getEntityTarget = true;
                     }
                 }
                 //If drag then move camera
-                else if(touch.phase == TouchPhase.Moved)
+                else if(touch.phase == TouchPhase.Moved && touch.deltaPosition.magnitude > 0.1f)
                 {
-
+                    print("MovingCam");
                 }
             }
         }
@@ -60,6 +62,7 @@ public class InputManager : MonoBehaviour
 
     public Vector2 GetSeaPosition()
     {
+        touch = Input.GetTouch(0);
         Ray touchRay;
         touchRay = mainCamera.ScreenPointToRay(touch.position);
 

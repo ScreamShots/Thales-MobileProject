@@ -8,7 +8,6 @@ namespace OceanEntities
     {
         private Transform _transform;
 
-        [HideInInspector] public Transform currentTargetPoint;
 
         void Start()
         {
@@ -20,9 +19,10 @@ namespace OceanEntities
 
         void Update()
         {
-            if (currentTargetPoint != null)
+            if (currentTargetPoint != nullVector)
             {
-                Move(Coordinates.ConvertWorldToVector2 (currentTargetPoint.position));
+
+                Move(currentTargetPoint);
             }
         }
         public override void Move(Vector2 targetPosition)
@@ -38,7 +38,7 @@ namespace OceanEntities
 
             if ((targetPosition - coords.position).magnitude < 0.1f)
             {
-                currentTargetPoint = null;
+                currentTargetPoint = nullVector;
             }
         }
 
