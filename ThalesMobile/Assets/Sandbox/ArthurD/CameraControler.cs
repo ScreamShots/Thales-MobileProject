@@ -43,14 +43,14 @@ public class CameraControler : MonoBehaviour
         if (lookAtTraget)
         {
             ZoomOn(zoomIntensity, target);
-            Follow(target);
+            //Follow(target);
 
             focusPos = new Vector3(transform.position.x, handModeHeight, transform.position.z);
         }
         else
         {
             Zoom(zoomIntensity);
-            Move(tempDir);
+            //Move(tempDir);
         }
     }
 
@@ -75,7 +75,6 @@ public class CameraControler : MonoBehaviour
         Quaternion aimLook = Quaternion.Euler(aimAngle, transform.rotation.y, transform.rotation.z);
         //Slerp and not Lerp
         transform.rotation = Quaternion.Slerp(transform.rotation, aimLook, aimLerpSpeed);
-
     }
     private void ZoomOn(float zoom, Transform target)
     {
