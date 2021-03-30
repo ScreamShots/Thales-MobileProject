@@ -30,7 +30,7 @@ public class CameraController : MonoBehaviour
     public Vector2 moveDirection = Vector2.zero;
 
     [Header("Map Limits")]
-    public CameraBoundary limit = new CameraBoundary();
+    public Boundary limit = new Boundary();
 
     void Start()
     {
@@ -134,10 +134,10 @@ public class CameraController : MonoBehaviour
         Vector3 mouvement = new Vector3(dir.x, 0, dir.y) * moveSpeed * Time.deltaTime;
         Vector3 wantedPos = focusPoint.position + mouvement;
 
-        if (!InBoundary(wantedPos))
+        if (!limit.InBoundary(wantedPos))
         {
-            wantedPos.x = Mathf.Clamp(wantedPos.x, limit.left, limit.right);
-            wantedPos.z = Mathf.Clamp(wantedPos.z, limit.down, limit.up);
+            wantedPos.x = Mathf.Clamp(wantedPos.x, limit.leftBorder, limit.rightBorder);
+            wantedPos.z = Mathf.Clamp(wantedPos.z, limit.downBorder, limit.upBorder);
         }
 
         focusPoint.position = wantedPos;
@@ -158,24 +158,6 @@ public class CameraController : MonoBehaviour
 
         focusPoint.position = wantedPos;
     }
-    private bool InBoundary(Vector3 pos)
-    {
-        //Est ce que je dépasse en x ?
-        if (pos.x < limit.left || limit.right < pos.x)
-        {
-            return false;
-        }
-        else
-        //Est ce que je dépasse en y ?
-        if (pos.z < limit.down || limit.up < pos.z)
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
-    }
     private void DebugBoundary(float height, int step)
     {
         float ratio = height / step;
@@ -184,7 +166,7 @@ public class CameraController : MonoBehaviour
         {
             //Draw the rectangle
             // _  
-            Vector3 drawPos = new Vector3(limit.left, tempHeight, limit.up);
+            Vector3 drawPos = new Vector3(limit.leftBorder, tempHeight, limit.upBorder);
             Debug.DrawRay(drawPos, Vector3.right * limit.size.x, Color.red);
             // _
             //  |
