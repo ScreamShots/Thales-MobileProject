@@ -5,13 +5,14 @@ using UnityEngine;
 /// <summary>
 /// Antoine Leroux - 28/03/2021 - Script relative to the movement and behavior of SubMarine entity. 
 /// </summary>
-public class SubMarine : DetectableOceanEntity
+public class Submarine : DetectableOceanEntity
 {
     [Header("Movement")]
     private Transform _transform;
     public float maxSpeed;
     public float acceleration;
     private float currentSpeed;
+    private bool movingToNextPoint;
 
     [Header("Objectif")]
     public int pointsToHack;
@@ -21,6 +22,7 @@ public class SubMarine : DetectableOceanEntity
     [Space]
     public List<InterestPoint> interestPoints;
     private InterestPoint nextInterestPoint;
+    private Vector2 nextInterestPointPosition;
     private int randomNumber;
 
     protected override void Start()
@@ -34,14 +36,15 @@ public class SubMarine : DetectableOceanEntity
     {    
         if (pointsHacked < pointsToHack)
         {
+            nextInterestPointPosition = Coordinates.ConvertWorldToVector2(nextInterestPoint.transform.position);
             // Move Submarine to the target point.
-            if (nextInterestPoint != null)
+            if (nextInterestPoint != null && movingToNextPoint)
             {
-                Move(new Vector2(nextInterestPoint.transform.position.x, nextInterestPoint.transform.position.z));
+                Move(nextInterestPointPosition);
             }
 
             // Hacking the interrest point with hacking time specific to the interrest point.
-            if (transform.position == nextInterestPoint.transform.position)
+            if ((nextInterestPointPosition - coords.position).magnitude < 0.2f)
             {
                 Capture();
             }
@@ -56,6 +59,7 @@ public class SubMarine : DetectableOceanEntity
     {
         randomNumber = Random.Range(0, interestPoints.Count);
         nextInterestPoint = interestPoints[randomNumber];
+        movingToNextPoint = true;
     }
 
     private void Capture()
@@ -81,24 +85,21 @@ public class SubMarine : DetectableOceanEntity
             currentSpeed += acceleration * Time.deltaTime;
         }
 
-        transform.position = Vector3.MoveTowards(transform.position, new Vector3(targetPosition.x, transform.position.y, targetPosition.y), Time.deltaTime * currentSpeed);
-
-
-        /*
          //Calculate direction to target and store it in coords.
             coords.direction = targetPosition - coords.position;
 
             //Update the plane's position.
-           coords.position += coords.direction.normalized * speed * Time.deltaTime;
+           coords.position += coords.direction.normalized * currentSpeed * Time.deltaTime;
 
             //Store the new position in the coords.
             _transform.position = Coordinates.ConvertVector2ToWorld(coords.position);
 
             if ((targetPosition - coords.position).magnitude < 0.1f)
             {
-                currentTargetPoint = nullVector;
+                movingToNextPoint = false;
+                currentSpeed = 0;
             }
-         */
+            
     }
 
     public override void PathFinding()
