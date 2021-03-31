@@ -21,6 +21,9 @@ public class Sonobuoy : MonoBehaviour
     private Transform _transform;
     private float distanceFromEntity;
 
+    [Header("References")]
+    public LevelManager levelManager;
+
     [Header("Effect")]
     public float sonobuoyLifeTime;
     private float timeBeforeDisableSonobuoy;
@@ -33,9 +36,6 @@ public class Sonobuoy : MonoBehaviour
     private SpriteRenderer rangeSprite;
     public Color undetectedElementColor;
     public Color detectedElementColor;
-
-    [Space]   
-    public List<DetectableOceanEntity> submarineEntitiesInScene;
 
     [Header("DEBUG")]
     public List<DetectableOceanEntity> entitiesInsideSonobuoyRange;
@@ -108,23 +108,23 @@ public class Sonobuoy : MonoBehaviour
 
     private void DetectElementsInsideRange()
     {
-        for (int x = 0; x < submarineEntitiesInScene.Count; x++)
+        for (int x = 0; x < levelManager.submarineEntitiesInScene.Count; x++)
         {
             // Calculate distance from the entity
-            distanceFromEntity = Vector2.Distance(Coordinates.ConvertWorldToVector2(submarineEntitiesInScene[x].transform.position), Coordinates.ConvertWorldToVector2(_transform.position));
+            distanceFromEntity = Vector2.Distance(Coordinates.ConvertWorldToVector2(levelManager.submarineEntitiesInScene[x].transform.position), Coordinates.ConvertWorldToVector2(_transform.position));
 
             if (distanceFromEntity < detectionRange)
             {
-                if (!entitiesInsideSonobuoyRange.Contains(submarineEntitiesInScene[x]))
+                if (!entitiesInsideSonobuoyRange.Contains(levelManager.submarineEntitiesInScene[x]))
                 {
-                    entitiesInsideSonobuoyRange.Add(submarineEntitiesInScene[x]);
+                    entitiesInsideSonobuoyRange.Add(levelManager.submarineEntitiesInScene[x]);
                 }
             }
             else
             {
-                if (entitiesInsideSonobuoyRange.Contains(submarineEntitiesInScene[x]))
+                if (entitiesInsideSonobuoyRange.Contains(levelManager.submarineEntitiesInScene[x]))
                 {
-                    entitiesInsideSonobuoyRange.Remove(submarineEntitiesInScene[x]);
+                    entitiesInsideSonobuoyRange.Remove(levelManager.submarineEntitiesInScene[x]);
                 }
             }
         }
