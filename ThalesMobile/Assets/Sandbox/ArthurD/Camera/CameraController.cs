@@ -12,6 +12,7 @@ public class CameraController : MonoBehaviour
 
     [Header("Zoom Parameter")]
     [Range(0, 1)] public float zoomIntensity;
+    [Range(1, 10)] public float zoomSpeed = 5;
     public CameraSettings camSett = new CameraSettings();
     private float aimAngle;
     private float aimHeight;

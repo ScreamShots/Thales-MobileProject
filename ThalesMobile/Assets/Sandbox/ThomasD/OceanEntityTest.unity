@@ -744,6 +744,7 @@ MonoBehaviour:
   lookAtTraget: 0
   target: {fileID: 0}
   zoomIntensity: 1
+  zoomSpeed: 5
   camSett:
     minAngle: 45
     maxAngle: 90
