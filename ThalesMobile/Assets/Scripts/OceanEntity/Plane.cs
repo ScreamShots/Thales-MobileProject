@@ -11,7 +11,7 @@ namespace OceanEntities
         private Vector2 waitingPoint = new Vector2();
         private Vector2 waitingCircleVector;
         public float waitingRoutineRadius;
-
+        private float currentSpeed = 0;
         
 
         void Start()
@@ -37,6 +37,11 @@ namespace OceanEntities
         }
         public override void Move(Vector2 targetPosition)
         {
+            if (currentSpeed < speed)
+                currentSpeed += acceleration * Time.deltaTime;
+            else
+                currentSpeed = speed;
+
             //Calculate direction to target and store it in coords.
             coords.direction = targetPosition - coords.position;
 
@@ -49,6 +54,7 @@ namespace OceanEntities
             if ((targetPosition - coords.position).magnitude < 0.1f)
             {
                 currentTargetPoint = nullVector;
+                currentSpeed = 0;
             }
         }
 

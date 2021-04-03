@@ -7,7 +7,7 @@ namespace OceanEntities
     public class Ship : PlayerOceanEntity
     {
         private Transform _transform;
-
+        private float currentSpeed = 0;
 
         void Start()
         {
@@ -21,12 +21,17 @@ namespace OceanEntities
         {
             if (currentTargetPoint != nullVector)
             {
-
                 Move(currentTargetPoint);
             }
         }
         public override void Move(Vector2 targetPosition)
         {
+            if (currentSpeed < speed)
+                currentSpeed += acceleration * Time.deltaTime;
+            else
+                currentSpeed = speed;
+
+
             //Calculate direction to target and store it in coords.
             coords.direction = targetPosition - coords.position;
 
@@ -39,6 +44,7 @@ namespace OceanEntities
             if ((targetPosition - coords.position).magnitude < 0.1f)
             {
                 currentTargetPoint = nullVector;
+                currentSpeed = 0;
             }
         }
 
