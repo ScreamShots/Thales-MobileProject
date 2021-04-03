@@ -10,17 +10,18 @@ public class SceneHandler : MonoBehaviour
     private Animator transitionPanelAnimator;
     private bool finishedFade = false;
 
-
-    // Start is called before the first frame update
     void Start()
     {
-        transitionPanelAnimator = transitionPanel.GetComponent<Animator>();
+        transitionPanelAnimator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            StartCoroutine(SceneTransition(2));
+        }
     }
 
     public IEnumerator SceneTransition(int sceneToLoadBuildIndex)
@@ -39,7 +40,7 @@ public class SceneHandler : MonoBehaviour
         transitionPanelAnimator.SetBool("fade", false);
     }
 
-    public void GetAnimEvent(string paramater)
+    public void AnimEvent(string paramater)
     {
         if (paramater == "fadeEnded")
         {
