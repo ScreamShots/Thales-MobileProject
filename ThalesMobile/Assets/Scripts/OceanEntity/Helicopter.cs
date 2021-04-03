@@ -21,7 +21,7 @@ namespace OceanEntities
         //linkedShip must be linked when the helicopter is instanciated
         public Ship linkedShip;
 
-        void Start()
+        protected override void Start()
         {
             _transform = transform;
             movementType = MovementType.air;

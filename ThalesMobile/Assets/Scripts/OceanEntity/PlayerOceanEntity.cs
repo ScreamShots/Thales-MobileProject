@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Tweek.FlagAttributes;
 
 namespace OceanEntities
 {     
@@ -15,7 +16,9 @@ namespace OceanEntities
     /// </summary>
     public abstract class PlayerOceanEntity : OceanEntity
     {
+        [TweekFlag(FieldUsage.Gameplay)]
         public float speed;
+        [TweekFlag(FieldUsage.Gameplay)]
         public float acceleration;
         public float rotateSpeed;
         public MovementType movementType;

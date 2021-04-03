@@ -9,7 +9,7 @@ namespace OceanEntities
         private Transform _transform;
         private float currentSpeed = 0;
 
-        void Start()
+        protected override void Start()
         {
             movementType = MovementType.sea;
             _transform = transform;

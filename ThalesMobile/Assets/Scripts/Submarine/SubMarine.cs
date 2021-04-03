@@ -23,7 +23,7 @@ public class SubMarine : DetectableOceanEntity
     private InterestPoint nextInterestPoint;
     private int randomNumber;
 
-    private void Start()
+    protected override void Start()
     {
         _transform = transform;
         currentSeaLevel = OceanEntities.SeaLevel.submarine;

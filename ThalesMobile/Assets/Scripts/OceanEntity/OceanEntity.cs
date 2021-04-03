@@ -18,7 +18,7 @@ namespace OceanEntities
     /// <summary>
     /// Thomas Depraz - 25/03/2021 - OceanEntity is the root class for ever other entity.
     /// </summary>
-    public abstract class OceanEntity : MonoBehaviour
+    public abstract class OceanEntity : TweekMonoBehaviour
     {
         public Coordinates coords;
         public SeaLevel currentSeaLevel;
