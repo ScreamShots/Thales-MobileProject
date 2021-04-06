@@ -10,7 +10,10 @@ public class MeshTool : MonoBehaviour
     public Transform[] edgeTransforms;
     private Vector3[] edges;
     private Vector3[] edgesUp;
+    private Vector3[] chamferEdges;
     public float meshHeight;
+    public float chamferHeight;
+    public float chamferOffset;
     public GameObject targetGameObjectrReference;
     private GameObject target;
     private int verticeIndex = 0;
@@ -32,10 +35,36 @@ public class MeshTool : MonoBehaviour
 
         edges = new Vector3[edgeTransforms.Length];
         edgesUp = new Vector3[edgeTransforms.Length];
+        chamferEdges = new Vector3[edgeTransforms.Length];
+
+        float meanX = 0;
+        float meanY = 0;
+        float meanZ = 0;
+        for (int i = 0; i < edgeTransforms.Length; i++)
+        {
+            meanX += edgeTransforms[i].position.x;
+            meanY += edgeTransforms[i].position.y;
+            meanZ += edgeTransforms[i].position.z;
+        }
+        meanX = meanX / edgeTransforms.Length;
+        meanY = meanY / edgeTransforms.Length;
+        meanZ = meanZ / edgeTransforms.Length;
+
+        Vector3 chamferCenter = new Vector3(meanX, meanY, meanZ) + Vector3.up * meshHeight + Vector3.up * chamferHeight;
+
+        //Set all edges
         for (int i = 0; i < edgeTransforms.Length; i++)
         {
             edges[i] = edgeTransforms[i].position;
             edgesUp[i] = edgeTransforms[i].position + Vector3.up * meshHeight;
+            chamferEdges[i] = edgeTransforms[i].position + Vector3.up * meshHeight + Vector3.up * chamferHeight;
+        }
+
+        //Offset champfer edges
+        for (int i = 0; i < edgeTransforms.Length; i++)
+        {
+            Vector3 dir = chamferCenter - chamferEdges[i];
+            chamferEdges[i] += dir.normalized * chamferOffset;
         }
 
         mesh = new Mesh();
@@ -45,10 +74,8 @@ public class MeshTool : MonoBehaviour
 
         target.GetComponent<MeshFilter>().mesh = mesh;
 
-
         ProcessData();
     }
-
     void ProcessData()
     {
         int trianglesCount = edges.Length - 2;
@@ -64,18 +91,18 @@ public class MeshTool : MonoBehaviour
             verticeIndex += 3;
         }
 
-        //Create upper face.
+        //Create upper champfer face.
         for (int i = 1; i < edges.Length - 1; i++)
         {
-            vertices.Add(edgesUp[0]);
-            vertices.Add(edgesUp[i]);
-            vertices.Add(edgesUp[i+1]);
-
+            vertices.Add(chamferEdges[0]);
+            vertices.Add(chamferEdges[i]);
+            vertices.Add(chamferEdges[i+1]);
 
             CreateTriangles(-1);
             verticeIndex += 3;
         }
 
+        //Create Side faces
         for (int i = 0; i < edges.Length; i++)
         {
             if(i != edges.Length -1)
@@ -97,7 +124,27 @@ public class MeshTool : MonoBehaviour
             verticeIndex += 4;
         }
 
+        //Create Champfer Side faces
+        for (int i = 0; i < edges.Length; i++)
+        {
+            if (i != edges.Length - 1)
+            {
+                vertices.Add(edgesUp[i]);
+                vertices.Add(chamferEdges[i]);
+                vertices.Add(edgesUp[i + 1]);
+                vertices.Add(chamferEdges[i + 1]);
+            }
+            else
+            {
+                vertices.Add(edgesUp[i]);
+                vertices.Add(chamferEdges[i]);
+                vertices.Add(edgesUp[0]);
+                vertices.Add(chamferEdges[0]);
+            }
 
+            CreateTriangleQuad(1);
+            verticeIndex += 4;
+        }
 
         mesh.vertices = vertices.ToArray();
         mesh.triangles = triangles.ToArray();
@@ -107,7 +154,6 @@ public class MeshTool : MonoBehaviour
 
         SaveMesh(meshSavingPath, meshOutputName);
     }
-
     private void CreateTriangles(int normal)
     {
         if (normal == 1)
@@ -123,7 +169,6 @@ public class MeshTool : MonoBehaviour
             triangles.Add(0 + verticeIndex);
         }
     }
-
     private void CreateTriangleQuad(int normal)
     {
         if (normal == 1)
@@ -147,8 +192,6 @@ public class MeshTool : MonoBehaviour
             triangles.Add(2 + verticeIndex);
         }
     }
-
-
     private void SaveMesh(string path, string name)
     {
         string newPath = path;
