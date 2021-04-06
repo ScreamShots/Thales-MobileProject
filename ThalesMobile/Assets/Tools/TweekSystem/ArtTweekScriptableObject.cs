@@ -1,4 +1,4 @@
-//Random Generatated char value: ba6086a3-34b9-4b12-ad2b-f9a29734f10e
+//Random Generatated char value: 1e661826-7a8b-43ad-8ba3-ae259b8cf71a
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +7,5 @@ using Tweek.ScoAttributes;
 [CreateAssetMenu(menuName ="Tweek/Art Asset")]
 public class ArtTweekScriptableObject : ScriptableObject
 {
-
 
 }

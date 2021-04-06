@@ -36,32 +36,32 @@ public class TweekCoreUtilities : UnityEngine.Object
     #region Editor Commands
     public enum ScoUpdateMode { Global, Gameplay, Art, Sound }
 
-    [MenuItem("Tweek Operations/Update SCO Classes/Update All SCO")]
-    static void UpdateAllScoClass()
+    [MenuItem("Tweek Operations/Update SCO Classes/project data -> All SCO ")]
+    public static void UpdateAllScoClass()
     {
         LaunchScoUpdate(ScoUpdateMode.Global);
 
     }
 
-    [MenuItem("Tweek Operations/Update SCO Classes/Update Gameplay SCO")]
-    static void UpdateGameplayScoClass()
+    [MenuItem("Tweek Operations/Update SCO Classes/project Gameplay data-> Gameplay SCO")]
+    public static void UpdateGameplayScoClass()
     {
         LaunchScoUpdate(ScoUpdateMode.Gameplay);
     }
 
-    [MenuItem("Tweek Operations/Update SCO Classes/Update Graphic SCO")]
-    static void UpdateGraphicScoClass()
+    [MenuItem("Tweek Operations/Update SCO Classes/project Graphic data -> Graphic SCO")]
+    public static void UpdateGraphicScoClass()
     {
         LaunchScoUpdate(ScoUpdateMode.Art);
     }
 
-    [MenuItem("Tweek Operations/Update SCO Classes/Update Sound SCO")]
-    static void UpdateSoundScoClass()
+    [MenuItem("Tweek Operations/Update SCO Classes/project Sound data -> Sound SCO")]
+    public static void UpdateSoundScoClass()
     {
         LaunchScoUpdate(ScoUpdateMode.Sound);
     }
 
-    [MenuItem("Tweek Operations/Update Values on Project")]
+    [MenuItem("Tweek Operations/ All SCO -> project data")]
     static void ApplyValues()
     {
         object gameplayScoAsset = AssetDatabase.LoadAssetAtPath(targetGameplayScoAssetsPath, typeof(GameplayTweekScriptableObject)) as object;
@@ -74,6 +74,7 @@ public class TweekCoreUtilities : UnityEngine.Object
 
         LaunchValuesApplication(gameplayScoAsset, artScoAsset, soundScoAsset);
     }
+
     #endregion
 
     /// <summary>
@@ -755,10 +756,12 @@ public class TweekCoreUtilities : UnityEngine.Object
 
     /// <summary>
     /// Update field on prefab and scene's objects with value from a SCO Assets all across the project
+    /// 
+    /// if you don't want to update a part, give a null object
     /// </summary>
 
-    //manage values application protocole (handle progress bar) 
-    static void LaunchValuesApplication(object gameplayValues, object artValues, object soundValues)
+    //manage values application protocole (handle progress bar)
+    public static void LaunchValuesApplication(object gameplayValues, object artValues, object soundValues)
     {
         EditorUtility.DisplayProgressBar("Tweek System operation on going.", "Launching protocole to unpack infos from SCO", 0f);
 
