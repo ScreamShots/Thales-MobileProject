@@ -16,6 +16,9 @@ public class GameManager : MonoBehaviour
     [Header("Camera")]
     public CameraController cameraController;
 
+    [Header("Level")]
+    public LevelManager levelManager;
+
     private void Awake()
     {
         #region Singleton Declaration / DDOL
@@ -29,5 +32,15 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
         #endregion
+    }
+
+    public void ExternalStartCoroutine(IEnumerator coroutine)
+    {
+        StartCoroutine(coroutine);
+    }
+
+    public void ExternalStopCoroutine(IEnumerator coroutine)
+    {
+        StopCoroutine(coroutine);
     }
 }
