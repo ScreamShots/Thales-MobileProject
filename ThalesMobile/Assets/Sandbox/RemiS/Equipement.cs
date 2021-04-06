@@ -19,7 +19,7 @@ namespace PlayerEquipement
         public EquipementType equipementType { get; protected set; }
 
         [HideInInspector]
-        public bool readyToUse { get; protected set; }
+        public bool readyToUse { get; protected set; } = true;
 
         [SerializeField]
         int chargeMax;
