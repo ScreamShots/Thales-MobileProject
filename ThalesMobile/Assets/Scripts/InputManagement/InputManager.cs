@@ -13,7 +13,8 @@ public class InputManager : MonoBehaviour
 
     [Header("Game")]
     public LayerMask selectableEntity;
-    [HideInInspector] public bool getEntityTarget = false; 
+    [HideInInspector] public bool getEntityTarget = false;
+    private bool touchedShip;
 
     //Touch inputs
     private Vector2 touchedSeaPosition;
@@ -52,6 +53,7 @@ public class InputManager : MonoBehaviour
                     {
                         GameManager.Instance.playerController.currentSelectedEntity = hit.collider.gameObject.GetComponent<PlayerOceanEntity>();
                         camController.SetTarget(hit.collider.transform);
+                        touchedShip = true;
                     }
                 }
                 //If drag then move camera
@@ -99,6 +101,12 @@ public class InputManager : MonoBehaviour
         {
             camController.moveDirection = Vector2.zero;
             distance = 0;
+
+            if(touchedShip)
+            {
+                getEntityTarget = true;
+                touchedShip = false;
+            }
         }
     }
 
