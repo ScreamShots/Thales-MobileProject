@@ -5,49 +5,54 @@ using System.Linq;
 
 namespace PlayerEquipement
 {
+    [CreateAssetMenu(menuName = "Equipement/HullSonar")]
     public class HullSonar : Equipement
     {
+        [Header("Hull Sonar Params")]
         [SerializeField]
         float range;
         [SerializeField]
         float waveDuration;
+        [SerializeField]
+        float pointFadeDuration;
 
+        [Header("Pooling Params")]
         [SerializeField]
         GameObject detectionPointPrefab;
         [SerializeField]
         int poolSize;
+        List<HullSonarDetectionPoint> availableDetectionPoints = new List<HullSonarDetectionPoint>();
+        List<HullSonarDetectionPoint> usedDetectionPoints = new List<HullSonarDetectionPoint>();
 
-        List<GameObject> availableDetectionPoints;
-        List<GameObject> usedDetectionPoints;
+        LevelManager levelManager;
 
-        LevelManager levelHandler;
-
-        private void Awake()
+        public override void Awake()
         {
-            levelHandler = GameManager.Instance.levelManager;
+            base.Awake();
+
+            levelManager = GameManager.Instance.levelManager;
 
             equipementType = EquipementType.passive;
 
-            availableDetectionPoints = new List<GameObject>();
-            usedDetectionPoints = new List<GameObject>();
+            GameObject tempDetectionPoint;
 
             for (int i = 0; i < poolSize; i++)
             {
-                availableDetectionPoints.Add(Instantiate(detectionPointPrefab, levelHandler.transform));
-                availableDetectionPoints[i].SetActive(false);
+                tempDetectionPoint = Instantiate(detectionPointPrefab, GameManager.Instance.levelManager.transform);
+                availableDetectionPoints.Add(tempDetectionPoint.GetComponent<HullSonarDetectionPoint>());
             }
         }
 
-        public override void UseEquipement(Transform userPos)
+        public override void UseEquipement(Coordinates userCoords)
         {
-            base.UseEquipement(userPos);
+            base.UseEquipement(userCoords);
+
             readyToUse = false;
-            GameManager.Instance.ExternalStartCoroutine(SonarWave(userPos));
+            GameManager.Instance.ExternalStartCoroutine(SonarWave(userCoords));
         }
 
-        IEnumerator SonarWave(Transform userPos)
+        IEnumerator SonarWave(Coordinates userCoords)
         {
-            Coordinates userCoords;
             Coordinates detectableCoords;
             Coordinates pointCoords;
             float distance;
@@ -55,29 +60,36 @@ namespace PlayerEquipement
             float waveTime = 0;
             float padding = 0;
 
-            while (waveRange < waveDuration)
+            while (waveTime < waveDuration)
             {
-                userCoords = new Coordinates(userPos.position, Vector2.zero, 0f);
-
-                foreach (DetectableOceanEntity detectable in levelHandler.submarineEntitiesInScene)
+                foreach (DetectableOceanEntity detectable in levelManager.submarineEntitiesInScene)
                 {
                     detectableCoords = new Coordinates(detectable.transform.position, Vector2.zero, 0f);
                     distance = Mathf.Abs(Vector2.Distance(userCoords.position, detectableCoords.position));
 
                     if (distance >= waveRange && distance <= waveRange + padding)
                     {
-                        //Placer un point
+                        if (availableDetectionPoints.Count > 0)
+                        {
+                            availableDetectionPoints[0].ActivatePoint(detectable, pointFadeDuration);
+                            usedDetectionPoints.Add(availableDetectionPoints[0]);
+                            availableDetectionPoints.RemoveAt(0);
+                        }
+                        else Debug.Log("Not Enough object in pool");
+                        
                     }
                 }
 
-                foreach (GameObject detectionPoint in usedDetectionPoints.ToList())
+                foreach (HullSonarDetectionPoint detectionPoint in usedDetectionPoints.ToList())
                 {
                     pointCoords = new Coordinates(detectionPoint.transform.position, Vector2.zero, 0f);
                     distance = Mathf.Abs(Vector2.Distance(userCoords.position, pointCoords.position));
 
                     if (distance >= waveRange && distance <= waveRange + padding)
                     {
-                        //Retirer un point
+                        detectionPoint.DesactivatePoint();
+                        availableDetectionPoints.Add(detectionPoint);
+                        usedDetectionPoints.Remove(detectionPoint);
                     }
                 }
 
@@ -89,12 +101,6 @@ namespace PlayerEquipement
             }
 
             readyToUse = true;
-        }
-
-        protected override void OnDestroy()
-        {
-            base.OnDestroy();
-            GameManager.Instance.ExternalStopCoroutine(SonarWave(null));
         }
     }
 }

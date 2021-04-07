@@ -68,7 +68,15 @@ namespace PlayerEquipement
             if (chargeCount < chargeMax) allCoroutines.Add(GameManager.Instance.ExternalStartCoroutine(LoadCharge()));
         }
 
-        public virtual void UseEquipement(Transform userPos)
+        public virtual void UseEquipement(Coordinates userCoords)
+        {
+            if (equipementType == EquipementType.active)
+            {
+                chargeCount--;
+            }
+        }
+
+        public virtual void UseEquipement(Coordinates userCoords, Vector2 targetPos)
         {
             if (equipementType == EquipementType.active)
             {

@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class HullSonarDetectionPoint : DetectionObject
 {
-    public Coordinates coords;
-    [SerializeField]
-    float fadeDuration;
+    [HideInInspector]
+    public float fadeDuration;
 
-    public void ActivatePoint(DetectableOceanEntity detectedElement)
+    public void ActivatePoint(DetectableOceanEntity detectedElement, float _fadeDuration)
     {
         levelManager.activatedDetectionObjects.Add(this);
         detectedEntities.Add(detectedElement);
         transform.position = Coordinates.ConvertVector2ToWorld(detectedElement.coords.position);
+        coords.position = Coordinates.ConvertWorldToVector2(transform.position);
+        fadeDuration = _fadeDuration;
+        detectionState = DetectionState.unknownDetection;
         gameObject.SetActive(true);
         StartCoroutine(Fade());
     }
@@ -24,6 +26,7 @@ public class HullSonarDetectionPoint : DetectionObject
         detectedEntities.Clear();
         detectionState = DetectionState.noDetection;
         transform.localPosition = Vector3.zero;
+        detectionState = DetectionState.noDetection;
         StopAllCoroutines();
     }
 
@@ -38,5 +41,10 @@ public class HullSonarDetectionPoint : DetectionObject
         }
 
         DesactivatePoint();
+    }
+
+    protected override void RefreshFeedBack(DetectionState newState)
+    {
+        base.RefreshFeedBack(newState);
     }
 }
