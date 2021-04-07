@@ -34,12 +34,12 @@ public class GameManager : MonoBehaviour
         #endregion
     }
 
-    public void ExternalStartCoroutine(IEnumerator coroutine)
+    public Coroutine ExternalStartCoroutine(IEnumerator coroutine)
     {
-        StartCoroutine(coroutine);
+        return StartCoroutine(coroutine);
     }
 
-    public void ExternalStopCoroutine(IEnumerator coroutine)
+    public void ExternalStopCoroutine(Coroutine coroutine)
     {
         StopCoroutine(coroutine);
     }

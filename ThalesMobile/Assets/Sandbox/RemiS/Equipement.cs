@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 namespace PlayerEquipement
 {
@@ -17,30 +18,54 @@ namespace PlayerEquipement
     public abstract class Equipement : ScriptableObject
     {
         public EquipementType equipementType { get; protected set; }
-
-        [HideInInspector]
         public bool readyToUse { get; protected set; } = true;
+        
+        [Header("Equipement Params")]
+        public int chargeMax;
+        [SerializeField]
+        protected int chargeStart;
+        private int _chargeCount;
 
         [SerializeField]
-        int chargeMax;
-        [SerializeField]
-        float loadingTime;
+        protected float loadingTime;
+        public float loadPercent { get; protected set;}
+        public bool isLoading { get; protected set; }
 
-        protected int chargeCount
+        protected List<Coroutine> allCoroutines = new List<Coroutine>();
+
+        public int chargeCount
         {
-            get { return chargeCount; }
-            set
+            get { return _chargeCount; }
+            protected set
             {
-                if (value < chargeCount) GameManager.Instance.ExternalStartCoroutine(LoadCharge());
-                chargeCount = value;
+                if (value < _chargeCount) allCoroutines.Add(GameManager.Instance.ExternalStartCoroutine(LoadCharge()));
+                if (value > chargeMax) _chargeCount = chargeMax;
+                else _chargeCount = value;
             }
+        }
+
+        public virtual void Awake()
+        {
+            chargeCount = chargeStart;
         }
 
         IEnumerator LoadCharge()
         {
-            yield return new WaitForSeconds(loadingTime);
+            float timer = 0;
+            loadPercent = 0;
+            isLoading = true;
+
+            while (timer < loadingTime)
+            {
+                yield return new WaitForEndOfFrame();
+                timer += Time.deltaTime;
+                loadPercent = timer / loadingTime;
+            }
+
             chargeCount++;
-            if (chargeCount < chargeMax) GameManager.Instance.ExternalStartCoroutine(LoadCharge());
+            isLoading = false;
+
+            if (chargeCount < chargeMax) allCoroutines.Add(GameManager.Instance.ExternalStartCoroutine(LoadCharge()));
         }
 
         public virtual void UseEquipement(Transform userPos)
@@ -53,7 +78,10 @@ namespace PlayerEquipement
 
         protected virtual void OnDestroy()
         {
-            GameManager.Instance.ExternalStopCoroutine(LoadCharge());
+            foreach(Coroutine coroutine in allCoroutines.ToList())
+            {
+                GameManager.Instance.ExternalStopCoroutine(coroutine);
+            }            
         }
     }
 
