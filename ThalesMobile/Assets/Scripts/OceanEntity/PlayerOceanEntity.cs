@@ -17,6 +17,7 @@ namespace OceanEntities
     {
         public float speed;
         public float acceleration;
+        public float rotateSpeed;
         public MovementType movementType;
         public Vector2 currentTargetPoint = new Vector2(-9999,-9999);
         [HideInInspector]public Vector2 nullVector = new Vector2(-9999, -9999);
