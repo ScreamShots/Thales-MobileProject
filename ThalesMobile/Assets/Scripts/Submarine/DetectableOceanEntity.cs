@@ -9,7 +9,8 @@ using OceanEntities;
 public enum DetectableState
 {
     undetected,
-    detected
+    detected,
+    cantBeDetected
 }
 
 /// <summary>

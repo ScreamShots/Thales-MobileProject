@@ -15,7 +15,7 @@ public enum SonobuoyDetectionState
 /// <summary>
 /// Antoine Leroux - 31/03/2021 - Script relative to the behavior detection of a sonobuoy. 
 /// </summary>
-public class Sonobuoy : MonoBehaviour
+public class SonobuoyInstance : MonoBehaviour
 {
     public SonobuoyDetectionState currentDetectionState;
     private Transform _transform;
@@ -55,18 +55,23 @@ public class Sonobuoy : MonoBehaviour
         LifeTime();
         SwitchDetectionState();
         ChangeColorRange();
+        DetectElementsInsideRange();
 
         if (sonobuoyIsActive)
         {
             mesh.SetActive(true);
             rangeVisual.SetActive(true);
-            DetectElementsInsideRange();
         }
         else
         {
             mesh.SetActive(false);
             rangeVisual.SetActive(false);
             entitiesInsideSonobuoyRange = new List<DetectableOceanEntity>();
+
+            if (levelManager.sonobuoysInScene.Contains(this))
+            {
+                levelManager.sonobuoysInScene.Remove(this);
+            }
         }
     }
 
@@ -74,7 +79,12 @@ public class Sonobuoy : MonoBehaviour
     private void EnableSonobuoy(Vector2 deploymentPosition)
     {
         _transform.position = Coordinates.ConvertVector2ToWorld(deploymentPosition);
-        timeBeforeDisableSonobuoy = sonobuoyLifeTime;  
+        timeBeforeDisableSonobuoy = sonobuoyLifeTime;
+
+        if (!levelManager.sonobuoysInScene.Contains(this))
+        {
+            levelManager.sonobuoysInScene.Add(this);
+        }
     }
 
     private void LifeTime()
@@ -115,16 +125,26 @@ public class Sonobuoy : MonoBehaviour
 
             if (distanceFromEntity < detectionRange)
             {
-                if (!entitiesInsideSonobuoyRange.Contains(levelManager.submarineEntitiesInScene[x]))
+                if (sonobuoyIsActive)
                 {
-                    entitiesInsideSonobuoyRange.Add(levelManager.submarineEntitiesInScene[x]);
+                    if (!entitiesInsideSonobuoyRange.Contains(levelManager.submarineEntitiesInScene[x]))
+                    {
+                        entitiesInsideSonobuoyRange.Add(levelManager.submarineEntitiesInScene[x]);
+                        levelManager.submarineEntitiesInScene[x].currentDetectableState = DetectableState.detected;
+                    }
                 }
+                else
+                {
+                    levelManager.submarineEntitiesInScene[x].currentDetectableState = DetectableState.undetected;
+                }
+                
             }
             else
             {
                 if (entitiesInsideSonobuoyRange.Contains(levelManager.submarineEntitiesInScene[x]))
                 {
                     entitiesInsideSonobuoyRange.Remove(levelManager.submarineEntitiesInScene[x]);
+                    levelManager.submarineEntitiesInScene[x].currentDetectableState = DetectableState.undetected;
                 }
             }
         }
