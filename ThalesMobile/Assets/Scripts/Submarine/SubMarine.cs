@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Antoine Leroux - 07/04/2021 - Vigilance State is an enum describing the current submarine state.
+/// </summary>
 public enum VigilanceState
 {
     calm,
@@ -18,6 +21,7 @@ public class Submarine : DetectableOceanEntity
 
     [Header("References")]
     public LevelManager levelManager;
+    public List<CounterMeasure> counterMeasures;
 
     [Header("Movement")]
     public float maxSpeed;
@@ -47,8 +51,8 @@ public class Submarine : DetectableOceanEntity
     public float fregateStationaryVigiIncr;
     public float fregateMoveVigiIncr;   
     private bool submarineDetectFregate;
-    private List<Transform> sonobuoys;
-    private List<float> sonobuoysDistance;
+    [HideInInspector] public List<Transform> sonobuoys;
+    [HideInInspector] public List<float> sonobuoysDistance;
 
     [Header("Objectif")]
     public int pointsToHack;
@@ -79,14 +83,30 @@ public class Submarine : DetectableOceanEntity
         UpdateSubmarineRange();
         DetectFregate();
         DetectSonobuoy();
+
+        // Counter Measures.
+        UpdateCounterMeasures();
     }
 
     #region Movement
-    private void PickRandomInterrestPoint()
+    public void PickRandomInterrestPoint()
     {
-        randomNumber = Random.Range(0, interestPoints.Count);
-        nextInterestPoint = interestPoints[randomNumber];
-        movingToNextPoint = true;
+        // If the submarine currently hacking a point.
+        if (hackingTimer > 0)
+        {
+            nextInterestPoint.currentHackState = HackState.unhacked;
+            nextInterestPoint.hackProgression = 0f;
+            hackingTimer = 0;
+            randomNumber = Random.Range(0, interestPoints.Count);
+            nextInterestPoint = interestPoints[randomNumber];
+            movingToNextPoint = true;
+        }
+        else
+        {
+            randomNumber = Random.Range(0, interestPoints.Count);
+            nextInterestPoint = interestPoints[randomNumber];
+            movingToNextPoint = true;
+        }
     }
 
     private void UpdateInterestPoint()
@@ -120,11 +140,11 @@ public class Submarine : DetectableOceanEntity
 
         if (hackingTimer >= nextInterestPoint.hackTime)
         {
+            hackingTimer = 0;
             nextInterestPoint.currentHackState = HackState.doneHack;
             interestPoints.RemoveAt(randomNumber);
             pointsHacked++;
             PickRandomInterrestPoint();
-            hackingTimer = 0;
         }
     }
 
@@ -247,6 +267,20 @@ public class Submarine : DetectableOceanEntity
             {
                 IncreaseVigilance(sonobuoyVigiIncr);
             }
+        }
+    }
+    #endregion
+
+    #region CounterMeasures
+    private void UpdateCounterMeasures()
+    {
+        if ((currentState == VigilanceState.worried || currentState == VigilanceState.panicked) && submarineDetectFregate)
+        {
+            // Lauch Heading Change counter measure.
+        }
+        if (currentVigilance >= 100)
+        {
+            // Lauch Radio Silence counter measure.
         }
     }
     #endregion

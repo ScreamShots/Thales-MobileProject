@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using OceanEntities;
 
 /// <summary>
 /// Antoine Leroux - 31/03/2021 - Sonobuoy Detectable State is an enum describing the current sonobuoy detection state. 
@@ -129,8 +130,11 @@ public class SonobuoyInstance : MonoBehaviour
                 {
                     if (!entitiesInsideSonobuoyRange.Contains(levelManager.submarineEntitiesInScene[x]))
                     {
-                        entitiesInsideSonobuoyRange.Add(levelManager.submarineEntitiesInScene[x]);
-                        levelManager.submarineEntitiesInScene[x].currentDetectableState = DetectableState.detected;
+                        if (levelManager.submarineEntitiesInScene[x].currentDetectableState != DetectableState.cantBeDetected)
+                        {
+                            entitiesInsideSonobuoyRange.Add(levelManager.submarineEntitiesInScene[x]);
+                            levelManager.submarineEntitiesInScene[x].currentDetectableState = DetectableState.detected;
+                        }
                     }
                 }
                 else

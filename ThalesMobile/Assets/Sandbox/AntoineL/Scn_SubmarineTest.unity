@@ -1062,6 +1062,7 @@ MonoBehaviour:
   currentSeaLevel: 0
   currentDetectableState: 0
   levelManager: {fileID: 1238534676}
+  counterMeasures: []
   maxSpeed: 3
   acceleration: 0.5
   currentVigilance: 0
@@ -1076,6 +1077,8 @@ MonoBehaviour:
   sonobuoyVigiIncr: 4
   fregateStationaryVigiIncr: 0.5
   fregateMoveVigiIncr: 2
+  sonobuoys: []
+  sonobuoysDistance: []
   pointsToHack: 3
   interestPoints:
   - {fileID: 1990666829}
@@ -1668,8 +1671,8 @@ MonoBehaviour:
   levelManager: {fileID: 1238534676}
   sonobuoyLifeTime: 20
   detectionRange: 3.5
-  mesh: {fileID: 373010863}
-  rangeVisual: {fileID: 1612704999}
+  mesh: {fileID: 660567930}
+  rangeVisual: {fileID: 1036281573}
   undetectedElementColor: {r: 0, g: 1, b: 0.22745098, a: 0.3137255}
   detectedElementColor: {r: 1, g: 0, b: 0, a: 0.3137255}
   entitiesInsideSonobuoyRange: []
