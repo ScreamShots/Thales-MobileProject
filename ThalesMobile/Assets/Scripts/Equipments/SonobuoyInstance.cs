@@ -77,7 +77,7 @@ public class SonobuoyInstance : MonoBehaviour
     }
 
     // Use this function to deploy a sonobuoy where your finger touch the screen. 
-    private void EnableSonobuoy(Vector2 deploymentPosition)
+    public void EnableSonobuoy(Vector2 deploymentPosition)
     {
         _transform.position = Coordinates.ConvertVector2ToWorld(deploymentPosition);
         timeBeforeDisableSonobuoy = sonobuoyLifeTime;

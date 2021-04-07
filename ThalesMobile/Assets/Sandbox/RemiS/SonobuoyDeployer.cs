@@ -10,25 +10,50 @@ namespace PlayerEquipement
         [SerializeField]
         int poolSize;
 
-        List<Sonobuoy> availaibleSonobuoy;
-        List<Sonobuoy> usedSonobuoy;
+        List<Sonobuoy> availaibleSonobuoys;
+        List<Sonobuoy> usedSonobuoys;
 
-        private void Awake()
+        public override void Awake()
         {
             equipementType = EquipementType.active;
 
-            availaibleSonobuoy = new List<Sonobuoy>();
-            usedSonobuoy = new List<Sonobuoy>();
+            availaibleSonobuoys = new List<Sonobuoy>();
+            usedSonobuoys = new List<Sonobuoy>();
 
             GameObject tempSonobuoy;
 
             for (int i = 0; i < poolSize; i++)
             {
                 tempSonobuoy = Instantiate(sonobuoyPrefab, GameManager.Instance.levelManager.transform);
-                availaibleSonobuoy.Add(tempSonobuoy.GetComponent<Sonobuoy>());
+                availaibleSonobuoys.Add(tempSonobuoy.GetComponent<Sonobuoy>());
             }
         }
 
-    }
+        public override void UseEquipement(Coordinates userCoords)
+        {
+            Vector2 targetPos = Vector2.zero;
 
+            base.UseEquipement(userCoords);
+
+            //Input to selec a target pos where to drop the sonobuoy
+            //Move Entity to the point
+            
+            //then drop sonobuoy ↓
+            DropSonobuoy(targetPos);
+        }
+
+        public override void UseEquipement(Coordinates userCoords, Vector2 targetPos)
+        {
+            base.UseEquipement(userCoords, targetPos);
+            DropSonobuoy(targetPos);
+        }
+
+        void DropSonobuoy(Vector2 targetPos)
+        {
+            availaibleSonobuoys[0].EnableSonobuoy(targetPos);
+            usedSonobuoys.Add(availaibleSonobuoys[0]);
+            availaibleSonobuoys.RemoveAt(0);
+        }
+
+    }
 }
