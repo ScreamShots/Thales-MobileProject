@@ -10,4 +10,6 @@ public class LevelManager : MonoBehaviour
     public List<DetectableOceanEntity> submarineEntitiesInScene;
 
     public List<SonobuoyInstance> sonobuoysInScene;
+
+    public List<DetectionObject> activatedDetectionObjects;
 }
