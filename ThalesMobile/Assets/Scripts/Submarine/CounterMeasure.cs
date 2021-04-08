@@ -7,7 +7,7 @@ using UnityEngine;
 /// </summary>
 public abstract class CounterMeasure : ScriptableObject
 {
-    [HideInInspector] public bool readyToUse = true;
+    public bool readyToUse = true;
 
     [Header ("Counter Measure Parameters")]
     [SerializeField]
@@ -24,12 +24,16 @@ public abstract class CounterMeasure : ScriptableObject
 
     private Submarine submarineRef;
 
-    private List<Coroutine> coroutines;
+    protected List<Coroutine> allCoroutines = new List<Coroutine>();
+    Coroutine bufferCoroutine = null;
+    Coroutine counterMeasureEffectCoroutine = null;
+    Coroutine cooldownCoroutine = null;
 
     IEnumerator Buffer()
     {
         yield return new WaitForSeconds(loadingTime);
-        coroutines.Add(GameManager.Instance.ExternalStartCoroutine(CounterMeasureEffect(submarineRef)));
+        counterMeasureEffectCoroutine = GameManager.Instance.ExternalStartCoroutine(CounterMeasureEffect(submarineRef));
+        allCoroutines.Add(counterMeasureEffectCoroutine);
     }
 
     IEnumerator Cooldown()
@@ -44,7 +48,8 @@ public abstract class CounterMeasure : ScriptableObject
         // Place counter measure effect here. 
         // Can place here a duration in the child class. 
         yield return null;
-        coroutines.Add(GameManager.Instance.ExternalStartCoroutine(Cooldown()));
+        cooldownCoroutine = GameManager.Instance.ExternalStartCoroutine(Cooldown());
+        allCoroutines.Add(cooldownCoroutine);
     }
 
     public virtual void UseCounterMeasure(Submarine submarine)
@@ -52,7 +57,8 @@ public abstract class CounterMeasure : ScriptableObject
         submarineRef = submarine;
 
         readyToUse = false;
-        coroutines.Add(GameManager.Instance.ExternalStartCoroutine(Buffer()));       
+        bufferCoroutine = GameManager.Instance.ExternalStartCoroutine(Buffer());
+        allCoroutines.Add(bufferCoroutine);
     }
 
     protected void DecreaseViglance()
@@ -62,7 +68,7 @@ public abstract class CounterMeasure : ScriptableObject
 
     protected virtual void OnDestroy()
     {
-        foreach(Coroutine coroutine in coroutines)
+        foreach(Coroutine coroutine in allCoroutines)
         {
             if (coroutine != null) GameManager.Instance.ExternalStopCoroutine(coroutine);
         }
