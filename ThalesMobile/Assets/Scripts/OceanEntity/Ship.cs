@@ -15,6 +15,9 @@ namespace OceanEntities
             _transform = transform;
 
             coords = new Coordinates(_transform.position, Vector2.up, 0);
+
+            //PassiveEquipement.Awake();
+            //ActiveEquipement.Awake();
         }
 
         void FixedUpdate()
@@ -84,15 +87,6 @@ namespace OceanEntities
         {
             throw new System.NotImplementedException();
         }
-
-        public Vector2 Rotate(Vector2 v, float delta)
-        {
-            return new Vector2(
-                v.x * Mathf.Cos(delta) - v.y * Mathf.Sin(delta),
-                v.x * Mathf.Sin(delta) + v.y * Mathf.Cos(delta)
-            );
-        }
-
     }
 
 }

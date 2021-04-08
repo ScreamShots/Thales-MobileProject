@@ -40,6 +40,7 @@ namespace OceanEntities
             }
 
             //Implement use of Sonic Flash
+
         }
 
         public override void Move(Vector2 targetPosition)
@@ -54,7 +55,7 @@ namespace OceanEntities
             coords.direction = targetPosition - coords.position;
 
             //Update the plane's position.
-            coords.position += coords.direction.normalized * speed * Time.deltaTime;
+            coords.position += coords.direction.normalized * currentSpeed * Time.deltaTime;
 
             //Store the new position in the coords.
             _transform.position = Coordinates.ConvertVector2ToWorld(coords.position);
@@ -102,7 +103,7 @@ namespace OceanEntities
             StartCoroutine(AlertTimer());
 
             //Wait until not in alert anymore or current selected entity is this one
-            yield return new WaitUntil(() => !inAlert);
+            yield return new WaitUntil(() => !inAlert  );
             if(inAlert)
             {
                 TakeOff();
