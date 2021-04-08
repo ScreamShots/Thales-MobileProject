@@ -12,4 +12,6 @@ public class LevelManager : MonoBehaviour
     public List<SonobuoyInstance> sonobuoysInScene;
 
     public List<DetectionObject> activatedDetectionObjects;
+
+    public List<Submarine> enemyEntitiesInScene;
 }
