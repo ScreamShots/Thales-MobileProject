@@ -1,7 +1,10 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using PlayerEquipement;
+
+/// <summary>
+/// Rémi Sécher - 08/04/2021 - Behaviour for point used for detection through Capatas4. Not inherited from Detection Objets cause no interaction with D.A.M equipement
+/// </summary>
 
 public class CaptasFourDetectionPoint : MonoBehaviour
 {
@@ -12,6 +15,7 @@ public class CaptasFourDetectionPoint : MonoBehaviour
 
     CaptasFour source;
 
+    //Get the point out of the unused state in the pool and place it on the map
     public void ActivatePoint(Coordinates targetCoors, float _fadeDuration, CaptasFour _source)
     {
         transform.position = Coordinates.ConvertVector2ToWorld(targetCoors.position);
@@ -22,6 +26,7 @@ public class CaptasFourDetectionPoint : MonoBehaviour
         StartCoroutine(Fade());
     }
 
+    //Get the point back in the unused state in the pool and setting his pos back to (0,0)
     public void DesactivatePoint()
     {
         gameObject.SetActive(false);
@@ -31,6 +36,7 @@ public class CaptasFourDetectionPoint : MonoBehaviour
         StopAllCoroutines();
     }
 
+    //Slow Fade of the point since it's apparaition
     IEnumerator Fade()
     {
         float timer = 0;

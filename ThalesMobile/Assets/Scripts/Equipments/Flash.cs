@@ -4,20 +4,27 @@ using UnityEngine;
 
 namespace PlayerEquipement
 {
+    /// <summary>
+    /// Rémi Sécher - 08/04/2021 - Class that handle behaviour of Flash Equipement
+    /// </summary>
+    
+    [CreateAssetMenu(menuName = "Equipement/Flash")]
     public class Flash : Equipement
     {
-        [SerializeField]
+        [Header("Flash Params")]
+
+        [SerializeField, Min(0)]
         float winningRange;
-        [SerializeField]
+        [SerializeField, Min(0)]
         float extendedRange;
-        [SerializeField]
+        [SerializeField, Min(0)]
         float dropDuration;
-        [SerializeField]
+        [SerializeField, Min(0)]
         float revealDuration;
 
         LevelManager levelManager;
 
-        public override void Awake()
+        public override void Init()
         {
             equipementType = EquipementType.passive;
 
@@ -36,12 +43,17 @@ namespace PlayerEquipement
             float timer = 0;
             float distance = 0;
 
+            //Wait the drop duration before apply effect
+            //Insert Somehow feedback of drop here
             while(timer < dropDuration)
             {
                 yield return new WaitForEndOfFrame();
                 timer += Time.deltaTime;
             }
             
+            //Test all submarine in the scene
+            //If they are in winning range Win the game (need method implementation to win In GameManager probably)
+            //If they are in extended range show submarine trail for the specified time (need method impletation for that in Submarine)
             foreach(Submarine submarine in levelManager.enemyEntitiesInScene)
             {
                 distance = Mathf.Abs(Vector2.Distance(submarine.coords.position, userCoords.position));

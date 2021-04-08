@@ -2,11 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Rémi Sécher - 08/04/21 - Class that Handle detectionPoint spawn by HullSonar Equipement on detected entities pos
+/// </summary>
+
 public class HullSonarDetectionPoint : DetectionObject
 {
     [HideInInspector]
     public float fadeDuration;
 
+    //Get the point from his state of unused in the pool and activate in GameWorld
     public void ActivatePoint(DetectableOceanEntity detectedElement, float _fadeDuration)
     {
         levelManager.activatedDetectionObjects.Add(this);
@@ -19,6 +24,7 @@ public class HullSonarDetectionPoint : DetectionObject
         StartCoroutine(Fade());
     }
 
+    //Place the point back in pool
     public void DesactivatePoint()
     {
         gameObject.SetActive(false);
@@ -30,6 +36,7 @@ public class HullSonarDetectionPoint : DetectionObject
         StopAllCoroutines();
     }
 
+    //Progressive fade starting at spawn
     IEnumerator Fade()
     {
         float timer = 0;
@@ -43,6 +50,7 @@ public class HullSonarDetectionPoint : DetectionObject
         DesactivatePoint();
     }
 
+    //FeedBack modification depending on the state of detectionState
     protected override void RefreshFeedBack(DetectionState newState)
     {
         base.RefreshFeedBack(newState);

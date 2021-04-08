@@ -5,24 +5,31 @@ using NaughtyAttributes;
 
 namespace PlayerEquipement
 {
+    /// <summary>
+    /// Rémi Sécher - 08/04/2021 - Capatas4 Equipement. Launch a wave on commande that reveal position of detectable entity.
+    /// </summary>
+
     [CreateAssetMenu(menuName = "Equipement/Captas 4")]
     public class CaptasFour : Equipement
     {
         [Header("Captas 4 Params")]
+
         [SerializeField]
         bool partialMode;
         [SerializeField, ShowIf("partialMode")]
         float range;
-        [SerializeField]
+        [SerializeField, Min(0f)]
         float waveDuration;
-        [SerializeField]
+        [SerializeField, Min(0f)]
         float pointFadeDuration;
 
         [Header("Pooling Params")]
+
         [SerializeField]
         GameObject detectionPointPrefab;
-        [SerializeField]
+        [SerializeField, Min(0)]
         int poolSize;
+
         [HideInInspector]
         public List<CaptasFourDetectionPoint> availableDetectionPoints = new List<CaptasFourDetectionPoint>();
         [HideInInspector]
@@ -32,19 +39,21 @@ namespace PlayerEquipement
         CameraController cameraController;
         Vector2[] mapAnglesPos = new Vector2[4];
 
-        public override void Awake()
+        public override void Init()
         {
-            base.Awake();
+            base.Init();
 
             levelManager = GameManager.Instance.levelManager;
             cameraController = GameManager.Instance.cameraController;
             equipementType = EquipementType.active;
 
+            //Setting pos of all map's limitation's angles
             mapAnglesPos[0] = new Vector2(cameraController.limit.left, cameraController.limit.down);
             mapAnglesPos[1] = new Vector2(cameraController.limit.left, cameraController.limit.up);
             mapAnglesPos[2] = new Vector2(cameraController.limit.right, cameraController.limit.down);
             mapAnglesPos[3] = new Vector2(cameraController.limit.right, cameraController.limit.up);
 
+            //Setting up the pooling of detection points
             GameObject tempDetectionPoint;
 
             for (int i = 0; i < poolSize; i++)
@@ -67,8 +76,9 @@ namespace PlayerEquipement
             float distance;
             float waveRange = 0;
             float waveTime = 0;
-            float padding = 0;            
+            float padding = 0;
 
+            //If Captas4 is set on global mode, deffine range of Captas4 to the distance with the farthest map angle
             if (!partialMode)
             {
                 float tempDistance = 0;
@@ -83,11 +93,14 @@ namespace PlayerEquipement
 
             while (waveTime < waveDuration)
             {
+                //looping through all detectable on the map
                 foreach (DetectableOceanEntity detectable in levelManager.submarineEntitiesInScene)
                 {
                     detectableCoords = new Coordinates(detectable.transform.position, Vector2.zero, 0f);
                     distance = Mathf.Abs(Vector2.Distance(userCoords.position, detectableCoords.position));
 
+                    //if current tested detectable is in range place a point on his pos
+                    //there is a security (padding) if object pos is at a position beetween two tested distance increasing at each frame (depend on the progression of the timer)
                     if (distance >= waveRange && distance <= waveRange + padding)
                     {
                         if (availableDetectionPoints.Count > 0)
