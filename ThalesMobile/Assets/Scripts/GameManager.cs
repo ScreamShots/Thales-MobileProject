@@ -41,6 +41,6 @@ public class GameManager : MonoBehaviour
 
     public void ExternalStopCoroutine(Coroutine coroutine)
     {
-        StopCoroutine(coroutine);
+        if(coroutine != null) StopCoroutine(coroutine);
     }
 }

@@ -111,7 +111,7 @@ namespace PlayerEquipement
         {
             foreach(Coroutine coroutine in allCoroutines.ToList())
             {
-                GameManager.Instance.ExternalStopCoroutine(coroutine);
+                if(coroutine != null)GameManager.Instance.ExternalStopCoroutine(coroutine);
             }            
         }
     }
