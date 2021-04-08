@@ -22,14 +22,14 @@ namespace PlayerEquipement
         [SerializeField, Min(0)]
         int poolSize;
 
-        List<Sonobuoy> availaibleSonobuoys;
-        List<Sonobuoy> usedSonobuoys;
+        List<SonobuoyInstance> availaibleSonobuoys;
+        List<SonobuoyInstance> usedSonobuoys;
 
         public override void Init()
         {
             equipementType = EquipementType.active;
-            availaibleSonobuoys = new List<Sonobuoy>();
-            usedSonobuoys = new List<Sonobuoy>();
+            availaibleSonobuoys = new List<SonobuoyInstance>();
+            usedSonobuoys = new List<SonobuoyInstance>();
 
             //Pool Init
             GameObject tempSonobuoy;
@@ -37,7 +37,7 @@ namespace PlayerEquipement
             for (int i = 0; i < poolSize; i++)
             {
                 tempSonobuoy = Instantiate(sonobuoyPrefab, GameManager.Instance.levelManager.transform);
-                availaibleSonobuoys.Add(tempSonobuoy.GetComponent<Sonobuoy>());
+                availaibleSonobuoys.Add(tempSonobuoy.GetComponent<SonobuoyInstance>());
             }
         }
 

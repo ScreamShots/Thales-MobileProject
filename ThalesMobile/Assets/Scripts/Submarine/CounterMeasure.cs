@@ -24,12 +24,12 @@ public abstract class CounterMeasure : ScriptableObject
 
     private Submarine submarineRef;
 
-    //private List<Coroutine> coroutines;
+    private List<Coroutine> coroutines;
 
     IEnumerator Buffer()
     {
         yield return new WaitForSeconds(loadingTime);
-        GameManager.Instance.ExternalStartCoroutine(CounterMeasureEffect(submarineRef));
+        coroutines.Add(GameManager.Instance.ExternalStartCoroutine(CounterMeasureEffect(submarineRef)));
     }
 
     IEnumerator Cooldown()
@@ -44,7 +44,7 @@ public abstract class CounterMeasure : ScriptableObject
         // Place counter measure effect here. 
         // Can place here a duration in the child class. 
         yield return null;
-        GameManager.Instance.ExternalStartCoroutine(Cooldown());
+        coroutines.Add(GameManager.Instance.ExternalStartCoroutine(Cooldown()));
     }
 
     public virtual void UseCounterMeasure(Submarine submarine)
@@ -52,7 +52,7 @@ public abstract class CounterMeasure : ScriptableObject
         submarineRef = submarine;
 
         readyToUse = false;
-        GameManager.Instance.ExternalStartCoroutine(Buffer());       
+        coroutines.Add(GameManager.Instance.ExternalStartCoroutine(Buffer()));       
     }
 
     protected void DecreaseViglance()
@@ -62,8 +62,9 @@ public abstract class CounterMeasure : ScriptableObject
 
     protected virtual void OnDestroy()
     {
-        GameManager.Instance.ExternalStopCoroutine(Buffer());
-        GameManager.Instance.ExternalStopCoroutine(Cooldown());
-        GameManager.Instance.ExternalStopCoroutine(CounterMeasureEffect(submarineRef));
+        foreach(Coroutine coroutine in coroutines)
+        {
+            if (coroutine != null) GameManager.Instance.ExternalStopCoroutine(coroutine);
+        }
     }
 }
