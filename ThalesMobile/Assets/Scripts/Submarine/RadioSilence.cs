@@ -2,28 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(menuName = "CounterMeasure/RadioSilence")]
 public class RadioSilence : CounterMeasure
 {
-    public override void LauchCounterMeasure(Submarine submarine)
+    public override IEnumerator CounterMeasureEffect(Submarine submarine)
     {
-        base.LauchCounterMeasure(submarine);
+        submarine.currentDetectableState = DetectableState.cantBeDetected;
+        submarine.PickRandomInterrestPoint();
 
-        if (readyToUse)
-        {
-            if (!actionReached)
-            {
-                actionReached = true;
-                submarine.currentDetectableState = DetectableState.cantBeDetected;
-                submarine.PickRandomInterrestPoint();
-            }
-        }
-        else
-        {
-            if (actionReached)
-            {
-                actionReached = false;
-                submarine.currentDetectableState = DetectableState.undetected;
-            }
-        }
+        yield return new WaitForSeconds(duration);
+
+        submarine.currentDetectableState = DetectableState.undetected;
+
+        base.CounterMeasureEffect(submarine);
     }
 }

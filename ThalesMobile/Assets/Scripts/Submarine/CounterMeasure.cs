@@ -2,79 +2,68 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Antoine Leroux - 08/04/2021 - Base for counter measure creation. 
+/// </summary>
 public abstract class CounterMeasure : ScriptableObject
 {
-    [HideInInspector] public bool usingCounterMeasure = false;
-    [HideInInspector] public bool cantUseAnotherCounterMeasure = false;
-    [HideInInspector] public bool readyToUse = false;
-    [HideInInspector] public bool inCooldown = false;
-    [HideInInspector] public bool actionReached = false;
+    [HideInInspector] public bool readyToUse = true;
+
+    [Header ("Counter Measure Parameters")]
+    [SerializeField]
+    protected float loadingTime;
+
+    [SerializeField]
+    protected float duration;
+
+    [SerializeField]
+    protected float cooldownTime;
+
+    [SerializeField]
+    protected float vigilanceCostValue;
 
     private Submarine submarineRef;
 
-    [SerializeField]
-    float loadingTime;
+    //private List<Coroutine> coroutines;
 
-    [SerializeField]
-    float duration;
-
-    [SerializeField]
-    float cooldownTime;
-
-    [SerializeField]
-    float vigilanceCostValue;
-
-    private List<Coroutine> coroutines;
-
-    public virtual void Awake()
-    {
-
-    }
-
-    IEnumerator CounterMeasureActivate()
+    IEnumerator Buffer()
     {
         yield return new WaitForSeconds(loadingTime);
-
-        readyToUse = true;
-
-        yield return new WaitForSeconds(duration);
-
-        readyToUse = false;
-        inCooldown = true;
-        cantUseAnotherCounterMeasure = false;
-        DecreaseViglance();
-
-        yield return new WaitForSeconds(cooldownTime);
-
-        inCooldown = false;
-        usingCounterMeasure = false;
+        GameManager.Instance.ExternalStartCoroutine(CounterMeasureEffect(submarineRef));
     }
 
-    protected void UseCounterMeasure()
+    IEnumerator Cooldown()
     {
-        if (!usingCounterMeasure)
-        {
-            usingCounterMeasure = true;
-            cantUseAnotherCounterMeasure = true;
-            GameManager.Instance.ExternalStartCoroutine(CounterMeasureActivate());
-            //coroutines.Add(GameManager.Instance.ExternalStartCoroutine(CounterMeasureActivate());
-        }
+        yield return new WaitForSeconds(cooldownTime);
+        readyToUse = true;
+        DecreaseViglance();
     }
 
-    public virtual void LauchCounterMeasure(Submarine submarine)
+    public virtual IEnumerator CounterMeasureEffect(Submarine submarine)
+    {
+        // Place counter measure effect here. 
+        // Can place here a duration in the child class. 
+        yield return null;
+        GameManager.Instance.ExternalStartCoroutine(Cooldown());
+    }
+
+    public virtual void UseCounterMeasure(Submarine submarine)
     {
         submarineRef = submarine;
-        UseCounterMeasure();
-        // Place here the behavior of the current Counter Measure. 
+
+        readyToUse = false;
+        GameManager.Instance.ExternalStartCoroutine(Buffer());       
     }
 
-    public virtual void DecreaseViglance()
+    protected void DecreaseViglance()
     {
         submarineRef.currentVigilance -= vigilanceCostValue;
     }
 
     protected virtual void OnDestroy()
     {
-        GameManager.Instance.ExternalStopCoroutine(CounterMeasureActivate());
+        GameManager.Instance.ExternalStopCoroutine(Buffer());
+        GameManager.Instance.ExternalStopCoroutine(Cooldown());
+        GameManager.Instance.ExternalStopCoroutine(CounterMeasureEffect(submarineRef));
     }
 }

@@ -2,26 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(menuName = "CounterMeasure/HeadingChange")]
 public class HeadingChange : CounterMeasure
 {
-    public override void LauchCounterMeasure(Submarine submarine)
+    public override IEnumerator CounterMeasureEffect(Submarine submarine)
     {
-        base.LauchCounterMeasure(submarine);
+        submarine.PickRandomInterrestPoint();
 
-        if (readyToUse)
-        {
-            if (!actionReached)
-            {
-                actionReached = true;
-                submarine.PickRandomInterrestPoint();
-            }
-        }
-        else
-        {
-            if (actionReached)
-            {
-                actionReached = false;
-            }
-        }
+        yield return null;
+
+        base.CounterMeasureEffect(submarine);
     }
 }

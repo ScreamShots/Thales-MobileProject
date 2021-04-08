@@ -21,12 +21,11 @@ public class Submarine : DetectableOceanEntity
 
     [Header("References")]
     public LevelManager levelManager;
-    public List<CounterMeasure> counterMeasures;
 
     [Header("Movement")]
     public float maxSpeed;
     public float acceleration;
-    private float currentSpeed;
+    [HideInInspector] public float currentSpeed;
     private bool movingToNextPoint;
 
     [Header("Vigilance")]
@@ -54,6 +53,12 @@ public class Submarine : DetectableOceanEntity
     [HideInInspector] public List<Transform> sonobuoys;
     [HideInInspector] public List<float> sonobuoysDistance;
 
+    [Header("Counter Measures")]
+    public DecoyInstance decoy;
+    private bool decoyIsCreateFlag;
+    public List<CounterMeasure> counterMeasures;
+    private bool usingCounterMeasure;
+
     [Header("Objectif")]
     public int pointsToHack;
     private int pointsHacked = 0;
@@ -76,7 +81,21 @@ public class Submarine : DetectableOceanEntity
     private void Update()
     {
         // Movement.
-        UpdateInterestPoint();
+        if (!decoy.decoyIsActive)
+        {
+            UpdateInterestPoint();
+            decoyIsCreateFlag = false;
+        }
+        else
+        {
+            SubmarineDecoyMovement();
+
+            if (!decoyIsCreateFlag)
+            {
+                decoyIsCreateFlag = true;
+                PickRandomInterrestPoint();
+            }
+        }
         
         // Vigilance.
         UpdateState();
@@ -145,6 +164,24 @@ public class Submarine : DetectableOceanEntity
             interestPoints.RemoveAt(randomNumber);
             pointsHacked++;
             PickRandomInterrestPoint();
+        }
+    }
+
+    private void SubmarineDecoyMovement()
+    {
+        // The submarine still going in his direction
+        if (decoy.randomDirection == 0)
+        {
+            coords.direction = coords.direction;
+            coords.position += coords.direction.normalized * Time.deltaTime * currentSpeed;
+            _transform.position = Coordinates.ConvertVector2ToWorld(coords.position);
+        }
+        // The submarine go in decoy angle direction 
+        else
+        {
+            coords.direction = Coordinates.ConvertWorldToVector2(Quaternion.Euler(0, decoy.decoyAngle, 0) * Coordinates.ConvertVector2ToWorld(coords.direction.normalized));
+            coords.position += coords.direction * Time.deltaTime * currentSpeed;
+            _transform.position = Coordinates.ConvertVector2ToWorld(coords.position);
         }
     }
 
@@ -276,12 +313,54 @@ public class Submarine : DetectableOceanEntity
     {
         if ((currentState == VigilanceState.worried || currentState == VigilanceState.panicked) && submarineDetectFregate)
         {
-            // Lauch Heading Change counter measure.
+            CheckIfCounterMeasureRunning();
+            if (!usingCounterMeasure)
+            {
+                // Lauch Heading Change counter measure.
+                counterMeasures[0].UseCounterMeasure(this);
+            }
         }
         if (currentVigilance >= 100)
         {
-            // Lauch Radio Silence counter measure.
+            CheckIfCounterMeasureRunning();
+            if (!usingCounterMeasure)
+            {
+                // Lauch Radio Silence counter measure.
+                counterMeasures[1].UseCounterMeasure(this);
+            }
         }
+        /*if ((currentState == VigilanceState.worried || currentState == VigilanceState.panicked) && currentDetectableState == DetectableState.detected && //Detect by MAD)
+        {
+            if (!usingCounterMeasure)
+            {
+                // Lauch Bait Decoy counter measure.
+                counterMeasures[2].UseCounterMeasure(this);
+            }
+        }*/
+    }
+
+    private void CheckIfCounterMeasureRunning()
+    {
+        if (counterMeasures[0].readyToUse && counterMeasures[1].readyToUse && counterMeasures[2].readyToUse)
+        {
+            usingCounterMeasure = false;
+        }
+        else
+        {
+            usingCounterMeasure = true;
+        }
+
+        /*bool usingCounterMeasure()
+        {
+            for (int x = 0; x < counterMeasures.Count; x++)
+            {
+                if (!counterMeasures[x].readyToUse)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }*/
     }
     #endregion
 }
