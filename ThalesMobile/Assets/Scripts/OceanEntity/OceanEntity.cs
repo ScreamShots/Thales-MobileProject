@@ -31,8 +31,6 @@ namespace OceanEntities
         public abstract void Move(Vector2 targetPosition);
 
         public abstract void PathFinding(); // A* implementation placeholder for Antoine Grugeon -- the method doesn't have to be abstract
-
-
     }
 }
 

@@ -7,18 +7,29 @@ namespace OceanEntities
     public class Plane : PlayerOceanEntity
     {
         private Transform _transform;
-
-        private Vector2 waitingPoint = new Vector2(-9999,-9999);
-        private Vector2 waitingCircleVector;
-        public float waitingRoutineRadius;
-        public float minimumSpeed;
         private float currentSpeed = 0;
-        
+        private float currentRotateSpeed;
+
+
+        //Waiting routine variables
+        private Vector2 waitingPoint = new Vector2(-9999,-9999);
+        private Vector2 waitingTarget = new Vector2(-9999, -9999);
+
+        private Vector2 tempTarget;
+        private Vector2 planeToCenter;
+
+        private float radius = 1;
+        private float waitingRoutineRadius = 0;
+        public float minimumSpeed;
+
+
+        private bool canWait;
 
         void Start()
         {
             movementType = MovementType.air;
             _transform = transform;
+            currentTargetPoint = Coordinates.ConvertWorldToVector2(_transform.forward * 2);
         }
 
         void FixedUpdate()
@@ -29,6 +40,7 @@ namespace OceanEntities
                 if (waitingPoint != nullVector)
                 {
                     waitingPoint = nullVector;
+                    canWait = false;
                 }
             }
             else
@@ -36,8 +48,12 @@ namespace OceanEntities
                 Waiting();
             }
         }
+
         public override void Move(Vector2 targetPosition)
         {
+            canWait = false;
+            
+            //Acceleration
             if (currentSpeed < speed)
                 currentSpeed += acceleration * Time.fixedDeltaTime;
             else
@@ -47,13 +63,15 @@ namespace OceanEntities
             Vector2 dir = targetPosition - coords.position;
             if (Vector2.Angle(coords.direction, dir) > Time.fixedDeltaTime * rotateSpeed)
             {
+                currentRotateSpeed += acceleration * Time.fixedDeltaTime;
                 int turnSide = Vector2.SignedAngle(coords.direction, dir) > 0 ? 1 : -1;
-                float currentAngle = Vector2.SignedAngle(Vector2.right, coords.direction) + turnSide * Time.fixedDeltaTime * rotateSpeed;
+                float currentAngle = Vector2.SignedAngle(Vector2.right, coords.direction) + turnSide * Time.fixedDeltaTime * currentRotateSpeed;
                 coords.direction = new Vector2(Mathf.Cos(currentAngle * Mathf.Deg2Rad), Mathf.Sin(currentAngle * Mathf.Deg2Rad));
                 _transform.rotation = Quaternion.Euler(transform.rotation.x, -currentAngle + 90, transform.rotation.z);
             }
             else
             {
+                currentRotateSpeed = rotateSpeed;
                 coords.direction = dir;
             }
 
@@ -63,6 +81,7 @@ namespace OceanEntities
             //Store the new position in the coords.
             _transform.position = Coordinates.ConvertVector2ToWorld(coords.position);
 
+            //Deceleration
             if (dir.magnitude < 2f)
             {
                 if (currentSpeed > minimumSpeed)
@@ -84,26 +103,58 @@ namespace OceanEntities
         
         public override void Waiting()
         {
-            if(waitingPoint == nullVector)
+            Debug.DrawRay(Coordinates.ConvertVector2ToWorld(waitingTarget), Vector3.up, Color.red);
+            
+            Debug.DrawRay(Coordinates.ConvertVector2ToWorld(waitingPoint), Vector3.up, Color.green);
+
+            Debug.DrawRay(Coordinates.ConvertVector2ToWorld(tempTarget), Vector3.up, Color.blue);
+
+            //Place center point of routine if not placed aswell as new routine targets.
+            if (waitingPoint == nullVector)
             {
                 waitingPoint = coords.position;
+
+                waitingTarget = Coordinates.ConvertWorldToVector2(_transform.position) + new Vector2(_transform.forward.x, _transform.forward.z) * radius;
+                tempTarget = Coordinates.ConvertWorldToVector2(_transform.position) - new Vector2(_transform.forward.x, _transform.forward.z) * radius;
+                waitingRoutineRadius = 0;
             }
             else
             {
-                waitingCircleVector = coords.position - waitingPoint;
+                planeToCenter = coords.position - waitingPoint;
+                Vector2 dotReference = waitingPoint + waitingTarget;
 
-                if (waitingCircleVector.magnitude > waitingRoutineRadius)
+                float dot = Vector3.Dot(Coordinates.ConvertVector2ToWorld(coords.direction).normalized, Coordinates.ConvertVector2ToWorld(dotReference).normalized);
+
+                if (dot < -0.9f || canWait)
                 {
-                    Vector2 dir = new Vector2(waitingCircleVector.y, -waitingCircleVector.x);
+                    canWait = true;
+                    
+                    if (waitingRoutineRadius == 0)
+                    {
+                        waitingRoutineRadius = planeToCenter.magnitude;
+                        print(waitingRoutineRadius);
+                    }
+;
+                    Vector2 dir = new Vector2(planeToCenter.y, -planeToCenter.x);
+                    
+                    if(Vector2.SignedAngle(coords.direction, planeToCenter) < 0)
+                    {
+                        dir = -dir;
+                    }
+
                     if (Vector2.Angle(coords.direction, dir) > Time.fixedDeltaTime * rotateSpeed)
                     {
+                        print("Turning");
+                        currentRotateSpeed += acceleration * Time.fixedDeltaTime;
                         int turnSide = Vector2.SignedAngle(coords.direction, dir) > 0 ? 1 : -1;
-                        float currentAngle = Vector2.SignedAngle(Vector2.right, coords.direction) + turnSide * Time.fixedDeltaTime * rotateSpeed/2;
+                        float currentAngle = Vector2.SignedAngle(Vector2.right, coords.direction) + turnSide * Time.fixedDeltaTime * rotateSpeed;
                         coords.direction = new Vector2(Mathf.Cos(currentAngle * Mathf.Deg2Rad), Mathf.Sin(currentAngle * Mathf.Deg2Rad));
                     }
-                    else{
-
+                    else
+                    {
+                        currentRotateSpeed = rotateSpeed;
                         coords.direction = dir;
+
                         if (currentSpeed > minimumSpeed)
                         {
                             currentSpeed -= acceleration * 3 * Time.fixedDeltaTime;
@@ -116,18 +167,20 @@ namespace OceanEntities
 
                     coords.position += coords.direction.normalized * currentSpeed * Time.fixedDeltaTime;
 
-                    coords.position += (waitingCircleVector.normalized * waitingRoutineRadius) - waitingCircleVector;
+                    coords.position += (planeToCenter.normalized * waitingRoutineRadius) - planeToCenter;
 
                     _transform.position = Coordinates.ConvertVector2ToWorld(coords.position);
                     _transform.forward = new Vector3(coords.direction.x, 0, coords.direction.y);
                 }
                 else
                 {
-
-                    Move(new Vector2(_transform.forward.x, _transform.forward.z) * waitingRoutineRadius);
-                    currentSpeed = minimumSpeed;
+                    if(waitingTarget != nullVector)
+                    {
+                        Move(tempTarget);
+                        currentSpeed = minimumSpeed;
+                    }
                 }
             }
-       }
+        }
     }
 }
