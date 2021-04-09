@@ -4,7 +4,6 @@ using UnityEngine;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Reflection;
 using System.Linq;
 using System.CodeDom;
@@ -24,23 +23,16 @@ public class TweekCoreUtilities : UnityEngine.Object
     public static string graphicAssetsDirectory = "Assets/IntegrationSCO/Art";
     public static string soundAssetsDirectory = "Assets/IntegrationSCO/Sound";
 
-    //hard codded values waiting for interface implementation
-    public static string targetGameplayScoAssetsPath = "Assets/IntegrationSCO/Gameplay/GameplayPlaceHolderAsset.asset";
-    public static string targetArtScoAssetsPath = "Assets/IntegrationSCO/Art/ArtPlaceHolderAsset.asset";
-    public static string targetSoundScoAssetsPath = "Assets/IntegrationSCO/Sound/SoundPlaceHolderAsset.asset";
-    //hard codded stops here
-
     public static string prefabsPath = "Assets/Prefabs";
     public static string scenesPath = "Assets/_Scenes";
-
-    #region Editor Commands
     public enum ScoUpdateMode { Global, Gameplay, Art, Sound }
 
+    #region Editor Commands
+    /*
     [MenuItem("Tweek Operations/Update SCO Classes/project data -> All SCO ")]
     public static void UpdateAllScoClass()
     {
         LaunchScoUpdate(ScoUpdateMode.Global);
-
     }
 
     [MenuItem("Tweek Operations/Update SCO Classes/project Gameplay data-> Gameplay SCO")]
@@ -60,21 +52,7 @@ public class TweekCoreUtilities : UnityEngine.Object
     {
         LaunchScoUpdate(ScoUpdateMode.Sound);
     }
-
-    [MenuItem("Tweek Operations/ All SCO -> project data")]
-    static void ApplyValues()
-    {
-        object gameplayScoAsset = AssetDatabase.LoadAssetAtPath(targetGameplayScoAssetsPath, typeof(GameplayTweekScriptableObject)) as object;
-        object artScoAsset = AssetDatabase.LoadAssetAtPath(targetArtScoAssetsPath, typeof(ArtTweekScriptableObject)) as object;
-        object soundScoAsset = AssetDatabase.LoadAssetAtPath(targetSoundScoAssetsPath, typeof(SoundTweekScriptableObject)) as object;
-
-        //object gameplayScoAsset = AssetDatabase.LoadAssetAtPath(targetGameplayScoAssetsPath, typeof(GameplayTweekScriptableObject)) as GameplayTweekScriptableObject;
-        //object artScoAsset = AssetDatabase.LoadAssetAtPath(targetArtScoAssetsPath, typeof(ArtTweekScriptableObject)) as ArtTweekScriptableObject;
-        //object soundScoAsset = AssetDatabase.LoadAssetAtPath(targetSoundScoAssetsPath, typeof(SoundTweekScriptableObject)) as SoundTweekScriptableObject;
-
-        LaunchValuesApplication(gameplayScoAsset, artScoAsset, soundScoAsset);
-    }
-
+    */
     #endregion
 
     /// <summary>
@@ -82,7 +60,7 @@ public class TweekCoreUtilities : UnityEngine.Object
     /// </summary>
 
     //manage the SCO update protocole (handle progress bar)
-    static void LaunchScoUpdate(ScoUpdateMode updateMode)
+    public static void LaunchScoUpdate(ScoUpdateMode updateMode)
     {
         EditorUtility.DisplayProgressBar("Tweek System operation on going.", "Start " + updateMode.ToString() + " update operation", 0f);
 

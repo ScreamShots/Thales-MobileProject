@@ -1,10 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEditor;
 
-#if UNITY_EDITOR
-public class ToolIntegrationPipeline : EditorWindow
+/// <summary>
+/// S'il y a un problème, c'est la faute de Karp
+/// PS : j'améliorerais peut être le visuel si je trouve du temps mais actu c'est fonctionnel
+/// </summary>
+public class Tool_IntegrationPipeline : EditorWindow
 {
     public enum Mode { None, Graphic, Balancing , Audio}
     public Mode actualMode = Mode.None;
@@ -31,17 +32,18 @@ public class ToolIntegrationPipeline : EditorWindow
     [MenuItem("Tools/IntegrationPipeline", false, -999999999)]
     public static void ShowWindow()
     {
-        EditorWindow myWindow = GetWindow(typeof(ToolIntegrationPipeline));
+        EditorWindow myWindow = GetWindow(typeof(Tool_IntegrationPipeline));
         myWindow.minSize = new Vector2(300,200);
     }
 
     private void OnEnable()
     {
-#pragma warning disable
+        #pragma warning disable
+        tempSound_SCO = new SoundTweekScriptableObject();
         tempGraphic_SCO = new ArtTweekScriptableObject();
         tempBalancing_SCO = new GameplayTweekScriptableObject();
-        tempSound_SCO = new SoundTweekScriptableObject();
-#pragma warning restore
+        #pragma warning restore
+
         //Initialisation des Editors
         if (graphic_SCO != null)
         {
@@ -128,24 +130,24 @@ public class ToolIntegrationPipeline : EditorWindow
             //All SCO Rebuild
             if (GUILayout.Button("Rebuild All SCO for Project", GUILayout.MinWidth(_minWidth * 3), GUILayout.Height(_height)))
             {
-                TweekCoreUtilities.UpdateAllScoClass();
+                TweekCoreUtilities.LaunchScoUpdate(TweekCoreUtilities.ScoUpdateMode.Global);
             }
             using (new GUILayout.HorizontalScope())
             {
                 //Graphic SCO Rebuild
                 if (GUILayout.Button("Rebuild only Graphic", GUILayout.MinWidth(_minWidth), GUILayout.Height(_height)))
                 {
-                    TweekCoreUtilities.UpdateGraphicScoClass();
+                    TweekCoreUtilities.LaunchScoUpdate(TweekCoreUtilities.ScoUpdateMode.Art);
                 }
                 //Balancing SCO Rebuild
                 if (GUILayout.Button("Rebuild only Balancing", GUILayout.MinWidth(_minWidth), GUILayout.Height(_height)))
                 {
-                    TweekCoreUtilities.UpdateGameplayScoClass();
+                    TweekCoreUtilities.LaunchScoUpdate(TweekCoreUtilities.ScoUpdateMode.Gameplay);
                 }
                 //Sound SCO Rebuild
                 if (GUILayout.Button("Rebuild only Sound", GUILayout.MinWidth(_minWidth), GUILayout.Height(_height)))
                 {
-                    TweekCoreUtilities.UpdateSoundScoClass();
+                    TweekCoreUtilities.LaunchScoUpdate(TweekCoreUtilities.ScoUpdateMode.Sound);
                 }
             }
         }
@@ -243,72 +245,6 @@ public class ToolIntegrationPipeline : EditorWindow
         }
     }
 
-    void GenerateNewSco<T>(T tempSCO, Mode mode) where T : UnityEngine.ScriptableObject
-    {
-        //Génère l'instance
-        T asset = CreateInstance<T>();
-        asset = tempSCO;
-        switch (mode)
-        {
-            case Mode.Graphic:
-                tempGraphic_SCO = new ArtTweekScriptableObject();
-                break;
-
-            case Mode.Balancing:
-                tempBalancing_SCO = new GameplayTweekScriptableObject();
-                break;
-
-            case Mode.Audio:
-                tempSound_SCO = new SoundTweekScriptableObject();
-                break;
-
-            default:
-                tempGraphic_SCO = new ArtTweekScriptableObject();
-                tempBalancing_SCO = new GameplayTweekScriptableObject();
-                tempSound_SCO = new SoundTweekScriptableObject();
-                break;
-        }
-
-        //Trouve le Path
-        string path;
-        switch (mode)
-        {
-            case Mode.Graphic:
-                path = TweekCoreUtilities.graphicAssetsDirectory + "/";
-                break;
-            case Mode.Balancing:
-                path = TweekCoreUtilities.gameplayAssetsDirectory + "/";
-                break;
-            case Mode.Audio:
-                path = TweekCoreUtilities.soundAssetsDirectory + "/";
-                break;
-            default:
-                path = "Assets" + "/";
-                break;
-        }
-        path += "NewGraphSCO.asset";
-
-        AssetDatabase.CreateAsset(asset, path);
-        AssetDatabase.SaveAssets();
-        AssetDatabase.Refresh();
-        EditorUtility.FocusProjectWindow();
-        Selection.activeObject = asset;
-    }
-
-    public void ApplyValues()
-    {
-        string actuGraphicSCOPath = AssetDatabase.GetAssetPath(Balancing_SCO);
-        object graphicSCOAsset = graphic_SCO != null || graphic_SCO != tempGraphic_SCO ? AssetDatabase.LoadAssetAtPath(actuGraphicSCOPath, typeof(ArtTweekScriptableObject)) as object : null;
-
-        string actuBalancingSCOPath = AssetDatabase.GetAssetPath(Balancing_SCO);
-        object BalancingSCOAsset = Balancing_SCO != null || Balancing_SCO != tempBalancing_SCO ? AssetDatabase.LoadAssetAtPath(actuBalancingSCOPath, typeof(GameplayTweekScriptableObject)) as object : null;
-
-        string actuSoundSCOPath = AssetDatabase.GetAssetPath(Balancing_SCO);
-        object soundSCOAsset = sound_SCO != null || sound_SCO != tempSound_SCO ? AssetDatabase.LoadAssetAtPath(actuSoundSCOPath, typeof(SoundTweekScriptableObject)) as object : null;
-
-        TweekCoreUtilities.LaunchValuesApplication(BalancingSCOAsset, graphicSCOAsset, soundSCOAsset);
-    }
-
     void ModeButton(string name, Mode mode)
     {
         GUIContent content = new GUIContent(name);
@@ -363,5 +299,69 @@ public class ToolIntegrationPipeline : EditorWindow
         s.border.bottom = 0;
         return s;
     }
+
+    private void GenerateNewSco<T>(T tempSCO, Mode mode) where T : UnityEngine.ScriptableObject
+    {
+        //Génère l'instance
+        T asset = CreateInstance<T>();
+        asset = tempSCO;
+        switch (mode)
+        {
+            case Mode.Graphic:
+                tempGraphic_SCO = new ArtTweekScriptableObject();
+                break;
+
+            case Mode.Balancing:
+                tempBalancing_SCO = new GameplayTweekScriptableObject();
+                break;
+
+            case Mode.Audio:
+                tempSound_SCO = new SoundTweekScriptableObject();
+                break;
+
+            default:
+                tempGraphic_SCO = new ArtTweekScriptableObject();
+                tempBalancing_SCO = new GameplayTweekScriptableObject();
+                tempSound_SCO = new SoundTweekScriptableObject();
+                break;
+        }
+
+        //Trouve le Path
+        string path;
+        switch (mode)
+        {
+            case Mode.Graphic:
+                path = TweekCoreUtilities.graphicAssetsDirectory + "/";
+                break;
+            case Mode.Balancing:
+                path = TweekCoreUtilities.gameplayAssetsDirectory + "/";
+                break;
+            case Mode.Audio:
+                path = TweekCoreUtilities.soundAssetsDirectory + "/";
+                break;
+            default:
+                path = "Assets" + "/";
+                break;
+        }
+        path += "NewGraphSCO.asset";
+
+        AssetDatabase.CreateAsset(asset, path);
+        AssetDatabase.SaveAssets();
+        AssetDatabase.Refresh();
+        EditorUtility.FocusProjectWindow();
+        Selection.activeObject = asset;
+    }
+    public void ApplyValues()
+    {
+        string actuGraphicSCOPath = AssetDatabase.GetAssetPath(Balancing_SCO);
+        object graphicSCOAsset = graphic_SCO != null || graphic_SCO != tempGraphic_SCO ? AssetDatabase.LoadAssetAtPath(actuGraphicSCOPath, typeof(ArtTweekScriptableObject)) as object : null;
+
+        string actuBalancingSCOPath = AssetDatabase.GetAssetPath(Balancing_SCO);
+        object BalancingSCOAsset = Balancing_SCO != null || Balancing_SCO != tempBalancing_SCO ? AssetDatabase.LoadAssetAtPath(actuBalancingSCOPath, typeof(GameplayTweekScriptableObject)) as object : null;
+
+        string actuSoundSCOPath = AssetDatabase.GetAssetPath(Balancing_SCO);
+        object soundSCOAsset = sound_SCO != null || sound_SCO != tempSound_SCO ? AssetDatabase.LoadAssetAtPath(actuSoundSCOPath, typeof(SoundTweekScriptableObject)) as object : null;
+
+        TweekCoreUtilities.LaunchValuesApplication(BalancingSCOAsset, graphicSCOAsset, soundSCOAsset);
+    }
 }
-#endif
