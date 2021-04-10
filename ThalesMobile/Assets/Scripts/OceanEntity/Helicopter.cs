@@ -9,16 +9,17 @@ namespace OceanEntities
         private Transform _transform;
         private float currentSpeed = 0;
 
+        [Header("Helicopter Flight")]
         public float preparationDuration;
         public float alertDuration;
         public float flightDuration;
 
         [HideInInspector]public bool inAlert;
         [HideInInspector]public bool inFlight;
-        private bool onShip;
+        private bool onShip = true;
 
         //linkedShip must be linked when the helicopter is instanciated
-        [HideInInspector] public Ship linkedShip;
+        public Ship linkedShip;
 
         void Start()
         {
@@ -89,6 +90,11 @@ namespace OceanEntities
             StartCoroutine(FlightCoroutine());
         }
 
+        public void LauchButton()
+        {
+            StartCoroutine(PreparationCoroutine());
+        }
+
         #region Coroutines
 
         private IEnumerator PreparationCoroutine()
@@ -103,7 +109,7 @@ namespace OceanEntities
             StartCoroutine(AlertTimer());
 
             //Wait until not in alert anymore or current selected entity is this one
-            yield return new WaitUntil(() => !inAlert  );
+            yield return new WaitUntil(() => !inAlert || GameManager.Instance.playerController.currentSelectedEntity == this);
             if(inAlert)
             {
                 TakeOff();
