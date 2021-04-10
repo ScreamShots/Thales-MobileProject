@@ -15,17 +15,35 @@ using UnityEditor.Compilation;
 
 public class TweekCoreUtilities : UnityEngine.Object
 {
-    public static string gameplayScoPath = "Assets/Tools/TweekSystem/GameplayTweekScriptableObject.cs";
-    public static string graphicScoPath = "Assets/Tools/TweekSystem/ArtTweekScriptableObject.cs";
-    public static string soundScoPath = "Assets/Tools/TweekSystem/SoundTweekScriptableObject.cs";
-    
-    public static string gameplayAssetsDirectory = "Assets/IntegrationSCO/Gameplay";
-    public static string graphicAssetsDirectory = "Assets/IntegrationSCO/Art";
-    public static string soundAssetsDirectory = "Assets/IntegrationSCO/Sound";
-
-    public static string prefabsPath = "Assets/Prefabs";
     public static string scenesPath = "Assets/_Scenes";
+    public static string prefabsPath = "Assets/Prefabs";
+
+    public static string soundScoPath = "Assets/Tools/TweekSystem/SoundTweekScriptableObject.cs";
+    public static string graphicScoPath = "Assets/Tools/TweekSystem/ArtTweekScriptableObject.cs";
+    public static string gameplayScoPath = "Assets/Tools/TweekSystem/GameplayTweekScriptableObject.cs";
+
+    public static string soundAssetsDirectory = "Assets/IntegrationSCO/Sound";
+    public static string graphicAssetsDirectory = "Assets/IntegrationSCO/Art";
+    public static string gameplayAssetsDirectory = "Assets/IntegrationSCO/Gameplay";
+
     public enum ScoUpdateMode { Global, Gameplay, Art, Sound }
+
+    [MenuItem("Tools/Show static info")]
+    public static void DebugStatic()
+    {
+        Debug.Log(gameplayScoPath);
+        Debug.Log(graphicScoPath);
+        Debug.Log(soundScoPath);
+        Debug.Log(string.Empty);
+        Debug.Log(gameplayAssetsDirectory);
+        Debug.Log(graphicAssetsDirectory);
+        Debug.Log(soundAssetsDirectory);
+        Debug.Log(string.Empty);
+        Debug.Log(soundScoPath);
+        Debug.Log(graphicScoPath);
+        Debug.Log(gameplayScoPath);
+    }
+
 
     #region Editor Commands
     /*
@@ -627,8 +645,8 @@ public class TweekCoreUtilities : UnityEngine.Object
     }
 
     //update ID fiels of SCO Assets after a recent SCO Class update
-    [MenuItem("Tweek Operations / Update Assets")]
-    static void UpdateScoAssets()
+    //[MenuItem("Tweek Operations / Update Assets")]
+    public static void UpdateScoAssets()
     {
         string[] tempPaths = new string[0];
 
@@ -1008,7 +1026,6 @@ public class TweekCoreUtilities : UnityEngine.Object
     /// <summary>
     /// Tools methods used for recurent action in Tweek System
     /// </summary>
-
     //rewrite path string in Unity's way (without \)
     static string PathWritter(string path)
     {
