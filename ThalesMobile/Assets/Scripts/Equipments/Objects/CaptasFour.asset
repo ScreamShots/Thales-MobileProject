@@ -19,7 +19,8 @@ MonoBehaviour:
   range: 0
   waveDuration: 0
   pointFadeDuration: 0
-  detectionPointPrefab: {fileID: 0}
+  detectionPointPrefab: {fileID: 5367692207239176408, guid: 55472133b87b57045a49b4c6309d65eb,
+    type: 3}
   poolSize: 0
   availableDetectionPoints: []
   usedDetectionPoints: []
