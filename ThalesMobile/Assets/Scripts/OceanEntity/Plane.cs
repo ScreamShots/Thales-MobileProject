@@ -46,7 +46,7 @@ namespace OceanEntities
 
         private void Update()
         {
-            if (passiveEquipement.readyToUse && passiveEquipement.chargeCount > 0)
+            if (passiveEquipement.readyToUse)
                 passiveEquipement.UseEquipement(coords);
         }
 
