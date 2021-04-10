@@ -8,6 +8,7 @@ namespace PlayerEquipement
     ///  Rémi Sécher - 08/04/21 - Class that handle M.A.D. Equipement Behaviour
     /// </summary>
     
+    [CreateAssetMenu(menuName = "Equipement/MAD")]
     public class Mad : Equipement
     {
         [Header("M.A.D. Params")]

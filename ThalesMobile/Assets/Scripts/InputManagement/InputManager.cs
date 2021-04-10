@@ -15,6 +15,7 @@ public class InputManager : MonoBehaviour
     public LayerMask selectableEntity;
     [HideInInspector] public bool getEntityTarget = false;
     private bool touchedShip;
+    private bool gettingEntityTarget;
 
     //Touch inputs
     private Vector2 touchedSeaPosition;
@@ -39,6 +40,7 @@ public class InputManager : MonoBehaviour
                 //Get the sea position and pass it to the player controller
                 touchedSeaPosition = GetSeaPosition();
                 GameManager.Instance.playerController.SetEntityMoveTarget(touchedSeaPosition);
+                gettingEntityTarget = true;
             }
             else
             {
@@ -50,7 +52,7 @@ public class InputManager : MonoBehaviour
                     touchRay = mainCamera.ScreenPointToRay(touch.position);
                     if (Physics.Raycast(touchRay, out hit, 200f, selectableEntity))
                     {
-                        GameManager.Instance.playerController.currentSelectedEntity = hit.collider.gameObject.GetComponent<PlayerOceanEntity>();
+                        GameManager.Instance.playerController.currentSelectedEntity = hit.collider.transform.parent.GetComponent<PlayerOceanEntity>();
                         camController.SetTarget(hit.collider.transform);
                         touchedShip = true;
                     }
@@ -103,6 +105,12 @@ public class InputManager : MonoBehaviour
         {
             camController.moveDirection = Vector2.zero;
             distance = 0;
+
+            if(gettingEntityTarget)
+            {
+                getEntityTarget = false;
+                gettingEntityTarget = false;
+            }
 
             if(touchedShip)
             {

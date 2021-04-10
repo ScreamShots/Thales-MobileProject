@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PlayerEquipement;
 
 namespace OceanEntities
 {
@@ -12,6 +13,7 @@ namespace OceanEntities
 
 
         //Waiting routine variables
+        [Header("Waiting routine")]
         private Vector2 waitingPoint = new Vector2(-9999,-9999);
         private Vector2 waitingTarget = new Vector2(-9999, -9999);
 
@@ -25,11 +27,27 @@ namespace OceanEntities
 
         private bool canWait;
 
+
+        [Header("Equipment")]
+        public Equipement passiveEquipement;
+        public Equipement activeEquipement;
+
         void Start()
         {
             movementType = MovementType.air;
             _transform = transform;
             currentTargetPoint = Coordinates.ConvertWorldToVector2(_transform.forward * 2);
+
+            //Equipment initialization.
+            passiveEquipement.Init();
+            activeEquipement.Init();
+        }
+
+
+        private void Update()
+        {
+            if (passiveEquipement.readyToUse && passiveEquipement.chargeCount > 0)
+                passiveEquipement.UseEquipement(coords);
         }
 
         void FixedUpdate()
@@ -132,7 +150,6 @@ namespace OceanEntities
                     if (waitingRoutineRadius == 0)
                     {
                         waitingRoutineRadius = planeToCenter.magnitude;
-                        print(waitingRoutineRadius);
                     }
 ;
                     Vector2 dir = new Vector2(planeToCenter.y, -planeToCenter.x);
@@ -144,7 +161,6 @@ namespace OceanEntities
 
                     if (Vector2.Angle(coords.direction, dir) > Time.fixedDeltaTime * rotateSpeed)
                     {
-                        print("Turning");
                         currentRotateSpeed += acceleration * Time.fixedDeltaTime;
                         int turnSide = Vector2.SignedAngle(coords.direction, dir) > 0 ? 1 : -1;
                         float currentAngle = Vector2.SignedAngle(Vector2.right, coords.direction) + turnSide * Time.fixedDeltaTime * rotateSpeed;
@@ -181,6 +197,12 @@ namespace OceanEntities
                     }
                 }
             }
+        }
+
+        public void UseActiveObject()
+        {
+            if (activeEquipement.readyToUse && activeEquipement.chargeCount > 0)
+                activeEquipement.UseEquipement(coords);
         }
     }
 }

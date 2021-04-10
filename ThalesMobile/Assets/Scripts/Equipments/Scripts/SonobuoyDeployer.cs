@@ -8,6 +8,7 @@ namespace PlayerEquipement
     /// Rémi Sécher - 08/04/21 - Class that handle Sonobuoy Deployer Equipement behaviour
     /// </summary>
     
+    [CreateAssetMenu(menuName = "Equipement/SonobuyDeployer")]
     public class SonobuoyDeployer : Equipement
     {
         [Header("Sonobuoy Deployer Params")]

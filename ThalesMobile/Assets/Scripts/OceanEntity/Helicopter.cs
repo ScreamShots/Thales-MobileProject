@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PlayerEquipement;
 
 namespace OceanEntities
 {
@@ -8,6 +9,7 @@ namespace OceanEntities
     {
         private Transform _transform;
         private float currentSpeed = 0;
+        private float currentRotateSpeed =0;
 
         [Header("Helicopter Flight")]
         public float preparationDuration;
@@ -20,6 +22,11 @@ namespace OceanEntities
 
         //linkedShip must be linked when the helicopter is instanciated
         public Ship linkedShip;
+
+        [Header("Equipement")]
+        public Equipement activeEquipment;
+        private float time;
+        public float flashPreparationTime;
 
         private void Start()
         {
@@ -41,6 +48,29 @@ namespace OceanEntities
             }
 
             //Implement use of Sonic Flash
+            if(Input.touchCount > 0 && inFlight && currentTargetPoint == nullVector)
+            {
+                Vector2 touchPos = GameManager.Instance.inputManager.GetSeaPosition();
+                if((touchPos -  coords.position).magnitude < 0.5f)
+                {
+                    time += Time.deltaTime;
+                    if (time >= flashPreparationTime && activeEquipment.readyToUse && activeEquipment.chargeCount > 0)
+                    {
+                        print("launch flash");
+                        activeEquipment.UseEquipement(coords);
+                    }
+                }
+                else
+                {
+                    time = 0;
+                }
+                
+            }
+            else
+            {
+                time = 0;
+            }
+
 
         }
 
@@ -53,7 +83,20 @@ namespace OceanEntities
                 currentSpeed = speed;
 
             //Calculate direction to target and store it in coords.
-            coords.direction = targetPosition - coords.position;
+            Vector2 dir = targetPosition - coords.position;
+            if (Vector2.Angle(coords.direction, dir) > Time.fixedDeltaTime * rotateSpeed)
+            {
+                currentRotateSpeed += acceleration * Time.fixedDeltaTime;
+                int turnSide = Vector2.SignedAngle(coords.direction, dir) > 0 ? 1 : -1;
+                float currentAngle = Vector2.SignedAngle(Vector2.right, coords.direction) + turnSide * Time.fixedDeltaTime * currentRotateSpeed;
+                coords.direction = new Vector2(Mathf.Cos(currentAngle * Mathf.Deg2Rad), Mathf.Sin(currentAngle * Mathf.Deg2Rad));
+                _transform.rotation = Quaternion.Euler(transform.rotation.x, -currentAngle + 90, transform.rotation.z);
+            }
+            else
+            {
+                currentRotateSpeed = rotateSpeed;
+                coords.direction = dir;
+            }
 
             //Update the plane's position.
             coords.position += coords.direction.normalized * currentSpeed * Time.deltaTime;

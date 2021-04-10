@@ -1,13 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using PlayerEquipement;
 namespace OceanEntities
 {
     public class Ship : PlayerOceanEntity
     {
         private Transform _transform;
         private float currentSpeed = 0;
+
+        [Header("Equipment")]
+        public Equipement passiveEquipement;
+        public Equipement activeEquipement;
 
         private void Start()
         {
@@ -16,8 +20,15 @@ namespace OceanEntities
 
             coords = new Coordinates(_transform.position, Vector2.up, 0);
 
-            //PassiveEquipement.Awake();
-            //ActiveEquipement.Awake();
+            //Equipment initialization.
+            passiveEquipement.Init();
+            activeEquipement.Init();
+        }
+
+        private void Update()
+        {
+            if (passiveEquipement.readyToUse && passiveEquipement.chargeCount > 0)
+                passiveEquipement.UseEquipement(coords);
         }
 
         void FixedUpdate()
@@ -87,6 +98,13 @@ namespace OceanEntities
         {
             throw new System.NotImplementedException();
         }
+
+        public void UseActiveObject()
+        {
+            if (activeEquipement.readyToUse && activeEquipement.chargeCount > 0)
+                activeEquipement.UseEquipement(coords);
+        }
+
     }
 
 }
