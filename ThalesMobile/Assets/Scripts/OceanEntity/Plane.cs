@@ -47,7 +47,7 @@ namespace OceanEntities
         private void Update()
         {
             if (passiveEquipement.readyToUse)
-                passiveEquipement.UseEquipement(coords);
+                passiveEquipement.UseEquipement(this);
         }
 
         void FixedUpdate()
@@ -202,7 +202,7 @@ namespace OceanEntities
         public void UseActiveObject()
         {
             if (activeEquipement.readyToUse && activeEquipement.chargeCount > 0)
-                activeEquipement.UseEquipement(coords);
+                activeEquipement.UseEquipement(this);
         }
     }
 }

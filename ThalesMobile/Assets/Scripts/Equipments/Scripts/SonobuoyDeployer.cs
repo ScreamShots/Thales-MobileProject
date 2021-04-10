@@ -1,6 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using OceanEntities;
 
 namespace PlayerEquipement
 {
@@ -42,22 +42,16 @@ namespace PlayerEquipement
             }
         }
 
-        public override void UseEquipement(Coordinates userCoords)
+        public override void UseEquipement(PlayerOceanEntity user)
         {
             Vector2 targetPos = Vector2.zero;
 
-            base.UseEquipement(userCoords);
+            base.UseEquipement(user);
 
             //Input to selec a target pos where to drop the sonobuoy
             //Move Entity to the point
             
             //then drop sonobuoy ↓
-            DropSonobuoy(targetPos);
-        }
-
-        public override void UseEquipement(Coordinates userCoords, Vector2 targetPos)
-        {
-            base.UseEquipement(userCoords, targetPos);
             DropSonobuoy(targetPos);
         }
 

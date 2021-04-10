@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using OceanEntities;
 
 namespace PlayerEquipement
 {
@@ -31,11 +32,11 @@ namespace PlayerEquipement
             levelManager = GameManager.Instance.levelManager;
         }
 
-        public override void UseEquipement(Coordinates userCoords)
+        public override void UseEquipement(PlayerOceanEntity user)
         {
-            base.UseEquipement(userCoords);
+            base.UseEquipement(user);
             readyToUse = false;
-            allCoroutines.Add(GameManager.Instance.ExternalStartCoroutine(DropFlash(userCoords)));
+            allCoroutines.Add(GameManager.Instance.ExternalStartCoroutine(DropFlash(user.coords)));
         }
 
         IEnumerator DropFlash(Coordinates userCoords)

@@ -57,7 +57,7 @@ namespace OceanEntities
                     if (time >= flashPreparationTime && activeEquipment.readyToUse && activeEquipment.chargeCount > 0)
                     {
                         print("launch flash");
-                        activeEquipment.UseEquipement(coords);
+                        activeEquipment.UseEquipement(this);
                     }
                 }
                 else

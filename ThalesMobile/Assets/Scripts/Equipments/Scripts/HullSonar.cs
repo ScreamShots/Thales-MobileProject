@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using OceanEntities;
 
 namespace PlayerEquipement
 {
@@ -49,12 +50,12 @@ namespace PlayerEquipement
             }
         }
 
-        public override void UseEquipement(Coordinates userCoords)
+        public override void UseEquipement(PlayerOceanEntity user)
         {
-            base.UseEquipement(userCoords);
+            base.UseEquipement(user);
 
             readyToUse = false;
-            GameManager.Instance.ExternalStartCoroutine(SonarWave(userCoords));
+            GameManager.Instance.ExternalStartCoroutine(SonarWave(user.coords));
         }
 
         IEnumerator SonarWave(Coordinates userCoords)

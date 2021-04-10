@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using OceanEntities;
 
 namespace PlayerEquipement
 {
@@ -88,7 +89,7 @@ namespace PlayerEquipement
 
         //Call this from player Entity to launch equipement Behaviour
         //Override this in inherited class to specify equipement bahaviour (keep base → handle charge use)
-        public virtual void UseEquipement(Coordinates userCoords)
+        public virtual void UseEquipement(PlayerOceanEntity user)
         {
             if (equipementType == EquipementType.active)
             {
