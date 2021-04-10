@@ -48,10 +48,10 @@ namespace PlayerEquipement
             equipementType = EquipementType.active;
 
             //Setting pos of all map's limitation's angles
-            mapAnglesPos[0] = new Vector2(cameraController.limit.left, cameraController.limit.down);
-            mapAnglesPos[1] = new Vector2(cameraController.limit.left, cameraController.limit.up);
-            mapAnglesPos[2] = new Vector2(cameraController.limit.right, cameraController.limit.down);
-            mapAnglesPos[3] = new Vector2(cameraController.limit.right, cameraController.limit.up);
+            mapAnglesPos[0] = new Vector2(cameraController.limit.leftBorder, cameraController.limit.downBorder);
+            mapAnglesPos[1] = new Vector2(cameraController.limit.leftBorder, cameraController.limit.upBorder);
+            mapAnglesPos[2] = new Vector2(cameraController.limit.rightBorder, cameraController.limit.downBorder);
+            mapAnglesPos[3] = new Vector2(cameraController.limit.rightBorder, cameraController.limit.upBorder);
 
             //Setting up the pooling of detection points
             GameObject tempDetectionPoint;

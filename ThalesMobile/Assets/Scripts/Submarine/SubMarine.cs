@@ -70,7 +70,7 @@ public class Submarine : DetectableOceanEntity
     private Vector2 nextInterestPointPosition;
     private int randomNumber;
 
-    protected override void Start()
+    private void Start()
     {
         _transform = transform;
         coords.position = Coordinates.ConvertWorldToVector2(_transform.position);
