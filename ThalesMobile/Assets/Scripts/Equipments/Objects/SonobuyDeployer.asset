@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099a36c3156481d4aa022550da67430b, type: 3}
   m_Name: SonobuyDeployer
   m_EditorClassIdentifier: 
-  chargeMax: 0
-  chargeStart: 0
-  loadingTime: 0
-  sonobuoyLifeTime: 0
+  chargeMax: 3
+  chargeStart: 2
+  loadingTime: 1
+  sonobuoyLifeTime: 1
+  deployerCooldown: 5
   sonobuoyPrefab: {fileID: 0}
   poolSize: 0

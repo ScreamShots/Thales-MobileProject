@@ -46,8 +46,8 @@ namespace OceanEntities
 
         private void Update()
         {
-            if (passiveEquipement.readyToUse)
-                passiveEquipement.UseEquipement(this);
+           /* if (passiveEquipement.readyToUse)
+                passiveEquipement.UseEquipement(this);*/
         }
 
         void FixedUpdate()
