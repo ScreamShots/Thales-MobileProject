@@ -7,7 +7,7 @@ public enum Weather { ClearSky, Wind };
 public class Environnement : MonoBehaviour
 {
     public Boundary limit = new Boundary(new Vector2(20,40));
-    public List<Zone> zones;
+    public Zone[] zones;
 
     private void OnValidate()
     {

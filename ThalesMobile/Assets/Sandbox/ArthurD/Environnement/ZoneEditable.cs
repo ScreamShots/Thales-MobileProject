@@ -2,35 +2,40 @@
 using NaughtyAttributes;
 using UnityEngine;
 
-public class ZoneEditable : MonoBehaviour
+namespace Thales.Tool.LevelDesign
 {
-    [HideInInspector] public GameObject pointTemplate;
-    [HideInInspector] public int zoneNbr;
-
-    public Color color = Color.white;
-    [Space(10)]
-    [ReorderableList]
-    public List<Transform> points = new List<Transform>();
-    [Button("add a point")]
-    public void AddTransformToZone()
+    [System.Serializable]
+    public struct ZoneEditable
     {
-        GameObject newZone = Instantiate(pointTemplate, transform);
-        newZone.name = "Zone-"+ zoneNbr +"-"+ points.Count;
-        points.Add(newZone.transform);
-    }
+        [HideInInspector]
+        public string name;
+        public Relief relief;
+        public Weather currentWeather;
+        [Space(10)]
+        public Color color;
+        [ReorderableList]
+        public List<Transform> points;
 
-    private void OnDrawGizmos()
-    {
-        if(points.Count != 0)
+        public ZoneEditable(string name)
         {
-            Gizmos.color = color;
+            this.name = name;
+            color = Color.yellow;
 
-            Gizmos.DrawLine(points[points.Count-1].position, points[0].position);
-            for (int i = 0; i < points.Count-1; i++)
-            {
-                Gizmos.DrawLine(points[i].position, points[i+1].position);
-            }
+            points = new List<Transform>();
+
+            relief = Relief.Flat;
+            currentWeather = Weather.ClearSky;
         }
+        public ZoneEditable(string name, Color color)
+        {
+            this.name = name;
+            this.color = color;
 
+            points = new List<Transform>();
+
+            relief = Relief.Flat;
+            currentWeather = Weather.ClearSky;
+        }
     }
 }
+
