@@ -57,7 +57,6 @@ public class Submarine : DetectableOceanEntity
     public DecoyInstance decoy;
     private bool decoyIsCreateFlag;
     public List<CounterMeasure> counterMeasures;
-    private bool usingCounterMeasure;
 
     [Header("Objectif")]
     public int pointsToHack;
@@ -107,7 +106,10 @@ public class Submarine : DetectableOceanEntity
         DetectSonobuoy();
 
         // Counter Measures.
-        UpdateCounterMeasures();
+        if (currentVigilance >= 0)
+        {
+            UpdateCounterMeasures();
+        }   
     }
 
     #region Movement
@@ -217,7 +219,6 @@ public class Submarine : DetectableOceanEntity
     }
     #endregion
 
-
     #region Vigilance
     private void UpdateState()
     {
@@ -238,6 +239,11 @@ public class Submarine : DetectableOceanEntity
         if (currentVigilance >= 100)
         {
             currentVigilance = 100;
+        }
+
+        if (currentVigilance <= 0)
+        {
+            currentVigilance = 0;
         }
     }
 
@@ -314,56 +320,42 @@ public class Submarine : DetectableOceanEntity
     #region CounterMeasures
     private void UpdateCounterMeasures()
     {
+        // Lauch Heading Change counter measure.
         if ((currentState == VigilanceState.worried || currentState == VigilanceState.panicked) && submarineDetectFregate)
         {
-            CheckIfCounterMeasureRunning();
-            if (!usingCounterMeasure)
+            if (!UsingCounterMeasure())
             {
-                // Lauch Heading Change counter measure.
                 counterMeasures[0].UseCounterMeasure(this);
             }
         }
+        // Lauch Radio Silence counter measure.
         if (currentVigilance >= 100)
         {
-            CheckIfCounterMeasureRunning();
-            if (!usingCounterMeasure)
-            {
-                // Lauch Radio Silence counter measure.
+            if (!UsingCounterMeasure())
+            {               
                 counterMeasures[1].UseCounterMeasure(this);
             }
         }
-        /*if ((currentState == VigilanceState.worried || currentState == VigilanceState.panicked) && currentDetectableState == DetectableState.detected && //Detect by MAD)
+        // Lauch Bait Decoy counter measure.
+        if ((currentState == VigilanceState.worried || currentState == VigilanceState.panicked) && currentDetectableState == DetectableState.revealed)
         {
-            if (!usingCounterMeasure)
-            {
-                // Lauch Bait Decoy counter measure.
+            if (!UsingCounterMeasure())
+            {              
                 counterMeasures[2].UseCounterMeasure(this);
             }
-        }*/
+        }
     }
 
-    private void CheckIfCounterMeasureRunning()
+    private bool UsingCounterMeasure()
     {
-        if (counterMeasures[0].readyToUse && counterMeasures[1].readyToUse && counterMeasures[2].readyToUse)
+        for (int x = 0; x < counterMeasures.Count; x++)
         {
-            usingCounterMeasure = false;
-        }
-        else
-        {
-            usingCounterMeasure = true;
-        }
-
-        /*bool usingCounterMeasure()
-        {
-            for (int x = 0; x < counterMeasures.Count; x++)
+            if (!counterMeasures[x].readyToUse)
             {
-                if (!counterMeasures[x].readyToUse)
-                {
-                    return true;
-                }
+                return true;
             }
-            return false;
-        }*/
+        }
+        return false;
     }
     #endregion
 }

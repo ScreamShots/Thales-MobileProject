@@ -9,8 +9,6 @@ public class HeadingChange : CounterMeasure
     {
         submarine.PickRandomInterrestPoint();
 
-        yield return null;
-
-        base.CounterMeasureEffect(submarine);
+        yield return base.CounterMeasureEffect(submarine);
     }
 }

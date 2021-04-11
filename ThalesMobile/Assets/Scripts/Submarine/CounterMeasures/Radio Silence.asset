@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5e638ca0dc20dc499e7d27a45ef9d69, type: 3}
   m_Name: Radio Silence
   m_EditorClassIdentifier: 
-  readyToUse: 0
+  readyToUse: 1
   loadingTime: 10
   duration: 10
   cooldownTime: 0

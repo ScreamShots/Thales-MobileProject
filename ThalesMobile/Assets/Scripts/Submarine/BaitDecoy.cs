@@ -36,7 +36,7 @@ public class BaitDecoy : CounterMeasure
             decoyRef.levelManager.submarineEntitiesInScene.Remove(decoyRef);
         }
 
-        base.CounterMeasureEffect(submarine);
+        yield return base.CounterMeasureEffect(submarine);
     }
 
     private void ChooseRandomSide()

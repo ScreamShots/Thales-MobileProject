@@ -14,6 +14,6 @@ public class RadioSilence : CounterMeasure
 
         submarine.currentDetectableState = DetectableState.undetected;
 
-        base.CounterMeasureEffect(submarine);
+        yield return base.CounterMeasureEffect(submarine);
     }
 }
