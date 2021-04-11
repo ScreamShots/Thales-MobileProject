@@ -75,10 +75,10 @@ public class SonobuoyInstance : DetectionObject
         if (levelManager.sonobuoysInScene.Contains(this)) levelManager.sonobuoysInScene.Remove(this);
         if (levelManager.activatedDetectionObjects.Contains(this)) levelManager.activatedDetectionObjects.Remove(this);
 
-        /*Pool
-        source.availableDetectionPoints.Add(this);
-        source.usedDetectionPoints.Remove(this);
-        */
+        
+        source.availaibleSonobuoys.Add(this);
+        source.usedSonobuoys.Remove(this);
+        
 
         StopAllCoroutines();
     }

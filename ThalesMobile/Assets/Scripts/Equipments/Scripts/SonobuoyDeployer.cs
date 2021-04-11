@@ -16,6 +16,8 @@ namespace PlayerEquipement
 
         [SerializeField, Min(0)]
         float sonobuoyLifeTime;
+        [SerializeField, Min(0)]
+        float sonobuoyRange;
 
         [Header("Pool Params")]
 
@@ -24,8 +26,10 @@ namespace PlayerEquipement
         [SerializeField, Min(0)]
         int poolSize;
 
-        List<SonobuoyInstance> availaibleSonobuoys;
-        List<SonobuoyInstance> usedSonobuoys;
+        [HideInInspector]
+        public List<SonobuoyInstance> availaibleSonobuoys;
+        [HideInInspector]
+        public List<SonobuoyInstance> usedSonobuoys;
 
         public override void Init()
         {
@@ -80,7 +84,7 @@ namespace PlayerEquipement
 
         void DropSonobuoy(Vector2 targetPos)
         {
-            availaibleSonobuoys[0].EnableSonobuoy(targetPos); //Add life time parameters to the methods
+            availaibleSonobuoys[0].EnableSonobuoy(targetPos, sonobuoyRange, sonobuoyLifeTime, this);
             usedSonobuoys.Add(availaibleSonobuoys[0]);
             availaibleSonobuoys.RemoveAt(0);
             chargeCount--;
