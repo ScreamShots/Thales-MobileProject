@@ -186,7 +186,13 @@ namespace OceanEntities
                     coords.position += (planeToCenter.normalized * waitingRoutineRadius) - planeToCenter;
 
                     _transform.position = Coordinates.ConvertVector2ToWorld(coords.position);
-                    _transform.forward = new Vector3(coords.direction.x, 0, coords.direction.y);
+
+                    if(new Vector3(coords.direction.x, 0, coords.direction.y) == Vector3.zero)
+                        _transform.forward = new Vector3(coords.direction.x, 0, coords.direction.y);
+                    else
+                    {
+                        _transform.forward = new Vector3(coords.direction.x + 0.001f, 0, coords.direction.y + 0.001f);
+                    }
                 }
                 else
                 {

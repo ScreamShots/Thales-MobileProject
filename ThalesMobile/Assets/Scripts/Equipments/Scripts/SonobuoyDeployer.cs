@@ -16,8 +16,6 @@ namespace PlayerEquipement
 
         [SerializeField, Min(0)]
         float sonobuoyLifeTime;
-        [SerializeField, Min(0)]
-        float deployerCooldown;
 
         [Header("Pool Params")]
 
@@ -48,14 +46,11 @@ namespace PlayerEquipement
 
         public override void UseEquipement(PlayerOceanEntity user)
         {
-            base.UseEquipement(user);
-
             GameManager.Instance.ExternalStartCoroutine(DeploySonoBuy(user));
         }
 
         IEnumerator DeploySonoBuy(PlayerOceanEntity user)
         {
-            Debug.Log("Start");
             readyToUse = false;
             Vector2 userCurrentTarget = user.currentTargetPoint;
 
@@ -74,7 +69,6 @@ namespace PlayerEquipement
             {
                 Debug.Log("DROP");
                 DropSonobuoy(targetPos);
-                yield return new WaitForSeconds(deployerCooldown);
                 readyToUse = true;
             }
             else
@@ -89,6 +83,7 @@ namespace PlayerEquipement
             availaibleSonobuoys[0].EnableSonobuoy(targetPos); //Add life time parameters to the methods
             usedSonobuoys.Add(availaibleSonobuoys[0]);
             availaibleSonobuoys.RemoveAt(0);
+            chargeCount--;
         }
     }
 }
