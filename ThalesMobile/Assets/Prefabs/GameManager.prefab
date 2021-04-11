@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6727089083122291084}
   - component: {fileID: 7055235982569188505}
+  - component: {fileID: 3682279617419880169}
+  - component: {fileID: 4762022619942076001}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -45,9 +47,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentGameState: 0
-  inputManager: {fileID: 0}
-  playerController: {fileID: 0}
+  inputManager: {fileID: 3682279617419880169}
+  playerController: {fileID: 4762022619942076001}
   cameraController: {fileID: 0}
+  levelManager: {fileID: 0}
+--- !u!114 &3682279617419880169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4380208127223655878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21846148031936c469c78a6f8f3c531a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 0}
+  selectableEntity:
+    serializedVersion: 2
+    m_Bits: 256
+  getEntityTarget: 0
+--- !u!114 &4762022619942076001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4380208127223655878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 796da047b11c65e41a777432ae80c0ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentSelectedEntity: {fileID: 0}
+  target: {x: 0, y: 0}
 --- !u!1 &5214703361856801187
 GameObject:
   m_ObjectHideFlags: 0
