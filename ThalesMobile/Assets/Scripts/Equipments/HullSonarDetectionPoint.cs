@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PlayerEquipement;
+using System.Linq;
 
 /// <summary>
 /// Rémi Sécher - 08/04/21 - Class that Handle detectionPoint spawn by HullSonar Equipement on detected entities pos
@@ -10,17 +12,22 @@ public class HullSonarDetectionPoint : DetectionObject
 {
     [HideInInspector]
     public float fadeDuration;
+    HullSonar source;
 
     //Get the point from his state of unused in the pool and activate in GameWorld
-    public void ActivatePoint(DetectableOceanEntity detectedElement, float _fadeDuration)
+    public void ActivatePoint(DetectableOceanEntity detectedElement, float _fadeDuration, HullSonar _source)
     {
+        source = _source;
         levelManager.activatedDetectionObjects.Add(this);
-        detectedEntities.Add(detectedElement);
+
+        AddDetectable(detectedElement);
+
         transform.position = Coordinates.ConvertVector2ToWorld(detectedElement.coords.position);
         coords.position = Coordinates.ConvertWorldToVector2(transform.position);
         fadeDuration = _fadeDuration;
-        detectionState = DetectionState.unknownDetection;
+
         gameObject.SetActive(true);
+
         StartCoroutine(Fade());
     }
 
@@ -28,11 +35,20 @@ public class HullSonarDetectionPoint : DetectionObject
     public void DesactivatePoint()
     {
         gameObject.SetActive(false);
-        levelManager.activatedDetectionObjects.Remove(this);
+
+        foreach(DetectableOceanEntity entity in detectedEntities.ToList())
+        {
+            RemoveDetectable(entity);
+        }
         detectedEntities.Clear();
-        detectionState = DetectionState.noDetection;
+
         transform.localPosition = Vector3.zero;
-        detectionState = DetectionState.noDetection;
+        coords.position = Coordinates.ConvertWorldToVector2(transform.position);
+
+        levelManager.activatedDetectionObjects.Remove(this);
+        source.availableDetectionPoints.Add(this);
+        source.usedDetectionPoints.Remove(this);
+
         StopAllCoroutines();
     }
 

@@ -106,7 +106,7 @@ namespace PlayerEquipement
                     {
                         if (availableDetectionPoints.Count > 0)
                         {
-                            availableDetectionPoints[0].ActivatePoint(detectableCoords, pointFadeDuration, this);
+                            availableDetectionPoints[0].ActivatePoint(detectable, pointFadeDuration, this);
                             usedDetectionPoints.Add(availableDetectionPoints[0]);
                             availableDetectionPoints.RemoveAt(0);
                         }

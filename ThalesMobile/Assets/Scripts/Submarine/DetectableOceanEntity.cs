@@ -10,6 +10,7 @@ public enum DetectableState
 {
     undetected,
     detected,
+    revealed,
     cantBeDetected
 }
 
@@ -20,4 +21,30 @@ public abstract class DetectableOceanEntity : OceanEntity
 {
     public DetectableState currentDetectableState;
     public DetectionFeedback detectFeedback;
+    public List<DetectionObject> detectors;
+
+    protected virtual void Update()
+    {
+        DetectorsReview();
+    }
+
+    void DetectorsReview()
+    {
+        if (detectors.Count == 0 && currentDetectableState != DetectableState.cantBeDetected) currentDetectableState = DetectableState.undetected;
+        else if(detectors.Count > 0 && currentDetectableState != DetectableState.cantBeDetected)
+        {
+            foreach(DetectionObject detector in detectors)
+            {
+                if(detector.detectionState == DetectionState.revealedDetection)
+                {
+                    currentDetectableState = DetectableState.revealed;
+                    break;
+                }                
+            }
+
+            currentDetectableState = DetectableState.detected;
+        }
+    }
+
+
 }

@@ -24,8 +24,10 @@ public class DecoyInstance : DetectableOceanEntity
         currentSeaLevel = OceanEntities.SeaLevel.submarine;
     }
 
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
+
         if (decoyIsActive)
         {
             if (castRaycast)

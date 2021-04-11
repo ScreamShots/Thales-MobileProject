@@ -10,6 +10,7 @@ public enum DetectionState { noDetection, unknownDetection, revealedDetection }
 
 /// <summary>
 ///  Rémi Sécher - 08/04/2021 - Base class for Detection object that interract with equipement that do revelation (lie M.A.D.) 
+///  Rémi Sécher - 11/04/2021 - detectionState modification implemented
 /// </summary>
 
 public abstract class DetectionObject : MonoBehaviour
@@ -18,7 +19,7 @@ public abstract class DetectionObject : MonoBehaviour
     public Coordinates coords;
 
     private DetectionState _detectionState;   
-    protected List<DetectableOceanEntity> detectedEntities = new List<DetectableOceanEntity>();
+    protected List<DetectableOceanEntity> _detectedEntities = new List<DetectableOceanEntity>();
     protected LevelManager levelManager;
 
     //Phantom value reference that call refresh of FeedBack (method) whenever a change is done to the detection state value
@@ -32,6 +33,19 @@ public abstract class DetectionObject : MonoBehaviour
         }
     }
 
+    //Phantom reference that chage detectionValue according to detected entities
+    public List<DetectableOceanEntity> detectedEntities
+    {
+        get { return _detectedEntities; }
+        set
+        {
+            _detectedEntities = value;
+
+            if (_detectedEntities.Count == 0 && detectionState != DetectionState.noDetection) detectionState = DetectionState.noDetection;
+            else if (_detectedEntities.Count > 0 && detectionState == DetectionState.noDetection) detectionState = DetectionState.unknownDetection;
+        }
+    }
+
     protected virtual void Start()
     {
         levelManager = GameManager.Instance.levelManager;
@@ -41,5 +55,17 @@ public abstract class DetectionObject : MonoBehaviour
     protected virtual void RefreshFeedBack(DetectionState newState)
     {
 
+    }
+
+    protected void AddDetectable(DetectableOceanEntity entity)
+    {
+        detectedEntities.Add(entity);
+        entity.detectors.Add(this);
+    }
+
+    protected void RemoveDetectable(DetectableOceanEntity entity)
+    {
+        if (detectedEntities.Contains(entity)) detectedEntities.Remove(entity);
+        if (entity.detectors.Contains(this)) entity.detectors.Remove(this);
     }
 }

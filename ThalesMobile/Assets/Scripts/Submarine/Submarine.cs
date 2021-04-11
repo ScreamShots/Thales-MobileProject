@@ -76,10 +76,13 @@ public class Submarine : DetectableOceanEntity
         coords.position = Coordinates.ConvertWorldToVector2(_transform.position);
         currentSeaLevel = OceanEntities.SeaLevel.submarine;
         PickRandomInterrestPoint();
+        levelManager.enemyEntitiesInScene.Add(this);
     }
 
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
+
         // Movement.
         if (!decoy.decoyIsActive)
         {

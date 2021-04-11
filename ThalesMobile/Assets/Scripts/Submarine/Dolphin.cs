@@ -24,8 +24,9 @@ public class Dolphin : DetectableOceanEntity
         nextPoint = Coordinates.ConvertWorldToVector2(pointsToFollow[currentPoint].position);
     }
 
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
         Move(nextPoint);
     }
 

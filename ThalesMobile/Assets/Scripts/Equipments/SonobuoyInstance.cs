@@ -2,50 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 using OceanEntities;
-
-/// <summary>
-/// Antoine Leroux - 31/03/2021 - Sonobuoy Detectable State is an enum describing the current sonobuoy detection state. 
-/// </summary>
-public enum SonobuoyDetectionState
-{
-    undetectedElement,
-    detectedElement,
-    severalDetectedElements
-}
+using PlayerEquipement;
+using System.Linq;
 
 /// <summary>
 /// Antoine Leroux - 31/03/2021 - Script relative to the behavior detection of a sonobuoy. 
+/// Rémi Sécher - 11/04/2021 - Rework to incorporate Sonobout instance to DetectionObject logic
 /// </summary>
-public class SonobuoyInstance : MonoBehaviour
+public class SonobuoyInstance : DetectionObject
 {
-    public SonobuoyDetectionState currentDetectionState;
-    private Transform _transform;
-    private float distanceFromEntity;
 
-    [Header("References")]
-    public LevelManager levelManager;
+    private float lifeTime;
+    private float detectionRange;
+    private SonobuoyDeployer source;
 
-    [Header("Effect")]
-    public float sonobuoyLifeTime;
-    private float timeBeforeDisableSonobuoy;
-    private bool sonobuoyIsActive;
-    public float detectionRange;
-
-    [Header("Range Display")]
+    [Header("Range Display - Temp")]
     public GameObject mesh;
     public GameObject rangeVisual;
     private SpriteRenderer rangeSprite;
     public Color undetectedElementColor;
     public Color detectedElementColor;
 
-    [Header("DEBUG")]
-    public List<DetectableOceanEntity> entitiesInsideSonobuoyRange;
 
-
-    private void Start()
+    protected override void Start()
     {
-        _transform = transform;
-        EnableSonobuoy(Coordinates.ConvertWorldToVector2(_transform.position));
+        base.Start();
 
         rangeSprite = rangeVisual.GetComponent<SpriteRenderer>();
         rangeVisual.transform.localScale = new Vector2(detectionRange * 2, detectionRange * 2);
@@ -53,114 +34,99 @@ public class SonobuoyInstance : MonoBehaviour
 
     private void Update()
     {
-        LifeTime();
-        SwitchDetectionState();
-        ChangeColorRange();
-        DetectElementsInsideRange();
-
-        if (sonobuoyIsActive)
+        if (gameObject.activeInHierarchy)
         {
-            mesh.SetActive(true);
-            rangeVisual.SetActive(true);
-        }
-        else
-        {
-            mesh.SetActive(false);
-            rangeVisual.SetActive(false);
-            entitiesInsideSonobuoyRange = new List<DetectableOceanEntity>();
-
-            if (levelManager.sonobuoysInScene.Contains(this))
-            {
-                levelManager.sonobuoysInScene.Remove(this);
-            }
-        }
+            ChangeColorRange();
+            DetectElementsInsideRange();
+        }        
     }
 
     // Use this function to deploy a sonobuoy where your finger touch the screen. 
-    public void EnableSonobuoy(Vector2 deploymentPosition)
+    public void EnableSonobuoy(Vector2 target, float _range, float _lifeTime, SonobuoyDeployer _source)
     {
-        _transform.position = Coordinates.ConvertVector2ToWorld(deploymentPosition);
-        timeBeforeDisableSonobuoy = sonobuoyLifeTime;
+        transform.position = Coordinates.ConvertVector2ToWorld(target);
+        coords.position = Coordinates.ConvertWorldToVector2(transform.position);
 
-        if (!levelManager.sonobuoysInScene.Contains(this))
-        {
-            levelManager.sonobuoysInScene.Add(this);
-        }
+        detectionRange = _range;
+        lifeTime = _lifeTime;
+        source = _source;
+
+        if (!levelManager.sonobuoysInScene.Contains(this)) levelManager.sonobuoysInScene.Add(this);
+        if (!levelManager.activatedDetectionObjects.Contains(this)) levelManager.activatedDetectionObjects.Add(this);
+
+        gameObject.SetActive(true);
+
+        StartCoroutine(LifeTime());
     }
 
-    private void LifeTime()
+    public void DisableSonobuoy()
     {
-        if (timeBeforeDisableSonobuoy > 0)
+        gameObject.SetActive(false);
+
+        foreach (DetectableOceanEntity entity in detectedEntities.ToList())
         {
-            sonobuoyIsActive = true;
-            timeBeforeDisableSonobuoy -= Time.deltaTime;           
+            RemoveDetectable(entity);
         }
-        else
-        {
-            sonobuoyIsActive = false;
-        }
+        detectedEntities.Clear();
+
+        transform.localPosition = Vector3.zero;
+        coords.position = Coordinates.ConvertWorldToVector2(transform.position);
+
+        if (levelManager.sonobuoysInScene.Contains(this)) levelManager.sonobuoysInScene.Remove(this);
+        if (levelManager.activatedDetectionObjects.Contains(this)) levelManager.activatedDetectionObjects.Remove(this);
+
+        /*Pool
+        source.availableDetectionPoints.Add(this);
+        source.usedDetectionPoints.Remove(this);
+        */
+
+        StopAllCoroutines();
     }
 
-    private void SwitchDetectionState()
+    IEnumerator LifeTime()
     {
-        if (entitiesInsideSonobuoyRange.Count < 1)
+        float timer = 0;
+
+        while (timer < lifeTime)
         {
-            currentDetectionState = SonobuoyDetectionState.undetectedElement;
+            yield return new WaitForEndOfFrame();
+            timer += Time.deltaTime;
         }
-        else if (entitiesInsideSonobuoyRange.Count == 1)
-        {
-            currentDetectionState = SonobuoyDetectionState.detectedElement;
-        }
-        else if (entitiesInsideSonobuoyRange.Count > 1)
-        {
-            currentDetectionState = SonobuoyDetectionState.severalDetectedElements;
-        }
+
+        DisableSonobuoy();
     }
 
+    float distance;
     private void DetectElementsInsideRange()
     {
-        for (int x = 0; x < levelManager.submarineEntitiesInScene.Count; x++)
-        {
-            // Calculate distance from the entity
-            distanceFromEntity = Vector2.Distance(Coordinates.ConvertWorldToVector2(levelManager.submarineEntitiesInScene[x].transform.position), Coordinates.ConvertWorldToVector2(_transform.position));
+        distance = 0f;
 
-            if (distanceFromEntity < detectionRange)
+        foreach(DetectableOceanEntity entity in levelManager.submarineEntitiesInScene)
+        {
+            distance = Mathf.Abs(Vector2.Distance(entity.coords.position, coords.position));
+
+            if(distance <= detectionRange)
             {
-                if (sonobuoyIsActive)
+                if (entity.currentDetectableState != DetectableState.cantBeDetected)
                 {
-                    if (!entitiesInsideSonobuoyRange.Contains(levelManager.submarineEntitiesInScene[x]))
-                    {
-                        if (levelManager.submarineEntitiesInScene[x].currentDetectableState != DetectableState.cantBeDetected)
-                        {
-                            entitiesInsideSonobuoyRange.Add(levelManager.submarineEntitiesInScene[x]);
-                            levelManager.submarineEntitiesInScene[x].currentDetectableState = DetectableState.detected;
-                        }
-                    }
+                    if (!detectedEntities.Contains(entity)) AddDetectable(entity);
                 }
-                else
-                {
-                    levelManager.submarineEntitiesInScene[x].currentDetectableState = DetectableState.undetected;
-                }
-                
+                else if (detectedEntities.Contains(entity)) RemoveDetectable(entity);
             }
             else
             {
-                if (entitiesInsideSonobuoyRange.Contains(levelManager.submarineEntitiesInScene[x]))
-                {
-                    entitiesInsideSonobuoyRange.Remove(levelManager.submarineEntitiesInScene[x]);
-                    levelManager.submarineEntitiesInScene[x].currentDetectableState = DetectableState.undetected;
-                }
+                if (detectedEntities.Contains(entity)) RemoveDetectable(entity);
             }
         }
     }
 
     private void ChangeColorRange()
     {
-        if (currentDetectionState == SonobuoyDetectionState.undetectedElement)
+        if (detectionState == DetectionState.noDetection)
         {
             rangeSprite.color = undetectedElementColor;
         }
-        else if (currentDetectionState == SonobuoyDetectionState.detectedElement)
+        else if (detectionState != DetectionState.noDetection)
         {
             rangeSprite.color = detectedElementColor;
         }

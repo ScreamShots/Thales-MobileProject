@@ -28,8 +28,10 @@ namespace PlayerEquipement
         [SerializeField, Min(0)]
         int poolSize;
 
-        List<HullSonarDetectionPoint> availableDetectionPoints = new List<HullSonarDetectionPoint>();
-        List<HullSonarDetectionPoint> usedDetectionPoints = new List<HullSonarDetectionPoint>();
+        [HideInInspector]
+        public List<HullSonarDetectionPoint> availableDetectionPoints = new List<HullSonarDetectionPoint>();
+        [HideInInspector]
+        public List<HullSonarDetectionPoint> usedDetectionPoints = new List<HullSonarDetectionPoint>();
 
         LevelManager levelManager;
 
@@ -79,9 +81,7 @@ namespace PlayerEquipement
 
                     if (distance >= waveRange && distance <= waveRange + padding)
                     {
-                        detectionPoint.DesactivatePoint();
-                        availableDetectionPoints.Add(detectionPoint);
-                        usedDetectionPoints.Remove(detectionPoint);
+                        detectionPoint.DesactivatePoint();                        
                     }
                 }
 
@@ -93,11 +93,11 @@ namespace PlayerEquipement
                     detectableCoords = new Coordinates(detectable.transform.position, Vector2.zero, 0f);
                     distance = Mathf.Abs(Vector2.Distance(userCoords.position, detectableCoords.position));
 
-                    if (distance >= waveRange && distance <= waveRange + padding)
+                    if (distance >= waveRange && distance <= waveRange + padding && detectable.currentDetectableState != DetectableState.cantBeDetected)
                     {
                         if (availableDetectionPoints.Count > 0)
                         {
-                            availableDetectionPoints[0].ActivatePoint(detectable, pointFadeDuration);
+                            availableDetectionPoints[0].ActivatePoint(detectable, pointFadeDuration, this);
                             usedDetectionPoints.Add(availableDetectionPoints[0]);
                             availableDetectionPoints.RemoveAt(0);
                         }
