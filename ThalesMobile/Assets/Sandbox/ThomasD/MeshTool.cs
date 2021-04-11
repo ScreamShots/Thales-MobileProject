@@ -11,10 +11,10 @@ public class MeshTool : MonoBehaviour
     private Vector3[] edges;
     private Vector3[] edgesUp;
     private Vector3[] chamferEdges;
-    public float meshHeight;
-    public float chamferHeight;
-    public float chamferOffset;
-    public GameObject targetGameObjectrReference;
+    public float meshHeight = 1f;
+    public float chamferHeight = 0.1f;
+    public float chamferOffset = 0.1f;
+    public GameObject targetGameObjectReference;
     private GameObject target;
     private int verticeIndex = 0;
 
@@ -69,7 +69,7 @@ public class MeshTool : MonoBehaviour
 
         mesh = new Mesh();
 
-        target = Instantiate(targetGameObjectrReference);
+        target = Instantiate(targetGameObjectReference);
         target.name = meshOutputName;
 
         target.GetComponent<MeshFilter>().mesh = mesh;
@@ -152,6 +152,11 @@ public class MeshTool : MonoBehaviour
         mesh.RecalculateBounds();
         mesh.RecalculateTangents();
 
+        var collider = target.GetComponent<MeshCollider>();
+        collider.sharedMesh = mesh;
+
+        target.isStatic = true;
+
         SaveMesh(meshSavingPath, meshOutputName);
     }
     private void CreateTriangles(int normal)
@@ -200,9 +205,9 @@ public class MeshTool : MonoBehaviour
         string prefabPath = path;
         prefabPath += "/" + name + ".prefab";
 
-        PrefabUtility.SaveAsPrefabAssetAndConnect(target, prefabPath, InteractionMode.AutomatedAction);
         AssetDatabase.CreateAsset(mesh, newPath);
         AssetDatabase.SaveAssets();
+        PrefabUtility.SaveAsPrefabAssetAndConnect(target, prefabPath, InteractionMode.AutomatedAction);
     }
 
 }

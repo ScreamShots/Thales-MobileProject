@@ -21,19 +21,19 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - SideTexture:
-        m_Texture: {fileID: 10309, guid: 0000000000000000f000000000000000, type: 0}
+        m_Texture: {fileID: 2800000, guid: a8bb1c2c75d5ca64db49407dccfe265e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - TopTexture:
-        m_Texture: {fileID: 2800000, guid: b5a4a564ac2dc4261a13719673f157e1, type: 3}
+        m_Texture: {fileID: 2800000, guid: 007f307beae87454d8023117b06d5f82, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - ZTexture:
-        m_Texture: {fileID: 2800000, guid: d7ab2029fbe34d0499a26f57de1f51d6, type: 3}
+        m_Texture: {fileID: 2800000, guid: c25ec3a0500c26d4f8276e5a0b8be08f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Blending_Contrast: 2.5
+    - Blending_Contrast: 1.12
     - TopTiling: 1
     - TopTilling: 1
     - Vector1_2476A75B: 5.9
