@@ -50,7 +50,7 @@ public class Submarine : DetectableOceanEntity
     [Header("Vigilance Incrase Values")]
     public float sonobuoyVigiIncr;
     public float fregateStationaryVigiIncr;
-    public float fregateMoveVigiIncr;   
+    public float fregateMoveVigiIncr;
     private bool submarineDetectFregate;
     [HideInInspector] public List<Transform> sonobuoys;
     [HideInInspector] public List<float> sonobuoysDistance;
@@ -95,7 +95,7 @@ public class Submarine : DetectableOceanEntity
     {
         _transform = transform;
         coords.position = Coordinates.ConvertWorldToVector2(_transform.position);
-        currentSeaLevel = OceanEntities.SeaLevel.submarine;
+        currentSeaLevel = SeaLevel.submarine;
         PickRandomInterrestPoint();
         levelManager.enemyEntitiesInScene.Add(this);
 
@@ -123,7 +123,7 @@ public class Submarine : DetectableOceanEntity
                 PickRandomInterrestPoint();
             }
         }
-        
+
         // Vigilance.
         UpdateState();
         UpdateSubmarineRange();
@@ -134,7 +134,7 @@ public class Submarine : DetectableOceanEntity
         if (currentVigilance >= 0)
         {
             UpdateCounterMeasures();
-        }   
+        }
     }
 
     #region Movement
@@ -262,7 +262,7 @@ public class Submarine : DetectableOceanEntity
 
     }
     #endregion
-    
+
     #region SmartMove
     private void RefreshIntermediatePosition()
     {
@@ -280,20 +280,20 @@ public class Submarine : DetectableOceanEntity
         for (int i = 0; i < subZone12Subdivision; i++)
         {
             allSubZones.Add(new SubZone(GetNormAngle(startAngle + i * subZoneAngleWidth12), GetNormAngle(startAngle + (i + 1) * subZoneAngleWidth12), minRange, detectionRangeCalm, i, "SZ_" + i + "_0", this));
-            /*if (isSubmarineDisplayed)
+            if (isSubmarineDisplayed)
                 Debug.DrawRay(Coordinates.ConvertVector2ToWorld(coords.position),
                     Coordinates.ConvertVector2ToWorld(GetDirectionFromAngle(allSubZones[allSubZones.Count - 1].minAngle) * detectionRangeCalm),
-                    Color.green);*/
+                    Color.green);
 
             if (currentState == VigilanceState.worried
         || currentState == VigilanceState.panicked)
             {
                 allSubZones.Add(new SubZone(GetNormAngle(startAngle + i * subZoneAngleWidth12), GetNormAngle(startAngle + (i + 1) * subZoneAngleWidth12), detectionRangeCalm, detectionRangeWorried, i, "SZ_" + i + "_1", this));
 
-                /*if (isSubmarineDisplayed)
+                if (isSubmarineDisplayed)
                     Debug.DrawRay(Coordinates.ConvertVector2ToWorld(coords.position + GetDirectionFromAngle(allSubZones[allSubZones.Count - 1].minAngle) * detectionRangeCalm),
                         Coordinates.ConvertVector2ToWorld(GetDirectionFromAngle(allSubZones[allSubZones.Count - 1].minAngle) * (detectionRangeWorried - detectionRangeCalm)),
-                        Color.cyan);*/
+                        Color.cyan);
 
 
                 if (currentState == VigilanceState.panicked)
@@ -301,8 +301,8 @@ public class Submarine : DetectableOceanEntity
                     for (int y = 0; y < subZone3SubSubdivision; y++)
                     {
                         allSubZones.Add(new SubZone(GetNormAngle(startAngle + i * subZoneAngleWidth12 + y * subZoneAngleWidth3), GetNormAngle(startAngle + i * subZoneAngleWidth12 + (y + 1) * subZoneAngleWidth3), detectionRangeWorried, detectionRangePanicked, i, "SZ_" + i + "_2." + y, this));
-                        /*if (isSubmarineDisplayed)
-                            Debug.DrawRay(Coordinates.ConvertVector2ToWorld(coords.position + GetDirectionFromAngle(allSubZones[allSubZones.Count - 1].minAngle) * detectionRangeWorried), Coordinates.ConvertVector2ToWorld(GetDirectionFromAngle(allSubZones[allSubZones.Count - 1].minAngle) * (detectionRangePanicked - detectionRangeWorried)), Color.red);*/
+                        if (isSubmarineDisplayed)
+                            Debug.DrawRay(Coordinates.ConvertVector2ToWorld(coords.position + GetDirectionFromAngle(allSubZones[allSubZones.Count - 1].minAngle) * detectionRangeWorried), Coordinates.ConvertVector2ToWorld(GetDirectionFromAngle(allSubZones[allSubZones.Count - 1].minAngle) * (detectionRangePanicked - detectionRangeWorried)), Color.red);
                     }
                 }
             }
@@ -457,7 +457,7 @@ public class Submarine : DetectableOceanEntity
                 subZone.needToBeAvoided = true;
             }
         }
-        
+
         return weight;
     }
 
@@ -696,7 +696,7 @@ public class Submarine : DetectableOceanEntity
         if (currentVigilance >= 100)
         {
             if (!UsingCounterMeasure())
-            {               
+            {
                 counterMeasures[1].UseCounterMeasure(this);
             }
         }
@@ -704,7 +704,7 @@ public class Submarine : DetectableOceanEntity
         if ((currentState == VigilanceState.worried || currentState == VigilanceState.panicked) && currentDetectableState == DetectableState.revealed)
         {
             if (!UsingCounterMeasure())
-            {              
+            {
                 counterMeasures[2].UseCounterMeasure(this);
             }
         }
