@@ -73,20 +73,20 @@ public class Submarine : DetectableOceanEntity
 
     [Header("Smart Move")]
     public float minRange;
-    public int subZone12Subdivision;
+    public int subZone12Subdivision;
     public int subZone3SubSubdivision;
     public List<Transform> beneficialPointFactors;
 
     public int avoidEffectSliceReach;
     public float intermediatePosRefreshRate;
     public float distanceToRefrehIntemediatePos;
-    public float benefPointFactorWeightWhileCalme, benefPointFactorWeightWhileInquiet, benefPointFactorWeightWhilePanique;
+    public float benefPointFactorWeightWhileCalme, benefPointFactorWeightWhileInquiet, benefPointFactorWeightWhilePanique;
     public float distanceFactorWeightWhileCalme, distanceFactorWeightWhileInquiet, distanceFactorWeightWhilePanique;
 
     private Vector2 targetDirection;
     private Vector2 nextIntermediatePosition;
     private Vector2 intermediateDirection;
-    private float subZoneAngleWidth12;
+    private float subZoneAngleWidth12;
     private float subZoneAngleWidth3;
     private float timeBeforeNextRefresh;
     public bool isSubmarineDisplayed;
@@ -97,9 +97,9 @@ public class Submarine : DetectableOceanEntity
         coords.position = Coordinates.ConvertWorldToVector2(_transform.position);
         currentSeaLevel = SeaLevel.submarine;
         PickRandomInterrestPoint();
-        levelManager.enemyEntitiesInScene.Add(this);
-
-        subZoneAngleWidth12 = 360 / subZone12Subdivision;
+        levelManager.enemyEntitiesInScene.Add(this);
+
+        subZoneAngleWidth12 = 360 / subZone12Subdivision;
         subZoneAngleWidth3 = 360 / (subZone12Subdivision * subZone3SubSubdivision);
     }
 
@@ -131,10 +131,10 @@ public class Submarine : DetectableOceanEntity
         DetectSonobuoy();
 
         // Counter Measures.
-        if (currentVigilance >= 0)
-        {
-            UpdateCounterMeasures();
-        }   
+        if (currentVigilance >= 0)
+        {
+            UpdateCounterMeasures();
+        }
     }
 
     #region Movement
@@ -169,19 +169,19 @@ public class Submarine : DetectableOceanEntity
                 targetDirection = nextInterestPointPosition - coords.position;
                 targetDirection.Normalize();
 
-                if (Vector2.Distance(coords.position, nextIntermediatePosition) < distanceToRefrehIntemediatePos)
-                {
-                    RefreshIntermediatePosition();
-                }
-
-                if (timeBeforeNextRefresh > 0)
-                {
-                    timeBeforeNextRefresh -= Time.deltaTime;
-                }
-                else
-                {
-                    RefreshIntermediatePosition();
-                    timeBeforeNextRefresh = intermediatePosRefreshRate;
+                if (Vector2.Distance(coords.position, nextIntermediatePosition) < distanceToRefrehIntemediatePos)
+                {
+                    RefreshIntermediatePosition();
+                }
+
+                if (timeBeforeNextRefresh > 0)
+                {
+                    timeBeforeNextRefresh -= Time.deltaTime;
+                }
+                else
+                {
+                    RefreshIntermediatePosition();
+                    timeBeforeNextRefresh = intermediatePosRefreshRate;
                 }
 
                 Move(nextInterestPointPosition);
@@ -260,329 +260,329 @@ public class Submarine : DetectableOceanEntity
     public override void PathFinding()
     {
 
-    }
+    }
     #endregion
-    
+
     #region SmartMove
-    private void RefreshIntermediatePosition()
-    {
-        nextIntermediatePosition = FindNextIntermediatePosition();
-        intermediateDirection = nextIntermediatePosition - coords.position;
-        intermediateDirection.Normalize();
-    }
-
-    private List<SubZone> allSubZones = new List<SubZone>();
-
-    private Vector2 FindNextIntermediatePosition()
-    {
-        allSubZones.Clear();
-        float startAngle = Vector2.SignedAngle(Vector2.right, targetDirection) - (360 / (subZone12Subdivision * subZone3SubSubdivision));
-        for (int i = 0; i < subZone12Subdivision; i++)
-        {
-            allSubZones.Add(new SubZone(GetNormAngle(startAngle + i * subZoneAngleWidth12), GetNormAngle(startAngle + (i + 1) * subZoneAngleWidth12), minRange, detectionRangeCalm, i, "SZ_" + i + "_0", this));
-            /*if (isSubmarineDisplayed)
-                Debug.DrawRay(Coordinates.ConvertVector2ToWorld(coords.position),
-                    Coordinates.ConvertVector2ToWorld(GetDirectionFromAngle(allSubZones[allSubZones.Count - 1].minAngle) * detectionRangeCalm),
-                    Color.green);*/
-
-            if (currentState == VigilanceState.worried
-        || currentState == VigilanceState.panicked)
-            {
-                allSubZones.Add(new SubZone(GetNormAngle(startAngle + i * subZoneAngleWidth12), GetNormAngle(startAngle + (i + 1) * subZoneAngleWidth12), detectionRangeCalm, detectionRangeWorried, i, "SZ_" + i + "_1", this));
-
-                /*if (isSubmarineDisplayed)
-                    Debug.DrawRay(Coordinates.ConvertVector2ToWorld(coords.position + GetDirectionFromAngle(allSubZones[allSubZones.Count - 1].minAngle) * detectionRangeCalm),
-                        Coordinates.ConvertVector2ToWorld(GetDirectionFromAngle(allSubZones[allSubZones.Count - 1].minAngle) * (detectionRangeWorried - detectionRangeCalm)),
-                        Color.cyan);*/
-
-
-                if (currentState == VigilanceState.panicked)
-                {
-                    for (int y = 0; y < subZone3SubSubdivision; y++)
-                    {
-                        allSubZones.Add(new SubZone(GetNormAngle(startAngle + i * subZoneAngleWidth12 + y * subZoneAngleWidth3), GetNormAngle(startAngle + i * subZoneAngleWidth12 + (y + 1) * subZoneAngleWidth3), detectionRangeWorried, detectionRangePanicked, i, "SZ_" + i + "_2." + y, this));
-                        /*if (isSubmarineDisplayed)
-                            Debug.DrawRay(Coordinates.ConvertVector2ToWorld(coords.position + GetDirectionFromAngle(allSubZones[allSubZones.Count - 1].minAngle) * detectionRangeWorried), Coordinates.ConvertVector2ToWorld(GetDirectionFromAngle(allSubZones[allSubZones.Count - 1].minAngle) * (detectionRangePanicked - detectionRangeWorried)), Color.red);*/
-                    }
-                }
-            }
-            /*if (isSubmarineDisplayed)
-                circleGismos.Add(new CircleGizmo(coords.position, detectionRangeCalm, Color.green));*/
-
-            if (currentState == VigilanceState.worried
-            || currentState == VigilanceState.panicked)
-            {
-                /*if (isSubmarineDisplayed)
-                    circleGismos.Add(new CircleGizmo(coords.position, detectionRangeWorried, Color.cyan));*/
-
-
-                if (currentState == VigilanceState.panicked)
-                {
-                    /*if (isSubmarineDisplayed)
-                        circleGismos.Add(new CircleGizmo(coords.position, detectionRangePanicked, Color.red));*/
-                }
-            }
-        }
-        SubZone bestSubZone = allSubZones[0];
-
-        for (int i = 0; i < allSubZones.Count; i++)
-        {
-            allSubZones[i].weight = GetSubZoneWeight(allSubZones[i]);
-        }
-
-        for (int i = 0; i < allSubZones.Count; i++)
-        {
-            if (allSubZones[i].needToBeAvoided && avoidEffectSliceReach > 0)
-            {
-                for (int y = 0; y < allSubZones.Count; y++)
-                {
-                    if (allSubZones[y].sliceIndex == allSubZones[i].sliceIndex)
-                    {
-                        allSubZones[y].weight = -1000;
-                        //sphereGizmos.Add(new SphereGizmo(allSubZones[y].zoneCenterPos, 0.4f, Color.black));
-                    }
-
-                    for (int s = 1; s < avoidEffectSliceReach; s++)
-                    {
-                        if ((allSubZones[i].sliceIndex + s) < subZone12Subdivision)
-                        {
-                            if (allSubZones[y].sliceIndex == (allSubZones[i].sliceIndex + s))
-                            {
-                                allSubZones[y].weight = -1000;
-                                //sphereGizmos.Add(new SphereGizmo(allSubZones[y].zoneCenterPos, 0.4f, Color.black));
-                            }
-                        }
-                        else
-                        {
-                            if (allSubZones[y].sliceIndex == s - (subZone12Subdivision - allSubZones[i].sliceIndex))
-                            {
-                                allSubZones[y].weight = -1000;
-                                //sphereGizmos.Add(new SphereGizmo(allSubZones[y].zoneCenterPos, 0.4f, Color.black));
-                            }
-                        }
-
-
-                        if ((allSubZones[i].sliceIndex - s) >= 0)
-                        {
-                            if (allSubZones[y].sliceIndex == (allSubZones[i].sliceIndex - s))
-                            {
-                                allSubZones[y].weight = -1000;
-                                //sphereGizmos.Add(new SphereGizmo(allSubZones[y].zoneCenterPos, 0.4f, Color.black));
-                            }
-                        }
-                        else
-                        {
-                            if (allSubZones[y].sliceIndex == (subZone12Subdivision - (s - allSubZones[i].sliceIndex)))
-                            {
-                                allSubZones[y].weight = -1000;
-                                //sphereGizmos.Add(new SphereGizmo(allSubZones[y].zoneCenterPos, 0.4f, Color.black));
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        for (int i = 0; i < allSubZones.Count; i++)
-        {
-            //sphereGizmos.Add(new SphereGizmo(allSubZones[i].zoneCenterPos, 0.2f, Color.Lerp(Color.red, Color.yellow, (allSubZones[i].weight + 15) / 20)));
-
-            if (bestSubZone == null || allSubZones[i].weight > bestSubZone.weight)
-            {
-                bestSubZone = allSubZones[i];
-            }
-        }
-
-        return bestSubZone.zoneCenterPos;
-    }
-
-    float pointDistance;
-    float pointRelativeAngle;
-    Vector2 subZoneDirection;
-    private float GetSubZoneWeight(SubZone subZone)
-    {
-        float weight = 0;
-
-        subZoneDirection = GetDirectionFromAngle(GetNormAngle(subZone.minAngle + Mathf.DeltaAngle(subZone.minAngle, subZone.maxAngle) * 0.5f));
-
-        for (int o = 0; o < beneficialPointFactors.Count; o++)
-        {
-            pointDistance = Vector2.Distance(Coordinates.ConvertWorldToVector2(beneficialPointFactors[o].position), coords.position);
-            pointRelativeAngle = Vector2.SignedAngle(Vector2.right, Coordinates.ConvertWorldToVector2(beneficialPointFactors[o].position) - coords.position);
-            if (pointDistance < subZone.maxRange && pointDistance >= subZone.minRange && IsBetweenAngle(pointRelativeAngle, subZone.minAngle, subZone.maxAngle))
-            {
-                weight += currentState == VigilanceState.calm ? benefPointFactorWeightWhileCalme : 0;
-                weight += currentState == VigilanceState.worried ? benefPointFactorWeightWhileInquiet : 0;
-                weight += currentState == VigilanceState.panicked ? benefPointFactorWeightWhilePanique : 0;
-            }
-        }
-
-        switch (currentState)
-        {
-            case VigilanceState.calm:
-                weight += Mathf.Cos(Mathf.Deg2Rad * Vector2.Angle(targetDirection, subZoneDirection)) * distanceFactorWeightWhileCalme;
-                break;
-
-            case VigilanceState.worried:
-                weight += Mathf.Cos(Mathf.Deg2Rad * Vector2.Angle(targetDirection, subZoneDirection)) * distanceFactorWeightWhileInquiet;
-                break;
-
-            case VigilanceState.panicked:
-                weight += Mathf.Cos(Mathf.Deg2Rad * Vector2.Angle(targetDirection, subZoneDirection)) * distanceFactorWeightWhilePanique;
-                break;
-        }
-
-        /*if (TerrainZoneHandler.GetCurrentZone(subZone.zoneCenterPos, null) != null && TerrainZoneHandler.GetCurrentZone(subZone.zoneCenterPos, null).relief == TerrainZone.Relief.Land)
-        {
-            weight -= 1000;
-        }*/
-
-        /*pointDistance = Vector2.Distance(ship.coords.position, coords.position);
-        pointRelativeAngle = Vector2.SignedAngle(Vector2.right, ship.coords.position - coords.position);
-        if (pointDistance < subZone.maxRange && pointDistance >= subZone.minRange && IsBetweenAngle(pointRelativeAngle, subZone.minAngle, subZone.maxAngle))
-        {
-            weight = -1000;
-            subZone.needToBeAvoided = true;
-        }
-
-        */
-
-        for (int b = 0; b < sonobuoys.Count; b++)
-        {
-            pointDistance = Vector2.Distance(Coordinates.ConvertWorldToVector2(sonobuoys[b].position), coords.position);
-            pointRelativeAngle = Vector2.SignedAngle(Vector2.right, Coordinates.ConvertWorldToVector2(sonobuoys[b].position) - coords.position);
-            if (pointDistance < subZone.maxRange && pointDistance >= subZone.minRange && IsBetweenAngle(pointRelativeAngle, subZone.minAngle, subZone.maxAngle))
-            {
-                weight = -1000;
-                subZone.needToBeAvoided = true;
-            }
-        }
-        
-        return weight;
-    }
-
-    private float GetNormAngle(float angle)
-    {
-        float newAngle = angle;
-
-        if (angle > 180)
-        {
-            newAngle = angle - 360;
-        }
-
-        if (angle <= -180)
-        {
-            newAngle = angle + 360;
-        }
-        return newAngle;
-    }
-
-    private bool IsBetweenAngle(float angle, float mininmumAngle, float maximumAngle)
-    {
-        bool isBetween = false;
-        if (mininmumAngle > maximumAngle)
-        {
-            if (angle >= mininmumAngle || angle < maximumAngle)
-            {
-                isBetween = true;
-            }
-        }
-        else
-        {
-            if (angle >= mininmumAngle && angle < maximumAngle)
-            {
-                isBetween = true;
-            }
-        }
-
-        //Debug.Log("min : " + mininmumAngle + ", max : " + maximumAngle + ", Angle : " + angle + ". Between : " + isBetween);
-        return isBetween;
+    private void RefreshIntermediatePosition()
+    {
+        nextIntermediatePosition = FindNextIntermediatePosition();
+        intermediateDirection = nextIntermediatePosition - coords.position;
+        intermediateDirection.Normalize();
     }
 
-    private Vector2 GetDirectionFromAngle(float angle)
-    {
-        return new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad));
+    private List<SubZone> allSubZones = new List<SubZone>();
+
+    private Vector2 FindNextIntermediatePosition()
+    {
+        allSubZones.Clear();
+        float startAngle = Vector2.SignedAngle(Vector2.right, targetDirection) - (360 / (subZone12Subdivision * subZone3SubSubdivision));
+        for (int i = 0; i < subZone12Subdivision; i++)
+        {
+            allSubZones.Add(new SubZone(GetNormAngle(startAngle + i * subZoneAngleWidth12), GetNormAngle(startAngle + (i + 1) * subZoneAngleWidth12), minRange, detectionRangeCalm, i, "SZ_" + i + "_0", this));
+            if (isSubmarineDisplayed)
+                Debug.DrawRay(Coordinates.ConvertVector2ToWorld(coords.position),
+                    Coordinates.ConvertVector2ToWorld(GetDirectionFromAngle(allSubZones[allSubZones.Count - 1].minAngle) * detectionRangeCalm),
+                    Color.green);
+
+            if (currentState == VigilanceState.worried
+        || currentState == VigilanceState.panicked)
+            {
+                allSubZones.Add(new SubZone(GetNormAngle(startAngle + i * subZoneAngleWidth12), GetNormAngle(startAngle + (i + 1) * subZoneAngleWidth12), detectionRangeCalm, detectionRangeWorried, i, "SZ_" + i + "_1", this));
+
+                if (isSubmarineDisplayed)
+                    Debug.DrawRay(Coordinates.ConvertVector2ToWorld(coords.position + GetDirectionFromAngle(allSubZones[allSubZones.Count - 1].minAngle) * detectionRangeCalm),
+                        Coordinates.ConvertVector2ToWorld(GetDirectionFromAngle(allSubZones[allSubZones.Count - 1].minAngle) * (detectionRangeWorried - detectionRangeCalm)),
+                        Color.cyan);
+
+
+                if (currentState == VigilanceState.panicked)
+                {
+                    for (int y = 0; y < subZone3SubSubdivision; y++)
+                    {
+                        allSubZones.Add(new SubZone(GetNormAngle(startAngle + i * subZoneAngleWidth12 + y * subZoneAngleWidth3), GetNormAngle(startAngle + i * subZoneAngleWidth12 + (y + 1) * subZoneAngleWidth3), detectionRangeWorried, detectionRangePanicked, i, "SZ_" + i + "_2." + y, this));
+                        if (isSubmarineDisplayed)
+                            Debug.DrawRay(Coordinates.ConvertVector2ToWorld(coords.position + GetDirectionFromAngle(allSubZones[allSubZones.Count - 1].minAngle) * detectionRangeWorried), Coordinates.ConvertVector2ToWorld(GetDirectionFromAngle(allSubZones[allSubZones.Count - 1].minAngle) * (detectionRangePanicked - detectionRangeWorried)), Color.red);
+                    }
+                }
+            }
+            /*if (isSubmarineDisplayed)
+                circleGismos.Add(new CircleGizmo(coords.position, detectionRangeCalm, Color.green));*/
+
+            if (currentState == VigilanceState.worried
+            || currentState == VigilanceState.panicked)
+            {
+                /*if (isSubmarineDisplayed)
+                    circleGismos.Add(new CircleGizmo(coords.position, detectionRangeWorried, Color.cyan));*/
+
+
+                if (currentState == VigilanceState.panicked)
+                {
+                    /*if (isSubmarineDisplayed)
+                        circleGismos.Add(new CircleGizmo(coords.position, detectionRangePanicked, Color.red));*/
+                }
+            }
+        }
+        SubZone bestSubZone = allSubZones[0];
+
+        for (int i = 0; i < allSubZones.Count; i++)
+        {
+            allSubZones[i].weight = GetSubZoneWeight(allSubZones[i]);
+        }
+
+        for (int i = 0; i < allSubZones.Count; i++)
+        {
+            if (allSubZones[i].needToBeAvoided && avoidEffectSliceReach > 0)
+            {
+                for (int y = 0; y < allSubZones.Count; y++)
+                {
+                    if (allSubZones[y].sliceIndex == allSubZones[i].sliceIndex)
+                    {
+                        allSubZones[y].weight = -1000;
+                        //sphereGizmos.Add(new SphereGizmo(allSubZones[y].zoneCenterPos, 0.4f, Color.black));
+                    }
+
+                    for (int s = 1; s < avoidEffectSliceReach; s++)
+                    {
+                        if ((allSubZones[i].sliceIndex + s) < subZone12Subdivision)
+                        {
+                            if (allSubZones[y].sliceIndex == (allSubZones[i].sliceIndex + s))
+                            {
+                                allSubZones[y].weight = -1000;
+                                //sphereGizmos.Add(new SphereGizmo(allSubZones[y].zoneCenterPos, 0.4f, Color.black));
+                            }
+                        }
+                        else
+                        {
+                            if (allSubZones[y].sliceIndex == s - (subZone12Subdivision - allSubZones[i].sliceIndex))
+                            {
+                                allSubZones[y].weight = -1000;
+                                //sphereGizmos.Add(new SphereGizmo(allSubZones[y].zoneCenterPos, 0.4f, Color.black));
+                            }
+                        }
+
+
+                        if ((allSubZones[i].sliceIndex - s) >= 0)
+                        {
+                            if (allSubZones[y].sliceIndex == (allSubZones[i].sliceIndex - s))
+                            {
+                                allSubZones[y].weight = -1000;
+                                //sphereGizmos.Add(new SphereGizmo(allSubZones[y].zoneCenterPos, 0.4f, Color.black));
+                            }
+                        }
+                        else
+                        {
+                            if (allSubZones[y].sliceIndex == (subZone12Subdivision - (s - allSubZones[i].sliceIndex)))
+                            {
+                                allSubZones[y].weight = -1000;
+                                //sphereGizmos.Add(new SphereGizmo(allSubZones[y].zoneCenterPos, 0.4f, Color.black));
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        for (int i = 0; i < allSubZones.Count; i++)
+        {
+            //sphereGizmos.Add(new SphereGizmo(allSubZones[i].zoneCenterPos, 0.2f, Color.Lerp(Color.red, Color.yellow, (allSubZones[i].weight + 15) / 20)));
+
+            if (bestSubZone == null || allSubZones[i].weight > bestSubZone.weight)
+            {
+                bestSubZone = allSubZones[i];
+            }
+        }
+
+        return bestSubZone.zoneCenterPos;
     }
 
-    public class SubZone
-    {
-        public Vector2 zoneCenterPos;
-        public float minAngle, maxAngle;
-        public float minRange, maxRange;
-        public float weight;
-        public int sliceIndex;
-        public string identity;
-        public bool needToBeAvoided;
-
-        public SubZone(float _minAngle, float _maxAngle, float _minRange, float _maxRange, int _sliceIndex, string _identity, Submarine submarine)
-        {
-            minAngle = _minAngle;
-            maxAngle = _maxAngle;
-            minRange = _minRange;
-            maxRange = _maxRange;
-            sliceIndex = _sliceIndex;
-            identity = _identity;
-            needToBeAvoided = false;
-            weight = -666;
-
-            zoneCenterPos = submarine.coords.position + submarine.GetDirectionFromAngle(submarine.GetNormAngle(minAngle + Mathf.DeltaAngle(minAngle, maxAngle) * 0.5f)) * (maxRange + minRange) * 0.5f;
-        }
+    float pointDistance;
+    float pointRelativeAngle;
+    Vector2 subZoneDirection;
+    private float GetSubZoneWeight(SubZone subZone)
+    {
+        float weight = 0;
+
+        subZoneDirection = GetDirectionFromAngle(GetNormAngle(subZone.minAngle + Mathf.DeltaAngle(subZone.minAngle, subZone.maxAngle) * 0.5f));
+
+        for (int o = 0; o < beneficialPointFactors.Count; o++)
+        {
+            pointDistance = Vector2.Distance(Coordinates.ConvertWorldToVector2(beneficialPointFactors[o].position), coords.position);
+            pointRelativeAngle = Vector2.SignedAngle(Vector2.right, Coordinates.ConvertWorldToVector2(beneficialPointFactors[o].position) - coords.position);
+            if (pointDistance < subZone.maxRange && pointDistance >= subZone.minRange && IsBetweenAngle(pointRelativeAngle, subZone.minAngle, subZone.maxAngle))
+            {
+                weight += currentState == VigilanceState.calm ? benefPointFactorWeightWhileCalme : 0;
+                weight += currentState == VigilanceState.worried ? benefPointFactorWeightWhileInquiet : 0;
+                weight += currentState == VigilanceState.panicked ? benefPointFactorWeightWhilePanique : 0;
+            }
+        }
+
+        switch (currentState)
+        {
+            case VigilanceState.calm:
+                weight += Mathf.Cos(Mathf.Deg2Rad * Vector2.Angle(targetDirection, subZoneDirection)) * distanceFactorWeightWhileCalme;
+                break;
+
+            case VigilanceState.worried:
+                weight += Mathf.Cos(Mathf.Deg2Rad * Vector2.Angle(targetDirection, subZoneDirection)) * distanceFactorWeightWhileInquiet;
+                break;
+
+            case VigilanceState.panicked:
+                weight += Mathf.Cos(Mathf.Deg2Rad * Vector2.Angle(targetDirection, subZoneDirection)) * distanceFactorWeightWhilePanique;
+                break;
+        }
+
+        /*if (TerrainZoneHandler.GetCurrentZone(subZone.zoneCenterPos, null) != null && TerrainZoneHandler.GetCurrentZone(subZone.zoneCenterPos, null).relief == TerrainZone.Relief.Land)
+        {
+            weight -= 1000;
+        }*/
+
+        /*pointDistance = Vector2.Distance(ship.coords.position, coords.position);
+        pointRelativeAngle = Vector2.SignedAngle(Vector2.right, ship.coords.position - coords.position);
+        if (pointDistance < subZone.maxRange && pointDistance >= subZone.minRange && IsBetweenAngle(pointRelativeAngle, subZone.minAngle, subZone.maxAngle))
+        {
+            weight = -1000;
+            subZone.needToBeAvoided = true;
+        }
+
+        */
+
+        for (int b = 0; b < sonobuoys.Count; b++)
+        {
+            pointDistance = Vector2.Distance(Coordinates.ConvertWorldToVector2(sonobuoys[b].position), coords.position);
+            pointRelativeAngle = Vector2.SignedAngle(Vector2.right, Coordinates.ConvertWorldToVector2(sonobuoys[b].position) - coords.position);
+            if (pointDistance < subZone.maxRange && pointDistance >= subZone.minRange && IsBetweenAngle(pointRelativeAngle, subZone.minAngle, subZone.maxAngle))
+            {
+                weight = -1000;
+                subZone.needToBeAvoided = true;
+            }
+        }
+
+        return weight;
     }
 
-    /*private List<CircleGizmo> circleGismos = new List<CircleGizmo>();
-    private List<SphereGizmo> sphereGizmos = new List<SphereGizmo>();
-    private void OnDrawGizmos()
-    {
-        if(isSubmarineDisplayed)
-        {
-            Gizmos.color = Color.green;
-            Gizmos.DrawSphere(Coordinates.ConvertVector2ToWorld(nextIntermediatePosition), 0.2f);
-
-            for (int i = 0; i < circleGismos.Count; i++)
-            {
-                Gizmos.color = circleGismos[i].color;
-                Gizmos.DrawWireSphere(Coordinates.ConvertVector2ToWorld(circleGismos[i].seaPosition), circleGismos[i].range);
-            }
-
-            for (int i = 0; i < sphereGizmos.Count; i++)
-            {
-                Gizmos.color = sphereGizmos[i].color;
-                Gizmos.DrawSphere(Coordinates.ConvertVector2ToWorld(sphereGizmos[i].seaPosition), sphereGizmos[i].radius);
-            }
-
-            circleGismos.Clear();
-            sphereGizmos.Clear();
-        }
-    }
-
-    public class CircleGizmo
-    {
-        public float range;
-        public Vector2 seaPosition;
-        public Color color;
-
-        public CircleGizmo(Vector2 pos, float radius, Color _color)
-        {
-            seaPosition = pos;
-            color = _color;
-            range = radius;
-        }
-    }
-    public class SphereGizmo
-    {
-        public float radius;
-        public Vector2 seaPosition;
-        public Color color;
-
-        public SphereGizmo(Vector2 pos, float _radius, Color _color)
-        {
-            seaPosition = pos;
-            color = _color;
-            radius = _radius;
-        }
+    private float GetNormAngle(float angle)
+    {
+        float newAngle = angle;
+
+        if (angle > 180)
+        {
+            newAngle = angle - 360;
+        }
+
+        if (angle <= -180)
+        {
+            newAngle = angle + 360;
+        }
+        return newAngle;
+    }
+
+    private bool IsBetweenAngle(float angle, float mininmumAngle, float maximumAngle)
+    {
+        bool isBetween = false;
+        if (mininmumAngle > maximumAngle)
+        {
+            if (angle >= mininmumAngle || angle < maximumAngle)
+            {
+                isBetween = true;
+            }
+        }
+        else
+        {
+            if (angle >= mininmumAngle && angle < maximumAngle)
+            {
+                isBetween = true;
+            }
+        }
+
+        //Debug.Log("min : " + mininmumAngle + ", max : " + maximumAngle + ", Angle : " + angle + ". Between : " + isBetween);
+        return isBetween;
+    }
+
+    private Vector2 GetDirectionFromAngle(float angle)
+    {
+        return new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad));
+    }
+
+    public class SubZone
+    {
+        public Vector2 zoneCenterPos;
+        public float minAngle, maxAngle;
+        public float minRange, maxRange;
+        public float weight;
+        public int sliceIndex;
+        public string identity;
+        public bool needToBeAvoided;
+
+        public SubZone(float _minAngle, float _maxAngle, float _minRange, float _maxRange, int _sliceIndex, string _identity, Submarine submarine)
+        {
+            minAngle = _minAngle;
+            maxAngle = _maxAngle;
+            minRange = _minRange;
+            maxRange = _maxRange;
+            sliceIndex = _sliceIndex;
+            identity = _identity;
+            needToBeAvoided = false;
+            weight = -666;
+
+            zoneCenterPos = submarine.coords.position + submarine.GetDirectionFromAngle(submarine.GetNormAngle(minAngle + Mathf.DeltaAngle(minAngle, maxAngle) * 0.5f)) * (maxRange + minRange) * 0.5f;
+        }
+    }
+
+    /*private List<CircleGizmo> circleGismos = new List<CircleGizmo>();
+    private List<SphereGizmo> sphereGizmos = new List<SphereGizmo>();
+    private void OnDrawGizmos()
+    {
+        if(isSubmarineDisplayed)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawSphere(Coordinates.ConvertVector2ToWorld(nextIntermediatePosition), 0.2f);
+
+            for (int i = 0; i < circleGismos.Count; i++)
+            {
+                Gizmos.color = circleGismos[i].color;
+                Gizmos.DrawWireSphere(Coordinates.ConvertVector2ToWorld(circleGismos[i].seaPosition), circleGismos[i].range);
+            }
+
+            for (int i = 0; i < sphereGizmos.Count; i++)
+            {
+                Gizmos.color = sphereGizmos[i].color;
+                Gizmos.DrawSphere(Coordinates.ConvertVector2ToWorld(sphereGizmos[i].seaPosition), sphereGizmos[i].radius);
+            }
+
+            circleGismos.Clear();
+            sphereGizmos.Clear();
+        }
+    }
+
+    public class CircleGizmo
+    {
+        public float range;
+        public Vector2 seaPosition;
+        public Color color;
+
+        public CircleGizmo(Vector2 pos, float radius, Color _color)
+        {
+            seaPosition = pos;
+            color = _color;
+            range = radius;
+        }
+    }
+    public class SphereGizmo
+    {
+        public float radius;
+        public Vector2 seaPosition;
+        public Color color;
+
+        public SphereGizmo(Vector2 pos, float _radius, Color _color)
+        {
+            seaPosition = pos;
+            color = _color;
+            radius = _radius;
+        }
     }*/
-    #endregion
-
+    #endregion
+
     #region Vigilance
     private void UpdateState()
     {
@@ -696,7 +696,7 @@ public class Submarine : DetectableOceanEntity
         if (currentVigilance >= 100)
         {
             if (!UsingCounterMeasure())
-            {               
+            {
                 counterMeasures[1].UseCounterMeasure(this);
             }
         }
@@ -704,22 +704,22 @@ public class Submarine : DetectableOceanEntity
         if ((currentState == VigilanceState.worried || currentState == VigilanceState.panicked) && currentDetectableState == DetectableState.revealed)
         {
             if (!UsingCounterMeasure())
-            {              
+            {
                 counterMeasures[2].UseCounterMeasure(this);
             }
         }
     }
 
-    private bool UsingCounterMeasure()
-    {
-        for (int x = 0; x < counterMeasures.Count; x++)
-        {
-            if (!counterMeasures[x].readyToUse)
-            {
-                return true;
-            }
-        }
-        return false;
+    private bool UsingCounterMeasure()
+    {
+        for (int x = 0; x < counterMeasures.Count; x++)
+        {
+            if (!counterMeasures[x].readyToUse)
+            {
+                return true;
+            }
+        }
+        return false;
     }
     #endregion
 }
