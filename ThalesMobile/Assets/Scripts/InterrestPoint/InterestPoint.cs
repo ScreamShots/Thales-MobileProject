@@ -21,4 +21,5 @@ public class InterestPoint : MonoBehaviour
     public HackState currentHackState;
     public float hackProgression;
     public float hackTime;
+    public float hackingRange;
 }

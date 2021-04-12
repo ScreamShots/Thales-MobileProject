@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0.99999946, b: 0.99999946, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -167,6 +167,7 @@ MonoBehaviour:
   currentHackState: 0
   hackProgression: 0
   hackTime: 3
+  hackingRange: 0.2
 --- !u!1 &67071928
 GameObject:
   m_ObjectHideFlags: 0
@@ -629,6 +630,7 @@ MonoBehaviour:
   currentHackState: 0
   hackProgression: 0
   hackTime: 3
+  hackingRange: 0.2
 --- !u!1 &851889528
 GameObject:
   m_ObjectHideFlags: 0
@@ -829,6 +831,7 @@ MonoBehaviour:
   currentHackState: 0
   hackProgression: 0
   hackTime: 3
+  hackingRange: 0.2
 --- !u!1 &1060234695
 GameObject:
   m_ObjectHideFlags: 0
@@ -914,6 +917,7 @@ MonoBehaviour:
   currentDetectableState: 0
   detectors: []
   levelManager: {fileID: 1238534676}
+  ship: {fileID: 0}
   maxSpeed: 3
   acceleration: 0.5
   currentSpeed: 0
@@ -943,6 +947,24 @@ MonoBehaviour:
   - {fileID: 833135803}
   - {fileID: 967002721}
   - {fileID: 58719186}
+  minRange: 1
+  subZone12Subdivision: 12
+  subZone3SubSubdivision: 2
+  beneficialPointFactors:
+  - {fileID: 1927903034}
+  - {fileID: 1060234696}
+  - {fileID: 1481256226}
+  - {fileID: 1364580657}
+  avoidEffectSliceReach: 3
+  intermediatePosRefreshRate: 3
+  distanceToRefrehIntemediatePos: 1
+  benefPointFactorWeightWhileCalme: 2
+  benefPointFactorWeightWhileInquiet: 2
+  benefPointFactorWeightWhilePanique: 2.8
+  distanceFactorWeightWhileCalme: 7
+  distanceFactorWeightWhileInquiet: 5
+  distanceFactorWeightWhilePanique: 3
+  isSubmarineDisplayed: 1
 --- !u!4 &1193060862
 Transform:
   m_ObjectHideFlags: 0
@@ -1278,6 +1300,7 @@ MonoBehaviour:
   currentHackState: 0
   hackProgression: 0
   hackTime: 3
+  hackingRange: 0.2
 --- !u!1 &1692008394
 GameObject:
   m_ObjectHideFlags: 0
@@ -1646,6 +1669,7 @@ MonoBehaviour:
   currentHackState: 0
   hackProgression: 0
   hackTime: 3
+  hackingRange: 0.2
 --- !u!1 &4380208126980985301
 GameObject:
   m_ObjectHideFlags: 0
