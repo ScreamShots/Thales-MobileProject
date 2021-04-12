@@ -200,10 +200,10 @@ public class MeshTool : MonoBehaviour
     private void SaveMesh(string path, string name)
     {
         string newPath = path;
-        newPath += "/" + name + ".asset";
+        newPath += name + ".asset";
 
         string prefabPath = path;
-        prefabPath += "/" + name + ".prefab";
+        prefabPath += name + ".prefab";
 
         AssetDatabase.CreateAsset(mesh, newPath);
         AssetDatabase.SaveAssets();
