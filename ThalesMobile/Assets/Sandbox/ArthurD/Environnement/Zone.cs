@@ -5,12 +5,17 @@ using System;
 [Serializable]
 public struct Zone
 {
-    [ReorderableList]
-    public Vector3[] points;
+    [HideInInspector]
+    public string name;
 
-    public Relief relief;
-    public Weather currentWeather;
-    [Range(0f, 2f)] public float windDot;
+    [Header("Parameter")]
+    public ZoneState state;
+    [Range(0f, 2f)] public float windDir;
+
+    [Header("Info")]
+    public Color debugColor;
+    [ReadOnly, ReorderableList]
+    public Vector3[] points;
 
     public bool PointInZone(Vector3 pointTest)
     {

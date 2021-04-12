@@ -7,11 +7,21 @@ namespace Thales.Tool.LevelDesign
     [ExecuteInEditMode]
     public class LinkedPoints : MonoBehaviour
     {
+        [HideInInspector]
         public Vector3 lastPos;
-        private Boundary limit;
+        [HideInInspector] 
+        public Boundary limit;
+
+        [Header("Linked Points")]
         public List<Transform> linkedPoints;
-        [Space(20)]
+
+        [Header("Link Parameter")]
+        [SerializeField] float debugSelectionSize = 0.5f;
+        [SerializeField] Color debugColor = new Color(1,0,1,0.5f);
+
+        [Space(5)]
         public Transform pointToLink;
+
         [Button("Link the point")]
         public void LinkAPoint()
         {
@@ -30,13 +40,31 @@ namespace Thales.Tool.LevelDesign
             }
 
             linkedPoints.Add(pointToLink);
-
+            pointToLink = null;
             UpdatePosition();
         }
 
-        private void Awake()
+        [Button("Unlink the point")]
+        public void UnlinkAPoint()
         {
-            limit = transform.parent.GetComponent<Tool_LevelDesign>().limit;
+            LinkedPoints lp;
+            if (pointToLink.GetComponent<LinkedPoints>())
+            {
+                lp = pointToLink.GetComponent<LinkedPoints>();
+                lp.linkedPoints.Remove(transform);
+            }
+
+            linkedPoints.Remove(pointToLink);
+        }
+
+        [Button("BreakAllLink")]
+        public void BreakAllLink()
+        {
+            for (int i = 0; i < linkedPoints.Count; i++)
+            {
+                linkedPoints[i].GetComponent<LinkedPoints>().linkedPoints.Remove(transform);
+                linkedPoints.Remove(linkedPoints[i]);
+            }
         }
 
         private void Update()
@@ -59,6 +87,8 @@ namespace Thales.Tool.LevelDesign
                     linkedPoints[i].position = lastPos;
                 }
             }
+
+            ClampPos();
         }
 
         private void ClampPos()
@@ -91,12 +121,15 @@ namespace Thales.Tool.LevelDesign
 
         private void OnDrawGizmosSelected()
         {
-            Gizmos.color = Color.green;
+            //Draw The link
+            Gizmos.color = debugColor;
             if (pointToLink != null)
             {
-                Gizmos.DrawSphere(pointToLink.position, 0.2f);
+                //Le trait
                 Gizmos.DrawLine(transform.position, pointToLink.position);
-                Gizmos.DrawSphere(transform.position, 0.2f);
+                //Les deux points
+                Gizmos.DrawSphere(pointToLink.position, debugSelectionSize);
+                Gizmos.DrawSphere(transform.position, debugSelectionSize);
             }
         }
     }

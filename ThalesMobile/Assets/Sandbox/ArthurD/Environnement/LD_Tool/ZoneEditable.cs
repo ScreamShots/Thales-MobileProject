@@ -9,8 +9,11 @@ namespace Thales.Tool.LevelDesign
     {
         [HideInInspector]
         public string name;
-        public Relief relief;
-        public Weather currentWeather;
+
+        public ZoneState state;
+        [Range(0f, 2f)] public float windDir;
+        public bool drawWind;
+
         [Space(10)]
         public Color color;
         [ReorderableList]
@@ -23,8 +26,9 @@ namespace Thales.Tool.LevelDesign
 
             points = new List<Transform>();
 
-            relief = Relief.Flat;
-            currentWeather = Weather.ClearSky;
+            state = ZoneState.SeaCalm;
+            windDir = 1f;
+            drawWind = false;
         }
         public ZoneEditable(string name, Color color)
         {
@@ -33,8 +37,9 @@ namespace Thales.Tool.LevelDesign
 
             points = new List<Transform>();
 
-            relief = Relief.Flat;
-            currentWeather = Weather.ClearSky;
+            state = ZoneState.SeaCalm;
+            windDir = 1f;
+            drawWind = false;
         }
     }
 }

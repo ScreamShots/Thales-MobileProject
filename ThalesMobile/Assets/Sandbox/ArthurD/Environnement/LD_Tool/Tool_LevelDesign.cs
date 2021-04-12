@@ -20,7 +20,9 @@ namespace Thales.Tool.LevelDesign
 
         [Header("Zones")]
         public List<ZoneEditable> editZones;
+        public int zoneNbr;
 
+        #region Button
         [Button("Add a zone")]
         public void AddZone()
         {
@@ -32,9 +34,8 @@ namespace Thales.Tool.LevelDesign
             zoneNbr = editZones.Count - 1;
         }
 
-        public int zoneNbr;
         [Button("Add a point")]
-        public void AddPoint()    //int zoneNbr
+        public void AddPoint()
         {
             Vector3 pos = new Vector3(limit.offSet.x, height, limit.offSet.y);
             if (editZones[zoneNbr].points.Count > 0)
@@ -56,10 +57,12 @@ namespace Thales.Tool.LevelDesign
 
             lp.lastPos = newPoint.transform.position;
             lp.linkedPoints = new List<Transform>();
-
+            lp.limit = limit;
             editZones[zoneNbr].points.Add(newPoint.transform);
         }
+        #endregion
 
+        #region ContextMenue
         [ContextMenu("Push in Enviro")]
         public void PushIntoEnvironnement()
         {
@@ -71,21 +74,26 @@ namespace Thales.Tool.LevelDesign
                 //Create Each Zone storage space
                 enviro.zones = new Zone[editZones.Count];
                 //For each Zone
-                for (int i = 0; i < editZones.Count - 1; i++)
+                for (int i = 0; i < editZones.Count; i++)
                 {
+                    //Zone Info
+                    enviro.zones[i].name = editZones[i].name;
+                    enviro.zones[i].windDir = editZones[i].windDir;
+                    enviro.zones[i].debugColor = editZones[i].color;
+
                     if (editZones[i].points.Count != 0)
                     {
                         //Create Points storage space
                         enviro.zones[i].points = new Vector3[editZones[i].points.Count];
 
-                        for (int j = 0; j < editZones[i].points.Count - 1; j++)
+                        for (int j = 0; j < editZones[i].points.Count; j++)
                         {
                             enviro.zones[i].points[j] = editZones[i].points[j].position;
                         }
                     }
                     else
                     {
-                        Debug.LogError("Il n'y a pas de point dans la Zone" + i);
+                        Debug.LogWarning("Il n'y a pas de point dans la Zone" + i);
                     }
                 }
             }
@@ -96,6 +104,14 @@ namespace Thales.Tool.LevelDesign
 
         }
 
+        [ContextMenu("TextureGeneration")]
+        public void GenerateTexture()
+        {
+            SeaTextureGenerator.GenerateSeaTexture(limit, "squalala");
+        }
+
+        #endregion
+
         private void Update()
         {
             transform.position = new Vector3(limit.offSet.x, height, limit.offSet.y);
@@ -104,50 +120,24 @@ namespace Thales.Tool.LevelDesign
         private void OnDrawGizmos()
         {
             //Dessine bords
-            DrawBoundary(8, Color.red);
-
-            //Clear Shape
-            RemoveDeletePoint();
+            DrawBoundary(8);
 
             //Dessine Zone
             if (editZones.Count != 0)
             {
                 for (int i = 0; i < editZones.Count; i++)
                 {
+                    RemoveDeletePointFromZone(editZones[i]);
                     DrawZone(editZones[i]);
                 }
             }
         }
 
-        private void RemoveDeletePoint()
-        {
-            //Pour Chaque Zone
-            if (editZones.Count != 0)
-            {
-                for (int i = 0; i < editZones.Count; i++)
-                {
-                    //Pour chaque points d'une zone
-                    if (editZones[i].points.Count != 0)
-                    {
-                        for (int j = 0; j < editZones[i].points.Count - 1; j++)
-                        {
-                            //S'il n'est plus là
-                            if (editZones[i].points[j] == null)
-                            {
-                                editZones[i].points.RemoveAt(j);
-                            }
-
-                        }
-                    }
-                }
-            }
-        }
-
-        private void DrawBoundary(int step, Color color)
+        private void DrawBoundary(int step)
         {
             step = step >= 1 ? step : 1;
 
-            Gizmos.color = new Color(color.r, color.b, color.b, color.a * 0.5f);
+            Gizmos.color = limitColor;
 
             //Top
             Gizmos.DrawCube(new Vector3(transform.position.x, 0, transform.position.z + (0.5f * limit.size.y) + (0.5f * step)), new Vector3(limit.size.x + (2 * step), 0, step));
@@ -163,20 +153,20 @@ namespace Thales.Tool.LevelDesign
             {
                 //Draw the rectangle
                 // _  
-                Vector3 drawPos = new Vector3(limit.leftBorder - tempExtrude, transform.position.y + 0.1f, limit.upBorder + tempExtrude);
-                Debug.DrawRay(drawPos, Vector3.right * limit.size.x + Vector3.right * 2 * tempExtrude, Color.red);
+                Vector3 drawPos = new Vector3(limit.leftBorder - tempExtrude, transform.position.y + tempExtrude * 0.0f, limit.upBorder + tempExtrude);
+                Debug.DrawRay(drawPos, Vector3.right * limit.size.x + Vector3.right * 2 * tempExtrude, limitColor);
                 // _
                 //  |
                 drawPos += Vector3.right * limit.size.x + Vector3.right * 2 * tempExtrude;
-                Debug.DrawRay(drawPos, Vector3.back * limit.size.y + Vector3.back * 2 * tempExtrude, Color.red);
+                Debug.DrawRay(drawPos, Vector3.back * limit.size.y + Vector3.back * 2 * tempExtrude, limitColor);
                 // _
                 // _|
                 drawPos += Vector3.back * limit.size.y + Vector3.back * 2 * tempExtrude;
-                Debug.DrawRay(drawPos, Vector3.left * limit.size.x + Vector3.left * 2 * tempExtrude, Color.red);
+                Debug.DrawRay(drawPos, Vector3.left * limit.size.x + Vector3.left * 2 * tempExtrude, limitColor);
                 // _
                 //|_|
                 drawPos += Vector3.left * limit.size.x + Vector3.left * 2 * tempExtrude;
-                Debug.DrawRay(drawPos, Vector3.forward * limit.size.y + Vector3.forward * 2 * tempExtrude, Color.red);
+                Debug.DrawRay(drawPos, Vector3.forward * limit.size.y + Vector3.forward * 2 * tempExtrude, limitColor);
             }
 
         }
@@ -187,9 +177,41 @@ namespace Thales.Tool.LevelDesign
                 Gizmos.color = zone.color;
 
                 Gizmos.DrawLine(zone.points[zone.points.Count - 1].position, zone.points[0].position);
+                if (zone.drawWind)
+                {
+                    DrawWind(zone.points[zone.points.Count - 1].position, zone.windDir, zone.color);
+                }
                 for (int i = 0; i < zone.points.Count - 1; i++)
                 {
                     Gizmos.DrawLine(zone.points[i].position, zone.points[i + 1].position);
+                    if (zone.drawWind)
+                    {
+                        DrawWind(zone.points[i].position, zone.windDir, zone.color);
+                    }
+                }
+            }
+        }
+        private void DrawWind(Vector3 point, float windDot, Color zoneColor)
+        {
+            Gizmos.color = Color.white;
+
+            Gizmos.DrawRay(point, Quaternion.Euler(new Vector3(0, windDot * 180, 0)) * Vector3.forward);
+
+            Gizmos.color = zoneColor;
+        }
+        private void RemoveDeletePointFromZone(ZoneEditable zone)
+        {
+            //Pour chaque points d'une zone
+            if (zone.points.Count != 0)
+            {
+                for (int j = 0; j < zone.points.Count; j++)
+                {
+                    //S'il n'est plus là
+                    if (zone.points[j] == null)
+                    {
+                        zone.points.RemoveAt(j);
+                    }
+
                 }
             }
         }
