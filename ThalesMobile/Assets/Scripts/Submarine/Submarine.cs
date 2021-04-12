@@ -317,7 +317,7 @@ public class Submarine : DetectableOceanEntity
 
     private void DetectFregate()
     {
-        /*float distanceFromFregate = Vector3.Distance(transform.position, ship.transform.position);
+        float distanceFromFregate = Vector3.Distance(transform.position, ship.transform.position);
 
         if (distanceFromFregate < currentRange)
         {
@@ -335,7 +335,7 @@ public class Submarine : DetectableOceanEntity
         else
         {
             submarineDetectFregate = false;
-        }*/
+        }
     }
 
     private void DetectSonobuoy()
