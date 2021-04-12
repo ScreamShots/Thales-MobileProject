@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using OceanEntities;
 
 /// <summary>
 /// Antoine Leroux - 07/04/2021 - Vigilance State is an enum describing the current submarine state.
@@ -21,6 +22,7 @@ public class Submarine : DetectableOceanEntity
 
     [Header("References")]
     public LevelManager levelManager;
+    public Ship ship;
 
     [Header("Movement")]
     public float maxSpeed;
@@ -273,13 +275,13 @@ public class Submarine : DetectableOceanEntity
 
     private void DetectFregate()
     {
-        /*float distanceFromFregate = Vector3.Distance(transform.position, // Fregate position);
+        float distanceFromFregate = Vector3.Distance(transform.position, ship.transform.position);
 
         if (distanceFromFregate < currentRange)
         {
             submarineDetectFregate = true;
 
-            if (// Fregate is moving)
+            if (ship.currentTargetPoint != ship.nullVector)
             {
                 IncreaseVigilance(fregateMoveVigiIncr);
             }
@@ -291,7 +293,7 @@ public class Submarine : DetectableOceanEntity
         else
         {
             submarineDetectFregate = false;
-        }*/
+        }
     }
 
     private void DetectSonobuoy()
