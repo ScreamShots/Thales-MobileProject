@@ -6,19 +6,18 @@ namespace Tweek.System
 {
     public struct TweekObj
     {
-        public string path;
         public string objName;
-        public int tempID;
+        public byte[] serializedGuid;
         public List<TweekComponent> attachedComponents;
+
         public bool gameplayFields { private set; get; }
         public bool artFields { private set; get; }
         public bool soundFields { private set; get; }
 
-        public TweekObj(string _objName, string _path, int _tempID = 0)
+        public TweekObj(string _objName, byte[] _serializedGuid)
         {
-            path = _path;
             objName = _objName;
-            tempID = _tempID;
+            serializedGuid = _serializedGuid;
             attachedComponents = new List<TweekComponent>();
 
             gameplayFields = false;
@@ -118,7 +117,7 @@ namespace Tweek.System
         }
     }
 
-    public struct AttributeConstructor
+    /*public struct AttributeConstructor
     {
         public TweekCoreUtilities.SupportedAttributes attribute;
         public dynamic arg_1;
@@ -131,6 +130,20 @@ namespace Tweek.System
             arg_1 = _arg_1;
             arg_2 = _arg_2;
             arg_3 = _arg_3;
+        }
+    }*/
+
+    public struct AttributeBuilder
+    {
+        public TweekCore.SupportedAttributes attribute;
+        public dynamic arg_1;
+        public dynamic arg_2;
+
+        public AttributeBuilder(TweekCore.SupportedAttributes _attribute, dynamic _arg_1 = null, dynamic _arg_2 = null)
+        {
+            attribute = _attribute;
+            arg_1 = _arg_1;
+            arg_2 = _arg_2;
         }
     }
 }

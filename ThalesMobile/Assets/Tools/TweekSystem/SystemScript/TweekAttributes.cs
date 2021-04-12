@@ -14,11 +14,20 @@ namespace Tweek.FlagAttributes
 
     [AttributeUsage(AttributeTargets.Field)]
     public class TweekFlagAttribute : Attribute
-    {        
+    {
         public FieldUsage fieldUsage { get; private set; }
-    public TweekFlagAttribute(FieldUsage _fieldUsage = FieldUsage.Default)
+        public TweekFlagAttribute(FieldUsage _fieldUsage = FieldUsage.Default)
         {
             fieldUsage = _fieldUsage;
+        }
+    }
+
+    [AttributeUsage(AttributeTargets.Class)]
+    public class TweekClassAttribute : Attribute
+    {
+        public TweekClassAttribute()
+        {
+
         }
     }
 }
@@ -36,6 +45,17 @@ namespace Tweek.ScoAttributes
     {
         public string displayName { get; private set; }
         public IdAttribute(string _displayName = null)
+        {
+            if (_displayName != null) displayName = _displayName;
+            else displayName = string.Empty;
+        }
+    }
+
+    [AttributeUsage(AttributeTargets.Field)]
+    public class CompAttribute : PropertyAttribute
+    {
+        public string displayName { get; private set; }
+        public CompAttribute( string _displayName = null)
         {
             if (_displayName != null) displayName = _displayName;
             else displayName = string.Empty;

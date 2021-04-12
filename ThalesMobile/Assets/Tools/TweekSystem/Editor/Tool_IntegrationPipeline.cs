@@ -130,24 +130,24 @@ public class Tool_IntegrationPipeline : EditorWindow
             //All SCO Rebuild
             if (GUILayout.Button("Rebuild All SCO for Project", GUILayout.MinWidth(_minWidth * 3), GUILayout.Height(_height)))
             {
-                TweekCoreUtilities.LaunchScoUpdate(TweekCoreUtilities.ScoUpdateMode.Global);
+                TweekCore.LaunchScoUpdate(TweekCore.ScoUpdateMode.Global);
             }
             using (new GUILayout.HorizontalScope())
             {
                 //Graphic SCO Rebuild
                 if (GUILayout.Button("Rebuild only Graphic", GUILayout.MinWidth(_minWidth), GUILayout.Height(_height)))
                 {
-                    TweekCoreUtilities.LaunchScoUpdate(TweekCoreUtilities.ScoUpdateMode.Art);
+                    TweekCore.LaunchScoUpdate(TweekCore.ScoUpdateMode.Art);
                 }
                 //Balancing SCO Rebuild
                 if (GUILayout.Button("Rebuild only Balancing", GUILayout.MinWidth(_minWidth), GUILayout.Height(_height)))
                 {
-                    TweekCoreUtilities.LaunchScoUpdate(TweekCoreUtilities.ScoUpdateMode.Gameplay);
+                    TweekCore.LaunchScoUpdate(TweekCore.ScoUpdateMode.Gameplay);
                 }
                 //Sound SCO Rebuild
                 if (GUILayout.Button("Rebuild only Sound", GUILayout.MinWidth(_minWidth), GUILayout.Height(_height)))
                 {
-                    TweekCoreUtilities.LaunchScoUpdate(TweekCoreUtilities.ScoUpdateMode.Sound);
+                    TweekCore.LaunchScoUpdate(TweekCore.ScoUpdateMode.Sound);
                 }
             }
         }
@@ -331,13 +331,13 @@ public class Tool_IntegrationPipeline : EditorWindow
         switch (mode)
         {
             case Mode.Graphic:
-                path = TweekCoreUtilities.graphicAssetsDirectory + "/";
+                path = TweekCore.graphicAssetsDirectory + "/";
                 break;
             case Mode.Balancing:
-                path = TweekCoreUtilities.gameplayAssetsDirectory + "/";
+                path = TweekCore.gameplayAssetsDirectory + "/";
                 break;
             case Mode.Audio:
-                path = TweekCoreUtilities.soundAssetsDirectory + "/";
+                path = TweekCore.soundAssetsDirectory + "/";
                 break;
             default:
                 path = "Assets" + "/";
@@ -362,6 +362,6 @@ public class Tool_IntegrationPipeline : EditorWindow
         string actuSoundSCOPath = AssetDatabase.GetAssetPath(Balancing_SCO);
         object soundSCOAsset = sound_SCO != null || sound_SCO != tempSound_SCO ? AssetDatabase.LoadAssetAtPath(actuSoundSCOPath, typeof(SoundTweekScriptableObject)) as object : null;
 
-        TweekCoreUtilities.LaunchValuesApplication(BalancingSCOAsset, graphicSCOAsset, soundSCOAsset);
+        TweekCore.LaunchValuesApplication(BalancingSCOAsset, graphicSCOAsset, soundSCOAsset);
     }
 }

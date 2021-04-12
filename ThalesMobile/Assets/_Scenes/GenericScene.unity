@@ -131,6 +131,7 @@ GameObject:
   m_Component:
   - component: {fileID: 376250584}
   - component: {fileID: 376250583}
+  - component: {fileID: 376250585}
   m_Layer: 0
   m_Name: Plane (2)
   m_TagString: Untagged
@@ -150,19 +151,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60c506b75f64aec4694ecdbdab19d506, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  valuesTweekState: 1
-  thisObjState: 0
-  initState: 0
-  serializedGuid: 7b3e364c1ea8334db3c6f9d9bdf4b38b
-  guidDisplay: 4c363e7b-a81e-4d33-b3c6-f9d9bdf4b38b
-  instanceID: -4594
   currentSeaLevel: 0
   speed: 0
   acceleration: 0
+  rotateSpeed: 0
   movementType: 0
   currentTargetPoint: {x: -9999, y: -9999}
   nullVector: {x: -9999, y: -9999}
-  waitingRoutineRadius: 0
+  minimumSpeed: 0
+  passiveEquipement: {fileID: 0}
+  activeEquipement: {fileID: 0}
 --- !u!4 &376250584
 Transform:
   m_ObjectHideFlags: 0
@@ -177,6 +175,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &376250585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 376250582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c3cdcb490cdee448a8aedfe8dbf5790, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thisObjState: 0
+  initState: 0
+  guidDisplay: 220d7f4d-3456-41ef-9f85-832bf96bd6b8
+  serializedGuid: 4d7f0d225634ef419f85832bf96bd6b8
+  instanceID: 20814
+  referencedComponents:
+  - component: {fileID: 376250583}
+    serializedGuid: c97409c19bbddd42b318f0ce35430c68
+    update: 1
 --- !u!1 &700218375
 GameObject:
   m_ObjectHideFlags: 0
@@ -473,19 +492,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60c506b75f64aec4694ecdbdab19d506, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  valuesTweekState: 1
-  thisObjState: 0
-  initState: 0
-  serializedGuid: af8b913e62604245a789366403ca2f94
-  guidDisplay: 3e918baf-6062-4542-a789-366403ca2f94
-  instanceID: 17662
   currentSeaLevel: 0
   speed: 47
   acceleration: 61
+  rotateSpeed: 0
   movementType: 0
   currentTargetPoint: {x: -9999, y: -9999}
   nullVector: {x: -9999, y: -9999}
-  waitingRoutineRadius: 0
+  minimumSpeed: 0
+  passiveEquipement: {fileID: 0}
+  activeEquipement: {fileID: 0}
 --- !u!4 &1566913102
 Transform:
   m_ObjectHideFlags: 0
@@ -602,6 +618,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2055652967}
   - component: {fileID: 2055652966}
+  - component: {fileID: 2055652968}
   m_Layer: 0
   m_Name: Plane (1)
   m_TagString: Untagged
@@ -621,19 +638,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60c506b75f64aec4694ecdbdab19d506, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  valuesTweekState: 1
-  thisObjState: 0
-  initState: 0
-  serializedGuid: 21a446a62d75054aa7b333c3620758bf
-  guidDisplay: a646a421-752d-4a05-a7b3-33c3620758bf
-  instanceID: 17674
   currentSeaLevel: 0
-  speed: 0
+  speed: 50
   acceleration: 0
+  rotateSpeed: 0
   movementType: 0
   currentTargetPoint: {x: -9999, y: -9999}
   nullVector: {x: -9999, y: -9999}
-  waitingRoutineRadius: 0
+  minimumSpeed: 0
+  passiveEquipement: {fileID: 0}
+  activeEquipement: {fileID: 0}
 --- !u!4 &2055652967
 Transform:
   m_ObjectHideFlags: 0
@@ -648,3 +662,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2055652968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2055652965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c3cdcb490cdee448a8aedfe8dbf5790, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thisObjState: 0
+  initState: 0
+  guidDisplay: 9f11a644-efb5-4016-9eab-2355c5ec3abf
+  serializedGuid: 44a6119fb5ef16409eab2355c5ec3abf
+  instanceID: 20844
+  referencedComponents:
+  - component: {fileID: 2055652966}
+    serializedGuid: 4f32a027f51d454b902ff321ca81e0eb
+    update: 1

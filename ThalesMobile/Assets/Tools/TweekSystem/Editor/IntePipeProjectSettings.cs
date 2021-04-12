@@ -31,7 +31,7 @@ static class IntePipeProjectSettings
                         //Nom
                         GUILayout.Label("ScenesFolderPath", EditorStyles.boldLabel, GUILayout.Width(160));
                         //Champs
-                        TweekCoreUtilities.scenesPath = GUILayout.TextField(TweekCoreUtilities.scenesPath, EditorStyles.textArea);
+                        TweekCore.scenesPath = GUILayout.TextField(TweekCore.scenesPath, EditorStyles.textArea);
                     }
                     GUILayout.Space(valuesGap);
                     
@@ -41,7 +41,7 @@ static class IntePipeProjectSettings
                         //Nom
                         GUILayout.Label("PrefabFolderPath", EditorStyles.boldLabel, GUILayout.Width(160));
                         //Champs
-                        TweekCoreUtilities.prefabsPath = GUILayout.TextField(TweekCoreUtilities.prefabsPath, EditorStyles.textArea);
+                        TweekCore.prefabsPath = GUILayout.TextField(TweekCore.prefabsPath, EditorStyles.textArea);
                     }
                     GUILayout.Space(valuesGap);
                 }
@@ -59,7 +59,7 @@ static class IntePipeProjectSettings
                         //Nom
                         GUILayout.Label("FolderPath_SoundAssets", EditorStyles.boldLabel, GUILayout.Width(160));
                         //Champs
-                        TweekCoreUtilities.soundAssetsDirectory = GUILayout.TextField(TweekCoreUtilities.soundAssetsDirectory, EditorStyles.textField);
+                        TweekCore.soundAssetsDirectory = GUILayout.TextField(TweekCore.soundAssetsDirectory, EditorStyles.textField);
                     }
                     GUILayout.Space(valuesGap);
 
@@ -69,7 +69,7 @@ static class IntePipeProjectSettings
                         //Nom
                         GUILayout.Label("FolderPath_GraphicAssets", EditorStyles.boldLabel, GUILayout.Width(160));
                         //Champs
-                        TweekCoreUtilities.graphicAssetsDirectory = GUILayout.TextField(TweekCoreUtilities.graphicAssetsDirectory, EditorStyles.textField);
+                        TweekCore.graphicAssetsDirectory = GUILayout.TextField(TweekCore.graphicAssetsDirectory, EditorStyles.textField);
                     }
                     GUILayout.Space(valuesGap);
 
@@ -79,7 +79,7 @@ static class IntePipeProjectSettings
                         //Nom
                         GUILayout.Label("FolderPath_GameplayAssets", EditorStyles.boldLabel, GUILayout.Width(160));
                         //Champs
-                        TweekCoreUtilities.gameplayAssetsDirectory = GUILayout.TextField(TweekCoreUtilities.gameplayAssetsDirectory, EditorStyles.textField);
+                        TweekCore.gameplayAssetsDirectory = GUILayout.TextField(TweekCore.gameplayAssetsDirectory, EditorStyles.textField);
                     }
                     GUILayout.Space(valuesGap);
                 }
@@ -97,7 +97,7 @@ static class IntePipeProjectSettings
                         //Nom
                         GUILayout.Label("ScoScriptPath_Sound", EditorStyles.boldLabel, GUILayout.Width(160));
                         //Champs
-                        TweekCoreUtilities.soundScoPath = GUILayout.TextField(TweekCoreUtilities.soundScoPath, EditorStyles.textField);
+                        TweekCore.soundScoPath = GUILayout.TextField(TweekCore.soundScoPath, EditorStyles.textField);
                     }
                     GUILayout.Space(valuesGap);
 
@@ -107,7 +107,7 @@ static class IntePipeProjectSettings
                         //Nom
                         GUILayout.Label("ScoScriptPath_Graphic", EditorStyles.boldLabel, GUILayout.Width(160));
                         //Champs
-                        TweekCoreUtilities.graphicScoPath = GUILayout.TextField(TweekCoreUtilities.graphicScoPath, EditorStyles.textField);
+                        TweekCore.graphicScoPath = GUILayout.TextField(TweekCore.graphicScoPath, EditorStyles.textField);
                     }
                     GUILayout.Space(valuesGap);
 
@@ -117,7 +117,7 @@ static class IntePipeProjectSettings
                         //Nom
                         GUILayout.Label("ScoScriptPath_Gameplay", EditorStyles.boldLabel, GUILayout.Width(160));
                         //Champs
-                        TweekCoreUtilities.gameplayScoPath = GUILayout.TextField(TweekCoreUtilities.gameplayScoPath, EditorStyles.textField);
+                        TweekCore.gameplayScoPath = GUILayout.TextField(TweekCore.gameplayScoPath, EditorStyles.textField);
                     }
                     GUILayout.Space(valuesGap);
                 }

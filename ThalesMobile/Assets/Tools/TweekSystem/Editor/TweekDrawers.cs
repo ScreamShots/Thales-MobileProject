@@ -20,6 +20,18 @@ public class IdDrawer : PropertyDrawer
     }
 }
 
+[CustomPropertyDrawer(typeof(CompAttribute))]
+public class CompDrawer : PropertyDrawer
+{
+    public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
+    {
+        var previousGUIState = GUI.enabled;
+        GUI.enabled = false;
+        EditorGUI.PropertyField(position, property, new GUIContent((attribute as CompAttribute).displayName));
+        GUI.enabled = previousGUIState;
+    }
+}
+
 [CustomPropertyDrawer(typeof(VarAttribute))]
 public class VarDrawer : PropertyDrawer
 {
