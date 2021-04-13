@@ -10,22 +10,29 @@ public class Tool_IntegrationPipeline : EditorWindow
     public enum Mode { None, Graphic, Balancing , Audio}
     public Mode actualMode = Mode.None;
 
-    public ArtTweekScriptableObject graphic_SCO = null;
-    public GameplayTweekScriptableObject Balancing_SCO = null;
-    public SoundTweekScriptableObject sound_SCO = null;
+    private static IntePipeSettingsData Data
+    {
+        get { return IntePipeSettingsData.GetOrCreateSettings(); }
+    }
+
+    public static ArtTweekScriptableObject graphic_SCO = null;
+    public static GameplayTweekScriptableObject Balancing_SCO = null;
+    public static SoundTweekScriptableObject sound_SCO = null;
     #region SCO Tampon, lastState et son Editor
-    private ArtTweekScriptableObject tempGraphic_SCO = null;
-    private GameplayTweekScriptableObject tempBalancing_SCO = null;
-    private SoundTweekScriptableObject tempSound_SCO = null;
+    private static ArtTweekScriptableObject tempGraphic_SCO = null;
+    private static GameplayTweekScriptableObject tempBalancing_SCO = null;
+    private static SoundTweekScriptableObject tempSound_SCO = null;
 
-    private ArtTweekScriptableObject lastGraphic_SCO = null;
-    private GameplayTweekScriptableObject lastBalancing_SCO = null;
-    private SoundTweekScriptableObject lastSound_SCO = null;
+    private static ArtTweekScriptableObject lastGraphic_SCO = null;
+    private static GameplayTweekScriptableObject lastBalancing_SCO = null;
+    private static SoundTweekScriptableObject lastSound_SCO = null;
 
-    private Editor graphic_SCOEditor;
-    private Editor Balancing_SCOEditor;
-    private Editor sound_SCOEditor;
+    private static Editor graphic_SCOEditor;
+    private static Editor Balancing_SCOEditor;
+    private static Editor sound_SCOEditor;
     #endregion
+
+    private static bool isCompilling = false;
 
     private Vector2 scrollPosition;
 
@@ -38,40 +45,85 @@ public class Tool_IntegrationPipeline : EditorWindow
 
     private void OnEnable()
     {
-        #pragma warning disable
-        tempSound_SCO = new SoundTweekScriptableObject();
-        tempGraphic_SCO = new ArtTweekScriptableObject();
-        tempBalancing_SCO = new GameplayTweekScriptableObject();
-        #pragma warning restore
+        isCompilling = false;
 
-        //Initialisation des Editors
-        if (graphic_SCO != null)
-        {
-            graphic_SCOEditor = Editor.CreateEditor(graphic_SCO);
-        }
-        else
-        {
-            graphic_SCOEditor = Editor.CreateEditor(tempGraphic_SCO);
-        }
-        
-        if (Balancing_SCO != null)
-        {
-            Balancing_SCOEditor = Editor.CreateEditor(Balancing_SCO);
-        }
-        else
-        {
-            Balancing_SCOEditor = Editor.CreateEditor(new GameplayTweekScriptableObject());
-        }
+        ReinitialisationTempSCO(Mode.Graphic);
+        ReinitialisationTempSCO(Mode.Balancing);
+        ReinitialisationTempSCO(Mode.Audio);
+    }
 
-        if (sound_SCO != null)
-        {
-            sound_SCOEditor = Editor.CreateEditor(sound_SCO);
-        }
-        else
-        {
-            sound_SCOEditor = Editor.CreateEditor(new SoundTweekScriptableObject());
-        }
+    [UnityEditor.Callbacks.DidReloadScripts()]
+    private static void ReloadEditorDrawer()
+    {
+        isCompilling = false;
 
+        ReinitialisationTempSCO(Mode.Graphic);
+        ReinitialisationTempSCO(Mode.Balancing);
+        ReinitialisationTempSCO(Mode.Audio);
+    }
+
+    private static void ReinitialisationTempSCO(Mode mode)
+    {
+        //Temp Creation
+#pragma warning disable
+        switch (mode)
+        {
+            case Mode.Graphic:
+                tempGraphic_SCO = ScriptableObject.CreateInstance<ArtTweekScriptableObject>();
+                break;
+            case Mode.Balancing:
+                tempBalancing_SCO = ScriptableObject.CreateInstance<GameplayTweekScriptableObject>();
+                break;
+            case Mode.Audio:
+                tempSound_SCO = ScriptableObject.CreateInstance<SoundTweekScriptableObject>();
+                break;
+            default:
+                break;
+        }
+#pragma warning restore
+
+        //Graphic Editor regenerate
+        switch (mode)
+        {
+            case Mode.Graphic:
+
+                if (graphic_SCO != null)
+                {
+                    graphic_SCOEditor = Editor.CreateEditor(graphic_SCO);
+                }
+                else
+                {
+                    graphic_SCOEditor = Editor.CreateEditor(ScriptableObject.CreateInstance<ArtTweekScriptableObject>());
+                }
+                break;
+
+            case Mode.Balancing:
+
+                if (Balancing_SCO != null)
+                {
+                    Balancing_SCOEditor = Editor.CreateEditor(Balancing_SCO);
+                }
+                else
+                {
+                    Balancing_SCOEditor = Editor.CreateEditor(ScriptableObject.CreateInstance<GameplayTweekScriptableObject>());
+                }
+
+                break;
+            case Mode.Audio:
+
+                if (sound_SCO != null)
+                {
+                    sound_SCOEditor = Editor.CreateEditor(sound_SCO);
+                }
+                else
+                {
+                    sound_SCOEditor = Editor.CreateEditor(ScriptableObject.CreateInstance<SoundTweekScriptableObject>());
+                }
+
+                break;
+            default:
+                break;
+        }
     }
     private void ReDrawSCOEditors()
     {
@@ -130,6 +182,7 @@ public class Tool_IntegrationPipeline : EditorWindow
             //All SCO Rebuild
             if (GUILayout.Button("Rebuild All SCO for Project", GUILayout.MinWidth(_minWidth * 3), GUILayout.Height(_height)))
             {
+                isCompilling = true;
                 TweekCore.LaunchScoUpdate(TweekCore.ScoUpdateMode.Global);
             }
             using (new GUILayout.HorizontalScope())
@@ -137,16 +190,19 @@ public class Tool_IntegrationPipeline : EditorWindow
                 //Graphic SCO Rebuild
                 if (GUILayout.Button("Rebuild only Graphic", GUILayout.MinWidth(_minWidth), GUILayout.Height(_height)))
                 {
+                    isCompilling = true;
                     TweekCore.LaunchScoUpdate(TweekCore.ScoUpdateMode.Art);
                 }
                 //Balancing SCO Rebuild
                 if (GUILayout.Button("Rebuild only Balancing", GUILayout.MinWidth(_minWidth), GUILayout.Height(_height)))
                 {
+                    isCompilling = true;
                     TweekCore.LaunchScoUpdate(TweekCore.ScoUpdateMode.Gameplay);
                 }
                 //Sound SCO Rebuild
                 if (GUILayout.Button("Rebuild only Sound", GUILayout.MinWidth(_minWidth), GUILayout.Height(_height)))
                 {
+                    isCompilling = true;
                     TweekCore.LaunchScoUpdate(TweekCore.ScoUpdateMode.Sound);
                 }
             }
@@ -209,32 +265,53 @@ public class Tool_IntegrationPipeline : EditorWindow
         //Debug show in what mode i am
         GUILayout.Label(actualMode.ToString(), EditorStyles.helpBox);
 
-        using (var scrollViewScope = new GUILayout.ScrollViewScope(scrollPosition, EditorStyles.helpBox))
+        //Draw SCO Information
+        if (!isCompilling)
         {
-            scrollPosition = scrollViewScope.scrollPosition;
-
-            switch (actualMode)
+            //Draw SCO Information
+            using (var scrollViewScope = new GUILayout.ScrollViewScope(scrollPosition, EditorStyles.helpBox))
             {
-                case Mode.None:
-                    GUILayout.Label("Select a mode");
-                    break;
+                scrollPosition = scrollViewScope.scrollPosition;
 
-                case Mode.Graphic:
-                    graphic_SCOEditor.OnInspectorGUI();
-                    break;
+                switch (actualMode)
+                {
+                    case Mode.None:
+                        GUILayout.Label("Select a mode");
+                        break;
 
-                case Mode.Balancing:
-                    Balancing_SCOEditor.OnInspectorGUI();
-                    break;
+                    case Mode.Graphic:
+                        graphic_SCOEditor.OnInspectorGUI();
+                        break;
 
-                case Mode.Audio:
-                    sound_SCOEditor.OnInspectorGUI();
-                    break;
+                    case Mode.Balancing:
+                        Balancing_SCOEditor.OnInspectorGUI();
+                        break;
 
-                default:
-                    GUILayout.TextField("!!!Error!!!");
-                    break;
+                    case Mode.Audio:
+                        sound_SCOEditor.OnInspectorGUI();
+                        break;
+
+                    default:
+                        GUILayout.TextField("!!!Error!!!");
+                        break;
+                }
             }
+        }
+        else
+        {
+            actualMode = Mode.None;
+            GUILayout.Label("The Scriptables Objects are compilling, please wait");
+            GUILayout.Space(20);
+            GUILayout.Label("Fun Fact : " +
+                "\n Arthur essaie de vous divertir en attendant de pouvoir travailler" +
+                "\n " +
+                "\n J'espère que ça ne va pas être le giga rush en fin de projet, " +
+                "\n si c'est le cas... bah RIP" +
+                "\n TRAVAIL PLUS VITE !!!" +
+                "\n " +
+                "\n Nan je déconne, faut attendre que ça recompille" +
+                "\n " +
+                "\n Imagine une petite musique d'ascenseur ");
         }
 
         GUILayout.FlexibleSpace();
@@ -265,15 +342,19 @@ public class Tool_IntegrationPipeline : EditorWindow
             switch (actualMode)
             {
                 case Mode.None:
+
                     break;
 
                 case Mode.Graphic:
+
                     break;
 
                 case Mode.Balancing:
+
                     break;
 
                 case Mode.Audio:
+
                     break;
 
                 default:
@@ -300,44 +381,24 @@ public class Tool_IntegrationPipeline : EditorWindow
         return s;
     }
 
-    private void GenerateNewSco<T>(T tempSCO, Mode mode) where T : UnityEngine.ScriptableObject
+    private void GenerateNewSco<T>(T tempSCO, Mode mode) where T : ScriptableObject
     {
         //Génère l'instance
         T asset = CreateInstance<T>();
         asset = tempSCO;
-        switch (mode)
-        {
-            case Mode.Graphic:
-                tempGraphic_SCO = new ArtTweekScriptableObject();
-                break;
-
-            case Mode.Balancing:
-                tempBalancing_SCO = new GameplayTweekScriptableObject();
-                break;
-
-            case Mode.Audio:
-                tempSound_SCO = new SoundTweekScriptableObject();
-                break;
-
-            default:
-                tempGraphic_SCO = new ArtTweekScriptableObject();
-                tempBalancing_SCO = new GameplayTweekScriptableObject();
-                tempSound_SCO = new SoundTweekScriptableObject();
-                break;
-        }
 
         //Trouve le Path
         string path;
         switch (mode)
         {
             case Mode.Graphic:
-                path = TweekCore.graphicAssetsDirectory + "/";
+                path = Data.graphicAssetsDirectory + "/";
                 break;
             case Mode.Balancing:
-                path = TweekCore.gameplayAssetsDirectory + "/";
+                path = Data.gameplayAssetsDirectory + "/";
                 break;
             case Mode.Audio:
-                path = TweekCore.soundAssetsDirectory + "/";
+                path = Data.soundAssetsDirectory + "/";
                 break;
             default:
                 path = "Assets" + "/";
@@ -345,11 +406,17 @@ public class Tool_IntegrationPipeline : EditorWindow
         }
         path += "NewGraphSCO.asset";
 
+        //Create The new Asset
         AssetDatabase.CreateAsset(asset, path);
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
         EditorUtility.FocusProjectWindow();
         Selection.activeObject = asset;
+
+        //Remplace the Hole
+        ReinitialisationTempSCO(Mode.Graphic);
+        ReinitialisationTempSCO(Mode.Balancing);
+        ReinitialisationTempSCO(Mode.Audio);
     }
     public void ApplyValues()
     {

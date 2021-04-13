@@ -7,11 +7,15 @@ using UnityEngine;
 /// </summary>
 static class IntePipeProjectSettings
 {
+    private static IntePipeSettingsData data;
+
     [SettingsProvider]
     public static SettingsProvider CreateThalesSettingsProvider()
     {
         float valuesGap = 5; //in pixel
         float categoriesGap = 15; //in pixel
+
+        data = IntePipeSettingsData.GetOrCreateSettings();
 
         // (path in Settings window, scope of setting [User or Project])
         var provider = new SettingsProvider("_Thales/IntegrationPipeline", SettingsScope.Project)
@@ -31,7 +35,7 @@ static class IntePipeProjectSettings
                         //Nom
                         GUILayout.Label("ScenesFolderPath", EditorStyles.boldLabel, GUILayout.Width(160));
                         //Champs
-                        TweekCore.scenesPath = GUILayout.TextField(TweekCore.scenesPath, EditorStyles.textArea);
+                        data.scenesPath = GUILayout.TextField(data.scenesPath, EditorStyles.textArea);
                     }
                     GUILayout.Space(valuesGap);
                     
@@ -41,7 +45,7 @@ static class IntePipeProjectSettings
                         //Nom
                         GUILayout.Label("PrefabFolderPath", EditorStyles.boldLabel, GUILayout.Width(160));
                         //Champs
-                        TweekCore.prefabsPath = GUILayout.TextField(TweekCore.prefabsPath, EditorStyles.textArea);
+                        data.prefabsPath = GUILayout.TextField(data.prefabsPath, EditorStyles.textArea);
                     }
                     GUILayout.Space(valuesGap);
                 }
@@ -59,7 +63,7 @@ static class IntePipeProjectSettings
                         //Nom
                         GUILayout.Label("FolderPath_SoundAssets", EditorStyles.boldLabel, GUILayout.Width(160));
                         //Champs
-                        TweekCore.soundAssetsDirectory = GUILayout.TextField(TweekCore.soundAssetsDirectory, EditorStyles.textField);
+                        data.soundAssetsDirectory = GUILayout.TextField(data.soundAssetsDirectory, EditorStyles.textField);
                     }
                     GUILayout.Space(valuesGap);
 
@@ -69,7 +73,7 @@ static class IntePipeProjectSettings
                         //Nom
                         GUILayout.Label("FolderPath_GraphicAssets", EditorStyles.boldLabel, GUILayout.Width(160));
                         //Champs
-                        TweekCore.graphicAssetsDirectory = GUILayout.TextField(TweekCore.graphicAssetsDirectory, EditorStyles.textField);
+                        data.graphicAssetsDirectory = GUILayout.TextField(data.graphicAssetsDirectory, EditorStyles.textField);
                     }
                     GUILayout.Space(valuesGap);
 
@@ -79,7 +83,7 @@ static class IntePipeProjectSettings
                         //Nom
                         GUILayout.Label("FolderPath_GameplayAssets", EditorStyles.boldLabel, GUILayout.Width(160));
                         //Champs
-                        TweekCore.gameplayAssetsDirectory = GUILayout.TextField(TweekCore.gameplayAssetsDirectory, EditorStyles.textField);
+                        data.gameplayAssetsDirectory = GUILayout.TextField(data.gameplayAssetsDirectory, EditorStyles.textField);
                     }
                     GUILayout.Space(valuesGap);
                 }
@@ -97,7 +101,7 @@ static class IntePipeProjectSettings
                         //Nom
                         GUILayout.Label("ScoScriptPath_Sound", EditorStyles.boldLabel, GUILayout.Width(160));
                         //Champs
-                        TweekCore.soundScoPath = GUILayout.TextField(TweekCore.soundScoPath, EditorStyles.textField);
+                        data.soundScoPath = GUILayout.TextField(data.soundScoPath, EditorStyles.textField);
                     }
                     GUILayout.Space(valuesGap);
 
@@ -107,7 +111,7 @@ static class IntePipeProjectSettings
                         //Nom
                         GUILayout.Label("ScoScriptPath_Graphic", EditorStyles.boldLabel, GUILayout.Width(160));
                         //Champs
-                        TweekCore.graphicScoPath = GUILayout.TextField(TweekCore.graphicScoPath, EditorStyles.textField);
+                        data.graphicScoPath = GUILayout.TextField(data.graphicScoPath, EditorStyles.textField);
                     }
                     GUILayout.Space(valuesGap);
 
@@ -117,7 +121,7 @@ static class IntePipeProjectSettings
                         //Nom
                         GUILayout.Label("ScoScriptPath_Gameplay", EditorStyles.boldLabel, GUILayout.Width(160));
                         //Champs
-                        TweekCore.gameplayScoPath = GUILayout.TextField(TweekCore.gameplayScoPath, EditorStyles.textField);
+                        data.gameplayScoPath = GUILayout.TextField(data.gameplayScoPath, EditorStyles.textField);
                     }
                     GUILayout.Space(valuesGap);
                 }
@@ -127,5 +131,49 @@ static class IntePipeProjectSettings
             keywords = new HashSet<string>(new[] { "Thales", "Integration", "SCO" })
         };
         return provider;
+    }
+}
+
+class IntePipeSettingsData : ScriptableObject
+{
+    public const string meshToolSettingsDataPath = "Assets/Tools/Internal/TweekSystem/Editor/IntegrationPipeSettingsData.asset";
+
+    public string scenesPath;
+    public string prefabsPath;
+
+    public string soundScoPath;
+    public string graphicScoPath;
+    public string gameplayScoPath;
+
+    public string soundAssetsDirectory;
+    public string graphicAssetsDirectory;
+    public string gameplayAssetsDirectory;
+
+    internal static IntePipeSettingsData GetOrCreateSettings()
+    {
+        var settings = AssetDatabase.LoadAssetAtPath<IntePipeSettingsData>(meshToolSettingsDataPath);
+        if (settings == null)
+        {
+            settings = ScriptableObject.CreateInstance<IntePipeSettingsData>();
+            settings.scenesPath = "Assets/_Scenes";
+            settings.prefabsPath = "Assets/Prefabs";
+
+            settings.soundScoPath = "Assets/Tools/Internal/TweekSystem/SoundTweekScriptableObject.cs";
+            settings.graphicScoPath = "Assets/Tools/Internal/TweekSystem/ArtTweekScriptableObject.cs";
+            settings.gameplayScoPath = "Assets/Tools/Internal/TweekSystem/GameplayTweekScriptableObject.cs";
+
+            settings.soundAssetsDirectory = "Assets/IntegrationSCO/Sound";
+            settings.graphicAssetsDirectory = "Assets/IntegrationSCO/Art";
+            settings.gameplayAssetsDirectory = "Assets/IntegrationSCO/Gameplay"; 
+            
+            AssetDatabase.CreateAsset(settings, meshToolSettingsDataPath);
+            AssetDatabase.SaveAssets();
+        }
+        return settings;
+    }
+
+    internal static SerializedObject GetSerializedSettings()
+    {
+        return new SerializedObject(GetOrCreateSettings());
     }
 }
