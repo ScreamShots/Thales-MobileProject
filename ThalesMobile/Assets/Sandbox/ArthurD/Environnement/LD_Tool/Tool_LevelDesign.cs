@@ -84,11 +84,11 @@ namespace Thales.Tool.LevelDesign
                     if (editZones[i].points.Count != 0)
                     {
                         //Create Points storage space
-                        enviro.zones[i].points = new Vector3[editZones[i].points.Count];
+                        enviro.zones[i].points = new Vector2[editZones[i].points.Count];
 
                         for (int j = 0; j < editZones[i].points.Count; j++)
                         {
-                            enviro.zones[i].points[j] = editZones[i].points[j].position;
+                            enviro.zones[i].points[j] = new Vector2(editZones[i].points[j].position.x, editZones[i].points[j].position.z);
                         }
                     }
                     else
@@ -107,7 +107,7 @@ namespace Thales.Tool.LevelDesign
         [ContextMenu("TextureGeneration")]
         public void GenerateTexture()
         {
-            SeaTextureGenerator.GenerateSeaTexture(limit, "squalala");
+            SeaTextureGenerator.GenerateSeaTexture(enviro, "squalala");
         }
 
         #endregion

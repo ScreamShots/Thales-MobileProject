@@ -14,8 +14,46 @@ public class Environnement : MonoBehaviour
     [Space(20)]
     public Zone[] zones;
 
+    public Vector2 testPoint;
+    public int result;
+
+    public void TestZone()
+    {
+        result = ZoneIn(testPoint);
+    }
+
+    public int ZoneIn(Vector2 point)
+    {
+        if (limit.InBoundary(point))
+        {
+            if (zones.Length != 0)
+            {
+                for (int i = 0; i < zones.Length; i++)
+                {
+                    if (zones[i].PointInZone(point))
+                    {
+                        return i+1;
+                    }
+                }
+                return 0;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
+
     private void OnDrawGizmos()
     {
+        Gizmos.DrawSphere(new Vector3(testPoint.x, 0, testPoint.y), 2f);
+        TestZone();
+
         transform.position = new Vector3(limit.offSet.x, transform.position.y, limit.offSet.y);
 
         if (showDebug)
@@ -79,17 +117,19 @@ public class Environnement : MonoBehaviour
         {
             Gizmos.color = zone.debugColor;
 
-            Gizmos.DrawLine(zone.points[zone.points.Length - 1], zone.points[0]);
+            Gizmos.DrawLine(
+                new Vector3(zone.points[zone.points.Length - 1].x, 0, zone.points[zone.points.Length - 1].y),
+                new Vector3(zone.points[0].x, 0, zone.points[0].y));
             if (drawWind)
             {
-                DrawWind(zone.points[zone.points.Length - 1], zone.windDir, zone.debugColor);
+                DrawWind(new Vector3(zone.points[zone.points.Length - 1].x, 0, zone.points[zone.points.Length - 1].y), zone.windDir, zone.debugColor);
             }
             for (int i = 0; i < zone.points.Length - 1; i++)
             {
-                Gizmos.DrawLine(zone.points[i], zone.points[i + 1]);
+                Gizmos.DrawLine(new Vector3(zone.points[i].x, 0, zone.points[i].y), new Vector3(zone.points[i+1].x, 0, zone.points[i+1].y));
                 if (drawWind)
                 {
-                    DrawWind(zone.points[i], zone.windDir, zone.debugColor);
+                    DrawWind(new Vector3(zone.points[i].x, 0, zone.points[i].y), zone.windDir, zone.debugColor);
                 }
             }
         }
