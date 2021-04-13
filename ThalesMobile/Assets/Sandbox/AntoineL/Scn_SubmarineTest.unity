@@ -958,13 +958,13 @@ MonoBehaviour:
   avoidEffectSliceReach: 3
   intermediatePosRefreshRate: 3
   distanceToRefrehIntemediatePos: 1
-  benefPointFactorWeightWhileCalme: 2
-  benefPointFactorWeightWhileInquiet: 2
-  benefPointFactorWeightWhilePanique: 2.8
-  distanceFactorWeightWhileCalme: 7
-  distanceFactorWeightWhileInquiet: 5
-  distanceFactorWeightWhilePanique: 3
-  isSubmarineDisplayed: 1
+  benefPointFactorWeightWhileCalm: 2
+  benefPointFactorWeightWhileWorried: 2
+  benefPointFactorWeightWhilePanicked: 2.8
+  distanceFactorWeightWhileCalm: 7
+  distanceFactorWeightWhileWorried: 5
+  distanceFactorWeightWhilePanicked: 3
+  isSubmarineDisplayed: 0
 --- !u!4 &1193060862
 Transform:
   m_ObjectHideFlags: 0
