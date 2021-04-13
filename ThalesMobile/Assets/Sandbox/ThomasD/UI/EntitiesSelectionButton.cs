@@ -24,18 +24,20 @@ public class EntitiesSelectionButton : MonoBehaviour
     {
         if (manager.currentButton != null)
             manager.currentButton.Deselect();
-
+       
         GameManager.Instance.playerController.currentSelectedEntity = linkedEntity;
         GameManager.Instance.cameraController.SetTarget(linkedEntity.transform);
 
+        GameManager.Instance.uiHandler.entityDeckUI.UpdateCurrentDeck(linkedEntity.entityDeck);
+        
         //Animate UI button
-        animator.anim.Play(animator.rectTransform, animator.canvasGroup);
+        //animator.anim.Play(animator.rectTransform, animator.canvasGroup);
     }
 
     public void Deselect()
     {
         //Animate UI button
-        animator.anim.PlayBackward(animator.rectTransform, animator.canvasGroup, true);
+        //animator.anim.PlayBackward(animator.rectTransform, animator.canvasGroup, true);
     }
 
 }

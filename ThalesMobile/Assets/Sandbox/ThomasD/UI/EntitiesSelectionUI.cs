@@ -7,11 +7,12 @@ using UnityEngine.UI;
 public class EntitiesSelectionUI : MonoBehaviour
 {
 
-    LevelManager levelManager;
-    List<PlayerOceanEntity> entities = new List<PlayerOceanEntity>();
+    //Manager
+    [HideInInspector]public UIHandler handler;
+    [HideInInspector]public List<EntitiesSelectionButton> buttons = new List<EntitiesSelectionButton>(); 
     
     [Header("UI Elements")]
-    public GameObject selectionParent;
+    public GameObject entitySelectionParent;
     public GameObject entitySelectionForeground;
 
     [Header("Buttons References")]
@@ -28,40 +29,43 @@ public class EntitiesSelectionUI : MonoBehaviour
 
 
     // Start is called before the first frame update
-    IEnumerator Start()
+    void Start()
     {
-        yield return null;
-        levelManager = GameManager.Instance.levelManager;
-        entities = levelManager.playerOceanEntities;
-
-        Initialize();
-
-        entitySelectionForeground.transform.SetAsLastSibling();
+        handler.uIElements.Add(entitySelectionForeground);
+        handler.uIElements.Add(entitySelectionParent);
     }
 
-    private void Initialize()
+    public void Initialize()
     {
-        for (int i = 0; i < entities.Count; i++)
+        for (int i = 0; i < handler.entities.Count; i++)
         {
-            if(entities[i].GetType() !=  typeof(Helicopter))
+            if(handler.entities[i].GetType() !=  typeof(Helicopter))
             {
-                if(entities[i].GetType() == typeof(OceanEntities.Plane))
+                if(handler.entities[i].GetType() == typeof(OceanEntities.Plane))
                 {
-                    GameObject temp =  Instantiate(planeButton, selectionParent.transform);
+                    GameObject temp =  Instantiate(planeButton, entitySelectionParent.transform);
                     var esb = temp.GetComponent<EntitiesSelectionButton>();
-                    esb.linkedEntity = entities[i];
+                    esb.linkedEntity = handler.entities[i];
                     esb.manager = this;
                     temp.transform.localScale = Vector3.one;
+                    buttons.Add(esb);
+                    handler.uIElements.Add(temp);
+                    handler.entities[i].linkedButton = esb;
                 }
-                else if(entities[i].GetType() == typeof(Ship))
+                else if(handler.entities[i].GetType() == typeof(Ship))
                 {
-                    GameObject temp = Instantiate(shipButton, selectionParent.transform);
+                    GameObject temp = Instantiate(shipButton, entitySelectionParent.transform); ;
                     var esb = temp.GetComponent<EntitiesSelectionButton>();
-                    esb.linkedEntity = entities[i];
+                    esb.linkedEntity = handler.entities[i];
                     esb.manager = this;
                     temp.transform.localScale = Vector3.one;
+                    buttons.Add(esb);
+                    handler.uIElements.Add(temp);
+                    handler.entities[i].linkedButton = esb;
                 }
             }
         }
+        entitySelectionForeground.transform.SetAsLastSibling();
+        buttons[0].SelectEntity();
     }
 }

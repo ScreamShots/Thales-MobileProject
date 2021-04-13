@@ -51,6 +51,7 @@ MonoBehaviour:
   playerController: {fileID: 4762022619942076001}
   cameraController: {fileID: 0}
   levelManager: {fileID: 0}
+  uiHandler: {fileID: 0}
 --- !u!114 &3682279617419880169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,9 +65,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 0}
-  selectableEntity:
+  selectableEntityLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
+  UILayer:
+    serializedVersion: 2
+    m_Bits: 0
   getEntityTarget: 0
 --- !u!114 &4762022619942076001
 MonoBehaviour:
@@ -158,6 +162,7 @@ GameObject:
   - component: {fileID: 8417863525075593334}
   - component: {fileID: 6186942485271632867}
   - component: {fileID: 9134965645713991661}
+  - component: {fileID: 2486475683445467195}
   m_Layer: 5
   m_Name: TransitionPanel
   m_TagString: Untagged
@@ -206,7 +211,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -221,6 +226,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!225 &2486475683445467195
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6949550513953256557}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &7482286748157245109
 GameObject:
   m_ObjectHideFlags: 0

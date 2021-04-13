@@ -26,6 +26,10 @@ namespace OceanEntities
         public Vector2 currentTargetPoint = new Vector2(-9999,-9999);
         [HideInInspector]public Vector2 nullVector = new Vector2(-9999, -9999);
 
+        [Header("UI")]
+        public GameObject entityDeck;
+        [HideInInspector]public EntitiesSelectionButton linkedButton;
+
 
         /// <summary>
         /// Use this method to create the waiting routine of the entity

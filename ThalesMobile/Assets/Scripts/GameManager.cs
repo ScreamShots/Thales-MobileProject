@@ -19,6 +19,9 @@ public class GameManager : MonoBehaviour
     [Header("Level")]
     public LevelManager levelManager;
 
+    [Header("UI")]
+    public UIHandler uiHandler;
+
     private void Awake()
     {
         #region Singleton Declaration / DDOL

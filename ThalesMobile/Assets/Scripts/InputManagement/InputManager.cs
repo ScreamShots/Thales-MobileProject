@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using OceanEntities;
 using Plane = UnityEngine.Plane;
+using UnityEngine.EventSystems;
 
 public class InputManager : MonoBehaviour
 {
@@ -12,9 +13,9 @@ public class InputManager : MonoBehaviour
     private CameraController camController;
 
     [Header("Game")]
-    public LayerMask selectableEntity;
+    public LayerMask selectableEntityLayer;
+    public LayerMask UILayer;
     [HideInInspector] public bool getEntityTarget = false;
-    private bool touchedShip;
     private bool gettingEntityTarget;
 
     //Touch inputs
@@ -23,9 +24,21 @@ public class InputManager : MonoBehaviour
     private float distance = 0;
     private float lastDistance;
 
+    //UICards
+    [HideInInspector] public bool isDraggingCard;
+    [HideInInspector] public InteractableUI currentSelectedCard;
+
+    //Raycasting
+    BaseRaycaster raycaster;
+    private List<RaycastResult> raycastResults = new List<RaycastResult>();
+    EventSystem currentEventSystem;
+    PointerEventData pointerData;
+
     void Start()
     {
+        currentEventSystem = EventSystem.current;
         camController = GameManager.Instance.cameraController;
+
     }
 
     void Update()
@@ -35,38 +48,57 @@ public class InputManager : MonoBehaviour
         {
             touch = Input.GetTouch(0);
 
-            if (getEntityTarget)
-            {
-                //Get the sea position and pass it to the player controller
-                touchedSeaPosition = GetSeaPosition();
-                GameManager.Instance.playerController.SetEntityMoveTarget(touchedSeaPosition);
-                gettingEntityTarget = true;
-            }
-            else
-            {
-                //If touched check if selected a Entity
-                if (touch.phase == TouchPhase.Began)
-                {
-                    RaycastHit hit;
-                    Ray touchRay;
-                    touchRay = mainCamera.ScreenPointToRay(touch.position);
-                    if (Physics.Raycast(touchRay, out hit, 200f, selectableEntity))
-                    {
-                        GameManager.Instance.playerController.currentSelectedEntity = hit.collider.transform.parent.GetComponent<PlayerOceanEntity>();
-                        camController.SetTarget(hit.collider.transform);
-                        touchedShip = true;
-                    }
-                }
+            pointerData = new PointerEventData(currentEventSystem);
+            pointerData.position = touch.position;
+            currentEventSystem.RaycastAll(pointerData, raycastResults);
 
-                //If drag then move camera
-                else if (touch.deltaPosition.magnitude > 5f)
+            if(raycastResults.Count < 1)
+            {
+                if (getEntityTarget)
                 {
-                    camController.moveDirection = -touch.deltaPosition;
+                    gettingEntityTarget = true;
+                    
+                    //Get the sea position and pass it to the player controller
+                    touchedSeaPosition = GetSeaPosition();
+                    
+                    //MoveGizmo
+
+
+                    //Move with gizmo if not dragging a card
+                    if(!isDraggingCard)
+                        GameManager.Instance.playerController.SetEntityMoveTarget(touchedSeaPosition);
+                    
                 }
-                else if(touch.deltaPosition.magnitude < 5f)
+                else
                 {
-                    camController.moveDirection = Vector2.zero;
+                    //If touched check if selected a Entity
+                    if (touch.phase == TouchPhase.Began)
+                    {
+                        RaycastHit hit;
+                        Ray touchRay;
+                        touchRay = mainCamera.ScreenPointToRay(touch.position);
+                        if (Physics.Raycast(touchRay, out hit, 200f, selectableEntityLayer))
+                        {
+                            GameManager.Instance.playerController.currentSelectedEntity = hit.collider.transform.parent.GetComponent<PlayerOceanEntity>();
+                            camController.SetTarget(hit.collider.transform);
+
+                            //Select Button
+                            GameManager.Instance.playerController.currentSelectedEntity.linkedButton.SelectEntity();
+                        }
+                    }
+
+                    //If drag then move camera
+                    else if (touch.deltaPosition.magnitude > 5f)
+                    {
+                        camController.moveDirection = -touch.deltaPosition;
+                    }
+                    
                 }
+            }
+
+            if (touch.deltaPosition.magnitude < 5f)
+            {
+                camController.moveDirection = Vector2.zero;
             }
         }
 
@@ -110,12 +142,11 @@ public class InputManager : MonoBehaviour
             {
                 getEntityTarget = false;
                 gettingEntityTarget = false;
-            }
+                if(currentSelectedCard!=null)
+                    currentSelectedCard.Deselect();
 
-            if(touchedShip)
-            {
-                getEntityTarget = true;
-                touchedShip = false;
+                
+                GameManager.Instance.playerController.SetEntityMoveTarget(touchedSeaPosition);
             }
         }
     }
