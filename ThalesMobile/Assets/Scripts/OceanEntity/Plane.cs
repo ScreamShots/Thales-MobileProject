@@ -14,6 +14,7 @@ namespace OceanEntities
 
         //Waiting routine variables
         [Header("Waiting routine")]
+        public float minimumSpeed;
         private Vector2 waitingPoint = new Vector2(-9999,-9999);
         private Vector2 waitingTarget = new Vector2(-9999, -9999);
 
@@ -22,7 +23,6 @@ namespace OceanEntities
 
         private float radius = 1;
         private float waitingRoutineRadius = 0;
-        public float minimumSpeed;
 
 
         private bool canWait;
@@ -121,12 +121,6 @@ namespace OceanEntities
         
         public override void Waiting()
         {
-            Debug.DrawRay(Coordinates.ConvertVector2ToWorld(waitingTarget), Vector3.up, Color.red);
-            
-            Debug.DrawRay(Coordinates.ConvertVector2ToWorld(waitingPoint), Vector3.up, Color.green);
-
-            Debug.DrawRay(Coordinates.ConvertVector2ToWorld(tempTarget), Vector3.up, Color.blue);
-
             //Place center point of routine if not placed aswell as new routine targets.
             if (waitingPoint == nullVector)
             {

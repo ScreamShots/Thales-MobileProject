@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 6972535766132273330}
   - component: {fileID: 1292235220106122970}
   - component: {fileID: 8608325869771670585}
+  - component: {fileID: 8005171163153311998}
   m_Layer: 0
   m_Name: SonobuyDeployerCard
   m_TagString: Untagged
@@ -170,14 +171,17 @@ MonoBehaviour:
     anim: {fileID: 0}
     rectTransform: {fileID: 0}
     canvasGroup: {fileID: 0}
+    originalPos: {x: 0, y: 0}
   holdAnim:
     anim: {fileID: 0}
     rectTransform: {fileID: 0}
     canvasGroup: {fileID: 0}
+    originalPos: {x: 0, y: 0}
   selectedAnim:
-    anim: {fileID: 0}
-    rectTransform: {fileID: 0}
+    anim: {fileID: 11400000, guid: e024050e4841d2f47a7045279238d15f, type: 2}
+    rectTransform: {fileID: 7052347691197551198}
     canvasGroup: {fileID: 0}
+    originalPos: {x: 0, y: 0}
   darkenBackWhileHold: 0
   canBeSelected: 0
   isDragged: 0
@@ -202,6 +206,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_AspectMode: 1
   m_AspectRatio: 0.66
+--- !u!114 &8005171163153311998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1746725121760616044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc9e25fb52c9d3b4ab4f91828a8d488f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  card: {fileID: 1292235220106122970}
+  captas: {fileID: 11400000, guid: 4fb96da5beee0844cb00120a47df60ff, type: 2}
 --- !u!1 &5125321413628922338
 GameObject:
   m_ObjectHideFlags: 0
@@ -217,7 +235,7 @@ GameObject:
   - component: {fileID: 4357396911022476696}
   - component: {fileID: 5762810735815491574}
   m_Layer: 0
-  m_Name: MovementCard
+  m_Name: MovementCard1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -295,14 +313,17 @@ MonoBehaviour:
     anim: {fileID: 0}
     rectTransform: {fileID: 0}
     canvasGroup: {fileID: 0}
+    originalPos: {x: 0, y: 0}
   holdAnim:
     anim: {fileID: 0}
     rectTransform: {fileID: 0}
     canvasGroup: {fileID: 0}
+    originalPos: {x: 0, y: 0}
   selectedAnim:
-    anim: {fileID: 0}
-    rectTransform: {fileID: 0}
+    anim: {fileID: 11400000, guid: e024050e4841d2f47a7045279238d15f, type: 2}
+    rectTransform: {fileID: 8474029713748877319}
     canvasGroup: {fileID: 0}
+    originalPos: {x: 0, y: 0}
   darkenBackWhileHold: 0
   canBeSelected: 0
   isDragged: 0

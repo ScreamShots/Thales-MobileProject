@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,34 +17,101 @@ public class TweeningAnim : ScriptableObject
     public Vector3 animationEndScale;
     public float animationStartRot;
     public float animationEndRot;
+    public bool movementRelativeToOriginalPos;
     public Gradient colorAnimation;
-    public bool isImage;
+    public bool useColorChange;
     public Image colorImage;
-    public Text colorText;
 
-    public IEnumerator Play(RectTransform animatedTransform, CanvasGroup canvasGroup)
+    private RectTransform animatedTransform;
+    private CanvasGroup canvasGroup;
+
+    public IEnumerator Play(TweeningAnimator animator, Vector2 originalPos)
     {
-        float time = 0;
-        animatedTransform.anchoredPosition = animationStartPos;
+        animatedTransform = animator.rectTransform;
+        canvasGroup = animator.canvasGroup;
 
-        if(isImage)
+        float time = 0;
+        if(movementRelativeToOriginalPos)
         {
-            colorImage = animatedTransform.GetComponent<Image>();
+            animatedTransform.anchoredPosition = originalPos;
         }
         else
         {
-            colorText = animatedTransform.GetComponent<Text>();
+            animatedTransform.anchoredPosition = animationStartPos;
         }
 
+
+        if (useColorChange)
+        {
+            colorImage = animatedTransform.GetComponent<Image>();
+        }
         while(time < animationTime)
         {
-            if(isImage)
+            if(useColorChange && colorImage != null)
             {
                 colorImage.color = colorAnimation.Evaluate(time / animationTime);
+                if(canvasGroup != null)
+                {
+                    colorImage.color = new Color(colorImage.color.r, colorImage.color.g, colorImage.color.b, 1);
+                }
             }
-            else
+
+
+            animatedTransform.anchoredPosition = Vector2.Lerp(movementRelativeToOriginalPos ? originalPos : animationStartPos, movementRelativeToOriginalPos ? originalPos + animationEndPos : animationEndPos, animationCurve.Evaluate(time / animationTime));
+
+            animatedTransform.localRotation = Quaternion.Lerp(Quaternion.Euler(0, 0, animationStartRot), Quaternion.Euler(0, 0, animationEndRot), customRotCurve ? rotAnimationCurve.Evaluate(time / animationTime) : animationCurve.Evaluate(time / animationTime));
+
+            animatedTransform.localScale = Vector3.Lerp(animationStartScale, animationEndScale, customScaleCurve ? scaleAnimationCurve.Evaluate(time / animationTime) : animationCurve.Evaluate(time / animationTime));
+
+            if (canvasGroup != null)
             {
-                colorText.color = colorAnimation.Evaluate(time / animationTime);
+                canvasGroup.alpha = colorAnimation.Evaluate(time / animationTime).a;
+            }
+
+            time += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+        animatedTransform.anchoredPosition = movementRelativeToOriginalPos ? originalPos + animationEndPos : animationEndPos;
+        animatedTransform.localRotation = Quaternion.Euler(0, 0, animationEndRot);
+        animatedTransform.localScale = animationEndScale;
+
+        if (useColorChange && colorImage != null)
+        {
+            colorImage.color = colorAnimation.Evaluate(1);
+            if (canvasGroup != null)
+            {
+                colorImage.color = new Color(colorImage.color.r, colorImage.color.g, colorImage.color.b, 1);
+            }
+        }
+
+        if (canvasGroup != null)
+        {
+            canvasGroup.alpha = colorAnimation.Evaluate(1).a;
+        }
+    }
+
+    public IEnumerator Play(TweeningAnimator animator)
+    {
+        animatedTransform = animator.rectTransform;
+        canvasGroup = animator.canvasGroup;
+
+        float time = 0;
+        animatedTransform.anchoredPosition = animationStartPos;
+
+
+        if (useColorChange)
+        {
+            colorImage = animatedTransform.GetComponent<Image>();
+        }
+        while (time < animationTime)
+        {
+            if (useColorChange && colorImage != null)
+            {
+                colorImage.color = colorAnimation.Evaluate(time / animationTime);
+                if (canvasGroup != null)
+                {
+                    colorImage.color = new Color(colorImage.color.r, colorImage.color.g, colorImage.color.b, 1);
+                }
             }
             animatedTransform.anchoredPosition = Vector2.Lerp(animationStartPos, animationEndPos, animationCurve.Evaluate(time / animationTime));
 
@@ -65,48 +131,116 @@ public class TweeningAnim : ScriptableObject
         animatedTransform.localRotation = Quaternion.Euler(0, 0, animationEndRot);
         animatedTransform.localScale = animationEndScale;
 
-        if (isImage)
+        if (useColorChange && colorImage != null)
         {
             colorImage.color = colorAnimation.Evaluate(1);
-        }
-        else
-        {
-            colorText.color = colorAnimation.Evaluate(1);
+            if (canvasGroup != null)
+            {
+                colorImage.color = new Color(colorImage.color.r, colorImage.color.g, colorImage.color.b, 1);
+            }
         }
 
-        if(canvasGroup != null)
+        if (canvasGroup != null)
         {
             canvasGroup.alpha = colorAnimation.Evaluate(1).a;
         }
     }
 
-
-    public IEnumerator PlayBackward(RectTransform animatedTransform, CanvasGroup canvasGroup, bool onlyInversePos)
+    public IEnumerator PlayBackward(TweeningAnimator animator, Vector2 originalPos, bool onlyInversePos)
     {
-        float time = 0;
-        animatedTransform.anchoredPosition = animationEndPos;
+        animatedTransform = animator.rectTransform;
+        canvasGroup = animator.canvasGroup;
 
-        if (isImage)
+        float time = 0;
+        if (movementRelativeToOriginalPos)
         {
-            colorImage = animatedTransform.GetComponent<Image>();
+            animatedTransform.anchoredPosition = originalPos + animationEndPos;
         }
         else
         {
-            colorText = animatedTransform.GetComponent<Text>();
+            animatedTransform.anchoredPosition = animationEndPos;
+        }
+
+        if (useColorChange)
+        {
+            colorImage = animatedTransform.GetComponent<Image>();
         }
 
         while (time < animationTime)
         {
-            if (isImage)
+            if (useColorChange && colorImage != null)
             {
                 colorImage.color = colorAnimation.Evaluate(1 - (time / animationTime));
-            }
-            else
-            {
-                colorText.color = colorAnimation.Evaluate(1 - (time / animationTime));
+                if (canvasGroup != null)
+                {
+                    colorImage.color = new Color(colorImage.color.r, colorImage.color.g, colorImage.color.b, 1);
+                }
             }
 
             if(onlyInversePos)
+            {
+                animatedTransform.anchoredPosition = Vector2.Lerp(movementRelativeToOriginalPos ? originalPos + animationEndPos : animationEndPos, movementRelativeToOriginalPos ? originalPos : animationStartPos, animationCurve.Evaluate(time / animationTime));
+                animatedTransform.localRotation = Quaternion.Lerp(Quaternion.Euler(0, 0, animationEndRot), Quaternion.Euler(0, 0, animationStartRot), customRotCurve ? rotAnimationCurve.Evaluate(time / animationTime) : animationCurve.Evaluate(time / animationTime));
+                animatedTransform.localScale = Vector3.Lerp(animationEndScale, animationStartScale, customScaleCurve ? scaleAnimationCurve.Evaluate(time / animationTime) : animationCurve.Evaluate(time / animationTime));
+            }
+            else
+            {
+                animatedTransform.anchoredPosition = Vector2.Lerp(movementRelativeToOriginalPos ? originalPos : animationStartPos, movementRelativeToOriginalPos ? originalPos + animationEndPos : animationEndPos, animationCurve.Evaluate(1 - (time / animationTime)));
+                animatedTransform.localRotation = Quaternion.Lerp(Quaternion.Euler(0, 0, animationStartRot), Quaternion.Euler(0, 0, animationEndRot), customRotCurve ? rotAnimationCurve.Evaluate(1 - (time / animationTime)) : animationCurve.Evaluate(1 - (time / animationTime)));
+                animatedTransform.localScale = Vector3.Lerp(animationStartScale, animationEndScale, customScaleCurve ? scaleAnimationCurve.Evaluate(1- (time / animationTime)) : animationCurve.Evaluate(1 - (time / animationTime)));
+            }
+
+            if (canvasGroup != null)
+            {
+                canvasGroup.alpha = colorAnimation.Evaluate(1 - (time / animationTime)).a;
+            }
+
+            time += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+        animatedTransform.anchoredPosition = movementRelativeToOriginalPos ? originalPos : animationStartPos;
+        animatedTransform.localRotation = Quaternion.Euler(0, 0, animationStartRot);
+        animatedTransform.localScale = animationStartScale;
+
+        if (useColorChange && colorImage != null)
+        {
+            colorImage.color = colorAnimation.Evaluate(0);
+            if (canvasGroup != null)
+            {
+                colorImage.color = new Color(colorImage.color.r, colorImage.color.g, colorImage.color.b, 1);
+            }
+        }
+
+        if (canvasGroup != null)
+        {
+            canvasGroup.alpha = colorAnimation.Evaluate(0).a;
+        }
+    }
+
+    public IEnumerator PlayBackward(TweeningAnimator animator, bool onlyInversePos)
+    {
+        animatedTransform = animator.rectTransform;
+        canvasGroup = animator.canvasGroup;
+        float time = 0;
+        animatedTransform.anchoredPosition = animationEndPos;
+
+        if (useColorChange)
+        {
+            colorImage = animatedTransform.GetComponent<Image>();
+        }
+
+        while (time < animationTime)
+        {
+            if (useColorChange && colorImage != null)
+            {
+                colorImage.color = colorAnimation.Evaluate(1 - (time / animationTime));
+                if (canvasGroup != null)
+                {
+                    colorImage.color = new Color(colorImage.color.r, colorImage.color.g, colorImage.color.b, 1);
+                }
+            }
+
+            if (onlyInversePos)
             {
                 animatedTransform.anchoredPosition = Vector2.Lerp(animationEndPos, animationStartPos, animationCurve.Evaluate(time / animationTime));
                 animatedTransform.localRotation = Quaternion.Lerp(Quaternion.Euler(0, 0, animationEndRot), Quaternion.Euler(0, 0, animationStartRot), customRotCurve ? rotAnimationCurve.Evaluate(time / animationTime) : animationCurve.Evaluate(time / animationTime));
@@ -116,7 +250,7 @@ public class TweeningAnim : ScriptableObject
             {
                 animatedTransform.anchoredPosition = Vector2.Lerp(animationStartPos, animationEndPos, animationCurve.Evaluate(1 - (time / animationTime)));
                 animatedTransform.localRotation = Quaternion.Lerp(Quaternion.Euler(0, 0, animationStartRot), Quaternion.Euler(0, 0, animationEndRot), customRotCurve ? rotAnimationCurve.Evaluate(1 - (time / animationTime)) : animationCurve.Evaluate(1 - (time / animationTime)));
-                animatedTransform.localScale = Vector3.Lerp(animationStartScale, animationEndScale, customScaleCurve ? scaleAnimationCurve.Evaluate(1- (time / animationTime)) : animationCurve.Evaluate(1 - (time / animationTime)));
+                animatedTransform.localScale = Vector3.Lerp(animationStartScale, animationEndScale, customScaleCurve ? scaleAnimationCurve.Evaluate(1 - (time / animationTime)) : animationCurve.Evaluate(1 - (time / animationTime)));
             }
 
             if (canvasGroup != null)
@@ -131,13 +265,13 @@ public class TweeningAnim : ScriptableObject
         animatedTransform.localRotation = Quaternion.Euler(0, 0, animationStartRot);
         animatedTransform.localScale = animationStartScale;
 
-        if (isImage)
+        if (useColorChange && colorImage != null)
         {
             colorImage.color = colorAnimation.Evaluate(0);
-        }
-        else
-        {
-            colorText.color = colorAnimation.Evaluate(0);
+            if (canvasGroup != null)
+            {
+                colorImage.color = new Color(colorImage.color.r, colorImage.color.g, colorImage.color.b, 1);
+            }
         }
 
         if (canvasGroup != null)

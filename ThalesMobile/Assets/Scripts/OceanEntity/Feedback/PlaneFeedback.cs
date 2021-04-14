@@ -9,27 +9,13 @@ namespace OceanEntities
         [Header("Ship")]
         public Plane renderedPlane;
 
-        [Header("Particles")]
-        public ParticleSystem trailParticles;
-
         [Header("UI")]
         public GameObject selectionCircle;
 
         // Update is called once per frame
         void Update()
-        {
-            if (renderedPlane.currentTargetPoint != null)
-            {
-                RotateModel(renderedPlane);
-                trailParticles.gameObject.SetActive(true);
-            }
-            else
-            {
-                trailParticles.gameObject.SetActive(false);
-            }
-
-            /*
-            if(GameManger.Instance.PlayerController.currentSelectedEntity == renderedPlane)
+        {   
+            if(GameManager.Instance.playerController.currentSelectedEntity == renderedPlane)
             {
                 selectionCircle.SetActive(true);
             }
@@ -37,12 +23,6 @@ namespace OceanEntities
             {
                 selectionCircle.SetActive(false);
             }     
-            */
-        }
-
-        public void RotateModel(Plane plane)
-        {
-            transform.forward = plane.coords.direction;
         }
     }
 

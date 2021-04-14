@@ -25,19 +25,21 @@ public class EntitiesSelectionButton : MonoBehaviour
         if (manager.currentButton != null)
             manager.currentButton.Deselect();
        
+        manager.currentButton = this;
+
         GameManager.Instance.playerController.currentSelectedEntity = linkedEntity;
         GameManager.Instance.cameraController.SetTarget(linkedEntity.transform);
 
         GameManager.Instance.uiHandler.entityDeckUI.UpdateCurrentDeck(linkedEntity.entityDeck);
         
         //Animate UI button
-        //animator.anim.Play(animator.rectTransform, animator.canvasGroup);
+        StartCoroutine(animator.anim.Play(animator, animator.originalPos));
     }
 
     public void Deselect()
     {
         //Animate UI button
-        //animator.anim.PlayBackward(animator.rectTransform, animator.canvasGroup, true);
+        StartCoroutine(animator.anim.PlayBackward(animator, animator.originalPos, true));
     }
 
 }

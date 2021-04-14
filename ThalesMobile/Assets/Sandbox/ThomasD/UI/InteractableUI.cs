@@ -102,10 +102,10 @@ public class InteractableUI : MonoBehaviour
             StopAllCoroutines();
 
             if (darkenBackWhileHold)
-                StartCoroutine(darkBackAnim.anim.Play(darkBackAnim.rectTransform, darkBackAnim.canvasGroup));
+                StartCoroutine(darkBackAnim.anim.Play(darkBackAnim, darkBackAnim.originalPos));
 
             if (holdAnim.rectTransform != null)
-                StartCoroutine(holdAnim.anim.Play(holdAnim.rectTransform, null));
+                StartCoroutine(holdAnim.anim.Play(holdAnim, holdAnim.originalPos));
         }
 
         if (holdTime <= 0 && descriptionOpened)
@@ -113,17 +113,17 @@ public class InteractableUI : MonoBehaviour
             descriptionOpened = false;
 
             if (darkenBackWhileHold)
-                StartCoroutine(darkBackAnim.anim.PlayBackward(darkBackAnim.rectTransform, darkBackAnim.canvasGroup, true));
+                StartCoroutine(darkBackAnim.anim.PlayBackward(darkBackAnim, darkBackAnim.originalPos, true));
 
             if (holdAnim.rectTransform != null)
-                StartCoroutine(holdAnim.anim.PlayBackward(holdAnim.rectTransform, null, true));
+                StartCoroutine(holdAnim.anim.PlayBackward(holdAnim, holdAnim.originalPos, true));
         }
 
 
         if (dragFlag && isHovered && !descriptionOpened && !isSelected && isDragged)
         {
             if (dragAnim.rectTransform != null)
-                StartCoroutine(dragAnim.anim.Play(dragAnim.rectTransform, null));
+                StartCoroutine(dragAnim.anim.Play(dragAnim, dragAnim.originalPos));
             dragFlag = false;
         }
     }
@@ -133,7 +133,7 @@ public class InteractableUI : MonoBehaviour
     {
         isSelected = true;
         if (selectedAnim.rectTransform != null)
-            StartCoroutine(selectedAnim.anim.Play(selectedAnim.rectTransform, null));
+            StartCoroutine(selectedAnim.anim.Play(selectedAnim, selectedAnim.originalPos));
     }
 
     public void Deselect()
@@ -142,7 +142,9 @@ public class InteractableUI : MonoBehaviour
         {
             isSelected = false;
             if (selectedAnim.rectTransform != null)
-                StartCoroutine(selectedAnim.anim.PlayBackward(selectedAnim.rectTransform, null, true));
+            {
+                StartCoroutine(selectedAnim.anim.PlayBackward(selectedAnim, selectedAnim.originalPos, true));
+            }
         }
     }
 
@@ -218,7 +220,7 @@ public class InteractableUI : MonoBehaviour
             if (!descriptionOpened)
             {
                 if (dragAnim.rectTransform != null)
-                    StartCoroutine(dragAnim.anim.PlayBackward(dragAnim.rectTransform, null, true));
+                    StartCoroutine(dragAnim.anim.PlayBackward(dragAnim, dragAnim.originalPos, true));
             }
         }
     }
@@ -235,7 +237,7 @@ public class InteractableUI : MonoBehaviour
         {
             dragFlag = true;
             if (dragAnim.rectTransform != null && !isSelected)
-                StartCoroutine(dragAnim.anim.PlayBackward(dragAnim.rectTransform, null, true));
+                StartCoroutine(dragAnim.anim.PlayBackward(dragAnim, dragAnim.originalPos, true));
         }
         dropCount = 2;
     }

@@ -31,6 +31,8 @@ namespace PlayerEquipement
         [HideInInspector]
         public List<SonobuoyInstance> usedSonobuoys;
 
+        private Coroutine coroutine;
+
         public override void Init()
         {
             equipementType = EquipementType.active;
@@ -50,7 +52,7 @@ namespace PlayerEquipement
 
         public override void UseEquipement(PlayerOceanEntity user)
         {
-            GameManager.Instance.ExternalStartCoroutine(DeploySonoBuy(user));
+           coroutine =  GameManager.Instance.ExternalStartCoroutine(DeploySonoBuy(user));
         }
 
         IEnumerator DeploySonoBuy(PlayerOceanEntity user)
@@ -81,13 +83,19 @@ namespace PlayerEquipement
             }
         }
 
-
         void DropSonobuoy(Vector2 targetPos)
         {
             availaibleSonobuoys[0].EnableSonobuoy(targetPos, sonobuoyRange, sonobuoyLifeTime, this);
             usedSonobuoys.Add(availaibleSonobuoys[0]);
             availaibleSonobuoys.RemoveAt(0);
             chargeCount--;
+        }
+
+        public void Abort()
+        {
+            GameManager.Instance.ExternalStopCoroutine(coroutine);
+            readyToUse = true;
+            GameManager.Instance.inputManager.getEntityTarget = false;
         }
     }
 }

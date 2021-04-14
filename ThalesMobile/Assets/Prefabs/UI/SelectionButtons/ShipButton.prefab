@@ -181,9 +181,10 @@ MonoBehaviour:
   manager: {fileID: 0}
   linkedEntity: {fileID: 0}
   animator:
-    anim: {fileID: 0}
+    anim: {fileID: 11400000, guid: f261199ee5b652946b4c3d6640df4cb9, type: 2}
     rectTransform: {fileID: 5377459027315650656}
     canvasGroup: {fileID: 0}
+    originalPos: {x: 0, y: 0}
 --- !u!114 &8226063126294492182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -246,14 +247,16 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
-  isImage: 0
+  useColorChange: 0
   animationStartPos: {x: 0, y: 0}
   animationEndPos: {x: 0, y: 0}
   animationStartScale: {x: 0, y: 0, z: 0}
   animationEndScale: {x: 0, y: 0, z: 0}
   animationStartRot: 0
   animationEndRot: 0
+  movementRelativeToOriginalPos: 0
   testTweenAnimator:
     anim: {fileID: 0}
     rectTransform: {fileID: 0}
     canvasGroup: {fileID: 0}
+    originalPos: {x: 0, y: 0}

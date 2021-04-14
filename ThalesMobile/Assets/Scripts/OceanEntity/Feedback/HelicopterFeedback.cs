@@ -22,18 +22,7 @@ namespace OceanEntities
         // Update is called once per frame
         void Update()
         {
-            if (renderedHelicopter.currentTargetPoint != null)
-            {
-                RotateModel(renderedHelicopter);
-                trailParticles.gameObject.SetActive(true);
-            }
-            else
-            {
-                trailParticles.gameObject.SetActive(false);
-            }
-
-            /*
-            if(GameManger.Instance.PlayerController.currentSelectedEntity == renderedHelicopter)
+            if(GameManager.Instance.playerController.currentSelectedEntity == renderedHelicopter)
             {
                 selectionCircle.SetActive(true);
             }
@@ -41,7 +30,6 @@ namespace OceanEntities
             {
                 selectionCircle.SetActive(false);
             }     
-            */
         }
 
         public void RotateModel(Helicopter heli)
