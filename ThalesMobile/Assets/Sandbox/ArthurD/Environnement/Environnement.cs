@@ -51,7 +51,7 @@ public class Environnement : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawSphere(new Vector3(testPoint.x, 0, testPoint.y), 2f);
+        //Gizmos.DrawSphere(new Vector3(testPoint.x, 0, testPoint.y), 2f);
         TestZone();
 
         transform.position = new Vector3(limit.offSet.x, transform.position.y, limit.offSet.y);
