@@ -11,10 +11,14 @@ public class CaptasCard : MonoBehaviour
 
     private InputManager inputManager;
 
+
+
     // Start is called before the first frame update
     void Start()
     {
         inputManager = GameManager.Instance.inputManager;
+
+        card.abortHandler += AbortMethod;
     }
 
     // Update is called once per frame
@@ -23,7 +27,11 @@ public class CaptasCard : MonoBehaviour
         if (card.isClicked)
         {
             if (inputManager.currentSelectedCard != null)
+            {
                 inputManager.currentSelectedCard.Deselect();
+                inputManager.currentSelectedCard.abortHandler();
+            }
+
 
             card.Select();
 
@@ -43,14 +51,19 @@ public class CaptasCard : MonoBehaviour
         }
         else
         {
-            if (inputManager.isDraggingCard)
+            if (inputManager.isDraggingCard && inputManager.currentSelectedCard == this)
             {
                 inputManager.isDraggingCard = false;
 
-                if (captas.readyToUse && captas.chargeCount >0)
+                if (captas.readyToUse && captas.chargeCount > 0)
                     captas.UseEquipement(GameManager.Instance.playerController.currentSelectedEntity);
                 card.Deselect();
             }
         }
+    }
+
+    public void AbortMethod()
+    {
+        print("AbortCaptas");
     }
 }

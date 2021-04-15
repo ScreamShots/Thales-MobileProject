@@ -16,6 +16,7 @@ public class SonobuyDeployerCard : MonoBehaviour
     void Start()
     {
         inputManager = GameManager.Instance.inputManager;
+        card.abortHandler += AbortMethod;
     }
 
     // Update is called once per frame
@@ -26,7 +27,10 @@ public class SonobuyDeployerCard : MonoBehaviour
             if (!card.isSelected)
             {
                 if (inputManager.currentSelectedCard != null)
+                {
                     inputManager.currentSelectedCard.Deselect();
+                    inputManager.currentSelectedCard.abortHandler();
+                }
 
                 if (sonobuyDeployer.readyToUse)
                 {
@@ -56,11 +60,17 @@ public class SonobuyDeployerCard : MonoBehaviour
         }
         else
         {
-            if(inputManager.isDraggingCard)
+            if(inputManager.isDraggingCard && inputManager.currentSelectedCard == this)
             {
                 inputManager.isDraggingCard = false;
                 card.Deselect();
             }
         }
+    }
+
+    public void AbortMethod()
+    {
+        card.Deselect();
+        sonobuyDeployer.Abort();
     }
 }

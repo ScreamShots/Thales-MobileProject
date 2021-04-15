@@ -11,6 +11,7 @@ public class EntitiesSelectionButton : MonoBehaviour
     private Button button;
 
     public TweeningAnimator animator;
+    public TweeningAnimator animatorReverse;
 
 
     // Start is called before the first frame update
@@ -22,24 +23,24 @@ public class EntitiesSelectionButton : MonoBehaviour
 
     public void SelectEntity()
     {
-        if (manager.currentButton != null)
+        if (manager.currentButton != null && manager.currentButton != this)
             manager.currentButton.Deselect();
-       
+
+        if(manager.currentButton != this)
+            StartCoroutine(animator.anim.Play(animator, animator.originalPos));
+        
         manager.currentButton = this;
 
         GameManager.Instance.playerController.currentSelectedEntity = linkedEntity;
         GameManager.Instance.cameraController.SetTarget(linkedEntity.transform);
 
         GameManager.Instance.uiHandler.entityDeckUI.UpdateCurrentDeck(linkedEntity.entityDeck);
-        
-        //Animate UI button
-        StartCoroutine(animator.anim.Play(animator, animator.originalPos));
     }
 
     public void Deselect()
     {
         //Animate UI button
-        StartCoroutine(animator.anim.PlayBackward(animator, animator.originalPos, true));
+        StartCoroutine(animatorReverse.anim.Play(animatorReverse, animatorReverse.originalPos));
     }
 
 }

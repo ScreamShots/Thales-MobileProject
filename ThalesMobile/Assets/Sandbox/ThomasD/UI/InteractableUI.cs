@@ -38,6 +38,8 @@ public class InteractableUI : MonoBehaviour
     private float holdTime;
     private bool cursorGoOut;
 
+    public delegate void Abort();
+    public Abort abortHandler;
 
     private void Start()
     {
@@ -239,7 +241,7 @@ public class InteractableUI : MonoBehaviour
             if (dragAnim.rectTransform != null && !isSelected)
                 StartCoroutine(dragAnim.anim.PlayBackward(dragAnim, dragAnim.originalPos, true));
         }
-        dropCount = 2;
+        dropCount = 1;
     }
 
     #endregion

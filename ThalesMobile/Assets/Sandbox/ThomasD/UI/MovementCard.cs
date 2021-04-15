@@ -9,12 +9,14 @@ public class MovementCard : MonoBehaviour
     private InputManager inputManager;
     private UIHandler uiHandler;
 
+    
 
     // Start is called before the first frame update
     void Start()
     {
         inputManager = GameManager.Instance.inputManager;
         uiHandler = GameManager.Instance.uiHandler;
+        card.abortHandler += AbortMethod;
     }
 
     // Update is called once per frame
@@ -25,10 +27,10 @@ public class MovementCard : MonoBehaviour
             if (!card.isSelected)
             {
                 card.Select();
+            }
                 inputManager.isDraggingCard = true;
                 inputManager.getEntityTarget = true;
                 inputManager.currentSelectedCard = card;
-            }
         }
 
         else if(card.isDropped)
@@ -42,7 +44,10 @@ public class MovementCard : MonoBehaviour
             if (!card.isSelected)
             {
                 if (inputManager.currentSelectedCard != null)
+                {
                     inputManager.currentSelectedCard.Deselect();
+                    inputManager.currentSelectedCard.abortHandler();
+                }
 
                 card.Select();
                 inputManager.getEntityTarget = true;
@@ -56,5 +61,12 @@ public class MovementCard : MonoBehaviour
             }
         }
         
+    }
+
+    public void AbortMethod()
+    {
+        print("AbortMove");
+        card.Deselect();
+        inputManager.getEntityTarget = false;
     }
 }

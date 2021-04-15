@@ -27,11 +27,15 @@ public class EntityDeckUI : MonoBehaviour
 
     public void UpdateCurrentDeck(GameObject newDeck)
     {
+        if(GameManager.Instance.inputManager.currentSelectedCard != null)
+            GameManager.Instance.inputManager.currentSelectedCard.abortHandler();
+        
         if(currentDeck !=null)
             currentDeck.SetActive(false);
         
         currentDeck = newDeck;
         currentDeck.SetActive(true);
+
 
         //Animate Deck Transition
     }

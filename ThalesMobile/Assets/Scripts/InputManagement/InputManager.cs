@@ -15,11 +15,11 @@ public class InputManager : MonoBehaviour
     [Header("Game")]
     public LayerMask selectableEntityLayer;
     public LayerMask UILayer;
-    [HideInInspector] public bool getEntityTarget = false;
-    private bool gettingEntityTarget;
+    [HideInInspector] public bool getEntityTarget;
+    [HideInInspector] public bool gettingEntityTarget;
 
     //Touch inputs
-    private Vector2 touchedSeaPosition;
+    [HideInInspector]public Vector2 touchedSeaPosition = new Vector2(-9999, -9999);
     private Touch touch;
     private float distance = 0;
     private float lastDistance;
@@ -29,8 +29,7 @@ public class InputManager : MonoBehaviour
     [HideInInspector] public InteractableUI currentSelectedCard;
 
     //Raycasting
-    BaseRaycaster raycaster;
-    private List<RaycastResult> raycastResults = new List<RaycastResult>();
+    List<RaycastResult> raycastResults = new List<RaycastResult>();
     EventSystem currentEventSystem;
     PointerEventData pointerData;
 
@@ -60,7 +59,7 @@ public class InputManager : MonoBehaviour
                     
                     //Get the sea position and pass it to the player controller
                     touchedSeaPosition = GetSeaPosition();
-                    
+
                     //MoveGizmo
 
 
@@ -147,6 +146,7 @@ public class InputManager : MonoBehaviour
 
                 
                 GameManager.Instance.playerController.SetEntityMoveTarget(touchedSeaPosition);
+                touchedSeaPosition = new Vector2(-9999, -9999);
             }
         }
     }
