@@ -4,27 +4,12 @@ using UnityEngine;
 
 namespace OceanEntities
 {
-    public class ShipFeedback : MonoBehaviour
+    public class ShipFeedback : PlayerOceanEntityFeedback
     {
-        [Header("Ship")]
-        public Ship renderedShip;
-
-        [Header("UI")]
-        public GameObject selectionCircle;
-
         // Update is called once per frame
-        void Update()
+        new void Update()
         {
-            
-            if(GameManager.Instance.playerController.currentSelectedEntity == renderedShip)
-            {
-                selectionCircle.SetActive(true);
-            }
-            else
-            {
-                selectionCircle.SetActive(false);
-            }     
-            
+            base.Update();
         }
     }
 

@@ -4,25 +4,18 @@ using UnityEngine;
 
 namespace OceanEntities
 {
-    public class PlaneFeedback : MonoBehaviour
+    public class PlaneFeedback : PlayerOceanEntityFeedback
     {
-        [Header("Ship")]
-        public Plane renderedPlane;
+        private new void Start()
+        {
+            base.Start();
+        }
 
-        [Header("UI")]
-        public GameObject selectionCircle;
 
         // Update is called once per frame
-        void Update()
-        {   
-            if(GameManager.Instance.playerController.currentSelectedEntity == renderedPlane)
-            {
-                selectionCircle.SetActive(true);
-            }
-            else
-            {
-                selectionCircle.SetActive(false);
-            }     
+        new void Update()
+        {
+            base.Update();
         }
     }
 

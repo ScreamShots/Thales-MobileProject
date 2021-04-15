@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace OceanEntities
 {
-    public class HelicopterFeedback : MonoBehaviour
+    public class HelicopterFeedback : PlayerOceanEntityFeedback
     {
         [Header("Helicopter")]
         public Helicopter renderedHelicopter;
@@ -16,20 +16,10 @@ namespace OceanEntities
         public ParticleSystem helicopterTakeOffParticles;
         public ParticleSystem helicopterLandingParticles;
 
-        [Header("UI")]
-        public GameObject selectionCircle;
-
         // Update is called once per frame
-        void Update()
+        new void Update()
         {
-            if(GameManager.Instance.playerController.currentSelectedEntity == renderedHelicopter)
-            {
-                selectionCircle.SetActive(true);
-            }
-            else
-            {
-                selectionCircle.SetActive(false);
-            }     
+            base.Update();
         }
 
         public void RotateModel(Helicopter heli)
