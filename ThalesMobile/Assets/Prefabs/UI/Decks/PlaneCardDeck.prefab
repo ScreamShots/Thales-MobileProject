@@ -244,7 +244,7 @@ MonoBehaviour:
     canvasGroup: {fileID: 0}
     originalPos: {x: 0, y: 0}
   selectedAnim:
-    anim: {fileID: 11400000, guid: e024050e4841d2f47a7045279238d15f, type: 2}
+    anim: {fileID: 11400000, guid: b452577fd9032c041860f236aa16c7e9, type: 2}
     rectTransform: {fileID: 7573666956227799807}
     canvasGroup: {fileID: 0}
     originalPos: {x: 0, y: 0}

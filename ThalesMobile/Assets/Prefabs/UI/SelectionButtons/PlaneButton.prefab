@@ -180,6 +180,11 @@ MonoBehaviour:
   manager: {fileID: 0}
   linkedEntity: {fileID: 0}
   animator:
+    anim: {fileID: 11400000, guid: b0c6106707eb466448f8ae27e67b1dac, type: 2}
+    rectTransform: {fileID: 799797314421190584}
+    canvasGroup: {fileID: 0}
+    originalPos: {x: 0, y: 0}
+  animatorReverse:
     anim: {fileID: 11400000, guid: f261199ee5b652946b4c3d6640df4cb9, type: 2}
     rectTransform: {fileID: 799797314421190584}
     canvasGroup: {fileID: 0}
