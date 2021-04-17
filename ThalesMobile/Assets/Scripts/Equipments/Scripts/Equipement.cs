@@ -20,6 +20,8 @@ namespace PlayerEquipement
     {
         public EquipementType equipementType { get; protected set; }
         public bool readyToUse { get; protected set; } = true;
+        PlayerOceanEntity currentUser;
+        
         
         [Header("Equipement Params")]
 
@@ -39,6 +41,13 @@ namespace PlayerEquipement
         protected List<Coroutine> allCoroutines = new List<Coroutine>();
         Coroutine coolDownCouroutine = null;
 
+        [Header("FeedBack")]
+        [SerializeField]
+        GameObject feedbackPrefab;
+        GameObject feedbackHolder;
+        EquipementFeedback feedbackBehavior;
+
+
         //Phantom field that call the CoolDown method that add charge to the equipement if one is used 
         //(only if the value is change to a lower one → use of a charge and if the coolDown is not already running)
         [HideInInspector]
@@ -56,7 +65,9 @@ namespace PlayerEquipement
         //Init Equipement. Call this on all PlayerEntity Start() that need to use equipement 
         public virtual void Init(PlayerOceanEntity user)
         {
+            currentUser = user; 
             chargeCount = chargeStart;
+            FeedbackInit();
         }
 
         void StartCoolDown()
@@ -107,13 +118,24 @@ namespace PlayerEquipement
             }
         }
 
+        public virtual void FeedbackInit()
+        {
+            if (currentUser.equipementFeedback == null) currentUser.equipementFeedback = Instantiate(new GameObject("Equipements FeedBack"), currentUser.transform);
+            feedbackHolder = Instantiate(feedbackPrefab, currentUser.equipementFeedback.transform);
+            feedbackBehavior = feedbackHolder.GetComponent<EquipementFeedback>();
+            feedbackBehavior.EquipementFeedbackInit(this);
+
+        }
+
         //Security to stop all linked coroutine on object destruction.
         protected virtual void OnDestroy()
         {
             foreach(Coroutine coroutine in allCoroutines.ToList())
             {
                 if(coroutine != null)GameManager.Instance.ExternalStopCoroutine(coroutine);
-            }            
+            }
+
+            if (feedbackHolder != null) Destroy(feedbackHolder);
         }
     }
 
