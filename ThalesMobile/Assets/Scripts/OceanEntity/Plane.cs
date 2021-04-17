@@ -40,7 +40,7 @@ namespace OceanEntities
 
             //Equipment initialization.
             //passiveEquipement.Init();
-            activeEquipement.Init();
+            activeEquipement.Init(this);
         }
 
 

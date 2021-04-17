@@ -231,10 +231,10 @@ TextureImporter:
       name: SprSh_MainGameUI_HelicopterUIContainer
       rect:
         serializedVersion: 2
-        x: 733
-        y: 797
-        width: 1315
-        height: 451
+        x: 734
+        y: 799
+        width: 1304
+        height: 447
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -337,9 +337,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 736
-        y: 400
-        width: 1305
-        height: 392
+        y: 401
+        width: 1303
+        height: 391
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -399,10 +399,10 @@ TextureImporter:
       name: SprSh_MainGameUI_ShipCardDeck
       rect:
         serializedVersion: 2
-        x: 733
-        y: 3
-        width: 1307
-        height: 392
+        x: 734
+        y: 4
+        width: 1303
+        height: 391
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -447,7 +447,7 @@ TextureImporter:
         height: 272
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 45, z: 0, w: 45}
       outline: []
       physicsShape: []
       tessellationDetail: 0

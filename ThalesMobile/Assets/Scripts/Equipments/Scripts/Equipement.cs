@@ -54,7 +54,7 @@ namespace PlayerEquipement
         }
 
         //Init Equipement. Call this on all PlayerEntity Start() that need to use equipement 
-        public virtual void Init()
+        public virtual void Init(PlayerOceanEntity user)
         {
             chargeCount = chargeStart;
         }

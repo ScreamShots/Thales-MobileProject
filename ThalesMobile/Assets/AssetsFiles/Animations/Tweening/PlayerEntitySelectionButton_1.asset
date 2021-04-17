@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aed2f2ecbafe45f47988832ee5865aa2, type: 3}
-  m_Name: PlayerEntitySelectionButton
+  m_Name: PlayerEntitySelectionButton_1
   m_EditorClassIdentifier: 
   animationTime: 0.3
   animationCurve:

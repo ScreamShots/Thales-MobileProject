@@ -11,7 +11,6 @@ public class EntitiesSelectionButton : MonoBehaviour
     private Button button;
 
     public TweeningAnimator animator;
-    public TweeningAnimator animatorReverse;
 
 
     // Start is called before the first frame update
@@ -40,7 +39,7 @@ public class EntitiesSelectionButton : MonoBehaviour
     public void Deselect()
     {
         //Animate UI button
-        StartCoroutine(animatorReverse.anim.Play(animatorReverse, animatorReverse.originalPos));
+        StartCoroutine(animator.anim.PlayBackward(animator, animator.originalPos, true));
     }
 
 }

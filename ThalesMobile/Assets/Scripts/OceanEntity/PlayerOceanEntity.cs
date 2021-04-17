@@ -30,6 +30,8 @@ namespace OceanEntities
         public GameObject entityDeck;
         [HideInInspector]public EntitiesSelectionButton linkedButton;
 
+        [HideInInspector] public GameObject equipementFeedback;
+
 
         /// <summary>
         /// Use this method to create the waiting routine of the entity

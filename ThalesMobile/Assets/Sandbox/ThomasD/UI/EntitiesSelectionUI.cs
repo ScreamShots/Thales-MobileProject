@@ -15,15 +15,13 @@ public class EntitiesSelectionUI : MonoBehaviour
     public GameObject entitySelectionParent;
     public GameObject entitySelectionForeground;
 
+    public GameObject helicopterSelectionParent;
+    public GameObject helicopterSelectionForeground;
+
     [Header("Buttons References")]
     public GameObject shipButton;
     public GameObject planeButton;
     public GameObject helicopterButton;
-
-    [Header("Entity Sprites")]
-    public Sprite shipSprite;
-    public Sprite planeSprite;
-    public Sprite helicopterSprite;
 
     [HideInInspector] public EntitiesSelectionButton currentButton;
 
@@ -33,39 +31,51 @@ public class EntitiesSelectionUI : MonoBehaviour
     {
         handler.uIElements.Add(entitySelectionForeground);
         handler.uIElements.Add(entitySelectionParent);
+
+        handler.uIElements.Add(helicopterSelectionForeground);
+        handler.uIElements.Add(helicopterSelectionParent);
     }
 
     public void Initialize()
     {
         for (int i = 0; i < handler.entities.Count; i++)
         {
-            if(handler.entities[i].GetType() !=  typeof(Helicopter))
+            if(handler.entities[i].GetType() == typeof(OceanEntities.Plane))
             {
-                if(handler.entities[i].GetType() == typeof(OceanEntities.Plane))
-                {
-                    GameObject temp =  Instantiate(planeButton, entitySelectionParent.transform);
-                    var esb = temp.GetComponent<EntitiesSelectionButton>();
-                    esb.linkedEntity = handler.entities[i];
-                    esb.manager = this;
-                    temp.transform.localScale = Vector3.one;
-                    buttons.Add(esb);
-                    handler.uIElements.Add(temp);
-                    handler.entities[i].linkedButton = esb;
-                }
-                else if(handler.entities[i].GetType() == typeof(Ship))
-                {
-                    GameObject temp = Instantiate(shipButton, entitySelectionParent.transform); ;
-                    var esb = temp.GetComponent<EntitiesSelectionButton>();
-                    esb.linkedEntity = handler.entities[i];
-                    esb.manager = this;
-                    temp.transform.localScale = Vector3.one;
-                    buttons.Add(esb);
-                    handler.uIElements.Add(temp);
-                    handler.entities[i].linkedButton = esb;
-                }
+                GameObject temp =  Instantiate(planeButton, entitySelectionParent.transform);
+                var esb = temp.GetComponent<EntitiesSelectionButton>();
+                esb.linkedEntity = handler.entities[i];
+                esb.manager = this;
+                temp.transform.localScale = Vector3.one;
+                buttons.Add(esb);
+                handler.uIElements.Add(temp);
+                handler.entities[i].linkedButton = esb;
+            }
+            else if(handler.entities[i].GetType() == typeof(Ship))
+            {
+                GameObject temp = Instantiate(shipButton, entitySelectionParent.transform); ;
+                var esb = temp.GetComponent<EntitiesSelectionButton>();
+                esb.linkedEntity = handler.entities[i];
+                esb.manager = this;
+                temp.transform.localScale = Vector3.one;
+                buttons.Add(esb);
+                handler.uIElements.Add(temp);
+                handler.entities[i].linkedButton = esb;
+            }
+            else if (handler.entities[i].GetType() == typeof(Helicopter))
+            {
+                GameObject temp = Instantiate(helicopterButton, helicopterSelectionParent.transform); ;
+                var esb = temp.GetComponent<EntitiesSelectionButton>();
+                esb.linkedEntity = handler.entities[i];
+                esb.manager = this;
+                temp.transform.localScale = Vector3.one;
+                buttons.Add(esb);
+                handler.uIElements.Add(temp);
+                handler.entities[i].linkedButton = esb;
             }
         }
         entitySelectionForeground.transform.SetAsLastSibling();
+        helicopterSelectionForeground.transform.SetAsLastSibling();
         buttons[0].SelectEntity();
     }
 }

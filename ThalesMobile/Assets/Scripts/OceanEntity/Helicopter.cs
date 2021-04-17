@@ -11,6 +11,10 @@ namespace OceanEntities
         private float currentSpeed = 0;
         private float currentRotateSpeed =0;
 
+        [Header("Renderer")]
+        public GameObject helicopterRenderer;
+        public HelicopterFeedback helicopterFeedback;
+
         [Header("Helicopter Flight")]
         public float preparationDuration;
         public float alertDuration;
@@ -36,13 +40,25 @@ namespace OceanEntities
 
         void Update()
         {
-            if(currentTargetPoint != nullVector && inFlight)
+
+            if(onShip)
+            {
+                _transform.position = linkedShip.transform.position;
+
+                if (helicopterRenderer.activeSelf)
+                {
+                    //Play landing particles
+                    helicopterRenderer.SetActive(false);
+                }
+            }
+
+            else if(currentTargetPoint != nullVector && inFlight)
             {
                 Move(currentTargetPoint);
             }
 
             //If flight ended then go back to the ship
-            if(!inFlight && !onShip)
+            else if(!inFlight && !onShip)
             {
                 Move(linkedShip.coords.position);
             }
