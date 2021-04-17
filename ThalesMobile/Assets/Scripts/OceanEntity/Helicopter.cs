@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using PlayerEquipement;
+using UnityEngine.UI;
 
 namespace OceanEntities
 {
@@ -23,6 +24,8 @@ namespace OceanEntities
         [HideInInspector]public bool inAlert;
         [HideInInspector]public bool inFlight;
         private bool onShip = true;
+
+        [HideInInspector] public Button launchButton;
 
         //linkedShip must be linked when the helicopter is instanciated
         public Ship linkedShip;
@@ -149,7 +152,7 @@ namespace OceanEntities
             StartCoroutine(FlightCoroutine());
         }
 
-        public void LauchButton()
+        public void LaunchButton()
         {
             StartCoroutine(PreparationCoroutine());
         }

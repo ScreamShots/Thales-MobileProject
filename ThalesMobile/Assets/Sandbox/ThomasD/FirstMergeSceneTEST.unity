@@ -476,6 +476,7 @@ MonoBehaviour:
   entityDeck: {fileID: 7347509689460422755, guid: 998cc631680744443a2e161126fdf8bb,
     type: 3}
   linkedButton: {fileID: 0}
+  equipementFeedback: {fileID: 0}
   minimumSpeed: 2
   passiveEquipement: {fileID: 0}
   activeEquipement: {fileID: 11400000, guid: ff0fc0b824898a343b261ecf5d750dee, type: 2}
@@ -1180,6 +1181,7 @@ MonoBehaviour:
   entityDeck: {fileID: 1601565973733013683, guid: 6a5288fc840473c4c9b253d1ee8a64b1,
     type: 3}
   linkedButton: {fileID: 0}
+  equipementFeedback: {fileID: 0}
   passiveEquipement: {fileID: 11400000, guid: 0ce6d9d6887525d44a5b052850b36a7c, type: 2}
   activeEquipement: {fileID: 11400000, guid: 4fb96da5beee0844cb00120a47df60ff, type: 2}
 --- !u!4 &517124460
@@ -1237,6 +1239,9 @@ MonoBehaviour:
   entityDeck: {fileID: 8979791638679697784, guid: ec068da28eae9274b9283a8625cdcb1d,
     type: 3}
   linkedButton: {fileID: 0}
+  equipementFeedback: {fileID: 0}
+  helicopterRenderer: {fileID: 5178395928941303995}
+  helicopterFeedback: {fileID: 5178395928941303997}
   preparationDuration: 2
   alertDuration: 3
   flightDuration: 10
@@ -5859,6 +5864,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7055235982569188505, guid: abc894a53c8f27b408506621f8c32e74,
+        type: 3}
+      propertyPath: seaRenderer
+      value: 
+      objectReference: {fileID: 2017410278}
     - target: {fileID: 7055235982569188505, guid: abc894a53c8f27b408506621f8c32e74,
         type: 3}
       propertyPath: levelManager

@@ -41,3 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Sea
+    uniqueID: 2637828013
+    locked: 0
+  - name: AboveSea
+    uniqueID: 3755218101
+    locked: 0

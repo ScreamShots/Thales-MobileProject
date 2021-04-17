@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
 
     [Header("UI")]
     public UIHandler uiHandler;
+    public MeshRenderer seaRenderer;
 
     private void Awake()
     {
@@ -35,6 +36,8 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
         #endregion
+
+        seaRenderer.sortingLayerID = SortingLayer.NameToID("Sea");
     }
 
     public Coroutine ExternalStartCoroutine(IEnumerator coroutine)
