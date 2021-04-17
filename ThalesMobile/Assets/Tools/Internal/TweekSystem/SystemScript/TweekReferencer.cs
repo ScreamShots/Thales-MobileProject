@@ -14,8 +14,22 @@ using NaughtyAttributes;
 public struct TweekReference
 {
     public MonoBehaviour component;
+    [HideInInspector]
     public byte[] serializedGuid;
     public bool update;
+
+    public string guidDisplay
+    {
+        get
+        {
+            if (serializedGuid != null && serializedGuid.Length == 16) return new Guid(serializedGuid).ToString();
+            else return string.Empty;
+        }
+        private set
+        {
+            guidDisplay = guidDisplay;
+        }
+    }
 
     public TweekReference(MonoBehaviour _component)
     {
