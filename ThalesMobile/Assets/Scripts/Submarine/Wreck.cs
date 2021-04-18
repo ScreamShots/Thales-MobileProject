@@ -11,6 +11,8 @@ public class Wreck : DetectableOceanEntity
 
     private void Start()
     {
+        GameManager.Instance.levelManager.submarineEntitiesInScene.Add(this);
+
         _transform = transform;
         coords.position = Coordinates.ConvertWorldToVector2(_transform.position);
         currentSeaLevel = OceanEntities.SeaLevel.submarine;

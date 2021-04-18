@@ -21,7 +21,6 @@ public class Submarine : DetectableOceanEntity
     private Transform _transform;
 
     [Header("References")]
-    public LevelManager levelManager;
     public Ship ship;
 
     [Header("Movement")]
@@ -93,11 +92,14 @@ public class Submarine : DetectableOceanEntity
 
     private void Start()
     {
+        GameManager.Instance.levelManager.submarineEntitiesInScene.Add(this);
+        GameManager.Instance.levelManager.enemyEntitiesInScene.Add(this);
+
         _transform = transform;
         coords.position = Coordinates.ConvertWorldToVector2(_transform.position);
         currentSeaLevel = SeaLevel.submarine;
-        PickRandomInterrestPoint();
-        levelManager.enemyEntitiesInScene.Add(this);
+        PickRandomInterrestPoint();      
+        ship = Object.FindObjectOfType<Ship>();
 
         subZoneAngleWidth12 = 360 / subZone12Subdivision;
         subZoneAngleWidth3 = 360 / (subZone12Subdivision * subZone3SubSubdivision);
@@ -662,9 +664,9 @@ public class Submarine : DetectableOceanEntity
     {
         sonobuoys.Clear();
 
-        for (int x = 0; x < levelManager.sonobuoysInScene.Count; x++)
+        for (int x = 0; x < GameManager.Instance.levelManager.sonobuoysInScene.Count; x++)
         {
-            sonobuoys.Add(levelManager.sonobuoysInScene[x].transform);
+            sonobuoys.Add(GameManager.Instance.levelManager.sonobuoysInScene[x].transform);
         }
 
         sonobuoysDistance = new List<float>(new float[sonobuoys.Count]);

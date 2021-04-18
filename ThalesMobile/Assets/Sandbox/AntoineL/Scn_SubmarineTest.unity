@@ -2023,8 +2023,7 @@ MonoBehaviour:
   currentSeaLevel: 0
   currentDetectableState: 0
   detectors: []
-  levelManager: {fileID: 1238534676}
-  ship: {fileID: 0}
+  ship: {fileID: 557857015}
   maxSpeed: 3
   acceleration: 0.5
   currentSpeed: 0
@@ -2117,15 +2116,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a198c4835feb91548a01f6532ed8ac96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  submarineEntitiesInScene:
-  - {fileID: 1193060861}
-  - {fileID: 1927903033}
-  - {fileID: 1060234697}
-  - {fileID: 1481256227}
-  - {fileID: 1364580658}
+  submarineEntitiesInScene: []
   sonobuoysInScene: []
   activatedDetectionObjects: []
   enemyEntitiesInScene: []
+  playerOceanEntities:
+  - {fileID: 0}
 --- !u!4 &1238534677
 Transform:
   m_ObjectHideFlags: 0
@@ -3066,4 +3062,4 @@ MonoBehaviour:
   inputManager: {fileID: 0}
   playerController: {fileID: 0}
   cameraController: {fileID: 0}
-  levelManager: {fileID: 0}
+  levelManager: {fileID: 1238534676}
