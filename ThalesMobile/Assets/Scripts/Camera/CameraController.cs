@@ -40,6 +40,9 @@ public class CameraController : MonoBehaviour
         GameManager.Instance.inputManager.mainCamera = cam;
         
         InitializeFocusPoint();
+
+        GameManager.Instance.cameraController = this;
+        GameManager.Instance.inputManager.mainCamera = cam;
     }
     void Update()
     {

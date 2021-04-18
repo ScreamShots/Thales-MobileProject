@@ -177,7 +177,6 @@ namespace Thales.Tool.LevelDesign
             this.enviro = enviro;
         }
         #endregion
-
         private void Update()
         {
             LimitPos();
