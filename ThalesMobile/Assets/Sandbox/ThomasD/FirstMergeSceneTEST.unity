@@ -1132,7 +1132,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 179}
+  m_SizeDelta: {x: 0, y: 187}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &477718486
 CanvasRenderer:
@@ -1242,14 +1242,19 @@ MonoBehaviour:
   equipementFeedback: {fileID: 0}
   helicopterRenderer: {fileID: 5178395928941303995}
   helicopterFeedback: {fileID: 5178395928941303997}
-  preparationDuration: 2
-  alertDuration: 3
+  deckUI: {fileID: 0}
+  preparationDuration: 3
+  alertDuration: 5
   flightDuration: 10
+  cooldownDuration: 5
+  operating: 0
   inAlert: 0
   inFlight: 0
+  launch: 0
+  launchButton: {fileID: 0}
   linkedShip: {fileID: 517124459}
   activeEquipment: {fileID: 11400000, guid: 0cbaf813ec6f48845921efd4e90441fd, type: 2}
-  flashPreparationTime: 0
+  flashPreparationTime: 2
 --- !u!4 &582541997
 Transform:
   m_ObjectHideFlags: 0

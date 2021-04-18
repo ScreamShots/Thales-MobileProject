@@ -17,6 +17,7 @@ public class InputManager : MonoBehaviour
     public LayerMask UILayer;
     [HideInInspector] public bool getEntityTarget;
     [HideInInspector] public bool gettingEntityTarget;
+    private PlayerController playerController;
 
     //Touch inputs
     [HideInInspector]public Vector2 touchedSeaPosition = new Vector2(-9999, -9999);
@@ -37,7 +38,7 @@ public class InputManager : MonoBehaviour
     {
         currentEventSystem = EventSystem.current;
         camController = GameManager.Instance.cameraController;
-
+        playerController = GameManager.Instance.playerController;
     }
 
     void Update()
@@ -60,12 +61,9 @@ public class InputManager : MonoBehaviour
                     //Get the sea position and pass it to the player controller
                     touchedSeaPosition = GetSeaPosition();
 
-                    //MoveGizmo
-
-
                     //Move with gizmo if not dragging a card
                     if(!isDraggingCard)
-                        GameManager.Instance.playerController.SetEntityMoveTarget(touchedSeaPosition);
+                        playerController.SetEntityMoveTarget(touchedSeaPosition);
                     
                 }
                 else
@@ -78,7 +76,7 @@ public class InputManager : MonoBehaviour
                         touchRay = mainCamera.ScreenPointToRay(touch.position);
                         if (Physics.Raycast(touchRay, out hit, 200f, selectableEntityLayer))
                         {
-                            GameManager.Instance.playerController.currentSelectedEntity = hit.collider.transform.parent.GetComponent<PlayerOceanEntity>();
+                            playerController.currentSelectedEntity = hit.collider.transform.parent.GetComponent<PlayerOceanEntity>();
                             camController.SetTarget(hit.collider.transform);
 
                             //Select Button
@@ -137,15 +135,15 @@ public class InputManager : MonoBehaviour
             camController.moveDirection = Vector2.zero;
             distance = 0;
 
-            if(gettingEntityTarget)
-            {
+            if(gettingEntityTarget && playerController.currentSelectedEntity.GetType() != typeof(Helicopter))
+            { 
                 getEntityTarget = false;
                 gettingEntityTarget = false;
                 if(currentSelectedCard!=null)
                     currentSelectedCard.Deselect();
 
                 
-                GameManager.Instance.playerController.SetEntityMoveTarget(touchedSeaPosition);
+                playerController.SetEntityMoveTarget(touchedSeaPosition);
                 touchedSeaPosition = new Vector2(-9999, -9999);
             }
         }

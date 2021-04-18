@@ -22,6 +22,16 @@ namespace OceanEntities
             base.Update();
         }
 
+        private void OnDisable()
+        {
+            targetPoint.SetActive(false);
+        }
+
+        private void OnEnable()
+        {
+            targetPoint.SetActive(true);
+        }
+
         public void RotateModel(Helicopter heli)
         {
             transform.forward = heli.coords.direction;
