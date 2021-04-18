@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7186507230482269963}
   - component: {fileID: 7186507230482269965}
   - component: {fileID: 7186507230482269962}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: LOD1-Quad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d14807b0db7879843839963b18f5e164, type: 2}
+  - {fileID: 2100000, guid: d1aef1367c5af5e448daf2113925dabd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 7186507230702161164}
   - component: {fileID: 7186507230702161166}
   - component: {fileID: 7186507230702161167}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: LOD0-Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,7 +121,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7186507230702161153}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.03}
   m_LocalScale: {x: 13, y: 13, z: 1}
   m_Children: []
   m_Father: {fileID: 7186507231143849624}
@@ -153,7 +153,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 85642d1a83eeeb7438ce3feb9656dbdf, type: 2}
+  - {fileID: 2100000, guid: d1aef1367c5af5e448daf2113925dabd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -199,7 +199,7 @@ GameObject:
   - component: {fileID: 7186507231143849624}
   - component: {fileID: 7186507231143849627}
   - component: {fileID: 7186507231143849625}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Sea
   m_TagString: Untagged
   m_Icon: {fileID: 0}

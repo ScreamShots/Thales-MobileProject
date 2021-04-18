@@ -49,7 +49,7 @@ namespace PlayerEquipement
             float distance = 0;
 
             Environnement currentEnviro = GameManager.Instance.levelManager.environnement;
-            Zone testedZone = currentEnviro.zones[currentEnviro.ZoneIn(userCoords.position) - 1];
+            Zone testedZone = currentEnviro.zones[currentEnviro.ZoneIn(user.coords.position) - 1];
 
             FlashFeedback flashFeedback = (FlashFeedback)feedbackBehavior;
             flashFeedback.DropFlash(dropDuration, new Vector3(currentUser.transform.position.x, currentUser.transform.position.y + heightOffset, currentUser.transform.position.z));
