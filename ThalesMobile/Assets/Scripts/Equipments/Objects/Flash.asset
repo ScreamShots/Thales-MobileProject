@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d15ecb0eab48b374782cf4922322b3ba, type: 3}
   m_Name: Flash
   m_EditorClassIdentifier: 
-  chargeMax: 0
-  chargeStart: 0
+  chargeMax: 1
+  chargeStart: 1
   loadingTime: 0
-  winningRange: 0
-  extendedRange: 0
-  dropDuration: 0
-  revealDuration: 0
+  feedbackPrefab: {fileID: 0}
+  winningRange: 10
+  extendedRange: 20
+  dropDuration: 1.5
+  revealDuration: 10

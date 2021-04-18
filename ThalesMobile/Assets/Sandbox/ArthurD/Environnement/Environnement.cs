@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using UnityEngine;
 using NaughtyAttributes;
+using UnityEngine;
 
 public enum ZoneState {LandCoast, SeaCalm, SeaWay, SeaTurbulent, WindyZone };
 
@@ -47,7 +47,6 @@ public class Environnement : MonoBehaviour
             return 0;
         }
     }
-
 
     private void OnDrawGizmos()
     {

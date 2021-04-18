@@ -67,11 +67,15 @@ MonoBehaviour:
   mainCamera: {fileID: 0}
   selectableEntityLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   UILayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 32
   getEntityTarget: 0
+  gettingEntityTarget: 0
+  touchedSeaPosition: {x: -9999, y: -9999}
+  isDraggingCard: 0
+  currentSelectedCard: {fileID: 0}
 --- !u!114 &4762022619942076001
 MonoBehaviour:
   m_ObjectHideFlags: 0

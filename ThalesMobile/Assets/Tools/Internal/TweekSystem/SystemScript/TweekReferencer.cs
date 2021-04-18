@@ -1,15 +1,19 @@
-﻿using System.Collections;
+﻿using UnityEngine;
+using System;
+using NaughtyAttributes;
+
+#if UNITY_EDITOR
+using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using Tweek.FlagAttributes;
 using System.Linq;
 using UnityEditor;
 using UnityEditor.Experimental.SceneManagement;
 using UnityEditor.SceneManagement;
 using UnityEngine.SceneManagement;
-using System;
-using NaughtyAttributes;
+#endif 
 
+#if UNITY_EDITOR
 [Serializable]
 public struct TweekReference
 {
@@ -75,9 +79,19 @@ public struct TweekReference
     }
 }
 
+
+
 [ExecuteInEditMode]
+#endif
 public class TweekReferencer : MonoBehaviour, ISerializationCallbackReceiver
 {
+    [SerializeField, ReadOnly]
+    string guidDisplay;
+    [HideInInspector]
+    public byte[] serializedGuid;
+    Guid guid;
+
+#if UNITY_EDITOR
     public enum ObjectState { StandAlone, PrefabInstance, PrefabRoot, PrefabVariant, }
 
     [SerializeField, HideInInspector]
@@ -85,11 +99,7 @@ public class TweekReferencer : MonoBehaviour, ISerializationCallbackReceiver
     [SerializeField, HideInInspector]
     ObjectState initState = ObjectState.StandAlone;
 
-    [SerializeField, ReadOnly]
-    string guidDisplay;
-    [HideInInspector]
-    public byte[] serializedGuid;
-    Guid guid;
+    
 
     public static bool prefabEdition;
     bool lateInit;
@@ -126,8 +136,11 @@ public class TweekReferencer : MonoBehaviour, ISerializationCallbackReceiver
         }
     }
 
+#endif
+
     private void Awake()
     {
+#if UNITY_EDITOR
         foreach(TweekReference reference in referencedComponents.ToList())
         {
             if (reference.TestCurrent(this))
@@ -144,10 +157,12 @@ public class TweekReferencer : MonoBehaviour, ISerializationCallbackReceiver
         CheckInstanceID();
 
         if (!prefabEdition && !initDone) GuidInit();
+#endif
     }
 
     private void Start()
     {
+#if UNITY_EDITOR
         //set the scene dirty if modification were done
         //can do it in awake because Unity
         //consider looking at Unity Editor Coroutine package to upgrade the system
@@ -156,8 +171,10 @@ public class TweekReferencer : MonoBehaviour, ISerializationCallbackReceiver
             lateInit = false;
             EditorUtility.SetDirty(this);
         }
+#endif
     }
 
+#if UNITY_EDITOR
     public void GuidInit()
     {
         //test if object's nature has changed
@@ -301,6 +318,7 @@ public class TweekReferencer : MonoBehaviour, ISerializationCallbackReceiver
             }
         }
     }
+#endif
 
     //from ISerializationCallbackReceiver, transform GUID into serializable value before unloading this
     public void OnBeforeSerialize()
@@ -320,4 +338,5 @@ public class TweekReferencer : MonoBehaviour, ISerializationCallbackReceiver
             guidDisplay = guid.ToString();
         }
     }
+
 }

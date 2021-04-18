@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b210066dcb56ae409e0c1984b1aaf2d, type: 3}
-  m_Name: RES_Captas4Test
+  m_Name: Captas4
   m_EditorClassIdentifier: 
   chargeMax: 2
   chargeStart: 2

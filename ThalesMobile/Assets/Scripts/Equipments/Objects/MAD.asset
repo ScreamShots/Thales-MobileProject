@@ -9,10 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dddcba37441095f42bd96d937956ffb8, type: 3}
+  m_Script: {fileID: 11500000, guid: 1da19df23f596de4da95599f4e59924e, type: 3}
   m_Name: MAD
   m_EditorClassIdentifier: 
-  chargeMax: 0
-  chargeStart: 0
+  chargeMax: 1
+  chargeStart: 1
   loadingTime: 0
-  range: 0
+  feedbackPrefab: {fileID: 0}
+  range: 5

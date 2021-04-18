@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -166,6 +166,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentSeaLevel: 0
   currentDetectableState: 0
+  detectFeedback:
+    hullSonarRevealIcon: {fileID: 0}
   detectors: []
 --- !u!1 &87442181
 GameObject:
@@ -311,6 +313,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentSeaLevel: 0
   currentDetectableState: 0
+  detectFeedback:
+    hullSonarRevealIcon: {fileID: 0}
   detectors: []
   speed: 1
   pointsToFollow:
@@ -495,62 +499,24 @@ Transform:
   m_Father: {fileID: 1385631154}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &276705676
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 276705678}
-  - component: {fileID: 276705677}
-  m_Layer: 0
-  m_Name: Level Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &276705677
+--- !u!114 &276705677 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 6928828575392575699, guid: bf0a181efa9d1324a83f92bf336d0f47,
+    type: 3}
+  m_PrefabInstance: {fileID: 6928828575120851294}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 276705676}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a198c4835feb91548a01f6532ed8ac96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  submarineEntitiesInScene:
-  - {fileID: 370838971}
-  - {fileID: 98697086}
-  - {fileID: 1879094525}
-  - {fileID: 1246791003}
-  - {fileID: 24014872}
-  sonobuoysInScene: []
-  activatedDetectionObjects: []
-  enemyEntitiesInScene: []
-  playerOceanEntities:
-  - {fileID: 275531351}
-  - {fileID: 582541996}
-  - {fileID: 517124459}
---- !u!4 &276705678
+--- !u!4 &276705678 stripped
 Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 6928828575392575696, guid: bf0a181efa9d1324a83f92bf336d0f47,
+    type: 3}
+  m_PrefabInstance: {fileID: 6928828575120851294}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 276705676}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.3583298, y: 8.954635, z: -6.652193}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1755123733}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &306259014
 GameObject:
   m_ObjectHideFlags: 0
@@ -791,8 +757,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentSeaLevel: 0
   currentDetectableState: 0
+  detectFeedback:
+    hullSonarRevealIcon: {fileID: 0}
   detectors: []
-  levelManager: {fileID: 276705677}
   ship: {fileID: 0}
   maxSpeed: 3
   acceleration: 0.5
@@ -830,12 +797,12 @@ MonoBehaviour:
   avoidEffectSliceReach: 0
   intermediatePosRefreshRate: 0
   distanceToRefrehIntemediatePos: 0
-  benefPointFactorWeightWhileCalm: 0
-  benefPointFactorWeightWhileWorried: 0
-  benefPointFactorWeightWhilePanicked: 0
-  distanceFactorWeightWhileCalm: 0
-  distanceFactorWeightWhileWorried: 0
-  distanceFactorWeightWhilePanicked: 0
+  benefPointFactorWeightWhileCalme: 0
+  benefPointFactorWeightWhileInquiet: 0
+  benefPointFactorWeightWhilePanique: 0
+  distanceFactorWeightWhileCalme: 0
+  distanceFactorWeightWhileInquiet: 0
+  distanceFactorWeightWhilePanique: 0
   isSubmarineDisplayed: 0
 --- !u!4 &370838972
 Transform:
@@ -2615,6 +2582,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentSeaLevel: 0
   currentDetectableState: 0
+  detectFeedback:
+    hullSonarRevealIcon: {fileID: 0}
   detectors: []
   levelManager: {fileID: 276705677}
   submarine: {fileID: 370838971}
@@ -2992,6 +2961,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentSeaLevel: 0
   currentDetectableState: 0
+  detectFeedback:
+    hullSonarRevealIcon: {fileID: 0}
   detectors: []
 --- !u!1 &1255814136
 GameObject:
@@ -4531,6 +4502,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentSeaLevel: 0
   currentDetectableState: 0
+  detectFeedback:
+    hullSonarRevealIcon: {fileID: 0}
   detectors: []
   speed: 2
   pointsToFollow:
@@ -5998,6 +5971,115 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!1001 &6928828575120851294
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1755123733}
+    m_Modifications:
+    - target: {fileID: 6928828575392575696, guid: bf0a181efa9d1324a83f92bf336d0f47,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6928828575392575696, guid: bf0a181efa9d1324a83f92bf336d0f47,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.3583298
+      objectReference: {fileID: 0}
+    - target: {fileID: 6928828575392575696, guid: bf0a181efa9d1324a83f92bf336d0f47,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 8.954635
+      objectReference: {fileID: 0}
+    - target: {fileID: 6928828575392575696, guid: bf0a181efa9d1324a83f92bf336d0f47,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -6.652193
+      objectReference: {fileID: 0}
+    - target: {fileID: 6928828575392575696, guid: bf0a181efa9d1324a83f92bf336d0f47,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6928828575392575696, guid: bf0a181efa9d1324a83f92bf336d0f47,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6928828575392575696, guid: bf0a181efa9d1324a83f92bf336d0f47,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6928828575392575696, guid: bf0a181efa9d1324a83f92bf336d0f47,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6928828575392575696, guid: bf0a181efa9d1324a83f92bf336d0f47,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6928828575392575696, guid: bf0a181efa9d1324a83f92bf336d0f47,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6928828575392575696, guid: bf0a181efa9d1324a83f92bf336d0f47,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6928828575392575698, guid: bf0a181efa9d1324a83f92bf336d0f47,
+        type: 3}
+      propertyPath: m_Name
+      value: Level Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 6928828575392575699, guid: bf0a181efa9d1324a83f92bf336d0f47,
+        type: 3}
+      propertyPath: playerOceanEntities.Array.data[0]
+      value: 
+      objectReference: {fileID: 275531351}
+    - target: {fileID: 6928828575392575699, guid: bf0a181efa9d1324a83f92bf336d0f47,
+        type: 3}
+      propertyPath: playerOceanEntities.Array.data[1]
+      value: 
+      objectReference: {fileID: 582541996}
+    - target: {fileID: 6928828575392575699, guid: bf0a181efa9d1324a83f92bf336d0f47,
+        type: 3}
+      propertyPath: playerOceanEntities.Array.data[2]
+      value: 
+      objectReference: {fileID: 517124459}
+    - target: {fileID: 6928828575392575699, guid: bf0a181efa9d1324a83f92bf336d0f47,
+        type: 3}
+      propertyPath: submarineEntitiesInScene.Array.data[0]
+      value: 
+      objectReference: {fileID: 370838971}
+    - target: {fileID: 6928828575392575699, guid: bf0a181efa9d1324a83f92bf336d0f47,
+        type: 3}
+      propertyPath: submarineEntitiesInScene.Array.data[1]
+      value: 
+      objectReference: {fileID: 98697086}
+    - target: {fileID: 6928828575392575699, guid: bf0a181efa9d1324a83f92bf336d0f47,
+        type: 3}
+      propertyPath: submarineEntitiesInScene.Array.data[2]
+      value: 
+      objectReference: {fileID: 1879094525}
+    - target: {fileID: 6928828575392575699, guid: bf0a181efa9d1324a83f92bf336d0f47,
+        type: 3}
+      propertyPath: submarineEntitiesInScene.Array.data[3]
+      value: 
+      objectReference: {fileID: 1246791003}
+    - target: {fileID: 6928828575392575699, guid: bf0a181efa9d1324a83f92bf336d0f47,
+        type: 3}
+      propertyPath: submarineEntitiesInScene.Array.data[4]
+      value: 
+      objectReference: {fileID: 24014872}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bf0a181efa9d1324a83f92bf336d0f47, type: 3}
 --- !u!4 &7104852549608869082
 Transform:
   m_ObjectHideFlags: 0

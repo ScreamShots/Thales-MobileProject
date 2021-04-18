@@ -22,6 +22,7 @@ public class Submarine : DetectableOceanEntity
 
     [Header("References")]
     public Ship ship;
+    private LevelManager levelManager;
 
     [Header("Movement")]
     public float maxSpeed;
@@ -92,8 +93,9 @@ public class Submarine : DetectableOceanEntity
 
     private void Start()
     {
-        GameManager.Instance.levelManager.submarineEntitiesInScene.Add(this);
-        GameManager.Instance.levelManager.enemyEntitiesInScene.Add(this);
+        levelManager = GameManager.Instance.levelManager;
+        levelManager.submarineEntitiesInScene.Add(this);
+        levelManager.enemyEntitiesInScene.Add(this);
 
         _transform = transform;
         coords.position = Coordinates.ConvertWorldToVector2(_transform.position);
@@ -103,6 +105,14 @@ public class Submarine : DetectableOceanEntity
 
         subZoneAngleWidth12 = 360 / subZone12Subdivision;
         subZoneAngleWidth3 = 360 / (subZone12Subdivision * subZone3SubSubdivision);
+
+        for (int i = 0; i < levelManager.submarineEntitiesInScene.Count; i++)
+        {
+            if(levelManager.submarineEntitiesInScene[i].GetType() != typeof(Submarine))
+            {
+                beneficialPointFactors.Add(levelManager.submarineEntitiesInScene[i].transform);
+            }
+        }       
     }
 
     protected override void Update()

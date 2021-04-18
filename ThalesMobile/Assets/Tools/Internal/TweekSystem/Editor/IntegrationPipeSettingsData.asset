@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp-Editor::IntePipeSettingsData
   scenesPath: Assets/_Scenes
   prefabsPath: Assets/Prefabs
-  soundScoPath: Assets/Tools/TweekSystem/SoundTweekScriptableObject.cs
-  graphicScoPath: Assets/Tools/TweekSystem/ArtTweekScriptableObject.cs
-  gameplayScoPath: Assets/Tools/TweekSystem/GameplayTweekScriptableObject.cs
+  soundScoPath: Assets/Tools/Internal/TweekSystem/SoundTweekScriptableObject.cs
+  graphicScoPath: Assets/Tools/Internal/TweekSystem/ArtTweekScriptableObject.cs
+  gameplayScoPath: Assets/Tools/Internal/TweekSystem/GameplayTweekScriptableObject.cs
   soundAssetsDirectory: Assets/IntegrationSCO/Sound
   graphicAssetsDirectory: Assets/IntegrationSCO/Art
   gameplayAssetsDirectory: Assets/IntegrationSCO/Gameplay

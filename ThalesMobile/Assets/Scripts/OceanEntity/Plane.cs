@@ -39,15 +39,15 @@ namespace OceanEntities
             currentTargetPoint = Coordinates.ConvertWorldToVector2(_transform.forward * 2);
 
             //Equipment initialization.
-            //passiveEquipement.Init();
+            passiveEquipement.Init(this);
             activeEquipement.Init(this);
         }
 
 
         private void Update()
         {
-           /* if (passiveEquipement.readyToUse)
-                passiveEquipement.UseEquipement(this);*/
+           if (passiveEquipement.readyToUse)
+                passiveEquipement.UseEquipement(this);
         }
 
         void FixedUpdate()

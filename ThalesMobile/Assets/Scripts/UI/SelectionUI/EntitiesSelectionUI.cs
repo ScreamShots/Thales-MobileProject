@@ -94,6 +94,10 @@ public class EntitiesSelectionUI : MonoBehaviour
         }
         entitySelectionForeground.transform.SetAsLastSibling();
         helicopterSelectionForeground.transform.SetAsLastSibling();
-        buttons[0].SelectEntity();
+
+        if(buttons.Count > 0)
+        {
+            buttons[0].SelectEntity();
+        }
     }
 }

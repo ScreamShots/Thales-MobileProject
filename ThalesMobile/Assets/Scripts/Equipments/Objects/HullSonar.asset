@@ -12,12 +12,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3c566f8f8b2d964a85ba35315c65908, type: 3}
   m_Name: HullSonar
   m_EditorClassIdentifier: 
-  chargeMax: 0
-  chargeStart: 0
+  chargeMax: 1
+  chargeStart: 1
   loadingTime: 0
-  range: 0
-  waveDuration: 0
-  pointFadeDuration: 0
+  feedbackPrefab: {fileID: 3947698235113949634, guid: 42aabab330806f447a09517227178121,
+    type: 3}
+  range: 7
+  waveDuration: 7
+  pointFadeDuration: 7
   detectionPointPrefab: {fileID: 2681307672962359013, guid: 7adb86ad6a60e7548bd551e6f7754c7b,
     type: 3}
-  poolSize: 0
+  poolSize: 10
+  availableDetectionPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  usedDetectionPoints: []

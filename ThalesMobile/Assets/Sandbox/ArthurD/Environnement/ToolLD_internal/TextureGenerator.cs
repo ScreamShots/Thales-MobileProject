@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿#if UNITY_EDITOR
+using UnityEngine;
 using UnityEditor;
 using System.IO;
 
@@ -161,3 +162,4 @@ public static class TextureGenerator
     }
 
 }
+#endif

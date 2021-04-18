@@ -14,7 +14,6 @@ public class InputManager : MonoBehaviour
 
     [Header("Game")]
     public LayerMask selectableEntityLayer;
-    public LayerMask UILayer;
     [HideInInspector] public bool getEntityTarget;
     [HideInInspector] public bool gettingEntityTarget;
     private PlayerController playerController;

@@ -7,7 +7,7 @@ namespace Thales.Tool.LevelDesign
     [ExecuteInEditMode]
     public class Tool_LevelDesign : MonoBehaviour
     {
-        [Header("Environnement")]
+        [Header("Environnement"), HideInInspector]
         public Environnement enviro;
 
         [Header("Template GameObject")]
@@ -22,7 +22,9 @@ namespace Thales.Tool.LevelDesign
         public List<ZoneEditable> editZones;
         public int zoneNbr;
 
+#if UNITY_EDITOR
         #region Button
+
         [Button("Add a zone")]
         public void AddZone()
         {
@@ -111,7 +113,7 @@ namespace Thales.Tool.LevelDesign
         }
 
         #endregion
-
+#endif
         private void Update()
         {
             transform.position = new Vector3(limit.offSet.x, height, limit.offSet.y);

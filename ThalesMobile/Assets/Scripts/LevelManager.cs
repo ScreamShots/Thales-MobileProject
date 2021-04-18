@@ -16,4 +16,9 @@ public class LevelManager : MonoBehaviour
     public List<Submarine> enemyEntitiesInScene;
 
     public List<PlayerOceanEntity> playerOceanEntities;
+
+    private void Start()
+    {
+        GameManager.Instance.levelManager = this;
+    }
 }

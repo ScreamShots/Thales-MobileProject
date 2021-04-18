@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-#if UNITY_EDITOR
 using System;
+#if UNITY_EDITOR
 using UnityEditor;
 using UnityEditor.Experimental.SceneManagement;
 using UnityEditor.SceneManagement;
@@ -18,6 +18,13 @@ using UnityEngine.SceneManagement;
 #endif
 public abstract class TweekMonoBehaviour : MonoBehaviour, ISerializationCallbackReceiver
 {
+    Guid guid = Guid.Empty;
+    [HideInInspector]
+    public byte[] serializedGuid;
+
+    [SerializeField]
+    string guidDisplay;
+
 #if UNITY_EDITOR
     public enum TweekState { InhertiedValues, ProperValues }
     public enum ObjectState { StandAlone, PrefabInstance, PrefabRoot, PrefabVariant, }
@@ -30,12 +37,7 @@ public abstract class TweekMonoBehaviour : MonoBehaviour, ISerializationCallback
     [SerializeField, HideInInspector]
     ObjectState initState = ObjectState.StandAlone;
 
-    Guid guid = Guid.Empty;
-    [HideInInspector]
-    public byte[] serializedGuid;
-
-    [SerializeField]
-    string guidDisplay;
+    
 
     public static bool prefabEdition;
     bool lateInit;    
@@ -78,8 +80,6 @@ public abstract class TweekMonoBehaviour : MonoBehaviour, ISerializationCallback
 #endif
     }
 
-#if UNITY_EDITOR
-    //from ISerializationCallbackReceiver, transform GUID into serializable value before unloading this
     public void OnBeforeSerialize()
     {
         if (guid != Guid.Empty)
@@ -97,6 +97,10 @@ public abstract class TweekMonoBehaviour : MonoBehaviour, ISerializationCallback
             guidDisplay = guid.ToString();
         }
     }
+
+#if UNITY_EDITOR
+    //from ISerializationCallbackReceiver, transform GUID into serializable value before unloading this
+
 
     //regular GUID Init on object Awake
     public void GuidInit()
