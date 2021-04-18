@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using UnityEngine;
 
 /// <summary>
@@ -9,7 +10,7 @@ using UnityEngine;
 public enum DetectionState { noDetection, unknownDetection, revealedDetection }
 
 /// <summary>
-///  Rémi Sécher - 08/04/2021 - Base class for Detection object that interract with equipement that do revelation (lie M.A.D.) 
+///  Rémi Sécher - 08/04/2021 - Base class for Detection object that interract with equipement that do revelation (like M.A.D.) 
 ///  Rémi Sécher - 11/04/2021 - detectionState modification implemented
 /// </summary>
 
@@ -18,8 +19,9 @@ public abstract class DetectionObject : MonoBehaviour
     [HideInInspector]
     public Coordinates coords;
 
-    private DetectionState _detectionState;   
-    protected List<DetectableOceanEntity> _detectedEntities = new List<DetectableOceanEntity>();
+    private DetectionState _detectionState;
+    [SerializeField]
+    protected ObservableCollection<DetectableOceanEntity> detectedEntities = new ObservableCollection<DetectableOceanEntity>();
     protected LevelManager levelManager;
 
     //Phantom value reference that call refresh of FeedBack (method) whenever a change is done to the detection state value
@@ -33,23 +35,16 @@ public abstract class DetectionObject : MonoBehaviour
         }
     }
 
-    //Phantom reference that chage detectionValue according to detected entities
-    public List<DetectableOceanEntity> detectedEntities
-    {
-        get { return _detectedEntities; }
-        set
-        {
-            _detectedEntities = value;
-
-            if (_detectedEntities.Count == 0 && detectionState != DetectionState.noDetection) detectionState = DetectionState.noDetection;
-            else if (_detectedEntities.Count > 0 && detectionState == DetectionState.noDetection) detectionState = DetectionState.unknownDetection;
-        }
-    }
-
     protected virtual void Start()
     {
-        levelManager = GameManager.Instance.levelManager;
-    }  
+        detectedEntities.CollectionChanged += detectedEntities_CollectionChanged;
+    }
+
+    private void detectedEntities_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+    {
+        if (detectedEntities.Count == 0 && detectionState != DetectionState.noDetection) detectionState = DetectionState.noDetection;
+        else if (detectedEntities.Count > 0 && detectionState == DetectionState.noDetection) detectionState = DetectionState.unknownDetection;
+    }
 
     //Override this to perform feedBack modification depending on the state of detectionState
     protected virtual void RefreshFeedBack(DetectionState newState)

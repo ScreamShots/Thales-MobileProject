@@ -21,8 +21,8 @@ namespace OceanEntities
             coords = new Coordinates(_transform.position, Vector2.up, 0);
 
             //Equipment initialization.
-            passiveEquipement.Init();
-            activeEquipement.Init();
+            passiveEquipement.Init(this);
+            activeEquipement.Init(this);
         }
 
         private void Update()

@@ -33,8 +33,9 @@ namespace PlayerEquipement
 
         private Coroutine coroutine;
 
-        public override void Init()
+        public override void Init(PlayerOceanEntity user)
         {
+            base.Init(user);
             equipementType = EquipementType.active;
             availaibleSonobuoys = new List<SonobuoyInstance>();
             usedSonobuoys = new List<SonobuoyInstance>();

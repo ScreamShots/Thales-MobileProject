@@ -1,12 +1,10 @@
 fileFormatVersion: 2
-guid: 4b210066dcb56ae409e0c1984b1aaf2d
+guid: 9c8c39e8eca56c84baeb9f4127ead64a
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - feedbackPrefab: {instanceID: 0}
-  - detectionPointPrefab: {fileID: 5367692207239176408, guid: 55472133b87b57045a49b4c6309d65eb,
-      type: 3}
+  - waveMaterial: {fileID: 2100000, guid: 79b5733099018cb4faf342587a03ce55, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

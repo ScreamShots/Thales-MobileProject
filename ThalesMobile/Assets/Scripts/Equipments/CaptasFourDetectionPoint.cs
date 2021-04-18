@@ -16,7 +16,9 @@ public class CaptasFourDetectionPoint : DetectionObject
 
     //Get the point out of the unused state in the pool and place it on the map
     public void ActivatePoint(DetectableOceanEntity target, float _fadeDuration, CaptasFour _source)
-    {        
+    {
+        levelManager = GameManager.Instance.levelManager;
+
         transform.position = Coordinates.ConvertVector2ToWorld(target.coords.position);
         coords.position = Coordinates.ConvertWorldToVector2(transform.position);
 

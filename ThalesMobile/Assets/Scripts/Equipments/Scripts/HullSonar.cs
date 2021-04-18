@@ -15,10 +15,10 @@ namespace PlayerEquipement
     {
         [Header("Hull Sonar Params")]
 
-        [SerializeField, Min(0)]
-        float range;
-        [SerializeField, Min(0)]
-        float waveDuration;
+        [Min(0)]
+        public float range;
+        [Min(0)]
+        public float waveDuration;
         [SerializeField, Min(0)]
         float pointFadeDuration;
 
@@ -26,18 +26,23 @@ namespace PlayerEquipement
         [SerializeField]
         GameObject detectionPointPrefab;
         [SerializeField, Min(0)]
-        int poolSize;
+        int poolSize;        
 
         [HideInInspector]
-        public List<HullSonarDetectionPoint> availableDetectionPoints = new List<HullSonarDetectionPoint>();
+        public List<HullSonarDetectionPoint> availableDetectionPoints;
         [HideInInspector]
-        public List<HullSonarDetectionPoint> usedDetectionPoints = new List<HullSonarDetectionPoint>();
+        public List<HullSonarDetectionPoint> usedDetectionPoints;
+
+        ////Debug
+        //[SerializeField]
+        //GameObject testPrefab;
+        //GameObject test;
 
         LevelManager levelManager;
 
-        public override void Init()
+        public override void Init(PlayerOceanEntity user)
         {
-            base.Init();
+            base.Init(user);
 
             levelManager = GameManager.Instance.levelManager;
             equipementType = EquipementType.passive;
@@ -45,11 +50,19 @@ namespace PlayerEquipement
             //Pool initialization
             GameObject tempDetectionPoint;
 
+            availableDetectionPoints = new List<HullSonarDetectionPoint>();
+            usedDetectionPoints = new List<HullSonarDetectionPoint>();
+
             for (int i = 0; i < poolSize; i++)
             {
                 tempDetectionPoint = Instantiate(detectionPointPrefab, GameManager.Instance.levelManager.transform);
                 availableDetectionPoints.Add(tempDetectionPoint.GetComponent<HullSonarDetectionPoint>());
             }
+
+            //test = Instantiate(testPrefab);
+            //test.transform.position = Coordinates.ConvertVector2ToWorld(user.coords.position);
+
+            readyToUse = true;
         }
 
         public override void UseEquipement(PlayerOceanEntity user)
@@ -71,6 +84,8 @@ namespace PlayerEquipement
 
             while (waveTime < waveDuration)
             {
+                //test.transform.position = new Vector3(waveRange, 0, 0);
+
                 //loop through every detection point link to this Equipement
                 //test if they are at the current tested distance to the player entity
                 //if so remove them
@@ -109,8 +124,8 @@ namespace PlayerEquipement
                 //Make the wave progress, depend of the progression in the duration
                 //Security added to not pass through entities that will be beetween two precise wave position check (padding)
                 waveTime += Time.deltaTime;
-                padding = waveRange - (range * 1 - (waveTime / waveDuration));
-                waveRange = range * 1 - (waveTime / waveDuration);
+                padding = waveRange - (range * (1 - (waveTime / waveDuration)));
+                waveRange = range * (1 - (waveTime / waveDuration));
 
                 yield return new WaitForEndOfFrame();
             }

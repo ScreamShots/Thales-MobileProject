@@ -10,6 +10,8 @@ using System.Linq;
 
 public class HullSonarDetectionPoint : DetectionObject
 {
+    [SerializeField]
+    HullSonarPointFeedback feedbackBehavior;
     [HideInInspector]
     public float fadeDuration;
     HullSonar source;
@@ -17,6 +19,8 @@ public class HullSonarDetectionPoint : DetectionObject
     //Get the point from his state of unused in the pool and activate in GameWorld
     public void ActivatePoint(DetectableOceanEntity detectedElement, float _fadeDuration, HullSonar _source)
     {
+        levelManager = GameManager.Instance.levelManager;
+
         source = _source;
         levelManager.activatedDetectionObjects.Add(this);
 
@@ -70,5 +74,14 @@ public class HullSonarDetectionPoint : DetectionObject
     protected override void RefreshFeedBack(DetectionState newState)
     {
         base.RefreshFeedBack(newState);
+
+        if(newState == DetectionState.revealedDetection)
+        {
+            if(detectedEntities[0] != null) feedbackBehavior.DisplayReveal(detectedEntities[0].detectFeedback.hullSonarRevealIcon);
+        }
+        else if(detectionState == DetectionState.revealedDetection)
+        {
+            feedbackBehavior.HideReveal();
+        }
     }
 }

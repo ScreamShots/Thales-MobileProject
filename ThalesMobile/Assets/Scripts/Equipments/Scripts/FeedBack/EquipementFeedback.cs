@@ -8,7 +8,7 @@ namespace PlayerEquipement
     {
         private Equipement source;
 
-        public void EquipementFeedbackInit(Equipement _source)
+        public virtual void EquipementFeedbackInit(Equipement _source)
         {
             source = _source;
         }

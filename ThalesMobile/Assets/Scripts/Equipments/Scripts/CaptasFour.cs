@@ -40,9 +40,9 @@ namespace PlayerEquipement
         CameraController cameraController;
         Vector2[] mapAnglesPos = new Vector2[4];
 
-        public override void Init()
+        public override void Init(PlayerOceanEntity user)
         {
-            base.Init();
+            base.Init(user);
 
             levelManager = GameManager.Instance.levelManager;
             cameraController = GameManager.Instance.cameraController;

@@ -24,10 +24,8 @@ public class SonobuoyInstance : DetectionObject
     public Color detectedElementColor;
 
 
-    protected override void Start()
+    protected void Awake()
     {
-        base.Start();
-
         rangeSprite = rangeVisual.GetComponent<SpriteRenderer>();
         rangeVisual.transform.localScale = new Vector2(detectionRange * 2, detectionRange * 2);
     }
@@ -44,6 +42,8 @@ public class SonobuoyInstance : DetectionObject
     // Use this function to deploy a sonobuoy where your finger touch the screen. 
     public void EnableSonobuoy(Vector2 target, float _range, float _lifeTime, SonobuoyDeployer _source)
     {
+        levelManager = GameManager.Instance.levelManager;
+
         transform.position = Coordinates.ConvertVector2ToWorld(target);
         coords.position = Coordinates.ConvertWorldToVector2(transform.position);
 

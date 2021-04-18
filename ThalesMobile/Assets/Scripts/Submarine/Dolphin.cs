@@ -31,7 +31,7 @@ public class Dolphin : DetectableOceanEntity
     }
 
     public override void Move(Vector2 targetPosition)
-    {
+    {        
         //Calculate direction to target and store it in coords.
         coords.direction = targetPosition - coords.position;
 

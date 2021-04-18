@@ -17,9 +17,9 @@ namespace PlayerEquipement
 
         LevelManager levelManager;
 
-        public override void Init()
+        public override void Init(PlayerOceanEntity user)
         {
-            base.Init();
+            base.Init(user);
 
             levelManager = GameManager.Instance.levelManager;
             equipementType = EquipementType.passive;
