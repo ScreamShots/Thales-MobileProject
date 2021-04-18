@@ -107,7 +107,7 @@ namespace Thales.Tool.LevelDesign
         [ContextMenu("TextureGeneration")]
         public void GenerateTexture()
         {
-            SeaTextureGenerator.GenerateSeaTexture(enviro, "squalala");
+            SeaTextureGenerator.GenerateZoneDataTexture(enviro, "Tex_Enviro");
         }
 
         #endregion
