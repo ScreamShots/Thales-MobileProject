@@ -6,9 +6,7 @@ namespace Karprod
 {
     public class ToolPlaneMeshGenerator : EditorWindow
     {
-
-
-        [MenuItem("Tools/PlaneMeshGenerator")]
+        [ContextMenu("Tools/PlaneMeshGenerator")]
         public static void ShowWindow()
         {
             GetWindow(typeof(ToolPlaneMeshGenerator));
