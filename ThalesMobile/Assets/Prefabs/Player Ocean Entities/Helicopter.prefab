@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 6286141311658609053}
   - component: {fileID: 6286141311658609043}
   - component: {fileID: 6286141311658609052}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: 'SelectionOutline '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -257,7 +257,7 @@ GameObject:
   - component: {fileID: 6286141311801346581}
   - component: {fileID: 6286141311801346571}
   - component: {fileID: 6286141311801346580}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Halo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -338,7 +338,7 @@ GameObject:
   - component: {fileID: 6286141311824143683}
   - component: {fileID: 6286141311824143692}
   - component: {fileID: 6286141311824143693}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Mesh_ArrowPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -573,7 +573,7 @@ MonoBehaviour:
   launch: 0
   launchButton: {fileID: 0}
   linkedShip: {fileID: 0}
-  activeEquipment: {fileID: 11400000, guid: 0cbaf813ec6f48845921efd4e90441fd, type: 2}
+  activeEquipment: {fileID: 0}
   flashPreparationTime: 2
 --- !u!1 &6286141312605886763
 GameObject:
@@ -664,7 +664,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6286141312868464629}
   - component: {fileID: 6286141312868464628}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Target Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -170,7 +170,7 @@ GameObject:
   - component: {fileID: 339487588171123536}
   - component: {fileID: 339487588171123538}
   - component: {fileID: 339487588171123537}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Halo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -251,7 +251,7 @@ GameObject:
   - component: {fileID: 339487588296703157}
   - component: {fileID: 339487588296703156}
   - component: {fileID: 339487588296703155}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Mesh_ArrowPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -349,7 +349,7 @@ GameObject:
   - component: {fileID: 339487588818084353}
   - component: {fileID: 339487588818084355}
   - component: {fileID: 339487588818084354}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: SelectionOutline
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -446,6 +446,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 339487589102417752}
+  - {fileID: 339487589551529425}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -509,7 +510,6 @@ Transform:
   - {fileID: 339487589523670887}
   - {fileID: 339487587575285559}
   - {fileID: 339487588818084353}
-  - {fileID: 339487589551529425}
   m_Father: {fileID: 339487588899374399}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
@@ -648,7 +648,7 @@ GameObject:
   m_Component:
   - component: {fileID: 339487589551529425}
   - component: {fileID: 339487589551529426}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Target Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -662,13 +662,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 339487589551529424}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 339487588171123536}
-  m_Father: {fileID: 339487589102417752}
-  m_RootOrder: 4
+  m_Father: {fileID: 339487588899374399}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!120 &339487589551529426
 LineRenderer:
