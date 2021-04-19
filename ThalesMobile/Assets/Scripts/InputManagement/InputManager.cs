@@ -4,6 +4,7 @@ using UnityEngine;
 using OceanEntities;
 using Plane = UnityEngine.Plane;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class InputManager : MonoBehaviour
 {
@@ -14,8 +15,10 @@ public class InputManager : MonoBehaviour
 
     [Header("Game")]
     public LayerMask selectableEntityLayer;
+    [HideInInspector] public bool touchingGame;
     [HideInInspector] public bool getEntityTarget;
     [HideInInspector] public bool gettingEntityTarget;
+    [HideInInspector] public bool canUseCam;
     private PlayerController playerController;
 
     //Touch inputs
@@ -51,8 +54,10 @@ public class InputManager : MonoBehaviour
             pointerData.position = touch.position;
             currentEventSystem.RaycastAll(pointerData, raycastResults);
 
-            if(raycastResults.Count < 1)
+            if(raycastResults.Count < 1 || (raycastResults.Count == 1 && raycastResults[0].gameObject.TryGetComponent<InteractableUI>(out var I)))
             {
+                touchingGame = true;
+
                 if (getEntityTarget)
                 {
                     gettingEntityTarget = true;
@@ -67,28 +72,30 @@ public class InputManager : MonoBehaviour
                 }
                 else
                 {
-                    //If touched check if selected a Entity
-                    if (touch.phase == TouchPhase.Began)
+                    if(canUseCam)
                     {
-                        RaycastHit hit;
-                        Ray touchRay;
-                        touchRay = mainCamera.ScreenPointToRay(touch.position);
-                        if (Physics.Raycast(touchRay, out hit, 200f, selectableEntityLayer))
+                        //If touched check if selected a Entity
+                        if (touch.phase == TouchPhase.Began)
                         {
-                            playerController.currentSelectedEntity = hit.collider.transform.parent.GetComponent<PlayerOceanEntity>();
-                            camController.SetTarget(hit.collider.transform);
+                            RaycastHit hit;
+                            Ray touchRay;
+                            touchRay = mainCamera.ScreenPointToRay(touch.position);
+                            if (Physics.Raycast(touchRay, out hit, 200f, selectableEntityLayer))
+                            {
+                                playerController.currentSelectedEntity = hit.collider.transform.parent.GetComponent<PlayerOceanEntity>();
+                                camController.SetTarget(hit.collider.transform);
 
-                            //Select Button
-                            GameManager.Instance.playerController.currentSelectedEntity.linkedButton.SelectEntity();
+                                //Select Button
+                                GameManager.Instance.playerController.currentSelectedEntity.linkedButton.SelectEntity();
+                            }
+                        }
+
+                        //If drag then move camera
+                        else if (touch.deltaPosition.magnitude > 5f)
+                        {
+                            camController.moveDirection = -touch.deltaPosition;
                         }
                     }
-
-                    //If drag then move camera
-                    else if (touch.deltaPosition.magnitude > 5f)
-                    {
-                        camController.moveDirection = -touch.deltaPosition;
-                    }
-                    
                 }
             }
 
@@ -134,7 +141,9 @@ public class InputManager : MonoBehaviour
             camController.moveDirection = Vector2.zero;
             distance = 0;
 
-            if(gettingEntityTarget && playerController.currentSelectedEntity.GetType() != typeof(Helicopter))
+            touchingGame = false;
+
+            if (gettingEntityTarget && playerController.currentSelectedEntity.GetType() != typeof(Helicopter))
             { 
                 getEntityTarget = false;
                 gettingEntityTarget = false;

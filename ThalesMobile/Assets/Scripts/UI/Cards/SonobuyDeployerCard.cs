@@ -49,8 +49,8 @@ public class SonobuyDeployerCard : MonoBehaviour
 
         if (card.isDragged)
         {
-            if (!card.isSelected)
-                card.Select();
+            //if (!card.isSelected)
+                //card.Select();
 
             if (sonobuyDeployer.readyToUse)
                 sonobuyDeployer.UseEquipement(GameManager.Instance.playerController.currentSelectedEntity);
@@ -63,7 +63,7 @@ public class SonobuyDeployerCard : MonoBehaviour
             if(inputManager.isDraggingCard && inputManager.currentSelectedCard == this)
             {
                 inputManager.isDraggingCard = false;
-                card.Deselect();
+                //card.Deselect();
             }
         }
     }

@@ -91,8 +91,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dragAnim:
-    anim: {fileID: 0}
-    rectTransform: {fileID: 0}
+    anim: {fileID: 11400000, guid: 862222a0fa92884409844e3344c52131, type: 2}
+    rectTransform: {fileID: 6018285370585958452}
     canvasGroup: {fileID: 0}
     originalPos: {x: 0, y: 0}
   holdAnim:
@@ -234,8 +234,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dragAnim:
-    anim: {fileID: 0}
-    rectTransform: {fileID: 0}
+    anim: {fileID: 11400000, guid: 34675c2babdf609499a43aee1b3384db, type: 2}
+    rectTransform: {fileID: 7573666956227799807}
     canvasGroup: {fileID: 0}
     originalPos: {x: 0, y: 0}
   holdAnim:

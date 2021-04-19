@@ -10,6 +10,7 @@ public class CaptasCard : MonoBehaviour
     public CaptasFour captas;
 
     private InputManager inputManager;
+    Coroutine captasUse;
 
 
 
@@ -26,44 +27,61 @@ public class CaptasCard : MonoBehaviour
     {
         if (card.isClicked)
         {
-            if (inputManager.currentSelectedCard != null)
+            if(!card.isSelected)
             {
-                inputManager.currentSelectedCard.Deselect();
-                inputManager.currentSelectedCard.abortHandler();
+                if (inputManager.currentSelectedCard != null)
+                {
+                    inputManager.currentSelectedCard.Deselect();
+                    inputManager.currentSelectedCard.abortHandler();
+                }
+                card.Select();
+
+                if (captas.readyToUse && captas.chargeCount > 0)
+                {
+                    captasUse = StartCoroutine(UseCaptas());
+                }
+
+                inputManager.currentSelectedCard = card;
             }
-
-
-            card.Select();
-
-            if (captas.readyToUse && captas.chargeCount > 0)
-                captas.UseEquipement(GameManager.Instance.playerController.currentSelectedEntity);
-
-            inputManager.currentSelectedCard = card;
+            else
+            {
+                AbortMethod();
+                inputManager.currentSelectedCard = null;
+            }
         }
 
         if (card.isDragged)
         {
-            if (!card.isSelected)
-                card.Select();
-
             inputManager.isDraggingCard = true;
             inputManager.currentSelectedCard = card;
+            inputManager.canUseCam = false;
         }
         else
         {
             if (inputManager.isDraggingCard && inputManager.currentSelectedCard == this)
             {
                 inputManager.isDraggingCard = false;
+                inputManager.canUseCam = true;
 
                 if (captas.readyToUse && captas.chargeCount > 0)
                     captas.UseEquipement(GameManager.Instance.playerController.currentSelectedEntity);
-                card.Deselect();
             }
         }
     }
 
     public void AbortMethod()
     {
-        print("AbortCaptas");
+        card.Deselect();
+        if (captasUse != null)
+            StopCoroutine(captasUse);
+    }
+
+
+    private IEnumerator UseCaptas()
+    {
+        print("StartCoroutine");
+        yield return new WaitUntil(() => inputManager.touchingGame);
+        captas.UseEquipement(GameManager.Instance.playerController.currentSelectedEntity);
+        card.Deselect();
     }
 }

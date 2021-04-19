@@ -349,7 +349,7 @@ GameObject:
   - component: {fileID: 339487588818084353}
   - component: {fileID: 339487588818084355}
   - component: {fileID: 339487588818084354}
-  m_Layer: 10
+  m_Layer: 8
   m_Name: SelectionOutline
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aed2f2ecbafe45f47988832ee5865aa2, type: 3}
   m_Name: CardAnim_1
   m_EditorClassIdentifier: 
-  animationTime: 0.5
+  animationTime: 0.2
   animationCurve:
     serializedVersion: 2
     m_Curve:
@@ -87,13 +87,13 @@ MonoBehaviour:
     m_RotationOrder: 4
   customRotCurve: 0
   customScaleCurve: 0
-  animationStartPos: {x: 0, y: 39}
-  animationEndPos: {x: 0, y: 60}
+  animationStartPos: {x: 0, y: 0}
+  animationEndPos: {x: 0, y: 20}
   animationStartScale: {x: 1, y: 1, z: 1}
   animationEndScale: {x: 1, y: 1, z: 1}
   animationStartRot: 0
   animationEndRot: 0
-  movementRelativeToOriginalPos: 0
+  movementRelativeToOriginalPos: 1
   colorAnimation:
     serializedVersion: 2
     key0: {r: 1, g: 1, b: 1, a: 1}

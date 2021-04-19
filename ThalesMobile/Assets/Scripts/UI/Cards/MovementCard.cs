@@ -26,7 +26,7 @@ public class MovementCard : MonoBehaviour
         {
             if (!card.isSelected)
             {
-                card.Select();
+                //card.Select();
             }
                 inputManager.isDraggingCard = true;
                 inputManager.getEntityTarget = true;
@@ -35,7 +35,7 @@ public class MovementCard : MonoBehaviour
 
         else if(card.isDropped)
         {
-            card.Deselect();
+            //card.Deselect();
             inputManager.isDraggingCard = false;
         }
 
