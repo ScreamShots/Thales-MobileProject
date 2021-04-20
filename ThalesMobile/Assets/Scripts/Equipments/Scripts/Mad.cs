@@ -12,8 +12,8 @@ namespace PlayerEquipement
     {
         [Header("M.A.D. Params")]
 
-        [SerializeField, Min(0)]
-        float range;
+        [Min(0)]
+        public float range;
 
         LevelManager levelManager;
 

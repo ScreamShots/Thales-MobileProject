@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using UnityEngine;
+using System.Linq;
 
 /// <summary>
 ///  Rémi Sécher - 08/04/2021 - Enum that determine state of a detection object 
@@ -19,9 +20,14 @@ public abstract class DetectionObject : MonoBehaviour
     [HideInInspector]
     public Coordinates coords;
 
-    private DetectionState _detectionState;
     [SerializeField]
+    private DetectionState _detectionState;
+
     protected ObservableCollection<DetectableOceanEntity> detectedEntities = new ObservableCollection<DetectableOceanEntity>();
+
+    [SerializeField]
+    private List<DetectableOceanEntity> debugDetected = new List<DetectableOceanEntity>();
+
     protected LevelManager levelManager;
 
     //Phantom value reference that call refresh of FeedBack (method) whenever a change is done to the detection state value
@@ -40,10 +46,15 @@ public abstract class DetectionObject : MonoBehaviour
         detectedEntities.CollectionChanged += detectedEntities_CollectionChanged;
     }
 
-    private void detectedEntities_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+    void Update()
+    {
+        debugDetected = detectedEntities.ToList();
+    }
+
+    protected virtual void detectedEntities_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
     {
         if (detectedEntities.Count == 0 && detectionState != DetectionState.noDetection) detectionState = DetectionState.noDetection;
-        else if (detectedEntities.Count > 0 && detectionState == DetectionState.noDetection) detectionState = DetectionState.unknownDetection;
+        else if (detectedEntities.Count > 0 && detectionState == DetectionState.noDetection) detectionState = DetectionState.unknownDetection;        
     }
 
     //Override this to perform feedBack modification depending on the state of detectionState

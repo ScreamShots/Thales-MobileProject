@@ -12,8 +12,19 @@ namespace PlayerEquipement
         [Header("Visual Params")]
         [SerializeField]
         Material waveMaterial;
-        [SerializeField, Range(-1,1)]
-        int expansionFactor;
+        
+        int expansionFactor
+        {
+            get
+            {
+                if (sourceHullSonar != null && sourceHullSonar.GetType() == typeof(HullSonar))
+                {
+                    if (sourceHullSonar.expand) return -1;
+                    else return 1;
+                }
+                else return 1;
+            }
+        }
 
         float waveSpeed
         {
@@ -21,7 +32,7 @@ namespace PlayerEquipement
             {
                 if (sourceHullSonar != null && sourceHullSonar.GetType() == typeof(HullSonar))
                 {
-                    return 100f * expansionFactor / sourceHullSonar.waveDuration;
+                    return (100f * expansionFactor) / sourceHullSonar.waveDuration;
                 }                    
                 else return 0;
             }

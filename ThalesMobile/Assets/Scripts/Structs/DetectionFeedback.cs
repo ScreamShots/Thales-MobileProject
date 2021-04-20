@@ -10,4 +10,5 @@ using UnityEngine;
 public struct DetectionFeedback 
 {
     public Sprite hullSonarRevealIcon;
+    public Sprite hullSonarRevealPointer;
 }

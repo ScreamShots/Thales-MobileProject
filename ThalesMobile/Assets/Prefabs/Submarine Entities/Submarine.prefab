@@ -129,7 +129,10 @@ MonoBehaviour:
   currentSeaLevel: 0
   currentDetectableState: 0
   detectFeedback:
-    hullSonarRevealIcon: {fileID: 0}
+    hullSonarRevealIcon: {fileID: 3709395866420079310, guid: e3be960e7884a08408c4b04b7011aa24,
+      type: 3}
+    hullSonarRevealPointer: {fileID: 8954560405424066949, guid: e3be960e7884a08408c4b04b7011aa24,
+      type: 3}
   detectors: []
   ship: {fileID: 0}
   maxSpeed: 3

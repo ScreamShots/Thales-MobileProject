@@ -46,5 +46,8 @@ MonoBehaviour:
   currentSeaLevel: 0
   currentDetectableState: 0
   detectFeedback:
-    hullSonarRevealIcon: {fileID: 0}
+    hullSonarRevealIcon: {fileID: 2661236777724703074, guid: e3be960e7884a08408c4b04b7011aa24,
+      type: 3}
+    hullSonarRevealPointer: {fileID: 3758780331647301679, guid: e3be960e7884a08408c4b04b7011aa24,
+      type: 3}
   detectors: []

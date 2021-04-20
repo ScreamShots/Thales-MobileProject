@@ -14,17 +14,20 @@ public class HullSonarDetectionPoint : DetectionObject
     HullSonarPointFeedback feedbackBehavior;
     [HideInInspector]
     public float fadeDuration;
-    HullSonar source;
+    [HideInInspector]
+    public HullSonar source;
+    [HideInInspector]
+    public Coroutine fadeCouroutine;
+    [HideInInspector]
+    public float timer;
 
     //Get the point from his state of unused in the pool and activate in GameWorld
-    public void ActivatePoint(DetectableOceanEntity detectedElement, float _fadeDuration, HullSonar _source)
+    public IEnumerator ActivatePoint(DetectableOceanEntity detectedElement, float _fadeDuration, HullSonar _source)
     {
         levelManager = GameManager.Instance.levelManager;
 
         source = _source;
-        levelManager.activatedDetectionObjects.Add(this);
-
-        AddDetectable(detectedElement);
+        levelManager.activatedDetectionObjects.Add(this);        
 
         transform.position = Coordinates.ConvertVector2ToWorld(detectedElement.coords.position);
         coords.position = Coordinates.ConvertWorldToVector2(transform.position);
@@ -32,13 +35,24 @@ public class HullSonarDetectionPoint : DetectionObject
 
         gameObject.SetActive(true);
 
-        StartCoroutine(Fade());
+        yield return null;
+
+        AddDetectable(detectedElement);
+
+        fadeCouroutine = StartCoroutine(Fade());
     }
 
     //Place the point back in pool
-    public void DesactivatePoint()
+    public IEnumerator DesactivatePoint()
     {
+        if(detectionState == DetectionState.revealedDetection)
+        {
+            feedbackBehavior.HideReveal();
+            yield return new WaitForSeconds(feedbackBehavior.revealAppearAnim.anim.animationTime + (feedbackBehavior.revealAppearAnim.anim.animationTime/5));
+        }
+
         gameObject.SetActive(false);
+        source.DesactivatePoint(this, detectedEntities[0]);
 
         foreach(DetectableOceanEntity entity in detectedEntities.ToList())
         {
@@ -47,11 +61,7 @@ public class HullSonarDetectionPoint : DetectionObject
         detectedEntities.Clear();
 
         transform.localPosition = Vector3.zero;
-        coords.position = Coordinates.ConvertWorldToVector2(transform.position);
-
-        levelManager.activatedDetectionObjects.Remove(this);
-        source.availableDetectionPoints.Add(this);
-        source.usedDetectionPoints.Remove(this);
+        coords.position = Coordinates.ConvertWorldToVector2(transform.position);        
 
         StopAllCoroutines();
     }
@@ -59,7 +69,7 @@ public class HullSonarDetectionPoint : DetectionObject
     //Progressive fade starting at spawn
     IEnumerator Fade()
     {
-        float timer = 0;
+        timer = 0;
 
         while (timer < fadeDuration)
         {
@@ -67,7 +77,13 @@ public class HullSonarDetectionPoint : DetectionObject
             timer += Time.deltaTime;
         }
 
-        DesactivatePoint();
+        StartCoroutine(DesactivatePoint());
+    }
+
+    public void ResetFade(float _fadeTimer)
+    {
+        StopCoroutine(fadeCouroutine);
+        fadeCouroutine = StartCoroutine(Fade());
     }
 
     //FeedBack modification depending on the state of detectionState
@@ -77,11 +93,19 @@ public class HullSonarDetectionPoint : DetectionObject
 
         if(newState == DetectionState.revealedDetection)
         {
-            if(detectedEntities[0] != null) feedbackBehavior.DisplayReveal(detectedEntities[0].detectFeedback.hullSonarRevealIcon);
+            if(detectedEntities[0] != null && gameObject.activeInHierarchy) feedbackBehavior.DisplayReveal(detectedEntities[0].detectFeedback.hullSonarRevealIcon, detectedEntities[0].detectFeedback.hullSonarRevealPointer);
         }
         else if(detectionState == DetectionState.revealedDetection)
         {
-            feedbackBehavior.HideReveal();
+            if(gameObject.activeInHierarchy) feedbackBehavior.HideReveal();
         }
+    }
+
+    [ContextMenu("Clear")]
+    public void ClearDetected()
+    {
+        DetectableOceanEntity test = detectedEntities[0];
+        detectedEntities.Clear();
+        detectedEntities.Add(test);
     }
 }
