@@ -6,21 +6,28 @@ public enum ZoneState {LandCoast, SeaCalm, SeaWay, SeaTurbulent, WindyZone };
 
 public class Environnement : MonoBehaviour
 {
+    [Header("Debug")]
     public bool showDebug = false;
     public bool showBoundary = true;
     public bool drawWind = true;
-    [ReadOnly]
+
+    [Space(10), ReadOnly]
     public Boundary limit = new Boundary(new Vector2(20,40));
-    [Space(20)]
+
+    [Space(10)]
     public Zone[] zones;
 
+    //Test
+    /*
     public Vector2 testPoint;
     public int result;
+    
 
     public void TestZone()
     {
         result = ZoneIn(testPoint);
     }
+    */
 
     public int ZoneIn(Vector2 point)
     {
@@ -51,7 +58,7 @@ public class Environnement : MonoBehaviour
     private void OnDrawGizmos()
     {
         //Gizmos.DrawSphere(new Vector3(testPoint.x, 0, testPoint.y), 2f);
-        TestZone();
+        //TestZone();
 
         transform.position = new Vector3(limit.offSet.x, transform.position.y, limit.offSet.y);
 

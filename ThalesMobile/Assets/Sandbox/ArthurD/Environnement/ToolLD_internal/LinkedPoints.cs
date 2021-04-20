@@ -11,7 +11,7 @@ namespace Thales.Tool.LevelDesign
         public Vector3 lastPos;
         [HideInInspector] 
         public Boundary limit;
-
+        //public bool clampInZone = false;
         [Header("Linked Points")]
         public List<Transform> linkedPoints;
 
@@ -75,7 +75,7 @@ namespace Thales.Tool.LevelDesign
                 UpdatePosition();
             }
 
-            //ClampPos();
+            ClampPos();
         }
 
         private void UpdatePosition()
@@ -87,8 +87,6 @@ namespace Thales.Tool.LevelDesign
                     linkedPoints[i].position = lastPos;
                 }
             }
-
-            ClampPos();
         }
 
         private void ClampPos()
@@ -98,22 +96,25 @@ namespace Thales.Tool.LevelDesign
             //Finalement je les point ne sont pas coincé dans la zones
             #region ClampInZone
             /*
-            if (transform.position.x < limit.offSet.x + limit.leftBorder)
+            if (clampInZone)
             {
-                transform.position = new Vector3(limit.offSet.x + limit.leftBorder, transform.position.y, transform.position.z);
-            }
-            else if (transform.position.x > limit.offSet.x + limit.rightBorder)
-            {
-                transform.position = new Vector3(limit.offSet.x + limit.rightBorder, transform.position.y, transform.position.z);
-            }
+                if (transform.position.x < limit.offSet.x + limit.leftBorder)
+                {
+                    transform.position = new Vector3(limit.offSet.x + limit.leftBorder, transform.position.y, transform.position.z);
+                }
+                else if (transform.position.x > limit.offSet.x + limit.rightBorder)
+                {
+                    transform.position = new Vector3(limit.offSet.x + limit.rightBorder, transform.position.y, transform.position.z);
+                }
 
-            if (transform.position.z < limit.offSet.y + limit.downBorder)
-            {
-                transform.position = new Vector3(limit.offSet.y + transform.position.x, transform.position.y, limit.downBorder);
-            }
-            else if (transform.position.z > limit.offSet.y + limit.upBorder)
-            {
-                transform.position = new Vector3(limit.offSet.y + transform.position.x, transform.position.y, limit.upBorder);
+                if (transform.position.z < limit.offSet.y + limit.downBorder)
+                {
+                    transform.position = new Vector3(limit.offSet.y + transform.position.x, transform.position.y, limit.downBorder);
+                }
+                else if (transform.position.z > limit.offSet.y + limit.upBorder)
+                {
+                    transform.position = new Vector3(limit.offSet.y + transform.position.x, transform.position.y, limit.upBorder);
+                }
             }
             */
             #endregion

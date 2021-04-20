@@ -4,6 +4,8 @@ using NaughtyAttributes;
 
 namespace Thales.Tool.LevelDesign
 {
+#if UNITY_EDITOR
+
     [ExecuteInEditMode]
     public class Tool_LevelDesign : MonoBehaviour
     {
@@ -14,18 +16,18 @@ namespace Thales.Tool.LevelDesign
         public GameObject pointTemplate;
 
         [Header("Map Info")]
-        public Color limitColor = Color.red;
-        public Boundary limit = new Boundary(new Vector2(20, 40));
-        public float height = 0f;
+        [HideInInspector] public Boundary limit = new Boundary(new Vector2(20, 40));
+        private Boundary oldLimit = new Boundary(new Vector2(20, 40));
+        [HideInInspector] public float height = 0f;
 
         [Header("Zones")]
         public List<ZoneEditable> editZones;
-        public int zoneNbr;
+        [HideInInspector] public int zoneNbr;
 
-#if UNITY_EDITOR
+        [Header("Debug")]
+        public Tool_LD_DebugOption debugOption = new Tool_LD_DebugOption();
+
         #region Button
-
-        [Button("Add a zone")]
         public void AddZone()
         {
             ZoneEditable newZone = new ZoneEditable("Zone-" + editZones.Count);
@@ -34,9 +36,13 @@ namespace Thales.Tool.LevelDesign
             editZones.Add(newZone);
 
             zoneNbr = editZones.Count - 1;
-        }
 
-        [Button("Add a point")]
+            float size = 8;
+            AddPoint(zoneNbr, new Vector2(-size, -size));
+            AddPoint(zoneNbr, new Vector2(-size, size));
+            AddPoint(zoneNbr, new Vector2(size, size));
+            AddPoint(zoneNbr, new Vector2(size, -size));
+        }
         public void AddPoint()
         {
             Vector3 pos = new Vector3(limit.offSet.x, height, limit.offSet.y);
@@ -48,7 +54,7 @@ namespace Thales.Tool.LevelDesign
                         Mathf.Cos(editZones[zoneNbr].points.Count - 1) * Mathf.FloorToInt(editZones[zoneNbr].points.Count - 1 * 0.125f),
                         0,
                         Mathf.Sin(editZones[zoneNbr].points.Count - 1) * Mathf.FloorToInt(editZones[zoneNbr].points.Count - 1 * 0.125f)
-                        );
+                        ) * 4;
             }
             GameObject newPoint = Instantiate(pointTemplate, pos, Quaternion.identity, transform);
 
@@ -62,10 +68,26 @@ namespace Thales.Tool.LevelDesign
             lp.limit = limit;
             editZones[zoneNbr].points.Add(newPoint.transform);
         }
+        public void AddPoint(int zone, Vector2 pos2D)
+        {
+            Vector3 pos = new Vector3(limit.offSet.x + pos2D.x, height, limit.offSet.y + pos2D.y);
+
+            GameObject newPoint = Instantiate(pointTemplate, pos, Quaternion.identity, transform);
+
+            newPoint.name = "Zone-" + zone + "_Point-" + editZones[zone].points.Count;
+            newPoint.AddComponent(typeof(LinkedPoints));
+
+            LinkedPoints lp = newPoint.GetComponent<LinkedPoints>();
+
+            lp.lastPos = newPoint.transform.position;
+            lp.linkedPoints = new List<Transform>();
+            lp.limit = limit;
+            editZones[zone].points.Add(newPoint.transform);
+        }
         #endregion
 
         #region ContextMenue
-        [ContextMenu("Push in Enviro")]
+        [ContextMenu("Push Into Environnement")]
         public void PushIntoEnvironnement()
         {
             //Change Map Limit
@@ -105,72 +127,233 @@ namespace Thales.Tool.LevelDesign
             }
 
         }
+        
+        [ContextMenu("Generate New Environnement")]
+        public void GenerateNewEnvironnement()
+        {
+            GameObject go = new GameObject();
 
-        [ContextMenu("TextureGeneration")]
-        public void GenerateTexture()
+            go.name = "(new)Generated Enviro";
+
+            go.AddComponent(typeof(Environnement));
+            Environnement enviro = go.GetComponent<Environnement>();
+
+            //Change Map Limit
+            enviro.limit = limit;
+
+            if (editZones.Count != 0)
+            {
+                //Create Each Zone storage space
+                enviro.zones = new Zone[editZones.Count];
+                //For each Zone
+                for (int i = 0; i < editZones.Count; i++)
+                {
+                    //Zone Info
+                    enviro.zones[i].name = editZones[i].name;
+                    enviro.zones[i].windDir = editZones[i].windDir;
+                    enviro.zones[i].debugColor = editZones[i].color;
+
+                    if (editZones[i].points.Count != 0)
+                    {
+                        //Create Points storage space
+                        enviro.zones[i].points = new Vector2[editZones[i].points.Count];
+
+                        for (int j = 0; j < editZones[i].points.Count; j++)
+                        {
+                            enviro.zones[i].points[j] = new Vector2(editZones[i].points[j].position.x, editZones[i].points[j].position.z);
+                        }
+                    }
+                    else
+                    {
+                        Debug.LogWarning("Il n'y a pas de point dans la Zone" + i);
+                    }
+                }
+            }
+            else
+            {
+                Debug.LogError("Il n'y a pas de zone");
+            }
+
+            this.enviro = enviro;
+        }
+
+        [ContextMenu("Texture Generation Data")]
+        public void GenerateTextureData()
+        {
+            //SeaTextureGenerator.GenerateZoneDataTexture(enviro, "Tex_Enviro");
+        }
+
+        [ContextMenu("Texture Generation Color")]
+        public void GenerateTextureColor()
         {
             SeaTextureGenerator.GenerateZoneDataTexture(enviro, "Tex_Enviro");
         }
-
         #endregion
-#endif
+
         private void Update()
         {
-            transform.position = new Vector3(limit.offSet.x, height, limit.offSet.y);
+            LimitPos();
+
+            #region Point Correction on Map Scaling
+            if (oldLimit.size != limit.size)
+            {
+                ScalePointCorrection();
+            }
+            oldLimit = limit;
+            #endregion
         }
 
-        private void OnDrawGizmos()
+        private void OnValidate()
         {
-            //Dessine bords
-            DrawBoundary(8);
+            transform.position = new Vector3(limit.offSet.x, height, limit.offSet.y);
 
-            //Dessine Zone
             if (editZones.Count != 0)
             {
                 for (int i = 0; i < editZones.Count; i++)
                 {
                     RemoveDeletePointFromZone(editZones[i]);
-                    DrawZone(editZones[i]);
                 }
             }
         }
 
+        private void OnDrawGizmos()
+        {
+            if (debugOption.showDebug)
+            {
+                //Dessine bords
+                DrawBoundary(debugOption.borderThickness);
+
+                //Dessine Zone
+                if (editZones.Count != 0)
+                {
+                    for (int i = 0; i < editZones.Count; i++)
+                    {
+                        RemoveDeletePointFromZone(editZones[i]);
+                        DrawZone(editZones[i]);
+                    }
+                }
+            }
+        }
+
+        #region Méthodes
+        private void LimitPos()
+        {
+            transform.position = new Vector3(limit.offSet.x, height, limit.offSet.y);
+        }
+        private void ScalePointCorrection()
+        {
+            //Pour ChaqueZone
+            if (editZones.Count != 0)
+            {
+                for (int i = 0; i < editZones.Count; i++)
+                {
+                    //Pour ChaquePoint
+                    if (editZones[i].points.Count != 0)
+                    {
+                        for (int j = 0; j < editZones[i].points.Count; j++)
+                        {
+                            editZones[i].points[j].position = new Vector3(
+                                editZones[i].points[j].position.x * (limit.size.x / oldLimit.size.x),
+                                editZones[i].points[j].position.y,
+                                editZones[i].points[j].position.z * (limit.size.y / oldLimit.size.y)
+                                );
+                        }
+                    }
+                }
+            }
+        }
+        public Environnement NewEnvironnement()
+        {
+            Environnement enviro = new Environnement();
+
+            //Change Map Limit
+            enviro.limit = limit;
+
+            if (editZones.Count != 0)
+            {
+                //Create Each Zone storage space
+                enviro.zones = new Zone[editZones.Count];
+                //For each Zone
+                for (int i = 0; i < editZones.Count; i++)
+                {
+                    //Zone Info
+                    enviro.zones[i].name = editZones[i].name;
+                    enviro.zones[i].windDir = editZones[i].windDir;
+                    enviro.zones[i].debugColor = editZones[i].color;
+
+                    if (editZones[i].points.Count != 0)
+                    {
+                        //Create Points storage space
+                        enviro.zones[i].points = new Vector2[editZones[i].points.Count];
+
+                        for (int j = 0; j < editZones[i].points.Count; j++)
+                        {
+                            enviro.zones[i].points[j] = new Vector2(editZones[i].points[j].position.x, editZones[i].points[j].position.z);
+                        }
+                    }
+                    else
+                    {
+                        Debug.LogWarning("Il n'y a pas de point dans la Zone" + i);
+                    }
+                }
+            }
+            else
+            {
+                Debug.LogError("Il n'y a pas de zone");
+            }
+
+            if (this.enviro != null)
+            {
+                this.enviro = enviro;
+            }
+
+            return enviro;
+        }
+        #endregion
+
+        #region Debug/Gizmo méthodes
         private void DrawBoundary(int step)
         {
             step = step >= 1 ? step : 1;
 
-            Gizmos.color = limitColor;
 
-            //Top
-            Gizmos.DrawCube(new Vector3(transform.position.x, 0, transform.position.z + (0.5f * limit.size.y) + (0.5f * step)), new Vector3(limit.size.x + (2 * step), 0, step));
-            //Bottom
-            Gizmos.DrawCube(new Vector3(transform.position.x, 0, transform.position.z - (0.5f * limit.size.y) - (0.5f * step)), new Vector3(limit.size.x + (2 * step), 0, step));
-            //Left
-            Gizmos.DrawCube(new Vector3(transform.position.x - (0.5f * limit.size.x) - (0.5f * step), 0, transform.position.z), new Vector3(step, 0, limit.size.y));
-            //Right
-            Gizmos.DrawCube(new Vector3(transform.position.x + (0.5f * limit.size.x) + (0.5f * step), 0, transform.position.z), new Vector3(step, 0, limit.size.y));
-
-
-            for (float tempExtrude = 0; tempExtrude <= step; tempExtrude++)
+            if (debugOption.showHardBorder)
             {
-                //Draw the rectangle
-                // _  
-                Vector3 drawPos = new Vector3(limit.leftBorder - tempExtrude, transform.position.y + tempExtrude * 0.0f, limit.upBorder + tempExtrude);
-                Debug.DrawRay(drawPos, Vector3.right * limit.size.x + Vector3.right * 2 * tempExtrude, limitColor);
-                // _
-                //  |
-                drawPos += Vector3.right * limit.size.x + Vector3.right * 2 * tempExtrude;
-                Debug.DrawRay(drawPos, Vector3.back * limit.size.y + Vector3.back * 2 * tempExtrude, limitColor);
-                // _
-                // _|
-                drawPos += Vector3.back * limit.size.y + Vector3.back * 2 * tempExtrude;
-                Debug.DrawRay(drawPos, Vector3.left * limit.size.x + Vector3.left * 2 * tempExtrude, limitColor);
-                // _
-                //|_|
-                drawPos += Vector3.left * limit.size.x + Vector3.left * 2 * tempExtrude;
-                Debug.DrawRay(drawPos, Vector3.forward * limit.size.y + Vector3.forward * 2 * tempExtrude, limitColor);
+                Gizmos.color = debugOption.borderColor;
+
+                //Top
+                Gizmos.DrawCube(new Vector3(transform.position.x, 0, transform.position.z + (0.5f * limit.size.y) + (0.5f * step)), new Vector3(limit.size.x + (2 * step), 0, step));
+                //Bottom
+                Gizmos.DrawCube(new Vector3(transform.position.x, 0, transform.position.z - (0.5f * limit.size.y) - (0.5f * step)), new Vector3(limit.size.x + (2 * step), 0, step));
+                //Left
+                Gizmos.DrawCube(new Vector3(transform.position.x - (0.5f * limit.size.x) - (0.5f * step), 0, transform.position.z), new Vector3(step, 0, limit.size.y));
+                //Right
+                Gizmos.DrawCube(new Vector3(transform.position.x + (0.5f * limit.size.x) + (0.5f * step), 0, transform.position.z), new Vector3(step, 0, limit.size.y));
+
             }
 
+            if (debugOption.showLineBorder)
+            {
+                for (float tempExtrude = 0; tempExtrude <= step; tempExtrude++)
+                {
+                    //Draw the rectangle
+                    // _  
+                    Vector3 drawPos = new Vector3(limit.leftBorder - tempExtrude, transform.position.y + tempExtrude * 0.0f, limit.upBorder + tempExtrude);
+                    Debug.DrawRay(drawPos, Vector3.right * limit.size.x + Vector3.right * 2 * tempExtrude, debugOption.borderColor);
+                    // _
+                    //  |
+                    drawPos += Vector3.right * limit.size.x + Vector3.right * 2 * tempExtrude;
+                    Debug.DrawRay(drawPos, Vector3.back * limit.size.y + Vector3.back * 2 * tempExtrude, debugOption.borderColor);
+                    // _
+                    // _|
+                    drawPos += Vector3.back * limit.size.y + Vector3.back * 2 * tempExtrude;
+                    Debug.DrawRay(drawPos, Vector3.left * limit.size.x + Vector3.left * 2 * tempExtrude, debugOption.borderColor);
+                    // _
+                    //|_|
+                    drawPos += Vector3.left * limit.size.x + Vector3.left * 2 * tempExtrude;
+                    Debug.DrawRay(drawPos, Vector3.forward * limit.size.y + Vector3.forward * 2 * tempExtrude, debugOption.borderColor);
+                }
+            }
         }
         private void DrawZone(ZoneEditable zone)
         {
@@ -191,6 +374,9 @@ namespace Thales.Tool.LevelDesign
                         DrawWind(zone.points[i].position, zone.windDir, zone.color);
                     }
                 }
+
+                //Ce serait cool de générer un mesh et le draw
+                //Gizmos.DrawMesh
             }
         }
         private void DrawWind(Vector3 point, float windDot, Color zoneColor)
@@ -217,5 +403,17 @@ namespace Thales.Tool.LevelDesign
                 }
             }
         }
+        #endregion
     }
+
+    [System.Serializable]
+    public class Tool_LD_DebugOption
+    {
+        public bool showDebug = true;
+        public bool showHardBorder = true;
+        public bool showLineBorder = true;
+        public int borderThickness = 4;
+        public Color borderColor = Color.red;
+    }
+#endif
 }

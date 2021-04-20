@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System;
 
+#pragma warning disable 0661
+#pragma warning disable 0660
+
 [Serializable]
 public struct Boundary
 {
@@ -97,4 +100,43 @@ public struct Boundary
             return true;
         }
     }
+
+    //Operator
+    public static Boundary operator +(Boundary a, Boundary b) 
+    {
+        Boundary result = new Boundary(Vector2.zero, Vector2.zero);
+        result.size = new Vector2(a.size.x + b.size.x, a.size.y + b.size.x);
+        result.offSet = new Vector2(a.offSet.x + b.size.x, a.offSet.y + b.size.x);
+        return result;
+    }
+    public static Boundary operator -(Boundary a, Boundary b)
+    {
+        Boundary result = new Boundary(Vector2.zero, Vector2.zero);
+        result.size = new Vector2(a.size.x - b.size.x, a.size.y - b.size.x);
+        result.offSet = new Vector2(a.offSet.x - b.size.x, a.offSet.y - b.size.x);
+        return result;
+    }
+    public static bool operator ==(Boundary lhs, Boundary rhs)
+    {
+        if (lhs.size.x == rhs.size.x && lhs.size.y == rhs.size.y 
+            && lhs.offSet.x == rhs.offSet.x && lhs.offSet.y == rhs.offSet.y)
+        {
+            return true;
+        }
+
+        return false;
+    }
+    public static bool operator !=(Boundary lhs, Boundary rhs)
+    {
+        if (lhs.size.x != rhs.size.x || lhs.size.y != rhs.size.y
+            || lhs.offSet.x != rhs.offSet.x || lhs.offSet.y != rhs.offSet.y)
+        {
+            return true;
+        }
+
+        return false;
+    }
 }
+
+#pragma warning restore 0660
+#pragma warning restore 0661

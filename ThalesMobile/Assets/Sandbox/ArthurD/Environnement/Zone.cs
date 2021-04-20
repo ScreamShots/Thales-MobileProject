@@ -14,25 +14,28 @@ public struct Zone
 
     [Header("Info")]
     public Color debugColor;
-    [ReadOnly, ReorderableList]
-    public Vector2[] points;
+    [ReorderableList] public Vector2[] points;
 
     public bool PointInZone(Vector2 pointTest)
     {
-        int lastPoint = points.Length - 1;
-        // Get the angle between the point and the first and last point.  FirstPoint-Testpoint-LastPoint
-        float total_angle = CalcAngle(points[lastPoint], pointTest, points[0]);
-
-        // Add l'angles from the point to each other consecutive pair of point.
-        for (int i = 0; i < points.Length - 1; i++)
+        if (points.Length != 0)
         {
-            total_angle += CalcAngle( points[i], pointTest, points[i + 1]);
-        }
+            int lastPoint = points.Length - 1;
+            // Get the angle between the point and the first and last point.  FirstPoint-Testpoint-LastPoint
+            float total_angle = CalcAngle(points[lastPoint], pointTest, points[0]);
 
-        // If the point is inside the result wil be 2PI or -2PI
-        // (depending of points in clock sens or counter clock sens)
-        // If the point is outside the result wil be 0
-        return (Mathf.Abs(total_angle) > 3.14f);
+            // Add l'angles from the point to each other consecutive pair of point.
+            for (int i = 0; i < points.Length - 1; i++)
+            {
+                total_angle += CalcAngle(points[i], pointTest, points[i + 1]);
+            }
+
+            // If the point is inside the result wil be 2PI or -2PI
+            // (depending of points in clock sens or counter clock sens)
+            // If the point is outside the result wil be 0
+            return (Mathf.Abs(total_angle) > 3.14f);
+        }
+        return false;
     }
 
     private float CalcAngle(Vector3 a, Vector3 b, Vector3 c)
