@@ -67,6 +67,7 @@ namespace PlayerEquipement
         {
             currentUser = user; 
             chargeCount = chargeStart;
+            readyToUse = true;
             FeedbackInit();
         }
 

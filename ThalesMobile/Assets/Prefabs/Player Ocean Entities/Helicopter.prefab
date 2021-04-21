@@ -556,6 +556,7 @@ MonoBehaviour:
   movementType: 0
   currentTargetPoint: {x: -9999, y: -9999}
   nullVector: {x: -9999, y: -9999}
+  enitityFeedback: {fileID: 6286141311459306336}
   entityDeck: {fileID: 8979791638679697784, guid: ec068da28eae9274b9283a8625cdcb1d,
     type: 3}
   linkedButton: {fileID: 0}

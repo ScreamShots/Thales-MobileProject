@@ -41,6 +41,7 @@ public class InputManager : MonoBehaviour
         currentEventSystem = EventSystem.current;
         camController = GameManager.Instance.cameraController;
         playerController = GameManager.Instance.playerController;
+        canUseCam = true;
     }
 
     void Update()

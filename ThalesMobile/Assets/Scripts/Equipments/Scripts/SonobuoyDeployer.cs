@@ -31,6 +31,11 @@ namespace PlayerEquipement
         [HideInInspector]
         public List<SonobuoyInstance> usedSonobuoys;
 
+        [Header("Feedback")]
+        public GameObject sonobuyTargetFeedbackPrefab;
+        private GameObject sonobuyTargetFeedback;
+        private GameObject temp;
+
         private Coroutine coroutine;
 
         public override void Init(PlayerOceanEntity user)
@@ -58,6 +63,17 @@ namespace PlayerEquipement
 
         IEnumerator DeploySonoBuy(PlayerOceanEntity user)
         {
+            temp = user.enitityFeedback.targetPoint.transform.GetChild(0).transform.GetChild(0).gameObject;
+
+            if(user.enitityFeedback.targetPoint.transform.GetChild(0).transform.childCount < 2)
+            {
+                sonobuyTargetFeedback = Instantiate(sonobuyTargetFeedbackPrefab, user.enitityFeedback.targetPoint.transform.GetChild(0).transform);
+                sonobuyTargetFeedback.transform.SetAsLastSibling();
+            }
+            temp.SetActive(false);
+            sonobuyTargetFeedback.SetActive(true);
+
+
             readyToUse = false;
             Vector2 userCurrentTarget = user.currentTargetPoint;
 
@@ -75,11 +91,17 @@ namespace PlayerEquipement
             if (user.currentTargetPoint == user.nullVector)
             {
                 Debug.Log("DROP");
+                temp.SetActive(true);
+                sonobuyTargetFeedback.SetActive(false);
+
                 DropSonobuoy(targetPos);
                 readyToUse = true;
             }
             else
             {
+                temp.SetActive(true);
+                sonobuyTargetFeedback.SetActive(false);
+
                 readyToUse = true;
             }
         }
@@ -97,6 +119,10 @@ namespace PlayerEquipement
             GameManager.Instance.ExternalStopCoroutine(coroutine);
             readyToUse = true;
             GameManager.Instance.inputManager.getEntityTarget = false;
+
+            temp.SetActive(true);
+            if(sonobuyTargetFeedback!= null)
+                sonobuyTargetFeedback.SetActive(false);
         }
     }
 }

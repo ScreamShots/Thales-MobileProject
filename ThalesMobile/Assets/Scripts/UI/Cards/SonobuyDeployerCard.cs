@@ -24,6 +24,7 @@ public class SonobuyDeployerCard : MonoBehaviour
     {
         if (card.isClicked)
         {
+            print("isClicked");
             if (!card.isSelected)
             {
                 if (inputManager.currentSelectedCard != null)
@@ -49,21 +50,21 @@ public class SonobuyDeployerCard : MonoBehaviour
 
         if (card.isDragged)
         {
-            //if (!card.isSelected)
-                //card.Select();
-
             if (sonobuyDeployer.readyToUse)
                 sonobuyDeployer.UseEquipement(GameManager.Instance.playerController.currentSelectedEntity);
 
             inputManager.isDraggingCard = true;
             inputManager.currentSelectedCard = card;
+            inputManager.canUseCam = false;
+            print("StopdraggingCaptas");
         }
         else
         {
-            if(inputManager.isDraggingCard && inputManager.currentSelectedCard == this)
+            if(inputManager.isDraggingCard && inputManager.currentSelectedCard == card)
             {
                 inputManager.isDraggingCard = false;
-                //card.Deselect();
+                inputManager.canUseCam = true;
+                print("StopdraggingCaptas");
             }
         }
     }

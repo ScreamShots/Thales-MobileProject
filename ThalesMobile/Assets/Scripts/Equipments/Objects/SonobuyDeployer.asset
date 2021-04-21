@@ -15,7 +15,12 @@ MonoBehaviour:
   chargeMax: 3
   chargeStart: 2
   loadingTime: 1
+  feedbackPrefab: {fileID: 0}
   sonobuoyLifeTime: 1
-  deployerCooldown: 5
+  sonobuoyRange: 0
   sonobuoyPrefab: {fileID: 0}
   poolSize: 0
+  availaibleSonobuoys: []
+  usedSonobuoys: []
+  sonobuyTargetFeedbackPrefab: {fileID: 107788761763119437, guid: 821734bb5a294ce45bdc084a25bce773,
+    type: 3}

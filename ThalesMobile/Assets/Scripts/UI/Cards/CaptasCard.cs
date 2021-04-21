@@ -58,13 +58,16 @@ public class CaptasCard : MonoBehaviour
         }
         else
         {
-            if (inputManager.isDraggingCard && inputManager.currentSelectedCard == this)
+            if (inputManager.isDraggingCard && inputManager.currentSelectedCard == card)
             {
                 inputManager.isDraggingCard = false;
                 inputManager.canUseCam = true;
 
                 if (captas.readyToUse && captas.chargeCount > 0)
+                {
                     captas.UseEquipement(GameManager.Instance.playerController.currentSelectedEntity);
+                }
+
             }
         }
     }
