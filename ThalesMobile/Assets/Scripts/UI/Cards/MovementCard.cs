@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class MovementCard : MonoBehaviour
 {
-
     public InteractableUI card;
     private InputManager inputManager;
     private UIHandler uiHandler;
@@ -16,57 +15,62 @@ public class MovementCard : MonoBehaviour
     {
         inputManager = GameManager.Instance.inputManager;
         uiHandler = GameManager.Instance.uiHandler;
-        card.abortHandler += AbortMethod;
+
+        card.clickHandler     += OnClickEvent;
+        card.beginDragHandler += OnBeginDragEvent;
+        card.endDragHandler   += OnEndDragEvent;
+        card.abortHandler     += AbortMethod;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(card.isDragged)
-        {
-            if (!card.isSelected)
-            {
-                //card.Select();
-            }
-                inputManager.isDraggingCard = true;
-                inputManager.getEntityTarget = true;
-                inputManager.currentSelectedCard = card;
-        }
-
-        else if(card.isDropped)
-        {
-            //card.Deselect();
-            inputManager.isDraggingCard = false;
-        }
-
-        else if (card.isClicked) 
-        {
-            if (!card.isSelected)
-            {
-                if (inputManager.currentSelectedCard != null)
-                {
-                    inputManager.currentSelectedCard.Deselect();
-                    inputManager.currentSelectedCard.abortHandler();
-                }
-
-                card.Select();
-                inputManager.getEntityTarget = true;
-                inputManager.currentSelectedCard = card;
-            }
-            else
-            {
-                card.Deselect();
-                inputManager.getEntityTarget = false;
-                inputManager.currentSelectedCard = null;
-            }
-        }
-        
-    }
+   
 
     public void AbortMethod()
     {
-        print("AbortMove");
         card.Deselect();
         inputManager.getEntityTarget = false;
+        inputManager.currentSelectedCard = null;
     }
+
+    public void OnClickEvent()
+    {
+        if(card.isSelected)
+        {
+            card.abortHandler();
+        }
+        else
+        {
+            //Deselect and abort current selected card.
+            if(inputManager.currentSelectedCard != null)
+            {
+                inputManager.currentSelectedCard.abortHandler();
+            }
+
+            //Select new card and link to input manager.
+            card.Select();
+            inputManager.getEntityTarget = true;
+            inputManager.currentSelectedCard = card;
+        }
+    }
+
+    public void OnBeginDragEvent()
+    {
+        //Deselect and abort current selected card.
+        if (inputManager.currentSelectedCard != null)
+        {
+            inputManager.currentSelectedCard.abortHandler();
+        }
+
+        inputManager.isDraggingCard = true;
+        inputManager.getEntityTarget = true;
+        inputManager.currentSelectedCard = card;
+    }
+
+    public void OnEndDragEvent()
+    {
+        inputManager.isDraggingCard = false;
+        inputManager.currentSelectedCard = null;
+    }
+
+
+
 }

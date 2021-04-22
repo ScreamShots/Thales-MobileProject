@@ -4,16 +4,12 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class InteractableUI : MonoBehaviour
-     , IPointerClickHandler
-     , IDragHandler
-     , IPointerEnterHandler
-     , IPointerExitHandler
-     , IDropHandler
+     , IPointerUpHandler
+     , IBeginDragHandler
      , IEndDragHandler
+     , IDragHandler
+     , IPointerDownHandler
 {
-    public static bool pointerFocusedOnCard;
-    public static bool anyCardSelected;
-    private static List<InteractableUI> allCards = new List<InteractableUI>();
     public static TweeningAnimator darkBackAnim;
 
     public TweeningAnimator dragAnim;
@@ -23,79 +19,38 @@ public class InteractableUI : MonoBehaviour
     public bool canBeSelected;
 
     [HideInInspector] public bool isDragged;
-    [HideInInspector] public bool isDropped;
-    [HideInInspector] public bool isHovered;
-    [HideInInspector] public bool isCursorOn;
-    [HideInInspector] public bool isFocused;
-    [HideInInspector] public bool isClicked;
     [HideInInspector] public bool isSelected;
     [HideInInspector] public bool descriptionOpened;
 
-    private int dropCount;
-    private int clickCount;
-    private bool dragFlag;
-    private bool selectedFlag;
+    private bool pointerEnter;
     private float holdTime;
-    private bool cursorGoOut;
 
+
+    //Delegates
     public delegate void Abort();
     public Abort abortHandler;
 
+    public delegate void Click();
+    public Click clickHandler;
+
+    public delegate void Drag();
+    public Drag beginDragHandler;
+    public Drag endDragHandler;
+
+
     private void Start()
     {
-        dragFlag = true;
-        allCards.Add(this);
+        dragAnim.anim = Instantiate(dragAnim.anim);
+        selectedAnim.anim = Instantiate(selectedAnim.anim);
+        //holdAnim.anim = Instantiate(holdAnim.anim);
     }
 
     private void Update()
     {
-        isHovered = isHovered && Input.touchCount > 0;
-        isFocused = isHovered || isDragged || isSelected;
 
-        if (dropCount > 0)
-        {
-            dropCount--;
-            isDropped = true;
-        }
-        else
-        {
-            isDropped = false;
-        }
-
-        if (clickCount > 0)
-        {
-            clickCount--;
-            isClicked = true;
-        }
-        else
-        {
-            isClicked = false;
-        }
-
-        if (isClicked && canBeSelected)
-        {
-            if (isSelected)
-            {
-                Deselect();
-            }
-            else
-            {
-                SelectCard(this);
-            }
-        }
-
-        if (isHovered && !cursorGoOut)
+        if(pointerEnter && !isDragged)
         {
             holdTime += Time.deltaTime;
-        }
-        if (Input.touchCount == 0)
-        {
-            holdTime = 0;
-        }
-
-        if (isDropped)
-        {
-            cursorGoOut = false;
         }
 
         if (holdTime > 0.8f && !descriptionOpened)
@@ -120,14 +75,6 @@ public class InteractableUI : MonoBehaviour
             if (holdAnim.rectTransform != null)
                 StartCoroutine(holdAnim.anim.PlayBackward(holdAnim, holdAnim.originalPos, true));
         }
-
-
-        if (dragFlag && isHovered && !descriptionOpened && !isSelected && isDragged)
-        {
-            if (dragAnim.rectTransform != null)
-                StartCoroutine(dragAnim.anim.Play(dragAnim, dragAnim.originalPos));
-            dragFlag = false;
-        }
     }
 
     #region CustomMethods
@@ -149,100 +96,42 @@ public class InteractableUI : MonoBehaviour
             }
         }
     }
-
-    public static void SelectCard(InteractableUI card)
-    {
-        card.Select();
-        for (int i = 0; i < allCards.Count; i++)
-        {
-            if (allCards[i] != card && allCards[i].isSelected)
-            {
-                allCards[i].Deselect();
-            }
-        }
-    }
-   
-    public static void UpdateFocusCard()
-    {
-        pointerFocusedOnCard = false;
-        for (int i = 0; i < allCards.Count; i++)
-        {
-            if (allCards[i].isFocused)
-                pointerFocusedOnCard = allCards[i].isFocused;
-        }
-    }
-   
-    public static void UpdateSelectedCard()
-    {
-        anyCardSelected = false;
-        for (int i = 0; i < allCards.Count; i++)
-        {
-            if (allCards[i].isSelected)
-                anyCardSelected = allCards[i].isSelected;
-        }
-    }
     #endregion
 
     #region   InterfaceEvents
-    public void OnPointerClick(PointerEventData eventData)
+    public void OnBeginDrag(PointerEventData eventData)
     {
-
-        if (!cursorGoOut)
-        {
-            clickCount = 1;
-        }
-        else
-        {
-            cursorGoOut = false;
-        }
-    }
-
-    public void OnDrag(PointerEventData eventData)
-    {
+        beginDragHandler();
         isDragged = true;
+
+        if (dragAnim.rectTransform != null)
+            StartCoroutine(dragAnim.anim.Play(dragAnim, dragAnim.originalPos));
     }
-
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        isHovered = true;
-        isCursorOn = true;
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        isCursorOn = false;
-        isHovered = false;
-        if (isDragged)
-        {
-            cursorGoOut = true;
-        }
-        if (!dragFlag && !isDragged)
-        {
-            dragFlag = true;
-            if (!descriptionOpened)
-            {
-                if (dragAnim.rectTransform != null)
-                    StartCoroutine(dragAnim.anim.PlayBackward(dragAnim, dragAnim.originalPos, true));
-            }
-        }
-    }
-
-    public void OnDrop(PointerEventData eventData)
-    {
-
-    }
-
     public void OnEndDrag(PointerEventData eventData)
     {
-        isDragged = false;
-        if (!dragFlag)
-        {
-            dragFlag = true;
-            if (dragAnim.rectTransform != null && !isSelected)
-                StartCoroutine(dragAnim.anim.PlayBackward(dragAnim, dragAnim.originalPos, true));
-        }
-        dropCount = 1;
-    }
+        endDragHandler();
 
+        if (dragAnim.rectTransform != null)
+            StartCoroutine(dragAnim.anim.PlayBackward(dragAnim, dragAnim.originalPos, true));
+    }
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        if (holdTime < 0.8f && !isDragged)
+        {
+            clickHandler();
+        }
+
+        isDragged = false;
+        pointerEnter = false;
+        holdTime = 0;
+    }
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        pointerEnter = true;
+    }
+    public void OnDrag(PointerEventData eventData)
+    {
+        //
+    }
     #endregion
 }

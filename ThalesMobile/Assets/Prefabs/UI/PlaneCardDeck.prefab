@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 6018285370585958452}
   - component: {fileID: 5822799517621645157}
   - component: {fileID: 8407499737191211966}
-  - component: {fileID: 8212604995880619430}
   - component: {fileID: 2878967004506701165}
   - component: {fileID: 4053100290816700896}
+  - component: {fileID: 7493039114023167528}
   m_Layer: 0
   m_Name: SonobuyDeployerCard
   m_TagString: Untagged
@@ -78,43 +78,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8212604995880619430
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5576417192499289932}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a66a1cc4831937438f8ee01666688f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dragAnim:
-    anim: {fileID: 11400000, guid: 862222a0fa92884409844e3344c52131, type: 2}
-    rectTransform: {fileID: 6018285370585958452}
-    canvasGroup: {fileID: 0}
-    originalPos: {x: 0, y: 0}
-  holdAnim:
-    anim: {fileID: 0}
-    rectTransform: {fileID: 0}
-    canvasGroup: {fileID: 0}
-    originalPos: {x: 0, y: 0}
-  selectedAnim:
-    anim: {fileID: 11400000, guid: e024050e4841d2f47a7045279238d15f, type: 2}
-    rectTransform: {fileID: 6018285370585958452}
-    canvasGroup: {fileID: 0}
-    originalPos: {x: 0, y: 0}
-  darkenBackWhileHold: 0
-  canBeSelected: 0
-  isDragged: 0
-  isDropped: 0
-  isHovered: 0
-  isCursorOn: 0
-  isFocused: 0
-  isClicked: 0
-  isSelected: 0
-  descriptionOpened: 0
 --- !u!114 &2878967004506701165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,8 +104,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6623f1ba96376a54ebba73b8774df29a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card: {fileID: 8212604995880619430}
+  card: {fileID: 7493039114023167528}
   sonobuyDeployer: {fileID: 11400000, guid: ff0fc0b824898a343b261ecf5d750dee, type: 2}
+--- !u!114 &7493039114023167528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5576417192499289932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a66a1cc4831937438f8ee01666688f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dragAnim:
+    anim: {fileID: 11400000, guid: 34675c2babdf609499a43aee1b3384db, type: 2}
+    rectTransform: {fileID: 6018285370585958452}
+    canvasGroup: {fileID: 0}
+    originalPos: {x: 0, y: 0}
+  holdAnim:
+    anim: {fileID: 0}
+    rectTransform: {fileID: 0}
+    canvasGroup: {fileID: 0}
+    originalPos: {x: 0, y: 0}
+  selectedAnim:
+    anim: {fileID: 11400000, guid: e024050e4841d2f47a7045279238d15f, type: 2}
+    rectTransform: {fileID: 6018285370585958452}
+    canvasGroup: {fileID: 0}
+    originalPos: {x: 0, y: 0}
+  darkenBackWhileHold: 0
+  canBeSelected: 0
+  isDragged: 0
+  isSelected: 0
+  descriptionOpened: 0
 --- !u!1 &6992532747910586283
 GameObject:
   m_ObjectHideFlags: 0
@@ -154,9 +149,9 @@ GameObject:
   - component: {fileID: 7573666956227799807}
   - component: {fileID: 792691584484268933}
   - component: {fileID: 1985678129431673267}
-  - component: {fileID: 9174005519416075742}
   - component: {fileID: 7283289848943694028}
   - component: {fileID: 9136498061939637637}
+  - component: {fileID: 1023024979172498693}
   m_Layer: 0
   m_Name: MovementCard
   m_TagString: Untagged
@@ -221,7 +216,34 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &9174005519416075742
+--- !u!114 &7283289848943694028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6992532747910586283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f658d3a3c4591e647aaee1dc91240135, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  card: {fileID: 1023024979172498693}
+--- !u!114 &9136498061939637637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6992532747910586283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86710e43de46f6f4bac7c8e50813a599, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AspectMode: 1
+  m_AspectRatio: 0.66
+--- !u!114 &1023024979172498693
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -244,47 +266,15 @@ MonoBehaviour:
     canvasGroup: {fileID: 0}
     originalPos: {x: 0, y: 0}
   selectedAnim:
-    anim: {fileID: 11400000, guid: b452577fd9032c041860f236aa16c7e9, type: 2}
+    anim: {fileID: 11400000, guid: e024050e4841d2f47a7045279238d15f, type: 2}
     rectTransform: {fileID: 7573666956227799807}
     canvasGroup: {fileID: 0}
     originalPos: {x: 0, y: 0}
   darkenBackWhileHold: 0
   canBeSelected: 0
   isDragged: 0
-  isDropped: 0
-  isHovered: 0
-  isCursorOn: 0
-  isFocused: 0
-  isClicked: 0
   isSelected: 0
   descriptionOpened: 0
---- !u!114 &7283289848943694028
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6992532747910586283}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f658d3a3c4591e647aaee1dc91240135, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  card: {fileID: 9174005519416075742}
---- !u!114 &9136498061939637637
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6992532747910586283}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86710e43de46f6f4bac7c8e50813a599, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_AspectMode: 1
-  m_AspectRatio: 0.66
 --- !u!1 &7347509689460422755
 GameObject:
   m_ObjectHideFlags: 0

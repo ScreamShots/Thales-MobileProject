@@ -20,69 +20,74 @@ public class CaptasCard : MonoBehaviour
         inputManager = GameManager.Instance.inputManager;
 
         card.abortHandler += AbortMethod;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (card.isClicked)
-        {
-            if(!card.isSelected)
-            {
-                if (inputManager.currentSelectedCard != null)
-                {
-                    inputManager.currentSelectedCard.Deselect();
-                    inputManager.currentSelectedCard.abortHandler();
-                }
-                card.Select();
-
-                if (captas.readyToUse && captas.chargeCount > 0)
-                {
-                    captasUse = StartCoroutine(UseCaptas());
-                }
-
-                inputManager.currentSelectedCard = card;
-            }
-            else
-            {
-                AbortMethod();
-                inputManager.currentSelectedCard = null;
-            }
-        }
-
-        if (card.isDragged)
-        {
-            inputManager.isDraggingCard = true;
-            inputManager.currentSelectedCard = card;
-            inputManager.canUseCam = false;
-        }
-        else
-        {
-            if (inputManager.isDraggingCard && inputManager.currentSelectedCard == card)
-            {
-                inputManager.isDraggingCard = false;
-                inputManager.canUseCam = true;
-
-                if (captas.readyToUse && captas.chargeCount > 0)
-                {
-                    captas.UseEquipement(GameManager.Instance.playerController.currentSelectedEntity);
-                }
-
-            }
-        }
+        card.clickHandler += OnClickEvent;
+        card.beginDragHandler += OnBeginDragEvent;
+        card.endDragHandler += OnEndDragEvent;
     }
 
     public void AbortMethod()
     {
         card.Deselect();
+        inputManager.currentSelectedCard = null;
         if (captasUse != null)
             StopCoroutine(captasUse);
     }
 
+    public void OnClickEvent()
+    {
+        if (!card.isSelected)
+        {
+            //Abort and deselect current selected card;
+            if (inputManager.currentSelectedCard != null)
+            {
+                inputManager.currentSelectedCard.abortHandler();
+            }
+
+            //If possible use captas and select card.
+            if (captas.readyToUse && captas.chargeCount > 0)
+            {
+                card.Select();
+                captasUse = StartCoroutine(UseCaptas());
+                inputManager.currentSelectedCard = card;
+            }
+            else
+            {
+                //Unavailable feedback;
+                print("Unavailable feedback click");
+            }
+        }
+        else
+        {
+            card.abortHandler();
+        }
+    }
+
+    public void OnBeginDragEvent()
+    {
+        inputManager.isDraggingCard = true;
+        inputManager.currentSelectedCard = card;
+        inputManager.canUseCam = false;
+    }
+
+    public void OnEndDragEvent()
+    {
+        inputManager.isDraggingCard = false;
+        inputManager.canUseCam = true;
+        inputManager.currentSelectedCard = null;
+
+        if (captas.readyToUse && captas.chargeCount > 0)
+        {
+            captas.UseEquipement(GameManager.Instance.playerController.currentSelectedEntity);
+        }
+        else
+        {
+            //Unavailable feedback;
+            print("Unavailable feedback drag");
+        }
+    }
 
     private IEnumerator UseCaptas()
     {
-        print("StartCoroutine");
         yield return new WaitUntil(() => inputManager.touchingGame);
         captas.UseEquipement(GameManager.Instance.playerController.currentSelectedEntity);
         card.Deselect();

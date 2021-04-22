@@ -103,9 +103,9 @@ GameObject:
   - component: {fileID: 7052347691197551198}
   - component: {fileID: 4774077022329467483}
   - component: {fileID: 6972535766132273330}
-  - component: {fileID: 1292235220106122970}
   - component: {fileID: 8608325869771670585}
   - component: {fileID: 8005171163153311998}
+  - component: {fileID: 1609539580832545629}
   m_Layer: 0
   m_Name: CaptasCard
   m_TagString: Untagged
@@ -170,43 +170,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1292235220106122970
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1746725121760616044}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a66a1cc4831937438f8ee01666688f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dragAnim:
-    anim: {fileID: 11400000, guid: 862222a0fa92884409844e3344c52131, type: 2}
-    rectTransform: {fileID: 7052347691197551198}
-    canvasGroup: {fileID: 0}
-    originalPos: {x: 0, y: 0}
-  holdAnim:
-    anim: {fileID: 0}
-    rectTransform: {fileID: 0}
-    canvasGroup: {fileID: 0}
-    originalPos: {x: 0, y: 0}
-  selectedAnim:
-    anim: {fileID: 11400000, guid: b452577fd9032c041860f236aa16c7e9, type: 2}
-    rectTransform: {fileID: 7052347691197551198}
-    canvasGroup: {fileID: 0}
-    originalPos: {x: 0, y: 0}
-  darkenBackWhileHold: 0
-  canBeSelected: 0
-  isDragged: 0
-  isDropped: 0
-  isHovered: 0
-  isCursorOn: 0
-  isFocused: 0
-  isClicked: 0
-  isSelected: 0
-  descriptionOpened: 0
 --- !u!114 &8608325869771670585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,8 +196,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc9e25fb52c9d3b4ab4f91828a8d488f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card: {fileID: 1292235220106122970}
+  card: {fileID: 1609539580832545629}
   captas: {fileID: 11400000, guid: a774f637123035b429f104ed6c58cdb1, type: 2}
+--- !u!114 &1609539580832545629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1746725121760616044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a66a1cc4831937438f8ee01666688f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dragAnim:
+    anim: {fileID: 11400000, guid: 34675c2babdf609499a43aee1b3384db, type: 2}
+    rectTransform: {fileID: 7052347691197551198}
+    canvasGroup: {fileID: 0}
+    originalPos: {x: 0, y: 0}
+  holdAnim:
+    anim: {fileID: 0}
+    rectTransform: {fileID: 0}
+    canvasGroup: {fileID: 0}
+    originalPos: {x: 0, y: 0}
+  selectedAnim:
+    anim: {fileID: 11400000, guid: e024050e4841d2f47a7045279238d15f, type: 2}
+    rectTransform: {fileID: 7052347691197551198}
+    canvasGroup: {fileID: 0}
+    originalPos: {x: 0, y: 0}
+  darkenBackWhileHold: 0
+  canBeSelected: 0
+  isDragged: 0
+  isSelected: 0
+  descriptionOpened: 0
 --- !u!1 &5125321413628922338
 GameObject:
   m_ObjectHideFlags: 0
@@ -246,9 +241,9 @@ GameObject:
   - component: {fileID: 8474029713748877319}
   - component: {fileID: 6458058767140778483}
   - component: {fileID: 4165509005853493304}
-  - component: {fileID: 6826440175608630118}
   - component: {fileID: 4357396911022476696}
   - component: {fileID: 5762810735815491574}
+  - component: {fileID: 8233956612670586475}
   m_Layer: 0
   m_Name: MovementCard
   m_TagString: Untagged
@@ -312,7 +307,34 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6826440175608630118
+--- !u!114 &4357396911022476696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5125321413628922338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f658d3a3c4591e647aaee1dc91240135, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  card: {fileID: 8233956612670586475}
+--- !u!114 &5762810735815491574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5125321413628922338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86710e43de46f6f4bac7c8e50813a599, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AspectMode: 1
+  m_AspectRatio: 0.66
+--- !u!114 &8233956612670586475
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -342,37 +364,5 @@ MonoBehaviour:
   darkenBackWhileHold: 0
   canBeSelected: 0
   isDragged: 0
-  isDropped: 0
-  isHovered: 0
-  isCursorOn: 0
-  isFocused: 0
-  isClicked: 0
   isSelected: 0
   descriptionOpened: 0
---- !u!114 &4357396911022476696
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5125321413628922338}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f658d3a3c4591e647aaee1dc91240135, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  card: {fileID: 6826440175608630118}
---- !u!114 &5762810735815491574
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5125321413628922338}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86710e43de46f6f4bac7c8e50813a599, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_AspectMode: 1
-  m_AspectRatio: 0.66
