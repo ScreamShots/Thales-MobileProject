@@ -1,34 +1,32 @@
-﻿using UnityEngine;
+﻿using NaughtyAttributes;
+using UnityEngine;
 
+[ExecuteInEditMode]
 public class GlobeCamera : MonoBehaviour
 {
     [Header("Cam Parameter")]
+    public Transform anchorCamera;
+    public Transform anchorGlobe;
     public Camera cam;
-    public Transform anchorPos;
 
     [Header("Globe Parameter")]
-    public Transform target;
-    public float distToGlobe = 4f;
-    public float aimLerpSpeed = 0.1f;
-
     public Vector2 aimPos;
-
-    private float xAngleEvol;
-    private float yAngleEvol;
+    [Range(0,1)]public float zoom;
+    [MinMaxSlider(0, 10)] public Vector2 distance;
 
     private void Update()
     {
-        //keep on globe
-        anchorPos.position = target.position;
+        //Clear Value Time
+        distance = new Vector2(Mathf.FloorToInt(distance.x), Mathf.CeilToInt(distance.y));
+        aimPos.x = aimPos.x % 360;
+        aimPos.y = Mathf.Clamp(aimPos.y, -60, 60);
 
-        //Distance Set-up
-        transform.localPosition = new Vector3(target.transform.localScale.x + distToGlobe, 0, 0);
+        //Set Globe Rotation
+        anchorGlobe.rotation = Quaternion.Euler(0, aimPos.x, 0);
+        //Set Camera Rotation
+        anchorCamera.rotation = Quaternion.Euler(aimPos.y, 0, 0);
+        //Set Camera Distance
+        transform.localPosition = new Vector3(0, 0, -Mathf.Lerp(distance.x, distance.y, zoom));
 
-        //Calcul next pos
-        xAngleEvol = Mathf.Lerp(anchorPos.transform.eulerAngles.y, aimPos.x, aimLerpSpeed);
-        yAngleEvol = Mathf.Lerp(anchorPos.transform.eulerAngles.z, aimPos.y, aimLerpSpeed);
-
-        //Set next pos
-        anchorPos.eulerAngles = new Vector3( 0, xAngleEvol, yAngleEvol);
     }
 }

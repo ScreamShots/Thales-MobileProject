@@ -1,7 +1,10 @@
 fileFormatVersion: 2
-guid: bc816fcff847f434fb419c372d95d9aa
+guid: edb82efc27f897f4280f1ae56953de16
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -3906393032481507608
+    second: SprSh_MenuFondUI (1)_0
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -40,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 0
   alignment: 0
@@ -73,7 +76,28 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: SprSh_MenuFondUI (1)_0
+      rect:
+        serializedVersion: 2
+        x: 474
+        y: 0
+        width: 1113
+        height: 2048
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e6f0e1eb34b9c9c0800000000000000
+      internalID: -3906393032481507608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline:
     - - {x: -2, y: -2}
       - {x: -2, y: 2}
