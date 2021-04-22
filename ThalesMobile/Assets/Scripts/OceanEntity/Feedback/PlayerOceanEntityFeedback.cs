@@ -13,12 +13,16 @@ namespace OceanEntities
         public GameObject selectionCircle;
         public LineRenderer lineRenderer;
         public GameObject targetPoint;
+        public GameObject targetArrow;
+        private float targetArrowDistance; 
+
 
         [HideInInspector]public InputManager inputManager;
 
         public void Start()
         {
             inputManager = GameManager.Instance.inputManager;
+            targetArrowDistance = (transform.position - targetArrow.transform.position).magnitude;
         }
 
         public void Update()
@@ -35,16 +39,36 @@ namespace OceanEntities
 
             if (renderedEntity.currentTargetPoint != renderedEntity.nullVector || inputManager.getEntityTarget)
             {
-                if (!targetPoint.activeSelf && GameManager.Instance.playerController.currentSelectedEntity == renderedEntity)
+
+                if (GameManager.Instance.playerController.currentSelectedEntity == renderedEntity)
+                {
                     targetPoint.SetActive(true);
-
-
-
-                if (renderedEntity.currentTargetPoint != renderedEntity.nullVector)
-                    targetPoint.transform.position = Coordinates.ConvertVector2ToWorld(renderedEntity.currentTargetPoint);
+                    targetArrow.SetActive(false);
+                }
                 else
                 {
-                        targetPoint.transform.position = Coordinates.ConvertVector2ToWorld(inputManager.touchedSeaPosition);
+                    if(renderedEntity.currentTargetPoint != renderedEntity.nullVector)
+                    {
+                        targetArrow.SetActive(true);
+                        targetPoint.SetActive(false);
+                    }
+                }
+
+                if (renderedEntity.currentTargetPoint != renderedEntity.nullVector)
+                {
+                    targetPoint.transform.position = Coordinates.ConvertVector2ToWorld(renderedEntity.currentTargetPoint);
+                    if(!inputManager.getEntityTarget)
+                    {
+                        Vector3 direction = Coordinates.ConvertVector2ToWorld(renderedEntity.currentTargetPoint) - transform.position;
+                        direction = new Vector3(direction.x, 0, direction.z);
+                        targetArrow.transform.position = transform.position + direction.normalized * targetArrowDistance;
+                        targetArrow.transform.forward = -new Vector3(direction.x, 0, direction.z);
+                    }
+                }
+                else
+                {
+                    targetPoint.transform.position = Coordinates.ConvertVector2ToWorld(inputManager.touchedSeaPosition);
+
                 }
 
                 lineRenderer.SetPosition(0, transform.position);
@@ -54,6 +78,9 @@ namespace OceanEntities
             {
                 if (targetPoint.activeSelf)
                     targetPoint.SetActive(false);
+
+                if (targetArrow.activeSelf)
+                    targetArrow.SetActive(false);
             }
         }
     }

@@ -3272,16 +3272,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Camera
       objectReference: {fileID: 0}
-    - target: {fileID: 5630502566096653526, guid: 1ce6e572ea85ad344b97167bd62129c7,
-        type: 3}
-      propertyPath: field of view
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 5630502567233466962, guid: 1ce6e572ea85ad344b97167bd62129c7,
-        type: 3}
-      propertyPath: limit.size.x
-      value: 40
-      objectReference: {fileID: 0}
     - target: {fileID: 8410120360317386302, guid: 1ce6e572ea85ad344b97167bd62129c7,
         type: 3}
       propertyPath: m_RootOrder

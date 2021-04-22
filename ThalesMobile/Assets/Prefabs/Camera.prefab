@@ -225,7 +225,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     minHeight: 3
-    maxHeight: 10
+    maxHeight: 15
     heightEvolve:
       serializedVersion: 2
       m_Curve:
@@ -277,7 +277,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     minFov: 60
-    maxFov: 90
+    maxFov: 60
     fovEvolve:
       serializedVersion: 2
       m_Curve:
@@ -308,7 +308,7 @@ MonoBehaviour:
   mouvLerpSpeed: 0.1
   moveDirection: {x: 0, y: 0}
   limit:
-    size: {x: 20, y: 40}
+    size: {x: 40, y: 40}
     offSet: {x: 0, y: 0}
 --- !u!1 &5630502567671392403
 GameObject:
