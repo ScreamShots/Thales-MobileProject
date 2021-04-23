@@ -23,7 +23,7 @@ namespace OceanEntities
         public Coordinates coords;
         public SeaLevel currentSeaLevel;
         //public Zone currentZone; -- the Zone class isn't created yet
-
+        [Header("Pathfinding settings")]
         public Seeker seeker;
         public float pathUpdatingFrequency;
         private Path path;
@@ -33,7 +33,7 @@ namespace OceanEntities
         protected Vector2 pathDirection;
         public float nextWaypointDistance;
         public int waypointAhead;
-        public Vector2 pathDestination;
+        [HideInInspector] public Vector2 pathDestination;
 
 
         /// <summary>

@@ -29,6 +29,11 @@ namespace OceanEntities
         {
             if (passiveEquipement.readyToUse)
                 passiveEquipement.UseEquipement(this);
+
+            if (currentTargetPoint != nullVector)
+            {
+                UpdatePath();
+            }
         }
 
         void FixedUpdate()
@@ -36,12 +41,14 @@ namespace OceanEntities
             if (currentTargetPoint != nullVector)
             {
                 Move(currentTargetPoint);
+                pathDestination = currentTargetPoint;
             }
         }
         public override void Move(Vector2 targetPosition)
         {
             //Calculate direction to target and store it in coords.
-            Vector2 dir = targetPosition - coords.position;
+            //Vector2 dir = targetPosition - coords.position;    without pathfinding
+            Vector2 dir = pathDirection;
             if (Vector2.Angle(coords.direction, dir) > Time.fixedDeltaTime * rotateSpeed) 
             {
                 int turnSide = Vector2.SignedAngle(coords.direction, dir) > 0 ? 1 : -1;
