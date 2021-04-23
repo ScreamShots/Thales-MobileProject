@@ -364,14 +364,14 @@ namespace Thales.Tool.LevelDesign
                 Gizmos.DrawLine(zone.points[zone.points.Count - 1].position, zone.points[0].position);
                 if (zone.drawWind)
                 {
-                    DrawWind(zone.points[zone.points.Count - 1].position, zone.windDir, zone.color);
+                    DrawWind(zone.points[zone.points.Count - 1].position, zone.windDir, zone);
                 }
                 for (int i = 0; i < zone.points.Count - 1; i++)
                 {
                     Gizmos.DrawLine(zone.points[i].position, zone.points[i + 1].position);
                     if (zone.drawWind)
                     {
-                        DrawWind(zone.points[i].position, zone.windDir, zone.color);
+                        DrawWind(zone.points[i].position, zone.windDir, zone);
                     }
                 }
 
@@ -379,13 +379,13 @@ namespace Thales.Tool.LevelDesign
                 //Gizmos.DrawMesh
             }
         }
-        private void DrawWind(Vector3 point, float windDot, Color zoneColor)
+        private void DrawWind(Vector3 point, float windDot, ZoneEditable zone)
         {
             Gizmos.color = Color.white;
 
-            Gizmos.DrawRay(point, Quaternion.Euler(new Vector3(0, windDot * 180, 0)) * Vector3.forward);
+            Gizmos.DrawRay(point, Quaternion.Euler(new Vector3(0, windDot * 180, 0)) * Vector3.forward * 5f );
 
-            Gizmos.color = zoneColor;
+            Gizmos.color = zone.color;
         }
         private void RemoveDeletePointFromZone(ZoneEditable zone)
         {

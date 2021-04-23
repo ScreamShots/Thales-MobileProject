@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class GlobePointManager : MonoBehaviour
 {
     [Header("Globe Parameter")]
     public Transform globe;
     public float globeRadius;
 
-    public Vector2 testPoint;
+    public Vector2[] missionPoints = new Vector2[0];
+
 
     void Start()
     {
@@ -17,7 +19,7 @@ public class GlobePointManager : MonoBehaviour
 
     private void Update()
     {
-        
+
     }
 
     public Vector3 SetGlobePos(Vector2 coord)
@@ -29,7 +31,7 @@ public class GlobePointManager : MonoBehaviour
         coord.y = Mathf.Clamp(coord.y, -90, 90);
 
         //Matrix opération #CounterGimbleLock
-        Matrix4x4 tranforMatrix = Matrix4x4.TRS(globe.position, Quaternion.Euler(coord.y, -coord.x, 0), Vector3.one);
+        Matrix4x4 tranforMatrix = Matrix4x4.TRS(globe.position, globe.rotation * Quaternion.Euler(coord.y, -coord.x, 0), Vector3.one);
 
         //Sur quelle axe * distance je vais projetter la matrice
         Vector3 sens = Vector3.back * globeRadius;
@@ -46,15 +48,21 @@ public class GlobePointManager : MonoBehaviour
 #if UNITY_EDITOR
     void OnValidate()
     {
-        testPoint.x = testPoint.x % 360;
-        testPoint.y = Mathf.Clamp(testPoint.y, -90, 90);
+        for (int i = 0; i < missionPoints.Length; i++)
+        {
+            missionPoints[i].x = missionPoints[i].x % 360;
+            missionPoints[i].y = Mathf.Clamp(missionPoints[i].y, -90, 90);
+        }
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
 
-        Gizmos.DrawSphere(SetGlobePos(testPoint), 0.2f);
+        for (int i = 0; i < missionPoints.Length; i++)
+        {
+            Gizmos.DrawSphere(SetGlobePos(missionPoints[i]), 0.2f);
+        }
     }
 #endif
 }
