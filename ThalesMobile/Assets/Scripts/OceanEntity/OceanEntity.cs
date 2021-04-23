@@ -29,8 +29,8 @@ namespace OceanEntities
         private Path path;
         private int currentWaypoint;
         private float timeBeforeNextPathUpdate;
-        private bool pathEndReached;
-        private Vector2 pathDirection;
+        protected bool pathEndReached;
+        protected Vector2 pathDirection;
         public float nextWaypointDistance;
         public int waypointAhead;
         public Vector2 pathDestination;
@@ -57,6 +57,9 @@ namespace OceanEntities
                 currentWaypoint = 0;
             }
         }
+        /// <summary>
+        /// Call this method in the Update if the entity needs pathfinding, the result is stored in : "pathDirection"
+        /// </summary>
         protected void UpdatePath()
         {
             if (timeBeforeNextPathUpdate <= 0)
