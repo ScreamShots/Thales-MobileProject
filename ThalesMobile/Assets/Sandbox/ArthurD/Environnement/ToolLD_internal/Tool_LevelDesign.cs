@@ -180,7 +180,7 @@ namespace Thales.Tool.LevelDesign
         private void Update()
         {
             LimitPos();
-
+            /*
             #region Point Correction on Map Scaling
             /*
             if (oldLimit.size != limit.size)
@@ -190,6 +190,7 @@ namespace Thales.Tool.LevelDesign
             oldLimit = limit;
             */
             #endregion
+            */
         }
 
         private void OnValidate()
