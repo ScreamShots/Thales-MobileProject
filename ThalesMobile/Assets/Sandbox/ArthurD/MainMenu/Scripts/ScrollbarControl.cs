@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
 
 public class ScrollbarControl : MonoBehaviour
 {
@@ -9,11 +11,11 @@ public class ScrollbarControl : MonoBehaviour
     private void Awake()
     {
         scroll = transform.GetComponent<Scrollbar>();
-        scroll.size = size;
     }
 
-    private void Start()
+    private IEnumerator Start()
     {
+        yield return null;
         scroll.size = size;
     }
 
@@ -23,8 +25,4 @@ public class ScrollbarControl : MonoBehaviour
         scroll.size = size;
     }
 
-    private void Update()
-    {
-        scroll.size = size;
-    }
 }

@@ -54,7 +54,6 @@ public class GlobePointManager : MonoBehaviour
         //Matrix opération #CounterGimbleLock
         Matrix4x4 tranforMatrix = Matrix4x4.TRS(globe.position, globe.rotation * Quaternion.Euler(coord.y, -coord.x, 0), Vector3.one);
 
-        //Sur quelle axe * distance je vais projetter la matrice
         Vector3 sens = Vector3.back * globeRadius;
 
         result = tranforMatrix.MultiplyPoint(sens);
