@@ -5,21 +5,42 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class GlobePointManager : MonoBehaviour
 {
+    public Camera cam;
+
     [Header("Globe Parameter")]
     public Transform globe;
     public float globeRadius;
 
-    public Vector2[] missionPoints = new Vector2[0];
+    public GlobePoint[] missionPoints = new GlobePoint[0];
+    public bool showDebug;
 
-
-    void Start()
-    {
-        
-    }
+    Vector3 screenPoint;
+    float dot;
 
     private void Update()
     {
+        for (int i = 0; i < missionPoints.Length; i++)
+        {
+            Vector3 globePos = SetGlobePos(missionPoints[i].pointCoord);
 
+            //Calcul pos in screen
+            screenPoint = cam.WorldToScreenPoint(globePos);
+            screenPoint += new Vector3(-Screen.width * 0.5f, -Screen.height * 0.5f);
+
+            missionPoints[i].buttonrectTrans.localPosition = screenPoint;
+
+            dot = Vector3.Dot(
+                (globe.position - cam.transform.position).normalized,
+                (globePos - globe.position).normalized);
+
+            //Debug
+            /*
+            Debug.DrawLine(globe.position, cam.transform.position, Color.red);
+            Debug.DrawLine(globePos, globe.position, Color.blue);
+            */
+
+            missionPoints[i].button.SetActive(dot <= 0);
+        }
     }
 
     public Vector3 SetGlobePos(Vector2 coord)
@@ -50,18 +71,23 @@ public class GlobePointManager : MonoBehaviour
     {
         for (int i = 0; i < missionPoints.Length; i++)
         {
-            missionPoints[i].x = missionPoints[i].x % 360;
-            missionPoints[i].y = Mathf.Clamp(missionPoints[i].y, -90, 90);
+            missionPoints[i].pointCoord.x = missionPoints[i].pointCoord.x % 360;
+            missionPoints[i].pointCoord.y = Mathf.Clamp(missionPoints[i].pointCoord.y, -90, 90);
         }
     }
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
-
-        for (int i = 0; i < missionPoints.Length; i++)
+        if (showDebug)
         {
-            Gizmos.DrawSphere(SetGlobePos(missionPoints[i]), 0.2f);
+            Gizmos.color = Color.red;
+
+            for (int i = 0; i < missionPoints.Length; i++)
+            {
+                Gizmos.DrawSphere(SetGlobePos(missionPoints[i].pointCoord), 0.1f);
+            }
+
+            Gizmos.color = Color.white;
         }
     }
 #endif
