@@ -182,7 +182,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 9.65
+  m_fontSize: 17.1
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -424,6 +424,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   card: {fileID: 1609539580832545629}
   captas: {fileID: 11400000, guid: a774f637123035b429f104ed6c58cdb1, type: 2}
+  chargeCountText: {fileID: 7503787564212545652}
+  fillBar: {fileID: 1713574084675751144}
 --- !u!114 &1609539580832545629
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -95,7 +95,7 @@ namespace PlayerEquipement
             while (waveTime < waveDuration)
             {
                 //looping through all detectable on the map
-                foreach (DetectableOceanEntity detectable in levelManager.submarineEntitiesInScene)
+               /* foreach (DetectableOceanEntity detectable in levelManager.submarineEntitiesInScene)
                 {
                     detectableCoords = new Coordinates(detectable.transform.position, Vector2.zero, 0f);
                     distance = Mathf.Abs(Vector2.Distance(userCoords.position, detectableCoords.position));
@@ -112,7 +112,7 @@ namespace PlayerEquipement
                         }
                         else Debug.Log("Not Enough object in pool");
                     }
-                }
+                }*/
 
                 waveTime += Time.deltaTime;
                 padding = waveRange - (range * (waveTime / waveDuration));

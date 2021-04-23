@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chargeMax: 2
   chargeStart: 2
-  loadingTime: 20
+  loadingTime: 5
   feedbackPrefab: {fileID: 0}
   partialMode: 0
   range: 0
