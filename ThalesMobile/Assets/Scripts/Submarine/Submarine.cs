@@ -21,7 +21,7 @@ public class Submarine : DetectableOceanEntity
     private Transform _transform;
 
     [Header("References")]
-    public Ship ship;
+    private Ship ship;
     private LevelManager levelManager;
 
     [Header("Movement")]
@@ -54,6 +54,11 @@ public class Submarine : DetectableOceanEntity
     private bool submarineDetectFregate;
     [HideInInspector] public List<Transform> sonobuoys;
     [HideInInspector] public List<float> sonobuoysDistance;
+
+    [Header("Materials Detection")]
+    public MeshRenderer submarineRenderer;
+    public Material baseMaterial;
+    public Material detectedByAnythingMaterial;
 
     [Header("Counter Measures")]
     public DecoyInstance decoy;
@@ -135,6 +140,9 @@ public class Submarine : DetectableOceanEntity
                 PickRandomInterrestPoint();
             }
         }
+
+        // Detected Material
+        ChangeMaterial();
 
         // Vigilance.
         UpdateState();
@@ -262,6 +270,9 @@ public class Submarine : DetectableOceanEntity
         //Store the new position in the coords.
         _transform.position = Coordinates.ConvertVector2ToWorld(coords.position);
 
+        //Make the submarine face his current direction.
+        _transform.rotation = Quaternion.LookRotation(Coordinates.ConvertVector2ToWorld(coords.direction));   
+
         if ((targetPosition - coords.position).magnitude < 0.1f)
         {
             movingToNextPoint = false;
@@ -280,7 +291,7 @@ public class Submarine : DetectableOceanEntity
     {
         nextIntermediatePosition = FindNextIntermediatePosition();
         intermediateDirection = nextIntermediatePosition - coords.position;
-        intermediateDirection.Normalize();
+        //intermediateDirection.Normalize();
     }
 
     private List<SubZone> allSubZones = new List<SubZone>();
@@ -649,7 +660,7 @@ public class Submarine : DetectableOceanEntity
 
     private void DetectFregate()
     {
-        /*float distanceFromFregate = Vector3.Distance(transform.position, ship.transform.position);
+        float distanceFromFregate = Vector3.Distance(transform.position, ship.transform.position);
 
         if (distanceFromFregate < currentRange)
         {
@@ -667,7 +678,7 @@ public class Submarine : DetectableOceanEntity
         else
         {
             submarineDetectFregate = false;
-        }*/
+        }
     }
 
     private void DetectSonobuoy()
@@ -689,6 +700,18 @@ public class Submarine : DetectableOceanEntity
             {
                 IncreaseVigilance(sonobuoyVigiIncr);
             }
+        }
+    }
+
+    private void ChangeMaterial()
+    {
+        if (currentDetectableState == DetectableState.detected)
+        {
+            submarineRenderer.material = detectedByAnythingMaterial;
+        }
+        else
+        {
+            submarineRenderer.material = baseMaterial;
         }
     }
     #endregion
