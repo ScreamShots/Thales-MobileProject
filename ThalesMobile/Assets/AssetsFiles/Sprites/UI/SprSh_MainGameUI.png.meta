@@ -210,10 +210,10 @@ TextureImporter:
       name: SprSh_MainGameUI_SubmarineBarEmpty
       rect:
         serializedVersion: 2
-        x: 208
-        y: 1259
-        width: 821
-        height: 315
+        x: 487
+        y: 1362
+        width: 441
+        height: 95
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
