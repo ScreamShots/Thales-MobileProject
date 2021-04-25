@@ -37,12 +37,23 @@ public class InteractableUI : MonoBehaviour
     public Drag beginDragHandler;
     public Drag endDragHandler;
 
+    public delegate void Hold();
+    public Hold holdHandler;
+
+    //Components
+    EntityDeckUI deckUI;
+
 
     private void Start()
     {
+        deckUI = GameManager.Instance.uiHandler.entityDeckUI;
+        holdAnim = deckUI.descriptionContainerAnim;
+        dragAnim.GetCanvasGroup();
+        holdAnim.GetCanvasGroup();
+
         dragAnim.anim = Instantiate(dragAnim.anim);
         selectedAnim.anim = Instantiate(selectedAnim.anim);
-        //holdAnim.anim = Instantiate(holdAnim.anim);
+        holdAnim.anim = Instantiate(holdAnim.anim);
     }
 
     private void Update()
@@ -53,27 +64,12 @@ public class InteractableUI : MonoBehaviour
             holdTime += Time.deltaTime;
         }
 
-        if (holdTime > 0.8f && !descriptionOpened)
+        if (holdTime > 0.8f && !deckUI.descriptionOpened)
         {
-            descriptionOpened = true;
-            StopAllCoroutines();
+            deckUI.OpenDescription();
 
-            if (darkenBackWhileHold)
-                StartCoroutine(darkBackAnim.anim.Play(darkBackAnim, darkBackAnim.originalPos));
-
-            if (holdAnim.rectTransform != null)
-                StartCoroutine(holdAnim.anim.Play(holdAnim, holdAnim.originalPos));
-        }
-
-        if (holdTime <= 0 && descriptionOpened)
-        {
-            descriptionOpened = false;
-
-            if (darkenBackWhileHold)
-                StartCoroutine(darkBackAnim.anim.PlayBackward(darkBackAnim, darkBackAnim.originalPos, true));
-
-            if (holdAnim.rectTransform != null)
-                StartCoroutine(holdAnim.anim.PlayBackward(holdAnim, holdAnim.originalPos, true));
+            if (holdHandler != null)
+                holdHandler();
         }
     }
 

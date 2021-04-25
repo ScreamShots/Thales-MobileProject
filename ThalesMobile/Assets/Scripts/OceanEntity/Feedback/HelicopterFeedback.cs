@@ -9,9 +9,15 @@ namespace OceanEntities
         [Header("Helicopter")]
         public Helicopter renderedHelicopter;
         public GameObject rendererContainer;
+        public Transform mainPropeller;
+        public Transform rearPropeller;
+        public float spinSpeed;
+
+        [Header("FlashFeedback")]
+        public LineRenderer flashLineRenderer;
+        public GameObject flashCylinder;
 
         [Header("Particles")]
-        public ParticleSystem trailParticles;
         public ParticleSystem sonicDropParticles;
         public ParticleSystem helicopterTakeOffParticles;
         public ParticleSystem helicopterLandingParticles;
@@ -20,6 +26,13 @@ namespace OceanEntities
         new void Update()
         {
             base.Update();
+            RotatePropeller();
+
+            if(flashCylinder.activeSelf)
+            {
+                flashLineRenderer.SetPosition(0, transform.position - new Vector3(0, 0, 0.222f));
+                flashLineRenderer.SetPosition(1, flashCylinder.transform.position);
+            }
         }
 
         private void OnDisable()
@@ -30,11 +43,6 @@ namespace OceanEntities
         private void OnEnable()
         {
             targetPoint.SetActive(true);
-        }
-
-        public void RotateModel(Helicopter heli)
-        {
-            transform.forward = heli.coords.direction;
         }
 
         public void TakeOffFeedback()
@@ -53,11 +61,17 @@ namespace OceanEntities
             rendererContainer.SetActive(false);
         }
 
-        public void DropSonicFeedback()
+        public void DropRearFeedback()
         {
             sonicDropParticles.Play();
         }
 
+
+        public void RotatePropeller()
+        {
+            mainPropeller.rotation = Quaternion.Euler(mainPropeller.rotation.eulerAngles.x, mainPropeller.rotation.eulerAngles.y + spinSpeed * Time.deltaTime, mainPropeller.rotation.eulerAngles.z);
+            rearPropeller.rotation *= Quaternion.AngleAxis(spinSpeed * Time.deltaTime, Vector3.up);
+        }
     }
 
 }

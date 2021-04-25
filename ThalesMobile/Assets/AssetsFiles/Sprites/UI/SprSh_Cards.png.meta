@@ -1,19 +1,25 @@
 fileFormatVersion: 2
-guid: 23ddf30d83b0b5c4fb21276c778474fe
+guid: ef855122549b36a42af139248d2628e0
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8151067176971044198
-    second: SprSh_Cards_SonobuyDeployer
+      213: -7158836302644989348
+    second: SprSh_Cards_PlaneOutline
   - first:
-      213: 6048515733371515891
-    second: SprSh_Cards_Captas4
-  - first:
-      213: 7766542039568362469
+      213: 1908115068547682372
     second: SprSh_Cards_PlaneMovement
   - first:
-      213: -7269072767421230
+      213: -8481494879891202130
+    second: SprSh_Cards_SonobuyDeployer
+  - first:
+      213: -994378092155532522
+    second: SprSh_Cards_ShipOutline
+  - first:
+      213: -6005343445356595066
     second: SprSh_Cards_ShipMovement
+  - first:
+      213: 2918000433237968306
+    second: SprSh_Cards_Captas4
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -87,13 +93,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SprSh_Cards_SonobuyDeployer
+      name: SprSh_Cards_PlaneOutline
       rect:
         serializedVersion: 2
-        x: 381
-        y: 512
-        width: 317
-        height: 508
+        x: 60
+        y: 514
+        width: 316
+        height: 496
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -101,29 +107,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a9a7b48b69791ee80800000000000000
-      internalID: -8151067176971044198
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SprSh_Cards_Captas4
-      rect:
-        serializedVersion: 2
-        x: 702
-        y: 512
-        width: 317
-        height: 508
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3f378f95305a0f350800000000000000
-      internalID: 6048515733371515891
+      spriteID: c52bca7df44b6ac90800000000000000
+      internalID: -7158836302644989348
       vertices: []
       indices: 
       edges: []
@@ -132,10 +117,10 @@ TextureImporter:
       name: SprSh_Cards_PlaneMovement
       rect:
         serializedVersion: 2
-        x: 379
-        y: 0
-        width: 318
-        height: 508
+        x: 383
+        y: 516
+        width: 315
+        height: 496
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,8 +128,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5eb2c9906dc48cb60800000000000000
-      internalID: 7766542039568362469
+      spriteID: 440da539b8cfa7a10800000000000000
+      internalID: 1908115068547682372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SprSh_Cards_SonobuyDeployer
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 516
+        width: 316
+        height: 496
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eaf5ac7f75dab4a80800000000000000
+      internalID: -8481494879891202130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SprSh_Cards_ShipOutline
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 7
+        width: 316
+        height: 496
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61b83a4c4624332f0800000000000000
+      internalID: -994378092155532522
       vertices: []
       indices: 
       edges: []
@@ -153,10 +180,10 @@ TextureImporter:
       name: SprSh_Cards_ShipMovement
       rect:
         serializedVersion: 2
-        x: 702
-        y: 0
-        width: 317
-        height: 508
+        x: 383
+        y: 7
+        width: 315
+        height: 496
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -164,8 +191,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2d4f9db11dc26eff0800000000000000
-      internalID: -7269072767421230
+      spriteID: 688bc4144fbb8aca0800000000000000
+      internalID: -6005343445356595066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SprSh_Cards_Captas4
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 7
+        width: 316
+        height: 496
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b5c59d0fe1de7820800000000000000
+      internalID: 2918000433237968306
       vertices: []
       indices: 
       edges: []

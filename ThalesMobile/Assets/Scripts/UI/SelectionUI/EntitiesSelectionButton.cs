@@ -11,11 +11,17 @@ public class EntitiesSelectionButton : MonoBehaviour
     [HideInInspector] public Button button;
 
     public TweeningAnimator animator;
+    public TweeningAnimator spotlightAnim;
 
 
     // Start is called before the first frame update
-    void Start()
+    public void Initalize()
     {
+        animator.anim = Instantiate(animator.anim);
+        spotlightAnim.anim = Instantiate(spotlightAnim.anim);
+
+        spotlightAnim.GetCanvasGroup();
+
         button = GetComponent<Button>();
         button.onClick.AddListener(SelectEntity);
     }
@@ -26,7 +32,10 @@ public class EntitiesSelectionButton : MonoBehaviour
             manager.currentButton.Deselect();
 
         if(manager.currentButton != this)
+        {
             StartCoroutine(animator.anim.Play(animator, animator.originalPos));
+            StartCoroutine(spotlightAnim.anim.Play(spotlightAnim, spotlightAnim.originalPos));
+        }
         
         manager.currentButton = this;
 
@@ -41,6 +50,7 @@ public class EntitiesSelectionButton : MonoBehaviour
     {
         //Animate UI button
         StartCoroutine(animator.anim.PlayBackward(animator, animator.originalPos, true));
+        StartCoroutine(spotlightAnim.anim.PlayBackward(spotlightAnim, spotlightAnim.originalPos, true));
     }
 
 }

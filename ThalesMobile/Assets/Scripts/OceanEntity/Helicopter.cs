@@ -58,10 +58,6 @@ namespace OceanEntities
                     helicopterRenderer.SetActive(false);
                     GameManager.Instance.inputManager.getEntityTarget = false;
                     GameManager.Instance.uiHandler.entitiesSelectionUI.UpdateButtons(true);
-                    if(deckUI != null)
-                    {
-                        StartCoroutine(Cooldown());
-                    }
                 }
             }
 
@@ -142,6 +138,8 @@ namespace OceanEntities
                 if (!inFlight)
                 {
                     onShip = true;
+                    LandFeedback();
+                    operating = false;
                 }
             }
         }
@@ -174,21 +172,32 @@ namespace OceanEntities
             StartCoroutine(PreparationCoroutine());
         }
 
+        public void LandFeedback()
+        {
+            deckUI.UpdateSecondaryButton(HelicopterButtonState.Start);
+            deckUI.DeactivateButton();
+
+            deckUI.UpdateStatusText("Prepare Launch");
+            deckUI.fillBar.fillAmount = 0;
+            deckUI.percentageText.text = "0 %";
+        }
+
         #region Coroutines
 
         private IEnumerator PreparationCoroutine()
         {
             deckUI.UpdateStatusText("Preparing launch...");
             StartCoroutine(deckUI.FillBar(preparationDuration, 1));
-            StartCoroutine(deckUI.FillIcon(preparationDuration, 1));
             yield return new WaitForSeconds(preparationDuration);
+
+            deckUI.UpdateSecondaryButton(HelicopterButtonState.Launch);
+
             StartCoroutine(AlertCoroutine());
         }
 
         private IEnumerator AlertCoroutine()
         {
             deckUI.UpdateStatusText("Launch !");
-            StartCoroutine(deckUI.FillIcon(alertDuration, 0));
             inAlert = true;
             StartCoroutine(AlertTimer());
 
@@ -197,15 +206,19 @@ namespace OceanEntities
             if(inAlert)
             {
                 deckUI.UpdateStatusText("Drop Flash !");
+                deckUI.ActivateButton();
+
                 TakeOff();
+
                 inAlert = false;
                 launch = false;
+
                 GameManager.Instance.inputManager.getEntityTarget = true;
                 GameManager.Instance.uiHandler.entitiesSelectionUI.UpdateButtons(false);
             }
             else
             {
-                StartCoroutine(Cooldown());
+                LandFeedback();
             }
         }
 
@@ -215,21 +228,24 @@ namespace OceanEntities
             inAlert = false;
         }
 
-        private IEnumerator FlightCoroutine()
+        private IEnumerator FlightTimer()
         {
-            StartCoroutine(deckUI.FillBar(flightDuration, 0));
             yield return new WaitForSeconds(flightDuration);
-            GameManager.Instance.inputManager.getEntityTarget = false;
             inFlight = false;
         }
 
-        private IEnumerator Cooldown()
+        private IEnumerator FlightCoroutine()
         {
-            StartCoroutine(deckUI.FillBar(cooldownDuration, 0));
-            deckUI.UpdateStatusText("Cooling down ...");
-            yield return new WaitForSeconds(cooldownDuration);
-            deckUI.UpdateStatusText("Prepare Launch");
-            operating = false;
+            Coroutine timer = StartCoroutine(FlightTimer());
+
+            StartCoroutine(deckUI.FillBar(flightDuration, 0));
+            deckUI.UpdateSecondaryButton(HelicopterButtonState.Return);
+
+            yield return new WaitUntil(() => !inFlight);
+
+            StopCoroutine(timer);
+
+            GameManager.Instance.inputManager.getEntityTarget = false;
         }
 
         #endregion  

@@ -1,25 +1,37 @@
 fileFormatVersion: 2
-guid: 359df1b6eb30c3f4cbf7ee1328bc8cf0
+guid: dc1b3631f20c99846b533da12c4f3cf3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3870808520070454662
-    second: SprSh_Cards_ShipOutline
+      213: -1076079657285877962
+    second: SprSh_HelicoUI_0
   - first:
-      213: 4561104745644826127
-    second: SprSh_Cards_PlaneMovement
+      213: 7901493621505351598
+    second: SprSh_HelicoUI_1
   - first:
-      213: -5829408926741268345
-    second: SprSh_Cards_SonobuyDeployer
+      213: -5021689961135746624
+    second: SprSh_HelicoUI_2
   - first:
-      213: -3944098462780284062
-    second: SprSh_Cards_PlaneOutline
+      213: 4709110988209936118
+    second: SprSh_HelicoUI_3
   - first:
-      213: -7119439236200126171
-    second: SprSh_Cards_2_ShipMovement
+      213: 7110608646313764797
+    second: SprSh_HelicoUI_4
   - first:
-      213: 6287465961595221245
-    second: SprSh_Cards_2_Captas4
+      213: -5280080703080719845
+    second: SprSh_HelicoUI_5
+  - first:
+      213: -2736368235039047149
+    second: SprSh_HelicoUI_6
+  - first:
+      213: 6211418881736365824
+    second: SprSh_HelicoUI_7
+  - first:
+      213: -295466135694068163
+    second: SprSh_HelicoUI_8
+  - first:
+      213: 1152161519583977829
+    second: SprSh_HelicoUI_9
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -93,127 +105,211 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SprSh_Cards_ShipOutline
+      name: SprSh_HelicoUI_0
       rect:
         serializedVersion: 2
-        x: 67
-        y: 518
-        width: 303
-        height: 488
+        x: 1506
+        y: 1567
+        width: 450
+        height: 451
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 68dda5037dfd7b530800000000000000
-      internalID: 3870808520070454662
+      spriteID: 63f7375c04ff011f0800000000000000
+      internalID: -1076079657285877962
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SprSh_Cards_PlaneMovement
+      name: SprSh_HelicoUI_1
       rect:
         serializedVersion: 2
-        x: 382
-        y: 512
-        width: 315
-        height: 502
+        x: 363
+        y: 1193
+        width: 286
+        height: 295
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f0e1283b99c4c4f30800000000000000
-      internalID: 4561104745644826127
+      spriteID: eaf57d8b59eb7ad60800000000000000
+      internalID: 7901493621505351598
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SprSh_Cards_SonobuyDeployer
+      name: SprSh_HelicoUI_2
       rect:
         serializedVersion: 2
-        x: 703
-        y: 512
-        width: 315
-        height: 502
+        x: 773
+        y: 1195
+        width: 286
+        height: 295
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 78878177777c91fa0800000000000000
-      internalID: -5829408926741268345
+      spriteID: 0c1db5e169f5f4ab0800000000000000
+      internalID: -5021689961135746624
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SprSh_Cards_PlaneOutline
+      name: SprSh_HelicoUI_3
       rect:
         serializedVersion: 2
-        x: 65
-        y: 9
-        width: 303
-        height: 488
+        x: 1167
+        y: 1191
+        width: 286
+        height: 295
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 26321d6485fb349c0800000000000000
-      internalID: -3944098462780284062
+      spriteID: 6f6542c6e7f1a5140800000000000000
+      internalID: 4709110988209936118
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SprSh_Cards_2_ShipMovement
+      name: SprSh_HelicoUI_4
       rect:
         serializedVersion: 2
-        x: 381
-        y: 4
-        width: 315
-        height: 502
+        x: 1588
+        y: 1191
+        width: 286
+        height: 295
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 529205e2cbba23d90800000000000000
-      internalID: -7119439236200126171
+      spriteID: db76a54e3e4fda260800000000000000
+      internalID: 7110608646313764797
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SprSh_Cards_2_Captas4
+      name: SprSh_HelicoUI_5
       rect:
         serializedVersion: 2
-        x: 703
-        y: 4
-        width: 315
-        height: 502
+        x: 302
+        y: 695
+        width: 416
+        height: 434
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: df43e3acaf0914750800000000000000
-      internalID: 6287465961595221245
+      spriteID: b1a9a7b539269b6b0800000000000000
+      internalID: -5280080703080719845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SprSh_HelicoUI_6
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 721
+        width: 392
+        height: 362
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 312c5df8697760ad0800000000000000
+      internalID: -2736368235039047149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SprSh_HelicoUI_7
+      rect:
+        serializedVersion: 2
+        x: 1137
+        y: 720
+        width: 391
+        height: 393
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 007dc0d3094633650800000000000000
+      internalID: 6211418881736365824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SprSh_HelicoUI_8
+      rect:
+        serializedVersion: 2
+        x: 1540
+        y: 721
+        width: 391
+        height: 393
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d363cc27d1b46ebf0800000000000000
+      internalID: -295466135694068163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SprSh_HelicoUI_9
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 13
+        width: 1925
+        height: 608
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5616da23ccc4dff00800000000000000
+      internalID: 1152161519583977829
       vertices: []
       indices: 
       edges: []

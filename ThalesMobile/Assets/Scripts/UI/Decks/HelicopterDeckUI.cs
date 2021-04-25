@@ -1,18 +1,41 @@
 ﻿using OceanEntities;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum HelicopterButtonState
+{
+    Start,
+    Launch,
+    Return,
+    Disable
+}
 public class HelicopterDeckUI : MonoBehaviour
 {
-
-    public Button launchButton;
     public TextMeshProUGUI statusText;
     public TextMeshProUGUI percentageText;
     public Image fillBar;
-    public Image iconFill;
+    
+    [Header("Main Button")]
+    public Button launchButton;
+    public Image launchButtonImage;
+    public Sprite emptySprite;
+    public Sprite flashSprite;
+    public Sprite flashPressedSprite;
+    public Image buttonOutline;
+
+
+    [Header("Secondary Button")]
+    public Button secondaryButton;
+    public Image secondaryButtonImage;
+    public Sprite startSprite;
+    public Sprite launchSprite;
+    public Sprite returnSprite;
+    public Sprite unavailableSprite;
+
     UIHandler handler;
     LevelManager levelManager;
 
@@ -34,24 +57,44 @@ public class HelicopterDeckUI : MonoBehaviour
 
         linkedHelicopter.launchButton = launchButton;
         linkedHelicopter.deckUI = this;
-        launchButton.onClick.AddListener(Launch);
+
+
+        launchButton.interactable = false;
+        launchButton.onClick.AddListener(DropFlash);
+
+        secondaryButton.onClick.AddListener(Launch);
     }
 
-    private void Launch()
+    private void DropFlash()
     {
-            if (!linkedHelicopter.inFlight && !linkedHelicopter.inAlert && !linkedHelicopter.operating)
-            {
-                linkedHelicopter.LaunchButton();
-            }
-            else if(linkedHelicopter.inAlert)
-            {
-                linkedHelicopter.launch = true;
-            }
-            else if(linkedHelicopter.inFlight)
-            {
-                //use flash ?
-            }
-        
+        if(linkedHelicopter.inFlight)
+        {
+            //use flash
+            //disable Button;
+            DeactivateButton();
+        }
+    }
+
+    public void Launch()
+    {
+        if (!linkedHelicopter.inFlight && !linkedHelicopter.inAlert && !linkedHelicopter.operating)
+        {
+            linkedHelicopter.LaunchButton();
+
+            UpdateSecondaryButton(HelicopterButtonState.Disable);
+
+        }
+        else if (linkedHelicopter.inAlert)
+        {
+            linkedHelicopter.launch = true;
+            UpdateSecondaryButton(HelicopterButtonState.Disable);
+        }
+        else if(linkedHelicopter.inFlight)
+        {
+            linkedHelicopter.inFlight = false;
+
+            UpdateSecondaryButton(HelicopterButtonState.Disable);
+        }
     }
 
     public void UpdateStatusText(string message)
@@ -70,6 +113,9 @@ public class HelicopterDeckUI : MonoBehaviour
                 fillBar.fillAmount += Time.deltaTime / time;
                 yield return null;
             }
+
+            if (percentageText.text == "99 %")
+                percentageText.text = "100 %";
         }
         else
         {
@@ -83,26 +129,41 @@ public class HelicopterDeckUI : MonoBehaviour
         }
     }
 
-    public IEnumerator FillIcon(float time, int direction)
+    public void ActivateButton()
     {
-        if (direction > 0)
-        {
-            iconFill.fillAmount = 0;
-            while (iconFill.fillAmount < 1)
-            {
-                iconFill.fillAmount += Time.deltaTime / time;
-                yield return null;
-            }
-        }
-        else
-        {
-            iconFill.fillAmount = 1;
-            while (iconFill.fillAmount > 0)
-            {
-                iconFill.fillAmount -= Time.deltaTime / time;
-                yield return null;
-            }
-        }
+        launchButton.interactable = true;
+        buttonOutline.enabled = true;
     }
 
+    public void DeactivateButton()
+    {
+        launchButtonImage.sprite = emptySprite;
+        launchButton.interactable = false;
+        buttonOutline.enabled = false;
+    }
+
+    public void UpdateSecondaryButton(HelicopterButtonState buttonState)
+    {
+        switch (buttonState)
+        {
+            case HelicopterButtonState.Start:
+                secondaryButton.interactable = true;
+                secondaryButtonImage.sprite = startSprite;
+                break;
+
+            case HelicopterButtonState.Launch:
+                secondaryButton.interactable = true;
+                secondaryButtonImage.sprite = launchSprite;
+                break;
+            case HelicopterButtonState.Return:
+                secondaryButton.interactable = true;
+                secondaryButtonImage.sprite = returnSprite;
+                break;
+            case HelicopterButtonState.Disable:
+                secondaryButton.interactable = false;
+                secondaryButtonImage.sprite = unavailableSprite;
+                break;
+        }
+
+    } 
 }

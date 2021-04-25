@@ -62,6 +62,7 @@ public class EntitiesSelectionUI : MonoBehaviour
             {
                 GameObject temp =  Instantiate(planeButton, entitySelectionParent.transform);
                 var esb = temp.GetComponent<EntitiesSelectionButton>();
+                esb.Initalize();
                 esb.linkedEntity = handler.entities[i];
                 esb.manager = this;
                 temp.transform.localScale = Vector3.one;
@@ -73,6 +74,7 @@ public class EntitiesSelectionUI : MonoBehaviour
             {
                 GameObject temp = Instantiate(shipButton, entitySelectionParent.transform); ;
                 var esb = temp.GetComponent<EntitiesSelectionButton>();
+                esb.Initalize();
                 esb.linkedEntity = handler.entities[i];
                 esb.manager = this;
                 temp.transform.localScale = Vector3.one;
@@ -84,6 +86,7 @@ public class EntitiesSelectionUI : MonoBehaviour
             {
                 GameObject temp = Instantiate(helicopterButton, helicopterSelectionParent.transform); ;
                 var esb = temp.GetComponent<EntitiesSelectionButton>();
+                esb.Initalize();
                 esb.linkedEntity = handler.entities[i];
                 esb.manager = this;
                 temp.transform.localScale = Vector3.one;

@@ -17,6 +17,7 @@ public class CaptasCard : MonoBehaviour
     private bool isCharging;
 
     private InputManager inputManager;
+    private UIHandler uiHandler;
     Coroutine captasUse;
 
 
@@ -25,13 +26,15 @@ public class CaptasCard : MonoBehaviour
     void Start()
     {
         inputManager = GameManager.Instance.inputManager;
+        uiHandler = GameManager.Instance.uiHandler;
 
         chargeCountText.text = captas.chargeCount.ToString();
 
-        card.abortHandler += AbortMethod;
-        card.clickHandler += OnClickEvent;
+        card.abortHandler     += AbortMethod;
+        card.clickHandler     += OnClickEvent;
         card.beginDragHandler += OnBeginDragEvent;
-        card.endDragHandler += OnEndDragEvent;
+        card.endDragHandler   += OnEndDragEvent;
+        card.holdHandler      += UpdateDescriptionText;
     }
 
     public void AbortMethod()
@@ -111,35 +114,26 @@ public class CaptasCard : MonoBehaviour
     public IEnumerator RechargeFeedback()
     {
         isCharging = true;
-        print(captas.isLoading);
         yield return new WaitUntil(() => captas.isLoading);
 
         fillBar.fillAmount = 0;
-        print(captas.chargeCount);
         chargeCountText.text = captas.chargeCount.ToString();
-        while (captas.loadPercent < 1)
+
+        while (fillBar.fillAmount < 1)
         {
             fillBar.fillAmount = captas.loadPercent;
             yield return new WaitForEndOfFrame();
+
+            chargeCountText.text = captas.chargeCount.ToString();
         }
         fillBar.fillAmount = 1;
 
-        yield return null;
-
-        print(captas.chargeCount);
-
-        if (captas.chargeCount < captas.chargeMax)
-        {
-            chargeCountText.text = captas.chargeCount.ToString();
-            StartCoroutine(RechargeFeedback());
-        }
-        else
-        {
-            isCharging = false;
-            chargeCountText.text = captas.chargeCount.ToString();
-        }
-        
+        isCharging = false;  
     }
 
-
+    private void UpdateDescriptionText()
+    {
+        uiHandler.entityDeckUI.descriptionHeaderText.text = "Captas4 Card";//Expose string
+        uiHandler.entityDeckUI.descriptionText.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";//Expose stringS
+    }
 }

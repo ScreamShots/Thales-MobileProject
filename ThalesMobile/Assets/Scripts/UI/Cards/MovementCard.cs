@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class MovementCard : MonoBehaviour
 {
@@ -20,6 +18,7 @@ public class MovementCard : MonoBehaviour
         card.beginDragHandler += OnBeginDragEvent;
         card.endDragHandler   += OnEndDragEvent;
         card.abortHandler     += AbortMethod;
+        card.holdHandler      += UpdateDescriptionText;
     }
 
    
@@ -71,6 +70,10 @@ public class MovementCard : MonoBehaviour
         inputManager.currentSelectedCard = null;
     }
 
-
+    private void UpdateDescriptionText()
+    {
+        uiHandler.entityDeckUI.descriptionHeaderText.text = "Movement Card";//Expose string
+        uiHandler.entityDeckUI.descriptionText.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";//Expose stringS
+    }
 
 }

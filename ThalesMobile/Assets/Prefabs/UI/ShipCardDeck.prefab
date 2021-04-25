@@ -34,10 +34,10 @@ RectTransform:
   m_Father: {fileID: 7052347691197551198}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.335, y: 0}
-  m_AnchorMax: {x: 0.65843767, y: 0.15}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.335, y: 0.03361406}
+  m_AnchorMax: {x: 0.65843767, y: 0.2592281}
+  m_AnchoredPosition: {x: 0.0022697449, y: 0}
+  m_SizeDelta: {x: -0.0002117157, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &869365802565183385
 CanvasRenderer:
@@ -182,7 +182,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 17.1
+  m_fontSize: 17.2
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -236,6 +236,7 @@ GameObject:
   - component: {fileID: 1601565973733013694}
   - component: {fileID: 1601565973733013693}
   - component: {fileID: 1146630866129135164}
+  - component: {fileID: 4737458510836287909}
   m_Layer: 0
   m_Name: ShipCardDeck
   m_TagString: Untagged
@@ -316,6 +317,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_AspectMode: 1
   m_AspectRatio: 3.2
+--- !u!225 &4737458510836287909
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1601565973733013683}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1746725121760616044
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,6 +343,7 @@ GameObject:
   - component: {fileID: 8608325869771670585}
   - component: {fileID: 8005171163153311998}
   - component: {fileID: 1609539580832545629}
+  - component: {fileID: 3746497915562342996}
   m_Layer: 0
   m_Name: CaptasCard
   m_TagString: Untagged
@@ -385,7 +399,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 6287465961595221245, guid: 359df1b6eb30c3f4cbf7ee1328bc8cf0,
+  m_Sprite: {fileID: 2918000433237968306, guid: ef855122549b36a42af139248d2628e0,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 1
@@ -458,6 +472,18 @@ MonoBehaviour:
   isDragged: 0
   isSelected: 0
   descriptionOpened: 0
+--- !u!225 &3746497915562342996
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1746725121760616044}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &2782842948313287740
 GameObject:
   m_ObjectHideFlags: 0
@@ -494,7 +520,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -1.3000007, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5984507247248621587
 CanvasRenderer:
@@ -523,7 +549,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 3870808520070454662, guid: 359df1b6eb30c3f4cbf7ee1328bc8cf0,
+  m_Sprite: {fileID: -994378092155532522, guid: ef855122549b36a42af139248d2628e0,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 1
@@ -584,7 +610,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -1.3000007, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7193923232892388432
 CanvasRenderer:
@@ -613,7 +639,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 3870808520070454662, guid: 359df1b6eb30c3f4cbf7ee1328bc8cf0,
+  m_Sprite: {fileID: -994378092155532522, guid: ef855122549b36a42af139248d2628e0,
     type: 3}
   m_Type: 3
   m_PreserveAspect: 1
@@ -652,6 +678,7 @@ GameObject:
   - component: {fileID: 4357396911022476696}
   - component: {fileID: 5762810735815491574}
   - component: {fileID: 8233956612670586475}
+  - component: {fileID: 9036211233702944146}
   m_Layer: 0
   m_Name: MovementCard
   m_TagString: Untagged
@@ -706,7 +733,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -7119439236200126171, guid: 359df1b6eb30c3f4cbf7ee1328bc8cf0,
+  m_Sprite: {fileID: -6005343445356595066, guid: ef855122549b36a42af139248d2628e0,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 1
@@ -776,3 +803,15 @@ MonoBehaviour:
   isDragged: 0
   isSelected: 0
   descriptionOpened: 0
+--- !u!225 &9036211233702944146
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5125321413628922338}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
