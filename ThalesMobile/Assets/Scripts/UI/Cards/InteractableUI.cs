@@ -48,11 +48,19 @@ public class InteractableUI : MonoBehaviour
     {
         deckUI = GameManager.Instance.uiHandler.entityDeckUI;
         holdAnim = deckUI.descriptionContainerAnim;
-        dragAnim.GetCanvasGroup();
-        holdAnim.GetCanvasGroup();
 
-        dragAnim.anim = Instantiate(dragAnim.anim);
-        selectedAnim.anim = Instantiate(selectedAnim.anim);
+        if(dragAnim.rectTransform != null)
+        {
+            dragAnim.GetCanvasGroup();
+            dragAnim.anim = Instantiate(dragAnim.anim);
+        }
+        
+        if(selectedAnim.rectTransform != null)
+        {
+            selectedAnim.anim = Instantiate(selectedAnim.anim);
+        }
+
+        holdAnim.GetCanvasGroup();
         holdAnim.anim = Instantiate(holdAnim.anim);
     }
 

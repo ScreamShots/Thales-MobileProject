@@ -362,7 +362,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 13.25
+  m_fontSize: 15.35
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -829,6 +829,7 @@ GameObject:
   - component: {fileID: 6450952903499388313}
   - component: {fileID: 792086653433724056}
   - component: {fileID: 3695671065206658413}
+  - component: {fileID: 2491009145919527330}
   m_Layer: 0
   m_Name: PassiveCard
   m_TagString: Untagged
@@ -939,3 +940,15 @@ MonoBehaviour:
   card: {fileID: 792086653433724056}
   descriptionHeader: MAD
   descriptionText: Lorem Ipsum dolor sit amet...
+--- !u!225 &2491009145919527330
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8639100549130646562}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0

@@ -354,7 +354,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 26.6
+  m_fontSize: 26.65
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -539,6 +539,7 @@ GameObject:
   - component: {fileID: 7378064946328190021}
   - component: {fileID: 1640617035328234148}
   - component: {fileID: 458086852708311406}
+  - component: {fileID: 3395900284482612336}
   m_Layer: 5
   m_Name: SubmarineContainer
   m_TagString: Untagged
@@ -653,6 +654,18 @@ MonoBehaviour:
   card: {fileID: 1640617035328234148}
   descriptionHeader: Submarine
   descriptionText: Lorem ipsum dolor sit amet
+--- !u!225 &3395900284482612336
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4226326144210953593}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &4276952835736626051
 GameObject:
   m_ObjectHideFlags: 0
