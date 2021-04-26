@@ -66,7 +66,6 @@ public class InteractableUI : MonoBehaviour
 
     private void Update()
     {
-
         if(pointerEnter && !isDragged)
         {
             holdTime += Time.deltaTime;

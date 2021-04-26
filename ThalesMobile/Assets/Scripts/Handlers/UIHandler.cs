@@ -13,6 +13,7 @@ public class UIHandler : MonoBehaviour
     [Header("Sub-Components")]
     public EntitiesSelectionUI entitiesSelectionUI;
     public EntityDeckUI entityDeckUI;
+    public SubmarineUIManager submarineUI;
 
 
     // Start is called before the first frame update
