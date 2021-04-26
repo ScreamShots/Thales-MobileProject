@@ -117,7 +117,7 @@ public class Submarine : DetectableOceanEntity
             {
                 beneficialPointFactors.Add(levelManager.submarineEntitiesInScene[i].transform);
             }
-        }       
+        }
     }
 
     protected override void Update()
@@ -183,7 +183,7 @@ public class Submarine : DetectableOceanEntity
             // Move Submarine to the target point.
             if (nextInterestPoint != null && movingToNextPoint)
             {
-                targetDirection = nextInterestPointPosition - coords.position;
+                targetDirection = pathDirection;
                 targetDirection.Normalize();
 
                 if (Vector2.Distance(coords.position, nextIntermediatePosition) < distanceToRefrehIntemediatePos)
@@ -208,6 +208,11 @@ public class Submarine : DetectableOceanEntity
             if ((nextInterestPointPosition - coords.position).magnitude < nextInterestPoint.hackingRange)
             {
                 Capture();
+            }
+            else
+            {
+                pathDestination = nextInterestPointPosition;
+                UpdatePath();
             }
         }
         else
@@ -457,7 +462,7 @@ public class Submarine : DetectableOceanEntity
             weight -= 1000;
         }*/
 
-        /*pointDistance = Vector2.Distance(ship.coords.position, coords.position);
+        pointDistance = Vector2.Distance(ship.coords.position, coords.position);
         pointRelativeAngle = Vector2.SignedAngle(Vector2.right, ship.coords.position - coords.position);
         if (pointDistance < subZone.maxRange && pointDistance >= subZone.minRange && IsBetweenAngle(pointRelativeAngle, subZone.minAngle, subZone.maxAngle))
         {
@@ -465,7 +470,7 @@ public class Submarine : DetectableOceanEntity
             subZone.needToBeAvoided = true;
         }
 
-        */
+        
 
         for (int b = 0; b < sonobuoys.Count; b++)
         {
@@ -473,7 +478,21 @@ public class Submarine : DetectableOceanEntity
             pointRelativeAngle = Vector2.SignedAngle(Vector2.right, Coordinates.ConvertWorldToVector2(sonobuoys[b].position) - coords.position);
             if (pointDistance < subZone.maxRange && pointDistance >= subZone.minRange && IsBetweenAngle(pointRelativeAngle, subZone.minAngle, subZone.maxAngle))
             {
-                weight = -1000;
+                switch (currentState)
+                {
+                    case VigilanceState.calm:
+                        weight -= 1;
+                        break;
+
+                    case VigilanceState.worried:
+                        weight -= 2;
+                        break;
+
+                    case VigilanceState.panicked:
+                        weight -= 4;
+                        break;
+                }
+                
                 subZone.needToBeAvoided = true;
             }
         }
