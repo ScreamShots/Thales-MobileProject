@@ -1,4 +1,5 @@
-﻿using NaughtyAttributes;
+﻿using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
 
 [ExecuteInEditMode]

@@ -6,10 +6,15 @@ using UnityEngine;
 public class GlobePointManager : MonoBehaviour
 {
     public Camera cam;
+    public GlobeCamera camController;
+
+    public GameObject missionMenu;
+    public MissionLoader missionLoader;
 
     [Header("Globe Parameter")]
     public Transform globe;
     public float globeRadius;
+    public float focusSpeed = 6;
 
     public GlobePoint[] missionPoints = new GlobePoint[0];
     public bool showDebug;
@@ -19,6 +24,7 @@ public class GlobePointManager : MonoBehaviour
 
     private void Update()
     {
+        //Show Mission if visible
         for (int i = 0; i < missionPoints.Length; i++)
         {
             Vector3 globePos = SetGlobePos(missionPoints[i].pointCoord);
@@ -42,6 +48,35 @@ public class GlobePointManager : MonoBehaviour
             missionPoints[i].button.SetActive(dot <= 0);
         }
     }
+
+    public void FocusOnPoint(int pointInList)
+    {
+        StopAllCoroutines();
+        StartCoroutine(FocusingOnPoint(pointInList));
+    }
+
+    public IEnumerator FocusingOnPoint(int pointInList)
+    {
+        Vector2 pointPos = missionPoints[pointInList].pointCoord;
+
+        while((pointPos - camController.aimPos).magnitude > 1)
+        {
+            camController.aimPos = Vector2.Lerp(camController.aimPos, pointPos, focusSpeed * Time.fixedDeltaTime);
+            yield return null;
+        }
+
+        //Send Data
+        SendDataInMissionScreen(pointInList);
+
+        missionMenu.SetActive(true);
+    }
+
+    private void SendDataInMissionScreen(int missionNbr)
+    {
+        //Send Mission to loader
+        missionLoader.LoadMission(missionPoints[missionNbr]);
+    }
+
 
     public Vector3 SetGlobePos(Vector2 coord)
     {
