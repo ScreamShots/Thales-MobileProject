@@ -58,7 +58,7 @@ public class Submarine : DetectableOceanEntity
     [Header("Materials Detection")]
     public MeshRenderer submarineRenderer;
     public Material baseMaterial;
-    public Material detectedByAnythingMaterial;
+    public Material detectedByFlashMaterial;
 
     [Header("Counter Measures")]
     public DecoyInstance decoy;
@@ -140,9 +140,6 @@ public class Submarine : DetectableOceanEntity
                 PickRandomInterrestPoint();
             }
         }
-
-        // Detected Material
-        ChangeMaterial();
 
         // Vigilance.
         UpdateState();
@@ -703,16 +700,17 @@ public class Submarine : DetectableOceanEntity
         }
     }
 
-    private void ChangeMaterial()
+    // Use this function from flash script to change the submarine material during a time x;
+    public void MaterialChangedByFlash(float timeMaterialChanged)
     {
-        if (currentDetectableState == DetectableState.detected)
-        {
-            submarineRenderer.material = detectedByAnythingMaterial;
-        }
-        else
-        {
-            submarineRenderer.material = baseMaterial;
-        }
+        ChangeMaterialOverTime(timeMaterialChanged);
+    }
+
+    private IEnumerator ChangeMaterialOverTime(float time)
+    {
+        submarineRenderer.material = detectedByFlashMaterial;
+        yield return new WaitForSeconds(time);
+        submarineRenderer.material = baseMaterial;
     }
     #endregion
 

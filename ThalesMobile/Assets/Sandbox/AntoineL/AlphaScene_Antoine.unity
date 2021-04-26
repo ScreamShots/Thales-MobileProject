@@ -3567,17 +3567,7 @@ PrefabInstance:
       objectReference: {fileID: 886938406}
     - target: {fileID: 7664084496329710959, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
         type: 3}
-      propertyPath: baseMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: b9d46f47018a2ec4cb737b79763710ec, type: 2}
-    - target: {fileID: 7664084496329710959, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
-        type: 3}
-      propertyPath: submarineRenderer
-      value: 
-      objectReference: {fileID: 1871611276}
-    - target: {fileID: 7664084496329710959, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
-        type: 3}
-      propertyPath: detectedByAnythingMaterial
+      propertyPath: detectedByFlashMaterial
       value: 
       objectReference: {fileID: 2100000, guid: 7535ace726392444ca0609fc7e13d602, type: 2}
     - target: {fileID: 7664084496329710959, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
