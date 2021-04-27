@@ -124,7 +124,7 @@ namespace Thales.Tool.LevelDesign
                         }
                         if (GUILayout.Button("Generate EnviroData Texture", GUILayout.Height(20)))
                         {
-                            
+                            tool.GenerateTextureData();
                         }
                     }
                 }

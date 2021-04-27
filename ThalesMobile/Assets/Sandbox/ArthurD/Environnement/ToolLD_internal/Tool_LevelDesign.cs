@@ -180,7 +180,7 @@ namespace Thales.Tool.LevelDesign
         [ContextMenu("Texture Generation Data")]
         public void GenerateTextureData()
         {
-            //SeaTextureGenerator.GenerateZoneDataTexture(enviro, "Tex_Enviro");
+            SeaTextureGenerator.GenerateZoneDataTexture(enviro, "Tex_EnviroData");
         }
 
         [ContextMenu("Texture Generation Color")]
@@ -195,11 +195,13 @@ namespace Thales.Tool.LevelDesign
             LimitPos();
 
             #region Point Correction on Map Scaling
+            /*
             if (oldLimit.size != limit.size)
             {
                 ScalePointCorrection();
             }
             oldLimit = limit;
+            */
             #endregion
         }
 
