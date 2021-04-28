@@ -176,18 +176,6 @@ namespace Thales.Tool.LevelDesign
 
             this.enviro = enviro;
         }
-
-        [ContextMenu("Texture Generation Data")]
-        public void GenerateTextureData()
-        {
-            SeaTextureGenerator.GenerateZoneDataTexture(enviro, "Tex_EnviroData");
-        }
-
-        [ContextMenu("Texture Generation Color")]
-        public void GenerateTextureColor()
-        {
-            SeaTextureGenerator.GenerateZoneDataTexture(enviro, "Tex_Enviro");
-        }
         #endregion
 
         private void Update()

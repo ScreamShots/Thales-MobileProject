@@ -20,6 +20,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Texture2D_4250BC9:
+        m_Texture: {fileID: 2800000, guid: 5675d34b2a8708d419750ab5f7fc04ea, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - TextureRBG:
         m_Texture: {fileID: 2800000, guid: 5675d34b2a8708d419750ab5f7fc04ea, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -36,7 +40,7 @@ Material:
     - Tilling: 0.05
     - TimeScale: 0.2
     - Vector1_14684579: 0.2
-    - Vector1_E7BCE026: 0.53
+    - Vector1_E7BCE026: 1
     - Vector1_ZoneSize: 64
     m_Colors:
     - ScreenColor: {r: 0, g: 0.5008629, b: 0.509434, a: 0}

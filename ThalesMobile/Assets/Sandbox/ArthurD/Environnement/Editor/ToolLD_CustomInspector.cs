@@ -70,66 +70,6 @@ namespace Thales.Tool.LevelDesign
 
             base.OnInspectorGUI();
 
-            GUILayout.Space(25);
-            //Environnement
-            using (new GUILayout.VerticalScope())
-            {
-                //Add Point
-                using (new GUILayout.HorizontalScope())
-                {
-                    if (GUILayout.Button("Add Point In Zone"))
-                    {
-                        tool.AddPoint();
-                    }
-                    #region Zone Cible Number
-                    if (GUILayout.Button("<", GUILayout.Width(20)))
-                    {
-                        tool.zoneNbr = tool.zoneNbr > 0 ? tool.zoneNbr - 1 : 0;
-                    }
-                    tool.zoneNbr = EditorGUILayout.IntField(tool.zoneNbr, GUILayout.Width(20));
-                    if (GUILayout.Button(">", GUILayout.Width(20)))
-                    {
-                        tool.zoneNbr = tool.zoneNbr < tool.editZones.Count - 1 ? tool.zoneNbr + 1 : tool.editZones.Count - 1;
-                    }
-                    #endregion
-                }
-                //Add Zone
-                using (new GUILayout.HorizontalScope())
-                {
-                    if (GUILayout.Button("Add Zone In Environnement"))
-                    {
-                        tool.AddZone();
-                    }
-                    if (GUILayout.Button(" ", EditorStyles.helpBox, GUILayout.Width(66)))
-                    {
-
-                    }
-                }
-                GUILayout.Space(10);
-                //Button methode
-                using (new GUILayout.VerticalScope())
-                {
-                    using (new GUILayout.HorizontalScope())
-                    {
-                        if (GUILayout.Button("Push Data in Enviro", GUILayout.Height(20)))
-                        {
-                            tool.PushIntoEnvironnement();
-                        }
-                    }
-                    using (new GUILayout.HorizontalScope())
-                    {
-                        if (GUILayout.Button("Generate EnviroColor Texture", GUILayout.Height(20)))
-                        {
-                            tool.GenerateTextureColor();
-                        }
-                        if (GUILayout.Button("Generate EnviroData Texture", GUILayout.Height(20)))
-                        {
-                            tool.GenerateTextureData();
-                        }
-                    }
-                }
-            }
-
             EditorUtility.SetDirty(target);
 
         }

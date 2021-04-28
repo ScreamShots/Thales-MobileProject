@@ -85,7 +85,7 @@ public static class SeaTextureGenerator
                         waveStrenght, //G = Wave Height
                         colorIntensity, //B = Color Intensity
                         1));
-        }
+            }
         }
 
         Color tempColor;

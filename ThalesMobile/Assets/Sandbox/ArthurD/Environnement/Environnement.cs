@@ -16,19 +16,53 @@ public class Environnement : MonoBehaviour
 
     [Space(10)]
     public Zone[] zones;
+    public int[,] zoneCarto = null;
+    public int resolution = 1;
 
-    //Test
-    /*
-    public Vector2 testPoint;
-    public int result;
-    
-
-    public void TestZone()
+    private void Awake()
     {
-        result = ZoneIn(testPoint);
+        zoneCarto = GenerateMapData();
     }
-    */
 
+    #region ContextMenue
+    [ContextMenu("Texture Generation Data")]
+    public void GenerateTextureData()
+    {
+        SeaTextureGenerator.GenerateZoneDataTexture(this, "Tex_EnviroData");
+    }
+
+    [ContextMenu("Texture Generation Color")]
+    public void GenerateTextureColor()
+    {
+        SeaTextureGenerator.GenerateZoneDataTexture(this, "Tex_Enviro");
+    }
+
+    [ContextMenu("Generate Map Data")]
+    public int[,] GenerateMapData()
+    {
+        Vector2Int zoneCartoSize = new Vector2Int((int)limit.size.x * resolution, (int)limit.size.y * resolution);
+        
+        int[,] zoneCarto = new int[zoneCartoSize.x, zoneCartoSize.y];
+
+        float inverseDetail = (float)1f / resolution;
+        float textStartPosX = limit.offSet.x + limit.leftBorder;
+        float textStartPosY = limit.offSet.y + limit.downBorder;
+
+        for (int x = 0; x < zoneCartoSize.x; x++)
+        {
+            for (int y = 0; y < zoneCartoSize.y; y++)
+            {
+                ZoneIn(new Vector2(textStartPosX + (x * inverseDetail), textStartPosY + (y * inverseDetail)));
+            }
+        }
+
+        return zoneCarto;
+    }
+    #endregion
+
+    /// <summary>
+    /// 0 = hors zone, donc décalage de un sur les zones
+    /// </summary>
     public int ZoneIn(Vector2 point)
     {
         if (limit.InBoundary(point))
@@ -55,6 +89,7 @@ public class Environnement : MonoBehaviour
         }
     }
 
+    #region Gizmo
     private void OnDrawGizmos()
     {
         //Gizmos.DrawSphere(new Vector3(testPoint.x, 0, testPoint.y), 2f);
@@ -148,5 +183,5 @@ public class Environnement : MonoBehaviour
 
         Gizmos.color = zoneColor;
     }
-
+    #endregion
 }
