@@ -91,6 +91,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7664084496329710956}
   - component: {fileID: 7664084496329710959}
+  - component: {fileID: 7664084496245726164}
   m_Layer: 0
   m_Name: Submarine
   m_TagString: Untagged
@@ -127,15 +128,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentSeaLevel: 0
+  seeker: {fileID: 7664084496245726164}
+  pathUpdatingFrequency: 0.2
+  nextWaypointDistance: 1
+  waypointAhead: 0
+  pathDestination: {x: 0, y: 0}
   currentDetectableState: 0
   detectFeedback:
     hullSonarRevealIcon: {fileID: 3709395866420079310, guid: e3be960e7884a08408c4b04b7011aa24,
       type: 3}
     hullSonarRevealPointer: {fileID: 8954560405424066949, guid: e3be960e7884a08408c4b04b7011aa24,
       type: 3}
+    sonobuoyRevealIcon: {fileID: 0}
   detectors: []
-  ship: {fileID: 0}
-  maxSpeed: 3
+  maxSpeed: 1.5
   acceleration: 0.5
   currentSpeed: 0
   currentVigilance: 0
@@ -147,17 +153,23 @@ MonoBehaviour:
   detectionRangeWorried: 6
   detectionRangePanicked: 8
   rangeVisual: {fileID: 7664084495740854194}
+  debugVisualRange: 0
   sonobuoyVigiIncr: 4
   fregateStationaryVigiIncr: 0.5
   fregateMoveVigiIncr: 2
   sonobuoys: []
   sonobuoysDistance: []
+  submarineRenderer: {fileID: 0}
+  baseMaterial: {fileID: 0}
+  detectedByFlashMaterial: {fileID: 2100000, guid: 7535ace726392444ca0609fc7e13d602,
+    type: 2}
   decoy: {fileID: 0}
   counterMeasures:
   - {fileID: 11400000, guid: c5625d4f2b46dcc42ab7b5841efdaf59, type: 2}
   - {fileID: 11400000, guid: afa7559d38532e5438d14596ef1032c5, type: 2}
   - {fileID: 11400000, guid: b23b70fa501456c4d81115c3fde9927c, type: 2}
   pointsToHack: 3
+  pointsHacked: 0
   interestPoints:
   - {fileID: 0}
   - {fileID: 0}
@@ -167,17 +179,57 @@ MonoBehaviour:
   minRange: 1
   subZone12Subdivision: 12
   subZone3SubSubdivision: 2
-  beneficialPointFactors: []
+  bioElements: []
   avoidEffectSliceReach: 3
   intermediatePosRefreshRate: 3
   distanceToRefrehIntemediatePos: 1
-  benefPointFactorWeightWhileCalme: 2
-  benefPointFactorWeightWhileInquiet: 2
-  benefPointFactorWeightWhilePanique: 2.8
-  distanceFactorWeightWhileCalme: 7
-  distanceFactorWeightWhileInquiet: 5
-  distanceFactorWeightWhilePanique: 3
+  benefPointFactorBioCalm: 2
+  benefPointFactorBioWorried: 2
+  benefPointFactorBioPanicked: 2.8
+  beneftPointFactorSonobuoyCalm: -1
+  beneftPointFactorSonobuoyWorried: -2
+  beneftPointFactorSonobuoyPanicked: -4
+  beneftPointFactorSeaWayCalm: 1
+  beneftPointFactorSeaWayWorried: 2
+  beneftPointFactorSeaWayPanicked: 4
+  beneftPointFactorSeaTurbulentCalm: 1
+  beneftPointFactorSeaTurbulentWorried: 2
+  beneftPointFactorSeaTurbulentPanicked: 4
+  beneftPointFactorWindyZoneCalm: -1
+  beneftPointFactorWindyZoneWorried: -1.5
+  beneftPointFactorWindyZonePanicked: -2
+  distanceFactorWeightWhileCalm: 7
+  distanceFactorWeightWhileWorried: 5
+  distanceFactorWeightWhilePanicked: 3
   isSubmarineDisplayed: 0
+--- !u!114 &7664084496245726164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7664084496329710958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  drawGizmos: 1
+  detailedGizmos: 0
+  startEndModifier:
+    addPoints: 0
+    exactStartPoint: 3
+    exactEndPoint: 3
+    useRaycasting: 0
+    mask:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    useGraphRaycasting: 0
+  traversableTags: -1
+  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  graphMask:
+    value: -1
 --- !u!1 &7664084496667251405
 GameObject:
   m_ObjectHideFlags: 0
@@ -189,6 +241,7 @@ GameObject:
   - component: {fileID: 7664084496667251442}
   - component: {fileID: 7664084496667251440}
   - component: {fileID: 7664084496667251443}
+  - component: {fileID: 2117803953847875448}
   m_Layer: 0
   m_Name: Renderer
   m_TagString: Untagged
@@ -257,3 +310,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &2117803953847875448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7664084496667251405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c84876332bbc1247a89b32cb2b87d00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  submarineScript: {fileID: 7664084496329710959}

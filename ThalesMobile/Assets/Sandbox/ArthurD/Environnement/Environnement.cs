@@ -24,6 +24,11 @@ public class Environnement : MonoBehaviour
         zoneCarto = GenerateMapData();
     }
 
+    private void Start()
+    {
+        GameManager.Instance.levelManager.environnement = this;
+    }
+
     #region ContextMenue
     [ContextMenu("Texture Generation Data")]
     public void GenerateTextureData()

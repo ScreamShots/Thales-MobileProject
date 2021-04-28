@@ -65,7 +65,6 @@ namespace PlayerEquipement
                 tempDetectionPoint = Instantiate(detectionPointPrefab, GameManager.Instance.levelManager.transform);
                 availableDetectionPoints.Add(tempDetectionPoint.GetComponent<CaptasFourDetectionPoint>());
             }
-            Debug.Log(availableDetectionPoints.Count);
         }
 
         public override void UseEquipement(PlayerOceanEntity user)

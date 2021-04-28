@@ -8,6 +8,7 @@ public class MeshTool : MonoBehaviour
 {
 
     [Header("Input")]
+    public int landPathfindingLayerIndex;
     public Transform[] edgeTransforms;
     private Vector3[] edges;
     private Vector3[] edgesUp;
@@ -157,6 +158,7 @@ public class MeshTool : MonoBehaviour
         collider.sharedMesh = mesh;
 
         target.isStatic = true;
+        target.layer = landPathfindingLayerIndex;
 
         SaveMesh(meshSavingPath, meshOutputName);
     }

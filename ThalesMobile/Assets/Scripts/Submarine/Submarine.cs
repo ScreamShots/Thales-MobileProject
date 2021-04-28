@@ -69,7 +69,7 @@ public class Submarine : DetectableOceanEntity
 
     [Header("Objectif")]
     public int pointsToHack;
-    private int pointsHacked = 0;
+    [HideInInspector]public int pointsHacked = 0;
     private float hackingTimer = 0f;
 
     [Space]

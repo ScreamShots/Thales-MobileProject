@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -372,7 +372,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 7664084496245726162}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7664084496245726163}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fd005910bc3df1b43a981eeb59ff2280, type: 3}
@@ -785,7 +785,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &463926921
 MonoBehaviour:
-  m_ObjectHideFlags: 10
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -1598,9 +1598,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentSeaLevel: 0
+  seeker: {fileID: 0}
+  pathUpdatingFrequency: 0
+  nextWaypointDistance: 0
+  waypointAhead: 0
+  pathDestination: {x: 0, y: 0}
   currentDetectableState: 0
   detectFeedback:
     hullSonarRevealIcon: {fileID: 0}
+    hullSonarRevealPointer: {fileID: 0}
+    sonobuoyRevealIcon: {fileID: 0}
   detectors: []
   levelManager: {fileID: 0}
   submarine: {fileID: 184649405}
@@ -2101,6 +2108,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1787732698}
     m_Modifications:
+    - target: {fileID: 3988816281166105222, guid: cd5f21c81995f47428172ef6a78f312b,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4486378914324551324, guid: cd5f21c81995f47428172ef6a78f312b,
         type: 3}
       propertyPath: m_RootOrder
@@ -2160,6 +2172,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MainUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 6657394133534383983, guid: cd5f21c81995f47428172ef6a78f312b,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd5f21c81995f47428172ef6a78f312b, type: 3}
@@ -3026,12 +3043,6 @@ Transform:
   m_Father: {fileID: 948588880}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &1871611276 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 7664084496667251443, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
-    type: 3}
-  m_PrefabInstance: {fileID: 7664084496245726162}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1921190324 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 516292101046722416, guid: 51b70c199aa8fae418d26a84c7de5076,
@@ -3644,11 +3655,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 463926920}
     m_Modifications:
-    - target: {fileID: 7664084495740854194, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7664084496329710956, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
         type: 3}
       propertyPath: m_RootOrder
@@ -3657,7 +3663,7 @@ PrefabInstance:
     - target: {fileID: 7664084496329710956, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.09
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7664084496329710956, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
         type: 3}
@@ -3667,7 +3673,7 @@ PrefabInstance:
     - target: {fileID: 7664084496329710956, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.06
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7664084496329710956, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
         type: 3}
@@ -3677,17 +3683,17 @@ PrefabInstance:
     - target: {fileID: 7664084496329710956, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7664084496329710956, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7664084496329710956, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7664084496329710956, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
         type: 3}
@@ -3711,59 +3717,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7664084496329710959, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
         type: 3}
-      propertyPath: ship
-      value: 
-      objectReference: {fileID: 1921190325}
-    - target: {fileID: 7664084496329710959, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
-        type: 3}
       propertyPath: decoy
       value: 
       objectReference: {fileID: 886938406}
-    - target: {fileID: 7664084496329710959, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
-        type: 3}
-      propertyPath: seeker
-      value: 
-      objectReference: {fileID: 7664084496245726164}
-    - target: {fileID: 7664084496329710959, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
-        type: 3}
-      propertyPath: maxSpeed
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7664084496329710959, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
-        type: 3}
-      propertyPath: nextWaypointDistance
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7664084496329710959, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
-        type: 3}
-      propertyPath: pathUpdatingFrequency
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7664084496329710959, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
-        type: 3}
-      propertyPath: benefPointFactorBioCalm
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7664084496329710959, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
-        type: 3}
-      propertyPath: detectedByFlashMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: 7535ace726392444ca0609fc7e13d602, type: 2}
-    - target: {fileID: 7664084496329710959, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
-        type: 3}
-      propertyPath: benefPointFactorBioWorried
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7664084496329710959, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
-        type: 3}
-      propertyPath: benefPointFactorBioPanicked
-      value: 2.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 7664084496329710959, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
-        type: 3}
-      propertyPath: beneftPointFactorSeaWayCalm
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7664084496329710959, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
         type: 3}
       propertyPath: interestPoints.Array.data[0]
@@ -3789,117 +3745,8 @@ PrefabInstance:
       propertyPath: interestPoints.Array.data[4]
       value: 
       objectReference: {fileID: 1748919627}
-    - target: {fileID: 7664084496329710959, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
-        type: 3}
-      propertyPath: beneftPointFactorSonobuoyCalm
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7664084496329710959, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
-        type: 3}
-      propertyPath: distanceFactorWeightWhileCalm
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 7664084496329710959, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
-        type: 3}
-      propertyPath: beneftPointFactorSeaWayWorried
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7664084496329710959, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
-        type: 3}
-      propertyPath: beneftPointFactorWindyZoneCalm
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7664084496329710959, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
-        type: 3}
-      propertyPath: beneftPointFactorSeaWayPanicked
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7664084496329710959, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
-        type: 3}
-      propertyPath: beneftPointFactorSonobuoyWorried
-      value: -2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7664084496329710959, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
-        type: 3}
-      propertyPath: distanceFactorWeightWhileWorried
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7664084496329710959, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
-        type: 3}
-      propertyPath: beneftPointFactorSeaTurbulentCalm
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7664084496329710959, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
-        type: 3}
-      propertyPath: beneftPointFactorSonobuoyPanicked
-      value: -4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7664084496329710959, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
-        type: 3}
-      propertyPath: beneftPointFactorWindyZoneWorried
-      value: -1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7664084496329710959, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
-        type: 3}
-      propertyPath: distanceFactorWeightWhilePanicked
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7664084496329710959, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
-        type: 3}
-      propertyPath: beneftPointFactorWindyZonePanicked
-      value: -2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7664084496329710959, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
-        type: 3}
-      propertyPath: beneftPointFactorSeaTurbulentWorried
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7664084496329710959, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
-        type: 3}
-      propertyPath: beneftPointFactorSeaTurbulentPanicked
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7664084496667251405, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2, type: 3}
---- !u!1 &7664084496245726163 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7664084496329710958, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
-    type: 3}
-  m_PrefabInstance: {fileID: 7664084496245726162}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &7664084496245726164
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7664084496245726163}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  drawGizmos: 1
-  detailedGizmos: 0
-  startEndModifier:
-    addPoints: 0
-    exactStartPoint: 3
-    exactEndPoint: 3
-    useRaycasting: 0
-    mask:
-      serializedVersion: 2
-      m_Bits: 4294967295
-    useGraphRaycasting: 0
-  traversableTags: -1
-  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-  graphMask:
-    value: -1
 --- !u!1001 &8075168228544202448
 PrefabInstance:
   m_ObjectHideFlags: 0

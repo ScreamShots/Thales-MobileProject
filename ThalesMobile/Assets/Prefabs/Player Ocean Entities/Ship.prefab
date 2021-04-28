@@ -268,6 +268,7 @@ GameObject:
   m_Component:
   - component: {fileID: 516292101046722416}
   - component: {fileID: 516292101046722417}
+  - component: {fileID: 2753761917272554094}
   m_Layer: 8
   m_Name: Ship
   m_TagString: Untagged
@@ -304,6 +305,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentSeaLevel: 0
+  seeker: {fileID: 2753761917272554094}
+  pathUpdatingFrequency: 0.2
+  nextWaypointDistance: 1
+  waypointAhead: 0
+  pathDestination: {x: 0, y: 0}
   speed: 3
   acceleration: 1
   rotateSpeed: 80
@@ -317,6 +323,34 @@ MonoBehaviour:
   equipementFeedback: {fileID: 0}
   passiveEquipement: {fileID: 11400000, guid: f1b15a368bed5b04c9e7f6bf686d20a4, type: 2}
   activeEquipement: {fileID: 11400000, guid: a774f637123035b429f104ed6c58cdb1, type: 2}
+--- !u!114 &2753761917272554094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 516292101046722423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  drawGizmos: 1
+  detailedGizmos: 0
+  startEndModifier:
+    addPoints: 0
+    exactStartPoint: 3
+    exactEndPoint: 3
+    useRaycasting: 0
+    mask:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    useGraphRaycasting: 0
+  traversableTags: -1
+  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  graphMask:
+    value: -1
 --- !u!1 &516292102045410597
 GameObject:
   m_ObjectHideFlags: 0

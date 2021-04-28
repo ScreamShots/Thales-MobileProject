@@ -20,6 +20,8 @@ namespace OceanEntities
 
             coords = new Coordinates(_transform.position, Vector2.up, 0);
 
+            coords.direction = Coordinates.ConvertWorldToVector2(_transform.forward);
+
             //Equipment initialization.
             passiveEquipement.Init(this);
             activeEquipement.Init(this);
@@ -72,13 +74,18 @@ namespace OceanEntities
                 else
                     currentSpeed = speed;
 
-                coords.direction = dir;
+                if (dir == Vector2.zero)
+                    coords.direction = Coordinates.ConvertWorldToVector2(transform.forward);
+                else
+                    coords.direction = dir;
 
                 //Update the plane's position.
                 coords.position += coords.direction.normalized * currentSpeed * Time.fixedDeltaTime;
 
                 //Store the new position in the coords.
                 _transform.position = Coordinates.ConvertVector2ToWorld(coords.position);
+
+                _transform.forward = Coordinates.ConvertVector2ToWorld(coords.direction);
             }
 
 
