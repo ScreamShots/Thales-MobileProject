@@ -35,16 +35,6 @@ namespace OceanEntities
         public int waypointAhead;
         [HideInInspector] public Vector2 pathDestination;
 
-        public Seeker seeker;
-        public float pathUpdatingFrequency;
-        private Path path;
-        private int currentWaypoint;
-        private float timeBeforeNextPathUpdate;
-        protected bool pathEndReached;
-        protected Vector2 pathDirection;
-        public float nextWaypointDistance;
-        public int waypointAhead;
-        public Vector2 pathDestination;
 
 
         /// <summary>
