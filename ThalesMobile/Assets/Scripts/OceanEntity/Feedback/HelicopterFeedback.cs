@@ -27,38 +27,29 @@ namespace OceanEntities
         {
             base.Update();
             RotatePropeller();
-
-            if(flashCylinder.activeSelf)
-            {
-                flashLineRenderer.SetPosition(0, transform.position - new Vector3(0, 0, 0.222f));
-                flashLineRenderer.SetPosition(1, flashCylinder.transform.position);
-            }
         }
 
         private void OnDisable()
         {
             targetPoint.SetActive(false);
+            LandFeedback();    
         }
 
         private void OnEnable()
         {
             targetPoint.SetActive(true);
+            TakeOffFeedback();
         }
 
         public void TakeOffFeedback()
         {
-            //ActivateRenderer.
-            rendererContainer.SetActive(true);
             //Play particles.
             helicopterTakeOffParticles.Play();
         }
 
-        public IEnumerator LandFeedback()
+        public void LandFeedback()
         {
             helicopterLandingParticles.Play();
-
-            yield return new WaitUntil(() => !helicopterLandingParticles.isPlaying);
-            rendererContainer.SetActive(false);
         }
 
         public void DropRearFeedback()

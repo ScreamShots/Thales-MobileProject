@@ -79,7 +79,7 @@ namespace PlayerEquipement
 
             //Set input manager to get a new target;
             GameManager.Instance.inputManager.getEntityTarget = true;
-            yield return new WaitUntil(()=> user.currentTargetPoint != userCurrentTarget);
+            yield return new WaitUntil(()=> user.currentTargetPoint != userCurrentTarget && Input.touchCount == 0);
 
             //set the sonobuy new target
             Vector2 targetPos = user.currentTargetPoint;

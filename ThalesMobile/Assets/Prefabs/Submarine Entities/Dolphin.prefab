@@ -50,6 +50,8 @@ MonoBehaviour:
       type: 3}
     hullSonarRevealPointer: {fileID: -5024606448714198397, guid: e3be960e7884a08408c4b04b7011aa24,
       type: 3}
+    sonobuoyRevealIcon: {fileID: 2491886963174191310, guid: e3be960e7884a08408c4b04b7011aa24,
+      type: 3}
   detectors: []
   speed: 2
   pointsToFollow:

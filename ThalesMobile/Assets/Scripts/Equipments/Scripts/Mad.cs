@@ -36,8 +36,8 @@ namespace PlayerEquipement
             foreach(DetectionObject obj in levelManager.activatedDetectionObjects)
             {
                 distance = Mathf.Abs(Vector2.Distance(obj.coords.position, user.coords.position));
-                if (distance <= range && obj.detectionState != DetectionState.noDetection) obj.detectionState = DetectionState.revealedDetection;
-                else if (obj.detectionState == DetectionState.revealedDetection) obj.detectionState = DetectionState.unknownDetection;
+                if (distance <= range) obj.inMadRange = true;
+                else obj.inMadRange = false;
             }
         }
     }

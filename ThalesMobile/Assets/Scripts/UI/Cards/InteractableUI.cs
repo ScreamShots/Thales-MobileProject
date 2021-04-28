@@ -104,7 +104,9 @@ public class InteractableUI : MonoBehaviour
     #region   InterfaceEvents
     public void OnBeginDrag(PointerEventData eventData)
     {
-        beginDragHandler();
+        if(beginDragHandler!=null)
+            beginDragHandler();
+
         isDragged = true;
 
         if (dragAnim.rectTransform != null)
@@ -112,7 +114,8 @@ public class InteractableUI : MonoBehaviour
     }
     public void OnEndDrag(PointerEventData eventData)
     {
-        endDragHandler();
+        if(endDragHandler!=null)
+            endDragHandler();
 
         if (dragAnim.rectTransform != null)
             StartCoroutine(dragAnim.anim.PlayBackward(dragAnim, dragAnim.originalPos, true));
@@ -121,7 +124,8 @@ public class InteractableUI : MonoBehaviour
     {
         if (holdTime < 0.8f && !isDragged)
         {
-            clickHandler();
+            if(clickHandler!=null)
+                clickHandler();
         }
 
         isDragged = false;

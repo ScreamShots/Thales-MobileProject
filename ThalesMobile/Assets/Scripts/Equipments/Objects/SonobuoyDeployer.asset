@@ -10,17 +10,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 099a36c3156481d4aa022550da67430b, type: 3}
-  m_Name: SonobuyDeployer
+  m_Name: SonobuoyDeployer
   m_EditorClassIdentifier: 
+  currentUser: {fileID: 0}
   chargeMax: 3
-  chargeStart: 2
+  chargeStart: 3
   loadingTime: 1
-  feedbackPrefab: {fileID: 0}
-  sonobuoyLifeTime: 1
-  sonobuoyRange: 0
-  sonobuoyPrefab: {fileID: 0}
-  poolSize: 0
-  availaibleSonobuoys: []
+  feedbackPrefab: {fileID: 65424318342107703, guid: a4fbc6e6358c2f149bc399c2d0aefc08,
+    type: 3}
+  sonobuoyLifeTime: 60
+  sonobuoyRange: 5
+  sonobuoyPrefab: {fileID: 2607549249886408468, guid: f94c7cd5ce464f041bc77ba13f2c3171,
+    type: 3}
+  poolSize: 10
+  availaibleSonobuoys:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   usedSonobuoys: []
   sonobuyTargetFeedbackPrefab: {fileID: 107788761763119437, guid: 821734bb5a294ce45bdc084a25bce773,
     type: 3}

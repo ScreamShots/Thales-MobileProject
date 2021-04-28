@@ -561,6 +561,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentSeaLevel: 2
+  seeker: {fileID: 0}
+  pathUpdatingFrequency: 0
+  nextWaypointDistance: 0
+  waypointAhead: 0
+  pathDestination: {x: 0, y: 0}
   speed: 5
   acceleration: 2
   rotateSpeed: 80
@@ -572,7 +577,7 @@ MonoBehaviour:
     type: 3}
   linkedButton: {fileID: 0}
   equipementFeedback: {fileID: 0}
-  minimumSpeed: 2
+  minimumSpeed: 3
   passiveEquipement: {fileID: 11400000, guid: 7d9d2ea8901df0a4790dcc43f4e1b499, type: 2}
   activeEquipement: {fileID: 11400000, guid: ff0fc0b824898a343b261ecf5d750dee, type: 2}
 --- !u!1 &339487589102417703

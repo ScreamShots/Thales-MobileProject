@@ -30,6 +30,9 @@ public abstract class DetectionObject : MonoBehaviour
 
     protected LevelManager levelManager;
 
+    [HideInInspector]
+    public bool inMadRange;
+
     //Phantom value reference that call refresh of FeedBack (method) whenever a change is done to the detection state value
     public DetectionState detectionState
     {
@@ -46,9 +49,13 @@ public abstract class DetectionObject : MonoBehaviour
         detectedEntities.CollectionChanged += detectedEntities_CollectionChanged;
     }
 
-    void Update()
+    protected virtual void Update()
     {
         debugDetected = detectedEntities.ToList();
+
+        if (inMadRange && detectionState == DetectionState.unknownDetection) detectionState = DetectionState.revealedDetection;
+        else if (!inMadRange && detectionState == DetectionState.revealedDetection && detectedEntities.Count > 0) detectionState = DetectionState.unknownDetection;
+        else if (!inMadRange && detectionState == DetectionState.revealedDetection && detectedEntities.Count == 0) detectionState = DetectionState.noDetection;
     }
 
     protected virtual void detectedEntities_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)

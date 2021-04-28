@@ -48,7 +48,7 @@ public class HullSonarDetectionPoint : DetectionObject
         if(detectionState == DetectionState.revealedDetection)
         {
             feedbackBehavior.HideReveal();
-            yield return new WaitForSeconds(feedbackBehavior.revealAppearAnim.anim.animationTime + (feedbackBehavior.revealAppearAnim.anim.animationTime/5));
+            yield return new WaitForSeconds(feedbackBehavior.animDuration + (feedbackBehavior.animDuration/5));
         }
 
         gameObject.SetActive(false);

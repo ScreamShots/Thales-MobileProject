@@ -32,9 +32,9 @@ namespace PlayerEquipement
         int poolSize;
 
         [HideInInspector]
-        public List<CaptasFourDetectionPoint> availableDetectionPoints = new List<CaptasFourDetectionPoint>();
+        public List<CaptasFourDetectionPoint> availableDetectionPoints;
         [HideInInspector]
-        public List<CaptasFourDetectionPoint> usedDetectionPoints = new List<CaptasFourDetectionPoint>();
+        public List<CaptasFourDetectionPoint> usedDetectionPoints;
 
         LevelManager levelManager;
         CameraController cameraController;
@@ -55,6 +55,9 @@ namespace PlayerEquipement
             mapAnglesPos[3] = new Vector2(cameraController.limit.rightBorder, cameraController.limit.upBorder);
 
             //Setting up the pooling of detection points
+            availableDetectionPoints = new List<CaptasFourDetectionPoint>();
+            usedDetectionPoints = new List<CaptasFourDetectionPoint>();
+
             GameObject tempDetectionPoint;
 
             for (int i = 0; i < poolSize; i++)
@@ -62,6 +65,7 @@ namespace PlayerEquipement
                 tempDetectionPoint = Instantiate(detectionPointPrefab, GameManager.Instance.levelManager.transform);
                 availableDetectionPoints.Add(tempDetectionPoint.GetComponent<CaptasFourDetectionPoint>());
             }
+            Debug.Log(availableDetectionPoints.Count);
         }
 
         public override void UseEquipement(PlayerOceanEntity user)
@@ -102,7 +106,7 @@ namespace PlayerEquipement
 
                     //if current tested detectable is in range place a point on his pos
                     //there is a security (padding) if object pos is at a position beetween two tested distance increasing at each frame (depend on the progression of the timer)
-                    if (distance >= waveRange && distance <= waveRange + padding)
+                    if (distance <= waveRange && distance >= waveRange + padding)
                     {
                         if (availableDetectionPoints.Count > 0)
                         {
@@ -117,7 +121,6 @@ namespace PlayerEquipement
                 waveTime += Time.deltaTime;
                 padding = waveRange - (range * (waveTime / waveDuration));
                 waveRange = range * (waveTime / waveDuration);
-
                 yield return new WaitForEndOfFrame();
             }
 

@@ -11,4 +11,5 @@ public struct DetectionFeedback
 {
     public Sprite hullSonarRevealIcon;
     public Sprite hullSonarRevealPointer;
+    public Sprite sonobuoyRevealIcon;
 }

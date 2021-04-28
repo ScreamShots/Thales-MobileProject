@@ -23,6 +23,10 @@ namespace PlayerEquipement
         [SerializeField, Min(0)]
         float revealDuration;
 
+        [Header("Flash Feedback Params")]
+        [SerializeField]
+        float heightOffset;
+        
         LevelManager levelManager;
 
         public override void Init(PlayerOceanEntity user)
@@ -43,6 +47,9 @@ namespace PlayerEquipement
         {
             float timer = 0;
             float distance = 0;
+
+            FlashFeedback flashFeedback = (FlashFeedback)feedbackBehavior;
+            flashFeedback.DropFlash(dropDuration, new Vector3(currentUser.transform.position.x, currentUser.transform.position.y + heightOffset, currentUser.transform.position.z));
 
             //Wait the drop duration before apply effect
             //Insert Somehow feedback of drop here

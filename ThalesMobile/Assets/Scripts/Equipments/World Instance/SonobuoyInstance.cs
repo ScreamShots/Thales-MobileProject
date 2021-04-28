@@ -21,8 +21,15 @@ public class SonobuoyInstance : DetectionObject
     [HideInInspector]
     public float detectionRange;
 
-    private void Update()
+    protected override void Start()
     {
+        base.Start();
+        feedbackBehavior.Init();
+    }
+
+    protected override void Update()
+    {
+        base.Update();
         if (gameObject.activeInHierarchy)
         {
             DetectElementsInsideRange();
@@ -45,6 +52,7 @@ public class SonobuoyInstance : DetectionObject
         if (!levelManager.activatedDetectionObjects.Contains(this)) levelManager.activatedDetectionObjects.Add(this);
 
         gameObject.SetActive(true);
+        feedbackBehavior.Init();
 
         StartCoroutine(LifeTime());
     }
@@ -118,6 +126,9 @@ public class SonobuoyInstance : DetectionObject
 
         if (newState == DetectionState.noDetection) feedbackBehavior.DetectionRangeFeedBack(false);
         else if (detectionState == DetectionState.noDetection) feedbackBehavior.DetectionRangeFeedBack(true);
+
+        //if (newState == DetectionState.revealedDetection) feedbackBehavior.UpdateReveal(true);
+        //else if (detectionState == DetectionState.revealedDetection && newState != DetectionState.revealedDetection) feedbackBehavior.UpdateReveal(false);
     }
 
     protected override void detectedEntities_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -125,10 +136,17 @@ public class SonobuoyInstance : DetectionObject
         base.detectedEntities_CollectionChanged(sender, e);
 
         List<System.Type> detectedTypes = new List<System.Type>();
+        List<DetectableOceanEntity> entities = new List<DetectableOceanEntity>();
 
         foreach(DetectableOceanEntity entity in detectedEntities)
         {
-            if (!detectedTypes.Contains(entity.GetType())) detectedTypes.Add(entity.GetType());
+            if (!detectedTypes.Contains(entity.GetType()))
+            {
+                detectedTypes.Add(entity.GetType());
+                entities.Add(entity);
+            }                
         }
+
+        feedbackBehavior.UpdateIcons(entities);
     }
 }

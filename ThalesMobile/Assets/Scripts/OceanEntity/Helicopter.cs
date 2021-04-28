@@ -10,7 +10,7 @@ namespace OceanEntities
     {
         private Transform _transform;
         private float currentSpeed = 0;
-        private float currentRotateSpeed =0;
+        private float currentRotateSpeed;
 
         [Header("Renderer")]
         public GameObject helicopterRenderer;
@@ -35,7 +35,7 @@ namespace OceanEntities
         public Ship linkedShip;
 
         [Header("Equipement")]
-        public Equipement activeEquipment;
+        public Equipement activeEquipement;
         private float time;
         public float flashPreparationTime;
 
@@ -43,6 +43,11 @@ namespace OceanEntities
         {
             _transform = transform;
             movementType = MovementType.air;
+
+            currentRotateSpeed = rotateSpeed;
+            coords.direction = Coordinates.ConvertWorldToVector2(transform.forward);
+
+            activeEquipement.Init(this);
         }
 
         void Update()
@@ -79,10 +84,9 @@ namespace OceanEntities
                 if ((touchPos -  coords.position).magnitude < 0.5f)
                 {
                     time += Time.deltaTime;
-                    if (time >= flashPreparationTime && activeEquipment.readyToUse && activeEquipment.chargeCount > 0)
+                    if (time >= flashPreparationTime && activeEquipement.readyToUse && activeEquipement.chargeCount > 0)
                     {
-                        print("launch flash");
-                        activeEquipment.UseEquipement(this);
+                        activeEquipement.UseEquipement(this);
                     }
                 }
                 else
@@ -121,13 +125,24 @@ namespace OceanEntities
             {
                 currentRotateSpeed = rotateSpeed;
                 coords.direction = dir;
+
+                if (!inFlight)
+                {
+                    //Update the plane's position.
+                    coords.position += coords.direction.normalized * currentSpeed * Time.deltaTime;
+                }
             }
 
-            //Update the plane's position.
-            coords.position += coords.direction.normalized * currentSpeed * Time.deltaTime;
+            if (inFlight)
+            {
+                //Update the plane's position.
+                coords.position += coords.direction.normalized * currentSpeed * Time.deltaTime;
+            }
 
             //Store the new position in the coords.
             _transform.position = Coordinates.ConvertVector2ToWorld(coords.position);
+
+            _transform.forward = Coordinates.ConvertVector2ToWorld(coords.direction);
 
             if ((targetPosition - coords.position).magnitude < 0.1f)
             {

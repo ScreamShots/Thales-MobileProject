@@ -69,8 +69,8 @@ public class HelicopterDeckUI : MonoBehaviour
     {
         if(linkedHelicopter.inFlight)
         {
-            //use flash
-            //disable Button;
+            linkedHelicopter.activeEquipement.UseEquipement(linkedHelicopter);
+            //disable Button
             DeactivateButton();
         }
     }

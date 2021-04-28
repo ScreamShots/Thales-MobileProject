@@ -20,7 +20,7 @@ namespace PlayerEquipement
     {
         public EquipementType equipementType { get; protected set; }
         public bool readyToUse { get; protected set; } = true;
-        PlayerOceanEntity currentUser;
+        [HideInInspector]public PlayerOceanEntity currentUser;
         
         
         [Header("Equipement Params")]
@@ -45,7 +45,7 @@ namespace PlayerEquipement
         [SerializeField]
         GameObject feedbackPrefab;
         GameObject feedbackHolder;
-        EquipementFeedback feedbackBehavior;
+        protected EquipementFeedback feedbackBehavior;
 
 
         //Phantom field that call the CoolDown method that add charge to the equipement if one is used 
@@ -68,7 +68,7 @@ namespace PlayerEquipement
             currentUser = user; 
             chargeCount = chargeStart;
             readyToUse = true;
-            //FeedbackInit();
+            FeedbackInit();
         }
 
         void StartCoolDown()
