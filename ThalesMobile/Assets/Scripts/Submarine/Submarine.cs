@@ -47,6 +47,7 @@ public class Submarine : DetectableOceanEntity
     public float detectionRangePanicked;
     private float currentRange;
     public GameObject rangeVisual;
+    public bool debugVisualRange = false;
 
     [Header("Vigilance Incrase Values")]
     public float sonobuoyVigiIncr;
@@ -464,58 +465,61 @@ public class Submarine : DetectableOceanEntity
                 break;
         }
 
-        if (environnement.zones[environnement.ZoneIn(coords.position)].state == ZoneState.SeaWay)
+        if (environnement.ZoneIn(coords.position) != 0)
         {
-            switch (currentState)
+            if (environnement.zones[environnement.ZoneIn(coords.position) - 1].state == ZoneState.SeaWay)
             {
-                case VigilanceState.calm:
-                    weight += beneftPointFactorSeaWayCalm;
-                    break;
+                switch (currentState)
+                {
+                    case VigilanceState.calm:
+                        weight += beneftPointFactorSeaWayCalm;
+                        break;
 
-                case VigilanceState.worried:
-                    weight += beneftPointFactorSeaWayWorried;
-                    break;
+                    case VigilanceState.worried:
+                        weight += beneftPointFactorSeaWayWorried;
+                        break;
 
-                case VigilanceState.panicked:
-                    weight += beneftPointFactorSeaWayPanicked;
-                    break;
+                    case VigilanceState.panicked:
+                        weight += beneftPointFactorSeaWayPanicked;
+                        break;
+                }
+            }
+            else if (environnement.zones[environnement.ZoneIn(coords.position) - 1].state == ZoneState.WindyZone)
+            {
+                switch (currentState)
+                {
+                    case VigilanceState.calm:
+                        weight += beneftPointFactorWindyZoneCalm;
+                        break;
+
+                    case VigilanceState.worried:
+                        weight += beneftPointFactorWindyZoneWorried;
+                        break;
+
+                    case VigilanceState.panicked:
+                        weight += beneftPointFactorWindyZonePanicked;
+                        break;
+                }
+            }
+            else if (environnement.zones[environnement.ZoneIn(coords.position) - 1].state == ZoneState.SeaTurbulent)
+            {
+                switch (currentState)
+                {
+                    case VigilanceState.calm:
+                        weight += beneftPointFactorSeaTurbulentCalm;
+                        break;
+
+                    case VigilanceState.worried:
+                        weight += beneftPointFactorSeaTurbulentWorried;
+                        break;
+
+                    case VigilanceState.panicked:
+                        weight += beneftPointFactorSeaTurbulentPanicked;
+                        break;
+                }
             }
         }
-        else if (environnement.zones[environnement.ZoneIn(coords.position)].state == ZoneState.WindyZone)
-        {
-            switch (currentState)
-            {
-                case VigilanceState.calm:
-                    weight += beneftPointFactorWindyZoneCalm;
-                    break;
-
-                case VigilanceState.worried:
-                    weight += beneftPointFactorWindyZoneWorried;
-                    break;
-
-                case VigilanceState.panicked:
-                    weight += beneftPointFactorWindyZonePanicked;
-                    break;
-            }
-        }
-        else if (environnement.zones[environnement.ZoneIn(coords.position)].state == ZoneState.SeaTurbulent)
-        {
-            switch (currentState)
-            {
-                case VigilanceState.calm:
-                    weight += beneftPointFactorSeaTurbulentCalm;
-                    break;
-
-                case VigilanceState.worried:
-                    weight += beneftPointFactorSeaTurbulentWorried;
-                    break;
-
-                case VigilanceState.panicked:
-                    weight += beneftPointFactorSeaTurbulentPanicked;
-                    break;
-            }
-        }
-
+        
         pointDistance = Vector2.Distance(ship.coords.position, coords.position);
         pointRelativeAngle = Vector2.SignedAngle(Vector2.right, ship.coords.position - coords.position);
         if (pointDistance < subZone.maxRange && pointDistance >= subZone.minRange && IsBetweenAngle(pointRelativeAngle, subZone.minAngle, subZone.maxAngle))
@@ -706,6 +710,15 @@ public class Submarine : DetectableOceanEntity
 
     private void UpdateSubmarineRange()
     {
+        if (debugVisualRange)
+        {
+            rangeVisual.SetActive(true);
+        }
+        else
+        {
+            rangeVisual.SetActive(false);
+        }
+
         if (currentState == VigilanceState.calm)
         {
             rangeVisual.transform.localScale = new Vector2(detectionRangeCalm * 2, detectionRangeCalm * 2);

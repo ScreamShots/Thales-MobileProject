@@ -3644,6 +3644,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 463926920}
     m_Modifications:
+    - target: {fileID: 7664084495740854194, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7664084496329710956, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
         type: 3}
       propertyPath: m_RootOrder
@@ -3737,7 +3742,7 @@ PrefabInstance:
     - target: {fileID: 7664084496329710959, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
         type: 3}
       propertyPath: benefPointFactorBioCalm
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7664084496329710959, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
         type: 3}
@@ -3747,12 +3752,17 @@ PrefabInstance:
     - target: {fileID: 7664084496329710959, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
         type: 3}
       propertyPath: benefPointFactorBioWorried
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7664084496329710959, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
         type: 3}
       propertyPath: benefPointFactorBioPanicked
-      value: 0
+      value: 2.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7664084496329710959, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
+        type: 3}
+      propertyPath: beneftPointFactorSeaWayCalm
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7664084496329710959, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
         type: 3}
@@ -3779,30 +3789,80 @@ PrefabInstance:
       propertyPath: interestPoints.Array.data[4]
       value: 
       objectReference: {fileID: 1748919627}
-    - target: {fileID: 7664084496667251442, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
+    - target: {fileID: 7664084496329710959, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
         type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.5
+      propertyPath: beneftPointFactorSonobuoyCalm
+      value: -1
       objectReference: {fileID: 0}
-    - target: {fileID: 7664084496667251442, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
+    - target: {fileID: 7664084496329710959, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
         type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.5
+      propertyPath: distanceFactorWeightWhileCalm
+      value: 7
       objectReference: {fileID: 0}
-    - target: {fileID: 7664084496667251442, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
+    - target: {fileID: 7664084496329710959, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
         type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.5
+      propertyPath: beneftPointFactorSeaWayWorried
+      value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 7664084496667251442, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
+    - target: {fileID: 7664084496329710959, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
         type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.5
+      propertyPath: beneftPointFactorWindyZoneCalm
+      value: -1
       objectReference: {fileID: 0}
-    - target: {fileID: 7664084496667251442, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
+    - target: {fileID: 7664084496329710959, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
         type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -90
+      propertyPath: beneftPointFactorSeaWayPanicked
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7664084496329710959, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
+        type: 3}
+      propertyPath: beneftPointFactorSonobuoyWorried
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7664084496329710959, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
+        type: 3}
+      propertyPath: distanceFactorWeightWhileWorried
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7664084496329710959, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
+        type: 3}
+      propertyPath: beneftPointFactorSeaTurbulentCalm
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7664084496329710959, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
+        type: 3}
+      propertyPath: beneftPointFactorSonobuoyPanicked
+      value: -4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7664084496329710959, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
+        type: 3}
+      propertyPath: beneftPointFactorWindyZoneWorried
+      value: -1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7664084496329710959, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
+        type: 3}
+      propertyPath: distanceFactorWeightWhilePanicked
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7664084496329710959, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
+        type: 3}
+      propertyPath: beneftPointFactorWindyZonePanicked
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7664084496329710959, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
+        type: 3}
+      propertyPath: beneftPointFactorSeaTurbulentWorried
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7664084496329710959, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
+        type: 3}
+      propertyPath: beneftPointFactorSeaTurbulentPanicked
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7664084496667251405, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2, type: 3}
