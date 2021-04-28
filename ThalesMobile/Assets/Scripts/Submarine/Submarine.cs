@@ -23,6 +23,7 @@ public class Submarine : DetectableOceanEntity
     [Header("References")]
     private Ship ship;
     private LevelManager levelManager;
+    private Environnement environnement;
 
     [Header("Movement")]
     public float maxSpeed;
@@ -80,13 +81,17 @@ public class Submarine : DetectableOceanEntity
     public float minRange;
     public int subZone12Subdivision;
     public int subZone3SubSubdivision;
-    public List<Transform> beneficialPointFactors;
+    public List<Transform> bioElements;
 
     public int avoidEffectSliceReach;
     public float intermediatePosRefreshRate;
     public float distanceToRefrehIntemediatePos;
-    public float benefPointFactorWeightWhileCalme, benefPointFactorWeightWhileInquiet, benefPointFactorWeightWhilePanique;
-    public float distanceFactorWeightWhileCalme, distanceFactorWeightWhileInquiet, distanceFactorWeightWhilePanique;
+    public float benefPointFactorBioCalm, benefPointFactorBioWorried, benefPointFactorBioPanicked;
+    public float beneftPointFactorSonobuoyCalm, beneftPointFactorSonobuoyWorried, beneftPointFactorSonobuoyPanicked;
+    public float beneftPointFactorSeaWayCalm, beneftPointFactorSeaWayWorried, beneftPointFactorSeaWayPanicked;
+    public float beneftPointFactorSeaTurbulentCalm, beneftPointFactorSeaTurbulentWorried, beneftPointFactorSeaTurbulentPanicked;
+    public float beneftPointFactorWindyZoneCalm, beneftPointFactorWindyZoneWorried, beneftPointFactorWindyZonePanicked;
+    public float distanceFactorWeightWhileCalm, distanceFactorWeightWhileWorried, distanceFactorWeightWhilePanicked;
 
     private Vector2 targetDirection;
     private Vector2 nextIntermediatePosition;
@@ -99,6 +104,8 @@ public class Submarine : DetectableOceanEntity
     private void Start()
     {
         levelManager = GameManager.Instance.levelManager;
+        environnement = levelManager.environnement;
+
         levelManager.submarineEntitiesInScene.Add(this);
         levelManager.enemyEntitiesInScene.Add(this);
 
@@ -115,7 +122,7 @@ public class Submarine : DetectableOceanEntity
         {
             if(levelManager.submarineEntitiesInScene[i].GetType() != typeof(Submarine))
             {
-                beneficialPointFactors.Add(levelManager.submarineEntitiesInScene[i].transform);
+                bioElements.Add(levelManager.submarineEntitiesInScene[i].transform);
             }
         }
     }
@@ -430,37 +437,84 @@ public class Submarine : DetectableOceanEntity
 
         subZoneDirection = GetDirectionFromAngle(GetNormAngle(subZone.minAngle + Mathf.DeltaAngle(subZone.minAngle, subZone.maxAngle) * 0.5f));
 
-        for (int o = 0; o < beneficialPointFactors.Count; o++)
+        for (int o = 0; o < bioElements.Count; o++)
         {
-            pointDistance = Vector2.Distance(Coordinates.ConvertWorldToVector2(beneficialPointFactors[o].position), coords.position);
-            pointRelativeAngle = Vector2.SignedAngle(Vector2.right, Coordinates.ConvertWorldToVector2(beneficialPointFactors[o].position) - coords.position);
+            pointDistance = Vector2.Distance(Coordinates.ConvertWorldToVector2(bioElements[o].position), coords.position);
+            pointRelativeAngle = Vector2.SignedAngle(Vector2.right, Coordinates.ConvertWorldToVector2(bioElements[o].position) - coords.position);
             if (pointDistance < subZone.maxRange && pointDistance >= subZone.minRange && IsBetweenAngle(pointRelativeAngle, subZone.minAngle, subZone.maxAngle))
             {
-                weight += currentState == VigilanceState.calm ? benefPointFactorWeightWhileCalme : 0;
-                weight += currentState == VigilanceState.worried ? benefPointFactorWeightWhileInquiet : 0;
-                weight += currentState == VigilanceState.panicked ? benefPointFactorWeightWhilePanique : 0;
+                weight += currentState == VigilanceState.calm ? benefPointFactorBioCalm : 0;
+                weight += currentState == VigilanceState.worried ? benefPointFactorBioWorried : 0;
+                weight += currentState == VigilanceState.panicked ? benefPointFactorBioPanicked : 0;
             }
         }
 
         switch (currentState)
         {
             case VigilanceState.calm:
-                weight += Mathf.Cos(Mathf.Deg2Rad * Vector2.Angle(targetDirection, subZoneDirection)) * distanceFactorWeightWhileCalme;
+                weight += Mathf.Cos(Mathf.Deg2Rad * Vector2.Angle(targetDirection, subZoneDirection)) * distanceFactorWeightWhileCalm;
                 break;
 
             case VigilanceState.worried:
-                weight += Mathf.Cos(Mathf.Deg2Rad * Vector2.Angle(targetDirection, subZoneDirection)) * distanceFactorWeightWhileInquiet;
+                weight += Mathf.Cos(Mathf.Deg2Rad * Vector2.Angle(targetDirection, subZoneDirection)) * distanceFactorWeightWhileWorried;
                 break;
 
             case VigilanceState.panicked:
-                weight += Mathf.Cos(Mathf.Deg2Rad * Vector2.Angle(targetDirection, subZoneDirection)) * distanceFactorWeightWhilePanique;
+                weight += Mathf.Cos(Mathf.Deg2Rad * Vector2.Angle(targetDirection, subZoneDirection)) * distanceFactorWeightWhilePanicked;
                 break;
         }
 
-        /*if (TerrainZoneHandler.GetCurrentZone(subZone.zoneCenterPos, null) != null && TerrainZoneHandler.GetCurrentZone(subZone.zoneCenterPos, null).relief == TerrainZone.Relief.Land)
+        if (environnement.zones[environnement.ZoneIn(coords.position)].state == ZoneState.SeaWay)
         {
-            weight -= 1000;
-        }*/
+            switch (currentState)
+            {
+                case VigilanceState.calm:
+                    weight += beneftPointFactorSeaWayCalm;
+                    break;
+
+                case VigilanceState.worried:
+                    weight += beneftPointFactorSeaWayWorried;
+                    break;
+
+                case VigilanceState.panicked:
+                    weight += beneftPointFactorSeaWayPanicked;
+                    break;
+            }
+        }
+        else if (environnement.zones[environnement.ZoneIn(coords.position)].state == ZoneState.WindyZone)
+        {
+            switch (currentState)
+            {
+                case VigilanceState.calm:
+                    weight += beneftPointFactorWindyZoneCalm;
+                    break;
+
+                case VigilanceState.worried:
+                    weight += beneftPointFactorWindyZoneWorried;
+                    break;
+
+                case VigilanceState.panicked:
+                    weight += beneftPointFactorWindyZonePanicked;
+                    break;
+            }
+        }
+        else if (environnement.zones[environnement.ZoneIn(coords.position)].state == ZoneState.SeaTurbulent)
+        {
+            switch (currentState)
+            {
+                case VigilanceState.calm:
+                    weight += beneftPointFactorSeaTurbulentCalm;
+                    break;
+
+                case VigilanceState.worried:
+                    weight += beneftPointFactorSeaTurbulentWorried;
+                    break;
+
+                case VigilanceState.panicked:
+                    weight += beneftPointFactorSeaTurbulentPanicked;
+                    break;
+            }
+        }
 
         pointDistance = Vector2.Distance(ship.coords.position, coords.position);
         pointRelativeAngle = Vector2.SignedAngle(Vector2.right, ship.coords.position - coords.position);
@@ -481,15 +535,15 @@ public class Submarine : DetectableOceanEntity
                 switch (currentState)
                 {
                     case VigilanceState.calm:
-                        weight -= 1;
+                        weight += beneftPointFactorSonobuoyCalm;
                         break;
 
                     case VigilanceState.worried:
-                        weight -= 2;
+                        weight += beneftPointFactorSonobuoyWorried;
                         break;
 
                     case VigilanceState.panicked:
-                        weight -= 4;
+                        weight += beneftPointFactorSonobuoyPanicked;
                         break;
                 }
                 

@@ -1031,6 +1031,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 519165324}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &522202149 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1272418530096998458, guid: e6e44af5aa36dff429fdc8127f7be11e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1038751592}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 867da68ead1ec1a41ad74322d465f57d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &556607307
 GameObject:
   m_ObjectHideFlags: 0
@@ -1510,6 +1522,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6928828575392575699, guid: bf0a181efa9d1324a83f92bf336d0f47,
         type: 3}
+      propertyPath: environnement
+      value: 
+      objectReference: {fileID: 522202149}
+    - target: {fileID: 6928828575392575699, guid: bf0a181efa9d1324a83f92bf336d0f47,
+        type: 3}
       propertyPath: playerOceanEntities.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -1712,7 +1729,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &948588881
 MonoBehaviour:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 10
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -3719,9 +3736,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7664084496329710959, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
         type: 3}
+      propertyPath: benefPointFactorBioCalm
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7664084496329710959, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
+        type: 3}
       propertyPath: detectedByFlashMaterial
       value: 
       objectReference: {fileID: 2100000, guid: 7535ace726392444ca0609fc7e13d602, type: 2}
+    - target: {fileID: 7664084496329710959, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
+        type: 3}
+      propertyPath: benefPointFactorBioWorried
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7664084496329710959, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
+        type: 3}
+      propertyPath: benefPointFactorBioPanicked
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7664084496329710959, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
         type: 3}
       propertyPath: interestPoints.Array.data[0]

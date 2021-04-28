@@ -17,6 +17,8 @@ public class LevelManager : MonoBehaviour
 
     public List<PlayerOceanEntity> playerOceanEntities;
 
+    public Environnement environnement;
+
     private void Start()
     {
         GameManager.Instance.levelManager = this;
