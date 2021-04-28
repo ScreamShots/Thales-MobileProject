@@ -308,7 +308,7 @@ MonoBehaviour:
   seeker: {fileID: 2753761917272554094}
   pathUpdatingFrequency: 0.2
   nextWaypointDistance: 1
-  waypointAhead: 0
+  waypointAhead: 2
   pathDestination: {x: 0, y: 0}
   speed: 3
   acceleration: 1

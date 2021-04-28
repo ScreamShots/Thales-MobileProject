@@ -89,7 +89,7 @@ public class MeshTool : MonoBehaviour
             vertices.Add(edges[i]);
             vertices.Add(edges[i + 1]);
 
-            CreateTriangles(1);
+            CreateTriangles(-1);
             verticeIndex += 3;
         }
 
@@ -100,7 +100,7 @@ public class MeshTool : MonoBehaviour
             vertices.Add(chamferEdges[i]);
             vertices.Add(chamferEdges[i+1]);
 
-            CreateTriangles(-1);
+            CreateTriangles(1);
             verticeIndex += 3;
         }
 
@@ -122,7 +122,7 @@ public class MeshTool : MonoBehaviour
                 vertices.Add(edgesUp[0]);
             }
                 
-            CreateTriangleQuad(1);
+            CreateTriangleQuad(-1);
             verticeIndex += 4;
         }
 
@@ -144,7 +144,7 @@ public class MeshTool : MonoBehaviour
                 vertices.Add(chamferEdges[0]);
             }
 
-            CreateTriangleQuad(1);
+            CreateTriangleQuad(-1);
             verticeIndex += 4;
         }
 

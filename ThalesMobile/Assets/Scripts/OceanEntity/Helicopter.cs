@@ -27,6 +27,7 @@ namespace OceanEntities
         [HideInInspector] public bool inAlert;
         [HideInInspector] public bool inFlight;
         [HideInInspector] public bool launch;
+        [HideInInspector] public bool isDroppingFlash;
         private bool onShip = true;
 
         [HideInInspector] public Button launchButton;
@@ -66,7 +67,7 @@ namespace OceanEntities
                 }
             }
 
-            else if(currentTargetPoint != nullVector && inFlight)
+            else if(currentTargetPoint != nullVector && inFlight && !isDroppingFlash)
             {
                 Move(currentTargetPoint);
             }
@@ -74,6 +75,7 @@ namespace OceanEntities
             //If flight ended then go back to the ship
             else if(!inFlight && !onShip)
             {
+                if(!isDroppingFlash)
                 Move(linkedShip.coords.position);
             }
 

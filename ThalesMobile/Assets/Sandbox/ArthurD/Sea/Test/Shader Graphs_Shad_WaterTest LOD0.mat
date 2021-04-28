@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_Shad_WaterTest
+  m_Name: Shader Graphs_Shad_WaterTest LOD0
   m_Shader: {fileID: -6465566751694194690, guid: 27c3aeeefd3080244b5a733829991b5d,
     type: 3}
   m_ShaderKeywords: 
@@ -40,7 +40,7 @@ Material:
     - Tilling: 0.05
     - TimeScale: 0.2
     - Vector1_14684579: 0.2
-    - Vector1_E7BCE026: 0
+    - Vector1_E7BCE026: 0.1
     - Vector1_ZoneSize: 64
     m_Colors:
     - ScreenColor: {r: 0, g: 0.5008629, b: 0.509434, a: 0}

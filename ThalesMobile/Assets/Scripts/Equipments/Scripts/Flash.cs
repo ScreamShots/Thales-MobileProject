@@ -40,16 +40,19 @@ namespace PlayerEquipement
         {
             base.UseEquipement(user);
             readyToUse = false;
-            allCoroutines.Add(GameManager.Instance.ExternalStartCoroutine(DropFlash(user.coords)));
+            allCoroutines.Add(GameManager.Instance.ExternalStartCoroutine(DropFlash(user)));
         }
 
-        IEnumerator DropFlash(Coordinates userCoords)
+        IEnumerator DropFlash(PlayerOceanEntity user)
         {
             float timer = 0;
             float distance = 0;
 
             FlashFeedback flashFeedback = (FlashFeedback)feedbackBehavior;
             flashFeedback.DropFlash(dropDuration, new Vector3(currentUser.transform.position.x, currentUser.transform.position.y + heightOffset, currentUser.transform.position.z));
+
+            Helicopter helicopter = (Helicopter)user;
+            helicopter.isDroppingFlash = true;
 
             //Wait the drop duration before apply effect
             //Insert Somehow feedback of drop here
@@ -58,13 +61,15 @@ namespace PlayerEquipement
                 yield return new WaitForEndOfFrame();
                 timer += Time.deltaTime;
             }
-            
+
+            helicopter.isDroppingFlash = false;
+
             //Test all submarine in the scene
             //If they are in winning range Win the game (need method implementation to win In GameManager probably)
             //If they are in extended range show submarine trail for the specified time (need method impletation for that in Submarine)
-            foreach(Submarine submarine in levelManager.enemyEntitiesInScene)
+            foreach (Submarine submarine in levelManager.enemyEntitiesInScene)
             {
-                distance = Mathf.Abs(Vector2.Distance(submarine.coords.position, userCoords.position));
+                distance = Mathf.Abs(Vector2.Distance(submarine.coords.position, user.coords.position));
                 if (distance <= winningRange) Debug.Log("Win"); /*Win the Game*/
                 else if (distance <= extendedRange) Debug.Log("Near"); /*enable trail (SubMarine Methode with duration param)*/
             }

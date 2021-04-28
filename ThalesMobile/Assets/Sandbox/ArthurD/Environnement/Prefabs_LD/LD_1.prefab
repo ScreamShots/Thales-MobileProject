@@ -53,7 +53,7 @@ MonoBehaviour:
   - name: Zone-0
     state: 0
     windDir: 0
-    debugColor: {r: 0.8113208, g: 0.7768627, b: 0.37887147, a: 1}
+    debugColor: {r: 1, g: 0.91818184, b: 0, a: 1}
     points:
     - {x: -20.078516, y: -18.5333}
     - {x: -10.912687, y: -17.722483}
@@ -65,9 +65,9 @@ MonoBehaviour:
     - {x: 20.068531, y: -35.975834}
     - {x: -20.078562, y: -35.965828}
   - name: Zone-1
-    state: 0
+    state: 1
     windDir: 1.018
-    debugColor: {r: 0.015686274, g: 0.86729157, b: 1, a: 1}
+    debugColor: {r: 0, g: 0.86454153, b: 1, a: 1}
     points:
     - {x: 20.118717, y: -12.601044}
     - {x: 19.958097, y: -15.941436}
@@ -86,9 +86,9 @@ MonoBehaviour:
     - {x: 4.200034, y: -4.383105}
     - {x: 11.768722, y: -6.9072995}
   - name: Zone-2
-    state: 0
+    state: 3
     windDir: 1
-    debugColor: {r: 0.015686274, g: 0.1213541, b: 1, a: 1}
+    debugColor: {r: 0.9254902, g: 0.0745098, b: 0.69642955, a: 1}
     points:
     - {x: -1.7970339, y: -2.0714638}
     - {x: -5.0096035, y: 0.20014365}
@@ -106,7 +106,7 @@ MonoBehaviour:
   - name: Zone-3
     state: 0
     windDir: 1
-    debugColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    debugColor: {r: 0, g: 0, b: 0, a: 1}
     points:
     - {x: -8.673946, y: -3.217152}
     - {x: -5.0096035, y: 0.20014365}
@@ -117,7 +117,7 @@ MonoBehaviour:
   - name: Zone-4
     state: 0
     windDir: 1
-    debugColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    debugColor: {r: 1, g: 0.9203187, b: 0, a: 1}
     points:
     - {x: 6.5239263, y: 6.4296174}
     - {x: 9.359292, y: 7.7687964}
@@ -127,9 +127,9 @@ MonoBehaviour:
     - {x: 10.356945, y: -1.9113778}
     - {x: 13.84717, y: 5.5625896}
   - name: Zone-5
-    state: 0
+    state: 1
     windDir: 1.064
-    debugColor: {r: 0.015686274, g: 0.8495566, b: 1, a: 1}
+    debugColor: {r: 0.015686274, g: 1, b: 0.10908299, a: 1}
     points:
     - {x: 1.4585097, y: 28.892382}
     - {x: 6.5536537, y: 36.02716}
@@ -141,9 +141,9 @@ MonoBehaviour:
     - {x: 2.2873554, y: 13.495713}
     - {x: -1.6448401, y: 16.172817}
   - name: Zone-6
-    state: 0
-    windDir: 1.05
-    debugColor: {r: 0.015686274, g: 0.4632176, b: 1, a: 1}
+    state: 4
+    windDir: 1
+    debugColor: {r: 0, g: 0.45418334, b: 1, a: 1}
     points:
     - {x: -20.118668, y: -7.4053206}
     - {x: -20.078585, y: 35.89583}
@@ -156,3 +156,4 @@ MonoBehaviour:
     - {x: -8.673946, y: -3.217152}
     - {x: -8.543444, y: -7.6955457}
     - {x: -14.075057, y: -11.237899}
+  resolution: 1

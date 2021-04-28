@@ -50,7 +50,7 @@ public class CameraController : MonoBehaviour
 
         if (lookAtTraget)
         {
-            FocusOnTraget();
+            FocusOnTarget();
         }
         else
         {
@@ -149,10 +149,10 @@ public class CameraController : MonoBehaviour
 
         focusPoint.position = wantedPos;
     }
-    private void FocusOnTraget()
+    private void FocusOnTarget()
     {
         Vector3 toTarget = (target.position - focusPoint.position);
-        if (toTarget.magnitude > 0.5f)
+        if (toTarget.magnitude > (toTarget.normalized).magnitude * refocusSpeed * Time.deltaTime)
         {
             toTarget = toTarget.normalized * refocusSpeed * Time.deltaTime;
         }

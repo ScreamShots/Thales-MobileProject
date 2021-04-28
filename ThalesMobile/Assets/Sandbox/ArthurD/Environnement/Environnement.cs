@@ -19,6 +19,7 @@ public class Environnement : MonoBehaviour
     public int[,] zoneCarto = null;
     public int resolution = 1;
 
+#if UNITY_EDITOR
     private void Awake()
     {
         zoneCarto = GenerateMapData();
@@ -64,7 +65,7 @@ public class Environnement : MonoBehaviour
         return zoneCarto;
     }
     #endregion
-
+#endif
     /// <summary>
     /// 0 = hors zone, donc décalage de un sur les zones
     /// </summary>
@@ -189,4 +190,5 @@ public class Environnement : MonoBehaviour
         Gizmos.color = zoneColor;
     }
     #endregion
+
 }

@@ -138,10 +138,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae4e8cfe561683347a977f0f00263eb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  landPathfindingLayerIndex: 11
   edgeTransforms: []
   meshHeight: 1
   chamferHeight: 0.1
   chamferOffset: 0.1
   targetGameObjectReference: {fileID: 6916000818746990191}
-  meshOutputName: 
+  meshOutputName: Mesh
   meshSavingPath: 
