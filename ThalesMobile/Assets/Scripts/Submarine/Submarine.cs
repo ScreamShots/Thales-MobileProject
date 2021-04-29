@@ -105,6 +105,7 @@ public class Submarine : DetectableOceanEntity
     private void Start()
     {
         levelManager = GameManager.Instance.levelManager;
+        environment = GameManager.Instance.levelManager.environnement;
         environnement = levelManager.environnement;
 
         levelManager.submarineEntitiesInScene.Add(this);

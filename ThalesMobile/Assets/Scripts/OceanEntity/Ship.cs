@@ -15,6 +15,7 @@ namespace OceanEntities
 
         private void Start()
         {
+            environment = GameManager.Instance.levelManager.environnement;
             movementType = MovementType.sea;
             _transform = transform;
 
