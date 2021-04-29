@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Shader Graphs_Shad_WaterTest
-  m_Shader: {fileID: -6465566751694194690, guid: 27c3aeeefd3080244b5a733829991b5d,
+  m_Shader: {fileID: -6465566751694194690, guid: 72e17481239b74140a19ade7e1385796,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -39,10 +39,16 @@ Material:
     - SmallWavesIntensity: 0.16
     - Tilling: 0.05
     - TimeScale: 0.2
-    - Vector1_14684579: 0.2
+    - Vector1_14684579: 0.05
+    - Vector1_B9C16661: 10
+    - Vector1_BE1F17BB: 0.15
+    - Vector1_E595E303: -0.1
     - Vector1_E7BCE026: 0
     - Vector1_ZoneSize: 64
     m_Colors:
+    - Color_9CF457E8: {r: 0.4, g: 0.9686275, b: 0.9058824, a: 1}
+    - Color_9D710138: {r: 0, g: 0.4952884, b: 0.505, a: 1}
+    - Color_C6355D62: {r: 0, g: 0.3921569, b: 0.6235294, a: 1}
     - ScreenColor: {r: 0, g: 0.5008629, b: 0.509434, a: 0}
     - Vector2_5155684: {r: 0, g: 0, b: 0, a: 0}
     - Vector2_F9DFF8C5: {r: -0.5, g: -0.5, b: 0, a: 0}
