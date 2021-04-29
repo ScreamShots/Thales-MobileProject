@@ -69,17 +69,9 @@ namespace PlayerEquipement
             transform.localScale *= scaleFactor;
         }
 
-        public void ActivateFeedback()
+        public void SetWaveSpeed(float _speed)
         {
-            gameObject.SetActive(true);
-            waveRenderer.sharedMaterial.SetFloat("VitesseOnde", waveSpeed);
-            transform.localScale *= scaleFactor;
-        }
-
-        public void DesactivatedFeedback()
-        {
-            gameObject.SetActive(false);
-            waveRenderer.sharedMaterial.SetFloat("VitesseOnde", 0);
+            waveRenderer.sharedMaterial.SetFloat("VitesseOnde", (100f * expansionFactor) / _speed);
         }
     }
 }

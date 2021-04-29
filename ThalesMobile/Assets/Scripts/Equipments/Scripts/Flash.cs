@@ -48,6 +48,9 @@ namespace PlayerEquipement
             float timer = 0;
             float distance = 0;
 
+            Environnement currentEnviro = GameManager.Instance.levelManager.environnement;
+            Zone testedZone = currentEnviro.zones[currentEnviro.ZoneIn(userCoords.position) - 1];
+
             FlashFeedback flashFeedback = (FlashFeedback)feedbackBehavior;
             flashFeedback.DropFlash(dropDuration, new Vector3(currentUser.transform.position.x, currentUser.transform.position.y + heightOffset, currentUser.transform.position.z));
 
@@ -58,7 +61,7 @@ namespace PlayerEquipement
             //Insert Somehow feedback of drop here
             while(timer < dropDuration)
             {
-                yield return new WaitForEndOfFrame();
+                yield return new WaitForFixedUpdate();
                 timer += Time.deltaTime;
             }
 
@@ -74,7 +77,7 @@ namespace PlayerEquipement
                 {
                     GameManager.Instance.uiHandler.victoryScreenManager.Victory(true);
                 }
-                else if (distance <= extendedRange) Debug.Log("Near"); /*enable trail (SubMarine Methode with duration param)*/
+                else if (distance <= extendedRange && testedZone.state != ZoneState.SeaTurbulent) submarine.MaterialChangedByFlash(revealDuration);
             }
         }
     }

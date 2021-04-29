@@ -101,7 +101,7 @@ public class TestSonoBuoyInstance : MonoBehaviour
         while(timer < duration)
         {
             icon.rectT.anchoredPosition = Vector2.Lerp(startPos, endPos, timer / duration);
-            yield return new WaitForEndOfFrame();
+            yield return new WaitForFixedUpdate();
             timer += Time.deltaTime;
         }
 
@@ -116,7 +116,7 @@ public class TestSonoBuoyInstance : MonoBehaviour
         while(timer < duration)
         {
             icon.rectT.localScale = Vector3.Lerp(startScale, scaleTarget, timer / duration);
-            yield return new WaitForEndOfFrame();
+            yield return new WaitForFixedUpdate();
             timer += Time.deltaTime;            
         }
 

@@ -86,7 +86,7 @@ namespace PlayerEquipement
 
             while (timer < loadingTime)
             {
-                yield return new WaitForEndOfFrame();
+                yield return new WaitForFixedUpdate();
                 timer += Time.deltaTime;
                 loadPercent = timer / loadingTime;
             }

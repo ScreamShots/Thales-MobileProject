@@ -37,14 +37,17 @@ public class SonobuoyInstance : DetectionObject
     }
 
     // Use this function to deploy a sonobuoy where your finger touch the screen. 
-    public void EnableSonobuoy(Vector2 target, float _range, float _lifeTime, SonobuoyDeployer _source)
+    public void EnableSonobuoy(Vector2 target, float _range, float _lifeTime, float turbulentSeaFactor, SonobuoyDeployer _source)
     {
         levelManager = GameManager.Instance.levelManager;
 
         transform.position = Coordinates.ConvertVector2ToWorld(target);
         coords.position = Coordinates.ConvertWorldToVector2(transform.position);
 
-        detectionRange = _range;
+        if (levelManager.environnement.zones[levelManager.environnement.ZoneIn(target) - 1].state == ZoneState.SeaTurbulent)
+            detectionRange = _range * turbulentSeaFactor;
+        else detectionRange = _range;
+
         lifeTime = _lifeTime;
         source = _source;
 
@@ -87,7 +90,7 @@ public class SonobuoyInstance : DetectionObject
 
         while (timer < lifeTime)
         {
-            yield return new WaitForEndOfFrame();
+            yield return new WaitForFixedUpdate();
             timer += Time.deltaTime;
         }
 

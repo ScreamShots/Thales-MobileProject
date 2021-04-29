@@ -19,6 +19,8 @@ namespace PlayerEquipement
         public float range;
         [Min(0)]
         public float waveDuration;
+        [SerializeField, Range(0, 1)]
+        float turbulentSeaSpeedReductionFactor;
         [SerializeField, Min(0)]
         float pointFadeDuration;
         public bool expand;
@@ -35,9 +37,9 @@ namespace PlayerEquipement
         public Dictionary<DetectableOceanEntity ,HullSonarDetectionPoint> usedDetectionPoints;
 
         ////Debug
-        //[SerializeField]
-        //GameObject testPrefab;
-        //GameObject test;
+        [SerializeField]
+        GameObject testPrefab;
+        GameObject test;
 
         LevelManager levelManager;
 
@@ -60,8 +62,8 @@ namespace PlayerEquipement
                 availableDetectionPoints.Add(tempDetectionPoint.GetComponent<HullSonarDetectionPoint>());
             }
 
-            //test = Instantiate(testPrefab);
-            //test.transform.position = Coordinates.ConvertVector2ToWorld(user.coords.position);
+            test = Instantiate(testPrefab);
+            test.transform.position = Coordinates.ConvertVector2ToWorld(user.coords.position);
 
             readyToUse = true;
         }
@@ -71,24 +73,37 @@ namespace PlayerEquipement
             base.UseEquipement(user);
 
             readyToUse = false;
-            GameManager.Instance.ExternalStartCoroutine(SonarWave(user.coords));
+            GameManager.Instance.ExternalStartCoroutine(SonarWave());
         }
 
-        IEnumerator SonarWave(Coordinates userCoords)
+        IEnumerator SonarWave()
         {
+            HullSonarFeedback feedback = feedbackBehavior as HullSonarFeedback;
+
+            Coordinates userCoords;
             Coordinates detectableCoords;
             Coordinates pointCoords;
+
             float distance;
             float waveRange;
+
             float waveTime = 0;
             float padding = 0;
+            float waveMaxDuration;
+
+            if (levelManager.environnement.zones[levelManager.environnement.ZoneIn(currentUser.coords.position) - 1].state == ZoneState.SeaTurbulent)
+                waveMaxDuration = waveDuration / turbulentSeaSpeedReductionFactor;
+            else waveMaxDuration = waveDuration;
+
+            feedback.SetWaveSpeed(waveMaxDuration);
 
             if (expand) waveRange = 0;
             else waveRange = range;
 
-            while (waveTime < waveDuration)
+            while (waveTime < waveMaxDuration)
             {
-                //test.transform.position = new Vector3(waveRange + userCoords.position.x, 0, userCoords.position.y);
+                userCoords = currentUser.coords;
+                test.transform.position = new Vector3(waveRange + userCoords.position.x, 0, userCoords.position.y);
 
                 //loop through every detection point link to this Equipement
                 //test if they are at the current tested distance to the player entity
@@ -141,17 +156,16 @@ namespace PlayerEquipement
                 if (expand)
                 {
                     waveTime += Time.deltaTime;
-                    padding = waveRange - (range * (waveTime / waveDuration));
-                    waveRange = range * (waveTime / waveDuration);
+                    padding = waveRange - (range * (waveTime / waveMaxDuration));
+                    waveRange = range * (waveTime / waveMaxDuration);
                 }
                 else
                 {
                     waveTime += Time.deltaTime;
-                    padding = waveRange - (range * (1 - (waveTime / waveDuration)));
-                    waveRange = range * (1 -(waveTime / waveDuration));
-                }               
-
-                yield return new WaitForEndOfFrame();
+                    padding = waveRange - (range * (1 - (waveTime / waveMaxDuration)));
+                    waveRange = range * (1 -(waveTime / waveMaxDuration));
+                }
+                yield return new WaitForFixedUpdate();
             }
 
             readyToUse = true;

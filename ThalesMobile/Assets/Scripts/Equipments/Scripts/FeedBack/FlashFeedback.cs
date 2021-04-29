@@ -52,7 +52,7 @@ namespace PlayerEquipement
                 gameObject.transform.position = Vector3.Lerp(start, targetPos, timer/duration);
                 flashLineRender.SetPosition(0, start);
                 flashLineRender.SetPosition(1, gameObject.transform.position);
-                yield return new WaitForEndOfFrame();
+                yield return new WaitForFixedUpdate();
                 timer += Time.deltaTime;
             }
 

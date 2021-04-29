@@ -18,6 +18,8 @@ namespace PlayerEquipement
         float sonobuoyLifeTime;
         [SerializeField, Min(0)]
         float sonobuoyRange;
+        [SerializeField, Range(0, 1)]
+        float turbulentSeaFactor;
 
         [Header("Pool Params")]
 
@@ -108,7 +110,7 @@ namespace PlayerEquipement
 
         void DropSonobuoy(Vector2 targetPos)
         {
-            availaibleSonobuoys[0].EnableSonobuoy(targetPos, sonobuoyRange, sonobuoyLifeTime, this);
+            availaibleSonobuoys[0].EnableSonobuoy(targetPos, sonobuoyRange, sonobuoyLifeTime, turbulentSeaFactor, this);
             usedSonobuoys.Add(availaibleSonobuoys[0]);
             availaibleSonobuoys.RemoveAt(0);
             chargeCount--;
