@@ -2910,6 +2910,9 @@ PrefabInstance:
     - target: {fileID: 3703591322552175224, guid: 646768de78e5dec4e9e6c39e89ae9b42,
         type: 3}
 <<<<<<< refs/remotes/origin/feature/BetterPathfinding
+<<<<<<< refs/remotes/origin/feature/BetterPathfinding
+=======
+>>>>>>> refactor (Ocean Entity) :  Defeat / Victory
       propertyPath: zones.Array.data[4].windDir
       value: 1
       objectReference: {fileID: 0}
@@ -2920,8 +2923,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3703591322552175224, guid: 646768de78e5dec4e9e6c39e89ae9b42,
         type: 3}
+<<<<<<< refs/remotes/origin/feature/BetterPathfinding
 =======
 >>>>>>> feat : Create coast meshes
+=======
+>>>>>>> refactor (Ocean Entity) :  Defeat / Victory
       propertyPath: zones.Array.data[0].debugColor.b
       value: 0
       objectReference: {fileID: 0}
@@ -3389,10 +3395,14 @@ GameObject:
 --- !u!114 &1564111666
 MonoBehaviour:
 <<<<<<< refs/remotes/origin/feature/BetterPathfinding
+<<<<<<< refs/remotes/origin/feature/BetterPathfinding
   m_ObjectHideFlags: 10
 =======
   m_ObjectHideFlags: 2
 >>>>>>> feat : Create coast meshes
+=======
+  m_ObjectHideFlags: 10
+>>>>>>> refactor (Ocean Entity) :  Defeat / Victory
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
