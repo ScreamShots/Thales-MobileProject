@@ -19,17 +19,17 @@ public class Environnement : MonoBehaviour
     public int[,] zoneCarto = null;
     public int resolution = 1;
 
-#if UNITY_EDITOR
-    private void Awake()
-    {
-        zoneCarto = GenerateMapData();
-    }
 
     private void Start()
     {
         GameManager.Instance.levelManager.environnement = this;
     }
 
+#if UNITY_EDITOR
+    private void Awake()
+    {
+        zoneCarto = GenerateMapData();
+    }
     #region ContextMenue
     [ContextMenu("Texture Generation Data")]
     public void GenerateTextureData()

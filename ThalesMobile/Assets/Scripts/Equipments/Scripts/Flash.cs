@@ -70,7 +70,10 @@ namespace PlayerEquipement
             foreach (Submarine submarine in levelManager.enemyEntitiesInScene)
             {
                 distance = Mathf.Abs(Vector2.Distance(submarine.coords.position, user.coords.position));
-                if (distance <= winningRange) Debug.Log("Win"); /*Win the Game*/
+                if (distance <= winningRange)
+                {
+                    GameManager.Instance.uiHandler.victoryScreenManager.Victory(true);
+                }
                 else if (distance <= extendedRange) Debug.Log("Near"); /*enable trail (SubMarine Methode with duration param)*/
             }
         }

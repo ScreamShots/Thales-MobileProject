@@ -1816,6 +1816,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentSeaLevel: 0
+  environment: {fileID: 0}
+  currentZoneState: 0
+  currentZone:
+    name: 
+    state: 0
+    windDir: 0
+    debugColor: {r: 0, g: 0, b: 0, a: 0}
+    points: []
   seeker: {fileID: 0}
   pathUpdatingFrequency: 0
   nextWaypointDistance: 0
@@ -2384,6 +2392,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1787732698}
     m_Modifications:
+    - target: {fileID: 64502446173695762, guid: cd5f21c81995f47428172ef6a78f312b,
+        type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 3988816281166105222, guid: cd5f21c81995f47428172ef6a78f312b,
         type: 3}
       propertyPath: m_SizeDelta.y
@@ -2449,10 +2462,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainUI
       objectReference: {fileID: 0}
+    - target: {fileID: 6479308136680831609, guid: cd5f21c81995f47428172ef6a78f312b,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6657394133534383983, guid: cd5f21c81995f47428172ef6a78f312b,
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6859886401978621930, guid: cd5f21c81995f47428172ef6a78f312b,
+        type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd5f21c81995f47428172ef6a78f312b, type: 3}
@@ -2886,6 +2909,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3703591322552175224, guid: 646768de78e5dec4e9e6c39e89ae9b42,
         type: 3}
+      propertyPath: zones.Array.data[4].windDir
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3703591322552175224, guid: 646768de78e5dec4e9e6c39e89ae9b42,
+        type: 3}
+      propertyPath: zones.Array.data[6].windDir
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3703591322552175224, guid: 646768de78e5dec4e9e6c39e89ae9b42,
+        type: 3}
       propertyPath: zones.Array.data[0].debugColor.b
       value: 0
       objectReference: {fileID: 0}
@@ -3225,7 +3258,7 @@ GameObject:
   m_IsActive: 1
 --- !u!114 &1564111666
 MonoBehaviour:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 10
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}

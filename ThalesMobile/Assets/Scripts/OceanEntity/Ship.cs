@@ -103,11 +103,6 @@ namespace OceanEntities
             }
         }
 
-        public override void PathFinding()
-        {
-            throw new System.NotImplementedException();
-        }
-
         public override void Waiting()
         {
             throw new System.NotImplementedException();

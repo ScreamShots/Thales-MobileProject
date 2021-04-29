@@ -22,6 +22,10 @@ namespace OceanEntities
     {
         public Coordinates coords;
         public SeaLevel currentSeaLevel;
+        public Environnement environment;
+        public ZoneState currentZoneState;
+        public Zone currentZone;
+
         //public Zone currentZone; -- the Zone class isn't created yet
         [Header("Pathfinding settings")]
         public Seeker seeker;
@@ -42,8 +46,6 @@ namespace OceanEntities
         /// </summary>
         /// <param name="targetPosition">Where is the entity headed</param>
         public abstract void Move(Vector2 targetPosition);
-
-        public abstract void PathFinding(); // A* implementation placeholder for Antoine Grugeon -- the method doesn't have to be abstract
 
         private void CalculatePath()
         {

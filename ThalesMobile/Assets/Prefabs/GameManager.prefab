@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3682279617419880169}
   - component: {fileID: 4762022619942076001}
   - component: {fileID: 6818856396595137098}
+  - component: {fileID: 7099064203387492379}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -48,6 +49,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentGameState: 0
+  pauseHandler: {fileID: 7099064203387492379}
+  sceneHandler: {fileID: 820579288007411813}
   inputManager: {fileID: 3682279617419880169}
   playerController: {fileID: 4762022619942076001}
   cameraController: {fileID: 0}
@@ -113,6 +116,19 @@ MonoBehaviour:
   uiVolume: 1
   effectsVolume: 0.5
   musicVolume: 0.5
+--- !u!114 &7099064203387492379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4380208127223655878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 199f21100553d7b4bb62842e20681d77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pause: 0
 --- !u!1 &5214703361856801187
 GameObject:
   m_ObjectHideFlags: 0
@@ -190,6 +206,7 @@ GameObject:
   - component: {fileID: 6186942485271632867}
   - component: {fileID: 9134965645713991661}
   - component: {fileID: 2486475683445467195}
+  - component: {fileID: 5886746596567495438}
   m_Layer: 5
   m_Name: TransitionPanel
   m_TagString: Untagged
@@ -265,6 +282,27 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
+--- !u!223 &5886746596567495438
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6949550513953256557}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 10
+  m_TargetDisplay: 0
 --- !u!1 &7482286748157245109
 GameObject:
   m_ObjectHideFlags: 0

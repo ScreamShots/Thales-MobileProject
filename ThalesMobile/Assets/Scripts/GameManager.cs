@@ -9,6 +9,10 @@ public class GameManager : MonoBehaviour
     public enum GameStates {Default, Loading, Playing, Pause}
     public GameStates currentGameState;
 
+    [Header("Game")]
+    public PauseHandler pauseHandler;
+    public SceneHandler sceneHandler;
+
     [Header("Input Management")]
     public InputManager inputManager;
     public PlayerController playerController;

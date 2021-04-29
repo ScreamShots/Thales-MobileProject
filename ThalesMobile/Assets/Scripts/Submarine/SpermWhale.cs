@@ -56,9 +56,4 @@ public class SpermWhale : DetectableOceanEntity
             nextPoint = Coordinates.ConvertWorldToVector2(pointsToFollow[currentPoint].position);
         }
     }
-
-    public override void PathFinding()
-    {
-        
-    }
 }

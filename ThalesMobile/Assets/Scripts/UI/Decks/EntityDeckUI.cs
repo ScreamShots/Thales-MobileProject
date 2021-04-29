@@ -21,6 +21,8 @@ public class EntityDeckUI : MonoBehaviour
     public CanvasGroup deckCanvasGroup;
     public CanvasGroup descriptionCanvasGroup;
     public CanvasGroup entitiesSelectionCanvasGroup;
+    public CanvasGroup submarineCanvasGroup;
+
 
     [Header("Animation")]
     public TweeningAnimator descriptionContainerAnim;
@@ -77,32 +79,25 @@ public class EntityDeckUI : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        if(descriptionOpened && deckCanvasGroup.blocksRaycasts)
-        {
-            entitiesSelectionCanvasGroup.blocksRaycasts = false;
-            descriptionCanvasGroup.blocksRaycasts = true;
-            deckCanvasGroup.blocksRaycasts = false;
-        }
-        else if(!descriptionOpened && !deckCanvasGroup.blocksRaycasts)
-        {
-            entitiesSelectionCanvasGroup.blocksRaycasts = true;
-            descriptionCanvasGroup.blocksRaycasts = false;
-            deckCanvasGroup.blocksRaycasts = true;
-        }
-    }
-
     public void CloseDescription()
     {
         StartCoroutine(descriptionContainerAnim.anim.PlayBackward(descriptionContainerAnim, descriptionContainerAnim.originalPos, true));
         StartCoroutine(descriptionPanelAnim.anim.PlayBackward(descriptionPanelAnim, descriptionPanelAnim.originalPos, true));
+        entitiesSelectionCanvasGroup.blocksRaycasts = true;
+        descriptionCanvasGroup.blocksRaycasts = false;
+        deckCanvasGroup.blocksRaycasts = true;
+        submarineCanvasGroup.blocksRaycasts = true;
         descriptionOpened = false;
     }
 
     public void OpenDescription()
     {
         descriptionOpened = true;
+
+        entitiesSelectionCanvasGroup.blocksRaycasts = false;
+        descriptionCanvasGroup.blocksRaycasts = true;
+        deckCanvasGroup.blocksRaycasts = false;
+        submarineCanvasGroup.blocksRaycasts = false;
         StartCoroutine(descriptionContainerAnim.anim.Play(descriptionContainerAnim, descriptionContainerAnim.originalPos));
         StartCoroutine(descriptionPanelAnim.anim.Play(descriptionPanelAnim, descriptionPanelAnim.originalPos));
     }

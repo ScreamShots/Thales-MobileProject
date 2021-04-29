@@ -23,8 +23,4 @@ public class Wreck : DetectableOceanEntity
 
     }
 
-    public override void PathFinding()
-    {
-
-    }
 }

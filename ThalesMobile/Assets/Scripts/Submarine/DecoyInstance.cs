@@ -110,9 +110,4 @@ public class DecoyInstance : DetectableOceanEntity
     {
         throw new System.NotImplementedException();    
     }
-
-    public override void PathFinding()
-    {
-        throw new System.NotImplementedException();
-    }
 }

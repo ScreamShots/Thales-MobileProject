@@ -14,6 +14,7 @@ public class UIHandler : MonoBehaviour
     public EntitiesSelectionUI entitiesSelectionUI;
     public EntityDeckUI entityDeckUI;
     public SubmarineUIManager submarineUI;
+    public VictoryScreenManager victoryScreenManager;
 
 
     // Start is called before the first frame update

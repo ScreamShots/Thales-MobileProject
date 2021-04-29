@@ -561,6 +561,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentSeaLevel: 2
+  environment: {fileID: 0}
+  currentZoneState: 0
+  currentZone:
+    name: 
+    state: 0
+    windDir: 0
+    debugColor: {r: 0, g: 0, b: 0, a: 0}
+    points: []
   seeker: {fileID: 0}
   pathUpdatingFrequency: 0
   nextWaypointDistance: 0
@@ -577,6 +585,7 @@ MonoBehaviour:
     type: 3}
   linkedButton: {fileID: 0}
   equipementFeedback: {fileID: 0}
+  windSpeedModulo: 2
   minimumSpeed: 3
   passiveEquipement: {fileID: 11400000, guid: 7d9d2ea8901df0a4790dcc43f4e1b499, type: 2}
   activeEquipement: {fileID: 11400000, guid: ff0fc0b824898a343b261ecf5d750dee, type: 2}

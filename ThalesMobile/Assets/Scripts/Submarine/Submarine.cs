@@ -226,6 +226,7 @@ public class Submarine : DetectableOceanEntity
         else
         {
             // Player lose.
+            GameManager.Instance.uiHandler.victoryScreenManager.Victory(false);
         }
     }
 
@@ -289,11 +290,6 @@ public class Submarine : DetectableOceanEntity
             movingToNextPoint = false;
             currentSpeed = 0;
         }
-    }
-
-    public override void PathFinding()
-    {
-
     }
     #endregion
 

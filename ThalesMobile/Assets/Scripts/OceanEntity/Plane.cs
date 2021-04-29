@@ -10,10 +10,11 @@ namespace OceanEntities
         private Transform _transform;
         private float currentSpeed = 0;
 
-
         //Waiting routine variables
         [Header("Waiting routine")]
+        public float windSpeedModulo;
         public float minimumSpeed;
+        private float defaultMaxSpeed;
         private Vector2 waitingPoint = new Vector2(-9999,-9999);
         bool isWaiting;
        
@@ -40,6 +41,9 @@ namespace OceanEntities
             coords.direction = Coordinates.ConvertWorldToVector2(transform.forward);
             currentTargetPoint = Coordinates.ConvertWorldToVector2(_transform.forward * 2);
 
+            environment = GameManager.Instance.levelManager.environnement;
+
+            defaultMaxSpeed = speed;
             //Equipment initialization.
             passiveEquipement.Init(this);
             activeEquipement.Init(this);
@@ -102,6 +106,36 @@ namespace OceanEntities
                 coords.direction = dir;
             }
 
+            if(!isWaiting)
+            {
+                int temp = environment.ZoneIn(coords.position) - 1;
+                if(temp >0)
+                {
+                    currentZone = environment.zones[temp];
+                    currentZoneState = currentZone.state;
+                }
+                if (currentZoneState == ZoneState.WindyZone)
+                {
+                    Vector3 windDirection = Quaternion.Euler(0, Mathf.Rad2Deg * currentZone.windDir, 0) * Vector3.down;
+
+                    float dot = Vector2.Dot(new Vector2(windDirection.x, windDirection.y).normalized, coords.direction.normalized);
+                    if (dot > 0.3f)
+                    {
+                        //speed Up plane
+                        speed = defaultMaxSpeed + windSpeedModulo;
+                    }
+                    else
+                    {
+                        //slow down Plane
+                        speed = defaultMaxSpeed - windSpeedModulo;
+                    }
+                }
+                else
+                {
+                    speed = defaultMaxSpeed;
+                }
+            }
+
             //Update the plane's position.
             coords.position += coords.direction.normalized * currentSpeed * Time.fixedDeltaTime;
 
@@ -123,11 +157,6 @@ namespace OceanEntities
                     currentTargetPoint = nullVector;
                 }
             }
-        }
-
-        public override void PathFinding()
-        {
-            throw new System.NotImplementedException();
         }
         
         public override void Waiting()

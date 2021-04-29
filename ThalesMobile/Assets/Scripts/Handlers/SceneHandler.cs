@@ -24,6 +24,11 @@ public class SceneHandler : MonoBehaviour
         }
     }
 
+    public void LoadScene(int sceneIndex)
+    {
+        StartCoroutine(SceneTransition(sceneIndex));
+    }
+
     public IEnumerator SceneTransition(int sceneToLoadBuildIndex)
     {
         //Start Animation and scene load
