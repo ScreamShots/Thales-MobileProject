@@ -5,6 +5,7 @@ using UnityEngine;
 public class PauseHandler : MonoBehaviour
 {
     public bool pause;
+    public GameObject pausePanel;
 
     // Start is called before the first frame update
     void Start()
@@ -23,11 +24,15 @@ public class PauseHandler : MonoBehaviour
         if(!pause)
         {
             GameManager.Instance.currentGameState = GameManager.GameStates.Pause;
+            pause = true;
             Time.timeScale = 0;
+            pausePanel.SetActive(true);
             StartCoroutine(PauseUpdate());
         }
         else
         {
+            pausePanel.SetActive(false);
+            pause = false;
             GameManager.Instance.currentGameState = GameManager.GameStates.Playing;
             Time.timeScale = 1;
         }
