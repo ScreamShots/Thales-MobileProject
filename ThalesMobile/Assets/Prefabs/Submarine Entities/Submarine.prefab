@@ -141,8 +141,8 @@ MonoBehaviour:
       type: 3}
     sonobuoyRevealIcon: {fileID: 0}
   detectors: []
-  maxSpeed: 1.5
-  acceleration: 0.5
+  maxSpeed: 1
+  acceleration: 0.2
   currentSpeed: 0
   currentVigilance: 0
   currentState: 0
@@ -159,8 +159,8 @@ MonoBehaviour:
   fregateMoveVigiIncr: 2
   sonobuoys: []
   sonobuoysDistance: []
-  submarineRenderer: {fileID: 0}
-  baseMaterial: {fileID: 0}
+  submarineRenderer: {fileID: 7664084496667251443}
+  baseMaterial: {fileID: 2100000, guid: b9d46f47018a2ec4cb737b79763710ec, type: 2}
   detectedByFlashMaterial: {fileID: 2100000, guid: 7535ace726392444ca0609fc7e13d602,
     type: 2}
   decoy: {fileID: 0}
@@ -256,13 +256,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7664084496667251405}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: -0.5, y: -0.5, z: -0.5, w: 0.5}
   m_LocalPosition: {x: 0, y: -0.507, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7664084496329710956}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: -90, z: 0}
 --- !u!33 &7664084496667251440
 MeshFilter:
   m_ObjectHideFlags: 0

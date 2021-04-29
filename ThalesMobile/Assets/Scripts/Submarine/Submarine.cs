@@ -281,7 +281,8 @@ public class Submarine : DetectableOceanEntity
         _transform.position = Coordinates.ConvertVector2ToWorld(coords.position);
 
         //Make the submarine face his current direction.
-        _transform.rotation = Quaternion.LookRotation(Coordinates.ConvertVector2ToWorld(coords.direction));   
+        _transform.forward = Coordinates.ConvertVector2ToWorld(coords.direction);
+
 
         if ((targetPosition - coords.position).magnitude < 0.1f)
         {
