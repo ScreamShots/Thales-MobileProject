@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using PlayerEquipement;
+using UnityEngine.Audio;
 
 namespace OceanEntities
 {
@@ -17,7 +18,13 @@ namespace OceanEntities
         private float defaultMaxSpeed;
         private Vector2 waitingPoint = new Vector2(-9999,-9999);
         bool isWaiting;
-       
+
+        [Header("Audio")]
+        private SoundHandler soundHandler;
+        public AudioSource audioSource;
+        public AudioMixerGroup targetGroup;
+        public AudioClip movementSound;
+
         /*private Vector2 waitingTarget = new Vector2(-9999, -9999);
 
         private Vector2 tempTarget;
@@ -42,11 +49,13 @@ namespace OceanEntities
             currentTargetPoint = Coordinates.ConvertWorldToVector2(_transform.forward * 2);
 
             environment = GameManager.Instance.levelManager.environnement;
-
+            soundHandler = GameManager.Instance.soundHandler;
             defaultMaxSpeed = speed;
             //Equipment initialization.
             passiveEquipement.Init(this);
             activeEquipement.Init(this);
+
+            soundHandler.PlaySound(movementSound, audioSource, targetGroup);
         }
 
 

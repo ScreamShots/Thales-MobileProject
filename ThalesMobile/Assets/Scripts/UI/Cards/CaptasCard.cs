@@ -4,6 +4,7 @@ using UnityEngine;
 using PlayerEquipement;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class CaptasCard : MonoBehaviour
 {
@@ -20,13 +21,20 @@ public class CaptasCard : MonoBehaviour
     private UIHandler uiHandler;
     Coroutine captasUse;
 
-
+    [Header("Audio")]
+    private SoundHandler soundHandler;
+    public AudioSource audioSource;
+    public AudioMixerGroup targetGroup;
+    public AudioClip descriptionAppearSound;
+    public AudioClip cardSelectionSound;
+    public AudioClip outOfChargeSound;
 
     // Start is called before the first frame update
     void Start()
     {
         inputManager = GameManager.Instance.inputManager;
         uiHandler = GameManager.Instance.uiHandler;
+        soundHandler = GameManager.Instance.soundHandler;
 
         chargeCountText.text = captas.chargeCount.ToString();
 
@@ -61,11 +69,14 @@ public class CaptasCard : MonoBehaviour
                 card.Select();
                 captasUse = StartCoroutine(UseCaptas());
                 inputManager.currentSelectedCard = card;
+                soundHandler.PlaySound(cardSelectionSound, audioSource, targetGroup);
             }
             else
             {
                 //Unavailable feedback;
                 print("Unavailable feedback click");
+                soundHandler.PlaySound(outOfChargeSound, audioSource, targetGroup);
+
             }
         }
         else
@@ -96,6 +107,7 @@ public class CaptasCard : MonoBehaviour
         {
             //Unavailable feedback;
             print("Unavailable feedback drag");
+            soundHandler.PlaySound(outOfChargeSound, audioSource, targetGroup);
         }
     }
 
@@ -133,6 +145,8 @@ public class CaptasCard : MonoBehaviour
 
     private void UpdateDescriptionText()
     {
+        soundHandler.PlaySound(descriptionAppearSound, audioSource, targetGroup);
+
         uiHandler.entityDeckUI.descriptionHeaderText.text = "Captas4 Card";//Expose string
         uiHandler.entityDeckUI.descriptionText.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";//Expose stringS
     }

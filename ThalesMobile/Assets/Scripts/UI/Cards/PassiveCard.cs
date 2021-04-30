@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Audio;
 
 public class PassiveCard : MonoBehaviour
 {
@@ -10,20 +11,27 @@ public class PassiveCard : MonoBehaviour
     public string descriptionHeader;
     public string descriptionText;
 
+    [Header("Audio")]
+    private SoundHandler soundHandler;
+    public AudioSource audioSource;
+    public AudioMixerGroup targetGroup;
+    public AudioClip descriptionAppearSound;
 
     // Start is called before the first frame update
     void Start()
     {
         inputManager = GameManager.Instance.inputManager;
         uiHandler = GameManager.Instance.uiHandler;
+        soundHandler = GameManager.Instance.soundHandler;
 
         card.holdHandler += UpdateDescriptionText;
     }
 
     private void UpdateDescriptionText()
     {
+        soundHandler.PlaySound(descriptionAppearSound, audioSource, targetGroup);
         uiHandler.entityDeckUI.descriptionHeaderText.text = descriptionHeader;//Expose string
-        uiHandler.entityDeckUI.descriptionText.text = descriptionText;//Expose stringS
+        uiHandler.entityDeckUI.descriptionText.text = descriptionText;//Expose string
     }
 
 }

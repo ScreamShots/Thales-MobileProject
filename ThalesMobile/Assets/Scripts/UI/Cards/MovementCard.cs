@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Audio;
 
 public class MovementCard : MonoBehaviour
 {
@@ -6,13 +7,19 @@ public class MovementCard : MonoBehaviour
     private InputManager inputManager;
     private UIHandler uiHandler;
 
-    
+    [Header("Audio")]
+    private SoundHandler soundHandler;
+    public AudioSource audioSource;
+    public AudioMixerGroup targetGroup;
+    public AudioClip descriptionAppearSound;
+    public AudioClip cardSelectionSound;
 
     // Start is called before the first frame update
     void Start()
     {
         inputManager = GameManager.Instance.inputManager;
         uiHandler = GameManager.Instance.uiHandler;
+        soundHandler = GameManager.Instance.soundHandler;
 
         card.clickHandler     += OnClickEvent;
         card.beginDragHandler += OnBeginDragEvent;
@@ -46,6 +53,7 @@ public class MovementCard : MonoBehaviour
 
             //Select new card and link to input manager.
             card.Select();
+            soundHandler.PlaySound(cardSelectionSound, audioSource, targetGroup);
             inputManager.getEntityTarget = true;
             inputManager.currentSelectedCard = card;
         }
@@ -72,6 +80,8 @@ public class MovementCard : MonoBehaviour
 
     private void UpdateDescriptionText()
     {
+        soundHandler.PlaySound(descriptionAppearSound, audioSource, targetGroup);
+
         uiHandler.entityDeckUI.descriptionHeaderText.text = "Movement Card";//Expose string
         uiHandler.entityDeckUI.descriptionText.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";//Expose stringS
     }

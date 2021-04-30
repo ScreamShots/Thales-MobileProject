@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using PlayerEquipement;
+using UnityEngine.Audio;
+
 namespace OceanEntities
 {
     public class Ship : PlayerOceanEntity
@@ -13,9 +15,19 @@ namespace OceanEntities
         public Equipement passiveEquipement;
         public Equipement activeEquipement;
 
+
+        [Header("Audio")]
+        private SoundHandler soundHandler;
+        public AudioSource audioSource;
+        public AudioMixerGroup targetGroup;
+        public AudioClip waitingSound;
+        public AudioClip movementSound;
+        bool fading;
         private void Start()
         {
             environment = GameManager.Instance.levelManager.environnement;
+            soundHandler = GameManager.Instance.soundHandler;
+
             movementType = MovementType.sea;
             _transform = transform;
 
@@ -36,7 +48,25 @@ namespace OceanEntities
             if (currentTargetPoint != nullVector)
             {
                 UpdatePath();
+
+                if (audioSource.clip != movementSound && fading)
+                {
+                    fading = false;
+                    soundHandler.CrossFade(audioSource, movementSound, 0.5f);
+                }
+
+                    
             }
+            else
+            {
+                if(audioSource.clip != waitingSound && !fading)
+                {
+                    fading = true;
+                    soundHandler.CrossFade(audioSource, waitingSound,0.5f);
+                }
+            }
+
+
         }
 
         void FixedUpdate()
@@ -49,6 +79,8 @@ namespace OceanEntities
         }
         public override void Move(Vector2 targetPosition)
         {
+
+
             //Calculate direction to target and store it in coords.
             //Vector2 dir = targetPosition - coords.position;    without pathfinding
             Vector2 dir = pathDirection;

@@ -269,6 +269,7 @@ GameObject:
   - component: {fileID: 516292101046722416}
   - component: {fileID: 516292101046722417}
   - component: {fileID: 2753761917272554094}
+  - component: {fileID: 4031874406904146487}
   m_Layer: 8
   m_Name: Ship
   m_TagString: Untagged
@@ -305,6 +306,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentSeaLevel: 0
+  environment: {fileID: 0}
+  currentZoneState: 0
+  currentZone:
+    name: 
+    state: 0
+    windDir: 0
+    debugColor: {r: 0, g: 0, b: 0, a: 0}
+    points: []
   seeker: {fileID: 2753761917272554094}
   pathUpdatingFrequency: 0.2
   nextWaypointDistance: 1
@@ -323,6 +332,11 @@ MonoBehaviour:
   equipementFeedback: {fileID: 0}
   passiveEquipement: {fileID: 11400000, guid: f1b15a368bed5b04c9e7f6bf686d20a4, type: 2}
   activeEquipement: {fileID: 11400000, guid: a774f637123035b429f104ed6c58cdb1, type: 2}
+  audioSource: {fileID: 4031874406904146487}
+  targetGroup: {fileID: -9015305574639715243, guid: 9b41315a36bc40a4ea458016676fd8f1,
+    type: 2}
+  waitingSound: {fileID: 8300000, guid: 0bc943e29ea5e874ea643ba1802a0760, type: 3}
+  movementSound: {fileID: 8300000, guid: b188a78987676f544b717d56116d6525, type: 3}
 --- !u!114 &2753761917272554094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -351,6 +365,111 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
+--- !u!82 &4031874406904146487
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 516292101046722423}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 20
+  Pan2D: 0
+  rolloffMode: 2
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.9999962
+      inSlope: 0
+      outSlope: -40.529915
+      tangentMode: 65
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.023527026
+      value: 0.046447814
+      inSlope: -40.529915
+      outSlope: -0.04756692
+      tangentMode: 69
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.11487416
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -0.04756692
+      outSlope: -1.010101
+      tangentMode: 5
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &516292102045410597
 GameObject:
   m_ObjectHideFlags: 0

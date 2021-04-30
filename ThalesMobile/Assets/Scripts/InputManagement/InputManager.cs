@@ -5,6 +5,7 @@ using OceanEntities;
 using Plane = UnityEngine.Plane;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class InputManager : MonoBehaviour
 {
@@ -20,6 +21,12 @@ public class InputManager : MonoBehaviour
     [HideInInspector] public bool gettingEntityTarget;
     [HideInInspector] public bool canUseCam;
     private PlayerController playerController;
+
+    [Header("Audio")]
+    private SoundHandler soundHandler;
+    public AudioSource audioSource;
+    public AudioMixerGroup targetGroup;
+    public AudioClip setTargetSound;
 
     //Touch inputs
     [HideInInspector]public Vector2 touchedSeaPosition = new Vector2(-9999, -9999);
@@ -41,6 +48,8 @@ public class InputManager : MonoBehaviour
         currentEventSystem = EventSystem.current;
         camController = GameManager.Instance.cameraController;
         playerController = GameManager.Instance.playerController;
+        soundHandler = GameManager.Instance.soundHandler;
+
         canUseCam = true;
     }
 
@@ -144,16 +153,22 @@ public class InputManager : MonoBehaviour
 
             touchingGame = false;
 
-            if (gettingEntityTarget && playerController.currentSelectedEntity.GetType() != typeof(Helicopter))
+            if (gettingEntityTarget )
             { 
-                getEntityTarget = false;
-                gettingEntityTarget = false;
-                if(currentSelectedCard!=null)
-                    currentSelectedCard.Deselect();
+                if(playerController.currentSelectedEntity.GetType() != typeof(Helicopter))
+                {
+                    getEntityTarget = false;
+                    gettingEntityTarget = false;
+                    if(currentSelectedCard!=null)
+                        currentSelectedCard.Deselect();
 
                 
-                playerController.SetEntityMoveTarget(touchedSeaPosition);
-                touchedSeaPosition = new Vector2(-9999, -9999);
+                    playerController.SetEntityMoveTarget(touchedSeaPosition);
+                    touchedSeaPosition = new Vector2(-9999, -9999);
+
+                    soundHandler.PlaySound(setTargetSound, audioSource, targetGroup);
+                }
+
             }
         }
     }

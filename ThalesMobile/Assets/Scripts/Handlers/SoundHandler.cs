@@ -51,7 +51,38 @@ public class SoundHandler : MonoBehaviour
 
         source.Play();
     }
+    public void CrossFade(AudioSource source, AudioClip clip, float fadeDuration)
+    {
+        Coroutine fade = StartCoroutine(CrossfadeRoutine(source, clip, fadeDuration));
+    }
 
+    public IEnumerator CrossfadeRoutine(AudioSource source, AudioClip clip, float fadeDuration)
+    {
+        float time = 0;
+        float currentVolume = source.volume;
+
+        while(time < fadeDuration)
+        {
+            source.volume = Mathf.Lerp(currentVolume, 0, time/ fadeDuration);
+            yield return new WaitForFixedUpdate();
+            time += Time.fixedDeltaTime;
+        }
+        source.volume = 0;
+        source.clip = clip;
+        time = 0;
+
+        while (time < fadeDuration)
+        {
+            source.volume = Mathf.Lerp(0,currentVolume, time / fadeDuration);
+            yield return new WaitForFixedUpdate();
+            time += Time.fixedDeltaTime;
+        }
+
+        source.volume = currentVolume;
+
+        if (!source.isPlaying)
+            source.Play();
+    }
     public void StopSound(AudioSource source, bool pause)
     {
         if(source.isPlaying)

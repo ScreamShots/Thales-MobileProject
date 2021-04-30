@@ -33,10 +33,11 @@ public class EntityDeckUI : MonoBehaviour
     public TweeningAnimator deckAnimationDisappear;
 
     [Header("Sound")]
-    public SoundHandler soundHandler;
+    private SoundHandler soundHandler;
     public AudioMixerGroup targetGroup;
     public AudioSource soundSource;
     public AudioClip entitySelectionClip;
+
 
     public void Initialize()
     {
