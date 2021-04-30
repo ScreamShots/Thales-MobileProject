@@ -11,17 +11,20 @@ namespace PlayerEquipement
 
         [SerializeField]
         Vector3 originalPosOffset;
-
-        LineRenderer flashLineRender;
-        MeshRenderer meshRenderer;
-
         Vector3 originPos;
+
+        [SerializeField]
+        LineRenderer flashLineRender;
+        [SerializeField]
+        MeshRenderer meshRenderer;
+        [SerializeField]
+        ParticleSystem splashParticles;
+        
+
         public override void EquipementFeedbackInit(Equipement _source)
         {
             base.EquipementFeedbackInit(_source);
-            sourceEntity = _source.currentUser;
-            flashLineRender = GetComponent<LineRenderer>();
-            meshRenderer = GetComponent<MeshRenderer>();
+            sourceEntity = _source.currentUser;;
             originPos = sourceEntity.enitityFeedback.transform.position + originalPosOffset;
 
             ResetPos();
@@ -29,7 +32,7 @@ namespace PlayerEquipement
 
         public void ResetPos()
         {
-            gameObject.transform.position = originPos;
+            meshRenderer.transform.position = originPos;
             flashLineRender.SetPosition(0, gameObject.transform.position);
             flashLineRender.SetPosition(1, gameObject.transform.position);
             meshRenderer.enabled = false;
@@ -45,20 +48,18 @@ namespace PlayerEquipement
         {
 
             float timer = 0;
-            Vector3 start = gameObject.transform.position;
+            Vector3 start = meshRenderer.transform.position;
 
             while(timer < duration)
             {
-                gameObject.transform.position = Vector3.Lerp(start, targetPos, timer/duration);
+                meshRenderer.transform.position = Vector3.Lerp(start, targetPos, timer/duration);
                 flashLineRender.SetPosition(0, start);
-                flashLineRender.SetPosition(1, gameObject.transform.position);
+                flashLineRender.SetPosition(1, meshRenderer.transform.position);
                 yield return new WaitForFixedUpdate();
                 timer += Time.deltaTime;
             }
 
-            //Particle
-            //set particle transform to cylinder transfrom
-            //play particle
+            splashParticles.Play();
 
             ResetPos();
         }

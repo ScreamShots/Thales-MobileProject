@@ -76,6 +76,8 @@ namespace PlayerEquipement
 
         IEnumerator SonarWave(Coordinates userCoords)
         {
+            Captas4Feedback waveFeedback = feedbackBehavior as Captas4Feedback;
+
             Coordinates detectableCoords;
             float distance;
             float waveRange = 0;
@@ -94,6 +96,8 @@ namespace PlayerEquipement
                     if (tempDistance > range) range = tempDistance;
                 }
             }
+
+            waveFeedback.StartWave(range, waveDuration);
 
             while (waveTime < waveDuration)
             {
