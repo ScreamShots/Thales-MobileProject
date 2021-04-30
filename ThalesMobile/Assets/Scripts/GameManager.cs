@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     [Header("Game")]
     public PauseHandler pauseHandler;
     public SceneHandler sceneHandler;
+    public SoundHandler soundHandler;
 
     [Header("Input Management")]
     public InputManager inputManager;

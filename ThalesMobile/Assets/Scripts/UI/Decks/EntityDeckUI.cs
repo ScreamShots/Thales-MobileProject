@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class EntityDeckUI : MonoBehaviour
 {
@@ -31,6 +32,12 @@ public class EntityDeckUI : MonoBehaviour
     public TweeningAnimator deckAnimationAppear;
     public TweeningAnimator deckAnimationDisappear;
 
+    [Header("Sound")]
+    public SoundHandler soundHandler;
+    public AudioMixerGroup targetGroup;
+    public AudioSource soundSource;
+    public AudioClip entitySelectionClip;
+
     public void Initialize()
     {
         for (int i = 0; i < handler.entities.Count; i++)
@@ -42,7 +49,7 @@ public class EntityDeckUI : MonoBehaviour
             handler.uIElements.Add(temp);
         }
 
-        
+        soundHandler = GameManager.Instance.soundHandler;
 
         descriptionContainerAnim.GetCanvasGroup();
         descriptionContainerAnim.anim = Instantiate(descriptionContainerAnim.anim);
@@ -76,7 +83,12 @@ public class EntityDeckUI : MonoBehaviour
             deckAnimationAppear.GetCanvasGroup();
             StartCoroutine(deckAnimationAppear.anim.Play(deckAnimationAppear, deckAnimationAppear.originalPos));
             currentDeck.GetComponent<CanvasGroup>().blocksRaycasts = true;
+
+            //Play Sound
+            soundHandler.PlaySound(entitySelectionClip, soundSource, targetGroup);
         }
+
+
     }
 
     public void CloseDescription()

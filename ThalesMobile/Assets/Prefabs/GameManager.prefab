@@ -622,6 +622,7 @@ MonoBehaviour:
   currentGameState: 0
   pauseHandler: {fileID: 7099064203387492379}
   sceneHandler: {fileID: 820579288007411813}
+  soundHandler: {fileID: 6818856396595137098}
   inputManager: {fileID: 3682279617419880169}
   playerController: {fileID: 4762022619942076001}
   cameraController: {fileID: 0}
