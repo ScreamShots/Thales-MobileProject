@@ -40,9 +40,11 @@ Material:
     - Tilling: 0.05
     - TimeScale: 0.2
     - Vector1_14684579: 0.05
-    - Vector1_B9C16661: 12
+    - Vector1_2DD71AB3: 0.45
+    - Vector1_A8DEEB37: 4
+    - Vector1_B9C16661: 18
     - Vector1_BE1F17BB: 0.15
-    - Vector1_E595E303: -0.1
+    - Vector1_E595E303: -0.05
     - Vector1_E7BCE026: 0.34
     - Vector1_ZoneSize: 64
     m_Colors:
