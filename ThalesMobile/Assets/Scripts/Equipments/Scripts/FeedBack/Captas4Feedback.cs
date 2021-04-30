@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 namespace PlayerEquipement
 {
@@ -12,6 +13,14 @@ namespace PlayerEquipement
         float progressionMin;
         [SerializeField]
         float progressionMax;
+
+        [Header("Sound - Wave Start")]
+        [SerializeField]
+        AudioMixerGroup targetGroup;
+        [SerializeField]
+        AudioClip waveSound;
+        [SerializeField]
+        AudioSource waveSoundSource;
 
         public override void EquipementFeedbackInit(Equipement _source)
         {
@@ -25,6 +34,7 @@ namespace PlayerEquipement
             captasWaveRenderer.transform.localScale = Vector3.one;
             float scaleFactor = (2 * range) / captasWaveRenderer.bounds.size.x;
             captasWaveRenderer.transform.localScale *= scaleFactor;
+            GameManager.Instance.soundHandler.PlaySound(waveSound, waveSoundSource, targetGroup);
             StartCoroutine(WaveProgression(duration));
         }
 

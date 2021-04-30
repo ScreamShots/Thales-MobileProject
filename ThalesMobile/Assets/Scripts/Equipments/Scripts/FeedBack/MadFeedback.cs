@@ -1,13 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 namespace PlayerEquipement
 {
     public class MadFeedback : EquipementFeedback
     {
         Mad sourceMad;
+        [SerializeField]
         Renderer madRenderer;
+
+        [Header("Sound - Reveal")]
+        [SerializeField]
+        AudioMixerGroup targetGroup;
+        [SerializeField]
+        AudioClip revealSound;
+        [SerializeField]
+        AudioSource revealSoundSource;
 
         float scaleFactor
         {
@@ -33,9 +43,13 @@ namespace PlayerEquipement
                 return;
             }
 
-            madRenderer = GetComponent<Renderer>();
+            madRenderer.transform.localScale = Vector3.one;
+            madRenderer.transform.localScale *= scaleFactor;
+        }
 
-            transform.localScale *= scaleFactor;
+        public void RevealDetection()
+        {
+            GameManager.Instance.soundHandler.PlaySound(revealSound, revealSoundSource, targetGroup);
         }
     }
 }

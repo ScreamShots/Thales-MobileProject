@@ -15,6 +15,7 @@ namespace PlayerEquipement
         [Min(0)]
         public float range;
 
+        MadFeedback madFeedback;
         LevelManager levelManager;
 
         public override void Init(PlayerOceanEntity user)
@@ -23,6 +24,7 @@ namespace PlayerEquipement
 
             levelManager = GameManager.Instance.levelManager;
             equipementType = EquipementType.passive;
+            madFeedback = feedbackBehavior as MadFeedback;
         }
 
         float distance = 0f;
@@ -36,8 +38,12 @@ namespace PlayerEquipement
             foreach(DetectionObject obj in levelManager.activatedDetectionObjects)
             {
                 distance = Mathf.Abs(Vector2.Distance(obj.coords.position, user.coords.position));
-                if (distance <= range) obj.inMadRange = true;
-                else obj.inMadRange = false;
+                if (distance <= range && !obj.inMadRange)
+                {
+                    obj.inMadRange = true;
+                    if(obj.detectionState != DetectionState.noDetection) madFeedback.RevealDetection();
+                }
+                else if(distance > range && obj.inMadRange) obj.inMadRange = false;
             }
         }
     }

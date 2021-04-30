@@ -20,13 +20,14 @@ MonoBehaviour:
     type: 3}
   range: 5
   waveDuration: 7
-  turbulentSeaSpeedReductionFactor: 0
+  turbulentSeaSpeedReductionFactor: 0.5
   pointFadeDuration: 8
   expand: 0
   detectionPointPrefab: {fileID: 2681307672962359013, guid: 7adb86ad6a60e7548bd551e6f7754c7b,
     type: 3}
   poolSize: 10
   availableDetectionPoints:
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

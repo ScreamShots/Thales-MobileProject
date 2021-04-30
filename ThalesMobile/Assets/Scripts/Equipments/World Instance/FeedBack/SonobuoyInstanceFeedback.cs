@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using NaughtyAttributes;
 using System;
 using System.Linq;
+using UnityEngine.Audio;
 
 namespace PlayerEquipement
 {    
@@ -89,8 +90,17 @@ namespace PlayerEquipement
         Dictionary<Type, RevealIcon> activeIcons;
         Dictionary<Type, AnimInfos> queue;
 
+        [Header("Sound - Detection")]
+        [SerializeField]
+        AudioMixerGroup targetGroup;
+        [SerializeField]
+        AudioSource detectionAudioSource;
+        [SerializeField]
+        AudioClip detectionSound;
+
         public void Init()
         {
+            rangeRenderer.transform.localScale = Vector3.one;
             rangeRenderer.transform.localScale *= scaleFactor;
 
             for (int i = 0; i < allIcons.Count; i++)
@@ -144,7 +154,11 @@ namespace PlayerEquipement
 
         public void DetectionRangeFeedBack(bool detection)
         {
-            if (detection) rangeRenderer.material = detectionRangeMaterial;
+            if (detection)
+            {
+                rangeRenderer.material = detectionRangeMaterial;
+                GameManager.Instance.soundHandler.PlaySound(detectionSound, detectionAudioSource, targetGroup);
+            }
             else rangeRenderer.material = emptyRangeMaterial;
         }
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 namespace PlayerEquipement
 {
@@ -24,6 +25,14 @@ namespace PlayerEquipement
         RectTransform revealCanvasRT;
         public float animDuration;
 
+        [Header("Sound - Appear")]
+        [SerializeField]
+        AudioMixerGroup targetGroup;
+        [SerializeField]
+        AudioClip[] appearSounds;
+        [SerializeField]
+        AudioSource appearSoundSource;
+
         private void Start()
         {
             revealCanvasRT.localScale = Vector3.zero;
@@ -32,6 +41,11 @@ namespace PlayerEquipement
         private void Update()
         {
             globalVisualCanvas.alpha = 1 - (source.timer / source.fadeDuration);
+        }
+
+        public void OnEnable()
+        {
+            GameManager.Instance.soundHandler.PlaySound(appearSounds[Random.Range(0, appearSounds.Length-1)], appearSoundSource, targetGroup);
         }
 
         public void DisplayReveal(Sprite revealIcon, Sprite revealPointer)
