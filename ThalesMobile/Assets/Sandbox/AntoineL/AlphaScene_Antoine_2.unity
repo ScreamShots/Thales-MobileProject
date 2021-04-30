@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -239,7 +239,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 7664084496245726162}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1983464742}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fd005910bc3df1b43a981eeb59ff2280, type: 3}
@@ -11824,6 +11824,108 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!1 &1983464742 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7664084496329710958, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
+    type: 3}
+  m_PrefabInstance: {fileID: 7664084496245726162}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1983464744
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1983464742}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1985298538
 GameObject:
   m_ObjectHideFlags: 0
@@ -12681,6 +12783,32 @@ PrefabInstance:
       propertyPath: decoy
       value: 
       objectReference: {fileID: 886938406}
+    - target: {fileID: 7664084496329710959, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
+        type: 3}
+      propertyPath: inHackClip
+      value: 
+      objectReference: {fileID: 8300000, guid: e89b7798b5aeb304596e37e7ee449105, type: 3}
+    - target: {fileID: 7664084496329710959, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
+        type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 1983464744}
+    - target: {fileID: 7664084496329710959, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
+        type: 3}
+      propertyPath: soundSource
+      value: 
+      objectReference: {fileID: 1983464744}
+    - target: {fileID: 7664084496329710959, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
+        type: 3}
+      propertyPath: targetGroup
+      value: 
+      objectReference: {fileID: -9015305574639715243, guid: 9b41315a36bc40a4ea458016676fd8f1,
+        type: 2}
+    - target: {fileID: 7664084496329710959, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
+        type: 3}
+      propertyPath: doneHackClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 1096d8c3681a41d409140463b2dbc504, type: 3}
     - target: {fileID: 7664084496329710959, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
         type: 3}
       propertyPath: interestPoints.Array.data[0]

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using OceanEntities;
+using UnityEngine.Audio;
 
 /// <summary>
 /// Antoine Leroux - 07/04/2021 - Vigilance State is an enum describing the current submarine state.
@@ -102,11 +103,19 @@ public class Submarine : DetectableOceanEntity
     private float timeBeforeNextRefresh;
     public bool isSubmarineDisplayed;
 
+    [Header("Sound")]
+    public SoundHandler soundHandler;
+    public AudioMixerGroup targetGroup;
+    public AudioSource soundSource;
+    public AudioClip inHackClip, doneHackClip;
+    private bool soundAlreadyPlay;
+
     private void Start()
     {
         levelManager = GameManager.Instance.levelManager;
         environment = GameManager.Instance.levelManager.environnement;
         environnement = levelManager.environnement;
+        soundHandler = GameManager.Instance.soundHandler;
 
         levelManager.submarineEntitiesInScene.Add(this);
         levelManager.enemyEntitiesInScene.Add(this);
@@ -171,6 +180,7 @@ public class Submarine : DetectableOceanEntity
         {
             nextInterestPoint.currentHackState = HackState.unhacked;
             nextInterestPoint.hackProgression = 0f;
+            soundAlreadyPlay = false;
             hackingTimer = 0;
             randomNumber = Random.Range(0, interestPoints.Count);
             nextInterestPoint = interestPoints[randomNumber];
@@ -233,12 +243,19 @@ public class Submarine : DetectableOceanEntity
 
     private void Capture()
     {
+        if (!soundAlreadyPlay)
+        {
+            soundAlreadyPlay = true;
+            soundHandler.PlaySound(inHackClip, soundSource, targetGroup);
+        }
         hackingTimer += Time.deltaTime;
         nextInterestPoint.currentHackState = HackState.inHack;
         nextInterestPoint.hackProgression = ((hackingTimer - 0) / nextInterestPoint.hackTime) * 100f;
 
         if (hackingTimer >= nextInterestPoint.hackTime)
         {
+            soundHandler.PlaySound(doneHackClip, soundSource, targetGroup);
+            soundAlreadyPlay = false;
             hackingTimer = 0;
             nextInterestPoint.currentHackState = HackState.doneHack;
             interestPoints.RemoveAt(randomNumber);
