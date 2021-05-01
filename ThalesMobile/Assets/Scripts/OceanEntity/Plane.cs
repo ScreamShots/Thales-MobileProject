@@ -45,8 +45,10 @@ namespace OceanEntities
         {
             movementType = MovementType.air;
             _transform = transform;
+
+            coords.position = Coordinates.ConvertWorldToVector2(_transform.position);
             coords.direction = Coordinates.ConvertWorldToVector2(transform.forward);
-            currentTargetPoint = Coordinates.ConvertWorldToVector2(_transform.forward * 2);
+            currentTargetPoint = coords.position + Coordinates.ConvertWorldToVector2(_transform.forward * 2);
 
             environment = GameManager.Instance.levelManager.environnement;
             soundHandler = GameManager.Instance.soundHandler;

@@ -40,7 +40,7 @@ public class Environnement : MonoBehaviour
     [ContextMenu("Texture Generation Color")]
     public void GenerateTextureColor()
     {
-        SeaTextureGenerator.GenerateZoneDataTexture(this, "Tex_Enviro");
+        SeaTextureGenerator.GenerateSeaTexture(this, "Tex_Enviro");
     }
 
     [ContextMenu("Generate Map Data")]

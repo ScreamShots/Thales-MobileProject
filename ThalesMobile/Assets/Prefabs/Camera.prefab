@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_RenderShadows: 1
+  m_RenderShadows: 0
   m_RequiresDepthTextureOption: 2
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
@@ -199,33 +199,42 @@ MonoBehaviour:
   zoomSpeed: 5
   camSett:
     minAngle: 45
-    maxAngle: 90
+    maxAngle: 80
     angleEvolve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0
         value: 0
-        inSlope: 0
-        outSlope: 1
+        inSlope: 2
+        outSlope: 2
         tangentMode: 0
         weightedMode: 0
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
+        time: 0.24745856
+        value: 0.7581673
+        inSlope: 3.0638154
+        outSlope: 1.0606537
+        tangentMode: 5
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
         time: 1
-        value: 1
-        inSlope: 1
-        outSlope: 0
+        value: 1.0023766
+        inSlope: 0.032732774
+        outSlope: 0.032732774
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0
+        inWeight: 0.3628692
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     minHeight: 3
-    maxHeight: 15
+    maxHeight: 42
     heightEvolve:
       serializedVersion: 2
       m_Curve:
@@ -251,7 +260,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     minTargetProximity: -5
-    maxTargetProximity: 0
+    maxTargetProximity: -2
     proximityEvolve:
       serializedVersion: 2
       m_Curve:

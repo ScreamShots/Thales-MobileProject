@@ -15,20 +15,16 @@ MonoBehaviour:
   currentUser: {fileID: 0}
   chargeMax: 3
   chargeStart: 3
-  loadingTime: 1
+  loadingTime: 10
   feedbackPrefab: {fileID: 65424318342107703, guid: a4fbc6e6358c2f149bc399c2d0aefc08,
     type: 3}
-  sonobuoyLifeTime: 60
-  sonobuoyRange: 5
+  sonobuoyLifeTime: 20
+  sonobuoyRange: 4
   turbulentSeaFactor: 0.75
   sonobuoyPrefab: {fileID: 2607549249886408468, guid: f94c7cd5ce464f041bc77ba13f2c3171,
     type: 3}
-  poolSize: 10
+  poolSize: 6
   availaibleSonobuoys:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

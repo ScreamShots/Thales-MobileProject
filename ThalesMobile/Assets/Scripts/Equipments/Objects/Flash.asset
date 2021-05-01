@@ -18,8 +18,8 @@ MonoBehaviour:
   loadingTime: 0
   feedbackPrefab: {fileID: 6879005350775039052, guid: c9b8c666be212a6488e7f8f84702cc30,
     type: 3}
-  winningRange: 10
-  extendedRange: 20
-  dropDuration: 3
-  revealDuration: 10
+  winningRange: 1
+  extendedRange: 3
+  dropDuration: 2
+  revealDuration: 4
   heightOffset: 0

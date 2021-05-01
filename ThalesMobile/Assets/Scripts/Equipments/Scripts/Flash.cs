@@ -77,7 +77,10 @@ namespace PlayerEquipement
                 {
                     GameManager.Instance.uiHandler.victoryScreenManager.Victory(true);
                 }
-                else if (distance <= extendedRange && testedZone.state != ZoneState.SeaTurbulent) submarine.MaterialChangedByFlash(revealDuration);
+                else if (distance <= extendedRange && testedZone.state != ZoneState.SeaTurbulent)
+                {
+                    submarine.MaterialChangedByFlash(revealDuration);
+                }
             }
         }
     }

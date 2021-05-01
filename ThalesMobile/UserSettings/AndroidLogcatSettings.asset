@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "9DCDU18705000236",
         "name": "com.RubikaB3.ThalesMobile",
-        "processId": 14198,
+        "processId": 13980,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -42,6 +42,30 @@
             "deviceId": "9DCDU18705000236",
             "name": "com.RubikaB3.ThalesMobile",
             "processId": 14198,
+            "exited": false
+        },
+        {
+            "deviceId": "9DCDU18705000236",
+            "name": "com.RubikaB3.ThalesMobile",
+            "processId": 4622,
+            "exited": false
+        },
+        {
+            "deviceId": "9DCDU18705000236",
+            "name": "com.RubikaB3.ThalesMobile",
+            "processId": 12458,
+            "exited": false
+        },
+        {
+            "deviceId": "9DCDU18705000236",
+            "name": "com.RubikaB3.ThalesMobile",
+            "processId": 12929,
+            "exited": false
+        },
+        {
+            "deviceId": "9DCDU18705000236",
+            "name": "com.RubikaB3.ThalesMobile",
+            "processId": 13980,
             "exited": false
         }
     ],
