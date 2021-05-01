@@ -18,11 +18,11 @@ MonoBehaviour:
   loadingTime: 0
   feedbackPrefab: {fileID: 3947698235113949634, guid: 42aabab330806f447a09517227178121,
     type: 3}
-  range: 6
-  waveDuration: 3.5
-  turbulentSeaSpeedReductionFactor: 0.5
+  range: 7
+  waveDuration: 3
+  turbulentSeaSpeedReductionFactor: 0.75
   pointFadeDuration: 4
-  expand: 0
+  expand: 1
   detectionPointPrefab: {fileID: 2681307672962359013, guid: 7adb86ad6a60e7548bd551e6f7754c7b,
     type: 3}
   poolSize: 15
