@@ -54,7 +54,7 @@ Material:
     - LargeurInterieur: 70
     - LargeurOnde: 225
     - QuantiteOndes: -100
-    - VitesseOnde: 14.285714
+    - VitesseOnde: 7.142857
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1

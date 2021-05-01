@@ -97,6 +97,14 @@ namespace PlayerEquipement
         AudioSource detectionAudioSource;
         [SerializeField]
         AudioClip detectionSound;
+        [SerializeField]
+        AudioSource dropSoundSource;
+        [SerializeField]
+        AudioClip dropSound;
+        [SerializeField]
+        AudioSource backgroundSoundSource;
+        [SerializeField]
+        AudioClip backgroundSound;
 
         public void Init()
         {
@@ -128,6 +136,13 @@ namespace PlayerEquipement
             {
                 allIcons[i].Init(iconGap * i * 2 + iconGap);
             }
+        }
+
+        public void OnEnable()
+        {
+            backgroundSoundSource.loop = true;
+            GameManager.Instance.soundHandler.PlaySound(backgroundSound, backgroundSoundSource, targetGroup);
+            GameManager.Instance.soundHandler.PlaySound(dropSound, dropSoundSource, targetGroup);
         }
 
         private void Update()

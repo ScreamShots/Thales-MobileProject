@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 namespace PlayerEquipement
 {
@@ -19,6 +20,14 @@ namespace PlayerEquipement
         MeshRenderer meshRenderer;
         [SerializeField]
         ParticleSystem splashParticles;
+
+        [Header("Sound - Flash Effect")]
+        [SerializeField]
+        AudioMixerGroup targetGroup;
+        [SerializeField]
+        AudioSource flashSoundSource;
+        [SerializeField]
+        AudioClip flashSound;
         
 
         public override void EquipementFeedbackInit(Equipement _source)
@@ -59,6 +68,7 @@ namespace PlayerEquipement
                 timer += Time.deltaTime;
             }
 
+            GameManager.Instance.soundHandler.PlaySound(flashSound, flashSoundSource, targetGroup);
             splashParticles.Play();
 
             ResetPos();

@@ -431,10 +431,7 @@ MonoBehaviour:
   animDuration: 0.5
   targetGroup: {fileID: -9015305574639715243, guid: 9b41315a36bc40a4ea458016676fd8f1,
     type: 2}
-  appearSounds:
-  - {fileID: 8300000, guid: a6f92f5fa9002ff458d359a0c71f3809, type: 3}
-  - {fileID: 8300000, guid: 4a0326fa926bab8479759a63b6a5d905, type: 3}
-  - {fileID: 8300000, guid: 00834e5f73575414db70b0481e1618b8, type: 3}
+  appearSound: {fileID: 8300000, guid: 7f93e1868121eed4882693b884364dc5, type: 3}
   appearSoundSource: {fileID: 6512723210438504047}
 --- !u!82 &6512723210438504047
 AudioSource:

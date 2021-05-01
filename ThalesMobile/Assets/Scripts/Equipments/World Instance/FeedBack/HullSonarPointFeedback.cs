@@ -29,7 +29,7 @@ namespace PlayerEquipement
         [SerializeField]
         AudioMixerGroup targetGroup;
         [SerializeField]
-        AudioClip[] appearSounds;
+        AudioClip appearSound;
         [SerializeField]
         AudioSource appearSoundSource;
 
@@ -45,7 +45,7 @@ namespace PlayerEquipement
 
         public void OnEnable()
         {
-            GameManager.Instance.soundHandler.PlaySound(appearSounds[Random.Range(0, appearSounds.Length-1)], appearSoundSource, targetGroup);
+            GameManager.Instance.soundHandler.PlaySound(appearSound, appearSoundSource, targetGroup);
         }
 
         public void DisplayReveal(Sprite revealIcon, Sprite revealPointer)
