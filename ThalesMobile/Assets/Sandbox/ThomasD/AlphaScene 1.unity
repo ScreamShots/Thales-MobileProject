@@ -3653,6 +3653,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3703591322552175224, guid: 646768de78e5dec4e9e6c39e89ae9b42,
         type: 3}
+      propertyPath: drawWind
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3703591322552175224, guid: 646768de78e5dec4e9e6c39e89ae9b42,
+        type: 3}
+      propertyPath: showDebug
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3703591322552175224, guid: 646768de78e5dec4e9e6c39e89ae9b42,
+        type: 3}
+      propertyPath: showBoundary
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3703591322552175224, guid: 646768de78e5dec4e9e6c39e89ae9b42,
+        type: 3}
       propertyPath: zones.Array.data[2].windDir
       value: 1
       objectReference: {fileID: 0}
@@ -5284,7 +5299,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1967861813
 MonoBehaviour:
-  m_ObjectHideFlags: 10
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -5975,6 +5990,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 5630502567233466962, guid: 1ce6e572ea85ad344b97167bd62129c7,
+        type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 1921190324}
     - target: {fileID: 8410120360317386302, guid: 1ce6e572ea85ad344b97167bd62129c7,
         type: 3}
       propertyPath: m_RootOrder

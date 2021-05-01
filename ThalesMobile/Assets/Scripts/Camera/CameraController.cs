@@ -35,14 +35,23 @@ public class CameraController : MonoBehaviour
 
     void Start()
     {
+        lookAtTraget = false;
+
         cam = Camera.main;
         GameManager.Instance.cameraController = this;
         GameManager.Instance.inputManager.mainCamera = cam;
-        
+        GameManager.Instance.inputManager.camController = this;
+
         InitializeFocusPoint();
 
-        GameManager.Instance.cameraController = this;
-        GameManager.Instance.inputManager.mainCamera = cam;
+        ZoomCalcul(zoomIntensity);
+
+        //Set Cam at Start
+        aimPos = focusPoint.position + new Vector3(0, aimHeight, aimPromimity);
+        transform.position = aimPos;
+        cam.fieldOfView = aimFov;
+        transform.rotation = Quaternion.Euler(aimAngle, transform.rotation.y, transform.rotation.z);
+
     }
     void Update()
     {
@@ -163,7 +172,7 @@ public class CameraController : MonoBehaviour
 
         Vector3 wantedPos = focusPoint.position + toTarget;
 
-        focusPoint.position = wantedPos;
+        focusPoint.position = new Vector3(wantedPos.x, 0 , wantedPos.z);
     }
     private void DebugBoundary(float height, int step)
     {

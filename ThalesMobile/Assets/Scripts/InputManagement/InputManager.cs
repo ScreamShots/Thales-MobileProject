@@ -12,7 +12,7 @@ public class InputManager : MonoBehaviour
 
     [Header("Camera")]
     public Camera mainCamera;
-    private CameraController camController;
+    public CameraController camController;
 
     [Header("Game")]
     public LayerMask selectableEntityLayer;
@@ -46,7 +46,6 @@ public class InputManager : MonoBehaviour
     void Start()
     {
         currentEventSystem = EventSystem.current;
-        camController = GameManager.Instance.cameraController;
         playerController = GameManager.Instance.playerController;
         soundHandler = GameManager.Instance.soundHandler;
 

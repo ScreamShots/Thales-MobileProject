@@ -233,7 +233,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    minHeight: 3
+    minHeight: 10
     maxHeight: 42
     heightEvolve:
       serializedVersion: 2
@@ -259,7 +259,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    minTargetProximity: -5
+    minTargetProximity: -10
     maxTargetProximity: -2
     proximityEvolve:
       serializedVersion: 2
@@ -343,7 +343,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5630502567671392403}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 4, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8410120360317386302}
