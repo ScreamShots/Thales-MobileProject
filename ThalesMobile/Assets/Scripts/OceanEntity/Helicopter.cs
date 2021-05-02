@@ -267,6 +267,8 @@ namespace OceanEntities
             }
             else
             {
+                operating = false;
+                inAlert = false;
                 LandFeedback();
             }
         }

@@ -132,6 +132,7 @@ public class HelicopterDeckUI : MonoBehaviour
     public void ActivateButton()
     {
         launchButton.interactable = true;
+        launchButtonImage.sprite = flashSprite;
         buttonOutline.enabled = true;
     }
 
