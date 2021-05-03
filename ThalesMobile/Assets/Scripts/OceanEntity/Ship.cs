@@ -3,16 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using PlayerEquipement;
 using UnityEngine.Audio;
+using Tweek.FlagAttributes;
 
 namespace OceanEntities
 {
+    [TweekClass]
     public class Ship : PlayerOceanEntity
     {
         private Transform _transform;
         private float currentSpeed = 0;
 
         [Header("Equipment")]
+        [TweekFlag(FieldUsage.Gameplay)]
         public Equipement passiveEquipement;
+        [TweekFlag(FieldUsage.Gameplay)]
         public Equipement activeEquipement;
 
 
@@ -20,7 +24,9 @@ namespace OceanEntities
         private SoundHandler soundHandler;
         public AudioSource audioSource;
         public AudioMixerGroup targetGroup;
+        [TweekFlag(FieldUsage.Sound)]
         public AudioClip waitingSound;
+        [TweekFlag(FieldUsage.Sound)]
         public AudioClip movementSound;
         bool fading;
         private void Start()

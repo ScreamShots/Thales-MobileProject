@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using PlayerEquipement;
 using UnityEngine.Audio;
+using Tweek.FlagAttributes;
 
 namespace OceanEntities
 {
+    [TweekClass]
     public class Plane : PlayerOceanEntity
     {
         private Transform _transform;
@@ -23,6 +25,7 @@ namespace OceanEntities
         private SoundHandler soundHandler;
         public AudioSource audioSource;
         public AudioMixerGroup targetGroup;
+        [TweekFlag(FieldUsage.Sound)]
         public AudioClip movementSound;
 
         /*private Vector2 waitingTarget = new Vector2(-9999, -9999);
@@ -38,7 +41,9 @@ namespace OceanEntities
         */
 
         [Header("Equipment")]
+        [TweekFlag(FieldUsage.Gameplay)]
         public Equipement passiveEquipement;
+        [TweekFlag(FieldUsage.Gameplay)]
         public Equipement activeEquipement;
 
         void Start()
