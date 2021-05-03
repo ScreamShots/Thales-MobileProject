@@ -95,7 +95,7 @@ public static class SeaTextureGenerator
             for (int y = 0; y < textureSize; y++)
             {
                 tempColor = zoneColor[map.ZoneIn(new Vector2(textStartPosX + (x * inverseDetail), textStartPosY + (y * inverseDetail)))];
-                texture.SetPixel(x, y, tempColor);
+                texture.SetPixel(x, (textureSize - 1) - y, tempColor);
             }
         }
 
@@ -113,7 +113,7 @@ public static class SeaTextureGenerator
         TextureGenerator.TestTextureAtPath(path);
     }
 
-    public static void GenerateSeaTexture(Environnement map, string name)
+    public static void GenerateSeaColorTexture(Environnement map, string name)
     {
         //generate the path
         string path = TextureGenerator.PathAsking(name);
@@ -124,10 +124,10 @@ public static class SeaTextureGenerator
         }
 
         //Set les couleurs de chaques zone
-        List<Color> zoneColor = new List<Color>() { Color.red, Color.green, Color.blue };
+        List<Color> zoneColor = new List<Color>() { Color.black, Color.green, Color.blue };
         if(map.zones.Length != 0)
         {
-            zoneColor.RemoveRange(0,2);
+            zoneColor.RemoveRange(1,3);
             for (int i = 0; i < map.zones.Length; i++)
             {
                 zoneColor.Add(map.zones[i].debugColor);
@@ -172,7 +172,8 @@ public static class SeaTextureGenerator
         {
             for (int y = 0; y < textureSize; y++)
             {
-                texture.SetPixel(x, y, tempColor);
+                tempColor = zoneColor[map.ZoneIn(new Vector2(textStartPosX + (x * inverseDetail), textStartPosY + (y * inverseDetail)))];
+                texture.SetPixel(x, (textureSize - 1) - y, tempColor);
             }
         }
 

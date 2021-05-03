@@ -19,6 +19,9 @@ public class Environnement : MonoBehaviour
     public int[,] zoneCarto = null;
     public int resolution = 1;
 
+    [Space(25), SerializeField]
+    public GameObject basicGo;
+    public int zoneAim =0;
 
     private void Start()
     {
@@ -31,6 +34,7 @@ public class Environnement : MonoBehaviour
         zoneCarto = GenerateMapData();
     }
     #region ContextMenue
+    
     [ContextMenu("Texture Generation Data")]
     public void GenerateTextureData()
     {
@@ -40,7 +44,42 @@ public class Environnement : MonoBehaviour
     [ContextMenu("Texture Generation Color")]
     public void GenerateTextureColor()
     {
-        SeaTextureGenerator.GenerateSeaTexture(this, "Tex_Enviro");
+        SeaTextureGenerator.GenerateSeaColorTexture(this, "Tex_ZoneColor");
+    }
+
+    //          
+    //
+    //
+    //
+
+    public void GeneratePointOfZone()
+    {
+        if(zones.Length > zoneAim)
+        {
+            if (zones[zoneAim].points != null)
+            {
+                if (zones[zoneAim].points.Length > 0)
+                {
+                    for (int i = 0; i < zones[zoneAim].points.Length; i++)
+                    {
+                        GameObject tempPoint = Instantiate(basicGo, zones[zoneAim].points[i], Quaternion.identity, transform);
+                        tempPoint.name = "Zone" + zoneAim + "-Point" + i;
+                    }
+                }
+                else
+                {
+                    Debug.LogError("Zone aimed don't contain 0 point");
+                }
+            }
+            else
+            {
+                Debug.LogError("Zone aimed don't contain any point");
+            }
+        }
+        else
+        {
+            Debug.LogError("Zone aimed out of Range");
+        }
     }
 
     [ContextMenu("Generate Map Data")]

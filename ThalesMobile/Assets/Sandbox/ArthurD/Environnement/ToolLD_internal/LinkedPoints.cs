@@ -11,7 +11,8 @@ namespace Thales.Tool.LevelDesign
         public Vector3 lastPos;
         [HideInInspector] 
         public Boundary limit;
-        //public bool clampInZone = false;
+        
+        public bool clampInZone = false;
         [Header("Linked Points")]
         public List<Transform> linkedPoints;
 
@@ -76,6 +77,8 @@ namespace Thales.Tool.LevelDesign
             }
 
             ClampPos();
+
+
         }
 
         private void UpdatePosition()
@@ -95,7 +98,6 @@ namespace Thales.Tool.LevelDesign
 
             //Finalement je les point ne sont pas coincé dans la zones
             #region ClampInZone
-            /*
             if (clampInZone)
             {
                 if (transform.position.x < limit.offSet.x + limit.leftBorder)
@@ -116,7 +118,6 @@ namespace Thales.Tool.LevelDesign
                     transform.position = new Vector3(limit.offSet.y + transform.position.x, transform.position.y, limit.upBorder);
                 }
             }
-            */
             #endregion
         }
 
