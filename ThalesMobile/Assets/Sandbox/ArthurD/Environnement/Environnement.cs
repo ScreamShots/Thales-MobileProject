@@ -66,6 +66,7 @@ public class Environnement : MonoBehaviour
     }
     #endregion
 #endif
+
     /// <summary>
     /// 0 = hors zone, donc décalage de un sur les zones
     /// </summary>

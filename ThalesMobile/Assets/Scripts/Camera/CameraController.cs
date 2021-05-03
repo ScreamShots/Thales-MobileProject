@@ -33,29 +33,39 @@ public class CameraController : MonoBehaviour
     [Header("Map Limits")]
     public Boundary limit = new Boundary();
 
+    [Header("Debug")]
+    public bool standAloneMode = false;
+    [Space(10)]
+    public bool drawLine = true;
+    public Color edgeColor = Color.red;
+    [Range(0.1f, 10f)] public float debugSize = 0.1f;
+    public int debugStep = 4;
+    [Space(5)]
+    public bool drawFocusPoint = false;
+
+
     void Start()
     {
         lookAtTraget = false;
 
-        cam = Camera.main;
-        GameManager.Instance.cameraController = this;
-        GameManager.Instance.inputManager.mainCamera = cam;
-        GameManager.Instance.inputManager.camController = this;
+        if (!standAloneMode)
+        {
+            cam = Camera.main;
+            GameManager.Instance.cameraController = this;
+            GameManager.Instance.inputManager.mainCamera = cam;
+            GameManager.Instance.inputManager.camController = this;
+        }
 
         InitializeFocusPoint();
 
-        ZoomCalcul(zoomIntensity);
-
-        //Set Cam at Start
-        aimPos = focusPoint.position + new Vector3(0, aimHeight, aimPromimity);
-        transform.position = aimPos;
-        cam.fieldOfView = aimFov;
-        transform.rotation = Quaternion.Euler(aimAngle, transform.rotation.y, transform.rotation.z);
-
+        StartPos();
     }
     void Update()
     {
-        //moveDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        if (!standAloneMode)
+        {
+            moveDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        }
 
         if (lookAtTraget)
         {
@@ -69,22 +79,26 @@ public class CameraController : MonoBehaviour
         ZoomCalcul(zoomIntensity);
         ZoomApplication();
     }
-    private void OnDrawGizmos()
+
+    [ContextMenu("Set Cam at Start")]
+    public void StartPos()
     {
-        DebugBoundary(4f, 8);
+        ZoomCalcul(zoomIntensity);
+
+        //Pos
+        aimPos = focusPoint.position + new Vector3(0, aimHeight, aimPromimity);
+        transform.position = aimPos;
+        //FOV
+        cam.fieldOfView = aimFov;
+        //Rotation
+        transform.rotation = Quaternion.Euler(aimAngle, transform.rotation.y, transform.rotation.z);
     }
 
-    [ContextMenu("testTo1")]
-    public void Test()
+    public void SetTarget(Transform target)
     {
-        SetZoom(1, 1);
+        this.target = target;
+        lookAtTraget = true;
     }
-    [ContextMenu("testTo0")]
-    public void Test2()
-    {
-        SetZoom(0, 1);
-    }
-
     public void SetZoom(float zoomdesired, float speed)
     {
         StopAllCoroutines();
@@ -105,11 +119,6 @@ public class CameraController : MonoBehaviour
         }
     }
 
-    public void SetTarget(Transform target)
-    {
-        this.target = target;
-        lookAtTraget = true;
-    }
 
     private void InitializeFocusPoint()
     {
@@ -119,6 +128,7 @@ public class CameraController : MonoBehaviour
             focusPoint.name = "New_CamFocusPoint";
         }
     }
+    
     private void ZoomCalcul(float zoom)
     {
         zoom = Mathf.Clamp01(zoom);
@@ -143,6 +153,8 @@ public class CameraController : MonoBehaviour
         Quaternion aimLook = Quaternion.Euler(aimAngle, transform.rotation.y, transform.rotation.z);
         transform.rotation = Quaternion.Slerp(transform.rotation, aimLook, aimLerpSpeed); //Slerp and not Lerp (https://youtu.be/uNHIPVOnt-Y)
     }
+    
+    //Mouvement
     private void MoveFocusPoint(Vector2 dir)
     {
         dir = dir.normalized;
@@ -174,37 +186,49 @@ public class CameraController : MonoBehaviour
 
         focusPoint.position = new Vector3(wantedPos.x, 0 , wantedPos.z);
     }
+
+    //Debug
+    private void OnDrawGizmos()
+    {
+        DebugBoundary(debugSize, debugStep);
+    }
     private void DebugBoundary(float height, int step)
     {
         float ratio = height / step;
 
-        for (float tempHeight = 0; tempHeight <= height; tempHeight += ratio)
+        if (drawLine)
         {
             //Draw the rectangle
-            // _  
-            Vector3 drawPos = new Vector3(limit.leftBorder, tempHeight, limit.upBorder);
-            Debug.DrawRay(drawPos, Vector3.right * limit.size.x, Color.red);
-            // _
-            //  |
-            drawPos += Vector3.right * limit.size.x;
-            Debug.DrawRay(drawPos, Vector3.back * limit.size.y, Color.red);
-            // _
-            // _|
-            drawPos += Vector3.back * limit.size.y;
-            Debug.DrawRay(drawPos, Vector3.left * limit.size.x, Color.red);
-            // _
-            //|_|
-            drawPos += Vector3.left * limit.size.x;
-            Debug.DrawRay(drawPos, Vector3.forward * limit.size.y, Color.red);
+            for (float tempHeight = 0; tempHeight <= height; tempHeight += ratio)
+            {
+                // _  
+                Vector3 drawPos = new Vector3(limit.leftBorder, tempHeight, limit.upBorder);
+                Debug.DrawRay(drawPos, Vector3.right * limit.size.x, edgeColor);
+                // _
+                //  |
+                drawPos += Vector3.right * limit.size.x;
+                Debug.DrawRay(drawPos, Vector3.back * limit.size.y, edgeColor);
+                // _
+                // _|
+                drawPos += Vector3.back * limit.size.y;
+                Debug.DrawRay(drawPos, Vector3.left * limit.size.x, edgeColor);
+                // _
+                //|_|
+                drawPos += Vector3.left * limit.size.x;
+                Debug.DrawRay(drawPos, Vector3.forward * limit.size.y, edgeColor);
+            }
+
+            Gizmos.color = edgeColor;
+            Gizmos.DrawWireCube(new Vector3(limit.offSet.x, height * 0.5f, limit.offSet.y), new Vector3(limit.size.x, height, limit.size.y));
+
+            Gizmos.color = Color.white;
         }
 
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireCube(new Vector3(limit.offSet.x, height * 0.5f, limit.offSet.y), new Vector3(limit.size.x, height, limit.size.y));
-
-        if (focusPoint != null)
+        if (focusPoint != null && drawFocusPoint)
         {
             Gizmos.color = Color.green;
             Gizmos.DrawWireSphere(new Vector3(focusPoint.position.x, height, focusPoint.position.z), 0.5f);
+            Gizmos.color = Color.white;
         }
     }
 }

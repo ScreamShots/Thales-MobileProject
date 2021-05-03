@@ -319,6 +319,12 @@ MonoBehaviour:
   limit:
     size: {x: 32, y: 64}
     offSet: {x: 0, y: 0}
+  standAloneMode: 0
+  drawLine: 1
+  edgeColor: {r: 1, g: 1, b: 0, a: 1}
+  debugSize: 0.1
+  debugStep: 4
+  drawFocusPoint: 0
 --- !u!1 &5630502567671392403
 GameObject:
   m_ObjectHideFlags: 0
