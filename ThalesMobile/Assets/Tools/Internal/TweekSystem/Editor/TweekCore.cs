@@ -300,6 +300,7 @@ public class TweekCore : UnityEngine.Object
                     }
 
                     if (tempTObj.attachedComponents.Count > 0) allPrefabsReferences[indexPath].Add(tempTObj);
+                    PrefabUtility.UnloadPrefabContents(tempPrefab);
                 }
             }
         }
@@ -360,6 +361,7 @@ public class TweekCore : UnityEngine.Object
             outfile.WriteLine("using System.Collections.Generic;");
             outfile.WriteLine("using UnityEngine;");
             outfile.WriteLine("using Tweek.ScoAttributes;");
+            outfile.WriteLine("using PlayerEquipement;");
             outfile.WriteLine("");
             outfile.WriteLine("[CreateAssetMenu(menuName =\"Tweek/" + updateMode.ToString() + " Asset\")]");
             outfile.WriteLine("public class " + updateMode.ToString() + "TweekScriptableObject : ScriptableObject");
@@ -1030,7 +1032,9 @@ public class TweekCore : UnityEngine.Object
                                 Debug.Log("It could be due to a suppression of the fields or an error in the data collector system");
                             }
                         }
-                    }                    
+                    }
+
+                    PrefabUtility.UnloadPrefabContents(tempPrefab);
                 }
             }
         }

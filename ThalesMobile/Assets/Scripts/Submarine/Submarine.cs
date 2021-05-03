@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using OceanEntities;
 using UnityEngine.Audio;
+using Tweek.FlagAttributes;
 
 /// <summary>
 /// Antoine Leroux - 07/04/2021 - Vigilance State is an enum describing the current submarine state.
@@ -17,6 +18,9 @@ public enum VigilanceState
 /// <summary>
 /// Antoine Leroux - 28/03/2021 - Script relative to the movement and behavior of SubMarine entity. 
 /// </summary>
+/// 
+
+[TweekClass]
 public class Submarine : DetectableOceanEntity
 {
     private Transform _transform;
@@ -27,7 +31,9 @@ public class Submarine : DetectableOceanEntity
     private Environnement environnement;
 
     [Header("Movement")]
+    [TweekFlag(FieldUsage.Gameplay)]
     public float maxSpeed;
+    [TweekFlag(FieldUsage.Gameplay)]
     public float acceleration;
     [HideInInspector] public float currentSpeed;
     private bool movingToNextPoint;
@@ -43,16 +49,22 @@ public class Submarine : DetectableOceanEntity
     private bool reachWorriedState;
 
     [Header("Submarine Range")]
+    [TweekFlag(FieldUsage.Gameplay)]
     public float detectionRangeCalm;
+    [TweekFlag(FieldUsage.Gameplay)]
     public float detectionRangeWorried;
+    [TweekFlag(FieldUsage.Gameplay)]
     public float detectionRangePanicked;
     private float currentRange;
     public GameObject rangeVisual;
     public bool debugVisualRange = false;
 
     [Header("Vigilance Incrase Values")]
+    [TweekFlag(FieldUsage.Gameplay)]
     public float sonobuoyVigiIncr;
+    [TweekFlag(FieldUsage.Gameplay)]
     public float fregateStationaryVigiIncr;
+    [TweekFlag(FieldUsage.Gameplay)]
     public float fregateMoveVigiIncr;
     private bool submarineDetectFregate;
     [HideInInspector] public List<Transform> sonobuoys;
@@ -80,19 +92,30 @@ public class Submarine : DetectableOceanEntity
     private int randomNumber;
 
     [Header("Smart Move")]
+    [TweekFlag(FieldUsage.Gameplay)]
     public float minRange;
+    [TweekFlag(FieldUsage.Gameplay)]
     public int subZone12Subdivision;
+    [TweekFlag(FieldUsage.Gameplay)]
     public int subZone3SubSubdivision;
     public List<Transform> bioElements;
-
+    [TweekFlag(FieldUsage.Gameplay)]
     public int avoidEffectSliceReach;
+    [TweekFlag(FieldUsage.Gameplay)]
     public float intermediatePosRefreshRate;
+    [TweekFlag(FieldUsage.Gameplay)]
     public float distanceToRefrehIntemediatePos;
+    [TweekFlag(FieldUsage.Gameplay)]
     public float benefPointFactorBioCalm, benefPointFactorBioWorried, benefPointFactorBioPanicked;
+    [TweekFlag(FieldUsage.Gameplay)]
     public float beneftPointFactorSonobuoyCalm, beneftPointFactorSonobuoyWorried, beneftPointFactorSonobuoyPanicked;
+    [TweekFlag(FieldUsage.Gameplay)]
     public float beneftPointFactorSeaWayCalm, beneftPointFactorSeaWayWorried, beneftPointFactorSeaWayPanicked;
+    [TweekFlag(FieldUsage.Gameplay)]
     public float beneftPointFactorSeaTurbulentCalm, beneftPointFactorSeaTurbulentWorried, beneftPointFactorSeaTurbulentPanicked;
+    [TweekFlag(FieldUsage.Gameplay)]
     public float beneftPointFactorWindyZoneCalm, beneftPointFactorWindyZoneWorried, beneftPointFactorWindyZonePanicked;
+    [TweekFlag(FieldUsage.Gameplay)]
     public float distanceFactorWeightWhileCalm, distanceFactorWeightWhileWorried, distanceFactorWeightWhilePanicked;
 
     private Vector2 targetDirection;
@@ -107,6 +130,7 @@ public class Submarine : DetectableOceanEntity
     public SoundHandler soundHandler;
     public AudioMixerGroup targetGroup;
     public AudioSource soundSource;
+    [TweekFlag(FieldUsage.Sound)]
     public AudioClip inHackClip, doneHackClip;
     private bool soundAlreadyPlay;
 
