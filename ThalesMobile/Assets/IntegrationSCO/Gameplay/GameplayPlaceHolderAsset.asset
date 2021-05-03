@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49f2fd1346684c343b0cac2c2ed2ed5b, type: 3}
+  m_Name: GameplayPlaceHolderAsset
+  m_EditorClassIdentifier: 
+  s0_From: Assets/_Scenes/GenericScene.unity
+  s1Id: 78bd7832-fe3a-49b2-abda-1198c130ba59
+  "_78bd7832\xB5fe3a\xB549b2\xB5abda\xB51198c130ba59_speed": 86
+  "_78bd7832\xB5fe3a\xB549b2\xB5abda\xB51198c130ba59_acceleration": 39
+  "_78bd7832\xB5fe3a\xB549b2\xB5abda\xB51198c130ba59_movementType": 0
+  s2Id: 3e918baf-6062-4542-a789-366403ca2f94
+  "_3e918baf\xB56062\xB54542\xB5a789\xB5366403ca2f94_speed": 47
+  "_3e918baf\xB56062\xB54542\xB5a789\xB5366403ca2f94_acceleration": 61
+  "_3e918baf\xB56062\xB54542\xB5a789\xB5366403ca2f94_movementType": 0
+  s3Id: a646a421-752d-4a05-a7b3-33c3620758bf
+  "_a646a421\xB5752d\xB54a05\xB5a7b3\xB533c3620758bf_speed": 0
+  "_a646a421\xB5752d\xB54a05\xB5a7b3\xB533c3620758bf_acceleration": 0
+  "_a646a421\xB5752d\xB54a05\xB5a7b3\xB533c3620758bf_movementType": 0
+  s4_From: Assets/Prefabs
+  s5Id: a88004de-1ad9-4239-99b3-52ec2de1a9df
+  "_a88004de\xB51ad9\xB54239\xB599b3\xB552ec2de1a9df_speed": 86
+  "_a88004de\xB51ad9\xB54239\xB599b3\xB552ec2de1a9df_acceleration": 32
+  "_a88004de\xB51ad9\xB54239\xB599b3\xB552ec2de1a9df_movementType": 0

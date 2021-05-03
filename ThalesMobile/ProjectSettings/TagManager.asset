@@ -13,11 +13,11 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - SelectableEntity
+  - NoPhysicFeedBack
+  - AboveSeaRendering
+  - LandPathfinding
+  - SeaRendering
   - 
   - 
   - 
@@ -38,6 +38,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: BackGround
+    uniqueID: 185416401
+    locked: 0
+  - name: UIBackground
+    uniqueID: 4236598927
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: UIForeground
+    uniqueID: 3598948495
     locked: 0
