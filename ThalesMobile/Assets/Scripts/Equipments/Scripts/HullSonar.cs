@@ -91,6 +91,9 @@ namespace PlayerEquipement
             float padding = 0;
             float waveMaxDuration;
 
+            bool detectionTestPoint;
+            bool detectionTestEntity;
+
             if (levelManager.environnement.zones[levelManager.environnement.ZoneIn(currentUser.coords.position) - 1].state == ZoneState.SeaTurbulent)
                 waveMaxDuration = waveDuration / turbulentSeaSpeedReductionFactor;
             else waveMaxDuration = waveDuration;
@@ -115,7 +118,10 @@ namespace PlayerEquipement
                     pointCoords = usedPair.Value.coords;
                     distance = Mathf.Abs(Vector2.Distance(userCoords.position, pointCoords.position));
 
-                    if (distance >= waveRange && distance <= waveRange + padding)
+                    if (expand) detectionTestPoint = distance <= waveRange && distance >= waveRange + padding;
+                    else detectionTestPoint = distance >= waveRange && distance <= waveRange + padding;
+
+                    if (detectionTestPoint)
                     {
                         if(usedPair.Key.coords.position != usedPair.Value.coords.position || usedPair.Key.currentDetectableState == DetectableState.cantBeDetected)
                         {
@@ -137,7 +143,10 @@ namespace PlayerEquipement
                     detectableCoords = new Coordinates(detectable.transform.position, Vector2.zero, 0f);
                     distance = Mathf.Abs(Vector2.Distance(userCoords.position, detectableCoords.position));
 
-                    if (distance >= waveRange && distance <= waveRange + padding && detectable.currentDetectableState != DetectableState.cantBeDetected)
+                    if (expand) detectionTestEntity = distance <= waveRange && distance >= waveRange + padding;
+                    else detectionTestEntity = distance >= waveRange && distance <= waveRange + padding;
+
+                    if (detectionTestEntity && detectable.currentDetectableState != DetectableState.cantBeDetected)
                     {
                         if (!usedDetectionPoints.ContainsKey(detectable))
                         {

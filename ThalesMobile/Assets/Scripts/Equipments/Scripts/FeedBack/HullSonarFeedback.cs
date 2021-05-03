@@ -6,10 +6,11 @@ namespace PlayerEquipement
 {
     public class HullSonarFeedback : EquipementFeedback
     {
-        HullSonar sourceHullSonar;
-        MeshRenderer waveRenderer;
+        HullSonar sourceHullSonar;        
 
         [Header("Visual Params")]
+        [SerializeField]
+        MeshRenderer waveRenderer;
         [SerializeField]
         Material waveMaterial;
         
@@ -44,7 +45,7 @@ namespace PlayerEquipement
             {
                 if (sourceHullSonar != null && sourceHullSonar.GetType() == typeof(HullSonar) && waveRenderer != null)
                 {
-                    return (sourceHullSonar.range * 2) / waveRenderer.bounds.size.x;
+                    return (sourceHullSonar.range * 2);
                 }
                 else return 0;
             }
@@ -53,7 +54,7 @@ namespace PlayerEquipement
 
         public override void EquipementFeedbackInit(Equipement _source)
         {
-            base.EquipementFeedbackInit(_source);
+            base.EquipementFeedbackInit(_source);            
 
             if (_source.GetType() == typeof(HullSonar)) sourceHullSonar = _source as HullSonar;
             else
@@ -62,11 +63,9 @@ namespace PlayerEquipement
                 return;
             }
 
-            waveRenderer = GetComponent<MeshRenderer>();
-
             waveRenderer.material = waveMaterial;
             waveRenderer.sharedMaterial.SetFloat("VitesseOnde", waveSpeed);
-            transform.localScale *= scaleFactor;
+            waveRenderer.transform.localScale = Vector3.one * scaleFactor;
         }
 
         public void SetWaveSpeed(float _speed)
