@@ -420,13 +420,13 @@ public class Tool_IntegrationPipeline : EditorWindow
     }
     public void ApplyValues()
     {
-        string actuGraphicSCOPath = AssetDatabase.GetAssetPath(Balancing_SCO);
+        string actuGraphicSCOPath = AssetDatabase.GetAssetPath(graphic_SCO);
         object graphicSCOAsset = graphic_SCO != null || graphic_SCO != tempGraphic_SCO ? AssetDatabase.LoadAssetAtPath(actuGraphicSCOPath, typeof(ArtTweekScriptableObject)) as object : null;
 
         string actuBalancingSCOPath = AssetDatabase.GetAssetPath(Balancing_SCO);
         object BalancingSCOAsset = Balancing_SCO != null || Balancing_SCO != tempBalancing_SCO ? AssetDatabase.LoadAssetAtPath(actuBalancingSCOPath, typeof(GameplayTweekScriptableObject)) as object : null;
 
-        string actuSoundSCOPath = AssetDatabase.GetAssetPath(Balancing_SCO);
+        string actuSoundSCOPath = AssetDatabase.GetAssetPath(sound_SCO);
         object soundSCOAsset = sound_SCO != null || sound_SCO != tempSound_SCO ? AssetDatabase.LoadAssetAtPath(actuSoundSCOPath, typeof(SoundTweekScriptableObject)) as object : null;
 
         TweekCore.LaunchValuesApplication(BalancingSCOAsset, graphicSCOAsset, soundSCOAsset);

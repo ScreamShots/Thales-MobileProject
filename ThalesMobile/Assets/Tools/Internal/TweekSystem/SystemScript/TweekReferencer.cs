@@ -22,6 +22,8 @@ public struct TweekReference
     public byte[] serializedGuid;
     public bool update;
 
+    public string _guidDisplay;
+
     public string guidDisplay
     {
         get
@@ -29,16 +31,14 @@ public struct TweekReference
             if (serializedGuid != null && serializedGuid.Length == 16) return new Guid(serializedGuid).ToString();
             else return string.Empty;
         }
-        private set
-        {
-            guidDisplay = guidDisplay;
-        }
     }
+
 
     public TweekReference(MonoBehaviour _component)
     {
         component = _component;
         serializedGuid = Guid.NewGuid().ToByteArray();
+        _guidDisplay = new Guid(serializedGuid).ToString();
         update = true;
     }
 

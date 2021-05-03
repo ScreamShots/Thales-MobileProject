@@ -305,6 +305,7 @@ public class TweekCore : UnityEngine.Object
             }
         }
 
+        TweekReferencer.prefabEdition = false;
         allPrefabsReferences = CleanDictionary(allPrefabsReferences);
         if (allPrefabsReferences.Count > 0) return allPrefabsReferences;
         else return null;
@@ -905,7 +906,7 @@ public class TweekCore : UnityEngine.Object
                         compId += splitValue[i];
                         if (i != splitValue.Length - 1) compId += "-";
                     }
-                    Debug.Log(referencerId + " " + compId); //
+                    //Debug.Log(referencerId + " " + compId); //
 
 
                     compsToUpdate[referencerId][compId].Add(new TweekField(field.FieldType, tempName, field.GetValue(scoAsset)));
@@ -996,18 +997,25 @@ public class TweekCore : UnityEngine.Object
             for (int i = 0; i < allPrefabsPaths[0].Length; i++) allPrefabsPaths[0][i] = PathWritter(allPrefabsPaths[0][i]);
         }
 
+        TweekReferencer.prefabEdition = true;
+
         for (int x = 0; x < allPrefabsPaths.Length; x++)
         {
             if (x == 0) indexPath = PathWritter(Data.prefabsPath);
-            else indexPath = PathWritter(Data.prefabsPath + "/" + subDirectoriesPaths[x - 1]);
+            else indexPath = PathWritter(subDirectoriesPaths[x - 1]);
 
             for (int y = 0; y < allPrefabsPaths[x].Length; y++)
             {
                 if (Path.GetExtension(allPrefabsPaths[x][y]) == ".prefab" || Path.GetExtension(allPrefabsPaths[x][y]) == ".PREFAB")
                 {
-                    tempPrefab = PrefabUtility.LoadPrefabContents(allPrefabsPaths[x][y]);
+                    string test = allPrefabsPaths[x][y];
+                    tempPrefab = PrefabUtility.LoadPrefabContents(test);
                     allReferencerOnPrefab = tempPrefab.GetComponentsInChildren<TweekReferencer>();
-                    if (allReferencerOnPrefab.Length == 0) continue;
+                    if (allReferencerOnPrefab.Length == 0)
+                    {
+                        PrefabUtility.UnloadPrefabContents(tempPrefab);
+                        continue;
+                    }                       
 
                     string firstIndex = string.Empty;
                     string secondIndex = string.Empty;
@@ -1034,10 +1042,12 @@ public class TweekCore : UnityEngine.Object
                         }
                     }
 
+                    PrefabUtility.SaveAsPrefabAsset(tempPrefab, test);
                     PrefabUtility.UnloadPrefabContents(tempPrefab);
                 }
             }
         }
+        TweekReferencer.prefabEdition = false;
         return compsToUpdate;
     }
 
