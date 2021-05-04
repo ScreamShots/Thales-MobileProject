@@ -22,8 +22,6 @@ public struct TweekReference
     public byte[] serializedGuid;
     public bool update;
 
-    public string _guidDisplay;
-
     public string guidDisplay
     {
         get
@@ -38,7 +36,6 @@ public struct TweekReference
     {
         component = _component;
         serializedGuid = Guid.NewGuid().ToByteArray();
-        _guidDisplay = new Guid(serializedGuid).ToString();
         update = true;
     }
 
@@ -49,7 +46,7 @@ public struct TweekReference
 
         if (component != null)
         {
-            if (component.gameObject != holder.gameObject)
+            if (component.transform.root.gameObject != holder.gameObject)
             {
                 Debug.Log("A component referenced on TweekReferencer is not located on the same GO as the referencer");
                 Debug.Log("The reference will be reset. Source: " + holder.gameObject.name + " Component: " + component.GetType().ToString());
