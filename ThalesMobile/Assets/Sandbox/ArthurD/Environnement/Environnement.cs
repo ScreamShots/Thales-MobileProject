@@ -31,7 +31,7 @@ public class Environnement : MonoBehaviour
 #if UNITY_EDITOR
     private void Awake()
     {
-        zoneCarto = GenerateMapData();
+        //zoneCarto = GenerateMapData();
     }
     #region ContextMenue
     
@@ -62,7 +62,7 @@ public class Environnement : MonoBehaviour
                 {
                     for (int i = 0; i < zones[zoneAim].points.Length; i++)
                     {
-                        GameObject tempPoint = Instantiate(basicGo, zones[zoneAim].points[i], Quaternion.identity, transform);
+                        GameObject tempPoint = Instantiate(basicGo, new Vector3(zones[zoneAim].points[i].x, 0, zones[zoneAim].points[i].y), Quaternion.identity, transform);
                         tempPoint.name = "Zone" + zoneAim + "-Point" + i;
                     }
                 }
@@ -82,27 +82,116 @@ public class Environnement : MonoBehaviour
         }
     }
 
-    [ContextMenu("Generate Map Data")]
-    public int[,] GenerateMapData()
+    [ContextMenu("Line Renderers Set Up for all Line")]
+    public void LineRenderSetUp()
     {
-        Vector2Int zoneCartoSize = new Vector2Int((int)limit.size.x * resolution, (int)limit.size.y * resolution);
-        
-        int[,] zoneCarto = new int[zoneCartoSize.x, zoneCartoSize.y];
-
-        float inverseDetail = (float)1f / resolution;
-        float textStartPosX = limit.offSet.x + limit.leftBorder;
-        float textStartPosY = limit.offSet.y + limit.downBorder;
-
-        for (int x = 0; x < zoneCartoSize.x; x++)
+        if (zones.Length > 0)
         {
-            for (int y = 0; y < zoneCartoSize.y; y++)
+            for (int i = 0; i < zones.Length; i++)
             {
-                ZoneIn(new Vector2(textStartPosX + (x * inverseDetail), textStartPosY + (y * inverseDetail)));
+                ZoneLineRender(i);
             }
         }
-
-        return zoneCarto;
     }
+    public void ZoneLineRender(int zoneNbr)
+    {
+        if (zones.Length > zoneNbr)
+        {
+
+            if (zones[zoneNbr].points.Length > 0)
+            {
+                GameObject tempLineGo = Instantiate(basicGo, transform);
+                tempLineGo.name = "Zone" + zoneNbr + "-LineRenderer";
+
+                bool totalyInZone = true;
+
+                int startDrawPoint = 0;
+                int pointNumber = 0;
+
+                if (zones[zoneNbr].points.Length > 0)
+                {
+                    //Test Zone hors map
+                    for (int j = 0; j < zones[zoneNbr].points.Length; j++)
+                    {
+                        //Si il y a un point hors de la zone
+
+                        if (limit.InBoundary(zones[zoneNbr].points[j]))
+                        {
+                            pointNumber++;
+                        }
+                        else
+                        {
+                            totalyInZone = false;
+                            //je commence volontaire par le dernier point hors zone
+                            startDrawPoint = j + 1;
+                        }
+                    }
+                    if (startDrawPoint == zones[zoneNbr].points.Length)
+                    {
+                        int lookForStart = 0;
+                        while (!limit.InBoundary(zones[zoneNbr].points[(startDrawPoint + lookForStart) % zones[zoneNbr].points.Length]))
+                        {
+                            lookForStart++;
+                        }
+                        startDrawPoint += lookForStart;
+                        startDrawPoint = startDrawPoint % zones[zoneNbr].points.Length;
+                    }
+
+                    LineRenderer lineRd = tempLineGo.AddComponent<LineRenderer>();
+
+                    if (totalyInZone)
+                    {
+                        lineRd.positionCount = zones[zoneNbr].points.Length - 1;
+
+                        for (int j = 0; j < zones[zoneNbr].points.Length; j++)
+                        {
+                            lineRd.SetPosition(j, new Vector3(zones[zoneNbr].points[j].x, 0, zones[zoneNbr].points[j].y));
+                        }
+                    }
+                    else
+                    {
+                        lineRd.positionCount = pointNumber + 2; //+2 for the first and last hors zone
+
+                        for (int j = 0; j < lineRd.positionCount; j++)
+                        {
+                            int zoneAimPoint = (startDrawPoint - 1 + j + zones[zoneNbr].points.Length) % zones[zoneNbr].points.Length;
+
+                            lineRd.SetPosition(j, new Vector3(zones[zoneNbr].points[zoneAimPoint].x, 0, zones[zoneNbr].points[zoneAimPoint].y));
+                        }
+                    }
+                }
+            }
+            else
+            {
+                Debug.LogError("Zone " + zoneNbr + " contain 0 point");
+            }
+        }
+    }
+
+    /*  WaitingOptimisation
+        [ContextMenu("Generate Map Data")]
+        public int[,] GenerateMapData()
+        {
+            Vector2Int zoneCartoSize = new Vector2Int((int)limit.size.x * resolution, (int)limit.size.y * resolution);
+
+            int[,] zoneCarto = new int[zoneCartoSize.x, zoneCartoSize.y];
+
+            float inverseDetail = (float)1f / resolution;
+            float textStartPosX = limit.offSet.x + limit.leftBorder;
+            float textStartPosY = limit.offSet.y + limit.downBorder;
+
+            for (int x = 0; x < zoneCartoSize.x; x++)
+            {
+                for (int y = 0; y < zoneCartoSize.y; y++)
+                {
+                    ZoneIn(new Vector2(textStartPosX + (x * inverseDetail), textStartPosY + (y * inverseDetail)));
+                }
+            }
+
+            return zoneCarto;
+        }
+        */
+
     #endregion
 #endif
 
