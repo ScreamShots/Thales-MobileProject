@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8410120360317386302}
+  - component: {fileID: 3444636019942516038}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -32,6 +33,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3444636019942516038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5070801401046671394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c3cdcb490cdee448a8aedfe8dbf5790, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  guidDisplay: ceb9f8bd-e761-4d51-8222-f15e211fb6b5
+  serializedGuid: bdf8b9ce61e7514d8222f15e211fb6b5
+  thisObjState: 2
+  initState: 2
+  instanceID: 26010
+  referencedComponents:
+  - component: {fileID: 5630502567233466962}
+    serializedGuid: 82552c4f6fdf2540bd1b756da6ec3399
+    update: 1
 --- !u!1 &5630502566096653354
 GameObject:
   m_ObjectHideFlags: 0

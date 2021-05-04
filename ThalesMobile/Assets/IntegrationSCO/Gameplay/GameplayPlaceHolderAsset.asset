@@ -44,15 +44,15 @@ MonoBehaviour:
   s9_From: Assets/Prefabs/Assets/Prefabs/Player Ocean Entities
   s10Id: a5135e0e-b0c8-4871-9721-538499ed3b5c
   s11Comp: a5135e0e-b0c8-4871-9721-538499ed3b5c_0de50deb-025d-4dc7-a0a2-bc9c1e3892f1
-  "preparationDuration_a5135e0e\xB5b0c8\xB54871\xB59721\xB5538499ed3b5c_0de50deb\xB5025d\xB54dc7\xB5a0a2\xB5bc9c1e3892f1": 8
-  "alertDuration_a5135e0e\xB5b0c8\xB54871\xB59721\xB5538499ed3b5c_0de50deb\xB5025d\xB54dc7\xB5a0a2\xB5bc9c1e3892f1": 15
-  "flightDuration_a5135e0e\xB5b0c8\xB54871\xB59721\xB5538499ed3b5c_0de50deb\xB5025d\xB54dc7\xB5a0a2\xB5bc9c1e3892f1": 10
-  "cooldownDuration_a5135e0e\xB5b0c8\xB54871\xB59721\xB5538499ed3b5c_0de50deb\xB5025d\xB54dc7\xB5a0a2\xB5bc9c1e3892f1": 5
-  "activeEquipement_a5135e0e\xB5b0c8\xB54871\xB59721\xB5538499ed3b5c_0de50deb\xB5025d\xB54dc7\xB5a0a2\xB5bc9c1e3892f1": {fileID: 11400000,
+  "preparationDuration_a5135e0e\xB5b0c8\xB54871\xB59721\xB5538499ed3b5c_4c652d5e\xB5c239\xB54042\xB58a74\xB545e02cce3b57": 8
+  "alertDuration_a5135e0e\xB5b0c8\xB54871\xB59721\xB5538499ed3b5c_4c652d5e\xB5c239\xB54042\xB58a74\xB545e02cce3b57": 15
+  "flightDuration_a5135e0e\xB5b0c8\xB54871\xB59721\xB5538499ed3b5c_4c652d5e\xB5c239\xB54042\xB58a74\xB545e02cce3b57": 10
+  "cooldownDuration_a5135e0e\xB5b0c8\xB54871\xB59721\xB5538499ed3b5c_4c652d5e\xB5c239\xB54042\xB58a74\xB545e02cce3b57": 5
+  "activeEquipement_a5135e0e\xB5b0c8\xB54871\xB59721\xB5538499ed3b5c_4c652d5e\xB5c239\xB54042\xB58a74\xB545e02cce3b57": {fileID: 11400000,
     guid: 51648b30bd035614aa21f8411fa25e57, type: 2}
-  "speed_a5135e0e\xB5b0c8\xB54871\xB59721\xB5538499ed3b5c_0de50deb\xB5025d\xB54dc7\xB5a0a2\xB5bc9c1e3892f1": 3
-  "acceleration_a5135e0e\xB5b0c8\xB54871\xB59721\xB5538499ed3b5c_0de50deb\xB5025d\xB54dc7\xB5a0a2\xB5bc9c1e3892f1": 2
-  "rotateSpeed_a5135e0e\xB5b0c8\xB54871\xB59721\xB5538499ed3b5c_0de50deb\xB5025d\xB54dc7\xB5a0a2\xB5bc9c1e3892f1": 180
+  "speed_a5135e0e\xB5b0c8\xB54871\xB59721\xB5538499ed3b5c_4c652d5e\xB5c239\xB54042\xB58a74\xB545e02cce3b57": 3
+  "acceleration_a5135e0e\xB5b0c8\xB54871\xB59721\xB5538499ed3b5c_4c652d5e\xB5c239\xB54042\xB58a74\xB545e02cce3b57": 2
+  "rotateSpeed_a5135e0e\xB5b0c8\xB54871\xB59721\xB5538499ed3b5c_4c652d5e\xB5c239\xB54042\xB58a74\xB545e02cce3b57": 180
   s12Id: cfa900bd-9810-4d08-b5f6-23efaf541d01
   s13Comp: cfa900bd-9810-4d08-b5f6-23efaf541d01_86e762ea-c3c0-4fde-b405-42694734145d
   "passiveEquipement_cfa900bd\xB59810\xB54d08\xB5b5f6\xB523efaf541d01_86e762ea\xB5c3c0\xB54fde\xB5b405\xB542694734145d": {fileID: 11400000,

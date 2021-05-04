@@ -281,7 +281,11 @@ public class TweekCore : UnityEngine.Object
                     if (tempReferencer != null)
                     {
                         if (tempReferencer.referencedComponents.Count > 0) tempTObj = new TweekObj(tempPrefab.name, tempReferencer.serializedGuid);
-                        else continue;
+                        else
+                        {
+                            PrefabUtility.UnloadPrefabContents(tempPrefab);
+                            continue;
+                        }                           
                     }
                     else continue;
 
@@ -417,7 +421,7 @@ public class TweekCore : UnityEngine.Object
                             {
                                 if (FieldUsagePresence(field, updateMode))
                                 {
-                                    tempAttributes = new AttributeBuilder[] { new AttributeBuilder(SupportedAttributes.Var, field.fieldName) };
+                                    tempAttributes = new AttributeBuilder[] { new AttributeBuilder(SupportedAttributes.Var, field.fieldName), new AttributeBuilder(SupportedAttributes.ToolTip, field.fieldName)};
                                     outfile.WriteLine(WriteVar(field.fieldType, field.fieldName, tempAttributes, null, new byte[][] { obj.serializedGuid, comp.serializedGuid }));
                                 }
                             }
@@ -475,7 +479,7 @@ public class TweekCore : UnityEngine.Object
                             {
                                 if (FieldUsagePresence(field, updateMode))
                                 {
-                                    tempAttributes = new AttributeBuilder[] { new AttributeBuilder(SupportedAttributes.Var, field.fieldName) };
+                                    tempAttributes = new AttributeBuilder[] { new AttributeBuilder(SupportedAttributes.Var, field.fieldName), new AttributeBuilder(SupportedAttributes.ToolTip, field.fieldName) };
                                     outfile.WriteLine(WriteVar(field.fieldType, field.fieldName, tempAttributes, null, new byte[][] { obj.serializedGuid, comp.serializedGuid }));
                                 }
                             }
@@ -493,7 +497,7 @@ public class TweekCore : UnityEngine.Object
         }
     }
 
-    public enum SupportedAttributes { Header, Space, Box, FoldOut, SerializeField, HideInInspector, Range, Min, Max, ReadOnly, Id, Var, Path, Comp };
+    public enum SupportedAttributes { Header, Space, Box, FoldOut, SerializeField, HideInInspector, Range, Min, Max, ReadOnly, Id, Var, Path, Comp, ToolTip };
 
     static string WriteAttribute(SupportedAttributes targetAttributes, dynamic arg_1 = null, dynamic arg_2 = null)
     {
@@ -554,6 +558,10 @@ public class TweekCore : UnityEngine.Object
 
             case SupportedAttributes.Comp:
                 if (arg_1.GetType() == typeof(string)) attributeLine = "[Comp(\"" + arg_1 + "\")]";
+                break;
+
+            case SupportedAttributes.ToolTip:
+                if (arg_1.GetType() == typeof(string)) attributeLine = "[Tooltip(\"" + arg_1 + "\")]";
                 break;
 
             default:

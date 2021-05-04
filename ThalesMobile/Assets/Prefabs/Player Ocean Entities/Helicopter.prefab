@@ -565,8 +565,9 @@ MonoBehaviour:
   instanceID: 21360
   referencedComponents:
   - component: {fileID: 6286141312136616712}
-    serializedGuid: eb0de50d5d02c74da0a2bc9c1e3892f1
+    serializedGuid: 5e2d654c39c242408a7445e02cce3b57
     update: 1
+    _guidDisplay: 4c652d5e-c239-4042-8a74-45e02cce3b57
 --- !u!114 &6286141312136616712
 MonoBehaviour:
   m_ObjectHideFlags: 0

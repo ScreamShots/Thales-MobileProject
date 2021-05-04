@@ -15,15 +15,15 @@ MonoBehaviour:
   s0_From: Assets/Prefabs/Assets/Prefabs/Player Ocean Entities
   s1Id: a5135e0e-b0c8-4871-9721-538499ed3b5c
   s2Comp: a5135e0e-b0c8-4871-9721-538499ed3b5c_0de50deb-025d-4dc7-a0a2-bc9c1e3892f1
-  "preparationSound_a5135e0e\xB5b0c8\xB54871\xB59721\xB5538499ed3b5c_0de50deb\xB5025d\xB54dc7\xB5a0a2\xB5bc9c1e3892f1": {fileID: 8300000,
+  "preparationSound_a5135e0e\xB5b0c8\xB54871\xB59721\xB5538499ed3b5c_4c652d5e\xB5c239\xB54042\xB58a74\xB545e02cce3b57": {fileID: 8300000,
     guid: 87262afa5890629428e63b627ee02dad, type: 3}
-  "takeOffSound_a5135e0e\xB5b0c8\xB54871\xB59721\xB5538499ed3b5c_0de50deb\xB5025d\xB54dc7\xB5a0a2\xB5bc9c1e3892f1": {fileID: 8300000,
+  "takeOffSound_a5135e0e\xB5b0c8\xB54871\xB59721\xB5538499ed3b5c_4c652d5e\xB5c239\xB54042\xB58a74\xB545e02cce3b57": {fileID: 8300000,
     guid: 4b96c0493e7fcbb40ab1969e3591f9fb, type: 3}
-  "landingSound_a5135e0e\xB5b0c8\xB54871\xB59721\xB5538499ed3b5c_0de50deb\xB5025d\xB54dc7\xB5a0a2\xB5bc9c1e3892f1": {fileID: 8300000,
+  "landingSound_a5135e0e\xB5b0c8\xB54871\xB59721\xB5538499ed3b5c_4c652d5e\xB5c239\xB54042\xB58a74\xB545e02cce3b57": {fileID: 8300000,
     guid: c658bb338ce99834b9ce2d2545610b2a, type: 3}
-  "movementSound_a5135e0e\xB5b0c8\xB54871\xB59721\xB5538499ed3b5c_0de50deb\xB5025d\xB54dc7\xB5a0a2\xB5bc9c1e3892f1": {fileID: 8300000,
+  "movementSound_a5135e0e\xB5b0c8\xB54871\xB59721\xB5538499ed3b5c_4c652d5e\xB5c239\xB54042\xB58a74\xB545e02cce3b57": {fileID: 8300000,
     guid: ed10ccc8a1aceb7438beed4d37160ba9, type: 3}
-  "waitingSound_a5135e0e\xB5b0c8\xB54871\xB59721\xB5538499ed3b5c_0de50deb\xB5025d\xB54dc7\xB5a0a2\xB5bc9c1e3892f1": {fileID: 8300000,
+  "waitingSound_a5135e0e\xB5b0c8\xB54871\xB59721\xB5538499ed3b5c_4c652d5e\xB5c239\xB54042\xB58a74\xB545e02cce3b57": {fileID: 8300000,
     guid: f333aaf523560744c9538c615806638a, type: 3}
   s3Id: cfa900bd-9810-4d08-b5f6-23efaf541d01
   s4Comp: cfa900bd-9810-4d08-b5f6-23efaf541d01_86e762ea-c3c0-4fde-b405-42694734145d

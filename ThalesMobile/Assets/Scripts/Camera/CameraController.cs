@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using UnityEngine;
+using Tweek.FlagAttributes;
 
+[TweekClass]
 public class CameraController : MonoBehaviour
 {
     [Header("Component")]
@@ -11,21 +13,21 @@ public class CameraController : MonoBehaviour
     public Transform target = null;
 
     [Header("Zoom Parameter")]
-    [Range(0, 1)] public float zoomIntensity;
-    [Range(1, 10)] public float zoomSpeed = 5;
-    public CameraSettings camSett = new CameraSettings();
+    [TweekFlag(FieldUsage.Gameplay)] [Range(0, 1)] public float zoomIntensity;
+    [TweekFlag(FieldUsage.Gameplay)] [Range(1, 10)] public float zoomSpeed = 5;
+    [TweekFlag(FieldUsage.Gameplay)] public CameraSettings camSett;
     private float aimAngle;
     private float aimHeight;
     private float aimPromimity;
     private float aimFov;
     [Space(10)]
-    public float aimLerpSpeed = 0.05f;
+    [TweekFlag(FieldUsage.Gameplay)] public float aimLerpSpeed = 0.05f;
 
     [Header("Move Parameter")]
-    public float moveSpeed = 10f;
-    public float refocusSpeed = 100f;
+    [TweekFlag(FieldUsage.Gameplay)] public float moveSpeed = 10f;
+    [TweekFlag(FieldUsage.Gameplay)] public float refocusSpeed = 100f;
     [Space(10)]
-    public float mouvLerpSpeed = 0.1f;
+    [TweekFlag(FieldUsage.Gameplay)] public float mouvLerpSpeed = 0.1f;
     private Vector3 aimPos = Vector3.zero;
     [Space(5)]
     public Vector2 moveDirection = Vector2.zero;
