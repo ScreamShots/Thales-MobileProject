@@ -78,7 +78,9 @@ public class Submarine : DetectableOceanEntity
     [Header("Counter Measures")]
     public DecoyInstance decoy;
     private bool decoyIsCreateFlag;
-    public List<CounterMeasure> counterMeasures;
+    [TweekFlag(FieldUsage.Gameplay)]
+    public CounterMeasure headingChange, radioSilence, baitDecoy;
+    private List<CounterMeasure> allCounterMeasures;
 
     [Header("Objectif")]
     public int pointsToHack;
@@ -160,6 +162,12 @@ public class Submarine : DetectableOceanEntity
                 bioElements.Add(levelManager.submarineEntitiesInScene[i].transform);
             }
         }
+
+        allCounterMeasures = new List<CounterMeasure>();
+        allCounterMeasures.Add(headingChange);
+        allCounterMeasures.Add(radioSilence);
+        allCounterMeasures.Add(baitDecoy);
+
     }
 
     protected override void Update()
@@ -847,7 +855,7 @@ public class Submarine : DetectableOceanEntity
         {
             if (!UsingCounterMeasure())
             {
-                counterMeasures[0].UseCounterMeasure(this);
+                headingChange.UseCounterMeasure(this);
             }
         }
         // Lauch Radio Silence counter measure.
@@ -855,7 +863,7 @@ public class Submarine : DetectableOceanEntity
         {
             if (!UsingCounterMeasure())
             {
-                counterMeasures[1].UseCounterMeasure(this);
+                radioSilence.UseCounterMeasure(this);
             }
         }
         // Lauch Bait Decoy counter measure.
@@ -863,16 +871,16 @@ public class Submarine : DetectableOceanEntity
         {
             if (!UsingCounterMeasure())
             {
-                counterMeasures[2].UseCounterMeasure(this);
+                baitDecoy.UseCounterMeasure(this);
             }
         }
     }
 
     private bool UsingCounterMeasure()
     {
-        for (int x = 0; x < counterMeasures.Count; x++)
+        for (int x = 0; x < allCounterMeasures.Count; x++)
         {
-            if (!counterMeasures[x].readyToUse)
+            if (!allCounterMeasures[x].readyToUse)
             {
                 return true;
             }

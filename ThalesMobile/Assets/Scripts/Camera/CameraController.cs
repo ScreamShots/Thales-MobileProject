@@ -13,7 +13,7 @@ public class CameraController : MonoBehaviour
     public Transform target = null;
 
     [Header("Zoom Parameter")]
-    [TweekFlag(FieldUsage.Gameplay)] [Range(0, 1)] public float zoomIntensity;
+    [Range(0, 1)] public float zoomIntensity;
     [TweekFlag(FieldUsage.Gameplay)] [Range(1, 10)] public float zoomSpeed = 5;
     [TweekFlag(FieldUsage.Gameplay)] public CameraSettings camSett;
     private float aimAngle;

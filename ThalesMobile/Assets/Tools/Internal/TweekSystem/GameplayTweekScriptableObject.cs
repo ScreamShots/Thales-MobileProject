@@ -1,4 +1,4 @@
-//Random Generatated char value: cb06e2f3-9420-4002-a9bc-4beea3918537
+//Random Generatated char value: 38e1147c-58b7-4abf-a2b7-5fb5019cde68
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,17 +14,16 @@ public class GameplayTweekScriptableObject : ScriptableObject
 [Path("From")] public string s0_From = "Assets/Prefabs";
 
 [Header("GameObject: Camera")]
-[Id("Camera Component - ID:")] public string s1Id = "ceb9f8bd-e761-4d51-8222-f15e211fb6b5";
+[Id("Camera Component - ID:")] public string s1Id = "21a5c2a2-55e3-4525-af37-5033db8e3a84";
 
-[Comp("CameraController Component - ID:")] public string s2Comp = "ceb9f8bd-e761-4d51-8222-f15e211fb6b5_4f2c5582-df6f-4025-bd1b-756da6ec3399";
+[Comp("CameraController Component - ID:")] public string s2Comp = "21a5c2a2-55e3-4525-af37-5033db8e3a84_16429c5f-0eb5-411a-8ee1-69f7caa274d1";
 
-[Var("zoomIntensity")] [Tooltip("zoomIntensity")] public float zoomIntensity_ceb9f8bdµe761µ4d51µ8222µf15e211fb6b5_4f2c5582µdf6fµ4025µbd1bµ756da6ec3399;
-[Var("zoomSpeed")] [Tooltip("zoomSpeed")] public float zoomSpeed_ceb9f8bdµe761µ4d51µ8222µf15e211fb6b5_4f2c5582µdf6fµ4025µbd1bµ756da6ec3399;
-[Var("camSett")] [Tooltip("camSett")] public CameraSettings camSett_ceb9f8bdµe761µ4d51µ8222µf15e211fb6b5_4f2c5582µdf6fµ4025µbd1bµ756da6ec3399;
-[Var("aimLerpSpeed")] [Tooltip("aimLerpSpeed")] public float aimLerpSpeed_ceb9f8bdµe761µ4d51µ8222µf15e211fb6b5_4f2c5582µdf6fµ4025µbd1bµ756da6ec3399;
-[Var("moveSpeed")] [Tooltip("moveSpeed")] public float moveSpeed_ceb9f8bdµe761µ4d51µ8222µf15e211fb6b5_4f2c5582µdf6fµ4025µbd1bµ756da6ec3399;
-[Var("refocusSpeed")] [Tooltip("refocusSpeed")] public float refocusSpeed_ceb9f8bdµe761µ4d51µ8222µf15e211fb6b5_4f2c5582µdf6fµ4025µbd1bµ756da6ec3399;
-[Var("mouvLerpSpeed")] [Tooltip("mouvLerpSpeed")] public float mouvLerpSpeed_ceb9f8bdµe761µ4d51µ8222µf15e211fb6b5_4f2c5582µdf6fµ4025µbd1bµ756da6ec3399;
+[Var("zoomSpeed")] [Tooltip("zoomSpeed")] public float zoomSpeed_21a5c2a2µ55e3µ4525µaf37µ5033db8e3a84_16429c5fµ0eb5µ411aµ8ee1µ69f7caa274d1;
+[Var("camSett")] [Tooltip("camSett")] public CameraSettings camSett_21a5c2a2µ55e3µ4525µaf37µ5033db8e3a84_16429c5fµ0eb5µ411aµ8ee1µ69f7caa274d1;
+[Var("aimLerpSpeed")] [Tooltip("aimLerpSpeed")] public float aimLerpSpeed_21a5c2a2µ55e3µ4525µaf37µ5033db8e3a84_16429c5fµ0eb5µ411aµ8ee1µ69f7caa274d1;
+[Var("moveSpeed")] [Tooltip("moveSpeed")] public float moveSpeed_21a5c2a2µ55e3µ4525µaf37µ5033db8e3a84_16429c5fµ0eb5µ411aµ8ee1µ69f7caa274d1;
+[Var("refocusSpeed")] [Tooltip("refocusSpeed")] public float refocusSpeed_21a5c2a2µ55e3µ4525µaf37µ5033db8e3a84_16429c5fµ0eb5µ411aµ8ee1µ69f7caa274d1;
+[Var("mouvLerpSpeed")] [Tooltip("mouvLerpSpeed")] public float mouvLerpSpeed_21a5c2a2µ55e3µ4525µaf37µ5033db8e3a84_16429c5fµ0eb5µ411aµ8ee1µ69f7caa274d1;
 
 [Space]
 [Path("From")] public string s3_From = "Assets/Prefabs/Assets/Prefabs/InterestPoints";
@@ -142,6 +141,9 @@ public class GameplayTweekScriptableObject : ScriptableObject
 [Var("sonobuoyVigiIncr")] [Tooltip("sonobuoyVigiIncr")] public float sonobuoyVigiIncr_b37c2e93µaa03µ4086µ988dµ7ac4188c2d2c_bd1bd582µbd2fµ42b4µa0c3µ15dd959bd187;
 [Var("fregateStationaryVigiIncr")] [Tooltip("fregateStationaryVigiIncr")] public float fregateStationaryVigiIncr_b37c2e93µaa03µ4086µ988dµ7ac4188c2d2c_bd1bd582µbd2fµ42b4µa0c3µ15dd959bd187;
 [Var("fregateMoveVigiIncr")] [Tooltip("fregateMoveVigiIncr")] public float fregateMoveVigiIncr_b37c2e93µaa03µ4086µ988dµ7ac4188c2d2c_bd1bd582µbd2fµ42b4µa0c3µ15dd959bd187;
+[Var("headingChange")] [Tooltip("headingChange")] public CounterMeasure headingChange_b37c2e93µaa03µ4086µ988dµ7ac4188c2d2c_bd1bd582µbd2fµ42b4µa0c3µ15dd959bd187;
+[Var("radioSilence")] [Tooltip("radioSilence")] public CounterMeasure radioSilence_b37c2e93µaa03µ4086µ988dµ7ac4188c2d2c_bd1bd582µbd2fµ42b4µa0c3µ15dd959bd187;
+[Var("baitDecoy")] [Tooltip("baitDecoy")] public CounterMeasure baitDecoy_b37c2e93µaa03µ4086µ988dµ7ac4188c2d2c_bd1bd582µbd2fµ42b4µa0c3µ15dd959bd187;
 [Var("minRange")] [Tooltip("minRange")] public float minRange_b37c2e93µaa03µ4086µ988dµ7ac4188c2d2c_bd1bd582µbd2fµ42b4µa0c3µ15dd959bd187;
 [Var("subZone12Subdivision")] [Tooltip("subZone12Subdivision")] public int subZone12Subdivision_b37c2e93µaa03µ4086µ988dµ7ac4188c2d2c_bd1bd582µbd2fµ42b4µa0c3µ15dd959bd187;
 [Var("subZone3SubSubdivision")] [Tooltip("subZone3SubSubdivision")] public int subZone3SubSubdivision_b37c2e93µaa03µ4086µ988dµ7ac4188c2d2c_bd1bd582µbd2fµ42b4µa0c3µ15dd959bd187;
