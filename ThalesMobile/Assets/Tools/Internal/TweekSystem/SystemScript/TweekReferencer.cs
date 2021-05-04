@@ -43,10 +43,25 @@ public struct TweekReference
     {
         Attribute[] attr = null;
         bool tagged = false;
+        bool findInParents = false;
 
         if (component != null)
         {
-            if (component.transform.root.gameObject != holder.gameObject)
+            GameObject tempGO = component.gameObject;
+
+            while (tempGO != component.transform.root.gameObject)
+            {
+                if(tempGO == holder.gameObject)
+                {
+                    findInParents = true;
+                    break;
+                }
+                tempGO = tempGO.transform.parent.gameObject;
+            }
+
+            if(tempGO == holder.gameObject) findInParents = true;
+
+            if (!findInParents)
             {
                 Debug.Log("A component referenced on TweekReferencer is not located on the same GO as the referencer");
                 Debug.Log("The reference will be reset. Source: " + holder.gameObject.name + " Component: " + component.GetType().ToString());

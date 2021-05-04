@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System;
 
-[Serializable]
-public class CameraSettings
+[Serializable, CreateAssetMenu(menuName = "Camera / Camera Settings" )]
+public class CameraSettings : ScriptableObject
 {
     public float minAngle;
     public float maxAngle;
