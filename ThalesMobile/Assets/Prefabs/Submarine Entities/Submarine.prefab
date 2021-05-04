@@ -133,7 +133,7 @@ MonoBehaviour:
   serializedGuid: 932e7cb303aa8640988d7ac4188c2d2c
   thisObjState: 2
   initState: 2
-  instanceID: 29248
+  instanceID: 33902
   referencedComponents:
   - component: {fileID: 7664084496329710959}
     serializedGuid: 82d51bbd2fbdb442a0c315dd959bd187
@@ -196,10 +196,9 @@ MonoBehaviour:
   detectedByFlashMaterial: {fileID: 2100000, guid: 7535ace726392444ca0609fc7e13d602,
     type: 2}
   decoy: {fileID: 0}
-  counterMeasures:
-  - {fileID: 11400000, guid: c5625d4f2b46dcc42ab7b5841efdaf59, type: 2}
-  - {fileID: 11400000, guid: afa7559d38532e5438d14596ef1032c5, type: 2}
-  - {fileID: 11400000, guid: b23b70fa501456c4d81115c3fde9927c, type: 2}
+  headingChange: {fileID: 11400000, guid: b23b70fa501456c4d81115c3fde9927c, type: 2}
+  radioSilence: {fileID: 11400000, guid: afa7559d38532e5438d14596ef1032c5, type: 2}
+  baitDecoy: {fileID: 11400000, guid: afa7559d38532e5438d14596ef1032c5, type: 2}
   pointsToHack: 3
   pointsHacked: 0
   interestPoints:
