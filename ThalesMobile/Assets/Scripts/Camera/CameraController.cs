@@ -47,10 +47,10 @@ public class CameraController : MonoBehaviour
     void Start()
     {
         lookAtTraget = false;
+        cam = Camera.main;
 
         if (!standAloneMode)
         {
-            cam = Camera.main;
             GameManager.Instance.cameraController = this;
             GameManager.Instance.inputManager.mainCamera = cam;
             GameManager.Instance.inputManager.camController = this;
@@ -62,7 +62,7 @@ public class CameraController : MonoBehaviour
     }
     void Update()
     {
-        if (!standAloneMode)
+        if (standAloneMode)
         {
             moveDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         }
