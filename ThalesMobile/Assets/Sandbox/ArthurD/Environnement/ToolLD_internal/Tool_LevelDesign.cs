@@ -188,7 +188,6 @@ namespace Thales.Tool.LevelDesign
                 ScalePointCorrection();
             }
             oldLimit = limit;
-            */
             #endregion
             */
         }

@@ -127,7 +127,7 @@ public static class SeaTextureGenerator
         List<Color> zoneColor = new List<Color>() { Color.black, Color.green, Color.blue };
         if(map.zones.Length != 0)
         {
-            zoneColor.RemoveRange(1,3);
+            zoneColor.RemoveRange(1,2);
             for (int i = 0; i < map.zones.Length; i++)
             {
                 zoneColor.Add(map.zones[i].debugColor);
@@ -173,7 +173,7 @@ public static class SeaTextureGenerator
             for (int y = 0; y < textureSize; y++)
             {
                 tempColor = zoneColor[map.ZoneIn(new Vector2(textStartPosX + (x * inverseDetail), textStartPosY + (y * inverseDetail)))];
-                texture.SetPixel(x, (textureSize - 1) - y, tempColor);
+                texture.SetPixel((textureSize - 1) - x, (textureSize - 1) - y, tempColor);
             }
         }
 
