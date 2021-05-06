@@ -9,11 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5d848a326f70294b80fed3773f9353a, type: 3}
-  m_Name: Heading PlaceHolder
+  m_Script: {fileID: 11500000, guid: 1da19df23f596de4da95599f4e59924e, type: 3}
+  m_Name: MADPaul
   m_EditorClassIdentifier: 
-  readyToUse: 1
-  loadingTime: 3
-  duration: 0
-  cooldownTime: 30
-  vigilanceCostValue: 10
+  currentUser: {fileID: 0}
+  chargeMax: 1
+  chargeStart: 1
+  loadingTime: 0
+  feedbackPrefab: {fileID: 4055348371840378350, guid: 7f28f84e30562ca4fa86f57ea3fe3e4f,
+    type: 3}
+  range: 8

@@ -365,7 +365,7 @@ Transform:
   m_GameObject: {fileID: 339487588296703153}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0.41200072}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children: []
   m_Father: {fileID: 339487588171123536}
   m_RootOrder: 0
@@ -566,7 +566,7 @@ MonoBehaviour:
   serializedGuid: bd00a9cf1098084db5f623efaf541d01
   thisObjState: 2
   initState: 2
-  instanceID: 30214
+  instanceID: 83506
   referencedComponents:
   - component: {fileID: 339487588899374384}
     serializedGuid: ea62e786c0c3de4fb40542694734145d
@@ -597,9 +597,9 @@ MonoBehaviour:
   nextWaypointDistance: 0
   waypointAhead: 0
   pathDestination: {x: 0, y: 0}
-  speed: 7.5
-  acceleration: 2
-  rotateSpeed: 100
+  speed: 6.5
+  acceleration: 1.5
+  rotateSpeed: 150
   movementType: 0
   currentTargetPoint: {x: -9999, y: -9999}
   nullVector: {x: -9999, y: -9999}
@@ -614,8 +614,8 @@ MonoBehaviour:
   targetGroup: {fileID: -9015305574639715243, guid: 9b41315a36bc40a4ea458016676fd8f1,
     type: 2}
   movementSound: {fileID: 8300000, guid: ecfcddd4b902f45428acafb17c08f0f1, type: 3}
-  passiveEquipement: {fileID: 11400000, guid: 7d9d2ea8901df0a4790dcc43f4e1b499, type: 2}
-  activeEquipement: {fileID: 11400000, guid: ff0fc0b824898a343b261ecf5d750dee, type: 2}
+  passiveEquipement: {fileID: 11400000, guid: fdd1a822afff99a479aeca2cfcd71a7e, type: 2}
+  activeEquipement: {fileID: 11400000, guid: 8c36fd8269da1a347a940f931d708c6c, type: 2}
 --- !u!82 &8829441465545371547
 AudioSource:
   m_ObjectHideFlags: 0
@@ -932,7 +932,7 @@ Transform:
   m_GameObject: {fileID: 339487589551529424}
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 2, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 339487588171123536}
   m_Father: {fileID: 339487588899374399}

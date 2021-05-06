@@ -53,7 +53,7 @@ MonoBehaviour:
   serializedGuid: 12ef4bc98428e84cb00cbbf99bfdc668
   thisObjState: 2
   initState: 2
-  instanceID: 37422
+  instanceID: 82984
   referencedComponents:
   - component: {fileID: 6909696174531460104}
     serializedGuid: e80189436bfa4542aa3d45df27cb0ad2
@@ -74,7 +74,7 @@ MonoBehaviour:
   hackProgression: 0
   hackTime: 40
   hackingRange: 0.2
-  sendAlert: 1
+  sendAlert: 0
   detectionAlertRange: 3.26
   timeInRangeBeforeAlert: 2
   rangeDisplay: {fileID: 6909696174622980101}
@@ -99,7 +99,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6909696174622980103
 Transform:
   m_ObjectHideFlags: 0

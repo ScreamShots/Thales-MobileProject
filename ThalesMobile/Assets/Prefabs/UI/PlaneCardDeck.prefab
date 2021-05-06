@@ -362,7 +362,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
+  m_fontSize: 30
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -513,7 +513,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   card: {fileID: 7493039114023167528}
-  sonobuyDeployer: {fileID: 11400000, guid: ff0fc0b824898a343b261ecf5d750dee, type: 2}
+  sonobuyDeployer: {fileID: 11400000, guid: 8c36fd8269da1a347a940f931d708c6c, type: 2}
   chargeCountText: {fileID: 8129632896077130910}
   fillBar: {fileID: 2896564614331192620}
   audioSource: {fileID: 3384431157845278522}
@@ -1061,7 +1061,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.79015684, y: 0.32500002}
   m_AnchorMax: {x: 0.95100003, y: 0.8135492}
-  m_AnchoredPosition: {x: 0.00039672852, y: -0.0005187988}
+  m_AnchoredPosition: {x: 0.00036621094, y: -0.0005187988}
   m_SizeDelta: {x: -0.00047302246, y: -0.0004348755}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2779813810894073978

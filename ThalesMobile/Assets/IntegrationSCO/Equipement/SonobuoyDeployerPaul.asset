@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 099a36c3156481d4aa022550da67430b, type: 3}
+  m_Name: SonobuoyDeployerPaul
+  m_EditorClassIdentifier: 
+  currentUser: {fileID: 0}
+  chargeMax: 3
+  chargeStart: 3
+  loadingTime: 10
+  feedbackPrefab: {fileID: 65424318342107703, guid: a4fbc6e6358c2f149bc399c2d0aefc08,
+    type: 3}
+  sonobuoyLifeTime: 20
+  sonobuoyRange: 5
+  turbulentSeaFactor: 0.75
+  sonobuoyPrefab: {fileID: 2607549249886408468, guid: f94c7cd5ce464f041bc77ba13f2c3171,
+    type: 3}
+  poolSize: 6
+  availaibleSonobuoys:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  usedSonobuoys: []
+  sonobuyTargetFeedbackPrefab: {fileID: 107788761763119437, guid: 821734bb5a294ce45bdc084a25bce773,
+    type: 3}
