@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   captasWaveRenderer: {fileID: 5001957241987241436}
   progressionMin: 3.5
-  progressionMax: 5.32
+  progressionMax: 5.043
   targetGroup: {fileID: -9015305574639715243, guid: 9b41315a36bc40a4ea458016676fd8f1,
     type: 2}
   waveSound: {fileID: 8300000, guid: b4b9e01156b77f14ca3a45eb8c0a8d55, type: 3}
@@ -175,7 +175,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6409486226928082747}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 5, z: 0}
+  m_LocalPosition: {x: 0, y: 0.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1906850249946437919}

@@ -92,7 +92,6 @@ namespace PlayerEquipement
             //then drop sonobuoy
             if (user.currentTargetPoint == user.nullVector)
             {
-                Debug.Log("DROP");
                 temp.SetActive(true);
                 sonobuyTargetFeedback.SetActive(false);
 
