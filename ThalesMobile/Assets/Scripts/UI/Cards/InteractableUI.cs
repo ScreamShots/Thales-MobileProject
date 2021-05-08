@@ -16,15 +16,16 @@ public class InteractableUI : MonoBehaviour
     public TweeningAnimator holdAnim;
     public TweeningAnimator selectedAnim;
     public bool darkenBackWhileHold;
-    public bool canBeSelected;
 
     [HideInInspector] public bool isDragged;
     [HideInInspector] public bool isSelected;
     [HideInInspector] public bool descriptionOpened;
+    [HideInInspector] public bool canClick;
+    [HideInInspector] public bool canDrag;
+    [HideInInspector] public bool canHold;
 
     private bool pointerEnter;
     private float holdTime;
-
 
     //Delegates
     public delegate void Abort();
@@ -62,6 +63,10 @@ public class InteractableUI : MonoBehaviour
 
         holdAnim.GetCanvasGroup();
         holdAnim.anim = Instantiate(holdAnim.anim);
+
+        canClick = true;
+        canHold = true;
+        canDrag = true;
     }
 
     private void Update()
@@ -73,9 +78,10 @@ public class InteractableUI : MonoBehaviour
 
         if (holdTime > 0.8f && !deckUI.descriptionOpened)
         {
-            deckUI.OpenDescription();
+            if(canHold)
+                deckUI.OpenDescription();
 
-            if (holdHandler != null)
+            if (holdHandler != null && canHold)
                 holdHandler();
         }
     }
@@ -104,27 +110,27 @@ public class InteractableUI : MonoBehaviour
     #region   InterfaceEvents
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if(beginDragHandler!=null)
+        if(beginDragHandler!=null && canDrag)
             beginDragHandler();
 
         isDragged = true;
 
-        if (dragAnim.rectTransform != null)
+        if (dragAnim.rectTransform != null && canDrag)
             StartCoroutine(dragAnim.anim.Play(dragAnim, dragAnim.originalPos));
     }
     public void OnEndDrag(PointerEventData eventData)
     {
-        if(endDragHandler!=null)
+        if(endDragHandler!=null && canDrag)
             endDragHandler();
 
-        if (dragAnim.rectTransform != null)
+        if (dragAnim.rectTransform != null && canDrag)
             StartCoroutine(dragAnim.anim.PlayBackward(dragAnim, dragAnim.originalPos, true));
     }
     public void OnPointerUp(PointerEventData eventData)
     {
         if (holdTime < 0.8f && !isDragged)
         {
-            if(clickHandler!=null)
+            if(clickHandler != null && canClick)
                 clickHandler();
         }
 

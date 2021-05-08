@@ -28,10 +28,10 @@ public class EntitiesSelectionButton : MonoBehaviour
 
     public void SelectEntity()
     {
-        if (manager.currentButton != null && manager.currentButton != this)
+        if (manager.currentButton != null && manager.currentButton != this && manager.currentButton.gameObject.activeInHierarchy)
             manager.currentButton.Deselect();
 
-        if(manager.currentButton != this)
+        if(manager.currentButton != this && gameObject.activeInHierarchy)
         {
             StartCoroutine(animator.anim.Play(animator, animator.originalPos));
             StartCoroutine(spotlightAnim.anim.Play(spotlightAnim, spotlightAnim.originalPos));
@@ -40,7 +40,9 @@ public class EntitiesSelectionButton : MonoBehaviour
         manager.currentButton = this;
 
         GameManager.Instance.playerController.currentSelectedEntity = linkedEntity;
-        GameManager.Instance.uiHandler.entityDeckUI.UpdateCurrentDeck(linkedEntity.entityDeck);
+
+        if(linkedEntity.entityDeck.activeInHierarchy)
+            GameManager.Instance.uiHandler.entityDeckUI.UpdateCurrentDeck(linkedEntity.entityDeck);
 
         if(GameManager.Instance.cameraController != null)
             GameManager.Instance.cameraController.SetTarget(linkedEntity.transform);

@@ -14,6 +14,8 @@ public class MovementCard : MonoBehaviour
     public AudioClip descriptionAppearSound;
     public AudioClip cardSelectionSound;
 
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,24 +41,24 @@ public class MovementCard : MonoBehaviour
 
     public void OnClickEvent()
     {
-        if(card.isSelected)
-        {
-            card.abortHandler();
-        }
-        else
-        {
-            //Deselect and abort current selected card.
-            if(inputManager.currentSelectedCard != null)
+            if(card.isSelected)
             {
-                inputManager.currentSelectedCard.abortHandler();
+                card.abortHandler();
             }
+            else
+            {
+                //Deselect and abort current selected card.
+                if(inputManager.currentSelectedCard != null)
+                {
+                    inputManager.currentSelectedCard.abortHandler();
+                }
 
-            //Select new card and link to input manager.
-            card.Select();
-            soundHandler.PlaySound(cardSelectionSound, audioSource, targetGroup);
-            inputManager.getEntityTarget = true;
-            inputManager.currentSelectedCard = card;
-        }
+                //Select new card and link to input manager.
+                card.Select();
+                soundHandler.PlaySound(cardSelectionSound, audioSource, targetGroup);
+                inputManager.getEntityTarget = true;
+                inputManager.currentSelectedCard = card;
+            }
     }
 
     public void OnBeginDragEvent()

@@ -12,6 +12,7 @@ public class TutorialManager : MonoBehaviour
     private UIHandler uiHandler;
     private CameraController cameraController;
     private LevelManager levelManager;
+    private PlayerController playerController;
 
 
     //Entities
@@ -41,6 +42,7 @@ public class TutorialManager : MonoBehaviour
     public GameObject textContainer_5;
     public TextMeshProUGUI screenText_5;
     [Space]
+    public GameObject targetScreen_6;
     public GameObject textContainer_6a;
     public TextMeshProUGUI screenText_6a;
     public GameObject textContainer_6b;
@@ -54,6 +56,7 @@ public class TutorialManager : MonoBehaviour
         uiHandler = gameManager.uiHandler;
         cameraController = gameManager.cameraController;
         levelManager = gameManager.levelManager;
+        playerController = gameManager.playerController;
 
         for (int i = 0; i < levelManager.playerOceanEntities.Count; i++)
         {
@@ -149,7 +152,7 @@ public class TutorialManager : MonoBehaviour
         inputManager.canUseCam = true;
         inputManager.canMoveCam = false;
 
-        yield return new WaitUntil(() => GameManager.Instance.playerController.currentSelectedEntity == tutorialShip);
+        yield return new WaitUntil(() => playerController.currentSelectedEntity == tutorialShip);
 
         inputManager.canUseCam = false;
         inputManager.canMoveCam = true;
@@ -164,27 +167,50 @@ public class TutorialManager : MonoBehaviour
 
                 uiHandler.entitiesSelectionUI.gameObject.SetActive(true);
                 uiHandler.entitiesSelectionUI.currentButton = null;
-                GameManager.Instance.playerController.currentSelectedEntity = null;
+                playerController.currentSelectedEntity = null;
 
-                yield return new WaitUntil(() => GameManager.Instance.playerController.currentSelectedEntity == tutorialShip);
+                yield return new WaitUntil(() => playerController.currentSelectedEntity == tutorialShip);
 
                 textContainer_5.SetActive(false);
+
+                yield return new WaitForSeconds(1);
+
         #endregion
 
-
-        #region Screen 6 : Plane Appartion
+        #region Screen 6 : DeckUI Apparition
         textContainer_6a.SetActive(true);
         textContainer_6b.SetActive(true);
         screenText_6a.text = "Tout les batiments ont des <b>équipements</b>";
         screenText_6b.text = "<b>Appuyez</b> et faites <b>glisser</b> la <b>carte déplacement</b> à l'endroit désigné";
 
+        uiHandler.entityDeckUI.gameObject.SetActive(true);
+        uiHandler.entityDeckUI.UpdateCurrentDeck(uiHandler.entitiesSelectionUI.currentButton.linkedEntity.entityDeck);
 
+        yield return new WaitForEndOfFrame();
 
+        InteractableUI shipEquipementCard = uiHandler.entityDeckUI.currentDeck.GetComponent<Deck>().equipementCard;
+        InteractableUI shipMovementCard = uiHandler.entityDeckUI.currentDeck.GetComponent<Deck>().movementCard;
+        InteractableUI shipPassiveCard = uiHandler.entityDeckUI.currentDeck.GetComponent<Deck>().passiveCard;
 
+        shipEquipementCard.gameObject.SetActive(false);
+        shipMovementCard.canClick = false;
+        shipPassiveCard.canHold = false;
 
+        targetScreen_6.SetActive(true);
+        
+        Vector2 currentTarget = Coordinates.ConvertWorldToVector2(targetScreen_6.transform.position);
+        yield return new WaitUntil(() => (playerController.currentSelectedEntity.currentTargetPoint  - currentTarget).magnitude < 1);
 
+        shipMovementCard.canDrag = false;
+        shipMovementCard.canClick = false;
+
+        yield return new WaitUntil(() => playerController.currentSelectedEntity.currentTargetPoint == playerController.currentSelectedEntity.nullVector);
         textContainer_6a.SetActive(false);
         textContainer_6b.SetActive(false);
+        #endregion
+
+        #region Screen 7 : Click on card
+
         #endregion
     }
 
