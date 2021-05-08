@@ -119,6 +119,7 @@ public class CameraController : MonoBehaviour
             zoomIntensity = Mathf.Lerp(baseZoom, baseZoom + distance, time);
             yield return null;
         }
+        zoomIntensity = value;
     }
 
 
