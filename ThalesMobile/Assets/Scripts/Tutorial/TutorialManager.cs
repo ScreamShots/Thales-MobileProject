@@ -47,7 +47,34 @@ public class TutorialManager : MonoBehaviour
     public TextMeshProUGUI screenText_6a;
     public GameObject textContainer_6b;
     public TextMeshProUGUI screenText_6b;
-
+    [Space]
+    public GameObject textContainer_7;
+    public TextMeshProUGUI screenText_7;
+    [Space]
+    public GameObject textContainer_8;
+    public TextMeshProUGUI screenText_8;
+    [Space]
+    public GameObject textContainer_9;
+    public TextMeshProUGUI screenText_9;
+    [Space]
+    public GameObject textContainer_10;
+    public TextMeshProUGUI screenText_10;
+    public GameObject shipTargetScreen_10;
+    public GameObject planeTargetScreen_10;
+    [Space]
+    public GameObject textContainer_11;
+    public TextMeshProUGUI screenText_11;
+    [Space]
+    public GameObject textContainer_12;
+    public TextMeshProUGUI screenText_12;
+    [Space]
+    public GameObject textContainer_13;
+    public TextMeshProUGUI screenText_13;
+    [Space]
+    public GameObject textContainer_14a;
+    public TextMeshProUGUI screenText_14a;
+    public GameObject textContainer_14b;
+    public TextMeshProUGUI screenText_14b;
     // Start is called before the first frame update
     void Start()
     {
@@ -98,7 +125,16 @@ public class TutorialManager : MonoBehaviour
         tutorialPlane.gameObject.SetActive(false);
         tutorialShip.gameObject.SetActive(false);
 
+        InteractableUI shipEquipementCard = tutorialShip.entityDeck.GetComponent<Deck>().equipementCard;
+        InteractableUI shipMovementCard = tutorialShip.entityDeck.GetComponent<Deck>().movementCard;
+        InteractableUI shipPassiveCard = tutorialShip.entityDeck.GetComponent<Deck>().passiveCard;
 
+        InteractableUI planeEquipementCard = tutorialPlane.entityDeck.GetComponent<Deck>().equipementCard;
+        InteractableUI planeMovementCard = tutorialPlane.entityDeck.GetComponent<Deck>().movementCard;
+        InteractableUI planePassiveCard = tutorialPlane.entityDeck.GetComponent<Deck>().passiveCard;
+
+        shipEquipementCard.gameObject.SetActive(false);
+        planeEquipementCard.gameObject.SetActive(false);
 
         #region Screen 1 : Tutorial Introduction
         opaquePanel.SetActive(true);
@@ -188,11 +224,7 @@ public class TutorialManager : MonoBehaviour
 
         yield return new WaitForEndOfFrame();
 
-        InteractableUI shipEquipementCard = uiHandler.entityDeckUI.currentDeck.GetComponent<Deck>().equipementCard;
-        InteractableUI shipMovementCard = uiHandler.entityDeckUI.currentDeck.GetComponent<Deck>().movementCard;
-        InteractableUI shipPassiveCard = uiHandler.entityDeckUI.currentDeck.GetComponent<Deck>().passiveCard;
 
-        shipEquipementCard.gameObject.SetActive(false);
         shipMovementCard.canClick = false;
         shipPassiveCard.canHold = false;
 
@@ -205,16 +237,151 @@ public class TutorialManager : MonoBehaviour
         shipMovementCard.canClick = false;
 
         yield return new WaitUntil(() => playerController.currentSelectedEntity.currentTargetPoint == playerController.currentSelectedEntity.nullVector);
+
+        targetScreen_6.SetActive(false);
         textContainer_6a.SetActive(false);
         textContainer_6b.SetActive(false);
         #endregion
 
         #region Screen 7 : Click on card
+        textContainer_7.SetActive(true);
+        screenText_7.text = "Vous pouvez aussi <b>appuyer</b> sur la carte de déplacement pour que celle-ci soit <b>séléctionnée</b>";
+        shipMovementCard.canClick = true;
+
+        yield return new WaitUntil(() => shipMovementCard.isSelected);
+
+        shipMovementCard.canClick = false;
+        textContainer_7.SetActive(false);
+        #endregion
+
+        #region Screen 8 : Click on screen to move
+        textContainer_8.SetActive(true);
+        screenText_8.text = "Puis <b>appuyez</b> sur l'endroit de la zone où vous voulez <b>déplacer</b> votre bâtiment";
+
+        yield return new WaitUntil(() => playerController.currentSelectedEntity.currentTargetPoint != playerController.currentSelectedEntity.nullVector);
+
+        textContainer_8.SetActive(false);
+
+        yield return new WaitUntil(() => playerController.currentSelectedEntity.currentTargetPoint == playerController.currentSelectedEntity.nullVector);
+        #endregion
+
+        #region Screen 9 : Plane Apparition
+        textContainer_9.SetActive(true);
+        screenText_9.text = " Votre second bâtiment est un <b>avion de patrouille maritime</b> dit <b>PATMAR</b>. Il est bien plus <b>rapide</b> que la frégate. Vous pouvez le sélectionner dans le menu des bâtiment comme la frégate.";
+
+        tutorialPlane.gameObject.SetActive(true);
+        uiHandler.entitiesSelectionUI.buttons[0].gameObject.SetActive(true);
+
+        inputManager.canUseCam = true;
+        inputManager.canMoveCam = false;
+
+        yield return new WaitUntil(() => playerController.currentSelectedEntity == tutorialPlane);
+        tutorialPlane.entityDeck.SetActive(true);
+        uiHandler.entityDeckUI.UpdateCurrentDeck(tutorialPlane.entityDeck);
+
+        textContainer_9.SetActive(false);
+        #endregion
+
+        #region Screen 10 : Move Plane and Ship to target
+        textContainer_10.SetActive(true);
+        screenText_10.text = "<b>Déplacez</b> les deux batiments dans la <b>zone indiquée</b> pour chaque bâtiment";
+        planeTargetScreen_10.SetActive(true);
+        shipTargetScreen_10.SetActive(true);
+
+        Vector2 planeTarget = Coordinates.ConvertWorldToVector2(planeTargetScreen_10.transform.position);
+        Vector2 shipTarget = Coordinates.ConvertWorldToVector2(shipTargetScreen_10.transform.position);
+
+        planeEquipementCard.gameObject.SetActive(false);
+
+        shipMovementCard.canClick = true;
+        shipMovementCard.canDrag = true;
+
+        inputManager.canUseCam = true;
+        inputManager.canMoveCam = true;
+
+        yield return new WaitUntil(() => (tutorialPlane.coords.position - planeTarget).magnitude < 2 && (tutorialShip.coords.position - shipTarget).magnitude < 1);
+
+        inputManager.canUseCam = false;
+        inputManager.canMoveCam = false;
+
+        planeTargetScreen_10.SetActive(false);
+        shipTargetScreen_10.SetActive(false);
+        textContainer_10.SetActive(false);
+        #endregion
+
+        #region Screen 11 : Transition Screen
+        textContainer_11.SetActive(true);
+        screenText_11.text = "Votre objectif est de <b>détécter</b> les objets immergés, puis de les <b>identifier</b> pour trouver le sous-marin. Pour enfin le <b>faire fuir</b> grâce aux équipements <b>Thalès.</b>";
+        opaquePanel.SetActive(true);
+
+        yield return new WaitUntil(() => Input.touchCount == 1);
+        yield return new WaitUntil(() => Input.touchCount == 0);
+
+        opaquePanel.SetActive(false);
+        textContainer_11.SetActive(false);
+        #endregion
+
+        #region Screen 12 : Transition Screen 2
+        textContainer_12.SetActive(true);
+        screenText_12.text = "Il est possible de <b>détécter</b> des <b>objets immergés</b> de <b>plusieurs façons</b>.";
+
+        yield return new WaitUntil(() => Input.touchCount == 1);
+        yield return new WaitUntil(() => Input.touchCount == 0);
+
+        textContainer_12.SetActive(false);
+        #endregion
+
+        #region Screen 13 : Captas Card Appartition
+        textContainer_13.SetActive(true);
+        screenText_13.text = "Le CAPTAS détecte la position de tout les objets immergés sur la zone.";
+
+        shipEquipementCard.gameObject.SetActive(true);
+        shipMovementCard.canClick = false;
+        shipMovementCard.canDrag = false;
+
+        tutorialShip.linkedButton.SelectEntity();
+
+        yield return new WaitUntil(() => tutorialShip.activeEquipement.chargeCount == 0);
+
+        textContainer_13.SetActive(false);
+        shipEquipementCard.canClick = false;
+        shipEquipementCard.canDrag = false;
+
+        yield return new WaitForSeconds(1);
+        #endregion
+
+        #region Screen 14 : Sonobuy Card Appartion
+        textContainer_14a.SetActive(true);
+        textContainer_14b.SetActive(true);
+        screenText_14a.text = "La bouée Sonobuy détècte tout les objets immergés se trouvant dans sa portée.";
+        screenText_14b.text = "Appuyez et faites glisser la carte bouée jusqu'a l'endroit où vous souhaitez la larguer.";
+
+        planeEquipementCard.gameObject.SetActive(true);
+        tutorialPlane.linkedButton.SelectEntity();
+        planeMovementCard.canClick = false;
+        planeMovementCard.canDrag = false;
+
+        planeEquipementCard.canClick = true;
+        planeEquipementCard.canDrag = true;
+
+        yield return new WaitUntil(() => tutorialPlane.activeEquipement.chargeCount == tutorialPlane.activeEquipement.chargeMax - 1);
+
+        planeEquipementCard.canClick = false;
+        planeEquipementCard.canDrag = false;
+
+        textContainer_14a.SetActive(false);
+        textContainer_14b.SetActive(false);
+        #endregion
+
+        #region Screen 15 : Hull Sonar 
 
         #endregion
+
+
     }
 
 
 
 
 }
+ 

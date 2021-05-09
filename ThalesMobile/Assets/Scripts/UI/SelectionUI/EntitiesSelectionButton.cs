@@ -41,8 +41,9 @@ public class EntitiesSelectionButton : MonoBehaviour
 
         GameManager.Instance.playerController.currentSelectedEntity = linkedEntity;
 
-        if(linkedEntity.entityDeck.activeInHierarchy)
+        if (linkedEntity.entityDeck.activeInHierarchy)
             GameManager.Instance.uiHandler.entityDeckUI.UpdateCurrentDeck(linkedEntity.entityDeck);
+            
 
         if(GameManager.Instance.cameraController != null)
             GameManager.Instance.cameraController.SetTarget(linkedEntity.transform);
