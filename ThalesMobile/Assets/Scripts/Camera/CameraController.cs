@@ -32,6 +32,7 @@ public class CameraController : MonoBehaviour
 
     [Header("Map Limits")]
     public Boundary limit = new Boundary();
+    public Boundary limitDezoom = new Boundary();
 
     [Header("Debug")]
     public bool standAloneMode = false;
@@ -162,16 +163,13 @@ public class CameraController : MonoBehaviour
         Vector3 mouvement = new Vector3(dir.x, 0, dir.y) * moveSpeed * Time.deltaTime;
         Vector3 wantedPos = focusPoint.position + mouvement;
 
-        if (!limit.InBoundary(wantedPos))
-        {
-            wantedPos.x = Mathf.Clamp(wantedPos.x, limit.leftBorder, limit.rightBorder);
-            wantedPos.z = Mathf.Clamp(wantedPos.z, limit.downBorder, limit.upBorder);
-        }
+        wantedPos = ClampInCamZone(wantedPos);
 
         focusPoint.position = wantedPos;
     }
     private void FocusOnTarget()
     {
+
         Vector3 toTarget = (target.position - focusPoint.position);
         if (toTarget.magnitude > (toTarget.normalized).magnitude * refocusSpeed * Time.deltaTime)
         {
@@ -184,20 +182,80 @@ public class CameraController : MonoBehaviour
 
         Vector3 wantedPos = focusPoint.position + toTarget;
 
+        wantedPos = ClampInCamZone(wantedPos);
+
         focusPoint.position = new Vector3(wantedPos.x, 0 , wantedPos.z);
+    }
+
+    private Vector3 ClampInCamZone(Vector3 pos)
+    {
+        Vector3 result = pos;
+
+        result.x = Mathf.Clamp(pos.x, Mathf.Lerp(limit.leftBorder, limitDezoom.leftBorder, zoomIntensity), Mathf.Lerp(limit.rightBorder, limitDezoom.rightBorder, zoomIntensity));
+        result.z = Mathf.Clamp(pos.z, Mathf.Lerp(limit.downBorder, limitDezoom.downBorder, zoomIntensity), Mathf.Lerp(limit.upBorder, limitDezoom.upBorder, zoomIntensity));
+
+        return result;
     }
 
     //Debug
     private void OnDrawGizmos()
     {
-        DebugBoundary(debugSize, debugStep);
+        DebugBoundary(debugSize, debugStep, limit);
+        DebugBoundary(debugSize, debugStep, limitDezoom);
     }
-    private void DebugBoundary(float height, int step)
+    private void DebugBoundary(float height, int step, Boundary limit)
     {
         float ratio = height / step;
 
         if (drawLine)
         {
+            //Draw the rectangle
+            for (float tempHeight = 0; tempHeight <= height; tempHeight += ratio)
+            {
+                // _  
+                Vector3 drawPos = new Vector3(limit.leftBorder, tempHeight, limit.upBorder);
+                Debug.DrawRay(drawPos, Vector3.right * limit.size.x, edgeColor);
+                // _
+                //  |
+                drawPos += Vector3.right * limit.size.x;
+                Debug.DrawRay(drawPos, Vector3.back * limit.size.y, edgeColor);
+                // _
+                // _|
+                drawPos += Vector3.back * limit.size.y;
+                Debug.DrawRay(drawPos, Vector3.left * limit.size.x, edgeColor);
+                // _
+                //|_|
+                drawPos += Vector3.left * limit.size.x;
+                Debug.DrawRay(drawPos, Vector3.forward * limit.size.y, edgeColor);
+            }
+
+            Gizmos.color = edgeColor;
+            Gizmos.DrawWireCube(new Vector3(limit.offSet.x, height * 0.5f, limit.offSet.y), new Vector3(limit.size.x, height, limit.size.y));
+
+            Gizmos.color = Color.white;
+        }
+
+        if (focusPoint != null && drawFocusPoint)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(new Vector3(focusPoint.position.x, height, focusPoint.position.z), 0.5f);
+            Gizmos.color = Color.white;
+        }
+    }
+    private void DebugCamZone(Boundary limit, Boundary limitDezoom,int step)
+    {
+        float height = camSett.maxHeight - camSett.minHeight;
+        float ratio = height / step;
+
+        if (drawLine)
+        {
+            Vector4 lerpLimit = new Vector4(
+            Mathf.Lerp(limit.leftBorder, limitDezoom.leftBorder, zoomIntensity), 
+            Mathf.Lerp(limit.rightBorder, limitDezoom.rightBorder, zoomIntensity),
+            Mathf.Lerp(limit.downBorder, limitDezoom.downBorder, zoomIntensity), 
+            Mathf.Lerp(limit.upBorder, limitDezoom.upBorder, zoomIntensity)
+            );
+
             //Draw the rectangle
             for (float tempHeight = 0; tempHeight <= height; tempHeight += ratio)
             {

@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -416,7 +416,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 609701687}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 10, y: 1, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
@@ -509,7 +509,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1155534488}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4, z: 10.53}
+  m_LocalPosition: {x: 0, y: 0, z: 10.53}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -539,7 +539,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1595606992}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -576,9 +576,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusPoint: {fileID: 1595606993}
   cam: {fileID: 23866467}
-  lookAtTraget: 0
+  lookAtTraget: 1
   target: {fileID: 1155534492}
   zoomIntensity: 0
+  zoomSpeed: 5
   camSett:
     minAngle: 45
     maxAngle: 90
@@ -688,11 +689,19 @@ MonoBehaviour:
   moveSpeed: 10
   refocusSpeed: 100
   mouvLerpSpeed: 0.1
-  debug: 0
-  debugDir: {x: 0, y: 0}
+  moveDirection: {x: 0, y: 0}
   limit:
     size: {x: 20, y: 40}
     offSet: {x: 0, y: 0}
+  limitDezoom:
+    size: {x: 10, y: 20}
+    offSet: {x: 0, y: 0}
+  standAloneMode: 1
+  drawLine: 1
+  edgeColor: {r: 1, g: 0.9812064, b: 0, a: 1}
+  debugSize: 0.1
+  debugStep: 4
+  drawFocusPoint: 1
 --- !u!4 &2142819331
 Transform:
   m_ObjectHideFlags: 0
