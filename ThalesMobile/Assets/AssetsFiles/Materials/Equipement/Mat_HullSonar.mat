@@ -50,14 +50,15 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - AlphaClip: 0.8
-    - BoolProgressionControl: 0
+    - BoolProgressionControl: 1
     - BoolRangeCircle: 1
     - FlouInterieur: -40
     - LargeurInterieur: 70
     - LargeurOnde: 225
-    - ProgressionOnde: 0
-    - QuantiteOndes: 100
+    - ProgressionOnde: 3.76
+    - QuantiteOndes: 120
     - Thickness: 0.03
+    - Vector1_C6AEB02C: 1.51
     - VitesseOnde: -40
     - _AlphaClip: 0
     - _Blend: 0
