@@ -86,6 +86,13 @@ namespace PlayerEquipement
         [SerializeField]
         float animationsDuration;
         bool onGoingAnim;
+        [SerializeField]
+        Transform revealCanvasRT;
+        CameraController cameraController;
+        [SerializeField]
+        AnimationCurve revealScaleProgression;
+        Vector3 revealBaseScale;
+
 
         Dictionary<Type, RevealIcon> activeIcons;
         Dictionary<Type, AnimInfos> queue;
@@ -118,6 +125,9 @@ namespace PlayerEquipement
 
             activeIcons = new Dictionary<Type, RevealIcon>();
             queue = new Dictionary<Type, AnimInfos>();
+            
+            cameraController = GameManager.Instance.cameraController;
+            revealBaseScale = revealCanvasRT.localScale;
         }
 
         public IEnumerator ResetReveal()
@@ -165,6 +175,13 @@ namespace PlayerEquipement
             {
                 StartCoroutine(ResetReveal());
             }
+
+            if (revelationOn)
+            {
+                revealCanvasRT.forward = cameraController.cam.transform.forward;
+                revealCanvasRT.localScale = revealBaseScale * revealScaleProgression.Evaluate(cameraController.zoomIntensity / 1);
+            }
+                
         }
 
         public void DetectionRangeFeedBack(bool detection)
