@@ -220,6 +220,7 @@ public class TutorialManager : MonoBehaviour
         screenText_6b.text = "<b>Appuyez</b> et faites <b>glisser</b> la <b>carte déplacement</b> à l'endroit désigné";
 
         uiHandler.entityDeckUI.gameObject.SetActive(true);
+        uiHandler.entityDeckUI.currentDeck = null;
         uiHandler.entityDeckUI.UpdateCurrentDeck(uiHandler.entitiesSelectionUI.currentButton.linkedEntity.entityDeck);
 
         yield return new WaitForEndOfFrame();

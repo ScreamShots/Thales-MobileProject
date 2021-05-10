@@ -76,7 +76,7 @@ public class EntityDeckUI : MonoBehaviour
         
         if(currentDeck != newDeck)
         {
-            if (!newDeck.activeSelf)
+            if (!newDeck.activeInHierarchy)
                 newDeck.SetActive(true);
 
             currentDeck = newDeck;
