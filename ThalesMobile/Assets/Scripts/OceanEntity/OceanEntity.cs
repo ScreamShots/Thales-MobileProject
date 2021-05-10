@@ -35,9 +35,10 @@ namespace OceanEntities
         public float pathUpdatingFrequency;
         private Path path;
         private int currentWaypoint;
-        private float timeBeforeNextPathUpdate;
+        protected float timeBeforeNextPathUpdate;
         protected bool pathEndReached;
         protected Vector2 pathDirection;
+        private Vector2 lastValidPos;
         public float nextWaypointDistance;
         public int waypointAhead;
         [HideInInspector] public Vector2 pathDestination;
@@ -68,9 +69,10 @@ namespace OceanEntities
         /// </summary>
         protected Vector2 UpdatePath()
         {
-            Vector2 lastValidPos = pathDestination;
+
             if (timeBeforeNextPathUpdate <= 0)
             {
+                lastValidPos = pathDestination;
                 RaycastHit hit;
                 timeBeforeNextPathUpdate = pathUpdatingFrequency;
                 Debug.DrawLine(Coordinates.ConvertVector2ToWorld(coords.position) + Vector3.up * 0.9f, Coordinates.ConvertVector2ToWorld(pathDestination) + Vector3.up * 0.99f, Color.yellow, 0.5f);
@@ -85,6 +87,7 @@ namespace OceanEntities
                 else
                 {
                     Debug.DrawRay(hit.point, Vector3.up, Color.red, 0.5f);
+
                     CalculatePath();
 
                     if (path != null)
@@ -92,8 +95,8 @@ namespace OceanEntities
                         if (environment.ZoneIn(pathDestination) != 0
                             && environment.zones[environment.ZoneIn(pathDestination) - 1].state == ZoneState.LandCoast)
                         {
-                            lastValidPos = Coordinates.ConvertWorldToVector2(path.vectorPath[path.vectorPath.Count - 1]);
                         }
+                        lastValidPos = Coordinates.ConvertWorldToVector2(path.vectorPath[path.vectorPath.Count - 1]);
 
                         if (currentWaypoint >= path.vectorPath.Count)
                         {

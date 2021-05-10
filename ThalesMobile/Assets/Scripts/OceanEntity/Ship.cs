@@ -45,7 +45,7 @@ namespace OceanEntities
             passiveEquipement.Init(this);
             activeEquipement.Init(this);
         }
-
+        Vector2 lastValidPos;
         private void Update()
         {
             if (passiveEquipement.readyToUse)
@@ -53,7 +53,15 @@ namespace OceanEntities
 
             if (currentTargetPoint != nullVector)
             {
-                UpdatePath();
+                pathDestination = currentTargetPoint;
+                lastValidPos =  UpdatePath();
+
+                if (currentTargetPoint != lastValidPos)
+                {
+                    currentTargetPoint = lastValidPos;
+                    pathDestination = currentTargetPoint;
+                    timeBeforeNextPathUpdate = 0;
+                }
 
                 if (audioSource.clip != movementSound && fading)
                 {

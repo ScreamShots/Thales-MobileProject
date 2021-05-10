@@ -44,6 +44,12 @@ namespace OceanEntities
                 {
                     targetPoint.SetActive(true);
                     targetArrow.SetActive(false);
+
+                    if (renderedEntity.currentTargetPoint == renderedEntity.nullVector)
+                    {
+                        targetArrow.SetActive(false);
+                        targetPoint.SetActive(false);
+                    }
                 }
                 else
                 {
@@ -68,7 +74,6 @@ namespace OceanEntities
                 else
                 {
                     targetPoint.transform.position = Coordinates.ConvertVector2ToWorld(inputManager.touchedSeaPosition);
-
                 }
 
                 lineRenderer.SetPosition(0, transform.position);
