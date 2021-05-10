@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8410120360317386302}
+  - component: {fileID: 3593970132988003165}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -32,6 +33,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3593970132988003165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5070801401046671394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c3cdcb490cdee448a8aedfe8dbf5790, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  guidDisplay: 21a5c2a2-55e3-4525-af37-5033db8e3a84
+  serializedGuid: a2c2a521e3552545af375033db8e3a84
+  thisObjState: 2
+  initState: 2
+  instanceID: 22954
+  referencedComponents:
+  - component: {fileID: 5630502567233466962}
+    serializedGuid: 5f9c4216b50e1a418ee169f7caa274d1
+    update: 1
 --- !u!1 &5630502566096653354
 GameObject:
   m_ObjectHideFlags: 0
@@ -197,120 +219,7 @@ MonoBehaviour:
   target: {fileID: 0}
   zoomIntensity: 1
   zoomSpeed: 5
-  camSett:
-    minAngle: 45
-    maxAngle: 80
-    angleEvolve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 2
-        outSlope: 2
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.24745856
-        value: 0.7581673
-        inSlope: 3.0638154
-        outSlope: 1.0606537
-        tangentMode: 5
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 1
-        value: 1.0023766
-        inSlope: 0.032732774
-        outSlope: 0.032732774
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.3628692
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    minHeight: 10
-    maxHeight: 50
-    heightEvolve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 1
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 1
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    minTargetProximity: -10
-    maxTargetProximity: -2
-    proximityEvolve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 1
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 1
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    minFov: 60
-    maxFov: 60
-    fovEvolve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 1
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 1
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
+  camSett: {fileID: 11400000, guid: 81746d5d0ad588340bad41252888c508, type: 2}
   aimLerpSpeed: 0.05
   moveSpeed: 45
   refocusSpeed: 55

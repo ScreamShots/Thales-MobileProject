@@ -281,7 +281,11 @@ public class TweekCore : UnityEngine.Object
                     if (tempReferencer != null)
                     {
                         if (tempReferencer.referencedComponents.Count > 0) tempTObj = new TweekObj(tempPrefab.name, tempReferencer.serializedGuid);
-                        else continue;
+                        else
+                        {
+                            PrefabUtility.UnloadPrefabContents(tempPrefab);
+                            continue;
+                        }                           
                     }
                     else continue;
 
@@ -300,10 +304,12 @@ public class TweekCore : UnityEngine.Object
                     }
 
                     if (tempTObj.attachedComponents.Count > 0) allPrefabsReferences[indexPath].Add(tempTObj);
+                    PrefabUtility.UnloadPrefabContents(tempPrefab);
                 }
             }
         }
 
+        TweekReferencer.prefabEdition = false;
         allPrefabsReferences = CleanDictionary(allPrefabsReferences);
         if (allPrefabsReferences.Count > 0) return allPrefabsReferences;
         else return null;
@@ -360,6 +366,7 @@ public class TweekCore : UnityEngine.Object
             outfile.WriteLine("using System.Collections.Generic;");
             outfile.WriteLine("using UnityEngine;");
             outfile.WriteLine("using Tweek.ScoAttributes;");
+            outfile.WriteLine("using PlayerEquipement;");
             outfile.WriteLine("");
             outfile.WriteLine("[CreateAssetMenu(menuName =\"Tweek/" + updateMode.ToString() + " Asset\")]");
             outfile.WriteLine("public class " + updateMode.ToString() + "TweekScriptableObject : ScriptableObject");
@@ -414,7 +421,7 @@ public class TweekCore : UnityEngine.Object
                             {
                                 if (FieldUsagePresence(field, updateMode))
                                 {
-                                    tempAttributes = new AttributeBuilder[] { new AttributeBuilder(SupportedAttributes.Var, field.fieldName) };
+                                    tempAttributes = new AttributeBuilder[] { new AttributeBuilder(SupportedAttributes.Var, field.fieldName), new AttributeBuilder(SupportedAttributes.ToolTip, field.fieldName)};
                                     outfile.WriteLine(WriteVar(field.fieldType, field.fieldName, tempAttributes, null, new byte[][] { obj.serializedGuid, comp.serializedGuid }));
                                 }
                             }
@@ -472,7 +479,7 @@ public class TweekCore : UnityEngine.Object
                             {
                                 if (FieldUsagePresence(field, updateMode))
                                 {
-                                    tempAttributes = new AttributeBuilder[] { new AttributeBuilder(SupportedAttributes.Var, field.fieldName) };
+                                    tempAttributes = new AttributeBuilder[] { new AttributeBuilder(SupportedAttributes.Var, field.fieldName), new AttributeBuilder(SupportedAttributes.ToolTip, field.fieldName) };
                                     outfile.WriteLine(WriteVar(field.fieldType, field.fieldName, tempAttributes, null, new byte[][] { obj.serializedGuid, comp.serializedGuid }));
                                 }
                             }
@@ -490,7 +497,7 @@ public class TweekCore : UnityEngine.Object
         }
     }
 
-    public enum SupportedAttributes { Header, Space, Box, FoldOut, SerializeField, HideInInspector, Range, Min, Max, ReadOnly, Id, Var, Path, Comp };
+    public enum SupportedAttributes { Header, Space, Box, FoldOut, SerializeField, HideInInspector, Range, Min, Max, ReadOnly, Id, Var, Path, Comp, ToolTip };
 
     static string WriteAttribute(SupportedAttributes targetAttributes, dynamic arg_1 = null, dynamic arg_2 = null)
     {
@@ -551,6 +558,10 @@ public class TweekCore : UnityEngine.Object
 
             case SupportedAttributes.Comp:
                 if (arg_1.GetType() == typeof(string)) attributeLine = "[Comp(\"" + arg_1 + "\")]";
+                break;
+
+            case SupportedAttributes.ToolTip:
+                if (arg_1.GetType() == typeof(string)) attributeLine = "[Tooltip(\"" + arg_1 + "\")]";
                 break;
 
             default:
@@ -903,7 +914,7 @@ public class TweekCore : UnityEngine.Object
                         compId += splitValue[i];
                         if (i != splitValue.Length - 1) compId += "-";
                     }
-                    Debug.Log(referencerId + " " + compId); //
+                    //Debug.Log(referencerId + " " + compId); //
 
 
                     compsToUpdate[referencerId][compId].Add(new TweekField(field.FieldType, tempName, field.GetValue(scoAsset)));
@@ -994,18 +1005,25 @@ public class TweekCore : UnityEngine.Object
             for (int i = 0; i < allPrefabsPaths[0].Length; i++) allPrefabsPaths[0][i] = PathWritter(allPrefabsPaths[0][i]);
         }
 
+        TweekReferencer.prefabEdition = true;
+
         for (int x = 0; x < allPrefabsPaths.Length; x++)
         {
             if (x == 0) indexPath = PathWritter(Data.prefabsPath);
-            else indexPath = PathWritter(Data.prefabsPath + "/" + subDirectoriesPaths[x - 1]);
+            else indexPath = PathWritter(subDirectoriesPaths[x - 1]);
 
             for (int y = 0; y < allPrefabsPaths[x].Length; y++)
             {
                 if (Path.GetExtension(allPrefabsPaths[x][y]) == ".prefab" || Path.GetExtension(allPrefabsPaths[x][y]) == ".PREFAB")
                 {
-                    tempPrefab = PrefabUtility.LoadPrefabContents(allPrefabsPaths[x][y]);
+                    string test = allPrefabsPaths[x][y];
+                    tempPrefab = PrefabUtility.LoadPrefabContents(test);
                     allReferencerOnPrefab = tempPrefab.GetComponentsInChildren<TweekReferencer>();
-                    if (allReferencerOnPrefab.Length == 0) continue;
+                    if (allReferencerOnPrefab.Length == 0)
+                    {
+                        PrefabUtility.UnloadPrefabContents(tempPrefab);
+                        continue;
+                    }                       
 
                     string firstIndex = string.Empty;
                     string secondIndex = string.Empty;
@@ -1030,10 +1048,14 @@ public class TweekCore : UnityEngine.Object
                                 Debug.Log("It could be due to a suppression of the fields or an error in the data collector system");
                             }
                         }
-                    }                    
+                    }
+
+                    PrefabUtility.SaveAsPrefabAsset(tempPrefab, test);
+                    PrefabUtility.UnloadPrefabContents(tempPrefab);
                 }
             }
         }
+        TweekReferencer.prefabEdition = false;
         return compsToUpdate;
     }
 
