@@ -20,6 +20,7 @@ public class CameraController : MonoBehaviour
     private float aimHeight;
     private float aimPromimity;
     private float aimFov;
+    [SerializeField] float moveZoomLvlFactor = 1f;
     [Space(10)]
     [TweekFlag(FieldUsage.Gameplay)] public float aimLerpSpeed = 0.05f;
 
@@ -70,16 +71,17 @@ public class CameraController : MonoBehaviour
             moveDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         }
 
+        ZoomCalcul(zoomIntensity);
         if (lookAtTraget)
         {
+            //Go to the focus Point
             FocusOnTarget();
         }
         else
         {
+            //Recive Moving Input
             MoveFocusPoint(moveDirection);
         }
-
-        ZoomCalcul(zoomIntensity);
         ZoomApplication();
     }
 
@@ -143,12 +145,16 @@ public class CameraController : MonoBehaviour
         aimFov = camSett.EvalFieldOfView(zoom);
         //Rotation 
         aimAngle = camSett.EvalAngle(zoom);
+        
+        //Move Factor 
+        float maxZoomFactor = Mathf.Min(limitDezoom.size.x / limit.size.x, limitDezoom.size.y / limit.size.y);
+        moveZoomLvlFactor = Mathf.Lerp(1, maxZoomFactor, zoomIntensity);
     }
     private void ZoomApplication()
     {
         //ApplyPos
         aimPos = focusPoint.position + new Vector3(0, aimHeight, aimPromimity);
-        transform.position = Vector3.Lerp(transform.position, aimPos, mouvLerpSpeed);
+        transform.position = Vector3.Lerp(transform.position, aimPos, mouvLerpSpeed * moveZoomLvlFactor);
 
         //Apply Fov
         cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, aimFov, aimLerpSpeed);
@@ -163,7 +169,7 @@ public class CameraController : MonoBehaviour
     {
         dir = dir.normalized;
 
-        Vector3 mouvement = new Vector3(dir.x, 0, dir.y) * moveSpeed * Time.deltaTime;
+        Vector3 mouvement = new Vector3(dir.x, 0, dir.y) * moveSpeed * moveZoomLvlFactor * Time.deltaTime;
         Vector3 wantedPos = focusPoint.position + mouvement;
 
         wantedPos = ClampInCamZone(wantedPos);
@@ -176,7 +182,7 @@ public class CameraController : MonoBehaviour
         Vector3 toTarget = (target.position - focusPoint.position);
         if (toTarget.magnitude > (toTarget.normalized).magnitude * refocusSpeed * Time.deltaTime)
         {
-            toTarget = toTarget.normalized * refocusSpeed * Time.deltaTime;
+            toTarget = toTarget.normalized * refocusSpeed * moveZoomLvlFactor * Time.deltaTime;
         }
         else
         {
@@ -203,8 +209,18 @@ public class CameraController : MonoBehaviour
     //Debug
     private void OnDrawGizmos()
     {
-        DebugBoundary(debugSize, debugStep, limit);
-        DebugBoundary(debugSize, debugStep, limitDezoom);
+        //DebugBoundary(debugSize, debugStep, limit);
+        //DebugBoundary(debugSize, debugStep, limitDezoom);
+
+        DebugCamZone(limit, limitDezoom, debugStep);
+
+        //Draw Focus Point
+        if (focusPoint != null && drawFocusPoint)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(new Vector3(focusPoint.position.x, 0, focusPoint.position.z), 0.5f);
+            Gizmos.color = Color.white;
+        }
     }
     private void DebugBoundary(float height, int step, Boundary limit)
     {
@@ -252,44 +268,74 @@ public class CameraController : MonoBehaviour
 
         if (drawLine)
         {
-            Vector4 lerpLimit = new Vector4(
-            Mathf.Lerp(limit.leftBorder, limitDezoom.leftBorder, zoomIntensity), 
-            Mathf.Lerp(limit.rightBorder, limitDezoom.rightBorder, zoomIntensity),
-            Mathf.Lerp(limit.downBorder, limitDezoom.downBorder, zoomIntensity), 
-            Mathf.Lerp(limit.upBorder, limitDezoom.upBorder, zoomIntensity)
-            );
-
-            //Draw the rectangle
-            for (float tempHeight = 0; tempHeight <= height; tempHeight += ratio)
+            Boundary heightBound = limit;
+            float i = 0;
+            for (float tempHeight = camSett.minHeight; tempHeight <= camSett.maxHeight; tempHeight += ratio)
             {
+                heightBound.size = new Vector2(
+                    Mathf.Lerp(limit.size.x, limitDezoom.size.x, i), 
+                    Mathf.Lerp(limit.size.y, limitDezoom.size.y, i));
+                heightBound.offSet = new Vector2(
+                    Mathf.Lerp(limit.offSet.x, limitDezoom.offSet.x, i),
+                    Mathf.Lerp(limit.offSet.y, limitDezoom.offSet.y, i));
+
+                i += (float)1f/step;
+
+                //Draw the rectangle
                 // _  
-                Vector3 drawPos = new Vector3(limit.leftBorder, tempHeight, limit.upBorder);
-                Debug.DrawRay(drawPos, Vector3.right * limit.size.x, edgeColor);
+                Vector3 drawPos = new Vector3(heightBound.leftBorder, tempHeight, heightBound.upBorder);
+                Debug.DrawRay(drawPos, Vector3.right * heightBound.size.x, edgeColor);
                 // _
                 //  |
-                drawPos += Vector3.right * limit.size.x;
-                Debug.DrawRay(drawPos, Vector3.back * limit.size.y, edgeColor);
+                drawPos += Vector3.right * heightBound.size.x;
+                Debug.DrawRay(drawPos, Vector3.back * heightBound.size.y, edgeColor);
                 // _
                 // _|
-                drawPos += Vector3.back * limit.size.y;
-                Debug.DrawRay(drawPos, Vector3.left * limit.size.x, edgeColor);
+                drawPos += Vector3.back * heightBound.size.y;
+                Debug.DrawRay(drawPos, Vector3.left * heightBound.size.x, edgeColor);
                 // _
                 //|_|
-                drawPos += Vector3.left * limit.size.x;
-                Debug.DrawRay(drawPos, Vector3.forward * limit.size.y, edgeColor);
+                drawPos += Vector3.left * heightBound.size.x;
+                Debug.DrawRay(drawPos, Vector3.forward * heightBound.size.y, edgeColor);
             }
 
-            Gizmos.color = edgeColor;
-            Gizmos.DrawWireCube(new Vector3(limit.offSet.x, height * 0.5f, limit.offSet.y), new Vector3(limit.size.x, height, limit.size.y));
+            #region Cone Corners
+            Vector3 LeftBottomCornerMin = new Vector3(limit.leftBorder, camSett.minHeight, limit.downBorder);
+            Vector3 LeftBottomCornerMax = new Vector3(limitDezoom.leftBorder, camSett.maxHeight, limitDezoom.downBorder);
+            Debug.DrawLine(LeftBottomCornerMin, LeftBottomCornerMax, Color.red);
 
-            Gizmos.color = Color.white;
-        }
+            Vector3 LeftTopCornerMin = new Vector3(limit.leftBorder, camSett.minHeight, limit.upBorder);
+            Vector3 LeftTopCornerMax = new Vector3(limitDezoom.leftBorder, camSett.maxHeight, limitDezoom.upBorder);
+            Debug.DrawLine(LeftTopCornerMin, LeftTopCornerMax, Color.red);
 
-        if (focusPoint != null && drawFocusPoint)
-        {
-            Gizmos.color = Color.green;
-            Gizmos.DrawWireSphere(new Vector3(focusPoint.position.x, height, focusPoint.position.z), 0.5f);
-            Gizmos.color = Color.white;
+            Vector3 RightBottomCornerMin = new Vector3(limit.rightBorder, camSett.minHeight, limit.downBorder);
+            Vector3 RightBottomCornerMax = new Vector3(limitDezoom.rightBorder, camSett.maxHeight, limitDezoom.downBorder);
+            Debug.DrawLine(RightBottomCornerMin, RightBottomCornerMax, Color.red);
+
+            Vector3 RightTopCornerMin = new Vector3(limit.rightBorder, camSett.minHeight, limit.upBorder);
+            Vector3 RightTopCornerMax = new Vector3(limitDezoom.rightBorder, camSett.maxHeight, limitDezoom.upBorder);
+            Debug.DrawLine(RightTopCornerMin, RightTopCornerMax, Color.red);
+            #endregion
+
+            #region Draw on Sea
+            //Draw the rectangle
+            // _  
+            Vector3 drawPos2 = new Vector3(limit.leftBorder, 0, limit.upBorder);
+            Debug.DrawRay(drawPos2, Vector3.right * limit.size.x, edgeColor);
+            // _
+            //  |
+            drawPos2 += Vector3.right * limit.size.x;
+            Debug.DrawRay(drawPos2, Vector3.back * limit.size.y, edgeColor);
+            // _
+            // _|
+            drawPos2 += Vector3.back * limit.size.y;
+            Debug.DrawRay(drawPos2, Vector3.left * limit.size.x, edgeColor);
+            // _
+            //|_|
+            drawPos2 += Vector3.left * limit.size.x;
+            Debug.DrawRay(drawPos2, Vector3.forward * limit.size.y, edgeColor);
+            #endregion
+
         }
     }
 }
