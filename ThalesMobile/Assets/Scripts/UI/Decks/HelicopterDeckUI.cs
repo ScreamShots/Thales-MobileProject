@@ -1,4 +1,5 @@
 ﻿using OceanEntities;
+using PlayerEquipement;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -72,6 +73,7 @@ public class HelicopterDeckUI : MonoBehaviour
             linkedHelicopter.activeEquipement.UseEquipement(linkedHelicopter);
             //disable Button
             DeactivateButton();
+            StartCoroutine(linkedHelicopter.helicopterFeedback.BlinkHelicopter(3f));
         }
     }
 
