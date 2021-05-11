@@ -1,0 +1,159 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2098149979522919589
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6234744626793713222}
+  - component: {fileID: 3703591322552175224}
+  m_Layer: 0
+  m_Name: LD_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6234744626793713222
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2098149979522919589}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3703591322552175224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2098149979522919589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 867da68ead1ec1a41ad74322d465f57d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showDebug: 1
+  showBoundary: 1
+  drawWind: 1
+  limit:
+    size: {x: 32, y: 64}
+    offSet: {x: 0, y: 0}
+  zones:
+  - name: Zone-0
+    state: 0
+    windDir: 0
+    debugColor: {r: 1, g: 0.91818184, b: 0, a: 1}
+    points:
+    - {x: -20.078516, y: -18.5333}
+    - {x: -10.912687, y: -17.722483}
+    - {x: -0.3533882, y: -21.833694}
+    - {x: 1.7066782, y: -26.43901}
+    - {x: 8.549088, y: -25.565218}
+    - {x: 11.725886, y: -19.834196}
+    - {x: 19.958097, y: -15.941436}
+    - {x: 20.068531, y: -35.975834}
+    - {x: -20.078562, y: -35.965828}
+  - name: Zone-1
+    state: 1
+    windDir: 1.018
+    debugColor: {r: 0, g: 0.86454153, b: 1, a: 1}
+    points:
+    - {x: 20.118717, y: -12.601044}
+    - {x: 19.958097, y: -15.941436}
+    - {x: 11.725886, y: -19.834196}
+    - {x: 8.549088, y: -25.565218}
+    - {x: 1.7066782, y: -26.43901}
+    - {x: -0.3533882, y: -21.833694}
+    - {x: -10.912687, y: -17.722483}
+    - {x: -20.078516, y: -18.5333}
+    - {x: -20.118668, y: -7.4053206}
+    - {x: -14.075056, y: -11.237899}
+    - {x: -8.543444, y: -7.6955457}
+    - {x: -6.113927, y: -9.777031}
+    - {x: -2.208645, y: -7.8456388}
+    - {x: 0.7490255, y: -8.392741}
+    - {x: 4.200034, y: -4.383105}
+    - {x: 11.768722, y: -6.9072995}
+  - name: Zone-2
+    state: 3
+    windDir: 1
+    debugColor: {r: 0.9254902, g: 0.0745098, b: 0.69642955, a: 1}
+    points:
+    - {x: -1.7970339, y: -2.0714638}
+    - {x: -5.0096035, y: 0.20014365}
+    - {x: -1.5811889, y: 7.023009}
+    - {x: 6.5239263, y: 6.42962}
+    - {x: 13.84717, y: 5.5625863}
+    - {x: 10.356945, y: -1.9113765}
+    - {x: 14.593935, y: -3.9004068}
+    - {x: 19.976166, y: -2.8340425}
+    - {x: 20.118717, y: -12.601044}
+    - {x: 11.768722, y: -6.9072995}
+    - {x: 4.200034, y: -4.383105}
+    - {x: 0.7490255, y: -8.392741}
+    - {x: -2.208645, y: -7.84564}
+  - name: Zone-3
+    state: 0
+    windDir: 1
+    debugColor: {r: 0, g: 0, b: 0, a: 1}
+    points:
+    - {x: -8.673946, y: -3.217152}
+    - {x: -5.0096035, y: 0.20014365}
+    - {x: -1.7970339, y: -2.0714638}
+    - {x: -2.208645, y: -7.8456454}
+    - {x: -6.113927, y: -9.777031}
+    - {x: -8.543444, y: -7.6955457}
+  - name: Zone-4
+    state: 0
+    windDir: 1
+    debugColor: {r: 1, g: 0.9203187, b: 0, a: 1}
+    points:
+    - {x: 6.5239263, y: 6.4296174}
+    - {x: 9.359292, y: 7.7687964}
+    - {x: 20.008347, y: 8.352812}
+    - {x: 19.976166, y: -2.8340425}
+    - {x: 14.593935, y: -3.9004068}
+    - {x: 10.356945, y: -1.9113778}
+    - {x: 13.84717, y: 5.5625896}
+  - name: Zone-5
+    state: 1
+    windDir: 1.064
+    debugColor: {r: 0.015686274, g: 1, b: 0.10908299, a: 1}
+    points:
+    - {x: 1.4585097, y: 28.892382}
+    - {x: 6.5536537, y: 36.02716}
+    - {x: 19.917967, y: 35.975845}
+    - {x: 20.008347, y: 8.352812}
+    - {x: 9.359292, y: 7.7687964}
+    - {x: 6.5239263, y: 6.429621}
+    - {x: -1.5811892, y: 7.023009}
+    - {x: 2.2873554, y: 13.495713}
+    - {x: -1.6448401, y: 16.172817}
+  - name: Zone-6
+    state: 4
+    windDir: 1
+    debugColor: {r: 0, g: 0.45418334, b: 1, a: 1}
+    points:
+    - {x: -20.118668, y: -7.4053206}
+    - {x: -20.078585, y: 35.89583}
+    - {x: 6.5536537, y: 36.02716}
+    - {x: 1.4585097, y: 28.892382}
+    - {x: -1.6448401, y: 16.172817}
+    - {x: 2.2873554, y: 13.495713}
+    - {x: -1.5811892, y: 7.023009}
+    - {x: -5.0096035, y: 0.20014365}
+    - {x: -8.673946, y: -3.217152}
+    - {x: -8.543444, y: -7.6955457}
+    - {x: -14.075057, y: -11.237899}
+  resolution: 1
