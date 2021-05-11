@@ -67,51 +67,57 @@ namespace OceanEntities
         /// <summary>
         /// Call this method in the Update if the entity needs pathfinding, the result is stored in : "pathDirection"
         /// </summary>
-        protected Vector2 UpdatePath()
+        protected Vector2 UpdatePath(Vector2 target)
         {
+            pathDestination = target;
 
-            if (timeBeforeNextPathUpdate <= 0)
+            CalculatePath();
+            if(path!= null)
             {
-                lastValidPos = pathDestination;
-                RaycastHit hit;
-                timeBeforeNextPathUpdate = pathUpdatingFrequency;
-                Debug.DrawLine(Coordinates.ConvertVector2ToWorld(coords.position) + Vector3.up * 0.9f, Coordinates.ConvertVector2ToWorld(pathDestination) + Vector3.up * 0.99f, Color.yellow, 0.5f);
-                Vector3 destDirection = (Coordinates.ConvertVector2ToWorld(pathDestination)) - (Coordinates.ConvertVector2ToWorld(coords.position));
-                float destDistance = destDirection.magnitude;
-                destDirection.Normalize();
-                if (!Physics.Raycast(Coordinates.ConvertVector2ToWorld(coords.position) + Vector3.up * 0.5f, destDirection, out hit, destDistance, LayerMask.GetMask("LandPathfinding")))
+                if (timeBeforeNextPathUpdate <= 0 && path.IsDone())
                 {
-                    pathDirection = pathDestination - coords.position;
-                    pathDirection.Normalize();
-                }
-                else
-                {
-                    Debug.DrawRay(hit.point, Vector3.up, Color.red, 0.5f);
+                    lastValidPos = pathDestination;
 
-                    CalculatePath();
-
-                    if (path != null)
+                    RaycastHit hit;
+                    timeBeforeNextPathUpdate = pathUpdatingFrequency;
+                    Debug.DrawLine(Coordinates.ConvertVector2ToWorld(coords.position) + Vector3.up * 0.9f, Coordinates.ConvertVector2ToWorld(pathDestination) + Vector3.up * 0.99f, Color.yellow, 0.5f);
+                    Vector3 destDirection = (Coordinates.ConvertVector2ToWorld(pathDestination)) - (Coordinates.ConvertVector2ToWorld(coords.position));
+                    float destDistance = destDirection.magnitude;
+                    destDirection.Normalize();
+                    if (!Physics.Raycast(Coordinates.ConvertVector2ToWorld(coords.position) + Vector3.up * 0.5f, destDirection, out hit, destDistance, LayerMask.GetMask("LandPathfinding")))
                     {
-                        if (environment.ZoneIn(pathDestination) != 0
-                            && environment.zones[environment.ZoneIn(pathDestination) - 1].state == ZoneState.LandCoast)
-                        {
-                        }
-                        lastValidPos = Coordinates.ConvertWorldToVector2(path.vectorPath[path.vectorPath.Count - 1]);
+                        pathDirection = pathDestination - coords.position;
+                        pathDirection.Normalize();
+                    }
+                    else
+                    {
+                        Debug.DrawRay(hit.point, Vector3.up, Color.red, 0.5f);
 
-                        if (currentWaypoint >= path.vectorPath.Count)
-                        {
-                            pathEndReached = true;
-                        }
-                        else
-                        {
-                            pathEndReached = false;
+                    
 
-                            while (Vector3.Distance(transform.position, path.vectorPath[currentWaypoint]) < nextWaypointDistance && path.vectorPath.Count > currentWaypoint + 1)
+                        if (path != null)
+                        {
+                            if (environment.ZoneIn(pathDestination) != 0
+                                && environment.zones[environment.ZoneIn(pathDestination) - 1].state == ZoneState.LandCoast)
                             {
-                                currentWaypoint++;
                             }
+                            lastValidPos = Coordinates.ConvertWorldToVector2(path.vectorPath[path.vectorPath.Count - 1]);
 
-                            pathDirection = (Coordinates.ConvertWorldToVector2(path.vectorPath[currentWaypoint + (((currentWaypoint + waypointAhead) < path.vectorPath.Count) ? waypointAhead : 0)] - transform.position)).normalized;
+                            if (currentWaypoint >= path.vectorPath.Count)
+                            {
+                                pathEndReached = true;
+                            }
+                            else
+                            {
+                                pathEndReached = false;
+
+                                while (Vector3.Distance(transform.position, path.vectorPath[currentWaypoint]) < nextWaypointDistance && path.vectorPath.Count > currentWaypoint + 1)
+                                {
+                                    currentWaypoint++;
+                                }
+
+                                pathDirection = (Coordinates.ConvertWorldToVector2(path.vectorPath[currentWaypoint + (((currentWaypoint + waypointAhead) < path.vectorPath.Count) ? waypointAhead : 0)] - transform.position)).normalized;
+                            }
                         }
                     }
                 }

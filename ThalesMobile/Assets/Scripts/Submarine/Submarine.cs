@@ -262,8 +262,8 @@ public class Submarine : DetectableOceanEntity
             }
             else
             {
-                pathDestination = nextInterestPointPosition;
-                UpdatePath();
+                //pathDestination = nextInterestPointPosition;
+                UpdatePath(nextInterestPointPosition);
             }
         }
         else

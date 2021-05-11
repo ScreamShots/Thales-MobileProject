@@ -53,13 +53,12 @@ namespace OceanEntities
 
             if (currentTargetPoint != nullVector)
             {
-                pathDestination = currentTargetPoint;
-                lastValidPos =  UpdatePath();
+
+                lastValidPos =  UpdatePath(currentTargetPoint);
 
                 if (currentTargetPoint != lastValidPos)
                 {
                     currentTargetPoint = lastValidPos;
-                    pathDestination = currentTargetPoint;
                     timeBeforeNextPathUpdate = 0;
                 }
 
@@ -67,9 +66,7 @@ namespace OceanEntities
                 {
                     fading = false;
                     soundHandler.CrossFade(audioSource, movementSound, 0.5f);
-                }
-
-                    
+                }    
             }
             else
             {
@@ -88,7 +85,6 @@ namespace OceanEntities
             if (currentTargetPoint != nullVector)
             {
                 Move(currentTargetPoint);
-                pathDestination = currentTargetPoint;
             }
         }
         public override void Move(Vector2 targetPosition)
