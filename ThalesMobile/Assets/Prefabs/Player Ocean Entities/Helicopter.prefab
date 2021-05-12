@@ -563,7 +563,7 @@ MonoBehaviour:
   serializedGuid: 0e5e13a5c8b071489721538499ed3b5c
   thisObjState: 2
   initState: 2
-  instanceID: 25470
+  instanceID: 21740
   referencedComponents:
   - component: {fileID: 6286141312136616712}
     serializedGuid: 5e2d654c39c242408a7445e02cce3b57
@@ -610,7 +610,7 @@ MonoBehaviour:
   deckUI: {fileID: 0}
   preparationDuration: 8
   alertDuration: 15
-  flightDuration: 10
+  flightDuration: 45
   cooldownDuration: 5
   operating: 0
   inAlert: 0

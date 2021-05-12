@@ -19,7 +19,7 @@ namespace PlayerEquipement
         [SerializeField, Min(0)]
         float extendedRange;
         [SerializeField, Min(0)]
-        float dropDuration;
+        public float dropDuration;
         [SerializeField, Min(0)]
         float revealDuration;
 
@@ -49,6 +49,9 @@ namespace PlayerEquipement
             float distance = 0;
 
             Environnement currentEnviro = GameManager.Instance.levelManager.environnement;
+
+            int temp = currentEnviro.ZoneIn(user.coords.position);
+
             Zone testedZone = currentEnviro.zones[currentEnviro.ZoneIn(user.coords.position) - 1];
 
             FlashFeedback flashFeedback = (FlashFeedback)feedbackBehavior;
@@ -82,6 +85,8 @@ namespace PlayerEquipement
                     submarine.MaterialChangedByFlash(revealDuration);
                 }
             }
+
+            readyToUse = true;
         }
     }
 }
