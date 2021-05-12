@@ -310,7 +310,7 @@ MonoBehaviour:
   serializedGuid: de50a9ea07a9474c8e3b43fcedc9cef6
   thisObjState: 2
   initState: 2
-  instanceID: 25358
+  instanceID: 27848
   referencedComponents:
   - component: {fileID: 516292101046722417}
     serializedGuid: 92efd3d3e1cb4f46a09f4e65bb73f4a5
@@ -341,8 +341,8 @@ MonoBehaviour:
   nextWaypointDistance: 1
   waypointAhead: 2
   pathDestination: {x: 0, y: 0}
-  speed: 1.5
-  acceleration: 2
+  speed: 1
+  acceleration: 0.3
   rotateSpeed: 80
   movementType: 1
   currentTargetPoint: {x: -9999, y: -9999}
@@ -352,8 +352,8 @@ MonoBehaviour:
     type: 3}
   linkedButton: {fileID: 0}
   equipementFeedback: {fileID: 0}
-  passiveEquipement: {fileID: 11400000, guid: f1b15a368bed5b04c9e7f6bf686d20a4, type: 2}
-  activeEquipement: {fileID: 11400000, guid: a774f637123035b429f104ed6c58cdb1, type: 2}
+  passiveEquipement: {fileID: 11400000, guid: 250900d4e08fb76478d097863e660117, type: 2}
+  activeEquipement: {fileID: 11400000, guid: 880ececae2e90c742a35278dce662b63, type: 2}
   audioSource: {fileID: 4031874406904146487}
   targetGroup: {fileID: -9015305574639715243, guid: 9b41315a36bc40a4ea458016676fd8f1,
     type: 2}
