@@ -95,11 +95,19 @@ public class InputManager : MonoBehaviour
                             touchRay = mainCamera.ScreenPointToRay(touch.position);
                             if (Physics.Raycast(touchRay, out hit, 200f, selectableEntityLayer))
                             {
-                                playerController.currentSelectedEntity = hit.collider.transform.parent.GetComponent<PlayerOceanEntity>();
-                                camController.SetTarget(hit.collider.transform);
+                                var entity = hit.collider.transform.parent.GetComponent<PlayerOceanEntity>();
 
-                                //Select Button
-                                GameManager.Instance.playerController.currentSelectedEntity.linkedButton.SelectEntity();
+                                if (playerController.currentSelectedEntity == entity)
+                                {
+                                    camController.SetTarget(hit.collider.transform);
+                                }
+                                else
+                                {
+                                    //Select Button
+                                    entity.linkedButton.SelectEntity();
+                                }
+
+                                
                             }
                         }
                         //If drag then move camera
