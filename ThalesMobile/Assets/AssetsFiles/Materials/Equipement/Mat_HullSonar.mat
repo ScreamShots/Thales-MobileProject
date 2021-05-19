@@ -59,7 +59,7 @@ Material:
     - QuantiteOndes: 120
     - Thickness: 0.03
     - Vector1_C6AEB02C: 1.51
-    - VitesseOnde: -40
+    - VitesseOnde: -66.666664
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
