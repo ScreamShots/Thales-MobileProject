@@ -6,7 +6,9 @@ using Plane = UnityEngine.Plane;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine.Audio;
+using Tweek.FlagAttributes;
 
+[TweekClass]
 public class InputManager : MonoBehaviour
 {
 
@@ -26,7 +28,10 @@ public class InputManager : MonoBehaviour
     private SoundHandler soundHandler;
     public AudioSource audioSource;
     public AudioMixerGroup targetGroup;
+    [TweekFlag(FieldUsage.Sound)]
     public AudioClip setTargetSound;
+    [TweekFlag(FieldUsage.Sound)]
+    public float setTargetSoundVolume;
 
     //Touch inputs
     [HideInInspector]public Vector2 touchedSeaPosition = new Vector2(-9999, -9999);
@@ -165,6 +170,7 @@ public class InputManager : MonoBehaviour
                     playerController.SetEntityMoveTarget(touchedSeaPosition);
                     touchedSeaPosition = new Vector2(-9999, -9999);
 
+                    audioSource.volume = Mathf.Clamp01(setTargetSoundVolume);
                     soundHandler.PlaySound(setTargetSound, audioSource, targetGroup);
                 }
 

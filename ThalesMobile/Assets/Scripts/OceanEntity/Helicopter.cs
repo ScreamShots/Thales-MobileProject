@@ -55,13 +55,23 @@ namespace OceanEntities
         [TweekFlag(FieldUsage.Sound)]
         public AudioClip preparationSound;
         [TweekFlag(FieldUsage.Sound)]
+        public float preparationSoundVolume;
+        [TweekFlag(FieldUsage.Sound)]
         public AudioClip takeOffSound;
+        [TweekFlag(FieldUsage.Sound)]
+        public float takeOffSoundVolume;
         [TweekFlag(FieldUsage.Sound)]
         public AudioClip landingSound;
         [TweekFlag(FieldUsage.Sound)]
+        public float landingSoundVolume;
+        [TweekFlag(FieldUsage.Sound)]
         public AudioClip movementSound;
         [TweekFlag(FieldUsage.Sound)]
+        public float movementSoundVolume;
+        [TweekFlag(FieldUsage.Sound)]
         public AudioClip waitingSound;
+        [TweekFlag(FieldUsage.Sound)]
+        public float waitingSoundVolume;
 
 
         private void Start()
@@ -98,10 +108,9 @@ namespace OceanEntities
                 if (!audioSource.isPlaying && audioSource.clip != movementSound)
                 {
                     audioSource.loop = true;
-                    soundHandler.PlaySound(movementSound, audioSource, targetGroup);
+                    audioSource.volume = Mathf.Clamp(movementSoundVolume, 0, 1);
+                    soundHandler.PlaySound(movementSound, audioSource, targetGroup);                    
                 }
-
-
             }
 
             //If flight ended then go back to the ship
@@ -112,6 +121,7 @@ namespace OceanEntities
                 if (!audioSource.isPlaying && audioSource.clip != movementSound)
                 {
                     audioSource.loop = true;
+                    audioSource.volume = Mathf.Clamp(movementSoundVolume, 0, 1);
                     soundHandler.PlaySound(movementSound, audioSource, targetGroup);
                 }
             }
@@ -212,6 +222,7 @@ namespace OceanEntities
             coords.position = Coordinates.ConvertWorldToVector2(_transform.position);
 
             audioSource.loop = true;
+            audioSource.volume = Mathf.Clamp(movementSoundVolume, 0, 1);
             soundHandler.PlaySound(movementSound, audioSource, targetGroup);
 
             helicopterRenderer.SetActive(true);
@@ -234,6 +245,7 @@ namespace OceanEntities
             deckUI.percentageText.text = "0 %";
 
             audioSource.loop = false;
+            audioSource.volume = Mathf.Clamp(landingSoundVolume, 0, 1);
             soundHandler.PlaySound(landingSound, audioSource, targetGroup);
 
         }
@@ -245,7 +257,9 @@ namespace OceanEntities
             deckUI.UpdateStatusText("Preparing launch...");
             StartCoroutine(deckUI.FillBar(preparationDuration, 1));
 
+            audioSource.volume = Mathf.Clamp(preparationSoundVolume, 0, 1);
             soundHandler.PlaySound(preparationSound, audioSource, targetGroup);
+            
 
             yield return new WaitForSeconds(preparationDuration);
 
@@ -260,11 +274,13 @@ namespace OceanEntities
             deckUI.UpdateStatusText("Launch !");
             inAlert = true;
             StartCoroutine(AlertTimer());
+
+            audioSource.volume = Mathf.Clamp(takeOffSoundVolume, 0, 1);
             soundHandler.PlaySound(takeOffSound, audioSource, targetGroup);
 
             //Wait until not in alert anymore or current selected entity is this one
             yield return new WaitUntil(() => !inAlert || launch);
-            if(inAlert)
+            if (inAlert)
             {
                 deckUI.UpdateStatusText("Drop Flash !");
                 deckUI.ActivateButton();
