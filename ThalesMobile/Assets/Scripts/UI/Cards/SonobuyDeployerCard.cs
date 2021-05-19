@@ -97,7 +97,7 @@ public class SonobuyDeployerCard : MonoBehaviour
         }
 
 
-        if (sonobuyDeployer.readyToUse && sonobuyDeployer.chargeCount > 0)
+        if (sonobuyDeployer.chargeCount > 0)
         {
             sonobuyDeployer.UseEquipement(GameManager.Instance.playerController.currentSelectedEntity);
 

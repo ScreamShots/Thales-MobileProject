@@ -19,6 +19,8 @@ namespace OceanEntities
         public GameObject helicopterRenderer;
         public HelicopterFeedback helicopterFeedback;
         [HideInInspector] public HelicopterDeckUI deckUI;
+        private CameraController camController;
+        private InputManager inputManager;
 
         [Header("Helicopter Flight")]
         [TweekFlag( FieldUsage.Gameplay)]
@@ -69,6 +71,8 @@ namespace OceanEntities
             _transform = transform;
             movementType = MovementType.air;
             soundHandler = GameManager.Instance.soundHandler;
+            camController = GameManager.Instance.cameraController;
+            inputManager = GameManager.Instance.inputManager;
 
             currentRotateSpeed = rotateSpeed;
             coords.direction = Coordinates.ConvertWorldToVector2(transform.forward);
@@ -94,6 +98,8 @@ namespace OceanEntities
 
             else if(currentTargetPoint != nullVector && inFlight && !isDroppingFlash)
             {
+                camController.lookAtTraget = true;
+
                 Move(currentTargetPoint);
                 if (!audioSource.isPlaying && audioSource.clip != movementSound)
                 {
@@ -107,7 +113,10 @@ namespace OceanEntities
             //If flight ended then go back to the ship
             else if(!inFlight && !onShip)
             {
-                if(!isDroppingFlash)
+
+                camController.lookAtTraget = true;
+
+                if (!isDroppingFlash)
                 Move(linkedShip.coords.position);
                 if (!audioSource.isPlaying && audioSource.clip != movementSound)
                 {
@@ -236,6 +245,9 @@ namespace OceanEntities
             audioSource.loop = false;
             soundHandler.PlaySound(landingSound, audioSource, targetGroup);
 
+            inputManager.canUseCam = true;
+            inputManager.canZoomCam = true;
+            camController.SetZoom(1, 1);
         }
 
         #region Coroutines
@@ -300,6 +312,11 @@ namespace OceanEntities
         private IEnumerator FlightCoroutine()
         {
             Coroutine timer = StartCoroutine(FlightTimer());
+
+            camController.target = _transform;
+            camController.SetZoom(0.2f, 1);
+            inputManager.canUseCam = false;
+            inputManager.canMoveCam = false;
 
             StartCoroutine(deckUI.FillBar(flightDuration, 0));
             deckUI.UpdateSecondaryButton(HelicopterButtonState.Return);

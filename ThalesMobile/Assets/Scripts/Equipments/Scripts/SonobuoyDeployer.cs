@@ -60,7 +60,10 @@ namespace PlayerEquipement
 
         public override void UseEquipement(PlayerOceanEntity user)
         {
-           coroutine =  GameManager.Instance.ExternalStartCoroutine(DeploySonoBuy(user));
+            if(coroutine!=null)
+                GameManager.Instance.ExternalStopCoroutine(coroutine);
+
+            coroutine =  GameManager.Instance.ExternalStartCoroutine(DeploySonoBuy(user));
         }
 
         IEnumerator DeploySonoBuy(PlayerOceanEntity user)

@@ -541,7 +541,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 339487588899374398}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -562,11 +562,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c3cdcb490cdee448a8aedfe8dbf5790, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  guidDisplay: cfa900bd-9810-4d08-b5f6-23efaf541d01
-  serializedGuid: bd00a9cf1098084db5f623efaf541d01
-  thisObjState: 2
-  initState: 2
-  instanceID: 30214
+  guidDisplay: 56cb9316-6354-4469-9d75-2d290a8fd195
+  serializedGuid: 1693cb56546369449d752d290a8fd195
+  thisObjState: 1
+  initState: 1
+  instanceID: -22738
   referencedComponents:
   - component: {fileID: 339487588899374384}
     serializedGuid: ea62e786c0c3de4fb40542694734145d
@@ -749,7 +749,7 @@ Transform:
   m_GameObject: {fileID: 339487589102417703}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 2, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 3.5, y: 3.5, z: 3.5}
   m_Children:
   - {fileID: 339487587814014602}
   - {fileID: 8748693983256782321}

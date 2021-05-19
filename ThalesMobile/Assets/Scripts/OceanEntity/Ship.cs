@@ -45,7 +45,7 @@ namespace OceanEntities
             passiveEquipement.Init(this);
             activeEquipement.Init(this);
         }
-
+        Vector2 lastValidPos;
         private void Update()
         {
             if (passiveEquipement.readyToUse)
@@ -53,15 +53,20 @@ namespace OceanEntities
 
             if (currentTargetPoint != nullVector)
             {
-                UpdatePath();
+
+                lastValidPos =  UpdatePath(currentTargetPoint);
+
+                if (currentTargetPoint != lastValidPos)
+                {
+                    currentTargetPoint = lastValidPos;
+                    timeBeforeNextPathUpdate = 0;
+                }
 
                 if (audioSource.clip != movementSound && fading)
                 {
                     fading = false;
                     soundHandler.CrossFade(audioSource, movementSound, 0.5f);
-                }
-
-                    
+                }    
             }
             else
             {
@@ -80,7 +85,6 @@ namespace OceanEntities
             if (currentTargetPoint != nullVector)
             {
                 Move(currentTargetPoint);
-                pathDestination = currentTargetPoint;
             }
         }
         public override void Move(Vector2 targetPosition)
