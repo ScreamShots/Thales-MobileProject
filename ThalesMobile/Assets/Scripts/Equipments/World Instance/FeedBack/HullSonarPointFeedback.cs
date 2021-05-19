@@ -25,7 +25,13 @@ namespace PlayerEquipement
         [Header("Reveal Params")]
         [SerializeField]
         RectTransform revealCanvasRT;
+        [SerializeField]
+        Transform tempLookCamTransform;
+        CameraController camController;
         public float animDuration;
+        [SerializeField]
+        AnimationCurve revealScaleProgression;
+        Vector3 revealBaseScale;
 
         [Header("Sound - Appear")]
         [SerializeField]
@@ -40,11 +46,15 @@ namespace PlayerEquipement
         private void Start()
         {
             revealCanvasRT.localScale = Vector3.zero;
+            camController = GameManager.Instance.cameraController;
+            revealBaseScale = revealCanvasRT.localScale;
         }
 
         private void Update()
         {
             globalVisualCanvas.alpha = 1 - (source.timer / source.fadeDuration);
+            revealCanvasRT.forward = camController.cam.transform.forward;
+            revealCanvasRT.localScale = revealBaseScale * revealScaleProgression.Evaluate(camController.zoomIntensity / 1);
         }
 
         public void OnEnable()

@@ -50,10 +50,15 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - AlphaClip: 0.8
+    - BoolProgressionControl: 1
+    - BoolRangeCircle: 1
     - FlouInterieur: -40
     - LargeurInterieur: 70
     - LargeurOnde: 225
-    - QuantiteOndes: -100
+    - ProgressionOnde: 3.76
+    - QuantiteOndes: 120
+    - Thickness: 0.03
+    - Vector1_C6AEB02C: 1.51
     - VitesseOnde: -40
     - _AlphaClip: 0
     - _Blend: 0
@@ -86,6 +91,7 @@ Material:
     - ColorOnde: {r: 0.4704966, g: 0.9150943, b: 0.82617474, a: 0}
     - ColorOndeExt: {r: 0.4597722, g: 0.7820408, b: 0.7924528, a: 1}
     - Color_182BC99F: {r: 0, g: 1.498039, b: 1.238323, a: 0}
+    - RangeColor: {r: 0.7322891, g: 0.8301887, b: 0.8261045, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _CouleurAnneauHaloSel: {r: 0.8820755, g: 1, b: 0.9323617, a: 0}

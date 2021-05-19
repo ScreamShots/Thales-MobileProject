@@ -166,7 +166,7 @@ namespace PlayerEquipement
                 {
                     waveTime += Time.deltaTime;
                     padding = waveRange - (range * (waveTime / waveMaxDuration));
-                    waveRange = range * (waveTime / waveMaxDuration);
+                    waveRange = range * (waveTime / waveMaxDuration);                    
                 }
                 else
                 {
@@ -174,6 +174,7 @@ namespace PlayerEquipement
                     padding = waveRange - (range * (1 - (waveTime / waveMaxDuration)));
                     waveRange = range * (1 -(waveTime / waveMaxDuration));
                 }
+                feedback.UpdateWaveProgression(waveTime / waveMaxDuration);
                 yield return new WaitForFixedUpdate();
             }
 

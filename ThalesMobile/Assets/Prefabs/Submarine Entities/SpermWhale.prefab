@@ -48,7 +48,7 @@ MonoBehaviour:
   serializedGuid: e2a3cbbfb1737548918cca96d28a17f1
   thisObjState: 2
   initState: 2
-  instanceID: 83766
+  instanceID: 34524
   referencedComponents:
   - component: {fileID: 5745625645649552660}
     serializedGuid: 603a997cbfb0f5499e0669d66101a1db
@@ -81,7 +81,7 @@ MonoBehaviour:
   pathDestination: {x: 0, y: 0}
   currentDetectableState: 0
   detectFeedback:
-    hullSonarRevealIcon: {fileID: 2491886963174191310, guid: e3be960e7884a08408c4b04b7011aa24,
+    hullSonarRevealIcon: {fileID: 3749300069955377138, guid: e3be960e7884a08408c4b04b7011aa24,
       type: 3}
     hullSonarRevealPointer: {fileID: -5024606448714198397, guid: e3be960e7884a08408c4b04b7011aa24,
       type: 3}

@@ -1,46 +1,46 @@
 fileFormatVersion: 2
-guid: e3be960e7884a08408c4b04b7011aa24
+guid: a66b86334936b904b9c5d5184d859f49
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -172998237510159274
-    second: SprSh_IconesMarineObject_0
+      213: -5551236772341810086
+    second: SprSh_Icones_0
   - first:
-      213: 2661236777724703074
-    second: SprSh_IconesMarineObject_1
+      213: -294881761753183631
+    second: SprSh_Icones_1
   - first:
-      213: 3709395866420079310
-    second: SprSh_IconesMarineObject_2
+      213: 6776402081615558420
+    second: SprSh_Icones_2
   - first:
-      213: -4538843772715815827
-    second: SprSh_IconesMarineObject_3
+      213: -6293760371773604297
+    second: SprSh_Icones_3
   - first:
-      213: 3749300069955377138
-    second: SprSh_IconesMarineObject_4
+      213: -1418103787473973320
+    second: SprSh_Icones_4
   - first:
-      213: 2491886963174191310
-    second: SprSh_IconesMarineObject_5
+      213: 3513913175923353480
+    second: SprSh_Icones_5
   - first:
-      213: 7054414486620587932
-    second: SprSh_IconesMarineObject_6
+      213: 2551692213613046569
+    second: SprSh_Icones_6
   - first:
-      213: -2615991796094880443
-    second: SprSh_IconesMarineObject_7
+      213: 5986930275263798846
+    second: SprSh_Icones_7
   - first:
-      213: -6636101605947488426
-    second: SprSh_IconesMarineObject_8
+      213: 863526395135017197
+    second: SprSh_Icones_8
   - first:
-      213: -5024606448714198397
-    second: SprSh_IconesMarineObject_9
+      213: -265477129633674832
+    second: SprSh_Icones_9
   - first:
-      213: 8954560405424066949
-    second: SprSh_IconesMarineObject_10
+      213: 4923176861457266095
+    second: SprSh_Icones_10
   - first:
-      213: 3758780331647301679
-    second: SprSh_IconesMarineObject_11
+      213: 7770349078740279481
+    second: SprSh_Icones_11
   - first:
-      213: -2709418684195975174
-    second: SprSh_IconesMarineObject_12
+      213: -5418003258202944379
+    second: SprSh_Icones_12
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -70,7 +70,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 0
@@ -110,17 +110,41 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SprSh_IconesMarineObject_0
+      name: SprSh_Icones_0
       rect:
         serializedVersion: 2
-        x: 7
-        y: 1472
-        width: 492
-        height: 560
+        x: 12
+        y: 1410
+        width: 409
+        height: 631
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,20 +152,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 65430720503699df0800000000000000
-      internalID: -172998237510159274
+      spriteID: a5cfa78319b06f2b0800000000000000
+      internalID: -5551236772341810086
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SprSh_IconesMarineObject_1
+      name: SprSh_Icones_1
       rect:
         serializedVersion: 2
-        x: 510
-        y: 1472
-        width: 493
-        height: 560
+        x: 430
+        y: 1421
+        width: 402
+        height: 620
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -149,20 +173,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2617c7fdfbc9ee420800000000000000
-      internalID: 2661236777724703074
+      spriteID: 17ac5fb999e58ebf0800000000000000
+      internalID: -294881761753183631
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SprSh_IconesMarineObject_2
+      name: SprSh_Icones_2
       rect:
         serializedVersion: 2
-        x: 1014
-        y: 1467
-        width: 492
-        height: 561
+        x: 841
+        y: 1408
+        width: 409
+        height: 633
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -170,20 +194,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eca654523eb6a7330800000000000000
-      internalID: 3709395866420079310
+      spriteID: 417b9e15acd9a0e50800000000000000
+      internalID: 6776402081615558420
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SprSh_IconesMarineObject_3
+      name: SprSh_Icones_3
       rect:
         serializedVersion: 2
-        x: 1529
-        y: 1464
-        width: 495
-        height: 565
+        x: 1259
+        y: 1410
+        width: 408
+        height: 631
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -191,20 +215,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d6ca744f2a9c201c0800000000000000
-      internalID: -4538843772715815827
+      spriteID: 73ef003a94218a8a0800000000000000
+      internalID: -6293760371773604297
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SprSh_IconesMarineObject_4
+      name: SprSh_Icones_4
       rect:
         serializedVersion: 2
-        x: 13
-        y: 877
-        width: 497
-        height: 564
+        x: 1697
+        y: 1572
+        width: 312
+        height: 318
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -212,20 +236,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2f7990a8c80380430800000000000000
-      internalID: 3749300069955377138
+      spriteID: 8bf4af46e12e15ce0800000000000000
+      internalID: -1418103787473973320
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SprSh_IconesMarineObject_5
+      name: SprSh_Icones_5
       rect:
         serializedVersion: 2
-        x: 515
-        y: 871
-        width: 499
-        height: 568
+        x: 12
+        y: 764
+        width: 410
+        height: 633
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -233,20 +257,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ec0bc6c8df5f49220800000000000000
-      internalID: 2491886963174191310
+      spriteID: 887e97e7a6de3c030800000000000000
+      internalID: 3513913175923353480
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SprSh_IconesMarineObject_6
+      name: SprSh_Icones_6
       rect:
         serializedVersion: 2
-        x: 1020
-        y: 871
-        width: 498
-        height: 567
+        x: 430
+        y: 763
+        width: 404
+        height: 623
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -254,20 +278,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c97c365899056e160800000000000000
-      internalID: 7054414486620587932
+      spriteID: 92b29808c8e696320800000000000000
+      internalID: 2551692213613046569
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SprSh_IconesMarineObject_7
+      name: SprSh_Icones_7
       rect:
         serializedVersion: 2
-        x: 1528
-        y: 873
-        width: 499
-        height: 565
+        x: 842
+        y: 766
+        width: 403
+        height: 622
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -275,20 +299,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 545bd62525122bbd0800000000000000
-      internalID: -2615991796094880443
+      spriteID: e3e51208d59d51350800000000000000
+      internalID: 5986930275263798846
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SprSh_IconesMarineObject_9
+      name: SprSh_Icones_8
       rect:
         serializedVersion: 2
-        x: 421
-        y: 302
-        width: 371
-        height: 374
+        x: 1253
+        y: 764
+        width: 407
+        height: 629
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -296,20 +320,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 382d0407e03054ab0800000000000000
-      internalID: -5024606448714198397
+      spriteID: de042346eacdbfb00800000000000000
+      internalID: 863526395135017197
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SprSh_IconesMarineObject_10
+      name: SprSh_Icones_9
       rect:
         serializedVersion: 2
-        x: 825
-        y: 297
-        width: 386
-        height: 383
+        x: 17
+        y: 156
+        width: 614
+        height: 501
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -317,20 +341,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5815415de3df44c70800000000000000
-      internalID: 8954560405424066949
+      spriteID: 0b9c13805f5d05cf0800000000000000
+      internalID: -265477129633674832
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SprSh_IconesMarineObject_11
+      name: SprSh_Icones_10
       rect:
         serializedVersion: 2
-        x: 1271
-        y: 294
-        width: 393
-        height: 441
+        x: 687
+        y: 200
+        width: 382
+        height: 423
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -338,8 +362,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f28ff88fbced92430800000000000000
-      internalID: 3758780331647301679
+      spriteID: fa535997543a25440800000000000000
+      internalID: 4923176861457266095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SprSh_Icones_11
+      rect:
+        serializedVersion: 2
+        x: 1226
+        y: 266
+        width: 401
+        height: 333
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b0291b6153d5db60800000000000000
+      internalID: 7770349078740279481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SprSh_Icones_12
+      rect:
+        serializedVersion: 2
+        x: 1667
+        y: 195
+        width: 381
+        height: 412
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58c87e21eb26fc4b0800000000000000
+      internalID: -5418003258202944379
       vertices: []
       indices: 
       edges: []
