@@ -43,6 +43,7 @@ namespace PlayerEquipement
         public override void Init(PlayerOceanEntity user)
         {
             base.Init(user);
+            readyToUse = true;
 
             levelManager = GameManager.Instance.levelManager;
             cameraController = GameManager.Instance.cameraController;

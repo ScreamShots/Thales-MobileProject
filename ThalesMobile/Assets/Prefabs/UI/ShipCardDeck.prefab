@@ -203,7 +203,6 @@ MonoBehaviour:
   canClick: 0
   canDrag: 0
   canHold: 0
-  id: 
 --- !u!114 &4827618525711843460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -696,7 +695,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   card: {fileID: 1609539580832545629}
-  captas: {fileID: 11400000, guid: c36a996926ad6fa418c4376e6bba5c60, type: 2}
+  captas: {fileID: 11400000, guid: 880ececae2e90c742a35278dce662b63, type: 2}
   chargeCountText: {fileID: 7503787564212545652}
   fillBar: {fileID: 1713574084675751144}
   audioSource: {fileID: 7534753923472165827}
@@ -740,7 +739,6 @@ MonoBehaviour:
   canClick: 0
   canDrag: 0
   canHold: 0
-  id: 
 --- !u!225 &3746497915562342996
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1177,7 +1175,6 @@ MonoBehaviour:
   canClick: 0
   canDrag: 0
   canHold: 0
-  id: ShipMovementCard
 --- !u!225 &9036211233702944146
 CanvasGroup:
   m_ObjectHideFlags: 0

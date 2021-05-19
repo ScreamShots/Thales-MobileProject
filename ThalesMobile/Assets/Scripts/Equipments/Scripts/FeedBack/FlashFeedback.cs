@@ -45,7 +45,7 @@ namespace PlayerEquipement
 
         public void ResetPos()
         {
-            meshRenderer.transform.position = originPos;
+            meshRenderer.transform.localPosition = originPos;
             flashLineRender.SetPosition(0, gameObject.transform.position);
             flashLineRender.SetPosition(1, gameObject.transform.position);
             meshRenderer.enabled = false;

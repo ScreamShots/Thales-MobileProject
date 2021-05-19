@@ -39,14 +39,11 @@ public class EntitiesSelectionButton : MonoBehaviour
         
         manager.currentButton = this;
 
-        GameManager.Instance.playerController.currentSelectedEntity = linkedEntity;
-
+        if(GameManager.Instance.cameraController != null && GameManager.Instance.playerController.currentSelectedEntity == linkedEntity)
+            GameManager.Instance.cameraController.SetTarget(linkedEntity.transform);
 
         GameManager.Instance.uiHandler.entityDeckUI.UpdateCurrentDeck(linkedEntity.entityDeck);
-            
-
-        if(GameManager.Instance.cameraController != null)
-            GameManager.Instance.cameraController.SetTarget(linkedEntity.transform);
+        GameManager.Instance.playerController.currentSelectedEntity = linkedEntity;
     }
 
     public void Deselect()

@@ -21,7 +21,7 @@ MonoBehaviour:
   partialMode: 0
   range: 35.77709
   waveDuration: 5
-  pointFadeDuration: 5
+  pointFadeDuration: 12
   detectionPointPrefab: {fileID: 5367692207239176408, guid: 55472133b87b57045a49b4c6309d65eb,
     type: 3}
   poolSize: 15

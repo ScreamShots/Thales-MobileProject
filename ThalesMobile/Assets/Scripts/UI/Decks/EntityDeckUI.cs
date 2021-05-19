@@ -66,7 +66,7 @@ public class EntityDeckUI : MonoBehaviour
         if(GameManager.Instance.inputManager.currentSelectedCard != null)
             GameManager.Instance.inputManager.currentSelectedCard.abortHandler();
         
-        if(currentDeck != null && currentDeck != newDeck)
+        if(currentDeck != null && currentDeck != newDeck && gameObject.activeInHierarchy)
         {
             deckAnimationDisappear.rectTransform = (RectTransform)currentDeck.transform;
             currentDeck.GetComponent<CanvasGroup>().blocksRaycasts = false;
@@ -74,7 +74,7 @@ public class EntityDeckUI : MonoBehaviour
             StartCoroutine(deckAnimationDisappear.anim.Play(deckAnimationDisappear, deckAnimationDisappear.originalPos));
         }
         
-        if(currentDeck != newDeck)
+        if(currentDeck != newDeck && gameObject.activeInHierarchy)
         {
             if (!newDeck.activeInHierarchy)
                 newDeck.SetActive(true);

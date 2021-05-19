@@ -77,7 +77,7 @@ Material:
     - _Surface: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
-    - isDroppingFlash: 1
+    - isDroppingFlash: 0
     m_Colors:
     - Color_4C40CCAB: {r: 1, g: 0.99052125, b: 0.82547176, a: 0}
     - Vector2_66578ADE: {r: 1, g: 4, b: 0, a: 0}

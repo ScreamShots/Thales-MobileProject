@@ -247,7 +247,13 @@ namespace OceanEntities
         public void LandFeedback()
         {
             deckUI.UpdateSecondaryButton(HelicopterButtonState.Start);
+
+            if(deckUI.buttonCoroutine != null)
+                StopCoroutine(deckUI.buttonCoroutine);
+
             deckUI.DeactivateButton();
+
+            
 
             deckUI.UpdateStatusText("Prepare Launch");
             deckUI.fillBar.fillAmount = 0;

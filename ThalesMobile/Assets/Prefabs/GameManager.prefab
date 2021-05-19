@@ -788,6 +788,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 0}
+  camController: {fileID: 0}
   selectableEntityLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -795,6 +796,8 @@ MonoBehaviour:
   getEntityTarget: 0
   gettingEntityTarget: 0
   canUseCam: 0
+  canZoomCam: 0
+  canMoveCam: 0
   audioSource: {fileID: 1284655755004708686}
   targetGroup: {fileID: 7017793297182156295, guid: 9b41315a36bc40a4ea458016676fd8f1,
     type: 2}
@@ -1372,7 +1375,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 100
   m_TargetDisplay: 0
 --- !u!114 &4216006411625854931
 MonoBehaviour:

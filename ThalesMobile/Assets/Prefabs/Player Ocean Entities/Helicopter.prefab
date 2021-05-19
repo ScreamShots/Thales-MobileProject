@@ -563,7 +563,7 @@ MonoBehaviour:
   serializedGuid: 0e5e13a5c8b071489721538499ed3b5c
   thisObjState: 2
   initState: 2
-  instanceID: 83246
+  instanceID: 27010
   referencedComponents:
   - component: {fileID: 6286141312136616712}
     serializedGuid: 5e2d654c39c242408a7445e02cce3b57
@@ -609,8 +609,8 @@ MonoBehaviour:
   helicopterFeedback: {fileID: 6286141311459306336}
   deckUI: {fileID: 0}
   preparationDuration: 8
-  alertDuration: 20
-  flightDuration: 15
+  alertDuration: 15
+  flightDuration: 30
   cooldownDuration: 5
   operating: 0
   inAlert: 0
@@ -619,7 +619,7 @@ MonoBehaviour:
   isDroppingFlash: 0
   launchButton: {fileID: 0}
   linkedShip: {fileID: 0}
-  activeEquipement: {fileID: 11400000, guid: e744e58754844264b84bc34d2c299192, type: 2}
+  activeEquipement: {fileID: 11400000, guid: cb188c1c696a12247a2e40f7648ee0d4, type: 2}
   flashPreparationTime: 2
   audioSource: {fileID: 3042659589105975169}
   targetGroup: {fileID: -9015305574639715243, guid: 9b41315a36bc40a4ea458016676fd8f1,

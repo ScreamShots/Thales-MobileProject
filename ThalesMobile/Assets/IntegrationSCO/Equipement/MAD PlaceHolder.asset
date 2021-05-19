@@ -18,4 +18,4 @@ MonoBehaviour:
   loadingTime: 0
   feedbackPrefab: {fileID: 4055348371840378350, guid: 7f28f84e30562ca4fa86f57ea3fe3e4f,
     type: 3}
-  range: 7
+  range: 6
