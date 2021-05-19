@@ -27,7 +27,11 @@ namespace OceanEntities
         [TweekFlag(FieldUsage.Sound)]
         public AudioClip waitingSound;
         [TweekFlag(FieldUsage.Sound)]
+        public float waitingSoundVolume;
+        [TweekFlag(FieldUsage.Sound)]
         public AudioClip movementSound;
+        [TweekFlag(FieldUsage.Sound)]
+        public float movementSoundVolume;
         bool fading;
         private void Start()
         {
@@ -65,15 +69,17 @@ namespace OceanEntities
                 if (audioSource.clip != movementSound && fading)
                 {
                     fading = false;
-                    soundHandler.CrossFade(audioSource, movementSound, 0.5f);
-                }    
+                    soundHandler.CrossFade(audioSource, movementSound, 0.5f, Mathf.Clamp(movementSoundVolume,0,1));
+                }
+
+                    
             }
             else
             {
                 if(audioSource.clip != waitingSound && !fading)
                 {
                     fading = true;
-                    soundHandler.CrossFade(audioSource, waitingSound,0.5f);
+                    soundHandler.CrossFade(audioSource, waitingSound,0.5f, Mathf.Clamp(waitingSoundVolume,0,1));
                 }
             }
 

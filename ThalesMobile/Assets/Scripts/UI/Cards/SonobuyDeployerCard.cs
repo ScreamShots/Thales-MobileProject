@@ -6,7 +6,9 @@ using PlayerEquipement;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.Audio;
+using Tweek.FlagAttributes;
 
+[TweekClass]
 public class SonobuyDeployerCard : MonoBehaviour
 {
     [Header("Elements")]
@@ -25,9 +27,18 @@ public class SonobuyDeployerCard : MonoBehaviour
     private SoundHandler soundHandler;
     public AudioSource audioSource;
     public AudioMixerGroup targetGroup;
+    [TweekFlag(FieldUsage.Sound)]
     public AudioClip descriptionAppearSound;
+    [TweekFlag(FieldUsage.Sound)]
+    public float descriptionAppearSoundVolume;
+    [TweekFlag(FieldUsage.Sound)]
     public AudioClip cardSelectionSound;
+    [TweekFlag(FieldUsage.Sound)]
+    public float cardSelectionSoundVolume;
+    [TweekFlag(FieldUsage.Sound)]
     public AudioClip outOfChargeSound;
+    [TweekFlag(FieldUsage.Sound)]
+    public float outOfChargeSoundVolume;
 
     // Start is called before the first frame update
     void Start()
@@ -68,6 +79,7 @@ public class SonobuyDeployerCard : MonoBehaviour
                 card.Select();
                 inputManager.currentSelectedCard = card;
                 sonobuyDeployer.UseEquipement(GameManager.Instance.playerController.currentSelectedEntity);
+                audioSource.volume = Mathf.Clamp01(cardSelectionSoundVolume);
                 soundHandler.PlaySound(cardSelectionSound, audioSource, targetGroup);
 
 
@@ -78,6 +90,7 @@ public class SonobuyDeployerCard : MonoBehaviour
             {
                 //Unavailable feedback;
                 print("Unavailable feedback click");
+                audioSource.volume = Mathf.Clamp01(outOfChargeSoundVolume);
                 soundHandler.PlaySound(outOfChargeSound, audioSource, targetGroup);
 
             }
@@ -108,6 +121,7 @@ public class SonobuyDeployerCard : MonoBehaviour
         {
             //Unavailable feedbaack
             print("Unavailable feedback drag");
+            audioSource.volume = Mathf.Clamp01(outOfChargeSoundVolume);
             soundHandler.PlaySound(outOfChargeSound, audioSource, targetGroup);
         }
 
@@ -145,6 +159,7 @@ public class SonobuyDeployerCard : MonoBehaviour
 
     private void UpdateDescriptionText()
     {
+        audioSource.volume = Mathf.Clamp01(descriptionAppearSoundVolume);
         soundHandler.PlaySound(descriptionAppearSound, audioSource, targetGroup);
 
         uiHandler.entityDeckUI.descriptionHeaderText.text = "Sonobuy Card";//Expose string

@@ -6,9 +6,11 @@ using NaughtyAttributes;
 using System;
 using System.Linq;
 using UnityEngine.Audio;
+using Tweek.FlagAttributes;
 
 namespace PlayerEquipement
 {    
+    [TweekClass]
     public class SonobuoyInstanceFeedback : MonoBehaviour
     {
         public enum AnimActionType { Add, Remove }
@@ -95,16 +97,22 @@ namespace PlayerEquipement
         AudioMixerGroup targetGroup;
         [SerializeField]
         AudioSource detectionAudioSource;
-        [SerializeField]
+        [SerializeField, TweekFlag(FieldUsage.Sound)]
         AudioClip detectionSound;
+        [SerializeField, TweekFlag(FieldUsage.Sound)]
+        float detectionSoundVolume;
         [SerializeField]
         AudioSource dropSoundSource;
-        [SerializeField]
+        [SerializeField, TweekFlag(FieldUsage.Sound)]
         AudioClip dropSound;
+        [SerializeField, TweekFlag(FieldUsage.Sound)]
+        float dropSoundVolume;
         [SerializeField]
         AudioSource backgroundSoundSource;
-        [SerializeField]
+        [SerializeField, TweekFlag(FieldUsage.Sound)]
         AudioClip backgroundSound;
+        [SerializeField, TweekFlag(FieldUsage.Sound)]
+        float backgroundSoundVolume;
 
         public void Init()
         {
@@ -141,7 +149,9 @@ namespace PlayerEquipement
         public void OnEnable()
         {
             backgroundSoundSource.loop = true;
+            backgroundSoundSource.volume = Mathf.Clamp01(backgroundSoundVolume);
             GameManager.Instance.soundHandler.PlaySound(backgroundSound, backgroundSoundSource, targetGroup);
+            dropSoundSource.volume = Mathf.Clamp01(dropSoundVolume);
             GameManager.Instance.soundHandler.PlaySound(dropSound, dropSoundSource, targetGroup);
         }
 
@@ -172,6 +182,7 @@ namespace PlayerEquipement
             if (detection)
             {
                 rangeRenderer.material = detectionRangeMaterial;
+                detectionAudioSource.volume = Mathf.Clamp01(detectionSoundVolume);
                 GameManager.Instance.soundHandler.PlaySound(detectionSound, detectionAudioSource, targetGroup);
             }
             else rangeRenderer.material = emptyRangeMaterial;

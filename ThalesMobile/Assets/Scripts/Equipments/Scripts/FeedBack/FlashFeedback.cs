@@ -3,9 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using Tweek.FlagAttributes;
 
 namespace PlayerEquipement
 {
+    [TweekClass]
     public class FlashFeedback : EquipementFeedback
     {
         PlayerOceanEntity sourceEntity;
@@ -26,9 +28,11 @@ namespace PlayerEquipement
         AudioMixerGroup targetGroup;
         [SerializeField]
         AudioSource flashSoundSource;
-        [SerializeField]
+        [SerializeField, TweekFlag(FieldUsage.Sound)]
         AudioClip flashSound;
-        
+        [SerializeField, TweekFlag(FieldUsage.Sound)]
+        float flashSoundVolume;
+
 
         public override void EquipementFeedbackInit(Equipement _source)
         {
@@ -68,6 +72,7 @@ namespace PlayerEquipement
                 timer += Time.deltaTime;
             }
 
+            flashSoundSource.volume = Mathf.Clamp(flashSoundVolume, 0, 1);
             GameManager.Instance.soundHandler.PlaySound(flashSound, flashSoundSource, targetGroup);
             splashParticles.Play();
 

@@ -51,12 +51,12 @@ public class SoundHandler : MonoBehaviour
 
         source.Play();
     }
-    public void CrossFade(AudioSource source, AudioClip clip, float fadeDuration)
+    public void CrossFade(AudioSource source, AudioClip clip, float fadeDuration, float newVolume = 0)
     {
         Coroutine fade = StartCoroutine(CrossfadeRoutine(source, clip, fadeDuration));
     }
 
-    public IEnumerator CrossfadeRoutine(AudioSource source, AudioClip clip, float fadeDuration)
+    public IEnumerator CrossfadeRoutine(AudioSource source, AudioClip clip, float fadeDuration, float newVolume = 0)
     {
         float time = 0;
         float currentVolume = source.volume;
@@ -73,7 +73,8 @@ public class SoundHandler : MonoBehaviour
 
         while (time < fadeDuration)
         {
-            source.volume = Mathf.Lerp(0,currentVolume, time / fadeDuration);
+            if(newVolume == 0) source.volume = Mathf.Lerp(0,currentVolume, time / fadeDuration);
+            else source.volume = Mathf.Lerp(0, newVolume, time / fadeDuration);
             yield return new WaitForFixedUpdate();
             time += Time.fixedDeltaTime;
         }

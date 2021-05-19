@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
+using Tweek.FlagAttributes;
 
 namespace PlayerEquipement
 {
+    [TweekClass]
     public class HullSonarPointFeedback : MonoBehaviour
     {
         [Header("References")]
@@ -28,8 +30,10 @@ namespace PlayerEquipement
         [Header("Sound - Appear")]
         [SerializeField]
         AudioMixerGroup targetGroup;
-        [SerializeField]
+        [SerializeField, TweekFlag(FieldUsage.Sound)]
         AudioClip appearSound;
+        [SerializeField, TweekFlag(FieldUsage.Sound)]
+        float appearSoundVolume;
         [SerializeField]
         AudioSource appearSoundSource;
 
@@ -45,6 +49,7 @@ namespace PlayerEquipement
 
         public void OnEnable()
         {
+            appearSoundSource.volume = Mathf.Clamp01(appearSoundVolume);
             GameManager.Instance.soundHandler.PlaySound(appearSound, appearSoundSource, targetGroup);
         }
 
