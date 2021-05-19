@@ -19,7 +19,7 @@ namespace PlayerEquipement
     public abstract class Equipement : ScriptableObject
     {
         public EquipementType equipementType { get; protected set; }
-        public bool readyToUse { get; protected set; } = true;
+        public bool readyToUse { get; set; }
         [HideInInspector]public PlayerOceanEntity currentUser;
         
         

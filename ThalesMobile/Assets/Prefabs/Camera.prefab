@@ -49,7 +49,7 @@ MonoBehaviour:
   serializedGuid: a2c2a521e3552545af375033db8e3a84
   thisObjState: 2
   initState: 2
-  instanceID: 81772
+  instanceID: 22954
   referencedComponents:
   - component: {fileID: 5630502567233466962}
     serializedGuid: 5f9c4216b50e1a418ee169f7caa274d1
@@ -218,10 +218,10 @@ MonoBehaviour:
   lookAtTraget: 0
   target: {fileID: 0}
   zoomIntensity: 1
-  zoomSpeed: 6.9
-  camSett: {fileID: 11400000, guid: c091036c73afbd841b3d2801e97c8c62, type: 2}
-  aimLerpSpeed: 0.1
-  moveSpeed: 42
+  zoomSpeed: 5
+  camSett: {fileID: 11400000, guid: 81746d5d0ad588340bad41252888c508, type: 2}
+  aimLerpSpeed: 0.05
+  moveSpeed: 45
   refocusSpeed: 55
   mouvLerpSpeed: 0.26
   moveDirection: {x: 0, y: 0}

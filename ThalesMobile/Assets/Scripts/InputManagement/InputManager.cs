@@ -20,6 +20,8 @@ public class InputManager : MonoBehaviour
     [HideInInspector] public bool getEntityTarget;
     [HideInInspector] public bool gettingEntityTarget;
     [HideInInspector] public bool canUseCam;
+    [HideInInspector] public bool canZoomCam;
+    [HideInInspector] public bool canMoveCam;
     private PlayerController playerController;
 
     [Header("Audio")]
@@ -50,6 +52,8 @@ public class InputManager : MonoBehaviour
         soundHandler = GameManager.Instance.soundHandler;
 
         canUseCam = true;
+        canZoomCam = true;
+        canMoveCam = true;
     }
 
     void Update()
@@ -98,9 +102,8 @@ public class InputManager : MonoBehaviour
                                 GameManager.Instance.playerController.currentSelectedEntity.linkedButton.SelectEntity();
                             }
                         }
-
                         //If drag then move camera
-                        else if (touch.deltaPosition.magnitude > 5f)
+                        else if (touch.deltaPosition.magnitude > 5f && canMoveCam)
                         {
                             camController.moveDirection = -touch.deltaPosition;
                         }
@@ -117,31 +120,34 @@ public class InputManager : MonoBehaviour
         //Glide Input
         else if(Input.touchCount == 2)
         {
-            Vector2 touch0;
-            Vector2 touch1;
-
-            touch0 = Input.GetTouch(0).position;
-            touch1 = Input.GetTouch(1).position;
-
-            if(distance == 0)
+            if(canZoomCam)
             {
+                Vector2 touch0;
+                Vector2 touch1;
+
+                touch0 = Input.GetTouch(0).position;
+                touch1 = Input.GetTouch(1).position;
+
+                if(distance == 0)
+                {
+                    distance = Vector2.Distance(touch0, touch1);
+                }
+
+                lastDistance = distance;
                 distance = Vector2.Distance(touch0, touch1);
-            }
+                float deltaDistance = distance - lastDistance;
 
-            lastDistance = distance;
-            distance = Vector2.Distance(touch0, touch1);
-            float deltaDistance = distance - lastDistance;
-
-            if(deltaDistance > 1 && camController.zoomIntensity <= 1)
-            {
-                camController.zoomIntensity -= (0.01f * camController.zoomSpeed) * (1 - Mathf.Clamp01(0.01f * deltaDistance));
-                camController.zoomIntensity = Mathf.Clamp01(camController.zoomIntensity);
+                if(deltaDistance > 1 && camController.zoomIntensity <= 1)
+                {
+                    camController.zoomIntensity -= (0.01f * camController.zoomSpeed) * (1 - Mathf.Clamp01(0.01f * deltaDistance));
+                    camController.zoomIntensity = Mathf.Clamp01(camController.zoomIntensity);
+                }
+                else if(deltaDistance < -1 && camController.zoomIntensity >= 0)
+                {
+                    camController.zoomIntensity += (0.01f * camController.zoomSpeed)* (1 - Mathf.Clamp01(0.01f * deltaDistance));
+                    camController.zoomIntensity = Mathf.Clamp01(camController.zoomIntensity);
+                }  
             }
-            else if(deltaDistance < -1 && camController.zoomIntensity >= 0)
-            {
-                camController.zoomIntensity += (0.01f * camController.zoomSpeed)* (1 - Mathf.Clamp01(0.01f * deltaDistance));
-                camController.zoomIntensity = Mathf.Clamp01(camController.zoomIntensity);
-            }  
         }
 
         //No fingers on screen.

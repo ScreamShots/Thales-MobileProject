@@ -197,10 +197,13 @@ MonoBehaviour:
     canvasGroup: {fileID: 0}
     originalPos: {x: 0, y: 0}
   darkenBackWhileHold: 0
-  canBeSelected: 0
   isDragged: 0
   isSelected: 0
   descriptionOpened: 0
+  canClick: 0
+  canDrag: 0
+  canHold: 0
+  id: 
 --- !u!114 &4827618525711843460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -475,6 +478,7 @@ GameObject:
   - component: {fileID: 1601565973733013693}
   - component: {fileID: 1146630866129135164}
   - component: {fileID: 4737458510836287909}
+  - component: {fileID: 7841967861491179975}
   m_Layer: 0
   m_Name: ShipCardDeck
   m_TagString: Untagged
@@ -568,6 +572,21 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &7841967861491179975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1601565973733013683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed5ee98887fb18f43a26a7b308b60ed6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementCard: {fileID: 8233956612670586475}
+  equipementCard: {fileID: 1609539580832545629}
+  passiveCard: {fileID: 6990138965356131178}
 --- !u!1 &1746725121760616044
 GameObject:
   m_ObjectHideFlags: 0
@@ -715,10 +734,13 @@ MonoBehaviour:
     canvasGroup: {fileID: 0}
     originalPos: {x: 0, y: 0}
   darkenBackWhileHold: 0
-  canBeSelected: 0
   isDragged: 0
   isSelected: 0
   descriptionOpened: 0
+  canClick: 0
+  canDrag: 0
+  canHold: 0
+  id: 
 --- !u!225 &3746497915562342996
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1149,10 +1171,13 @@ MonoBehaviour:
     canvasGroup: {fileID: 0}
     originalPos: {x: 0, y: 0}
   darkenBackWhileHold: 0
-  canBeSelected: 0
   isDragged: 0
   isSelected: 0
   descriptionOpened: 0
+  canClick: 0
+  canDrag: 0
+  canHold: 0
+  id: ShipMovementCard
 --- !u!225 &9036211233702944146
 CanvasGroup:
   m_ObjectHideFlags: 0

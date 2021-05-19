@@ -6,6 +6,8 @@ public class CodexData
 {
     [Header("Information")]
     public string title;
+    [Space(10)]
+    public Sprite image;
     [TextArea()]
     public string[] description = new string[3]
     {
@@ -13,5 +15,5 @@ public class CodexData
       "En plus il ne coute que quelque % de ton PIB",
       "Il ne faut pas dire crunch mais surtravail volontaire durant les vancances #ProgTeam"
     };
-    //public Mesh mesh;//pour plus tard par contre
+    
 }
