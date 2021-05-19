@@ -5,7 +5,9 @@ using PlayerEquipement;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.Audio;
+using Tweek.FlagAttributes;
 
+[TweekClass]
 public class CaptasCard : MonoBehaviour
 {
 
@@ -25,9 +27,18 @@ public class CaptasCard : MonoBehaviour
     private SoundHandler soundHandler;
     public AudioSource audioSource;
     public AudioMixerGroup targetGroup;
+    [TweekFlag(FieldUsage.Sound)]
     public AudioClip descriptionAppearSound;
+    [TweekFlag(FieldUsage.Sound)]
+    public float descriptionAppearSoundVolume;
+    [TweekFlag(FieldUsage.Sound)]
     public AudioClip cardSelectionSound;
+    [TweekFlag(FieldUsage.Sound)]
+    public float cardSelectionSoundVolume;
+    [TweekFlag(FieldUsage.Sound)]
     public AudioClip outOfChargeSound;
+    [TweekFlag(FieldUsage.Sound)]
+    public float outOfChargeSoundVolume;
 
     // Start is called before the first frame update
     void Start()
@@ -69,12 +80,14 @@ public class CaptasCard : MonoBehaviour
                 card.Select();
                 captasUse = StartCoroutine(UseCaptas());
                 inputManager.currentSelectedCard = card;
+                audioSource.volume = Mathf.Clamp01(cardSelectionSoundVolume);
                 soundHandler.PlaySound(cardSelectionSound, audioSource, targetGroup);
             }
             else
             {
                 //Unavailable feedback;
                 print("Unavailable feedback click");
+                audioSource.volume = Mathf.Clamp01(outOfChargeSoundVolume);
                 soundHandler.PlaySound(outOfChargeSound, audioSource, targetGroup);
 
             }
@@ -107,6 +120,7 @@ public class CaptasCard : MonoBehaviour
         {
             //Unavailable feedback;
             print("Unavailable feedback drag");
+            audioSource.volume = Mathf.Clamp01(outOfChargeSoundVolume);
             soundHandler.PlaySound(outOfChargeSound, audioSource, targetGroup);
         }
     }
@@ -145,6 +159,7 @@ public class CaptasCard : MonoBehaviour
 
     private void UpdateDescriptionText()
     {
+        audioSource.volume = Mathf.Clamp01(descriptionAppearSoundVolume);
         soundHandler.PlaySound(descriptionAppearSound, audioSource, targetGroup);
 
         uiHandler.entityDeckUI.descriptionHeaderText.text = "Captas4 Card";//Expose string

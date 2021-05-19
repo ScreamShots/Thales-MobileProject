@@ -13,6 +13,8 @@ namespace PlayerEquipement
         MeshRenderer waveRenderer;
         [SerializeField]
         Material waveMaterial;
+        [SerializeField]
+        float minProgression, maxProgression;
         
         int expansionFactor
         {
@@ -71,6 +73,13 @@ namespace PlayerEquipement
         public void SetWaveSpeed(float _speed)
         {
             waveRenderer.sharedMaterial.SetFloat("VitesseOnde", (100f * expansionFactor) / _speed);
+        }
+
+        public void UpdateWaveProgression(float progressionRatio)
+        {
+            float progressionFactor = sourceHullSonar.expand ? 1 :-1;
+            
+            waveRenderer.material.SetFloat("ProgressionOnde", Mathf.Lerp(minProgression * progressionFactor, maxProgression * progressionFactor, progressionRatio));
         }
     }
 }

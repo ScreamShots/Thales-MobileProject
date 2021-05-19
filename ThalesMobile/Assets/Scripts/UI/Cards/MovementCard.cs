@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.Audio;
+using Tweek.FlagAttributes;
 
+[TweekClass]
 public class MovementCard : MonoBehaviour
 {
     public InteractableUI card;
@@ -11,8 +13,16 @@ public class MovementCard : MonoBehaviour
     private SoundHandler soundHandler;
     public AudioSource audioSource;
     public AudioMixerGroup targetGroup;
+    [TweekFlag(FieldUsage.Sound)]
     public AudioClip descriptionAppearSound;
+    [TweekFlag(FieldUsage.Sound)]
+    public float descriptionAppearSoundVolume;
+    [TweekFlag(FieldUsage.Sound)]
     public AudioClip cardSelectionSound;
+    [TweekFlag(FieldUsage.Sound)]
+    public float cardSelectionSoundVolume;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -39,20 +49,21 @@ public class MovementCard : MonoBehaviour
 
     public void OnClickEvent()
     {
-        if(card.isSelected)
-        {
-            card.abortHandler();
-        }
-        else
-        {
-            //Deselect and abort current selected card.
-            if(inputManager.currentSelectedCard != null)
+            if(card.isSelected)
             {
-                inputManager.currentSelectedCard.abortHandler();
+                card.abortHandler();
             }
+            else
+            {
+                //Deselect and abort current selected card.
+                if(inputManager.currentSelectedCard != null)
+                {
+                    inputManager.currentSelectedCard.abortHandler();
+                }
 
             //Select new card and link to input manager.
             card.Select();
+            audioSource.volume = Mathf.Clamp01(cardSelectionSoundVolume);
             soundHandler.PlaySound(cardSelectionSound, audioSource, targetGroup);
             inputManager.getEntityTarget = true;
             inputManager.currentSelectedCard = card;
@@ -80,6 +91,7 @@ public class MovementCard : MonoBehaviour
 
     private void UpdateDescriptionText()
     {
+        audioSource.volume = Mathf.Clamp01(descriptionAppearSoundVolume);
         soundHandler.PlaySound(descriptionAppearSound, audioSource, targetGroup);
 
         uiHandler.entityDeckUI.descriptionHeaderText.text = "Movement Card";//Expose string

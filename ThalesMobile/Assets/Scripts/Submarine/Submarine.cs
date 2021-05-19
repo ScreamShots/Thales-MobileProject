@@ -134,6 +134,8 @@ public class Submarine : DetectableOceanEntity
     public AudioSource soundSource;
     [TweekFlag(FieldUsage.Sound)]
     public AudioClip inHackClip, doneHackClip;
+    [TweekFlag(FieldUsage.Sound)]
+    public float inHackVolume, doneHackVolume;
     private bool soundAlreadyPlay;
 
     private void Start()
@@ -262,8 +264,8 @@ public class Submarine : DetectableOceanEntity
             }
             else
             {
-                pathDestination = nextInterestPointPosition;
-                UpdatePath();
+                //pathDestination = nextInterestPointPosition;
+                UpdatePath(nextInterestPointPosition);
             }
         }
         else
@@ -278,6 +280,7 @@ public class Submarine : DetectableOceanEntity
         if (!soundAlreadyPlay)
         {
             soundAlreadyPlay = true;
+            soundSource.volume = inHackVolume;
             soundHandler.PlaySound(inHackClip, soundSource, targetGroup);
         }
         hackingTimer += Time.deltaTime;
@@ -286,6 +289,7 @@ public class Submarine : DetectableOceanEntity
 
         if (hackingTimer >= nextInterestPoint.hackTime)
         {
+            soundSource.volume = doneHackVolume;
             soundHandler.PlaySound(doneHackClip, soundSource, targetGroup);
             soundAlreadyPlay = false;
             hackingTimer = 0;

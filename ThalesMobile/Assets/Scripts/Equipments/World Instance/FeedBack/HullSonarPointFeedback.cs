@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
+using Tweek.FlagAttributes;
 
 namespace PlayerEquipement
 {
+    [TweekClass]
     public class HullSonarPointFeedback : MonoBehaviour
     {
         [Header("References")]
@@ -23,28 +25,41 @@ namespace PlayerEquipement
         [Header("Reveal Params")]
         [SerializeField]
         RectTransform revealCanvasRT;
+        [SerializeField]
+        Transform tempLookCamTransform;
+        CameraController camController;
         public float animDuration;
+        [SerializeField]
+        AnimationCurve revealScaleProgression;
+        Vector3 revealBaseScale;
 
         [Header("Sound - Appear")]
         [SerializeField]
         AudioMixerGroup targetGroup;
-        [SerializeField]
+        [SerializeField, TweekFlag(FieldUsage.Sound)]
         AudioClip appearSound;
+        [SerializeField, TweekFlag(FieldUsage.Sound)]
+        float appearSoundVolume;
         [SerializeField]
         AudioSource appearSoundSource;
 
         private void Start()
         {
             revealCanvasRT.localScale = Vector3.zero;
+            camController = GameManager.Instance.cameraController;
+            revealBaseScale = revealCanvasRT.localScale;
         }
 
         private void Update()
         {
             globalVisualCanvas.alpha = 1 - (source.timer / source.fadeDuration);
+            revealCanvasRT.forward = camController.cam.transform.forward;
+            revealCanvasRT.localScale = revealBaseScale * revealScaleProgression.Evaluate(camController.zoomIntensity / 1);
         }
 
         public void OnEnable()
         {
+            appearSoundSource.volume = Mathf.Clamp01(appearSoundVolume);
             GameManager.Instance.soundHandler.PlaySound(appearSound, appearSoundSource, targetGroup);
         }
 

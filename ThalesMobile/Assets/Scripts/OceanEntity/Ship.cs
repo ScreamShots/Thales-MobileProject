@@ -27,7 +27,11 @@ namespace OceanEntities
         [TweekFlag(FieldUsage.Sound)]
         public AudioClip waitingSound;
         [TweekFlag(FieldUsage.Sound)]
+        public float waitingSoundVolume;
+        [TweekFlag(FieldUsage.Sound)]
         public AudioClip movementSound;
+        [TweekFlag(FieldUsage.Sound)]
+        public float movementSoundVolume;
         bool fading;
         private void Start()
         {
@@ -45,7 +49,7 @@ namespace OceanEntities
             passiveEquipement.Init(this);
             activeEquipement.Init(this);
         }
-
+        Vector2 lastValidPos;
         private void Update()
         {
             if (passiveEquipement.readyToUse)
@@ -53,12 +57,19 @@ namespace OceanEntities
 
             if (currentTargetPoint != nullVector)
             {
-                UpdatePath();
+
+                lastValidPos =  UpdatePath(currentTargetPoint);
+
+                if (currentTargetPoint != lastValidPos)
+                {
+                    currentTargetPoint = lastValidPos;
+                    timeBeforeNextPathUpdate = 0;
+                }
 
                 if (audioSource.clip != movementSound && fading)
                 {
                     fading = false;
-                    soundHandler.CrossFade(audioSource, movementSound, 0.5f);
+                    soundHandler.CrossFade(audioSource, movementSound, 0.5f, Mathf.Clamp(movementSoundVolume,0,1));
                 }
 
                     
@@ -68,7 +79,7 @@ namespace OceanEntities
                 if(audioSource.clip != waitingSound && !fading)
                 {
                     fading = true;
-                    soundHandler.CrossFade(audioSource, waitingSound,0.5f);
+                    soundHandler.CrossFade(audioSource, waitingSound,0.5f, Mathf.Clamp(waitingSoundVolume,0,1));
                 }
             }
 
@@ -80,7 +91,6 @@ namespace OceanEntities
             if (currentTargetPoint != nullVector)
             {
                 Move(currentTargetPoint);
-                pathDestination = currentTargetPoint;
             }
         }
         public override void Move(Vector2 targetPosition)

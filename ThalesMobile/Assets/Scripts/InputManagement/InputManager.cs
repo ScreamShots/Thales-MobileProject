@@ -6,7 +6,9 @@ using Plane = UnityEngine.Plane;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine.Audio;
+using Tweek.FlagAttributes;
 
+[TweekClass]
 public class InputManager : MonoBehaviour
 {
 
@@ -20,13 +22,18 @@ public class InputManager : MonoBehaviour
     [HideInInspector] public bool getEntityTarget;
     [HideInInspector] public bool gettingEntityTarget;
     [HideInInspector] public bool canUseCam;
+    [HideInInspector] public bool canZoomCam;
+    [HideInInspector] public bool canMoveCam;
     private PlayerController playerController;
 
     [Header("Audio")]
     private SoundHandler soundHandler;
     public AudioSource audioSource;
     public AudioMixerGroup targetGroup;
+    [TweekFlag(FieldUsage.Sound)]
     public AudioClip setTargetSound;
+    [TweekFlag(FieldUsage.Sound)]
+    public float setTargetSoundVolume;
 
     //Touch inputs
     [HideInInspector]public Vector2 touchedSeaPosition = new Vector2(-9999, -9999);
@@ -50,6 +57,8 @@ public class InputManager : MonoBehaviour
         soundHandler = GameManager.Instance.soundHandler;
 
         canUseCam = true;
+        canZoomCam = true;
+        canMoveCam = true;
     }
 
     void Update()
@@ -91,16 +100,23 @@ public class InputManager : MonoBehaviour
                             touchRay = mainCamera.ScreenPointToRay(touch.position);
                             if (Physics.Raycast(touchRay, out hit, 200f, selectableEntityLayer))
                             {
-                                playerController.currentSelectedEntity = hit.collider.transform.parent.GetComponent<PlayerOceanEntity>();
-                                camController.SetTarget(hit.collider.transform);
+                                var entity = hit.collider.transform.parent.GetComponent<PlayerOceanEntity>();
 
-                                //Select Button
-                                GameManager.Instance.playerController.currentSelectedEntity.linkedButton.SelectEntity();
+                                if (playerController.currentSelectedEntity == entity)
+                                {
+                                    camController.SetTarget(hit.collider.transform);
+                                }
+                                else
+                                {
+                                    //Select Button
+                                    entity.linkedButton.SelectEntity();
+                                }
+
+                                
                             }
                         }
-
                         //If drag then move camera
-                        else if (touch.deltaPosition.magnitude > 5f)
+                        else if (touch.deltaPosition.magnitude > 5f && canMoveCam)
                         {
                             camController.moveDirection = -touch.deltaPosition;
                         }
@@ -117,31 +133,34 @@ public class InputManager : MonoBehaviour
         //Glide Input
         else if(Input.touchCount == 2)
         {
-            Vector2 touch0;
-            Vector2 touch1;
-
-            touch0 = Input.GetTouch(0).position;
-            touch1 = Input.GetTouch(1).position;
-
-            if(distance == 0)
+            if(canZoomCam)
             {
+                Vector2 touch0;
+                Vector2 touch1;
+
+                touch0 = Input.GetTouch(0).position;
+                touch1 = Input.GetTouch(1).position;
+
+                if(distance == 0)
+                {
+                    distance = Vector2.Distance(touch0, touch1);
+                }
+
+                lastDistance = distance;
                 distance = Vector2.Distance(touch0, touch1);
-            }
+                float deltaDistance = distance - lastDistance;
 
-            lastDistance = distance;
-            distance = Vector2.Distance(touch0, touch1);
-            float deltaDistance = distance - lastDistance;
-
-            if(deltaDistance > 1 && camController.zoomIntensity <= 1)
-            {
-                camController.zoomIntensity -= (0.01f * camController.zoomSpeed) * (1 - Mathf.Clamp01(0.01f * deltaDistance));
-                camController.zoomIntensity = Mathf.Clamp01(camController.zoomIntensity);
+                if(deltaDistance > 1 && camController.zoomIntensity <= 1)
+                {
+                    camController.zoomIntensity -= (0.01f * camController.zoomSpeed) * (1 - Mathf.Clamp01(0.01f * deltaDistance));
+                    camController.zoomIntensity = Mathf.Clamp01(camController.zoomIntensity);
+                }
+                else if(deltaDistance < -1 && camController.zoomIntensity >= 0)
+                {
+                    camController.zoomIntensity += (0.01f * camController.zoomSpeed)* (1 - Mathf.Clamp01(0.01f * deltaDistance));
+                    camController.zoomIntensity = Mathf.Clamp01(camController.zoomIntensity);
+                }  
             }
-            else if(deltaDistance < -1 && camController.zoomIntensity >= 0)
-            {
-                camController.zoomIntensity += (0.01f * camController.zoomSpeed)* (1 - Mathf.Clamp01(0.01f * deltaDistance));
-                camController.zoomIntensity = Mathf.Clamp01(camController.zoomIntensity);
-            }  
         }
 
         //No fingers on screen.
@@ -165,6 +184,7 @@ public class InputManager : MonoBehaviour
                     playerController.SetEntityMoveTarget(touchedSeaPosition);
                     touchedSeaPosition = new Vector2(-9999, -9999);
 
+                    audioSource.volume = Mathf.Clamp01(setTargetSoundVolume);
                     soundHandler.PlaySound(setTargetSound, audioSource, targetGroup);
                 }
 

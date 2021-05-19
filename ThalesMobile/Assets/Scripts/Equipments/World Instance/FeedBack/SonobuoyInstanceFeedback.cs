@@ -6,9 +6,11 @@ using NaughtyAttributes;
 using System;
 using System.Linq;
 using UnityEngine.Audio;
+using Tweek.FlagAttributes;
 
 namespace PlayerEquipement
 {    
+    [TweekClass]
     public class SonobuoyInstanceFeedback : MonoBehaviour
     {
         public enum AnimActionType { Add, Remove }
@@ -86,6 +88,13 @@ namespace PlayerEquipement
         [SerializeField]
         float animationsDuration;
         bool onGoingAnim;
+        [SerializeField]
+        Transform revealCanvasRT;
+        CameraController cameraController;
+        [SerializeField]
+        AnimationCurve revealScaleProgression;
+        Vector3 revealBaseScale;
+
 
         Dictionary<Type, RevealIcon> activeIcons;
         Dictionary<Type, AnimInfos> queue;
@@ -95,16 +104,22 @@ namespace PlayerEquipement
         AudioMixerGroup targetGroup;
         [SerializeField]
         AudioSource detectionAudioSource;
-        [SerializeField]
+        [SerializeField, TweekFlag(FieldUsage.Sound)]
         AudioClip detectionSound;
+        [SerializeField, TweekFlag(FieldUsage.Sound)]
+        float detectionSoundVolume;
         [SerializeField]
         AudioSource dropSoundSource;
-        [SerializeField]
+        [SerializeField, TweekFlag(FieldUsage.Sound)]
         AudioClip dropSound;
+        [SerializeField, TweekFlag(FieldUsage.Sound)]
+        float dropSoundVolume;
         [SerializeField]
         AudioSource backgroundSoundSource;
-        [SerializeField]
+        [SerializeField, TweekFlag(FieldUsage.Sound)]
         AudioClip backgroundSound;
+        [SerializeField, TweekFlag(FieldUsage.Sound)]
+        float backgroundSoundVolume;
 
         public void Init()
         {
@@ -118,6 +133,9 @@ namespace PlayerEquipement
 
             activeIcons = new Dictionary<Type, RevealIcon>();
             queue = new Dictionary<Type, AnimInfos>();
+            
+            cameraController = GameManager.Instance.cameraController;
+            revealBaseScale = revealCanvasRT.localScale;
         }
 
         public IEnumerator ResetReveal()
@@ -141,7 +159,9 @@ namespace PlayerEquipement
         public void OnEnable()
         {
             backgroundSoundSource.loop = true;
+            backgroundSoundSource.volume = Mathf.Clamp01(backgroundSoundVolume);
             GameManager.Instance.soundHandler.PlaySound(backgroundSound, backgroundSoundSource, targetGroup);
+            dropSoundSource.volume = Mathf.Clamp01(dropSoundVolume);
             GameManager.Instance.soundHandler.PlaySound(dropSound, dropSoundSource, targetGroup);
         }
 
@@ -165,6 +185,13 @@ namespace PlayerEquipement
             {
                 StartCoroutine(ResetReveal());
             }
+
+            if (revelationOn)
+            {
+                revealCanvasRT.forward = cameraController.cam.transform.forward;
+                revealCanvasRT.localScale = revealBaseScale * revealScaleProgression.Evaluate(cameraController.zoomIntensity / 1);
+            }
+                
         }
 
         public void DetectionRangeFeedBack(bool detection)
@@ -172,6 +199,7 @@ namespace PlayerEquipement
             if (detection)
             {
                 rangeRenderer.material = detectionRangeMaterial;
+                detectionAudioSource.volume = Mathf.Clamp01(detectionSoundVolume);
                 GameManager.Instance.soundHandler.PlaySound(detectionSound, detectionAudioSource, targetGroup);
             }
             else rangeRenderer.material = emptyRangeMaterial;

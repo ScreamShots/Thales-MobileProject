@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: Flash PlaceHolder
   m_EditorClassIdentifier: 
   currentUser: {fileID: 0}
-  chargeMax: 1
-  chargeStart: 1
+  chargeMax: 50
+  chargeStart: 50
   loadingTime: 0
   feedbackPrefab: {fileID: 6879005350775039052, guid: c9b8c666be212a6488e7f8f84702cc30,
     type: 3}
-  winningRange: 1
-  extendedRange: 3
-  dropDuration: 2
+  winningRange: 3
+  extendedRange: 7
+  dropDuration: 4
   revealDuration: 4
   heightOffset: 0

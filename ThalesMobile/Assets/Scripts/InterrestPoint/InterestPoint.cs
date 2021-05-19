@@ -93,15 +93,7 @@ public class InterestPoint : MonoBehaviour
         if (currentHackState == HackState.doneHack)
         {
             ChangeMeshColor();
-            EmitHackParticles(false);
-        }
-        if (currentHackState == HackState.inHack)
-        {
             EmitHackParticles(true);
-        }
-        if (currentHackState == HackState.unhacked)
-        {
-            EmitHackParticles(false);
         }
     }
 

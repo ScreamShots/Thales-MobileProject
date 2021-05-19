@@ -70,6 +70,43 @@ namespace Thales.Tool.LevelDesign
 
             base.OnInspectorGUI();
 
+            //Add Point
+            using (new GUILayout.HorizontalScope())
+            {
+                if (GUILayout.Button("Add Point In Zone"))
+                {
+                    tool.AddPoint();
+                }
+                #region Zone Cible Number
+                //Left or Previous
+                if (GUILayout.Button("<", GUILayout.Width(20)))
+                {
+                    tool.zoneNbr = tool.zoneNbr > 0 ? tool.zoneNbr - 1 : 0;
+                }
+
+                //Data
+                tool.zoneNbr = EditorGUILayout.IntField(tool.zoneNbr, GUILayout.Width(20));
+
+                //Right or Next
+                if (GUILayout.Button(">", GUILayout.Width(20)))
+                {
+                    tool.zoneNbr = tool.zoneNbr < tool.editZones.Count - 1 ? tool.zoneNbr + 1 : tool.editZones.Count - 1;
+                }
+                #endregion
+            }
+            //Add Zone
+            using (new GUILayout.HorizontalScope())
+            {
+                if (GUILayout.Button("Add Zone In Environnement"))
+                {
+                    tool.AddZone();
+                }
+                if (GUILayout.Button(" ", EditorStyles.helpBox, GUILayout.Width(66)))
+                {
+
+                }
+            }
+
             EditorUtility.SetDirty(target);
 
         }

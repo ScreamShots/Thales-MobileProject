@@ -9,6 +9,7 @@ namespace OceanEntities
         [Header("Helicopter")]
         public Helicopter renderedHelicopter;
         public GameObject rendererContainer;
+        public MeshRenderer baseRenderer;
         public Transform mainPropeller;
         public Transform rearPropeller;
         public float spinSpeed;
@@ -62,6 +63,13 @@ namespace OceanEntities
         {
             mainPropeller.rotation = Quaternion.Euler(mainPropeller.rotation.eulerAngles.x, mainPropeller.rotation.eulerAngles.y + spinSpeed * Time.deltaTime, mainPropeller.rotation.eulerAngles.z);
             rearPropeller.rotation *= Quaternion.AngleAxis(spinSpeed * Time.deltaTime, Vector3.up);
+        }
+
+        public IEnumerator BlinkHelicopter(float time)
+        {
+            baseRenderer.material.SetInt("isDroppingFlash", 1);
+            yield return new WaitForSeconds(time);
+            baseRenderer.material.SetInt("isDroppingFlash", 0);
         }
     }
 

@@ -27,6 +27,8 @@ namespace OceanEntities
         public AudioMixerGroup targetGroup;
         [TweekFlag(FieldUsage.Sound)]
         public AudioClip movementSound;
+        [TweekFlag(FieldUsage.Sound)]
+        public float movementSoundVolume;
 
         /*private Vector2 waitingTarget = new Vector2(-9999, -9999);
 
@@ -62,6 +64,7 @@ namespace OceanEntities
             passiveEquipement.Init(this);
             activeEquipement.Init(this);
 
+            audioSource.volume = Mathf.Clamp(movementSoundVolume, 0, 1);
             soundHandler.PlaySound(movementSound, audioSource, targetGroup);
         }
 

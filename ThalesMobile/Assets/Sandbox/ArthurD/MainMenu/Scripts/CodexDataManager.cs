@@ -7,8 +7,9 @@ public class CodexDataManager : MonoBehaviour
     [Header("Component")]
     public GameObject descriptionCanvas;
     public TextMeshProUGUI prodTitle;
+    [Space(10)]
+    public Image spriteField;
     public MultiTextSystem multiText;
-
     public TextMeshProUGUI[] codexButtonTitle;
 
     [Header("Parameter")]
@@ -28,6 +29,7 @@ public class CodexDataManager : MonoBehaviour
 
     public void LoadDescription(int number)
     {
+        spriteField.sprite = loadedMission[number].image;
         prodTitle.text = loadedMission[number].title;
         multiText.text = loadedMission[number].description;
 

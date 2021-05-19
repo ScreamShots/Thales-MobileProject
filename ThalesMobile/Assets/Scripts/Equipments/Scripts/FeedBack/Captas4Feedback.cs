@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using Tweek.FlagAttributes;
 
 namespace PlayerEquipement
 {
+    [TweekClass]
     public class Captas4Feedback : EquipementFeedback
     {
         [SerializeField]
@@ -17,8 +19,10 @@ namespace PlayerEquipement
         [Header("Sound - Wave Start")]
         [SerializeField]
         AudioMixerGroup targetGroup;
-        [SerializeField]
+        [SerializeField, TweekFlag(FieldUsage.Sound)]
         AudioClip waveSound;
+        [SerializeField, TweekFlag(FieldUsage.Sound)]
+        float waveSoundVolume;
         [SerializeField]
         AudioSource waveSoundSource;
 
@@ -34,6 +38,7 @@ namespace PlayerEquipement
             captasWaveRenderer.transform.localScale = Vector3.one;
             float scaleFactor = (2 * range) / captasWaveRenderer.bounds.size.x;
             captasWaveRenderer.transform.localScale *= scaleFactor;
+            waveSoundSource.volume = Mathf.Clamp(waveSoundVolume, 0, 1);
             GameManager.Instance.soundHandler.PlaySound(waveSound, waveSoundSource, targetGroup);
             StartCoroutine(WaveProgression(duration));
         }

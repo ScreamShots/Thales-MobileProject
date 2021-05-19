@@ -1,4 +1,5 @@
 ﻿using OceanEntities;
+using PlayerEquipement;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -40,6 +41,8 @@ public class HelicopterDeckUI : MonoBehaviour
     LevelManager levelManager;
 
     private Helicopter linkedHelicopter;
+    private Flash flashEquipement;
+    public Coroutine buttonCoroutine;
 
     // Start is called before the first frame update
     void Start()
@@ -63,15 +66,20 @@ public class HelicopterDeckUI : MonoBehaviour
         launchButton.onClick.AddListener(DropFlash);
 
         secondaryButton.onClick.AddListener(Launch);
+
+        flashEquipement = (Flash) linkedHelicopter.activeEquipement;
     }
 
     private void DropFlash()
     {
-        if(linkedHelicopter.inFlight)
+        if(linkedHelicopter.inFlight && linkedHelicopter.activeEquipement.readyToUse)
         {
             linkedHelicopter.activeEquipement.UseEquipement(linkedHelicopter);
+            StartCoroutine(linkedHelicopter.helicopterFeedback.BlinkHelicopter(3f));
+
             //disable Button
-            DeactivateButton();
+            //DeactivateButton();
+            buttonCoroutine = StartCoroutine(FlashCoolDown());
         }
     }
 
@@ -167,4 +175,11 @@ public class HelicopterDeckUI : MonoBehaviour
         }
 
     } 
+
+    public IEnumerator FlashCoolDown()
+    {
+        DeactivateButton();
+        yield return new WaitForSeconds(flashEquipement.dropDuration);
+        ActivateButton();
+    }
 }
