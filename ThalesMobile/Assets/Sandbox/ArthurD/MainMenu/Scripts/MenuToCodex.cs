@@ -8,6 +8,8 @@ public class MenuToCodex : MonoBehaviour
     [ReadOnly] public Vector2 screenSize;
     [ReadOnly] public Vector3 centerPos;
 
+    public GlobeInput input = null;
+
     [Header("Silder and screen")]
     public Slider slider;
     [Space(10)]
@@ -28,18 +30,22 @@ public class MenuToCodex : MonoBehaviour
         menu.sizeDelta = screenSize;
         codex.sizeDelta = screenSize;
 
-        if(slider.value > 0.5f)
+        //Si je ne touche pas l'écran
+        if (!input.isDraging)
         {
-            slider.value = Mathf.Lerp(slider.value, 1, 0.1f);
-        }
-        else
-        {
-            slider.value = Mathf.Lerp(slider.value, 0, 0.1f);
+            if (slider.value > 0.5f)
+            {
+                slider.value = Mathf.Lerp(slider.value, 1, 0.1f);
+            }
+            else
+            {
+                slider.value = Mathf.Lerp(slider.value, 0, 0.1f);
+            }
         }
 
         sliderImage.sprite = slider.value > 0.5f ? ToCodex : ToMenu;
 
-        menu.position = centerPos + new Vector3(-centerPos.x * 2 * slider.value, 0);
+        menu.position = centerPos;// + new Vector3(-centerPos.x * 2 * slider.value, 0);
         codex.position = centerPos + new Vector3(centerPos.x * 2 * (1 - slider.value), 0);
     }
 }

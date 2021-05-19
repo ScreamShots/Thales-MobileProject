@@ -15,12 +15,11 @@ public class GlobeInput : MonoBehaviour
     [Header("Menu")]
     public LayerMask selectableEntityLayer;
     public GameObject earth;
+    [Space(5)]
+    private bool touchingEarth = false;
+    public float rotationSpeed = 50;
+    public Vector2 velocity = Vector2.zero;
 
-    //
-    public bool touchingEarth;
-    public Vector2 velocity;
-
-   // public Time.ti:
     //Touch inputs
     private Touch touch;
     private float distance = 0;
@@ -30,6 +29,9 @@ public class GlobeInput : MonoBehaviour
     List<RaycastResult> raycastResults = new List<RaycastResult>();
     EventSystem currentEventSystem;
     PointerEventData pointerData;
+
+    [Header("Information")]
+    public bool isDraging = false;
 
     void Start()
     {
@@ -120,23 +122,20 @@ public class GlobeInput : MonoBehaviour
             //If drag then move camera
             if (touch.phase == TouchPhase.Moved)
             {
+                isDraging = true;
+
                 if (touch.deltaPosition.magnitude > 5f)
                 {
                     if (touchingEarth)
                     {
-                        camController.aimPos -= touch.deltaPosition.normalized * 50 * Time.deltaTime;
+                        camController.aimPos -= touch.deltaPosition.normalized * rotationSpeed * Time.deltaTime;
                     }
                 }
             }
             if (touch.phase == TouchPhase.Ended)
             {
+                isDraging = false;
                 touchingEarth = false;
-                //velocity = 
-            }
-
-            if (!touchingEarth)
-            {
-                camController.aimPos += -touch.deltaPosition.normalized * 50 * Time.deltaTime;
             }
         }
 

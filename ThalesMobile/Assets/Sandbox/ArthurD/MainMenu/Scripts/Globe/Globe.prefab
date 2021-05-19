@@ -90,8 +90,9 @@ GameObject:
   - component: {fileID: 3259777627976511691}
   - component: {fileID: 3078130106839481975}
   - component: {fileID: 4929488482882552531}
+  - component: {fileID: 919132149453177771}
   m_Layer: 0
-  m_Name: Mesh_Earth
+  m_Name: Globe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -178,17 +179,23 @@ MonoBehaviour:
   camController: {fileID: 0}
   selectableEntityLayer:
     serializedVersion: 2
-    m_Bits: 0
-  touchingGame: 0
-  getEntityTarget: 0
-  gettingEntityTarget: 0
-  canUseCam: 0
-  audioSource: {fileID: 0}
-  targetGroup: {fileID: 0}
-  setTargetSound: {fileID: 0}
-  touchedSeaPosition: {x: -9999, y: -9999}
-  isDraggingCard: 0
-  currentSelectedCard: {fileID: 0}
+    m_Bits: 1
+  earth: {fileID: 2771647639198788209}
+  touchingEarth: 0
+  velocity: {x: 0, y: 0}
+--- !u!135 &919132149453177771
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2771647639198788209}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.2
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4027978960974349820
 GameObject:
   m_ObjectHideFlags: 0

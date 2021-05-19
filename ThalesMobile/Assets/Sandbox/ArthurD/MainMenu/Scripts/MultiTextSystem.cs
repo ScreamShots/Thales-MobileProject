@@ -1,15 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Collections;
+using NaughtyAttributes;
 using UnityEngine.UI;
+using UnityEngine;
 using TMPro;
-
 
 public class MultiTextSystem : MonoBehaviour
 {
     [Header("Component")]
-    public TextMeshProUGUI textField;
-    [Space(10)]
     public Button leftButton;
     public Button rightButton;
     [Space(10)]
@@ -26,9 +24,50 @@ public class MultiTextSystem : MonoBehaviour
         "Il y a rien a voir gamin, passe ton chemin"
     };
 
+    [Header("SystemParameter")]
+    public bool oldSystem = false;
+    public bool newSystem { get { return !oldSystem; } }
+
+    //Old
+    [BoxGroup("OldSysteme"), ShowIf("oldSystem")] public TextMeshProUGUI textField;
+    //New
+    [BoxGroup("NewSysteme"), ShowIf("newSystem")] public Scrollbar scrollBar;
+    [Space(10)]
+    [BoxGroup("NewSysteme"), ShowIf("newSystem")] public TextMeshProUGUI textFieldA;
+    [BoxGroup("NewSysteme"), ShowIf("newSystem")] public TextMeshProUGUI textFieldB;
+    [BoxGroup("NewSysteme"), ShowIf("newSystem")] public TextMeshProUGUI textFieldC;
+    private bool refocusing = false;
+
     void OnEnable()
     {
-        ShowWindow(0);
+        if (oldSystem)
+        {
+            ShowWindow(0);
+        }
+        else
+        {
+            SlideWindow(0);
+
+            textFieldA.text = text[0];
+            textFieldB.text = text[1];
+            textFieldC.text = text[2];
+        }
+    }
+
+    private void Update()
+    {
+        if (oldSystem)
+        {
+            UpdateIndicator();
+        }
+        else
+        {
+            if (refocusing)
+            {
+                showWidow = Mathf.RoundToInt(scrollBar.value * (indicator.Length - 1));
+            }
+            UpdateIndicator();
+        }
     }
 
     public void NextWindow()
@@ -38,7 +77,14 @@ public class MultiTextSystem : MonoBehaviour
             showWidow++;
         }
 
-        ShowWindow(showWidow);
+        if (oldSystem)
+        {
+            ShowWindow(showWidow);
+        }
+        else
+        {
+            SlideWindow(showWidow);
+        }
     }
     public void PreviousWindow()
     {
@@ -46,21 +92,18 @@ public class MultiTextSystem : MonoBehaviour
         {
             showWidow--;
         }
-        ShowWindow(showWidow);
-    }
 
-    public void ShowWindow(int nbr)
-    {
-        showWidow = Mathf.Clamp(nbr,0, text.Length - 1);
-
-        if (text != null)
+        if (oldSystem)
         {
-            if (text[showWidow] != null)
-            {
-                textField.text = text[showWidow];
-            }
+            ShowWindow(showWidow);
         }
-
+        else
+        {
+            SlideWindow(showWidow);
+        }
+    }
+    private void UpdateIndicator()
+    {
         for (int i = 0; i < indicator.Length; i++)
         {
             if (indicator[i] != null)
@@ -70,4 +113,51 @@ public class MultiTextSystem : MonoBehaviour
         }
     }
 
+
+    //On old System
+    public void ShowWindow(int nbr)
+    {
+        showWidow = Mathf.Clamp(nbr,0, text.Length - 1);
+
+        //Change Text
+        if (text != null)
+        {
+            if (text[showWidow] != null)
+            {
+                textField.text = text[showWidow];
+            }
+        }
+    }
+
+    //On new System
+    public void SlideWindow(int nbr)
+    {
+        showWidow = Mathf.Clamp(nbr, 0, text.Length - 1);
+
+        //Change ScrollBar value
+        float value = (1 / (indicator.Length - 1)) * showWidow;
+
+        StopAllCoroutines();
+        StartCoroutine(SlideTo( value, 1f));
+    }
+
+    private IEnumerator SlideTo(float value, float speed)
+    {
+        refocusing = true;
+
+        float time = 0f;
+        float distance = value - scrollBar.value;
+        float distAbsolute = Mathf.Abs(distance);
+        float baseValue = scrollBar.value;
+
+        while (time < distAbsolute)
+        {
+            time += speed * Time.deltaTime;
+            scrollBar.value = Mathf.Lerp(baseValue, baseValue + distance, time);
+            yield return null;
+        }
+
+        refocusing = false;
+        scrollBar.SetValueWithoutNotify(value);
+    }
 }
