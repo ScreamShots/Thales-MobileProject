@@ -74,7 +74,7 @@ public class HullSonarDetectionPoint : DetectionObject
         while (timer < fadeDuration)
         {
             yield return new WaitForFixedUpdate();
-            timer += Time.deltaTime;
+            timer += Time.fixedDeltaTime;
         }
 
         StartCoroutine(DesactivatePoint());

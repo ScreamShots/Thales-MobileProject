@@ -9,7 +9,7 @@ namespace PlayerEquipement
     /// <summary>
     /// Rémi Sécher - 08/04/21 - Class that handle HullSonar Equipment Bahaviour
     /// </summary>
-    
+
     [CreateAssetMenu(menuName = "Equipement/HullSonar")]
     public class HullSonar : Equipement
     {
@@ -25,16 +25,19 @@ namespace PlayerEquipement
         float pointFadeDuration;
         public bool expand;
 
-        [Header("Pooling Params")]
-        [SerializeField]
-        GameObject detectionPointPrefab;
-        [SerializeField, Min(0)]
-        int poolSize;        
+        #region Deprecated
+        //[Header("Pooling Params")]
+        //[SerializeField]
+        //GameObject detectionPointPrefab;
+        //[SerializeField, Min(0)]
+        //int poolSize;
 
-        [HideInInspector]
-        public List<HullSonarDetectionPoint> availableDetectionPoints;
-        [HideInInspector]
-        public Dictionary<DetectableOceanEntity ,HullSonarDetectionPoint> usedDetectionPoints;
+
+        //[HideInInspector]
+        //public List<HullSonarDetectionPoint> availableDetectionPoints;
+        //[HideInInspector]
+        //public Dictionary<DetectableOceanEntity, HullSonarDetectionPoint> usedDetectionPoints;
+        #endregion
 
         ////Debug
         [SerializeField]
@@ -50,17 +53,19 @@ namespace PlayerEquipement
             levelManager = GameManager.Instance.levelManager;
             equipementType = EquipementType.passive;
 
-            //Pool initialization
-            GameObject tempDetectionPoint;
+            #region Deprecated
+            ////Pool initialization
+            //GameObject tempDetectionPoint;
 
-            availableDetectionPoints = new List<HullSonarDetectionPoint>();
-            usedDetectionPoints = new Dictionary<DetectableOceanEntity, HullSonarDetectionPoint>();
+            //availableDetectionPoints = new List<HullSonarDetectionPoint>();
+            //usedDetectionPoints = new Dictionary<DetectableOceanEntity, HullSonarDetectionPoint>();
 
-            for (int i = 0; i < poolSize; i++)
-            {
-                tempDetectionPoint = Instantiate(detectionPointPrefab, GameManager.Instance.levelManager.transform);
-                availableDetectionPoints.Add(tempDetectionPoint.GetComponent<HullSonarDetectionPoint>());
-            }
+            //for (int i = 0; i < poolSize; i++)
+            //{
+            //    tempDetectionPoint = Instantiate(detectionPointPrefab, GameManager.Instance.levelManager.transform);
+            //    availableDetectionPoints.Add(tempDetectionPoint.GetComponent<HullSonarDetectionPoint>());
+            //}
+            #endregion
 
             test = Instantiate(testPrefab);
             test.transform.position = Coordinates.ConvertVector2ToWorld(user.coords.position);
@@ -81,8 +86,7 @@ namespace PlayerEquipement
             HullSonarFeedback feedback = feedbackBehavior as HullSonarFeedback;
 
             Coordinates userCoords;
-            Coordinates detectableCoords;
-            Coordinates pointCoords;
+            Coordinates detectableCoords;            
 
             float distance;
             float waveRange;
@@ -91,8 +95,13 @@ namespace PlayerEquipement
             float padding = 0;
             float waveMaxDuration;
 
-            bool detectionTestPoint;
             bool detectionTestEntity;
+
+            #region Deprecated
+            //bool detectionTestPoint;
+            //Coordinates pointCoords;
+            #endregion
+
 
             if (levelManager.environnement.zones[levelManager.environnement.ZoneIn(currentUser.coords.position) - 1].state == ZoneState.SeaTurbulent)
                 waveMaxDuration = waveDuration / turbulentSeaSpeedReductionFactor;
@@ -108,31 +117,33 @@ namespace PlayerEquipement
                 userCoords = currentUser.coords;
                 test.transform.position = new Vector3(waveRange + userCoords.position.x, 0, userCoords.position.y);
 
-                //loop through every detection point link to this Equipement
-                //test if they are at the current tested distance to the player entity
-                //test if their linked detectable pos is different from the one it is on and that the detectable is still open to detection
-                //if so remove them
-                //else restart the fade timer
-                foreach (KeyValuePair<DetectableOceanEntity, HullSonarDetectionPoint> usedPair in usedDetectionPoints.ToDictionary(x => x.Key, x => x.Value))
-                {
-                    pointCoords = usedPair.Value.coords;
-                    distance = Mathf.Abs(Vector2.Distance(userCoords.position, pointCoords.position));
+                #region Deprecated
+                ////loop through every detection point link to this Equipement
+                ////test if they are at the current tested distance to the player entity
+                ////test if their linked detectable pos is different from the one it is on and that the detectable is still open to detection
+                ////if so remove them
+                ////else restart the fade timer
+                //foreach (KeyValuePair<DetectableOceanEntity, HullSonarDetectionPoint> usedPair in usedDetectionPoints.ToDictionary(x => x.Key, x => x.Value))
+                //{
+                //    pointCoords = usedPair.Value.coords;
+                //    distance = Mathf.Abs(Vector2.Distance(userCoords.position, pointCoords.position));
 
-                    if (expand) detectionTestPoint = distance <= waveRange && distance >= waveRange + padding;
-                    else detectionTestPoint = distance >= waveRange && distance <= waveRange + padding;
+                //    if (expand) detectionTestPoint = distance <= waveRange && distance >= waveRange + padding;
+                //    else detectionTestPoint = distance >= waveRange && distance <= waveRange + padding;
 
-                    if (detectionTestPoint)
-                    {
-                        if(usedPair.Key.coords.position != usedPair.Value.coords.position || usedPair.Key.currentDetectableState == DetectableState.cantBeDetected)
-                        {
-                            usedPair.Value.StartCoroutine(usedPair.Value.DesactivatePoint());
-                        }
-                        else
-                        {
-                            usedPair.Value.ResetFade(pointFadeDuration);
-                        }
-                    }
-                }
+                //    if (detectionTestPoint)
+                //    {
+                //        if (usedPair.Key.coords.position != usedPair.Value.coords.position || usedPair.Key.currentDetectableState == DetectableState.cantBeDetected)
+                //        {
+                //            usedPair.Value.StartCoroutine(usedPair.Value.DesactivatePoint());
+                //        }
+                //        else
+                //        {
+                //            usedPair.Value.ResetFade(pointFadeDuration);
+                //        }
+                //    }
+                //}
+                #endregion
 
                 //loop through every detectable entities in the scene
                 //test if they are at the current tested distante to the player entity
@@ -148,14 +159,19 @@ namespace PlayerEquipement
 
                     if (detectionTestEntity && detectable.currentDetectableState != DetectableState.cantBeDetected)
                     {
-                        if (!usedDetectionPoints.ContainsKey(detectable))
-                        {
-                            if (availableDetectionPoints.Count > 0)
-                            {
-                                ActivateNewPoint(detectable);
-                            }
-                            else Debug.Log("Not Enough object in pool");
-                        }
+                        #region Deprecated
+                        //if (!usedDetectionPoints.ContainsKey(detectable))
+                        //{
+                        //    if (availableDetectionPoints.Count > 0)
+                        //    {
+                        //        ActivateNewPoint(detectable);
+                        //    }
+                        //    else Debug.Log("Not Enough object in pool");
+                        //}
+                        #endregion
+
+                        if (detectable.linkedGlobalDetectionPoint.activated) detectable.linkedGlobalDetectionPoint.UpdatePoint(pointFadeDuration, true);
+                        else detectable.linkedGlobalDetectionPoint.InitPoint(pointFadeDuration);
                     }
                 }
 
@@ -164,15 +180,15 @@ namespace PlayerEquipement
                 //First if is when wave goes from center to edge and else is for wave going from edge to center
                 if (expand)
                 {
-                    waveTime += Time.deltaTime;
+                    waveTime += Time.fixedDeltaTime;
                     padding = waveRange - (range * (waveTime / waveMaxDuration));
-                    waveRange = range * (waveTime / waveMaxDuration);                    
+                    waveRange = range * (waveTime / waveMaxDuration);
                 }
                 else
                 {
-                    waveTime += Time.deltaTime;
+                    waveTime += Time.fixedDeltaTime;
                     padding = waveRange - (range * (1 - (waveTime / waveMaxDuration)));
-                    waveRange = range * (1 -(waveTime / waveMaxDuration));
+                    waveRange = range * (1 - (waveTime / waveMaxDuration));
                 }
                 feedback.UpdateWaveProgression(waveTime / waveMaxDuration);
                 yield return new WaitForFixedUpdate();
@@ -181,19 +197,21 @@ namespace PlayerEquipement
             readyToUse = true;
         }
 
+        #region Deprecated
         public void ActivateNewPoint(DetectableOceanEntity entity)
         {
-            GameManager.Instance.ExternalStartCoroutine(availableDetectionPoints[0].ActivatePoint(entity, pointFadeDuration, this));
-            usedDetectionPoints.Add(entity, availableDetectionPoints[0]);
-            availableDetectionPoints.RemoveAt(0);
+            //    GameManager.Instance.ExternalStartCoroutine(availableDetectionPoints[0].ActivatePoint(entity, pointFadeDuration, this));
+            //    usedDetectionPoints.Add(entity, availableDetectionPoints[0]);
+            //    availableDetectionPoints.RemoveAt(0);
         }
 
         public void DesactivatePoint(HullSonarDetectionPoint point, DetectableOceanEntity entity)
         {
-            levelManager.activatedDetectionObjects.Remove(point);
-            availableDetectionPoints.Add(point);
-            usedDetectionPoints.Remove(entity);
+            //    levelManager.activatedDetectionObjects.Remove(point);
+            //    availableDetectionPoints.Add(point);
+            //    usedDetectionPoints.Remove(entity);
         }
+        #endregion
     }
 }
 

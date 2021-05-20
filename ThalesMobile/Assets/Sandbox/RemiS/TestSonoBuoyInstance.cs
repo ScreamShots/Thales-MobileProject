@@ -102,7 +102,7 @@ public class TestSonoBuoyInstance : MonoBehaviour
         {
             icon.rectT.anchoredPosition = Vector2.Lerp(startPos, endPos, timer / duration);
             yield return new WaitForFixedUpdate();
-            timer += Time.deltaTime;
+            timer += Time.fixedDeltaTime;
         }
 
         icon.rectT.anchoredPosition = endPos;
@@ -117,7 +117,7 @@ public class TestSonoBuoyInstance : MonoBehaviour
         {
             icon.rectT.localScale = Vector3.Lerp(startScale, scaleTarget, timer / duration);
             yield return new WaitForFixedUpdate();
-            timer += Time.deltaTime;            
+            timer += Time.fixedDeltaTime;            
         }
 
         icon.rectT.localScale = scaleTarget;

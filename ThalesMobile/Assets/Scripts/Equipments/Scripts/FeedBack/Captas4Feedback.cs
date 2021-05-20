@@ -57,7 +57,7 @@ namespace PlayerEquipement
             {
                 captasWaveRenderer.material.SetFloat("CaptasProgression", Mathf.Lerp(progressionMin, progressionMax, timer/duration));
                 yield return new WaitForFixedUpdate();
-                timer += Time.deltaTime;
+                timer += Time.fixedDeltaTime;
             }
 
             EndWave();

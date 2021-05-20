@@ -307,7 +307,7 @@ namespace PlayerEquipement
             {
                 icon.rectT.anchoredPosition = Vector2.Lerp(startPos, endPos, timer / duration);
                 yield return new WaitForFixedUpdate();
-                timer += Time.deltaTime;
+                timer += Time.fixedDeltaTime;
             }
 
             icon.rectT.anchoredPosition = endPos;
@@ -325,7 +325,7 @@ namespace PlayerEquipement
                 icon.rectT.localScale = Vector3.Lerp(startScale, scaleTarget, timer / duration);
                 yield return new WaitForFixedUpdate();
                 //Debug.Log(timer.ToString() + " " + icon.rectT.localScale.ToString());
-                timer += Time.deltaTime;
+                timer += Time.fixedDeltaTime;
             }
 
             icon.rectT.localScale = scaleTarget;

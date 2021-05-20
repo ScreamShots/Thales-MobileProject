@@ -44,6 +44,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentSeaLevel: 0
+  environment: {fileID: 0}
+  currentZoneState: 0
+  currentZone:
+    name: 
+    state: 0
+    windDir: 0
+    debugColor: {r: 0, g: 0, b: 0, a: 0}
+    points: []
+  seeker: {fileID: 0}
+  pathUpdatingFrequency: 0
+  nextWaypointDistance: 0
+  waypointAhead: 0
+  pathDestination: {x: 0, y: 0}
   currentDetectableState: 0
   detectFeedback:
     hullSonarRevealIcon: {fileID: 2661236777724703074, guid: e3be960e7884a08408c4b04b7011aa24,
@@ -52,4 +65,11 @@ MonoBehaviour:
       type: 3}
     sonobuoyRevealIcon: {fileID: 2661236777724703074, guid: e3be960e7884a08408c4b04b7011aa24,
       type: 3}
+    globalRevealIcon: {fileID: 2661236777724703074, guid: e3be960e7884a08408c4b04b7011aa24,
+      type: 3}
+    globalRevealPointer: {fileID: 3758780331647301679, guid: e3be960e7884a08408c4b04b7011aa24,
+      type: 3}
   detectors: []
+  globalDetectionPointPrefab: {fileID: 2681307672962359013, guid: 7e5f1705a1388de4398a52a5046e63c4,
+    type: 3}
+  linkedGlobalDetectionPoint: {fileID: 0}

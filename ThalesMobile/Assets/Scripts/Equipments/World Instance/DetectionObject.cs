@@ -26,7 +26,7 @@ public abstract class DetectionObject : MonoBehaviour
     protected ObservableCollection<DetectableOceanEntity> detectedEntities = new ObservableCollection<DetectableOceanEntity>();
 
     [SerializeField]
-    private List<DetectableOceanEntity> debugDetected = new List<DetectableOceanEntity>();
+    protected List<DetectableOceanEntity> debugDetected = new List<DetectableOceanEntity>();
 
     protected LevelManager levelManager;
 

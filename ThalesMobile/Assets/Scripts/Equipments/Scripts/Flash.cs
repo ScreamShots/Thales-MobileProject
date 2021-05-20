@@ -65,7 +65,7 @@ namespace PlayerEquipement
             while(timer < dropDuration)
             {
                 yield return new WaitForFixedUpdate();
-                timer += Time.deltaTime;
+                timer += Time.fixedDeltaTime;
             }
 
             helicopter.isDroppingFlash = false;

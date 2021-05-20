@@ -72,7 +72,7 @@ public class CaptasFourDetectionPoint : DetectionObject
         {
             if (timer >= startFadeTime) dotRenderer.color = Color.Lerp(baseColor, transparentColor, timer - startFadeTime / fadeDuration - startFadeTime);
             yield return new WaitForFixedUpdate();
-            timer += Time.deltaTime;
+            timer += Time.fixedDeltaTime;
         }
 
         DesactivatePoint();

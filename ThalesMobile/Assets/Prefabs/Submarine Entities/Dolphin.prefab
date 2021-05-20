@@ -48,7 +48,7 @@ MonoBehaviour:
   serializedGuid: d597a1e88f183e4d8f983674bfe31ee8
   thisObjState: 2
   initState: 2
-  instanceID: 28330
+  instanceID: 73226
   referencedComponents:
   - component: {fileID: 8075168228745564258}
     serializedGuid: 6e254175d4eb0c4bacb52dcc28bd16d2
@@ -87,7 +87,14 @@ MonoBehaviour:
       type: 3}
     sonobuoyRevealIcon: {fileID: 2491886963174191310, guid: e3be960e7884a08408c4b04b7011aa24,
       type: 3}
+    globalRevealIcon: {fileID: 2491886963174191310, guid: e3be960e7884a08408c4b04b7011aa24,
+      type: 3}
+    globalRevealPointer: {fileID: -5024606448714198397, guid: e3be960e7884a08408c4b04b7011aa24,
+      type: 3}
   detectors: []
+  globalDetectionPointPrefab: {fileID: 2681307672962359013, guid: 7e5f1705a1388de4398a52a5046e63c4,
+    type: 3}
+  linkedGlobalDetectionPoint: {fileID: 0}
   speed: 2
   pointsToFollow:
   - {fileID: 0}

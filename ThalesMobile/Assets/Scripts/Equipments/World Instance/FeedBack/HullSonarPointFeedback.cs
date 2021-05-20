@@ -85,7 +85,7 @@ namespace PlayerEquipement
             {
                 obj.localScale = Vector3.Lerp(start, target, timer / duration);
                 yield return new WaitForFixedUpdate();
-                timer += Time.deltaTime;
+                timer += Time.fixedDeltaTime;
             }
         }
     }

@@ -22,6 +22,13 @@ public abstract class DetectableOceanEntity : OceanEntity
     public DetectableState currentDetectableState;
     public DetectionFeedback detectFeedback;
     public List<DetectionObject> detectors;
+    public GameObject globalDetectionPointPrefab;
+    public GlobalDetectionPoint linkedGlobalDetectionPoint;
+
+    protected virtual void Start()
+    {
+        linkedGlobalDetectionPoint = Instantiate(globalDetectionPointPrefab, GameManager.Instance.levelManager.transform).GetComponent<GlobalDetectionPoint>();
+    }
 
     protected virtual void Update()
     {

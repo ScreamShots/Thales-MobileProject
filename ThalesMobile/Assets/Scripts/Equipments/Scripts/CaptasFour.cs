@@ -122,7 +122,7 @@ namespace PlayerEquipement
                     }
                 }
 
-                waveTime += Time.deltaTime;
+                waveTime += Time.fixedDeltaTime;
                 padding = waveRange - (range * (waveTime / waveDuration));
                 waveRange = range * (waveTime / waveDuration);
                 yield return new WaitForFixedUpdate();

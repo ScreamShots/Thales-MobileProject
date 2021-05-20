@@ -69,7 +69,7 @@ namespace PlayerEquipement
                 flashLineRender.SetPosition(0, start);
                 flashLineRender.SetPosition(1, meshRenderer.transform.position);
                 yield return new WaitForFixedUpdate();
-                timer += Time.deltaTime;
+                timer += Time.fixedDeltaTime;
             }
 
             flashSoundSource.volume = Mathf.Clamp(flashSoundVolume, 0, 1);
