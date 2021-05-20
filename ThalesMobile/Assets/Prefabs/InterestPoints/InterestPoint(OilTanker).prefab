@@ -384,11 +384,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c3cdcb490cdee448a8aedfe8dbf5790, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  guidDisplay: 2b28cc6c-ae52-4e97-8b68-7f530b1ab67c
-  serializedGuid: 6ccc282b52ae974e8b687f530b1ab67c
-  thisObjState: 2
-  initState: 2
-  instanceID: 26944
+  guidDisplay: 4c6cb634-7ab4-4e70-90a9-3627d6a9193b
+  serializedGuid: 34b66c4cb47a704e90a93627d6a9193b
+  thisObjState: 1
+  initState: 1
+  instanceID: -62698
   referencedComponents:
   - component: {fileID: 1924318757793568704}
     serializedGuid: 6ebc1d7e48436247923330a708fa6302
