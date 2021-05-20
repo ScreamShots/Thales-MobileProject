@@ -91,6 +91,7 @@ GameObject:
   - component: {fileID: 6286141311459306342}
   - component: {fileID: 6286141311459306343}
   - component: {fileID: 6286141311459306336}
+  - component: {fileID: 7198430396492810639}
   m_Layer: 8
   m_Name: Renderer
   m_TagString: Untagged
@@ -174,6 +175,25 @@ MonoBehaviour:
   sonicDropParticles: {fileID: 0}
   helicopterTakeOffParticles: {fileID: 7516789482187805939}
   helicopterLandingParticles: {fileID: 7516789482187805939}
+--- !u!95 &7198430396492810639
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6286141311459306338}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 21d836ac5e9ce734f961119664de1042, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6286141311658609054
 GameObject:
   m_ObjectHideFlags: 0
@@ -625,10 +645,15 @@ MonoBehaviour:
   targetGroup: {fileID: -9015305574639715243, guid: 9b41315a36bc40a4ea458016676fd8f1,
     type: 2}
   preparationSound: {fileID: 8300000, guid: 87262afa5890629428e63b627ee02dad, type: 3}
+  preparationSoundVolume: 0
   takeOffSound: {fileID: 8300000, guid: 4b96c0493e7fcbb40ab1969e3591f9fb, type: 3}
+  takeOffSoundVolume: 0
   landingSound: {fileID: 8300000, guid: c658bb338ce99834b9ce2d2545610b2a, type: 3}
+  landingSoundVolume: 0
   movementSound: {fileID: 8300000, guid: ed10ccc8a1aceb7438beed4d37160ba9, type: 3}
+  movementSoundVolume: 0
   waitingSound: {fileID: 8300000, guid: f333aaf523560744c9538c615806638a, type: 3}
+  waitingSoundVolume: 0
 --- !u!82 &3042659589105975169
 AudioSource:
   m_ObjectHideFlags: 0
