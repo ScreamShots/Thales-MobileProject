@@ -127,7 +127,11 @@ public class TweekCore : UnityEngine.Object
 
     public static void LaunchValuesApplication(object gameplayValues, object artValues, object soundValues)
     {
-        EditorUtility.DisplayProgressBar("Tweek System operation on going.", "Launching protocole to unpack infos from SCO", 0f);
+        EditorUtility.DisplayProgressBar("Tweek System operation on going.", "Updating Sco Reference GUID", 0f);
+
+        UpdateScoAssets();
+
+        EditorUtility.DisplayProgressBar("Tweek System operation on going.", "Launching protocole to unpack infos from SCO", 0.5f);
 
         Dictionary<string, Dictionary<string, List<TweekField>>> fieldsToUpdate = new Dictionary<string, Dictionary<string, List<TweekField>>>();
         int compOriginCount = 0;
@@ -708,7 +712,8 @@ public class TweekCore : UnityEngine.Object
         return false;
 
     }
-
+    
+    [MenuItem("Tools/DebugScoReference")]
     public static void UpdateScoAssets()
     {
         string[] tempPaths = new string[0];
@@ -767,7 +772,7 @@ public class TweekCore : UnityEngine.Object
 
         BindingFlags flags = BindingFlags.FlattenHierarchy | BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static;
 
-        for (int i = 1; i < 3; i++)
+        for (int i = 1; i <= 3; i++)
         {
             switch (i)
             {
@@ -809,16 +814,18 @@ public class TweekCore : UnityEngine.Object
 
                         if(compAttribute != null)
                         {
-                            field.SetValue(asset, field.GetValue(scoRoot));
+                            object tempValue = field.GetValue(scoRoot);
+                            object tempValue2 = field.GetValue(asset);
+                            field.SetValue(asset, tempValue);
                         }
                     }
                 }
             }
         }
-
-        AssetDatabase.Refresh();
+        
         AssetDatabase.SaveAssets();
         EditorUtility.ClearProgressBar();
+        AssetDatabase.Refresh();
     }
 
     /// --------------------------------------------------------------------------------------------------------------------///
