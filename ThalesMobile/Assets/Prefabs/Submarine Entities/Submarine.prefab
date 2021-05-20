@@ -129,11 +129,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c3cdcb490cdee448a8aedfe8dbf5790, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  guidDisplay: b37c2e93-aa03-4086-988d-7ac4188c2d2c
-  serializedGuid: 932e7cb303aa8640988d7ac4188c2d2c
-  thisObjState: 2
-  initState: 2
-  instanceID: 28778
+  guidDisplay: b4fa8a9d-78a7-40a5-b1c6-81ff5f431877
+  serializedGuid: 9d8afab4a778a540b1c681ff5f431877
+  thisObjState: 1
+  initState: 1
+  instanceID: -5668
   referencedComponents:
   - component: {fileID: 7664084496329710959}
     serializedGuid: 82d51bbd2fbdb442a0c315dd959bd187
@@ -206,7 +206,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
   minRange: 1
   subZone12Subdivision: 12
   subZone3SubSubdivision: 2
@@ -239,6 +238,8 @@ MonoBehaviour:
   soundSource: {fileID: 822501743381000185}
   inHackClip: {fileID: 8300000, guid: e89b7798b5aeb304596e37e7ee449105, type: 3}
   doneHackClip: {fileID: 8300000, guid: 1096d8c3681a41d409140463b2dbc504, type: 3}
+  inHackVolume: 0
+  doneHackVolume: 0
 --- !u!114 &7664084496245726164
 MonoBehaviour:
   m_ObjectHideFlags: 0
