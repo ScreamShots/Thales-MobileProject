@@ -16,11 +16,11 @@ namespace PlayerEquipement
         [Header("Sound - Reveal")]
         [SerializeField]
         AudioMixerGroup targetGroup;
-        [SerializeField]
+        [SerializeField, TweekFlag(FieldUsage.Sound)]
         AudioClip revealSound;
         [SerializeField, TweekFlag(FieldUsage.Sound)]
         float revealSoundVolume;
-        [SerializeField, TweekFlag(FieldUsage.Sound)]
+        [SerializeField]
         AudioSource revealSoundSource;
         
 

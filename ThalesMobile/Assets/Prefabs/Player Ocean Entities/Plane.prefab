@@ -562,11 +562,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c3cdcb490cdee448a8aedfe8dbf5790, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  guidDisplay: 84c2330a-373b-48ca-ace8-6dda53310c8e
-  serializedGuid: 0a33c2843b37ca48ace86dda53310c8e
-  thisObjState: 1
-  initState: 1
-  instanceID: 27270
+  guidDisplay: 725a0485-6640-4345-aa9d-92857d162799
+  serializedGuid: 85045a7240664543aa9d92857d162799
+  thisObjState: 2
+  initState: 2
+  instanceID: 60840
   referencedComponents:
   - component: {fileID: 339487588899374384}
     serializedGuid: ea62e786c0c3de4fb40542694734145d
@@ -614,6 +614,7 @@ MonoBehaviour:
   targetGroup: {fileID: -9015305574639715243, guid: 9b41315a36bc40a4ea458016676fd8f1,
     type: 2}
   movementSound: {fileID: 8300000, guid: ecfcddd4b902f45428acafb17c08f0f1, type: 3}
+  movementSoundVolume: 0
   passiveEquipement: {fileID: 11400000, guid: fdd1a822afff99a479aeca2cfcd71a7e, type: 2}
   activeEquipement: {fileID: 11400000, guid: 8c36fd8269da1a347a940f931d708c6c, type: 2}
 --- !u!82 &8829441465545371547

@@ -1,4 +1,4 @@
-//Random Generatated char value: 38e1147c-58b7-4abf-a2b7-5fb5019cde68
+//Random Generatated char value: 4f75f2b7-2536-4f6c-ab70-03d09388dae5
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -90,15 +90,15 @@ public class GameplayTweekScriptableObject : ScriptableObject
 [Var("rotateSpeed")] [Tooltip("rotateSpeed")] public float rotateSpeed_a5135e0eµb0c8µ4871µ9721µ538499ed3b5c_4c652d5eµc239µ4042µ8a74µ45e02cce3b57;
 
 [Header("GameObject: Plane")]
-[Id("Plane Component - ID:")] public string s15Id = "cfa900bd-9810-4d08-b5f6-23efaf541d01";
+[Id("Plane Component - ID:")] public string s15Id = "9d3c9fb2-bb12-4e51-bb84-cf7aed984c6d";
 
-[Comp("Plane Component - ID:")] public string s16Comp = "cfa900bd-9810-4d08-b5f6-23efaf541d01_86e762ea-c3c0-4fde-b405-42694734145d";
+[Comp("Plane Component - ID:")] public string s16Comp = "9d3c9fb2-bb12-4e51-bb84-cf7aed984c6d_86e762ea-c3c0-4fde-b405-42694734145d";
 
-[Var("passiveEquipement")] [Tooltip("passiveEquipement")] public Equipement passiveEquipement_cfa900bdµ9810µ4d08µb5f6µ23efaf541d01_86e762eaµc3c0µ4fdeµb405µ42694734145d;
-[Var("activeEquipement")] [Tooltip("activeEquipement")] public Equipement activeEquipement_cfa900bdµ9810µ4d08µb5f6µ23efaf541d01_86e762eaµc3c0µ4fdeµb405µ42694734145d;
-[Var("speed")] [Tooltip("speed")] public float speed_cfa900bdµ9810µ4d08µb5f6µ23efaf541d01_86e762eaµc3c0µ4fdeµb405µ42694734145d;
-[Var("acceleration")] [Tooltip("acceleration")] public float acceleration_cfa900bdµ9810µ4d08µb5f6µ23efaf541d01_86e762eaµc3c0µ4fdeµb405µ42694734145d;
-[Var("rotateSpeed")] [Tooltip("rotateSpeed")] public float rotateSpeed_cfa900bdµ9810µ4d08µb5f6µ23efaf541d01_86e762eaµc3c0µ4fdeµb405µ42694734145d;
+[Var("passiveEquipement")] [Tooltip("passiveEquipement")] public Equipement passiveEquipement_9d3c9fb2µbb12µ4e51µbb84µcf7aed984c6d_86e762eaµc3c0µ4fdeµb405µ42694734145d;
+[Var("activeEquipement")] [Tooltip("activeEquipement")] public Equipement activeEquipement_9d3c9fb2µbb12µ4e51µbb84µcf7aed984c6d_86e762eaµc3c0µ4fdeµb405µ42694734145d;
+[Var("speed")] [Tooltip("speed")] public float speed_9d3c9fb2µbb12µ4e51µbb84µcf7aed984c6d_86e762eaµc3c0µ4fdeµb405µ42694734145d;
+[Var("acceleration")] [Tooltip("acceleration")] public float acceleration_9d3c9fb2µbb12µ4e51µbb84µcf7aed984c6d_86e762eaµc3c0µ4fdeµb405µ42694734145d;
+[Var("rotateSpeed")] [Tooltip("rotateSpeed")] public float rotateSpeed_9d3c9fb2µbb12µ4e51µbb84µcf7aed984c6d_86e762eaµc3c0µ4fdeµb405µ42694734145d;
 
 [Header("GameObject: Ship")]
 [Id("Ship Component - ID:")] public string s17Id = "eaa950de-a907-4c47-8e3b-43fcedc9cef6";
