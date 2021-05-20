@@ -28,7 +28,7 @@ Material:
     - LargeurInterieur: 50
     - LargeurOnde: 100
     - ProgressionOnde: 0
-    - QuantiteOndes: -26
+    - QuantiteOndes: -25
     - Thickness: 0.03
     - Vector1_2EF285E7: -15.4
     - Vector1_77125479: -18.2
