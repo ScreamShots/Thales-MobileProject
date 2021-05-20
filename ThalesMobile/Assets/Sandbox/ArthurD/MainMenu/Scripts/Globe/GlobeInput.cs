@@ -49,54 +49,6 @@ public class GlobeInput : MonoBehaviour
             pointerData.position = touch.position;
             currentEventSystem.RaycastAll(pointerData, raycastResults);
             
-            #region InputThomasCArd
-                /*
-                if (raycastResults.Count < 1 || (raycastResults.Count == 1 && raycastResults[0].gameObject.TryGetComponent<InteractableUI>(out var I)))
-                {
-                    touchingGame = true;
-
-                    if (getEntityTarget)
-                    {
-                        gettingEntityTarget = true;
-
-                        //Get the sea position and pass it to the player controller
-                        touchedSeaPosition = GetSeaPosition();
-
-                        //Move with gizmo if not dragging a card
-                        if (!isDraggingCard)
-                            playerController.SetEntityMoveTarget(touchedSeaPosition);
-
-                    }
-                    else
-                    {
-                        if (canUseCam)
-                        {
-                            //If touched check if selected a Entity
-                            if (touch.phase == TouchPhase.Began)
-                            {
-                                RaycastHit hit;
-                                Ray touchRay;
-                                touchRay = camController.cam.ScreenPointToRay(touch.position);
-                                if (Physics.Raycast(touchRay, out hit, 200f, selectableEntityLayer))
-                                {
-                                    playerController.currentSelectedEntity = hit.collider.transform.parent.GetComponent<PlayerOceanEntity>();
-                                    //camController.SetTarget(hit.collider.transform);
-
-                                    //Select Button
-                                    GameManager.Instance.playerController.currentSelectedEntity.linkedButton.SelectEntity();
-                                }
-                            }
-
-                            //If drag then move camera
-                            else if (touch.deltaPosition.magnitude > 5f)
-                            {
-                                //camController.moveDirection = -touch.deltaPosition;
-                            }
-                        }
-                    }
-                }*/
-            #endregion
-
             //Moving The Sphere
             if (touch.phase == TouchPhase.Began)
             {

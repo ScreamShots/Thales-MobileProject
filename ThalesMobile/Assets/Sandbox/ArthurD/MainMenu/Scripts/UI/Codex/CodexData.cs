@@ -6,8 +6,7 @@ public class CodexData
 {
     [Header("Information")]
     public string title;
-    [Space(10)]
-    public Sprite image;
+    public Sprite categoIcon;
     [TextArea()]
     public string[] description = new string[3]
     {

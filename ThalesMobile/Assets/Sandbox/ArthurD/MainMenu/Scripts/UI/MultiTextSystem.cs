@@ -8,9 +8,6 @@ using TMPro;
 public class MultiTextSystem : MonoBehaviour
 {
     [Header("Component")]
-    public Button leftButton;
-    public Button rightButton;
-    [Space(10)]
     public Image[] indicator = new Image[3];
 
     [Header("Parameter")]
@@ -29,12 +26,15 @@ public class MultiTextSystem : MonoBehaviour
     public bool newSystem { get { return !oldSystem; } }
 
     //Old
+    [BoxGroup("OldSysteme"), ShowIf("oldSystem")] public Button leftButton;
+    [BoxGroup("OldSysteme"), ShowIf("oldSystem")] public Button rightButton;
+    [Space(10)]
     [BoxGroup("OldSysteme"), ShowIf("oldSystem")] public TextMeshProUGUI textField;
     //New
     [BoxGroup("NewSysteme"), ShowIf("newSystem")] public Scrollbar scrollBar;
     [Space(10)]
     [BoxGroup("NewSysteme"), ShowIf("newSystem")] public TextMeshProUGUI textFieldA;
-    [BoxGroup("NewSysteme"), ShowIf("newSystem")] public TextMeshProUGUI textFieldB;
+    [BoxGroup("NewSysteme"), ShowIf("newSystem")] public Image fieldB_image;
     [BoxGroup("NewSysteme"), ShowIf("newSystem")] public TextMeshProUGUI textFieldC;
     private bool refocusing = false;
 
@@ -49,8 +49,8 @@ public class MultiTextSystem : MonoBehaviour
             SlideWindow(0);
 
             textFieldA.text = text[0];
-            textFieldB.text = text[1];
-            textFieldC.text = text[2];
+            //textFieldB.text = text[1];
+            //textFieldC.text = text[2];
         }
     }
 
@@ -62,7 +62,7 @@ public class MultiTextSystem : MonoBehaviour
         }
         else
         {
-            if (refocusing)
+            if (!refocusing)
             {
                 showWidow = Mathf.RoundToInt(scrollBar.value * (indicator.Length - 1));
             }

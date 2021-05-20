@@ -88,9 +88,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3259777627976511691}
-  - component: {fileID: 3078130106839481975}
-  - component: {fileID: 4929488482882552531}
   - component: {fileID: 919132149453177771}
+  - component: {fileID: 4929488482882552531}
+  - component: {fileID: 3078130106839481975}
   m_Layer: 0
   m_Name: Globe
   m_TagString: Untagged
@@ -114,6 +114,39 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &919132149453177771
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2771647639198788209}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.2
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4929488482882552531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2771647639198788209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 888917f3d06458144be66f45028548db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camController: {fileID: 0}
+  selectableEntityLayer:
+    serializedVersion: 2
+    m_Bits: 33
+  earth: {fileID: 2771647639198788209}
+  rotationSpeed: 50
+  velocity: {x: 0, y: 0}
+  isDraging: 0
 --- !u!114 &3078130106839481975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,38 +197,6 @@ MonoBehaviour:
     textSkin: {fileID: 7788267641948716709, guid: dbca6213b4263a943ab5e90861101b71,
       type: 3}
   showDebug: 1
---- !u!114 &4929488482882552531
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2771647639198788209}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 888917f3d06458144be66f45028548db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  camController: {fileID: 0}
-  selectableEntityLayer:
-    serializedVersion: 2
-    m_Bits: 1
-  earth: {fileID: 2771647639198788209}
-  touchingEarth: 0
-  velocity: {x: 0, y: 0}
---- !u!135 &919132149453177771
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2771647639198788209}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1.2
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4027978960974349820
 GameObject:
   m_ObjectHideFlags: 0
