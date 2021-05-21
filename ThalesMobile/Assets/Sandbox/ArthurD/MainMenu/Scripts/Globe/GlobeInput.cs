@@ -22,8 +22,15 @@ public class GlobeInput : MonoBehaviour
 
     //Touch inputs
     private Touch touch;
+    //Glide
     private float distance = 0;
     private float lastDistance;
+    //
+    private float dragStartTime = 0;
+    public float inertialVelocity = 0;
+    private Vector2 move = Vector2.zero;
+    private Vector2 dragStartPos = Vector2.zero;
+
 
     //Raycasting
     List<RaycastResult> raycastResults = new List<RaycastResult>();
@@ -70,6 +77,9 @@ public class GlobeInput : MonoBehaviour
                 {
                     touchingEarth = false;
                 }
+
+                dragStartTime = Time.time;
+                dragStartPos = touch.position;
             }
             //If drag then move camera
             if (touch.phase == TouchPhase.Moved)
@@ -88,12 +98,22 @@ public class GlobeInput : MonoBehaviour
             {
                 isDraging = false;
                 touchingEarth = false;
+                
+                move = touch.position - dragStartPos;
+                inertialVelocity = move.magnitude / (Time.time -dragStartTime);
+
+                if(touch.deltaPosition.magnitude < 5f)
+                {
+                    inertialVelocity = 0;
+                }
             }
         }
-
         //Glide Input
         else if (Input.touchCount == 2)
         {
+            //Stop inertie
+            inertialVelocity = 0;
+
             Vector2 touch0;
             Vector2 touch1;
 
@@ -120,12 +140,15 @@ public class GlobeInput : MonoBehaviour
                 camController.zoom = Mathf.Clamp01(camController.zoom);
             }
         }
-
         //No fingers on screen.
         else if (Input.touchCount == 0)
         {
             distance = 0;
         }
+
+        camController.aimPos -= move.normalized * inertialVelocity * 0.135f * Time.deltaTime;
+        inertialVelocity *= 10f * Time.deltaTime;
+
     }
 
     public Vector2 GetSeaPosition()

@@ -1,0 +1,460 @@
+fileFormatVersion: 2
+guid: f95284aaf766ac243864b3dc88fc40f9
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5922757537557796787
+    second: SprSh_BriefMenu_BriefYellow
+  - first:
+      213: 3738937103513828092
+    second: SprSh_BriefMenu_BriefGreen
+  - first:
+      213: 4244402386172456274
+    second: SprSh_BriefMenu_BriefRed
+  - first:
+      213: 8242591878972581641
+    second: SprSh_BriefMenu_AddInfo_Yellow
+  - first:
+      213: 6415847040664799621
+    second: SprSh_BriefMenu_AddInfo_Green
+  - first:
+      213: 3883545134327690031
+    second: SprSh_BriefMenu_AddInfo_Red
+  - first:
+      213: -5308357438679111083
+    second: SprSh_BriefMenu_LauchButton-Yellow
+  - first:
+      213: 444580321914233062
+    second: SprSh_BriefMenu_LauchButton-Green
+  - first:
+      213: -3811371039955992349
+    second: SprSh_BriefMenu_LauchButton-Red
+  - first:
+      213: -3296868760304195163
+    second: SprSh_BriefMenu_ButtonSocle
+  - first:
+      213: -4708359593867993859
+    second: SprSh_BriefMenu_DifficultyLow
+  - first:
+      213: -9135717930116876527
+    second: SprSh_BriefMenu_Batiments
+  - first:
+      213: 8062298799615834280
+    second: SprSh_BriefMenu_SubMarine
+  - first:
+      213: 8503024539153555625
+    second: SprSh_BriefMenu_DifficultyMedium
+  - first:
+      213: 8550623050745642763
+    second: SprSh_BriefMenu_DifficultyHard
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 0
+  alphaUsage: 1
+  alphaIsTransparency: 0
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SprSh_BriefMenu_BriefYellow
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 1424
+        width: 665
+        height: 617
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d48a91356632ecda0800000000000000
+      internalID: -5922757537557796787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SprSh_BriefMenu_BriefGreen
+      rect:
+        serializedVersion: 2
+        x: 688
+        y: 1425
+        width: 664
+        height: 614
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cfa38746c7f53e330800000000000000
+      internalID: 3738937103513828092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SprSh_BriefMenu_BriefRed
+      rect:
+        serializedVersion: 2
+        x: 1360
+        y: 1423
+        width: 662
+        height: 614
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25d21af7b7527ea30800000000000000
+      internalID: 4244402386172456274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SprSh_BriefMenu_AddInfo_Yellow
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 1020
+        width: 624
+        height: 272
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9072eae84a1936270800000000000000
+      internalID: 8242591878972581641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SprSh_BriefMenu_AddInfo_Green
+      rect:
+        serializedVersion: 2
+        x: 701
+        y: 1014
+        width: 632
+        height: 276
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 589011014eaa90950800000000000000
+      internalID: 6415847040664799621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SprSh_BriefMenu_AddInfo_Red
+      rect:
+        serializedVersion: 2
+        x: 1375
+        y: 1011
+        width: 624
+        height: 272
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f237cc849bf15e530800000000000000
+      internalID: 3883545134327690031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SprSh_BriefMenu_LauchButton-Yellow
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 710
+        width: 600
+        height: 190
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55aaabec80de456b0800000000000000
+      internalID: -5308357438679111083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SprSh_BriefMenu_LauchButton-Green
+      rect:
+        serializedVersion: 2
+        x: 725
+        y: 707
+        width: 600
+        height: 190
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e0a3d182777b2600800000000000000
+      internalID: 444580321914233062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SprSh_BriefMenu_LauchButton-Red
+      rect:
+        serializedVersion: 2
+        x: 1392
+        y: 710
+        width: 600
+        height: 190
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e046309b3a4b1bc0800000000000000
+      internalID: -3811371039955992349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SprSh_BriefMenu_ButtonSocle
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 437
+        width: 1065
+        height: 185
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a96cfe745b2f32d0800000000000000
+      internalID: -3296868760304195163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SprSh_BriefMenu_DifficultyLow
+      rect:
+        serializedVersion: 2
+        x: 1523
+        y: 522
+        width: 161
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dfc12b435eb88aeb0800000000000000
+      internalID: -4708359593867993859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SprSh_BriefMenu_Batiments
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 81
+        width: 369
+        height: 260
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 117773712f8673180800000000000000
+      internalID: -9135717930116876527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SprSh_BriefMenu_SubMarine
+      rect:
+        serializedVersion: 2
+        x: 718
+        y: 95
+        width: 252
+        height: 246
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a8f828da0a03ef60800000000000000
+      internalID: 8062298799615834280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SprSh_BriefMenu_DifficultyMedium
+      rect:
+        serializedVersion: 2
+        x: 1431
+        y: 292
+        width: 162
+        height: 129
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a06da474cfc00670800000000000000
+      internalID: 8503024539153555625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SprSh_BriefMenu_DifficultyHard
+      rect:
+        serializedVersion: 2
+        x: 1510
+        y: 50
+        width: 163
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0ff5fb8c5ae9a670800000000000000
+      internalID: 8550623050745642763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline:
+    - - {x: -2, y: -2}
+      - {x: -2, y: 2}
+      - {x: 2, y: 2}
+      - {x: 2, y: -2}
+    physicsShape:
+    - - {x: -2, y: -2}
+      - {x: -2, y: 2}
+      - {x: 2, y: 2}
+      - {x: 2, y: -2}
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

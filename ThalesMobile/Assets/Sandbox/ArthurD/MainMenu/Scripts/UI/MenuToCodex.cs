@@ -27,8 +27,8 @@ public class MenuToCodex : MonoBehaviour
         screenSize = new Vector2(Screen.width, Screen.height);
         centerPos = new Vector3(screenSize.x * 0.5f, screenSize.y * 0.5f);
 
-        menu.sizeDelta = screenSize;
-        codex.sizeDelta = screenSize;
+        //menu.sizeDelta = screenSize;
+        //codex.sizeDelta = screenSize;
 
         //Si je ne touche pas l'écran
         if (!input.isDraging)

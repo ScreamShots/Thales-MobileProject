@@ -15,9 +15,9 @@ public class GlobePointManager : MonoBehaviour
     public Transform globe;
     public float globeRadius;
     public float focusSpeed = 6;
-
-    public GlobePoint[] missionPoints = new GlobePoint[0];
     public bool showDebug;
+    [Space(10)]
+    public GlobePoint[] missionPoints = new GlobePoint[0];
 
     Vector3 screenPoint;
     float dot;
@@ -30,10 +30,12 @@ public class GlobePointManager : MonoBehaviour
             Vector3 globePos = SetGlobePos(missionPoints[i].pointCoord);
 
             //Calcul pos in screen
-            screenPoint = cam.WorldToScreenPoint(globePos);
-            screenPoint += new Vector3(-Screen.width * 0.5f, -Screen.height * 0.5f);
+            screenPoint = globePos;
+            //screenPoint = cam.WorldToScreenPoint(globePos);
+            //screenPoint += new Vector3(-Screen.width * 0.5f, -Screen.height * 0.5f);
 
-            missionPoints[i].buttonrectTrans.localPosition = screenPoint;
+            missionPoints[i].button.transform.position = screenPoint;
+            missionPoints[i].button.transform.LookAt(cam.transform, Vector3.up);
 
             dot = Vector3.Dot(
                 (globe.position - cam.transform.position).normalized,
@@ -76,7 +78,6 @@ public class GlobePointManager : MonoBehaviour
         //Send Mission to loader
         missionLoader.LoadMission(missionPoints[missionNbr]);
     }
-
 
     public Vector3 SetGlobePos(Vector2 coord)
     {

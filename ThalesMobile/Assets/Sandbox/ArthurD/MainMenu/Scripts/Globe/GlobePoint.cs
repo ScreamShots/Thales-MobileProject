@@ -1,20 +1,25 @@
 ﻿using UnityEngine;
 
+public enum MissionDifficulty { Easy, Medium, Hard };
+
 [System.Serializable]
 public class GlobePoint
 {
-    [Header("Globe Info")]
-    public Vector2 pointCoord = Vector2.zero;
-    [Space(10)]
-    public GameObject button;
-    public RectTransform buttonrectTrans;
-
     [Header("Mision Data")]
+    public string missionTitle;
+    public string missionEmplacement;
     [Multiline]
     public string missionDescription;
+
+    [Header("Globe Info")]
+    public Vector2 pointCoord = Vector2.zero;
+    [Tooltip("Niveau de difficulté")]
+    public MissionDifficulty missionDifficulty = MissionDifficulty.Easy;
+    [Space(5)]
     [Tooltip("La Scene qui contient le niveau")]
     public string missionSceneName;
-    [Space(10)]
-    public Sprite buttonSkin;
-    public Sprite textSkin;
+
+    [Header("Globe Visual")]
+    public GameObject button;
+    public RectTransform buttonrectTrans;
 }
