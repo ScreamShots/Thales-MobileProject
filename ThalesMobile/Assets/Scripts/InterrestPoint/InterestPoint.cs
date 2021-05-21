@@ -70,7 +70,9 @@ public class InterestPoint : MonoBehaviour
         {
             submarine = GameManager.Instance.levelManager.enemyEntitiesInScene[0];
         }
-        
+
+        submarine = GameManager.Instance.levelManager.submarine;
+
         SetRangeSize();
         rangeDisplay.SetActive(false);
         alertIcon.SetActive(false);

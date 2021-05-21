@@ -21,13 +21,13 @@ public class SubmarineUIManager : MonoBehaviour
     public Sprite greenNode;
 
     private List<Image> nodes = new List<Image>();
+    private int index;
 
 
     void Start()
     {
         submarineCanvas.worldCamera = GameManager.Instance.cameraController.cam;
-
-        InitNodes(3);//do this in submarine
+        index = 0;
     }
 
     void Update()
@@ -45,8 +45,9 @@ public class SubmarineUIManager : MonoBehaviour
         }
     }
 
-    public void LightNode(int index)
+    public void LightNode()
     {
         nodes[index].sprite = greenNode;
+        index++;
     }
 }

@@ -28,6 +28,9 @@ public class DecoyInstance : DetectableOceanEntity
         _transform = transform;
         coords.position = Coordinates.ConvertWorldToVector2(_transform.position);
         currentSeaLevel = OceanEntities.SeaLevel.submarine;
+
+        levelManager = GameManager.Instance.levelManager;
+        submarine = levelManager.submarine;
     }
 
     protected override void Update()

@@ -79,9 +79,12 @@ public class Submarine : DetectableOceanEntity
     public Material detectedByFlashMaterial;
 
     [Header("Counter Measures")]
-    public DecoyInstance decoy;
-    public DecoyInstance decoy2;
-    public DecoyInstance decoy3;
+    public GameObject decoyReference;
+
+    [HideInInspector]public DecoyInstance decoy;
+    [HideInInspector] public DecoyInstance decoy2;
+    [HideInInspector] public DecoyInstance decoy3;
+
     private bool decoyIsCreateFlag;
     [TweekFlag(FieldUsage.Gameplay)]
     public CounterMeasure headingChange, radioSilence, baitDecoy;
@@ -153,16 +156,39 @@ public class Submarine : DetectableOceanEntity
         soundHandler = GameManager.Instance.soundHandler;
 
         levelManager.submarineEntitiesInScene.Add(this);
+        levelManager.submarine = this;
         levelManager.enemyEntitiesInScene.Add(this);
+
+        for (int i = 0; i < levelManager.interestPointsToHack.Count; i++)
+        {
+            interestPoints.Add(levelManager.interestPointsToHack[i]);
+        }
+
+        GameManager.Instance.uiHandler.submarineUI.InitNodes(interestPoints.Count);
+        pointsToHack = interestPoints.Count;
+
+
+        decoy = Instantiate(decoyReference).GetComponent<DecoyInstance>();
+        decoy2 = Instantiate(decoyReference).GetComponent<DecoyInstance>();
+        decoy3 = Instantiate(decoyReference).GetComponent<DecoyInstance>();
+
 
         _transform = transform;
         coords.position = Coordinates.ConvertWorldToVector2(_transform.position);
         currentSeaLevel = SeaLevel.submarine;
-        PickRandomInterrestPoint();      
-        ship = Object.FindObjectOfType<Ship>();
+        PickRandomInterrestPoint();
+
+        for (int i = 0; i < levelManager.playerOceanEntities.Count; i++)
+        {
+            if(levelManager.playerOceanEntities[i].GetType() == typeof(Ship))
+            {
+                ship = (Ship)levelManager.playerOceanEntities[i];
+            }
+        }
 
         subZoneAngleWidth12 = 360 / subZone12Subdivision;
         subZoneAngleWidth3 = 360 / (subZone12Subdivision * subZone3SubSubdivision);
+
 
         for (int i = 0; i < levelManager.submarineEntitiesInScene.Count; i++)
         {
@@ -234,9 +260,12 @@ public class Submarine : DetectableOceanEntity
         }
         else
         {
-            randomNumber = Random.Range(0, interestPoints.Count);
-            nextInterestPoint = interestPoints[randomNumber];
-            movingToNextPoint = true;
+            if (interestPoints.Count > 0)
+            {
+                randomNumber = Random.Range(0, interestPoints.Count - 1);
+                nextInterestPoint = interestPoints[randomNumber];
+                movingToNextPoint = true;
+            }
         }
     }
 
@@ -306,6 +335,7 @@ public class Submarine : DetectableOceanEntity
             soundAlreadyPlay = false;
             hackingTimer = 0;
             nextInterestPoint.currentHackState = HackState.doneHack;
+            GameManager.Instance.uiHandler.submarineUI.LightNode();
             interestPoints.RemoveAt(randomNumber);
             pointsHacked++;
             PickRandomInterrestPoint();
