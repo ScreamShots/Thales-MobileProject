@@ -84,6 +84,14 @@ namespace OceanEntities
             camController = GameManager.Instance.cameraController;
             inputManager = GameManager.Instance.inputManager;
 
+            for (int i = 0; i < GameManager.Instance.levelManager.playerOceanEntities.Count; i++)
+            {
+                if(GameManager.Instance.levelManager.playerOceanEntities[i].GetType() == typeof(Ship))
+                {
+                    linkedShip = (Ship)GameManager.Instance.levelManager.playerOceanEntities[i];
+                }
+            }
+
             currentRotateSpeed = rotateSpeed;
             coords.direction = Coordinates.ConvertWorldToVector2(transform.forward);
 

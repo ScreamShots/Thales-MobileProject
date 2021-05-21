@@ -21,6 +21,8 @@ public class LevelManager : MonoBehaviour
 
     public Submarine submarine;
 
+    public int pointsToHack;
+
     public Environnement environnement;
 
     private void Start()

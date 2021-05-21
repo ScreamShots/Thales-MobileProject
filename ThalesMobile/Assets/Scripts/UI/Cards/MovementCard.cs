@@ -94,8 +94,8 @@ public class MovementCard : MonoBehaviour
         audioSource.volume = Mathf.Clamp01(descriptionAppearSoundVolume);
         soundHandler.PlaySound(descriptionAppearSound, audioSource, targetGroup);
 
-        uiHandler.entityDeckUI.descriptionHeaderText.text = "Movement Card";//Expose string
-        uiHandler.entityDeckUI.descriptionText.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";//Expose stringS
+        uiHandler.entityDeckUI.descriptionHeaderText.text = "Déplacement";//Expose string
+        uiHandler.entityDeckUI.descriptionText.text = "<b>Déplace</b> le bâtiment sélectionné jusqu'à l'emplacement indiqué.";
     }
 
 }

@@ -216,8 +216,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   card: {fileID: 6990138965356131178}
-  descriptionHeader: Hull Sonar
-  descriptionText: Lorem Ipsum dolor sit amet...
+  descriptionHeader: BLUEMASTER
+  descriptionText: "Le BLUEMASTER <b>d\xE9tecte</b> p\xE9riodiquement les objets
+    immerg\xE9s autour de la FREMM."
   audioSource: {fileID: 3740736810684178144}
   targetGroup: {fileID: 7017793297182156295, guid: 9b41315a36bc40a4ea458016676fd8f1,
     type: 2}
@@ -533,7 +534,7 @@ MonoBehaviour:
   serializedGuid: a7b8cd7cb1da994594a0aa84230bb67b
   thisObjState: 2
   initState: 2
-  instanceID: 54034
+  instanceID: 102216
   referencedComponents:
   - component: {fileID: 4357396911022476696}
     serializedGuid: 2151dd58aa54594c9aa7d4c3a84990ab

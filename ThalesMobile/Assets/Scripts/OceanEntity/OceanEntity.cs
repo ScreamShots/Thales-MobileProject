@@ -80,11 +80,10 @@ namespace OceanEntities
 
                     RaycastHit hit;
                     timeBeforeNextPathUpdate = pathUpdatingFrequency;
-                    Debug.DrawLine(Coordinates.ConvertVector2ToWorld(coords.position) + Vector3.up * 0.9f, Coordinates.ConvertVector2ToWorld(pathDestination) + Vector3.up * 0.99f, Color.yellow, 0.5f);
                     Vector3 destDirection = (Coordinates.ConvertVector2ToWorld(pathDestination)) - (Coordinates.ConvertVector2ToWorld(coords.position));
                     float destDistance = destDirection.magnitude;
                     destDirection.Normalize();
-                    if (!Physics.Raycast(Coordinates.ConvertVector2ToWorld(coords.position) + Vector3.up * 0.5f, destDirection, out hit, destDistance, LayerMask.GetMask("LandPathfinding")))
+                    if (!Physics.SphereCast(Coordinates.ConvertVector2ToWorld(coords.position) + Vector3.up * 0.5f, 0.6f,destDirection, out hit, destDistance, LayerMask.GetMask("LandPathfinding")))
                     {
                         pathDirection = pathDestination - coords.position;
                         pathDirection.Normalize();

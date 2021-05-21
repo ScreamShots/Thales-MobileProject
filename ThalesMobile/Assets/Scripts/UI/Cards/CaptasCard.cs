@@ -162,7 +162,7 @@ public class CaptasCard : MonoBehaviour
         audioSource.volume = Mathf.Clamp01(descriptionAppearSoundVolume);
         soundHandler.PlaySound(descriptionAppearSound, audioSource, targetGroup);
 
-        uiHandler.entityDeckUI.descriptionHeaderText.text = "Captas4 Card";//Expose string
-        uiHandler.entityDeckUI.descriptionText.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";//Expose stringS
+        uiHandler.entityDeckUI.descriptionHeaderText.text = "CAPTAS-4";//Expose string
+        uiHandler.entityDeckUI.descriptionText.text = "Le CAPTAS-4 projette une onde qui parcourt <b>l'intégralité</b> du terrain en <b>détectant</b> les objets immergés sur son chemin.";//Expose stringS
     }
 }

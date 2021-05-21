@@ -164,8 +164,8 @@ public class Submarine : DetectableOceanEntity
             interestPoints.Add(levelManager.interestPointsToHack[i]);
         }
 
-        GameManager.Instance.uiHandler.submarineUI.InitNodes(interestPoints.Count);
-        pointsToHack = interestPoints.Count;
+        pointsToHack = levelManager.pointsToHack;
+        GameManager.Instance.uiHandler.submarineUI.InitNodes(pointsToHack);
 
 
         decoy = Instantiate(decoyReference).GetComponent<DecoyInstance>();
