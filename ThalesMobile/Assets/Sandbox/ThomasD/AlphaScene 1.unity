@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -3022,12 +3022,37 @@ PrefabInstance:
     - target: {fileID: 5630502567233466962, guid: 1ce6e572ea85ad344b97167bd62129c7,
         type: 3}
       propertyPath: limitDezoom.size.x
-      value: 32
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5630502567233466962, guid: 1ce6e572ea85ad344b97167bd62129c7,
         type: 3}
       propertyPath: limitDezoom.size.y
-      value: 64
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5630502567233466962, guid: 1ce6e572ea85ad344b97167bd62129c7,
+        type: 3}
+      propertyPath: limitDezoom.offSet.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5630502567233466963, guid: 1ce6e572ea85ad344b97167bd62129c7,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 45.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5630502567233466963, guid: 1ce6e572ea85ad344b97167bd62129c7,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -13.999837
+      objectReference: {fileID: 0}
+    - target: {fileID: 5630502567233466963, guid: 1ce6e572ea85ad344b97167bd62129c7,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7660445
+      objectReference: {fileID: 0}
+    - target: {fileID: 5630502567233466963, guid: 1ce6e572ea85ad344b97167bd62129c7,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.64278764
       objectReference: {fileID: 0}
     - target: {fileID: 8410120360317386302, guid: 1ce6e572ea85ad344b97167bd62129c7,
         type: 3}

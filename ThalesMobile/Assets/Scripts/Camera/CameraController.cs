@@ -21,6 +21,7 @@ public class CameraController : MonoBehaviour
     private float aimPromimity;
     private float aimFov;
     [SerializeField] float moveZoomLvlFactor = 1f;
+    [TweekFlag(FieldUsage.Gameplay), SerializeField, Range(0, 1)] float minimalMoveFactor = 0.5f;
     [Space(10)]
     [TweekFlag(FieldUsage.Gameplay)] public float aimLerpSpeed = 0.05f;
 
@@ -147,14 +148,14 @@ public class CameraController : MonoBehaviour
         aimAngle = camSett.EvalAngle(zoom);
         
         //Move Factor 
-        float maxZoomFactor = Mathf.Min(limitDezoom.size.x / limit.size.x, limitDezoom.size.y / limit.size.y);
-        moveZoomLvlFactor = Mathf.Lerp(1, maxZoomFactor, zoomIntensity);
+        float mapScaleFactor = Mathf.Min(limitDezoom.size.x / limit.size.x, limitDezoom.size.y / limit.size.y);
+        moveZoomLvlFactor = Mathf.Lerp(1, mapScaleFactor, zoomIntensity) * (1- minimalMoveFactor) + minimalMoveFactor;
     }
     private void ZoomApplication()
     {
         //ApplyPos
         aimPos = focusPoint.position + new Vector3(0, aimHeight, aimPromimity);
-        transform.position = Vector3.Lerp(transform.position, aimPos, mouvLerpSpeed * moveZoomLvlFactor);
+        transform.position = Vector3.Lerp(transform.position, aimPos, mouvLerpSpeed);
 
         //Apply Fov
         cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, aimFov, aimLerpSpeed);
