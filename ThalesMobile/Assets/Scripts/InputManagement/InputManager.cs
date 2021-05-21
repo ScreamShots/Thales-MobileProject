@@ -41,6 +41,13 @@ public class InputManager : MonoBehaviour
     private float distance = 0;
     private float lastDistance;
 
+    //Inertie
+    [SerializeField] private bool activateInertie = true;
+    private float dragStartTime = 0;
+    [SerializeField] private float inertialVelocity = 0;
+    private Vector2 move = Vector2.zero;
+    private Vector2 dragStartPos = Vector2.zero;
+
     //UICards
     [HideInInspector] public bool isDraggingCard;
     [HideInInspector] public InteractableUI currentSelectedCard;
@@ -112,28 +119,66 @@ public class InputManager : MonoBehaviour
                                     entity.linkedButton.SelectEntity();
                                 }
 
-                                
+                                dragStartTime = Time.time;
+                                dragStartPos = touch.position;
                             }
                         }
                         //If drag then move camera
-                        else if (touch.deltaPosition.magnitude > 5f && canMoveCam)
+                        if (touch.phase == TouchPhase.Moved)
                         {
-                            camController.moveDirection = -touch.deltaPosition;
+                            //If drag then move camera
+                            if (touch.deltaPosition.magnitude > 5f && canMoveCam)
+                            {
+                                camController.moveDirection = -touch.deltaPosition;
+                            }
+
                         }
+                        else if (touch.phase == TouchPhase.Ended)
+                        {
+                            #region inertie
+                            if (activateInertie)
+                            {
+                                move = touch.position - dragStartPos;
+                                inertialVelocity = move.magnitude / (Time.time - dragStartTime);
+
+                                if (touch.deltaPosition.magnitude < 5f)
+                                {
+                                    inertialVelocity = 0;
+                                }
+                            }
+                            #endregion
+                        }
+                        
                     }
                 }
             }
+
+            #region inertie
+            if (activateInertie)
+            {
+                //Apply inertie
+                camController.moveDirection -= move.normalized * inertialVelocity * 0.135f * Time.deltaTime;
+                inertialVelocity *= 10f * Time.deltaTime;
+            }
+            #endregion
 
             if (touch.deltaPosition.magnitude < 5f)
             {
                 camController.moveDirection = Vector2.zero;
             }
         }
-
         //Glide Input
-        else if(Input.touchCount == 2)
+        else if (Input.touchCount == 2)
         {
-            if(canZoomCam)
+            #region inertie
+            if (activateInertie)
+            {
+                //Stop inertie
+                inertialVelocity = 0;
+            }
+            #endregion
+
+            if (canZoomCam)
             {
                 Vector2 touch0;
                 Vector2 touch1;
@@ -162,7 +207,6 @@ public class InputManager : MonoBehaviour
                 }  
             }
         }
-
         //No fingers on screen.
         else if (Input.touchCount == 0)
         {
