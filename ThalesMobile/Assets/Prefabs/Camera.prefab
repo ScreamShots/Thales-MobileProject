@@ -45,11 +45,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c3cdcb490cdee448a8aedfe8dbf5790, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  guidDisplay: 21a5c2a2-55e3-4525-af37-5033db8e3a84
-  serializedGuid: a2c2a521e3552545af375033db8e3a84
-  thisObjState: 2
-  initState: 2
-  instanceID: 25268
+  guidDisplay: 0a1549a1-778e-4015-bec9-b82a83df8803
+  serializedGuid: a149150a8e771540bec9b82a83df8803
+  thisObjState: 1
+  initState: 1
+  instanceID: -4078
   referencedComponents:
   - component: {fileID: 5630502567233466962}
     serializedGuid: 5f9c4216b50e1a418ee169f7caa274d1
@@ -220,6 +220,7 @@ MonoBehaviour:
   zoomIntensity: 1
   zoomSpeed: 5
   camSett: {fileID: 11400000, guid: 81746d5d0ad588340bad41252888c508, type: 2}
+  moveZoomLvlFactor: 1
   aimLerpSpeed: 0.2
   moveSpeed: 26
   refocusSpeed: 55
@@ -228,6 +229,9 @@ MonoBehaviour:
   limit:
     size: {x: 32, y: 64}
     offSet: {x: 0, y: 0}
+  limitDezoom:
+    size: {x: 0, y: 0}
+    offSet: {x: 0, y: -13}
   standAloneMode: 0
   drawLine: 1
   edgeColor: {r: 1, g: 1, b: 0, a: 1}
