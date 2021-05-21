@@ -17,6 +17,12 @@ public class LevelManager : MonoBehaviour
 
     public List<PlayerOceanEntity> playerOceanEntities;
 
+    public List<InterestPoint> interestPointsToHack;
+
+    public Submarine submarine;
+
+    public int pointsToHack;
+
     public Environnement environnement;
 
     private void Start()

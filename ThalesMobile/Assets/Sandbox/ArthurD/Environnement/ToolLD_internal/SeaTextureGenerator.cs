@@ -95,7 +95,7 @@ public static class SeaTextureGenerator
             for (int y = 0; y < textureSize; y++)
             {
                 tempColor = zoneColor[map.ZoneIn(new Vector2(textStartPosX + (x * inverseDetail), textStartPosY + (y * inverseDetail)))];
-                texture.SetPixel(x, (textureSize - 1) - y, tempColor);
+                texture.SetPixel( x, y, tempColor);
             }
         }
 

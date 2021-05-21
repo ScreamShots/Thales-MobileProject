@@ -9,7 +9,6 @@ public class VictoryScreenManager : MonoBehaviour
 
     [Header("UIElements")]
     public TextMeshProUGUI header;
-    public TextMeshProUGUI description;
     public Button menuButton;
 
     public CanvasGroup victoryCanvasGroup;
@@ -22,22 +21,22 @@ public class VictoryScreenManager : MonoBehaviour
     [Header("Descriptions")]
     public string victoryHeader;
     public string defeatHeader;
-    public string victoryDescription;
-    public string defeatDescription;
 
     [Header("Animation")]
     public TweeningAnimator blur;
-    public TweeningAnimator victoryPanel;
+    public TweeningAnimator leftCorner;
+    public TweeningAnimator rightCorner;
+
 
     private bool once = false;
     // Start is called before the first frame update
     void Start()
     {
         blur.GetCanvasGroup();
-        victoryPanel.anim = Instantiate(victoryPanel.anim);
+        leftCorner.anim = Instantiate(leftCorner.anim);
+        rightCorner.anim = Instantiate(rightCorner.anim);
         blur.anim = Instantiate(blur.anim);
     }
-
     public void Victory(bool victory)
     {
         if(!once)
@@ -51,16 +50,15 @@ public class VictoryScreenManager : MonoBehaviour
             if (victory)
             {
                 header.text = victoryHeader;
-                description.text = victoryDescription;
             }
             else
             {
                 header.text = defeatHeader;
-                description.text = defeatDescription;
             }
 
             StartCoroutine(blur.anim.Play(blur, blur.originalPos));
-            StartCoroutine(victoryPanel.anim.Play(victoryPanel, victoryPanel.originalPos));
+            StartCoroutine(leftCorner.anim.Play(leftCorner, leftCorner.originalPos));
+            StartCoroutine(rightCorner.anim.Play(rightCorner, rightCorner.originalPos));
 
             //GameManager.Instance.pauseHandler.Pause();
         }

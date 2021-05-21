@@ -129,11 +129,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c3cdcb490cdee448a8aedfe8dbf5790, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  guidDisplay: b37c2e93-aa03-4086-988d-7ac4188c2d2c
-  serializedGuid: 932e7cb303aa8640988d7ac4188c2d2c
+  guidDisplay: 96749c2f-3e89-4552-ad57-8a253754f207
+  serializedGuid: 2f9c7496893e5245ad578a253754f207
   thisObjState: 2
   initState: 2
-  instanceID: 28778
+  instanceID: 80782
   referencedComponents:
   - component: {fileID: 7664084496329710959}
     serializedGuid: 82d51bbd2fbdb442a0c315dd959bd187
@@ -179,8 +179,8 @@ MonoBehaviour:
   currentVigilance: 0
   currentState: 0
   calmStateValues: {x: 0, y: 40}
-  worriedStateValues: {x: 40, y: 80}
   panickedStateValues: {x: 80, y: 100}
+  incraseVigilanceShipRange: 0
   detectionRangeCalm: 3
   detectionRangeWorried: 5
   detectionRangePanicked: 6.5
@@ -195,14 +195,17 @@ MonoBehaviour:
   baseMaterial: {fileID: 2100000, guid: b9d46f47018a2ec4cb737b79763710ec, type: 2}
   detectedByFlashMaterial: {fileID: 2100000, guid: 7535ace726392444ca0609fc7e13d602,
     type: 2}
+  decoyReference: {fileID: 6156622600121418849, guid: 5af764bbc943e5d4d930d3031b7c6cd3,
+    type: 3}
   decoy: {fileID: 0}
+  decoy2: {fileID: 0}
+  decoy3: {fileID: 0}
   headingChange: {fileID: 11400000, guid: c5625d4f2b46dcc42ab7b5841efdaf59, type: 2}
   radioSilence: {fileID: 11400000, guid: afa7559d38532e5438d14596ef1032c5, type: 2}
   baitDecoy: {fileID: 11400000, guid: b23b70fa501456c4d81115c3fde9927c, type: 2}
   pointsToHack: 3
   pointsHacked: 0
   interestPoints:
-  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -215,22 +218,16 @@ MonoBehaviour:
   intermediatePosRefreshRate: 3
   distanceToRefrehIntemediatePos: 1
   benefPointFactorBioCalm: 2
-  benefPointFactorBioWorried: 2
   benefPointFactorBioPanicked: 2.8
   beneftPointFactorSonobuoyCalm: -1
-  beneftPointFactorSonobuoyWorried: -2
   beneftPointFactorSonobuoyPanicked: -4
   beneftPointFactorSeaWayCalm: 1
-  beneftPointFactorSeaWayWorried: 2
   beneftPointFactorSeaWayPanicked: 4
   beneftPointFactorSeaTurbulentCalm: 1
-  beneftPointFactorSeaTurbulentWorried: 2
   beneftPointFactorSeaTurbulentPanicked: 4
   beneftPointFactorWindyZoneCalm: -1
-  beneftPointFactorWindyZoneWorried: -1.5
   beneftPointFactorWindyZonePanicked: -2
   distanceFactorWeightWhileCalm: 7
-  distanceFactorWeightWhileWorried: 5
   distanceFactorWeightWhilePanicked: 3
   isSubmarineDisplayed: 0
   soundHandler: {fileID: 0}
@@ -239,6 +236,8 @@ MonoBehaviour:
   soundSource: {fileID: 822501743381000185}
   inHackClip: {fileID: 8300000, guid: e89b7798b5aeb304596e37e7ee449105, type: 3}
   doneHackClip: {fileID: 8300000, guid: 1096d8c3681a41d409140463b2dbc504, type: 3}
+  inHackVolume: 0
+  doneHackVolume: 0
 --- !u!114 &7664084496245726164
 MonoBehaviour:
   m_ObjectHideFlags: 0

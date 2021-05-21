@@ -162,8 +162,8 @@ public class SonobuyDeployerCard : MonoBehaviour
         audioSource.volume = Mathf.Clamp01(descriptionAppearSoundVolume);
         soundHandler.PlaySound(descriptionAppearSound, audioSource, targetGroup);
 
-        uiHandler.entityDeckUI.descriptionHeaderText.text = "Sonobuy Card";//Expose string
-        uiHandler.entityDeckUI.descriptionText.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";//Expose stringS
+        uiHandler.entityDeckUI.descriptionHeaderText.text = "Bouées Sonoflash";//Expose string
+        uiHandler.entityDeckUI.descriptionText.text = "Les bouée SONOFLASH <b>détectent</b> les objets immergés dans une <b>zone</b> autour de la bouée sans donner la position précise de l'objet détecté.";//Expose stringS
     }
 
 }

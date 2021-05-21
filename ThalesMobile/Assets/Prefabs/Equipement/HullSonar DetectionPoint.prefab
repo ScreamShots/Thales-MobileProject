@@ -44,6 +44,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2486732044408350716}
+  - component: {fileID: 5495935069335160673}
   - component: {fileID: 8406365975547935629}
   m_Layer: 0
   m_Name: HullSonar DetectionPoint
@@ -67,6 +68,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5495935069335160673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2681307672962359013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c3cdcb490cdee448a8aedfe8dbf5790, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  guidDisplay: cc955716-ca35-4f28-9fde-b81b263a273e
+  serializedGuid: 165795cc35ca284f9fdeb81b263a273e
+  thisObjState: 2
+  initState: 2
+  instanceID: 50500
+  referencedComponents:
+  - component: {fileID: 1583701260782210641}
+    serializedGuid: 04fb532b367a2843bfb3446c9dc848d5
+    update: 1
 --- !u!114 &8406365975547935629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -493,6 +515,7 @@ MonoBehaviour:
   targetGroup: {fileID: -9015305574639715243, guid: 9b41315a36bc40a4ea458016676fd8f1,
     type: 2}
   appearSound: {fileID: 8300000, guid: 7f93e1868121eed4882693b884364dc5, type: 3}
+  appearSoundVolume: 0
   appearSoundSource: {fileID: 6512723210438504047}
 --- !u!82 &6512723210438504047
 AudioSource:

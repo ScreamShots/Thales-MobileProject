@@ -11,7 +11,7 @@ using Tweek.FlagAttributes;
 public enum VigilanceState
 {
     calm,
-    worried,
+    //worried,
     panicked
 }
 
@@ -44,11 +44,14 @@ public class Submarine : DetectableOceanEntity
 
     [Header("Vigilance State")]
     public Vector2 calmStateValues;
-    public Vector2 worriedStateValues;
+    //public Vector2 worriedStateValues;
     public Vector2 panickedStateValues;
-    private bool reachWorriedState;
+    //private bool reachWorriedState;
+    private bool changeValue;
 
     [Header("Submarine Range")]
+    [TweekFlag(FieldUsage.Gameplay)]
+    public float incraseVigilanceShipRange;
     [TweekFlag(FieldUsage.Gameplay)]
     public float detectionRangeCalm;
     [TweekFlag(FieldUsage.Gameplay)]
@@ -76,11 +79,18 @@ public class Submarine : DetectableOceanEntity
     public Material detectedByFlashMaterial;
 
     [Header("Counter Measures")]
-    public DecoyInstance decoy;
+    public GameObject decoyReference;
+
+    [HideInInspector]public DecoyInstance decoy;
+    [HideInInspector] public DecoyInstance decoy2;
+    [HideInInspector] public DecoyInstance decoy3;
+
     private bool decoyIsCreateFlag;
     [TweekFlag(FieldUsage.Gameplay)]
     public CounterMeasure headingChange, radioSilence, baitDecoy;
     private List<CounterMeasure> allCounterMeasures;
+    private bool dontUpdateCoord;
+    private Vector2 submarineDirection;
 
     [Header("Objectif")]
     public int pointsToHack;
@@ -108,17 +118,17 @@ public class Submarine : DetectableOceanEntity
     [TweekFlag(FieldUsage.Gameplay)]
     public float distanceToRefrehIntemediatePos;
     [TweekFlag(FieldUsage.Gameplay)]
-    public float benefPointFactorBioCalm, benefPointFactorBioWorried, benefPointFactorBioPanicked;
+    public float benefPointFactorBioCalm, /*benefPointFactorBioWorried,*/ benefPointFactorBioPanicked;
     [TweekFlag(FieldUsage.Gameplay)]
-    public float beneftPointFactorSonobuoyCalm, beneftPointFactorSonobuoyWorried, beneftPointFactorSonobuoyPanicked;
+    public float beneftPointFactorSonobuoyCalm, /*beneftPointFactorSonobuoyWorried,*/ beneftPointFactorSonobuoyPanicked;
     [TweekFlag(FieldUsage.Gameplay)]
-    public float beneftPointFactorSeaWayCalm, beneftPointFactorSeaWayWorried, beneftPointFactorSeaWayPanicked;
+    public float beneftPointFactorSeaWayCalm, /*beneftPointFactorSeaWayWorried,*/ beneftPointFactorSeaWayPanicked;
     [TweekFlag(FieldUsage.Gameplay)]
-    public float beneftPointFactorSeaTurbulentCalm, beneftPointFactorSeaTurbulentWorried, beneftPointFactorSeaTurbulentPanicked;
+    public float beneftPointFactorSeaTurbulentCalm, /*beneftPointFactorSeaTurbulentWorried,*/ beneftPointFactorSeaTurbulentPanicked;
     [TweekFlag(FieldUsage.Gameplay)]
-    public float beneftPointFactorWindyZoneCalm, beneftPointFactorWindyZoneWorried, beneftPointFactorWindyZonePanicked;
+    public float beneftPointFactorWindyZoneCalm, /*beneftPointFactorWindyZoneWorried,*/ beneftPointFactorWindyZonePanicked;
     [TweekFlag(FieldUsage.Gameplay)]
-    public float distanceFactorWeightWhileCalm, distanceFactorWeightWhileWorried, distanceFactorWeightWhilePanicked;
+    public float distanceFactorWeightWhileCalm, /*distanceFactorWeightWhileWorried,*/ distanceFactorWeightWhilePanicked;
 
     private Vector2 targetDirection;
     private Vector2 nextIntermediatePosition;
@@ -146,16 +156,39 @@ public class Submarine : DetectableOceanEntity
         soundHandler = GameManager.Instance.soundHandler;
 
         levelManager.submarineEntitiesInScene.Add(this);
+        levelManager.submarine = this;
         levelManager.enemyEntitiesInScene.Add(this);
+
+        for (int i = 0; i < levelManager.interestPointsToHack.Count; i++)
+        {
+            interestPoints.Add(levelManager.interestPointsToHack[i]);
+        }
+
+        pointsToHack = levelManager.pointsToHack;
+        GameManager.Instance.uiHandler.submarineUI.InitNodes(pointsToHack);
+
+
+        decoy = Instantiate(decoyReference).GetComponent<DecoyInstance>();
+        decoy2 = Instantiate(decoyReference).GetComponent<DecoyInstance>();
+        decoy3 = Instantiate(decoyReference).GetComponent<DecoyInstance>();
+
 
         _transform = transform;
         coords.position = Coordinates.ConvertWorldToVector2(_transform.position);
         currentSeaLevel = SeaLevel.submarine;
-        PickRandomInterrestPoint();      
-        ship = Object.FindObjectOfType<Ship>();
+        PickRandomInterrestPoint();
+
+        for (int i = 0; i < levelManager.playerOceanEntities.Count; i++)
+        {
+            if(levelManager.playerOceanEntities[i].GetType() == typeof(Ship))
+            {
+                ship = (Ship)levelManager.playerOceanEntities[i];
+            }
+        }
 
         subZoneAngleWidth12 = 360 / subZone12Subdivision;
         subZoneAngleWidth3 = 360 / (subZone12Subdivision * subZone3SubSubdivision);
+
 
         for (int i = 0; i < levelManager.submarineEntitiesInScene.Count; i++)
         {
@@ -170,6 +203,10 @@ public class Submarine : DetectableOceanEntity
         allCounterMeasures.Add(radioSilence);
         allCounterMeasures.Add(baitDecoy);
 
+        for (int x = 0; x < allCounterMeasures.Count; x++)
+        {
+            allCounterMeasures[x].readyToUse = true;
+        }
     }
 
     protected override void Update()
@@ -181,6 +218,7 @@ public class Submarine : DetectableOceanEntity
         {
             UpdateInterestPoint();
             decoyIsCreateFlag = false;
+            dontUpdateCoord = false;
         }
         else
         {
@@ -197,7 +235,7 @@ public class Submarine : DetectableOceanEntity
         UpdateState();
         UpdateSubmarineRange();
         DetectFregate();
-        DetectSonobuoy();
+        //DetectSonobuoy();
 
         // Counter Measures.
         if (currentVigilance >= 0)
@@ -222,9 +260,12 @@ public class Submarine : DetectableOceanEntity
         }
         else
         {
-            randomNumber = Random.Range(0, interestPoints.Count);
-            nextInterestPoint = interestPoints[randomNumber];
-            movingToNextPoint = true;
+            if (interestPoints.Count > 0)
+            {
+                randomNumber = Random.Range(0, interestPoints.Count - 1);
+                nextInterestPoint = interestPoints[randomNumber];
+                movingToNextPoint = true;
+            }
         }
     }
 
@@ -294,6 +335,7 @@ public class Submarine : DetectableOceanEntity
             soundAlreadyPlay = false;
             hackingTimer = 0;
             nextInterestPoint.currentHackState = HackState.doneHack;
+            GameManager.Instance.uiHandler.submarineUI.LightNode();
             interestPoints.RemoveAt(randomNumber);
             pointsHacked++;
             PickRandomInterrestPoint();
@@ -305,17 +347,56 @@ public class Submarine : DetectableOceanEntity
         // The submarine still going in his direction
         if (decoy.randomDirection == 0)
         {
-            coords.direction = coords.direction;
+            coords.direction = Coordinates.ConvertVector2ToWorld(Vector2.right);
             coords.position += coords.direction.normalized * Time.deltaTime * currentSpeed;
             _transform.position = Coordinates.ConvertVector2ToWorld(coords.position);
         }
         // The submarine go in decoy angle direction 
-        else
+        else if (decoy.randomDirection == 1)
         {
-            coords.direction = Coordinates.ConvertWorldToVector2(Quaternion.Euler(0, decoy.decoyAngle, 0) * Coordinates.ConvertVector2ToWorld(coords.direction.normalized));
+            if (!dontUpdateCoord)
+            {
+                dontUpdateCoord = true;
+                submarineDirection = coords.direction;
+            }
+            coords.direction = Coordinates.ConvertWorldToVector2(Quaternion.Euler(0, 90f, 0) * Coordinates.ConvertVector2ToWorld(Vector2.right));
             coords.position += coords.direction * Time.deltaTime * currentSpeed;
             _transform.position = Coordinates.ConvertVector2ToWorld(coords.position);
         }
+        else if (decoy.randomDirection == 2)
+        {
+            if (!dontUpdateCoord)
+            {
+                dontUpdateCoord = true;
+                submarineDirection = coords.direction;
+            }
+            coords.direction = Coordinates.ConvertWorldToVector2(Quaternion.Euler(0, 180f, 0) * Coordinates.ConvertVector2ToWorld(Vector2.right));
+            coords.position += coords.direction * Time.deltaTime * currentSpeed;
+            _transform.position = Coordinates.ConvertVector2ToWorld(coords.position);
+        }
+        else if (decoy.randomDirection == 3)
+        {
+            if (!dontUpdateCoord)
+            {
+                dontUpdateCoord = true;
+                submarineDirection = coords.direction;
+            }
+            coords.direction = Coordinates.ConvertWorldToVector2(Quaternion.Euler(0, -180f, 0) * Coordinates.ConvertVector2ToWorld(Vector2.right));
+            coords.position += coords.direction * Time.deltaTime * currentSpeed;
+            _transform.position = Coordinates.ConvertVector2ToWorld(coords.position);
+        }
+
+        /*else
+        {
+            if (!dontUpdateCoord)
+            {
+                dontUpdateCoord = true;
+                submarineDirection = coords.direction;
+            }
+            coords.direction = Coordinates.ConvertWorldToVector2(Quaternion.Euler(0, decoy.decoyAngle, 0) * Coordinates.ConvertVector2ToWorld(submarineDirection.normalized));
+            coords.position += coords.direction * Time.deltaTime * currentSpeed;
+            _transform.position = Coordinates.ConvertVector2ToWorld(coords.position);
+        }*/
     }
 
     public override void Move(Vector2 targetPosition)
@@ -369,8 +450,8 @@ public class Submarine : DetectableOceanEntity
                     Coordinates.ConvertVector2ToWorld(GetDirectionFromAngle(allSubZones[allSubZones.Count - 1].minAngle) * detectionRangeCalm),
                     Color.green);
 
-            if (currentState == VigilanceState.worried
-        || currentState == VigilanceState.panicked)
+            if (/*currentState == VigilanceState.worried
+        || */currentState == VigilanceState.panicked)
             {
                 allSubZones.Add(new SubZone(GetNormAngle(startAngle + i * subZoneAngleWidth12), GetNormAngle(startAngle + (i + 1) * subZoneAngleWidth12), detectionRangeCalm, detectionRangeWorried, i, "SZ_" + i + "_1", this));
 
@@ -393,8 +474,8 @@ public class Submarine : DetectableOceanEntity
             /*if (isSubmarineDisplayed)
                 circleGismos.Add(new CircleGizmo(coords.position, detectionRangeCalm, Color.green));*/
 
-            if (currentState == VigilanceState.worried
-            || currentState == VigilanceState.panicked)
+            if (/*currentState == VigilanceState.worried
+            ||*/ currentState == VigilanceState.panicked)
             {
                 /*if (isSubmarineDisplayed)
                     circleGismos.Add(new CircleGizmo(coords.position, detectionRangeWorried, Color.cyan));*/
@@ -496,7 +577,7 @@ public class Submarine : DetectableOceanEntity
             if (pointDistance < subZone.maxRange && pointDistance >= subZone.minRange && IsBetweenAngle(pointRelativeAngle, subZone.minAngle, subZone.maxAngle))
             {
                 weight += currentState == VigilanceState.calm ? benefPointFactorBioCalm : 0;
-                weight += currentState == VigilanceState.worried ? benefPointFactorBioWorried : 0;
+                //weight += currentState == VigilanceState.worried ? benefPointFactorBioWorried : 0;
                 weight += currentState == VigilanceState.panicked ? benefPointFactorBioPanicked : 0;
             }
         }
@@ -507,15 +588,15 @@ public class Submarine : DetectableOceanEntity
                 weight += Mathf.Cos(Mathf.Deg2Rad * Vector2.Angle(targetDirection, subZoneDirection)) * distanceFactorWeightWhileCalm;
                 break;
 
-            case VigilanceState.worried:
+            /*case VigilanceState.worried:
                 weight += Mathf.Cos(Mathf.Deg2Rad * Vector2.Angle(targetDirection, subZoneDirection)) * distanceFactorWeightWhileWorried;
-                break;
+                break;*/
 
             case VigilanceState.panicked:
                 weight += Mathf.Cos(Mathf.Deg2Rad * Vector2.Angle(targetDirection, subZoneDirection)) * distanceFactorWeightWhilePanicked;
                 break;
         }
-
+        
         if (environnement.ZoneIn(coords.position) != 0)
         {
             if (environnement.zones[environnement.ZoneIn(coords.position) - 1].state == ZoneState.SeaWay)
@@ -526,9 +607,9 @@ public class Submarine : DetectableOceanEntity
                         weight += beneftPointFactorSeaWayCalm;
                         break;
 
-                    case VigilanceState.worried:
+                    /*case VigilanceState.worried:
                         weight += beneftPointFactorSeaWayWorried;
-                        break;
+                        break;*/
 
                     case VigilanceState.panicked:
                         weight += beneftPointFactorSeaWayPanicked;
@@ -543,9 +624,9 @@ public class Submarine : DetectableOceanEntity
                         weight += beneftPointFactorWindyZoneCalm;
                         break;
 
-                    case VigilanceState.worried:
+                    /*case VigilanceState.worried:
                         weight += beneftPointFactorWindyZoneWorried;
-                        break;
+                        break;*/
 
                     case VigilanceState.panicked:
                         weight += beneftPointFactorWindyZonePanicked;
@@ -560,9 +641,9 @@ public class Submarine : DetectableOceanEntity
                         weight += beneftPointFactorSeaTurbulentCalm;
                         break;
 
-                    case VigilanceState.worried:
+                    /*case VigilanceState.worried:
                         weight += beneftPointFactorSeaTurbulentWorried;
-                        break;
+                        break;*/
 
                     case VigilanceState.panicked:
                         weight += beneftPointFactorSeaTurbulentPanicked;
@@ -593,9 +674,9 @@ public class Submarine : DetectableOceanEntity
                         weight += beneftPointFactorSonobuoyCalm;
                         break;
 
-                    case VigilanceState.worried:
+                    /*case VigilanceState.worried:
                         weight += beneftPointFactorSonobuoyWorried;
-                        break;
+                        break;*/
 
                     case VigilanceState.panicked:
                         weight += beneftPointFactorSonobuoyPanicked;
@@ -734,15 +815,28 @@ public class Submarine : DetectableOceanEntity
     #region Vigilance
     private void UpdateState()
     {
-        if (currentVigilance >= calmStateValues.x && currentVigilance < calmStateValues.y && !reachWorriedState)
+        if (submarineDetectFregate)
+        {
+            if (currentVigilance < panickedStateValues.x && !changeValue)
+            {
+                changeValue = true;
+                currentVigilance = panickedStateValues.x;
+            }
+        }
+        else
+        {
+            changeValue = false; 
+        }
+
+        if (currentVigilance >= calmStateValues.x && currentVigilance < calmStateValues.y /*&& !reachWorriedState*/)
         {
             currentState = VigilanceState.calm;
         }
-        else if ((currentVigilance >= worriedStateValues.x && currentVigilance < worriedStateValues.y) || (currentVigilance >= calmStateValues.x && currentVigilance < calmStateValues.y && reachWorriedState))
+        /*else if ((currentVigilance >= worriedStateValues.x && currentVigilance < worriedStateValues.y) || (currentVigilance >= calmStateValues.x && currentVigilance < calmStateValues.y && reachWorriedState))
         {
             currentState = VigilanceState.worried;
             reachWorriedState = true;
-        }
+        }*/
         else if (currentVigilance >= panickedStateValues.x && currentVigilance <= panickedStateValues.y)
         {
             currentState = VigilanceState.panicked;
@@ -775,11 +869,11 @@ public class Submarine : DetectableOceanEntity
             rangeVisual.transform.localScale = new Vector2(detectionRangeCalm * 2, detectionRangeCalm * 2);
             currentRange = detectionRangeCalm;
         }
-        else if (currentState == VigilanceState.worried)
+        /*else if (currentState == VigilanceState.worried)
         {
             rangeVisual.transform.localScale = new Vector2(detectionRangeWorried * 2, detectionRangeWorried * 2);
             currentRange = detectionRangeWorried;
-        }
+        }*/
         else if (currentState == VigilanceState.panicked)
         {
             rangeVisual.transform.localScale = new Vector2(detectionRangePanicked * 2, detectionRangePanicked * 2);
@@ -795,11 +889,27 @@ public class Submarine : DetectableOceanEntity
     private void DetectFregate()
     {
         float distanceFromFregate = Vector3.Distance(transform.position, ship.transform.position);
-
         if (distanceFromFregate < currentRange)
         {
             submarineDetectFregate = true;
 
+            if (ship.currentTargetPoint != ship.nullVector)
+            {
+                //IncreaseVigilance(fregateMoveVigiIncr);
+            }
+            else
+            {
+                //IncreaseVigilance(fregateStationaryVigiIncr);
+            }
+        }
+        else
+        {
+            submarineDetectFregate = false;
+        }
+
+        float distanceFromFregateVigilanceRange = Vector3.Distance(transform.position, ship.transform.position);
+        if (distanceFromFregateVigilanceRange < incraseVigilanceShipRange)
+        {
             if (ship.currentTargetPoint != ship.nullVector)
             {
                 IncreaseVigilance(fregateMoveVigiIncr);
@@ -808,10 +918,6 @@ public class Submarine : DetectableOceanEntity
             {
                 IncreaseVigilance(fregateStationaryVigiIncr);
             }
-        }
-        else
-        {
-            submarineDetectFregate = false;
         }
     }
 
@@ -854,6 +960,7 @@ public class Submarine : DetectableOceanEntity
     #region CounterMeasures
     private void UpdateCounterMeasures()
     {
+        /*
         // Lauch Heading Change counter measure.
         if ((currentState == VigilanceState.worried || currentState == VigilanceState.panicked) && submarineDetectFregate)
         {
@@ -861,15 +968,17 @@ public class Submarine : DetectableOceanEntity
             {
                 headingChange.UseCounterMeasure(this);
             }
-        }
+        }*/
         // Lauch Radio Silence counter measure.
         if (currentVigilance >= 100)
         {
             if (!UsingCounterMeasure())
             {
-                radioSilence.UseCounterMeasure(this);
+                //radioSilence.UseCounterMeasure(this);
+                baitDecoy.UseCounterMeasure(this);
             }
         }
+        /*
         // Lauch Bait Decoy counter measure.
         if ((currentState == VigilanceState.worried || currentState == VigilanceState.panicked) && currentDetectableState == DetectableState.revealed)
         {
@@ -877,7 +986,7 @@ public class Submarine : DetectableOceanEntity
             {
                 baitDecoy.UseCounterMeasure(this);
             }
-        }
+        }*/
     }
 
     private bool UsingCounterMeasure()

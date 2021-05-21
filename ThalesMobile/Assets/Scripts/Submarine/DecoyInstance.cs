@@ -10,18 +10,27 @@ public class DecoyInstance : DetectableOceanEntity
     public LevelManager levelManager;
     public Submarine submarine;
 
+    [Header("Decoy Number")]
+
+
     [HideInInspector] public LayerMask layerMaskTarget;
-    [HideInInspector] public float decoyAngle;
+    public float decoyAngle;
     [HideInInspector] public int randomDirection;
 
     [HideInInspector] public bool decoyIsActive;
     private bool castRaycast = true;
+
+    private bool dontUpdateCoord;
+    private Vector2 submarineDirection;
 
     private void Start()
     {
         _transform = transform;
         coords.position = Coordinates.ConvertWorldToVector2(_transform.position);
         currentSeaLevel = OceanEntities.SeaLevel.submarine;
+
+        levelManager = GameManager.Instance.levelManager;
+        submarine = levelManager.submarine;
     }
 
     protected override void Update()
@@ -34,6 +43,7 @@ public class DecoyInstance : DetectableOceanEntity
             {
                 currentDetectableState = DetectableState.undetected;
                 CheckIfLandIsClose();
+                dontUpdateCoord = false;
             }
             else
             {
@@ -76,7 +86,7 @@ public class DecoyInstance : DetectableOceanEntity
     private void DecoyMovement()
     {
         // Decoy go in decoy angle direction. 
-        if (randomDirection == 0)
+        /*if (randomDirection == 0)
         {
             coords.direction = Coordinates.ConvertWorldToVector2(Quaternion.Euler(0, decoyAngle, 0) * Coordinates.ConvertVector2ToWorld(submarine.coords.direction.normalized));
             coords.position += coords.direction * Time.deltaTime * submarine.currentSpeed;
@@ -85,10 +95,19 @@ public class DecoyInstance : DetectableOceanEntity
         // Decoy go in submarine direction. 
         else
         {
-            coords.direction = submarine.coords.direction;
-            coords.position += coords.direction.normalized * Time.deltaTime * submarine.currentSpeed;
+            if (!dontUpdateCoord)
+            {
+                dontUpdateCoord = true;
+                submarineDirection = submarine.coords.direction;
+            }
+            coords.direction = Coordinates.ConvertWorldToVector2(Quaternion.Euler(0, -decoyAngle, 0) * Coordinates.ConvertVector2ToWorld(submarine.coords.direction.normalized));
+            coords.position += coords.direction * Time.deltaTime * submarine.currentSpeed;
             _transform.position = Coordinates.ConvertVector2ToWorld(coords.position);
-        }   
+        }   */
+
+        coords.direction = Coordinates.ConvertWorldToVector2(Quaternion.Euler(0, decoyAngle, 0) * Coordinates.ConvertVector2ToWorld(Vector2.right));
+        coords.position += coords.direction * Time.deltaTime * submarine.currentSpeed;
+        _transform.position = Coordinates.ConvertVector2ToWorld(coords.position);
     }
 
     private float RaySensor(Vector3 startPoint, Vector3 direction, float lenght, LayerMask mask)
