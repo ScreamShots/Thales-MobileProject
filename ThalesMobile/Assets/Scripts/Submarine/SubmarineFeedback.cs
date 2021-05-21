@@ -40,9 +40,9 @@ public class SubmarineFeedback : MonoBehaviour
             case VigilanceState.calm:
                 submarineUI.submarineStatusImage.material = submarineUI.submarineCalmStatusMaterial;
                 break;
-            case VigilanceState.worried:
+            /*case VigilanceState.worried:
                 submarineUI.submarineStatusImage.material = submarineUI.submarineAlertStatusMaterial;
-                break;
+                break;*/
             case VigilanceState.panicked:
                 submarineUI.submarineStatusImage.material = submarineUI.submarinePanicStatusMaterial;
                 break;
