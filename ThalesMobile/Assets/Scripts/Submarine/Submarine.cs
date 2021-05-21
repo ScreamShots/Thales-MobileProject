@@ -84,6 +84,7 @@ public class Submarine : DetectableOceanEntity
     [HideInInspector]public DecoyInstance decoy;
     [HideInInspector] public DecoyInstance decoy2;
     [HideInInspector] public DecoyInstance decoy3;
+    public bool isDecoyMoving;
 
     private bool decoyIsCreateFlag;
     [TweekFlag(FieldUsage.Gameplay)]
@@ -215,7 +216,7 @@ public class Submarine : DetectableOceanEntity
         base.Update();
 
         // Movement.
-        if (!decoy.decoyIsActive)
+        if (!isDecoyMoving)
         {
             UpdateInterestPoint();
             decoyIsCreateFlag = false;
@@ -345,47 +346,84 @@ public class Submarine : DetectableOceanEntity
 
     private void SubmarineDecoyMovement()
     {
-        // The submarine still going in his direction
-        if (decoy.randomDirection == 0)
+        BaitDecoy realBaitDecoy = (BaitDecoy)baitDecoy;
+
+        if (!dontUpdateCoord)
         {
-            coords.direction = Coordinates.ConvertVector2ToWorld(Vector2.right);
-            coords.position += coords.direction.normalized * Time.deltaTime * currentSpeed;
-            _transform.position = Coordinates.ConvertVector2ToWorld(coords.position);
+            dontUpdateCoord = true;
+            submarineDirection = coords.direction;
         }
-        // The submarine go in decoy angle direction 
-        else if (decoy.randomDirection == 1)
+        
+        Vector2 decoySubmarineDestination = UpdatePath(coords.position + Coordinates.ConvertWorldToVector2(Quaternion.Euler(0, realBaitDecoy.decoysAngle[realBaitDecoy.randomAnglelistIndex[0]], 0) * Coordinates.ConvertVector2ToWorld(Vector2.right)) * 5);
+        coords.direction = pathDirection;
+        //coords.direction = Coordinates.ConvertWorldToVector2(Quaternion.Euler(0, realBaitDecoy.decoysAngle[realBaitDecoy.randomAnglelistIndex[0]], 0) * Coordinates.ConvertVector2ToWorld(Vector2.right));
+        coords.position += coords.direction * Time.deltaTime * currentSpeed;
+        _transform.position = Coordinates.ConvertVector2ToWorld(coords.position);
+
+        if(decoy.decoyIsActive && environment.ZoneIn(decoy.coords.position) != 0
+                                && environment.zones[environment.ZoneIn(decoy.coords.position) - 1].state == ZoneState.LandCoast)
         {
-            if (!dontUpdateCoord)
+            decoy.decoyIsActive = false;
+        }
+        if (decoy2.decoyIsActive && environment.ZoneIn(decoy2.coords.position) != 0
+                                && environment.zones[environment.ZoneIn(decoy2.coords.position) - 1].state == ZoneState.LandCoast)
+        {
+            decoy2.decoyIsActive = false;
+        }
+        if (decoy3.decoyIsActive && environment.ZoneIn(decoy3.coords.position) != 0
+                                && environment.zones[environment.ZoneIn(decoy3.coords.position) - 1].state == ZoneState.LandCoast)
+        {
+            decoy3.decoyIsActive = false;
+        }
+        /*
+        if (realBaitDecoy.decoysAngle[realBaitDecoy.randomAnglelistIndex[0]] != 0)
+        {
+            // The submarine still going in his direction
+            if (decoy.randomDirection == 1)
             {
-                dontUpdateCoord = true;
-                submarineDirection = coords.direction;
+                coords.direction = Coordinates.ConvertVector2ToWorld(Vector2.right);
+                coords.position += coords.direction.normalized * Time.deltaTime * currentSpeed;
+                _transform.position = Coordinates.ConvertVector2ToWorld(coords.position);
             }
-            coords.direction = Coordinates.ConvertWorldToVector2(Quaternion.Euler(0, 90f, 0) * Coordinates.ConvertVector2ToWorld(Vector2.right));
-            coords.position += coords.direction * Time.deltaTime * currentSpeed;
-            _transform.position = Coordinates.ConvertVector2ToWorld(coords.position);
-        }
-        else if (decoy.randomDirection == 2)
-        {
-            if (!dontUpdateCoord)
+            // The submarine go in decoy angle direction 
+            else if (decoy.randomDirection == 2)
             {
-                dontUpdateCoord = true;
-                submarineDirection = coords.direction;
+                if (!dontUpdateCoord)
+                {
+                    dontUpdateCoord = true;
+                    submarineDirection = coords.direction;
+                }
+                coords.direction = Coordinates.ConvertWorldToVector2(Quaternion.Euler(0, 90f, 0) * Coordinates.ConvertVector2ToWorld(Vector2.right));
+                Debug.Log(coords.direction);
+                coords.position += coords.direction * Time.deltaTime * currentSpeed;
+                _transform.position = Coordinates.ConvertVector2ToWorld(coords.position);
             }
-            coords.direction = Coordinates.ConvertWorldToVector2(Quaternion.Euler(0, 180f, 0) * Coordinates.ConvertVector2ToWorld(Vector2.right));
-            coords.position += coords.direction * Time.deltaTime * currentSpeed;
-            _transform.position = Coordinates.ConvertVector2ToWorld(coords.position);
-        }
-        else if (decoy.randomDirection == 3)
-        {
-            if (!dontUpdateCoord)
+            else if (decoy.randomDirection == 3)
             {
-                dontUpdateCoord = true;
-                submarineDirection = coords.direction;
+                if (!dontUpdateCoord)
+                {
+                    dontUpdateCoord = true;
+                    submarineDirection = coords.direction;
+                }
+                coords.direction = Coordinates.ConvertWorldToVector2(Quaternion.Euler(0, 180f, 0) * Coordinates.ConvertVector2ToWorld(Vector2.right));
+                Debug.Log(coords.direction);
+                coords.position += coords.direction * Time.deltaTime * currentSpeed;
+                _transform.position = Coordinates.ConvertVector2ToWorld(coords.position);
             }
-            coords.direction = Coordinates.ConvertWorldToVector2(Quaternion.Euler(0, -180f, 0) * Coordinates.ConvertVector2ToWorld(Vector2.right));
-            coords.position += coords.direction * Time.deltaTime * currentSpeed;
-            _transform.position = Coordinates.ConvertVector2ToWorld(coords.position);
+            else if (decoy.randomDirection == 4)
+            {
+                if (!dontUpdateCoord)
+                {
+                    dontUpdateCoord = true;
+                    submarineDirection = coords.direction;
+                }
+                coords.direction = Coordinates.ConvertWorldToVector2(Quaternion.Euler(0, -180f, 0) * Coordinates.ConvertVector2ToWorld(Vector2.right));
+                Debug.Log(coords.direction);
+                coords.position += coords.direction * Time.deltaTime * currentSpeed;
+                _transform.position = Coordinates.ConvertVector2ToWorld(coords.position);
+            }
         }
+        */
 
         /*else
         {
@@ -816,7 +854,7 @@ public class Submarine : DetectableOceanEntity
     #region Vigilance
     private void UpdateState()
     {
-        if (submarineDetectFregate)
+        /*if (submarineDetectFregate)
         {
             if (currentVigilance < panickedStateValues.x && !changeValue)
             {
@@ -827,21 +865,21 @@ public class Submarine : DetectableOceanEntity
         else
         {
             changeValue = false; 
-        }
+        }*/
 
-        if (currentVigilance >= calmStateValues.x && currentVigilance < calmStateValues.y /*&& !reachWorriedState*/)
+        /*if (currentVigilance >= calmStateValues.x && currentVigilance < calmStateValues.y && !reachWorriedState)
         {
             currentState = VigilanceState.calm;
         }
-        /*else if ((currentVigilance >= worriedStateValues.x && currentVigilance < worriedStateValues.y) || (currentVigilance >= calmStateValues.x && currentVigilance < calmStateValues.y && reachWorriedState))
+        else if ((currentVigilance >= worriedStateValues.x && currentVigilance < worriedStateValues.y) || (currentVigilance >= calmStateValues.x && currentVigilance < calmStateValues.y && reachWorriedState))
         {
             currentState = VigilanceState.worried;
             reachWorriedState = true;
-        }*/
+        }
         else if (currentVigilance >= panickedStateValues.x && currentVigilance <= panickedStateValues.y)
         {
             currentState = VigilanceState.panicked;
-        }
+        }*/
 
         if (currentVigilance >= 100)
         {
@@ -911,14 +949,19 @@ public class Submarine : DetectableOceanEntity
         float distanceFromFregateVigilanceRange = Vector3.Distance(transform.position, ship.transform.position);
         if (distanceFromFregateVigilanceRange < incraseVigilanceShipRange)
         {
+            currentState = VigilanceState.panicked;
             if (ship.currentTargetPoint != ship.nullVector)
             {
-                IncreaseVigilance(fregateMoveVigiIncr);
+                IncreaseVigilance(fregateMoveVigiIncr); 
             }
             else
             {
                 IncreaseVigilance(fregateStationaryVigiIncr);
             }
+        }
+        else
+        {
+            currentState = VigilanceState.calm;
         }
     }
 

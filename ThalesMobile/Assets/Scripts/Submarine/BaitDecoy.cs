@@ -12,19 +12,19 @@ public class BaitDecoy : CounterMeasure
     [Header ("Decoy")]
     public float decoyAngle;
     public List<float> decoysAngle;
-    public List<int> randomAngle;
+    public List<int> randomAnglelistIndex;
     public LayerMask layerMaskTarget;
 
-    private int leftOrRight;
+    private int randomAngleIndex;
     private int randomDirection;
 
     public override IEnumerator CounterMeasureEffect(Submarine submarine)
     {
-        randomAngle.Clear();
-        randomAngle.Add(0);
-        randomAngle.Add(1);
-        randomAngle.Add(2);
-        randomAngle.Add(3);
+        randomAnglelistIndex.Clear();
+        randomAnglelistIndex.Add(0);
+        randomAnglelistIndex.Add(1);
+        randomAnglelistIndex.Add(2);
+        randomAnglelistIndex.Add(3);
 
         decoyRef = submarine.decoy;
         decoyRef2 = submarine.decoy2;
@@ -35,11 +35,12 @@ public class BaitDecoy : CounterMeasure
         decoyRef3.layerMaskTarget = layerMaskTarget;
 
         ChooseRandomSide();
-        ChooseObjectDirection();       
+        
 
         submarine.decoy.decoyIsActive = true;
         submarine.decoy2.decoyIsActive = true;
         submarine.decoy3.decoyIsActive = true;
+        submarine.isDecoyMoving = true;
         if (!decoyRef.levelManager.submarineEntitiesInScene.Contains(decoyRef))
         {
             decoyRef.levelManager.submarineEntitiesInScene.Add(decoyRef);
@@ -52,6 +53,7 @@ public class BaitDecoy : CounterMeasure
         submarine.decoy.decoyIsActive = false;
         submarine.decoy2.decoyIsActive = false;
         submarine.decoy3.decoyIsActive = false;
+        submarine.isDecoyMoving = false;
         if (decoyRef.levelManager.submarineEntitiesInScene.Contains(decoyRef))
         {
             decoyRef.levelManager.submarineEntitiesInScene.Remove(decoyRef);
@@ -66,19 +68,21 @@ public class BaitDecoy : CounterMeasure
     {
         // Choose if the decoy direction will be left of right.
 
-        leftOrRight = Random.Range(0, randomAngle.Count);
-        randomAngle.Remove(leftOrRight);
-        decoyRef.decoyAngle = decoysAngle[leftOrRight];
-        decoyRef2.decoyAngle = decoysAngle[0];
-        randomAngle.Remove(0);
-        decoyRef3.decoyAngle = decoysAngle[0];
-        randomAngle.Remove(0);
-    }
+        Debug.Log(randomAnglelistIndex.Count);
 
-    private void ChooseObjectDirection()
-    {
-        // Choose a random direction between submarine direction and decoy direction. 
-        //randomDirection = Random.Range(0, 2);
-        decoyRef.randomDirection = randomAngle[0];
+        randomAngleIndex = randomAnglelistIndex[Random.Range(0, randomAnglelistIndex.Count)];
+        decoyRef.decoyAngle = decoysAngle[randomAngleIndex];
+        randomAnglelistIndex.Remove(randomAngleIndex);
+        Debug.Log(decoysAngle[randomAngleIndex]);
+
+        randomAngleIndex = randomAnglelistIndex[Random.Range(0, randomAnglelistIndex.Count)];
+        decoyRef2.decoyAngle = decoysAngle[randomAngleIndex];
+        randomAnglelistIndex.Remove(randomAngleIndex);
+        Debug.Log(decoysAngle[randomAngleIndex]);
+
+        randomAngleIndex = randomAnglelistIndex[Random.Range(0, randomAnglelistIndex.Count)];
+        decoyRef3.decoyAngle = decoysAngle[randomAngleIndex];
+        randomAnglelistIndex.Remove(randomAngleIndex);
+        Debug.Log(decoysAngle[randomAngleIndex]);
     }
 }

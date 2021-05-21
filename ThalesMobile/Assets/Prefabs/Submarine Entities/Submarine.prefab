@@ -133,7 +133,7 @@ MonoBehaviour:
   serializedGuid: 2f9c7496893e5245ad578a253754f207
   thisObjState: 2
   initState: 2
-  instanceID: 80782
+  instanceID: 40316
   referencedComponents:
   - component: {fileID: 7664084496329710959}
     serializedGuid: 82d51bbd2fbdb442a0c315dd959bd187
@@ -187,7 +187,7 @@ MonoBehaviour:
   currentState: 0
   calmStateValues: {x: 0, y: 40}
   panickedStateValues: {x: 80, y: 100}
-  incraseVigilanceShipRange: 0
+  incraseVigilanceShipRange: 6
   detectionRangeCalm: 3
   detectionRangeWorried: 5
   detectionRangePanicked: 6.5
