@@ -55,8 +55,8 @@ public class SoundHandler : MonoBehaviour
         while(time < fadeDuration)
         {
             source.volume = Mathf.Lerp(currentVolume, 0, time/ fadeDuration);
-            yield return new WaitForFixedUpdate();
-            time += Time.fixedDeltaTime;
+            yield return null;
+            time += Time.deltaTime;
         }
         source.volume = 0;
         source.clip = clip;
@@ -66,8 +66,8 @@ public class SoundHandler : MonoBehaviour
         {
             if(newVolume == 0) source.volume = Mathf.Lerp(0,currentVolume, time / fadeDuration);
             else source.volume = Mathf.Lerp(0, newVolume, time / fadeDuration);
-            yield return new WaitForFixedUpdate();
-            time += Time.fixedDeltaTime;
+            yield return null;
+            time += Time.deltaTime;
         }
 
         source.volume = currentVolume;

@@ -28,6 +28,7 @@ public abstract class DetectableOceanEntity : OceanEntity
     protected virtual void Start()
     {
         linkedGlobalDetectionPoint = Instantiate(globalDetectionPointPrefab, GameManager.Instance.levelManager.transform).GetComponent<GlobalDetectionPoint>();
+        linkedGlobalDetectionPoint.linkedEntity = this;        
     }
 
     protected virtual void Update()

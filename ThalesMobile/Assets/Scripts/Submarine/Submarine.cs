@@ -148,8 +148,9 @@ public class Submarine : DetectableOceanEntity
     public float inHackVolume, doneHackVolume;
     private bool soundAlreadyPlay;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         levelManager = GameManager.Instance.levelManager;
         environment = GameManager.Instance.levelManager.environnement;
         environnement = levelManager.environnement;

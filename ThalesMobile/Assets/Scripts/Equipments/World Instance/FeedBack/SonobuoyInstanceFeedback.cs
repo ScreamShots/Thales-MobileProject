@@ -306,8 +306,8 @@ namespace PlayerEquipement
             while (timer < duration)
             {
                 icon.rectT.anchoredPosition = Vector2.Lerp(startPos, endPos, timer / duration);
-                yield return new WaitForFixedUpdate();
-                timer += Time.fixedDeltaTime;
+                yield return null;
+                timer += Time.deltaTime;
             }
 
             icon.rectT.anchoredPosition = endPos;
@@ -323,9 +323,9 @@ namespace PlayerEquipement
             while (timer < duration)
             {
                 icon.rectT.localScale = Vector3.Lerp(startScale, scaleTarget, timer / duration);
-                yield return new WaitForFixedUpdate();
+                yield return null;
                 //Debug.Log(timer.ToString() + " " + icon.rectT.localScale.ToString());
-                timer += Time.fixedDeltaTime;
+                timer += Time.deltaTime;
             }
 
             icon.rectT.localScale = scaleTarget;

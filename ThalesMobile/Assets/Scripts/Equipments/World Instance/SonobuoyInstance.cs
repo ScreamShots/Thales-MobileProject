@@ -90,8 +90,8 @@ public class SonobuoyInstance : DetectionObject
 
         while (timer < lifeTime)
         {
-            yield return new WaitForFixedUpdate();
-            timer += Time.fixedDeltaTime;
+            yield return null;
+            timer += Time.deltaTime;
         }
 
         DisableSonobuoy();

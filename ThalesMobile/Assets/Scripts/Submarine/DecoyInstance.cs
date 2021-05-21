@@ -23,8 +23,9 @@ public class DecoyInstance : DetectableOceanEntity
     private bool dontUpdateCoord;
     private Vector2 submarineDirection;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         _transform = transform;
         coords.position = Coordinates.ConvertWorldToVector2(_transform.position);
         currentSeaLevel = OceanEntities.SeaLevel.submarine;

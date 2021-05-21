@@ -51,9 +51,11 @@ public class CaptasFourDetectionPoint : DetectionObject
             RemoveDetectable(entity);
         }
         detectedEntities.Clear();
-        
-        source.availableDetectionPoints.Add(this);
-        source.usedDetectionPoints.Remove(this);
+
+        #region deprecated
+        //source.availableDetectionPoints.Add(this);
+        //source.usedDetectionPoints.Remove(this);
+        #endregion
 
         transform.localPosition = Vector3.zero;
 
@@ -71,8 +73,8 @@ public class CaptasFourDetectionPoint : DetectionObject
         while (timer < fadeDuration)
         {
             if (timer >= startFadeTime) dotRenderer.color = Color.Lerp(baseColor, transparentColor, timer - startFadeTime / fadeDuration - startFadeTime);
-            yield return new WaitForFixedUpdate();
-            timer += Time.fixedDeltaTime;
+            yield return null;
+            timer += Time.deltaTime;
         }
 
         DesactivatePoint();

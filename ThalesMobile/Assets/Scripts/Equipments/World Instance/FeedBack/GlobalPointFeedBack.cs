@@ -20,6 +20,8 @@ public class GlobalPointFeedBack : MonoBehaviour
     Image dotImage;
     [SerializeField]
     CanvasGroup globalVisualCanvas;
+    [SerializeField]
+    RectTransform relativeScaler;
 
     [Header("Reveal Params")]
     [SerializeField]
@@ -37,6 +39,7 @@ public class GlobalPointFeedBack : MonoBehaviour
     public Color freshColor;
     public Color nearExpiredColor;
     public Color expiredColor;
+    public Color revealedColor;
 
     [Header("Sound - Appear")]
     [SerializeField]
@@ -52,13 +55,13 @@ public class GlobalPointFeedBack : MonoBehaviour
     {
         revealCanvasRT.localScale = Vector3.zero;
         camController = GameManager.Instance.cameraController;
-        revealBaseScale = revealCanvasRT.localScale;
+        revealBaseScale = relativeScaler.localScale;
     }
 
     private void Update()
     {
         revealCanvasRT.forward = camController.cam.transform.forward;
-        revealCanvasRT.localScale = revealBaseScale * revealScaleProgression.Evaluate(camController.zoomIntensity / 1);
+        relativeScaler.localScale = revealBaseScale * revealScaleProgression.Evaluate(camController.zoomIntensity / 1);
     }
 
     public void OnEnable()
@@ -72,12 +75,7 @@ public class GlobalPointFeedBack : MonoBehaviour
         revealIconImage.sprite = revealIcon;
         revealPointerImage.sprite = revealPointer;
 
-        StartCoroutine(Scale(Vector3.one, animDuration, revealCanvasRT));
-    }
-
-    public void HideReveal()
-    {
-        StartCoroutine(Scale(Vector3.zero, animDuration, revealCanvasRT));
+        StartCoroutine(Scale(Vector3.one, animDuration, revealCanvasRT, true, revealKeepDuration));
     }
 
     public void UpdateColor(ExpirationValue targetExpiration)
@@ -93,10 +91,13 @@ public class GlobalPointFeedBack : MonoBehaviour
             case ExpirationValue.Expired:
                 dotImage.color = expiredColor;
                 break;
+            case ExpirationValue.Revealed:
+                dotImage.color = revealedColor;
+                break;
         }
     }
 
-    IEnumerator Scale(Vector3 target, float duration, RectTransform obj)
+    IEnumerator Scale(Vector3 target, float duration, RectTransform obj, bool reset = false, float resetTime = 0)
     {
         Vector3 start = obj.localScale;
         float timer = 0;
@@ -104,11 +105,17 @@ public class GlobalPointFeedBack : MonoBehaviour
         while (timer < duration)
         {
             obj.localScale = Vector3.Lerp(start, target, timer / duration);
-            yield return new WaitForFixedUpdate();
-            timer += Time.fixedDeltaTime;
+            yield return null;
+            timer += Time.deltaTime;
         }
 
-        yield return new WaitForSeconds(revealKeepDuration);
-        StartCoroutine(Scale(Vector3.zero, animDuration, revealCanvasRT));
+        obj.localScale = target;
+
+        if (reset)
+        {
+            yield return new WaitForSeconds(resetTime);
+            StartCoroutine(Scale(Vector3.zero, animDuration, revealCanvasRT));
+        }
+      
     }
 }

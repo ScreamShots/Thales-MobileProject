@@ -55,7 +55,7 @@ Material:
     - FlouInterieur: -40
     - LargeurInterieur: 70
     - LargeurOnde: 225
-    - ProgressionOnde: 3.76
+    - ProgressionOnde: -0.16
     - QuantiteOndes: 120
     - Thickness: 0.03
     - Vector1_C6AEB02C: 1.51

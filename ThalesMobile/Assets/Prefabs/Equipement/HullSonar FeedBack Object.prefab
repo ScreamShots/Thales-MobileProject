@@ -126,4 +126,4 @@ MonoBehaviour:
   waveRenderer: {fileID: 5042592317433237368}
   waveMaterial: {fileID: 2100000, guid: 79b5733099018cb4faf342587a03ce55, type: 2}
   minProgression: -0.1
-  maxProgression: 2.8
+  maxProgression: 1.76

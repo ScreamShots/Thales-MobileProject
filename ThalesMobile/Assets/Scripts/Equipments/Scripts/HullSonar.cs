@@ -170,8 +170,8 @@ namespace PlayerEquipement
                         //}
                         #endregion
 
-                        if (detectable.linkedGlobalDetectionPoint.activated) detectable.linkedGlobalDetectionPoint.UpdatePoint(pointFadeDuration, true);
-                        else detectable.linkedGlobalDetectionPoint.InitPoint(pointFadeDuration);
+                        if (detectable.linkedGlobalDetectionPoint.activated) detectable.linkedGlobalDetectionPoint.UpdatePoint();
+                        else detectable.linkedGlobalDetectionPoint.InitPoint();
                     }
                 }
 
@@ -180,18 +180,18 @@ namespace PlayerEquipement
                 //First if is when wave goes from center to edge and else is for wave going from edge to center
                 if (expand)
                 {
-                    waveTime += Time.fixedDeltaTime;
+                    waveTime += Time.deltaTime;
                     padding = waveRange - (range * (waveTime / waveMaxDuration));
                     waveRange = range * (waveTime / waveMaxDuration);
                 }
                 else
                 {
-                    waveTime += Time.fixedDeltaTime;
+                    waveTime += Time.deltaTime;
                     padding = waveRange - (range * (1 - (waveTime / waveMaxDuration)));
                     waveRange = range * (1 - (waveTime / waveMaxDuration));
                 }
                 feedback.UpdateWaveProgression(waveTime / waveMaxDuration);
-                yield return new WaitForFixedUpdate();
+                yield return null;
             }
 
             readyToUse = true;

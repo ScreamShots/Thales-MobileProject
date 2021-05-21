@@ -20,8 +20,9 @@ public class SpermWhale : DetectableOceanEntity
     private Vector2 nextPoint;
     private int currentPoint = 0;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         GameManager.Instance.levelManager.submarineEntitiesInScene.Add(this);
 
         _transform = transform;

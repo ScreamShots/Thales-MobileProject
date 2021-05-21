@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public enum ExpirationValue {Fresh, NearExpiration, Expired }
+public enum ExpirationValue {Fresh, NearExpiration, Expired, Revealed }
 
 public class GlobalDetectionPoint : DetectionObject
 {
@@ -14,34 +14,57 @@ public class GlobalDetectionPoint : DetectionObject
     [Header("Expiration Params")]
     public ExpirationValue expirationState;
     public float expirationDuration;
+    [Range(0,1)]
     public float expirationWarningTime;
 
     [Header("Update Params")]
+    public bool updateWithMove;
     public float lerpUpdateDuration;
 
+    [HideInInspector]
     public bool activated;
     float expirationTimer;
     float lerpTimer;
 
-    public void InitPoint(float _expirationDuration)
+    public void InitPoint()
     {
-        transform.position = Coordinates.ConvertVector2ToWorld(linkedEntity.coords.position);
+        levelManager = GameManager.Instance.levelManager;
         levelManager.activatedDetectionObjects.Add(this);
-        expirationDuration = _expirationDuration;
+        detectedEntities.CollectionChanged += detectedEntities_CollectionChanged;
+        AddDetectable(linkedEntity);
+        gameObject.SetActive(true);
+
+        transform.position = Coordinates.ConvertVector2ToWorld(linkedEntity.coords.position);
+        SetCoords();
+        
         expirationTimer = 0;
-        activated = true;
+
+        expirationState = ExpirationValue.Fresh;
+        feedbackBehavior.UpdateColor(ExpirationValue.Fresh);
+
+        activated = true;        
     }
 
-    public void UpdatePoint(float _expirationDuration, bool lerpMove)
+    protected override void Start()
     {
-        if (lerpMove) StartCoroutine(UpdateLerp(_expirationDuration));
+        
+    }
+
+    public void UpdatePoint()
+    {
+        if (updateWithMove) StartCoroutine(UpdateLerp());
         else
         {
             transform.position = Coordinates.ConvertVector2ToWorld(linkedEntity.coords.position);
-            expirationDuration = _expirationDuration;
+            SetCoords();
+
             expirationTimer = 0;
-            expirationState = ExpirationValue.Fresh;
-            feedbackBehavior.UpdateColor(ExpirationValue.Fresh);
+
+            if(expirationState != ExpirationValue.Revealed)
+            {
+                expirationState = ExpirationValue.Fresh;
+                feedbackBehavior.UpdateColor(ExpirationValue.Fresh);
+            }            
         }
     }
 
@@ -49,16 +72,21 @@ public class GlobalDetectionPoint : DetectionObject
     {
         base.RefreshFeedBack(newState);
 
-        if (newState == DetectionState.revealedDetection) feedbackBehavior.DisplayReveal(linkedEntity.detectFeedback.globalRevealIcon, linkedEntity.detectFeedback.globalRevealPointer);
+        if (newState == DetectionState.revealedDetection)
+        {
+            feedbackBehavior.DisplayReveal(linkedEntity.detectFeedback.globalRevealIcon, linkedEntity.detectFeedback.globalRevealPointer);
+            expirationState = ExpirationValue.Revealed;
+            feedbackBehavior.UpdateColor(ExpirationValue.Revealed);
+        }            
     }
 
     protected override void Update()
     {
         debugDetected = detectedEntities.ToList();
 
-        if (inMadRange && detectionState == DetectionState.unknownDetection) detectionState = DetectionState.revealedDetection;
+        if (inMadRange && detectionState == DetectionState.unknownDetection && expirationState != ExpirationValue.Expired) detectionState = DetectionState.revealedDetection;
 
-        if (activated && expirationState != ExpirationValue.Expired)
+        if (activated && expirationState != ExpirationValue.Expired && expirationState != ExpirationValue.Revealed)
         {
             if (expirationTimer <= expirationDuration) expirationTimer += Time.deltaTime;
             else
@@ -67,7 +95,7 @@ public class GlobalDetectionPoint : DetectionObject
                 feedbackBehavior.UpdateColor(ExpirationValue.Expired);
             }
 
-            if (expirationTimer >= expirationWarningTime && expirationState == ExpirationValue.Fresh)
+            if (expirationTimer >= expirationWarningTime * expirationDuration && expirationState == ExpirationValue.Fresh)
             {
                 expirationState = ExpirationValue.NearExpiration;
                 feedbackBehavior.UpdateColor(ExpirationValue.NearExpiration);
@@ -75,31 +103,39 @@ public class GlobalDetectionPoint : DetectionObject
         }
     }
 
-    public IEnumerator ExpirationProgress()
-    {
-        while (expirationTimer <= expirationDuration)
-        {
-            yield return new WaitForFixedUpdate();
-            expirationTimer += Time.fixedDeltaTime;
-        }
-    }
-
-    public IEnumerator UpdateLerp(float _expirationDuration)
+    public IEnumerator UpdateLerp()
     {
         Vector3 startPos = transform.position;
         Vector3 targetPos = Coordinates.ConvertVector2ToWorld(linkedEntity.coords.position);
 
-        while (lerpUpdateDuration <= lerpTimer)
+
+        while ( lerpTimer <= lerpUpdateDuration)
         {
-            transform.position = Vector3.Lerp(startPos, targetPos, lerpTimer / lerpUpdateDuration);
-            yield return new WaitForFixedUpdate();
-            lerpTimer += Time.fixedDeltaTime;
+            if(lerpTimer/lerpUpdateDuration != 0)
+            {
+                transform.position = Vector3.Lerp(startPos, targetPos, lerpTimer / lerpUpdateDuration);
+                SetCoords();
+            }
+              
+            yield return null;
+            lerpTimer += Time.deltaTime;
         }
 
         transform.position = targetPos;
-        expirationDuration = _expirationDuration;
+        SetCoords();
+
+        lerpTimer = 0;
         expirationTimer = 0;
-        expirationState = ExpirationValue.Fresh;
-        feedbackBehavior.UpdateColor(ExpirationValue.Fresh);
+
+        if(expirationState != ExpirationValue.Revealed)
+        {
+            expirationState = ExpirationValue.Fresh;
+            feedbackBehavior.UpdateColor(ExpirationValue.Fresh);
+        }        
+    }
+
+    public void SetCoords()
+    {
+        coords.position = Coordinates.ConvertWorldToVector2(transform.position);
     }
 }

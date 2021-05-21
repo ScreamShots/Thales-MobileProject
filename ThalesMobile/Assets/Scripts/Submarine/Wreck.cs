@@ -9,8 +9,9 @@ public class Wreck : DetectableOceanEntity
 {
     private Transform _transform;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         GameManager.Instance.levelManager.submarineEntitiesInScene.Add(this);
 
         _transform = transform;

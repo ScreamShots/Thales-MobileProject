@@ -24,17 +24,20 @@ namespace PlayerEquipement
         [SerializeField, Min(0f)]
         float pointFadeDuration;
 
-        [Header("Pooling Params")]
+        #region Deprecated
+        //[Header("Pooling Params")]
 
-        [SerializeField]
-        GameObject detectionPointPrefab;
-        [SerializeField, Min(0)]
-        int poolSize;
+        //[SerializeField]
+        //GameObject detectionPointPrefab;
+        //[SerializeField, Min(0)]
+        //int poolSize;
 
-        [HideInInspector]
-        public List<CaptasFourDetectionPoint> availableDetectionPoints;
-        [HideInInspector]
-        public List<CaptasFourDetectionPoint> usedDetectionPoints;
+        
+        //[HideInInspector]
+        //public List<CaptasFourDetectionPoint> availableDetectionPoints;
+        //[HideInInspector]
+        //public List<CaptasFourDetectionPoint> usedDetectionPoints;
+        #endregion
 
         LevelManager levelManager;
         CameraController cameraController;
@@ -55,17 +58,19 @@ namespace PlayerEquipement
             mapAnglesPos[2] = new Vector2(cameraController.limit.rightBorder, cameraController.limit.downBorder);
             mapAnglesPos[3] = new Vector2(cameraController.limit.rightBorder, cameraController.limit.upBorder);
 
-            //Setting up the pooling of detection points
-            availableDetectionPoints = new List<CaptasFourDetectionPoint>();
-            usedDetectionPoints = new List<CaptasFourDetectionPoint>();
+            #region deprecated
+            ////Setting up the pooling of detection points
+            //availableDetectionPoints = new List<CaptasFourDetectionPoint>();
+            //usedDetectionPoints = new List<CaptasFourDetectionPoint>();
 
-            GameObject tempDetectionPoint;
+            //GameObject tempDetectionPoint;
 
-            for (int i = 0; i < poolSize; i++)
-            {
-                tempDetectionPoint = Instantiate(detectionPointPrefab, GameManager.Instance.levelManager.transform);
-                availableDetectionPoints.Add(tempDetectionPoint.GetComponent<CaptasFourDetectionPoint>());
-            }
+            //for (int i = 0; i < poolSize; i++)
+            //{
+            //    tempDetectionPoint = Instantiate(detectionPointPrefab, GameManager.Instance.levelManager.transform);
+            //    availableDetectionPoints.Add(tempDetectionPoint.GetComponent<CaptasFourDetectionPoint>());
+            //}
+            #endregion
         }
 
         public override void UseEquipement(PlayerOceanEntity user)
@@ -112,20 +117,25 @@ namespace PlayerEquipement
                     //there is a security (padding) if object pos is at a position beetween two tested distance increasing at each frame (depend on the progression of the timer)
                     if (distance <= waveRange && distance >= waveRange + padding)
                     {
-                        if (availableDetectionPoints.Count > 0)
-                        {
-                            availableDetectionPoints[0].ActivatePoint(detectable, pointFadeDuration, this);
-                            usedDetectionPoints.Add(availableDetectionPoints[0]);
-                            availableDetectionPoints.RemoveAt(0);
-                        }
-                        else Debug.Log("Not Enough object in pool");
+                        #region deprecated
+                        //if (availableDetectionPoints.Count > 0)
+                        //{
+                        //    availableDetectionPoints[0].ActivatePoint(detectable, pointFadeDuration, this);
+                        //    usedDetectionPoints.Add(availableDetectionPoints[0]);
+                        //    availableDetectionPoints.RemoveAt(0);
+                        //}
+                        //else Debug.Log("Not Enough object in pool");
+                        #endregion
+
+                        if (detectable.linkedGlobalDetectionPoint.activated) detectable.linkedGlobalDetectionPoint.UpdatePoint();
+                        else detectable.linkedGlobalDetectionPoint.InitPoint();
                     }
                 }
 
-                waveTime += Time.fixedDeltaTime;
+                waveTime += Time.deltaTime;
                 padding = waveRange - (range * (waveTime / waveDuration));
                 waveRange = range * (waveTime / waveDuration);
-                yield return new WaitForFixedUpdate();
+                yield return null;
             }
 
             readyToUse = true;

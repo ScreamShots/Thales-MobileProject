@@ -68,8 +68,8 @@ namespace PlayerEquipement
                 meshRenderer.transform.position = Vector3.Lerp(start, targetPos, timer/duration);
                 flashLineRender.SetPosition(0, start);
                 flashLineRender.SetPosition(1, meshRenderer.transform.position);
-                yield return new WaitForFixedUpdate();
-                timer += Time.fixedDeltaTime;
+                yield return null;
+                timer += Time.deltaTime;
             }
 
             flashSoundSource.volume = Mathf.Clamp(flashSoundVolume, 0, 1);

@@ -68,8 +68,8 @@ public class TweeningAnim : ScriptableObject
                 canvasGroup.alpha = colorAnimation.Evaluate(time / animationTime).a;
             }
 
-            time += Time.fixedDeltaTime;
-            yield return new WaitForFixedUpdate();
+            time += Time.deltaTime;
+            yield return null;
         }
         animatedTransform.anchoredPosition = movementRelativeToOriginalPos ? originalPos + animationEndPos : animationEndPos;
         animatedTransform.localRotation = Quaternion.Euler(0, 0, animationEndRot);
@@ -124,8 +124,8 @@ public class TweeningAnim : ScriptableObject
                 canvasGroup.alpha = colorAnimation.Evaluate(time / animationTime).a;
             }
 
-            time += Time.fixedDeltaTime;
-            yield return new WaitForFixedUpdate();
+            time += Time.deltaTime;
+            yield return null;
         }
         animatedTransform.anchoredPosition = animationEndPos;
         animatedTransform.localRotation = Quaternion.Euler(0, 0, animationEndRot);
@@ -195,8 +195,8 @@ public class TweeningAnim : ScriptableObject
                 canvasGroup.alpha = colorAnimation.Evaluate(1 - (time / animationTime)).a;
             }
 
-            time += Time.fixedDeltaTime;
-            yield return new WaitForFixedUpdate();
+            time += Time.deltaTime;
+            yield return null;
         }
         animatedTransform.anchoredPosition = movementRelativeToOriginalPos ? originalPos : animationStartPos;
         animatedTransform.localRotation = Quaternion.Euler(0, 0, animationStartRot);
@@ -258,8 +258,8 @@ public class TweeningAnim : ScriptableObject
                 canvasGroup.alpha = colorAnimation.Evaluate(1 - (time / animationTime)).a;
             }
 
-            time += Time.fixedDeltaTime;
-            yield return new WaitForFixedUpdate();
+            time += Time.deltaTime;
+            yield return null;
         }
         animatedTransform.anchoredPosition = animationStartPos;
         animatedTransform.localRotation = Quaternion.Euler(0, 0, animationStartRot);
