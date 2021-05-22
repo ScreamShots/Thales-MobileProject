@@ -310,7 +310,7 @@ MonoBehaviour:
   serializedGuid: de50a9ea07a9474c8e3b43fcedc9cef6
   thisObjState: 2
   initState: 2
-  instanceID: 27848
+  instanceID: 46044
   referencedComponents:
   - component: {fileID: 516292101046722417}
     serializedGuid: 92efd3d3e1cb4f46a09f4e65bb73f4a5
@@ -358,7 +358,9 @@ MonoBehaviour:
   targetGroup: {fileID: -9015305574639715243, guid: 9b41315a36bc40a4ea458016676fd8f1,
     type: 2}
   waitingSound: {fileID: 8300000, guid: 0bc943e29ea5e874ea643ba1802a0760, type: 3}
+  waitingSoundVolume: 0
   movementSound: {fileID: 8300000, guid: b188a78987676f544b717d56116d6525, type: 3}
+  movementSoundVolume: 0
 --- !u!114 &2753761917272554094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -750,7 +752,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 026eb2e75883ad445af576b3b3222953, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1

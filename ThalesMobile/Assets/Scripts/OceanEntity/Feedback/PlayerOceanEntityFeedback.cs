@@ -8,14 +8,15 @@ namespace OceanEntities
     {
         [Header("Entity")]
         public PlayerOceanEntity renderedEntity;
+        private Animator anim;
 
         [Header("UI")]
         public GameObject selectionCircle;
         public LineRenderer lineRenderer;
         public GameObject targetPoint;
         public GameObject targetArrow;
-        private float targetArrowDistance; 
-
+        private float targetArrowDistance;
+        private bool isSelected;
 
         [HideInInspector]public InputManager inputManager;
 
@@ -23,17 +24,24 @@ namespace OceanEntities
         {
             inputManager = GameManager.Instance.inputManager;
             targetArrowDistance = (transform.position - targetArrow.transform.position).magnitude;
+            anim = GetComponent<Animator>();
         }
 
         public void Update()
         {
             if (GameManager.Instance.playerController.currentSelectedEntity == renderedEntity)
             {
-                selectionCircle.SetActive(true);
+                if(!isSelected)
+                {
+                    isSelected = true;
+                    selectionCircle.SetActive(true);
+                    anim.SetBool("IsSelected", true);
+                }
             }
             else
             {
                 selectionCircle.SetActive(false);
+                isSelected = false;
             }
 
 
@@ -86,6 +94,14 @@ namespace OceanEntities
 
                 if (targetArrow.activeSelf)
                     targetArrow.SetActive(false);
+            }
+        }
+
+        public void GetAnimEvent(string param)
+        {
+            if(param == "EndBounce")
+            {
+                anim.SetBool("IsSelected", false);
             }
         }
     }

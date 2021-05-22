@@ -566,7 +566,7 @@ MonoBehaviour:
   serializedGuid: 85045a7240664543aa9d92857d162799
   thisObjState: 2
   initState: 2
-  instanceID: 60840
+  instanceID: 37432
   referencedComponents:
   - component: {fileID: 339487588899374384}
     serializedGuid: ea62e786c0c3de4fb40542694734145d
@@ -731,7 +731,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 339487589102417752}
-  - component: {fileID: 339487589102417755}
   - component: {fileID: 339487589102417754}
   - component: {fileID: 339487589102417753}
   - component: {fileID: 1968967621086693910}
@@ -763,21 +762,6 @@ Transform:
   m_Father: {fileID: 339487588899374399}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
---- !u!111 &339487589102417755
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 339487589102417703}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 0}
-  m_Animations: []
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!65 &339487589102417754
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -817,9 +801,9 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 339487589102417703}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2820314b12a0424468709935334433d2, type: 2}
+  m_Controller: {fileID: 9100000, guid: b8784eab85d7fcc4e9a9d4ca0c0768fd, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
