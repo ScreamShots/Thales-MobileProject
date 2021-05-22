@@ -26,7 +26,7 @@ public class HelicopterDeckUI : MonoBehaviour
     public Sprite emptySprite;
     public Sprite flashSprite;
     public Sprite flashPressedSprite;
-    public Image buttonOutline;
+    public Image buttonOverlay;
 
 
     [Header("Secondary Button")]
@@ -75,7 +75,7 @@ public class HelicopterDeckUI : MonoBehaviour
         if(linkedHelicopter.inFlight && linkedHelicopter.activeEquipement.readyToUse)
         {
             linkedHelicopter.activeEquipement.UseEquipement(linkedHelicopter);
-            StartCoroutine(linkedHelicopter.helicopterFeedback.BlinkHelicopter(3f));
+            StartCoroutine(linkedHelicopter.helicopterFeedback.BlinkHelicopter(flashEquipement.dropDuration));
 
             //disable Button
             //DeactivateButton();
@@ -141,14 +141,17 @@ public class HelicopterDeckUI : MonoBehaviour
     {
         launchButton.interactable = true;
         launchButtonImage.sprite = flashSprite;
-        buttonOutline.enabled = true;
+        buttonOverlay.fillAmount = 0;
     }
 
-    public void DeactivateButton()
+    public void DeactivateButton(bool fillBar)
     {
         launchButtonImage.sprite = emptySprite;
         launchButton.interactable = false;
-        buttonOutline.enabled = false;
+        buttonOverlay.fillAmount = 1;
+
+        if (fillBar)
+            StartCoroutine(FillOverlay(flashEquipement.dropDuration - 0.1f));
     }
 
     public void UpdateSecondaryButton(HelicopterButtonState buttonState)
@@ -178,8 +181,20 @@ public class HelicopterDeckUI : MonoBehaviour
 
     public IEnumerator FlashCoolDown()
     {
-        DeactivateButton();
+        DeactivateButton(true);
         yield return new WaitForSeconds(flashEquipement.dropDuration);
         ActivateButton();
     }
+
+    public IEnumerator FillOverlay(float time)
+    {
+        buttonOverlay.fillAmount = 1;
+        while (buttonOverlay.fillAmount > 0)
+        {
+            buttonOverlay.fillAmount -= Time.deltaTime / time;
+            yield return null;
+        }
+        buttonOverlay.fillAmount = 0;
+    }
+
 }

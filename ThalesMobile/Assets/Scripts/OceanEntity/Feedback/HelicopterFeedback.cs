@@ -68,7 +68,9 @@ namespace OceanEntities
         public IEnumerator BlinkHelicopter(float time)
         {
             baseRenderer.material.SetInt("isDroppingFlash", 1);
+            GameManager.Instance.cameraController.SetZoom(0, 0.5f);
             yield return new WaitForSeconds(time);
+            GameManager.Instance.cameraController.SetZoom(0.2f, 0.5f);
             baseRenderer.material.SetInt("isDroppingFlash", 0);
         }
     }

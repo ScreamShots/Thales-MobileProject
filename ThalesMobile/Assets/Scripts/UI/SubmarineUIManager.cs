@@ -46,7 +46,8 @@ public class SubmarineUIManager : MonoBehaviour
     }
 
     public void LightNode()
-    {
+    {                                              
+        nodes[index].gameObject.GetComponent<Animator>().SetTrigger("Bounce");
         nodes[index].sprite = greenNode;
         index++;
     }

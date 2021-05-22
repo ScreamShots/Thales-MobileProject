@@ -259,7 +259,7 @@ namespace OceanEntities
             if(deckUI.buttonCoroutine != null)
                 StopCoroutine(deckUI.buttonCoroutine);
 
-            deckUI.DeactivateButton();
+            deckUI.DeactivateButton(false);
 
             
 
