@@ -1,4 +1,4 @@
-//Random Generatated char value: fd297ec4-bf2f-477c-8133-4793b6753d16
+//Random Generatated char value: 95a5c219-3634-48e5-a17e-ed0ea4ec27b9
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -88,12 +88,12 @@ public class SoundTweekScriptableObject : ScriptableObject
 [Var("waitingSoundVolume")] [Tooltip("waitingSoundVolume")] public float waitingSoundVolume_a5135e0eµb0c8µ4871µ9721µ538499ed3b5c_4c652d5eµc239µ4042µ8a74µ45e02cce3b57;
 
 [Header("GameObject: Plane")]
-[Id("Plane Component - ID:")] public string s17Id = "dbafe631-4ea8-471d-9aff-aed2b94ce5c1";
+[Id("Plane Component - ID:")] public string s17Id = "725a0485-6640-4345-aa9d-92857d162799";
 
-[Comp("Plane Component - ID:")] public string s18Comp = "dbafe631-4ea8-471d-9aff-aed2b94ce5c1_86e762ea-c3c0-4fde-b405-42694734145d";
+[Comp("Plane Component - ID:")] public string s18Comp = "725a0485-6640-4345-aa9d-92857d162799_86e762ea-c3c0-4fde-b405-42694734145d";
 
-[Var("movementSound")] [Tooltip("movementSound")] public AudioClip movementSound_dbafe631µ4ea8µ471dµ9affµaed2b94ce5c1_86e762eaµc3c0µ4fdeµb405µ42694734145d;
-[Var("movementSoundVolume")] [Tooltip("movementSoundVolume")] public float movementSoundVolume_dbafe631µ4ea8µ471dµ9affµaed2b94ce5c1_86e762eaµc3c0µ4fdeµb405µ42694734145d;
+[Var("movementSound")] [Tooltip("movementSound")] public AudioClip movementSound_725a0485µ6640µ4345µaa9dµ92857d162799_86e762eaµc3c0µ4fdeµb405µ42694734145d;
+[Var("movementSoundVolume")] [Tooltip("movementSoundVolume")] public float movementSoundVolume_725a0485µ6640µ4345µaa9dµ92857d162799_86e762eaµc3c0µ4fdeµb405µ42694734145d;
 
 [Header("GameObject: Ship")]
 [Id("Ship Component - ID:")] public string s19Id = "eaa950de-a907-4c47-8e3b-43fcedc9cef6";

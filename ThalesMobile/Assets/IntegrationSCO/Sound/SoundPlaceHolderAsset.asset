@@ -68,11 +68,11 @@ MonoBehaviour:
   "waitingSound_a5135e0e\xB5b0c8\xB54871\xB59721\xB5538499ed3b5c_4c652d5e\xB5c239\xB54042\xB58a74\xB545e02cce3b57": {fileID: 8300000,
     guid: f333aaf523560744c9538c615806638a, type: 3}
   "waitingSoundVolume_a5135e0e\xB5b0c8\xB54871\xB59721\xB5538499ed3b5c_4c652d5e\xB5c239\xB54042\xB58a74\xB545e02cce3b57": 1
-  s17Id: dbafe631-4ea8-471d-9aff-aed2b94ce5c1
-  s18Comp: dbafe631-4ea8-471d-9aff-aed2b94ce5c1_86e762ea-c3c0-4fde-b405-42694734145d
-  "movementSound_dbafe631\xB54ea8\xB5471d\xB59aff\xB5aed2b94ce5c1_86e762ea\xB5c3c0\xB54fde\xB5b405\xB542694734145d": {fileID: 8300000,
+  s17Id: 725a0485-6640-4345-aa9d-92857d162799
+  s18Comp: 725a0485-6640-4345-aa9d-92857d162799_86e762ea-c3c0-4fde-b405-42694734145d
+  "movementSound_725a0485\xB56640\xB54345\xB5aa9d\xB592857d162799_86e762ea\xB5c3c0\xB54fde\xB5b405\xB542694734145d": {fileID: 8300000,
     guid: ecfcddd4b902f45428acafb17c08f0f1, type: 3}
-  "movementSoundVolume_dbafe631\xB54ea8\xB5471d\xB59aff\xB5aed2b94ce5c1_86e762ea\xB5c3c0\xB54fde\xB5b405\xB542694734145d": 1
+  "movementSoundVolume_725a0485\xB56640\xB54345\xB5aa9d\xB592857d162799_86e762ea\xB5c3c0\xB54fde\xB5b405\xB542694734145d": 1
   s19Id: eaa950de-a907-4c47-8e3b-43fcedc9cef6
   s20Comp: eaa950de-a907-4c47-8e3b-43fcedc9cef6_d3d3ef92-cbe1-464f-a09f-4e65bb73f4a5
   "waitingSound_eaa950de\xB5a907\xB54c47\xB58e3b\xB543fcedc9cef6_d3d3ef92\xB5cbe1\xB5464f\xB5a09f\xB54e65bb73f4a5": {fileID: 8300000,
