@@ -515,7 +515,7 @@ MonoBehaviour:
   targetGroup: {fileID: -9015305574639715243, guid: 9b41315a36bc40a4ea458016676fd8f1,
     type: 2}
   appearSound: {fileID: 8300000, guid: 7f93e1868121eed4882693b884364dc5, type: 3}
-  appearSoundVolume: 0
+  appearSoundVolume: 0.3
   appearSoundSource: {fileID: 6512723210438504047}
 --- !u!82 &6512723210438504047
 AudioSource:

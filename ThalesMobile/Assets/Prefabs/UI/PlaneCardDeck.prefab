@@ -521,11 +521,11 @@ MonoBehaviour:
     type: 2}
   descriptionAppearSound: {fileID: 8300000, guid: b6a6058dfd7459844b267d7f06252b96,
     type: 3}
-  descriptionAppearSoundVolume: 0
+  descriptionAppearSoundVolume: 0.7
   cardSelectionSound: {fileID: 8300000, guid: 7db282b2b22eeee43ba5717e8f0af969, type: 3}
-  cardSelectionSoundVolume: 0
+  cardSelectionSoundVolume: 0.7
   outOfChargeSound: {fileID: 8300000, guid: 1f5ef1ac5a778dd40acd730ba2521a9e, type: 3}
-  outOfChargeSoundVolume: 0
+  outOfChargeSoundVolume: 1
 --- !u!114 &7493039114023167528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -767,9 +767,9 @@ MonoBehaviour:
     type: 2}
   descriptionAppearSound: {fileID: 8300000, guid: b6a6058dfd7459844b267d7f06252b96,
     type: 3}
-  descriptionAppearSoundVolume: 0
+  descriptionAppearSoundVolume: 0.7
   cardSelectionSound: {fileID: 8300000, guid: 7db282b2b22eeee43ba5717e8f0af969, type: 3}
-  cardSelectionSoundVolume: 0
+  cardSelectionSoundVolume: 0.7
 --- !u!114 &9136498061939637637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -994,7 +994,7 @@ MonoBehaviour:
   serializedGuid: 49d5ae920c71524baf1e49823502f66d
   thisObjState: 2
   initState: 2
-  instanceID: 102550
+  instanceID: 63496
   referencedComponents:
   - component: {fileID: 7283289848943694028}
     serializedGuid: 642495c3f785594aaf457f462aab49a8
@@ -1207,9 +1207,9 @@ MonoBehaviour:
   audioSource: {fileID: 6457176664410361513}
   targetGroup: {fileID: 7017793297182156295, guid: 9b41315a36bc40a4ea458016676fd8f1,
     type: 2}
-  descriptionAppearSound: {fileID: 8300000, guid: 096e8b25ae85b31499bbbd9251198684,
+  descriptionAppearSound: {fileID: 8300000, guid: adcaf20034d9cd6499e2dad4f19ad259,
     type: 3}
-  descriptionAppearSoundVolume: 0
+  descriptionAppearSoundVolume: 0.7
 --- !u!225 &2491009145919527330
 CanvasGroup:
   m_ObjectHideFlags: 0

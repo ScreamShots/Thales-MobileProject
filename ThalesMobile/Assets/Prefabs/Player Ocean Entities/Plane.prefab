@@ -566,7 +566,7 @@ MonoBehaviour:
   serializedGuid: 85045a7240664543aa9d92857d162799
   thisObjState: 2
   initState: 2
-  instanceID: 37432
+  instanceID: 61148
   referencedComponents:
   - component: {fileID: 339487588899374384}
     serializedGuid: ea62e786c0c3de4fb40542694734145d
@@ -614,7 +614,7 @@ MonoBehaviour:
   targetGroup: {fileID: -9015305574639715243, guid: 9b41315a36bc40a4ea458016676fd8f1,
     type: 2}
   movementSound: {fileID: 8300000, guid: ecfcddd4b902f45428acafb17c08f0f1, type: 3}
-  movementSoundVolume: 0
+  movementSoundVolume: 1
   passiveEquipement: {fileID: 11400000, guid: fdd1a822afff99a479aeca2cfcd71a7e, type: 2}
   activeEquipement: {fileID: 11400000, guid: 8c36fd8269da1a347a940f931d708c6c, type: 2}
 --- !u!82 &8829441465545371547
@@ -803,7 +803,7 @@ Animator:
   m_GameObject: {fileID: 339487589102417703}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b8784eab85d7fcc4e9a9d4ca0c0768fd, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 1

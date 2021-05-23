@@ -453,13 +453,13 @@ MonoBehaviour:
     type: 2}
   detectionAudioSource: {fileID: 4157036924850718096}
   detectionSound: {fileID: 8300000, guid: 043a0f0211079ee4396729ca4775da28, type: 3}
-  detectionSoundVolume: 0
+  detectionSoundVolume: 0.8
   dropSoundSource: {fileID: 1004625876005470980}
   dropSound: {fileID: 8300000, guid: e19c68c5259b054428363d2f8bc3dcf0, type: 3}
-  dropSoundVolume: 0
+  dropSoundVolume: 0.05
   backgroundSoundSource: {fileID: 2066127118907799112}
   backgroundSound: {fileID: 8300000, guid: 13717f2f3af2c9746b535c2e4b6fde67, type: 3}
-  backgroundSoundVolume: 0
+  backgroundSoundVolume: 1
 --- !u!1 &2607549249886408468
 GameObject:
   m_ObjectHideFlags: 0

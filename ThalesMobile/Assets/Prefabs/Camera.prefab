@@ -45,11 +45,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c3cdcb490cdee448a8aedfe8dbf5790, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  guidDisplay: 0a1549a1-778e-4015-bec9-b82a83df8803
-  serializedGuid: a149150a8e771540bec9b82a83df8803
+  guidDisplay: 25a05a3b-e90d-4ab9-8952-b7b6e9531a15
+  serializedGuid: 3b5aa0250de9b94a8952b7b6e9531a15
   thisObjState: 1
   initState: 1
-  instanceID: -4078
+  instanceID: 56350
   referencedComponents:
   - component: {fileID: 5630502567233466962}
     serializedGuid: 5f9c4216b50e1a418ee169f7caa274d1
@@ -221,6 +221,7 @@ MonoBehaviour:
   zoomSpeed: 5
   camSett: {fileID: 11400000, guid: 81746d5d0ad588340bad41252888c508, type: 2}
   moveZoomLvlFactor: 1
+  minimalMoveFactor: 0.5
   aimLerpSpeed: 0.2
   moveSpeed: 26
   refocusSpeed: 55

@@ -133,7 +133,7 @@ MonoBehaviour:
   serializedGuid: 2f9c7496893e5245ad578a253754f207
   thisObjState: 2
   initState: 2
-  instanceID: 40316
+  instanceID: 62756
   referencedComponents:
   - component: {fileID: 7664084496329710959}
     serializedGuid: 82d51bbd2fbdb442a0c315dd959bd187
@@ -207,6 +207,7 @@ MonoBehaviour:
   decoy: {fileID: 0}
   decoy2: {fileID: 0}
   decoy3: {fileID: 0}
+  isDecoyMoving: 0
   headingChange: {fileID: 11400000, guid: c5625d4f2b46dcc42ab7b5841efdaf59, type: 2}
   radioSilence: {fileID: 11400000, guid: afa7559d38532e5438d14596ef1032c5, type: 2}
   baitDecoy: {fileID: 11400000, guid: b23b70fa501456c4d81115c3fde9927c, type: 2}

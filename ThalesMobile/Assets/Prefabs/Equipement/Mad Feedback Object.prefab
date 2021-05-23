@@ -144,7 +144,7 @@ MonoBehaviour:
   serializedGuid: 81650e149e0773479248ad755d901d44
   thisObjState: 2
   initState: 2
-  instanceID: 48824
+  instanceID: 57636
   referencedComponents:
   - component: {fileID: 1637326127995313771}
     serializedGuid: cfb4f373a618e845be6674a1e3e1492f
@@ -165,7 +165,7 @@ MonoBehaviour:
   targetGroup: {fileID: -9015305574639715243, guid: 9b41315a36bc40a4ea458016676fd8f1,
     type: 2}
   revealSound: {fileID: 8300000, guid: 024026187cd87084c8f4558bbc5040bc, type: 3}
-  revealSoundVolume: 1
+  revealSoundVolume: 0.8
   revealSoundSource: {fileID: 7740171360760026918}
 --- !u!82 &7740171360760026918
 AudioSource:

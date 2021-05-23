@@ -185,7 +185,7 @@ Animator:
   m_GameObject: {fileID: 6286141311459306338}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 668433a5d15ae2146aee501a4dd909ed, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -583,7 +583,7 @@ MonoBehaviour:
   serializedGuid: 0e5e13a5c8b071489721538499ed3b5c
   thisObjState: 2
   initState: 2
-  instanceID: 29246
+  instanceID: 60882
   referencedComponents:
   - component: {fileID: 6286141312136616712}
     serializedGuid: 5e2d654c39c242408a7445e02cce3b57
@@ -645,15 +645,15 @@ MonoBehaviour:
   targetGroup: {fileID: -9015305574639715243, guid: 9b41315a36bc40a4ea458016676fd8f1,
     type: 2}
   preparationSound: {fileID: 8300000, guid: 87262afa5890629428e63b627ee02dad, type: 3}
-  preparationSoundVolume: 0
+  preparationSoundVolume: 1.5
   takeOffSound: {fileID: 8300000, guid: 4b96c0493e7fcbb40ab1969e3591f9fb, type: 3}
-  takeOffSoundVolume: 0
+  takeOffSoundVolume: 1.5
   landingSound: {fileID: 8300000, guid: c658bb338ce99834b9ce2d2545610b2a, type: 3}
-  landingSoundVolume: 0
+  landingSoundVolume: 1.5
   movementSound: {fileID: 8300000, guid: ed10ccc8a1aceb7438beed4d37160ba9, type: 3}
-  movementSoundVolume: 0
+  movementSoundVolume: 1.5
   waitingSound: {fileID: 8300000, guid: f333aaf523560744c9538c615806638a, type: 3}
-  waitingSoundVolume: 0
+  waitingSoundVolume: 1.5
 --- !u!82 &3042659589105975169
 AudioSource:
   m_ObjectHideFlags: 0

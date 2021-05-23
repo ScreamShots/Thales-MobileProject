@@ -50,7 +50,7 @@ MonoBehaviour:
   serializedGuid: 4afa145961db794795efea095181a348
   thisObjState: 2
   initState: 2
-  instanceID: 46612
+  instanceID: 57218
   referencedComponents:
   - component: {fileID: 5497311822246952093}
     serializedGuid: 1f4cec95ae68f34a8ebc654fba5cc3d3
@@ -73,7 +73,7 @@ MonoBehaviour:
   targetGroup: {fileID: -9015305574639715243, guid: 9b41315a36bc40a4ea458016676fd8f1,
     type: 2}
   waveSound: {fileID: 8300000, guid: b4b9e01156b77f14ca3a45eb8c0a8d55, type: 3}
-  waveSoundVolume: 0
+  waveSoundVolume: 0.5
   waveSoundSource: {fileID: 5072997761168905767}
 --- !u!82 &5072997761168905767
 AudioSource:
