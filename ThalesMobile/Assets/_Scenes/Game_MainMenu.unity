@@ -27499,6 +27499,21 @@ PrefabInstance:
       propertyPath: missionPoints.Array.data[2].missionSceneName
       value: LDTwo
       objectReference: {fileID: 0}
+    - target: {fileID: 3078130106839481975, guid: a7db2cd955db239408cfdcd44bf51cbf,
+        type: 3}
+      propertyPath: missionPoints.Array.data[0].missionSceneIndex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3078130106839481975, guid: a7db2cd955db239408cfdcd44bf51cbf,
+        type: 3}
+      propertyPath: missionPoints.Array.data[1].missionSceneIndex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3078130106839481975, guid: a7db2cd955db239408cfdcd44bf51cbf,
+        type: 3}
+      propertyPath: missionPoints.Array.data[2].missionSceneIndex
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3259777627976511691, guid: a7db2cd955db239408cfdcd44bf51cbf,
         type: 3}
       propertyPath: m_RootOrder
