@@ -1,11 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using OceanEntities;
-using Plane = UnityEngine.Plane;
+﻿using System.Collections.Generic;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
-using UnityEngine.Audio;
+using UnityEngine;
 
 public class GlobeInput : MonoBehaviour
 {
@@ -16,8 +11,8 @@ public class GlobeInput : MonoBehaviour
     public LayerMask selectableEntityLayer;
     public GameObject earth;
     [Space(5)]
-    private bool touchingEarth = false;
-    public float rotationSpeed = 50;
+    [SerializeField] bool touchingEarth = false;
+    public float rotationSpeed = 0.135f;
     public Vector2 velocity = Vector2.zero;
 
     //Touch inputs
@@ -25,7 +20,8 @@ public class GlobeInput : MonoBehaviour
     //Glide
     private float distance = 0;
     private float lastDistance;
-    //
+    Vector2 startAimPos;
+    //Inertie
     private float dragStartTime = 0;
     public float inertialVelocity = 0;
     private Vector2 move = Vector2.zero;
@@ -78,8 +74,10 @@ public class GlobeInput : MonoBehaviour
                     touchingEarth = false;
                 }
 
+                inertialVelocity = 0;
                 dragStartTime = Time.time;
                 dragStartPos = touch.position;
+                startAimPos = camController.aimPos;
             }
             //If drag then move camera
             if (touch.phase == TouchPhase.Moved)
@@ -90,22 +88,31 @@ public class GlobeInput : MonoBehaviour
                 {
                     if (touchingEarth)
                     {
-                        camController.aimPos -= touch.deltaPosition.normalized * rotationSpeed * Time.deltaTime;
+                        move = touch.position - dragStartPos;
+
+                        camController.aimPos = startAimPos - (move * rotationSpeed);
                     }
                 }
             }
             if (touch.phase == TouchPhase.Ended)
             {
                 isDraging = false;
-                touchingEarth = false;
-                
-                move = touch.position - dragStartPos;
-                inertialVelocity = move.magnitude / (Time.time -dragStartTime);
+                if (touchingEarth)
+                {
+                    move = touch.position - dragStartPos;
+                    inertialVelocity = move.magnitude / (Time.time - dragStartTime);
 
-                if(touch.deltaPosition.magnitude < 5f)
+                    if (touch.deltaPosition.magnitude < 5f)
+                    {
+                        inertialVelocity = 0;
+                    }
+                }
+                else
                 {
                     inertialVelocity = 0;
                 }
+
+                touchingEarth = false;
             }
         }
         //Glide Input
@@ -146,21 +153,8 @@ public class GlobeInput : MonoBehaviour
             distance = 0;
         }
 
-        camController.aimPos -= move.normalized * inertialVelocity * 0.135f * Time.deltaTime;
-        inertialVelocity *= 10f * Time.deltaTime;
+        camController.aimPos -= move.normalized * inertialVelocity * rotationSpeed * Time.deltaTime;
+        inertialVelocity *= 8f * Time.deltaTime;
 
-    }
-
-    public Vector2 GetSeaPosition()
-    {
-        touch = Input.GetTouch(0);
-        Ray touchRay;
-        touchRay = camController.cam.ScreenPointToRay(touch.position);
-
-        Plane ground = new Plane(Vector3.up, new Vector3(0, 0, 0));
-        float distance;
-        ground.Raycast(touchRay, out distance);
-
-        return Coordinates.ConvertWorldToVector2(touchRay.GetPoint(distance));
     }
 }

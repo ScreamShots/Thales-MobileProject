@@ -34,7 +34,7 @@ public class CodexDataManager : MonoBehaviour
     {
         spriteField.sprite = loadedMission[number].categoIcon;
         prodTitle.text = loadedMission[number].title;
-        multiText.text = loadedMission[number].description;
+        multiText.data = loadedMission[number];
 
         descriptionCanvas.SetActive(true);
     }

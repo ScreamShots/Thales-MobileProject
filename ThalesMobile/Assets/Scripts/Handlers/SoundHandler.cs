@@ -1,14 +1,11 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
+public enum SoundMixerGroup { Master, UI, Music, Effect }
+
 public class SoundHandler : MonoBehaviour
 {
-    private UIHandler uiHandler;
-
-
-
     [Header("Main Parameters")]
     public AudioMixer mainAudioMixer;
     public AudioMixerGroup masterGroup;
@@ -21,27 +18,22 @@ public class SoundHandler : MonoBehaviour
     public AudioMixerGroup effectsGroup;
     public AudioMixerGroup musicGroup;
 
-    [Header("Volumes")]
+    [Header("StartVolumes")]
+    public bool changeOnStart = false;
+    [Range(-80f, 20f)] public float uiVolume;
+    [Range(-80f, 20f)] public float effectsVolume;
+    [Range(-80f, 20f)] public float musicVolume;
 
-    [Range(-80f,20f)]
-    public float uiVolume;
-
-    [Range(-80f, 20f)]
-    public float effectsVolume;
-
-    [Range(-80f, 20f)]
-    public float musicVolume;
-
-    // Start is called before the first frame update
     void Start()
     {
-        //Set groups volume.
-        mainAudioMixer.SetFloat("masterVolume", masterVolume);
-        mainAudioMixer.SetFloat("uiVolume", uiVolume);
-        mainAudioMixer.SetFloat("musicVolume", musicVolume);
-        mainAudioMixer.SetFloat("effectsVolume", effectsVolume);
-
-        uiHandler = GameManager.Instance.uiHandler;
+        if (changeOnStart)
+        {
+            //Set groups volume.
+            ChangeVolume(masterVolume, "masterVolume");
+            ChangeVolume(uiVolume, "uiVolume");
+            ChangeVolume(musicVolume,"musicVolume");
+            ChangeVolume(effectsVolume, "effectsVolume");
+        }
     }
 
     public void PlaySound(AudioClip clip, AudioSource source, AudioMixerGroup targetGroup)
@@ -55,7 +47,6 @@ public class SoundHandler : MonoBehaviour
     {
         Coroutine fade = StartCoroutine(CrossfadeRoutine(source, clip, fadeDuration));
     }
-
     public IEnumerator CrossfadeRoutine(AudioSource source, AudioClip clip, float fadeDuration, float newVolume = 0)
     {
         float time = 0;
@@ -84,6 +75,7 @@ public class SoundHandler : MonoBehaviour
         if (!source.isPlaying)
             source.Play();
     }
+    
     public void StopSound(AudioSource source, bool pause)
     {
         if(source.isPlaying)
@@ -94,16 +86,41 @@ public class SoundHandler : MonoBehaviour
                 source.Stop();
         }
     }
-
     public void UnPause(AudioSource source)
     {
         if (source.clip != null)
             source.UnPause();
     }
 
+    //Change a volume
+    public void ChangeVolume(float value, SoundMixerGroup targetGroup)
+    {
+        switch (targetGroup)
+        {
+            case SoundMixerGroup.Master:
+                ChangeVolume(value, "masterVolume");
+                break;
+
+            case SoundMixerGroup.UI:
+                ChangeVolume(value, "uiVolume");
+                break;
+
+            case SoundMixerGroup.Music:
+                ChangeVolume(value, "musicVolume");
+                break;
+
+            case SoundMixerGroup.Effect:
+                ChangeVolume(value, "effectsVolume");
+                break;
+
+            default:
+                Debug.LogError("Can't find the SoundMixer Group", this);
+                break;
+        }
+    }
     public void ChangeVolume(float value, string targetGroup)
     {
-        mainAudioMixer.SetFloat(targetGroup, (value * 100) - 20);
+        mainAudioMixer.SetFloat(targetGroup, value!=0? Mathf.Log10(value) * 20 : -80);
+        PlayerPrefs.SetFloat(targetGroup, value);
     }
-
 }

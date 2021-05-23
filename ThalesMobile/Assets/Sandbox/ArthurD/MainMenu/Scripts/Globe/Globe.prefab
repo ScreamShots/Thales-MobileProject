@@ -144,8 +144,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 33
   earth: {fileID: 2771647639198788209}
-  rotationSpeed: 50
+  touchingEarth: 0
+  rotationSpeed: 0.135
   velocity: {x: 0, y: 0}
+  inertialVelocity: 0
   isDraging: 0
 --- !u!114 &3078130106839481975
 MonoBehaviour:
@@ -166,37 +168,40 @@ MonoBehaviour:
   globe: {fileID: 3259777627976511691}
   globeRadius: 1.1
   focusSpeed: 12
+  showDebug: 0
   missionPoints:
-  - pointCoord: {x: 143.5, y: 27.3}
-    button: {fileID: 0}
-    buttonrectTrans: {fileID: 0}
-    missionDescription: "Premi\xE8re Mission\t\n"
-    missionSceneName: AlphaScene 1
-    buttonSkin: {fileID: 3683216732941630660, guid: dbca6213b4263a943ab5e90861101b71,
-      type: 3}
-    textSkin: {fileID: -5662838470976600899, guid: dbca6213b4263a943ab5e90861101b71,
-      type: 3}
-  - pointCoord: {x: 162.3, y: -30.1}
-    button: {fileID: 0}
-    buttonrectTrans: {fileID: 0}
-    missionDescription: Description
+  - missionTitle: "CASEX: simulation d\u2019une seaber-attaque "
+    missionEmplacement: "Oc\xE9an Atlantique"
+    missionDescription: "Un sous-marin fran\xE7ais est lui aussi en entra\xEEnement
+      dans la r\xE9gion. Il n\u2019est pas au courant de votre pr\xE9sence. Votre
+      objectif : le trouver avant qu\u2019il ne remplisse ses missions."
+    pointCoord: {x: 172, y: 38}
+    missionDifficulty: 0
     missionSceneName: 
-    buttonSkin: {fileID: -8592518266145571749, guid: dbca6213b4263a943ab5e90861101b71,
-      type: 3}
-    textSkin: {fileID: -5777097896913972998, guid: dbca6213b4263a943ab5e90861101b71,
-      type: 3}
-  - pointCoord: {x: 239.2, y: -3.5}
     button: {fileID: 0}
     buttonrectTrans: {fileID: 0}
-    missionDescription: 'Description
-
-'
+  - missionTitle: 'Protection de HVU '
+    missionEmplacement: Mer de Chine
+    missionDescription: "Un sous-marin non identifi\xE9 s\u2019est infiltr\xE9 au
+      nord des Philippines. Ses objectifs ne sont pas clairs, mais l'\xE9tat-major
+      suspecte une mission d\u2019espionnage sur les atouts militaires fran\xE7ais
+      sur place. Localisez et identifiez le sous-marin avant qu\u2019il ne s\u2019\xE9chappe."
+    pointCoord: {x: 302, y: 18}
+    missionDifficulty: 1
     missionSceneName: 
-    buttonSkin: {fileID: -5639411614164217494, guid: dbca6213b4263a943ab5e90861101b71,
-      type: 3}
-    textSkin: {fileID: 7788267641948716709, guid: dbca6213b4263a943ab5e90861101b71,
-      type: 3}
-  showDebug: 1
+    button: {fileID: 0}
+    buttonrectTrans: {fileID: 0}
+  - missionTitle: Briser le blocus
+    missionEmplacement: Golfe d'Aden
+    missionDescription: "Un sous-marin non identifi\xE9 tente actuellement d\u2019\xE9tablir
+      un blocus au nord-est de Djibouti afin de prendre le contr\xF4le du Golf et
+      du trafic commercial maritime. Emp\xEAchez-le de semer la discorde entre les
+      diff\xE9rentes puissances mondiales qui \u0153uvrent dans la r\xE9gion.\r"
+    pointCoord: {x: 221, y: 8.4}
+    missionDifficulty: 2
+    missionSceneName: 
+    button: {fileID: 0}
+    buttonrectTrans: {fileID: 0}
 --- !u!1 &4027978960974349820
 GameObject:
   m_ObjectHideFlags: 0

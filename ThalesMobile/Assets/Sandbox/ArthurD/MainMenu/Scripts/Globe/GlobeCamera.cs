@@ -19,6 +19,10 @@ public class GlobeCamera : MonoBehaviour
     {
         //Clear Value Time
         distance = new Vector2(Mathf.FloorToInt(distance.x), Mathf.CeilToInt(distance.y));
+        if (aimPos.x < 0)
+        {
+            aimPos.x += 360f;
+        }
         aimPos.x = aimPos.x % 360;
         aimPos.y = Mathf.Clamp(aimPos.y, -60, 60);
 

@@ -14,93 +14,60 @@ public class MultiTextSystem : MonoBehaviour
     public int showWidow = 0;
 
     [Header("Texte")]
-    [Multiline]
-    public string[] text = new string[] { 
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-        "Salut à toute est à tous, ici The Fantasio 974",
-        "Il y a rien a voir gamin, passe ton chemin"
-    };
-
-    [Header("SystemParameter")]
-    public bool oldSystem = false;
-    public bool newSystem { get { return !oldSystem; } }
-
-    //Old
-    [BoxGroup("OldSysteme"), ShowIf("oldSystem")] public Button leftButton;
-    [BoxGroup("OldSysteme"), ShowIf("oldSystem")] public Button rightButton;
+    public Scrollbar scrollBar;
+    public CodexData data = null;
     [Space(10)]
-    [BoxGroup("OldSysteme"), ShowIf("oldSystem")] public TextMeshProUGUI textField;
-    //New
-    [BoxGroup("NewSysteme"), ShowIf("newSystem")] public Scrollbar scrollBar;
-    [Space(10)]
-    [BoxGroup("NewSysteme"), ShowIf("newSystem")] public TextMeshProUGUI textFieldA;
-    [BoxGroup("NewSysteme"), ShowIf("newSystem")] public Image fieldB_image;
-    [BoxGroup("NewSysteme"), ShowIf("newSystem")] public TextMeshProUGUI textFieldC;
+    public TextMeshProUGUI FieldA_text;
+    public Image fieldB_image;
+    public TextMeshProUGUI FieldC_text;
     private bool refocusing = false;
 
     void OnEnable()
     {
-        if (oldSystem)
-        {
-            ShowWindow(0);
-        }
-        else
-        {
-            SlideWindow(0);
-
-            textFieldA.text = text[0];
-            //textFieldB.text = text[1];
-            //textFieldC.text = text[2];
-        }
+        SlideWindow(0);
     }
 
     private void Update()
     {
-        if (oldSystem)
+
+        if (!refocusing)
         {
-            UpdateIndicator();
+            showWidow = Mathf.RoundToInt(scrollBar.value * (indicator.Length - 1));
         }
-        else
+
+        UpdateIndicator();
+
+        if (data.description != null)
         {
-            if (!refocusing)
-            {
-                showWidow = Mathf.RoundToInt(scrollBar.value * (indicator.Length - 1));
-            }
-            UpdateIndicator();
+            FieldA_text.text = data.description;
+        }
+        if (data.image != null)
+        {
+            fieldB_image.sprite = data.image;
+        }
+        if (data.link != null)
+        {
+            FieldC_text.text = data.linkName;
         }
     }
 
     public void NextWindow()
     {
-        if (showWidow < text.Length - 1)
+        if (showWidow < indicator.Length - 1)
         {
             showWidow++;
         }
 
-        if (oldSystem)
-        {
-            ShowWindow(showWidow);
-        }
-        else
-        {
-            SlideWindow(showWidow);
-        }
+        SlideWindow(showWidow);
     }
     public void PreviousWindow()
     {
-        if(showWidow > 0)
+        if (showWidow > 0)
         {
             showWidow--;
         }
 
-        if (oldSystem)
-        {
-            ShowWindow(showWidow);
-        }
-        else
-        {
-            SlideWindow(showWidow);
-        }
+        SlideWindow(showWidow);
     }
     private void UpdateIndicator()
     {
@@ -113,34 +80,17 @@ public class MultiTextSystem : MonoBehaviour
         }
     }
 
-
-    //On old System
-    public void ShowWindow(int nbr)
-    {
-        showWidow = Mathf.Clamp(nbr,0, text.Length - 1);
-
-        //Change Text
-        if (text != null)
-        {
-            if (text[showWidow] != null)
-            {
-                textField.text = text[showWidow];
-            }
-        }
-    }
-
-    //On new System
+    //Don't work
     public void SlideWindow(int nbr)
     {
-        showWidow = Mathf.Clamp(nbr, 0, text.Length - 1);
+        showWidow = Mathf.Clamp(nbr, 0, indicator.Length - 1);
 
         //Change ScrollBar value
         float value = (1 / (indicator.Length - 1)) * showWidow;
 
         StopAllCoroutines();
-        StartCoroutine(SlideTo( value, 1f));
+        StartCoroutine(SlideTo(value, 1f));
     }
-
     private IEnumerator SlideTo(float value, float speed)
     {
         refocusing = true;
@@ -154,10 +104,16 @@ public class MultiTextSystem : MonoBehaviour
         {
             time += speed * Time.deltaTime;
             scrollBar.value = Mathf.Lerp(baseValue, baseValue + distance, time);
+            scrollBar.Rebuild(CanvasUpdate.Layout);
             yield return null;
         }
 
         refocusing = false;
         scrollBar.SetValueWithoutNotify(value);
+    }
+
+    public void LoadURL()
+    {
+        Application.OpenURL(data.link);
     }
 }
