@@ -52,6 +52,8 @@ public class GlobalDetectionPoint : DetectionObject
 
     public void UpdatePoint()
     {
+        feedbackBehavior.UpdatePos(transform.position, Coordinates.ConvertVector2ToWorld(linkedEntity.coords.position));
+
         if (updateWithMove) StartCoroutine(UpdateLerp());
         else
         {
@@ -65,6 +67,11 @@ public class GlobalDetectionPoint : DetectionObject
                 expirationState = ExpirationValue.Fresh;
                 feedbackBehavior.UpdateColor(ExpirationValue.Fresh);
             }            
+        }
+
+        if(detectionState == DetectionState.revealedDetection)
+        {
+            feedbackBehavior.DisplayReveal(linkedEntity.detectFeedback.globalRevealIcon, linkedEntity.detectFeedback.globalRevealPointer);
         }
     }
 

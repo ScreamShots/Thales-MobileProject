@@ -34,6 +34,8 @@ public class GlobalPointFeedBack : MonoBehaviour
     [SerializeField]
     AnimationCurve revealScaleProgression;
     Vector3 revealBaseScale;
+    Coroutine currentAnim;
+    float resetTimer;
 
     [Header("Expiration Params")]
     public Color freshColor;
@@ -75,7 +77,19 @@ public class GlobalPointFeedBack : MonoBehaviour
         revealIconImage.sprite = revealIcon;
         revealPointerImage.sprite = revealPointer;
 
-        StartCoroutine(Scale(Vector3.one, animDuration, revealCanvasRT, true, revealKeepDuration));
+        if (currentAnim == null)
+            currentAnim = StartCoroutine(Scale(Vector3.one, animDuration, revealCanvasRT, true, revealKeepDuration));
+          
+        else resetTimer = 0;
+    }
+
+    public void UpdatePos(Vector3 pointPos, Vector3 detectablePos)
+    {
+        if(pointPos != detectablePos)
+        {
+            appearSoundSource.volume = Mathf.Clamp01(appearSoundVolume);
+            GameManager.Instance.soundHandler.PlaySound(appearSound, appearSoundSource, targetGroup);
+        }        
     }
 
     public void UpdateColor(ExpirationValue targetExpiration)
@@ -101,6 +115,7 @@ public class GlobalPointFeedBack : MonoBehaviour
     {
         Vector3 start = obj.localScale;
         float timer = 0;
+        resetTimer = 0;
 
         while (timer < duration)
         {
@@ -113,9 +128,14 @@ public class GlobalPointFeedBack : MonoBehaviour
 
         if (reset)
         {
-            yield return new WaitForSeconds(resetTime);
-            StartCoroutine(Scale(Vector3.zero, animDuration, revealCanvasRT));
+            while(resetTimer < resetTime)
+            {
+                yield return null;
+                resetTimer += Time.deltaTime;
+            }
+
+            currentAnim = StartCoroutine(Scale(Vector3.zero, animDuration, revealCanvasRT));
         }
-      
+        else currentAnim = null;      
     }
 }

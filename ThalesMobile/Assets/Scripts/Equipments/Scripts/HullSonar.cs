@@ -107,7 +107,7 @@ namespace PlayerEquipement
                 waveMaxDuration = waveDuration / turbulentSeaSpeedReductionFactor;
             else waveMaxDuration = waveDuration;
 
-            feedback.SetWaveSpeed(waveMaxDuration);
+            //feedback.SetWaveSpeed(waveMaxDuration);
 
             if (expand) waveRange = 0;
             else waveRange = range;

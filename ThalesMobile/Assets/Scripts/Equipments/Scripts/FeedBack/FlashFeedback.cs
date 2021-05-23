@@ -12,6 +12,7 @@ namespace PlayerEquipement
     {
         PlayerOceanEntity sourceEntity;
 
+        [Header("Drop")]
         [SerializeField]
         Vector3 originalPosOffset;
         Vector3 originPos;
@@ -22,6 +23,18 @@ namespace PlayerEquipement
         MeshRenderer meshRenderer;
         [SerializeField]
         ParticleSystem splashParticles;
+
+        [Header("Range")]
+        Flash sourceFlash;
+        [SerializeField]
+        GameObject rangeDisplayObject;
+        [SerializeField]
+        MeshFilter quadHolder;
+        [SerializeField]
+        Material rangeMaterial;
+        [SerializeField]
+        ParticleSystem rangeParticles;
+        float scaleRatio;
 
         [Header("Sound - Flash Effect")]
         [SerializeField]
@@ -37,8 +50,22 @@ namespace PlayerEquipement
         public override void EquipementFeedbackInit(Equipement _source)
         {
             base.EquipementFeedbackInit(_source);
+
+            sourceFlash = _source as Flash;
             sourceEntity = _source.currentUser;;
+
             originPos = sourceEntity.enitityFeedback.transform.position + originalPosOffset;
+
+            scaleRatio = sourceFlash.extendedRange * (1 / quadHolder.sharedMesh.bounds.size.x);
+            rangeDisplayObject.transform.localScale = Vector3.one * scaleRatio;
+
+            rangeMaterial.SetFloat("Vector1_AAC87A69", sourceFlash.winningRange / sourceFlash.extendedRange);
+
+            var main = rangeParticles.main;
+
+            main.startSize = new ParticleSystem.MinMaxCurve(main.startSize.constantMin * scaleRatio, main.startSize.constantMax * scaleRatio);
+
+            rangeDisplayObject.SetActive(false);
 
             ResetPos();
         }
@@ -72,11 +99,30 @@ namespace PlayerEquipement
                 timer += Time.deltaTime;
             }
 
+            rangeMaterial.SetFloat("Float_Manual_Value", 0f);
+            var shape = rangeParticles.shape;
+            shape.radius = 0f;
+            rangeDisplayObject.SetActive(true);
+
             flashSoundSource.volume = Mathf.Clamp(flashSoundVolume, 0, 1);
             GameManager.Instance.soundHandler.PlaySound(flashSound, flashSoundSource, targetGroup);
             splashParticles.Play();
 
             ResetPos();
+        }
+
+        public void UpdateWaveProgression(float globalProgression, float winningProgression, bool end = false)
+        {
+            if (end)
+            {
+                rangeDisplayObject.SetActive(false);
+                return;
+            }
+
+            rangeMaterial.SetFloat("Float_Manual_Value", globalProgression);
+
+            var shape = rangeParticles.shape;
+            shape.radius = Mathf.Lerp(0 , 0.5f * (sourceFlash.winningRange/sourceFlash.extendedRange) * scaleRatio, winningProgression);
         }
 
 

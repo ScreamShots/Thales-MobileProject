@@ -14,10 +14,12 @@ namespace PlayerEquipement
     {
         [Header("Flash Params")]
 
-        [SerializeField, Min(0)]
-        float winningRange;
-        [SerializeField, Min(0)]
-        float extendedRange;
+        [SerializeField]
+        float waveDuration;
+        [Min(0)]
+        public float winningRange;
+        [Min(0)]
+        public float extendedRange;
         [SerializeField, Min(0)]
         public float dropDuration;
         [SerializeField, Min(0)]
@@ -73,19 +75,57 @@ namespace PlayerEquipement
             //Test all submarine in the scene
             //If they are in winning range Win the game (need method implementation to win In GameManager probably)
             //If they are in extended range show submarine trail for the specified time (need method impletation for that in Submarine)
-            foreach (Submarine submarine in levelManager.enemyEntitiesInScene)
+
+            float waveTimer = 0;
+            float waveProgress = 0; 
+            float wavePadding = 0;
+            bool detectionTestEntity = false;
+
+            while (waveTimer < waveDuration)
             {
-                distance = Mathf.Abs(Vector2.Distance(submarine.coords.position, user.coords.position));
-                if (distance <= winningRange)
+
+                (feedbackBehavior as FlashFeedback).UpdateWaveProgression(waveProgress/extendedRange, Mathf.Clamp01(waveProgress/winningRange));
+
+                foreach (DetectableOceanEntity detectable in levelManager.submarineEntitiesInScene)
                 {
-                    GameManager.Instance.uiHandler.victoryScreenManager.Victory(true);
+                    distance = Mathf.Abs(Vector2.Distance(detectable.coords.position, user.coords.position));
+
+                    detectionTestEntity = distance <= waveProgress && distance >= waveProgress + wavePadding;
+
+                    if(detectionTestEntity && detectable.currentDetectableState != DetectableState.cantBeDetected)
+                    {
+                        if (distance <= winningRange)
+                        {
+                            if(detectable.GetType() == typeof(Submarine)) GameManager.Instance.uiHandler.victoryScreenManager.Victory(true);
+                            else if(detectionTestEntity && detectable.currentDetectableState != DetectableState.cantBeDetected)
+                            {
+                                if (detectable.linkedGlobalDetectionPoint.activated) detectable.linkedGlobalDetectionPoint.UpdatePoint();
+                                else detectable.linkedGlobalDetectionPoint.InitPoint();
+                            }
+                        }
+                        else if (distance >= winningRange)
+                        {
+                            if (detectable.GetType() == typeof(Submarine) && testedZone.state != ZoneState.SeaTurbulent)
+                            {
+                                (detectable as Submarine).MaterialChangedByFlash(revealDuration);
+                            }
+
+                            if (detectionTestEntity && detectable.currentDetectableState != DetectableState.cantBeDetected)
+                            {
+                                if (detectable.linkedGlobalDetectionPoint.activated) detectable.linkedGlobalDetectionPoint.UpdatePoint();
+                                else detectable.linkedGlobalDetectionPoint.InitPoint();
+                            }
+                        }
+                    }                    
                 }
-                else if (distance <= extendedRange && testedZone.state != ZoneState.SeaTurbulent)
-                {
-                    submarine.MaterialChangedByFlash(revealDuration);
-                }
+
+                yield return null;
+                waveTimer += Time.deltaTime;
+                wavePadding = waveProgress - (extendedRange * (waveTimer / waveDuration));
+                waveProgress = extendedRange * (waveTimer / waveDuration);
             }
 
+            (feedbackBehavior as FlashFeedback).UpdateWaveProgression(0, 0, true);
             readyToUse = true;
         }
     }

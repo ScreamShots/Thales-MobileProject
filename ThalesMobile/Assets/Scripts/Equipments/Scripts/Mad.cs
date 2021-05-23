@@ -41,7 +41,7 @@ namespace PlayerEquipement
                 if (distance <= range && !obj.inMadRange)
                 {
                     obj.inMadRange = true;
-                    if(obj.detectionState != DetectionState.noDetection) madFeedback.RevealDetection();
+                    if(obj.detectionState == DetectionState.unknownDetection) madFeedback.RevealDetection();
                 }
                 else if(distance > range && obj.inMadRange) obj.inMadRange = false;
             }
