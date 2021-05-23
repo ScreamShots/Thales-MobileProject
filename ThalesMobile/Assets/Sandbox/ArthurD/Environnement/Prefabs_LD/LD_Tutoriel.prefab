@@ -520,6 +520,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1968967621086693910, guid: 3cf7d05242be80643aad05443721c738,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6424129936780335879, guid: 3cf7d05242be80643aad05443721c738,
         type: 3}
       propertyPath: initState

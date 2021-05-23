@@ -49,11 +49,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c3cdcb490cdee448a8aedfe8dbf5790, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  guidDisplay: 5e79c2e0-d3cd-4ea5-9b85-c0b14a665274
-  serializedGuid: e0c2795ecdd3a54e9b85c0b14a665274
-  thisObjState: 1
-  initState: 1
-  instanceID: -62900
+  guidDisplay: 8676da00-7e61-42e3-84e4-cd905a3e5e9d
+  serializedGuid: 00da7686617ee34284e4cd905a3e5e9d
+  thisObjState: 2
+  initState: 2
+  instanceID: 31952
   referencedComponents:
   - component: {fileID: 6909696174531460104}
     serializedGuid: e80189436bfa4542aa3d45df27cb0ad2

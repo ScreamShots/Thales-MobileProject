@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Sandbox/ArthurD/MainMenu/GlobeMenu.unity
+    path: Assets/_Scenes/Game_MainMenu.unity
     guid: 40ef34e7dc0595440b5e5379f88a33f4
   - enabled: 1
     path: Assets/Sandbox/ThomasD/AlphaScene 1.unity
