@@ -59,6 +59,12 @@ public class CameraController : MonoBehaviour
             GameManager.Instance.cameraController = this;
             GameManager.Instance.inputManager.mainCamera = cam;
             GameManager.Instance.inputManager.camController = this;
+
+            GameManager.Instance.inputManager.maxX = limit.rightBorder;
+            GameManager.Instance.inputManager.minX = limit.leftBorder;
+            GameManager.Instance.inputManager.maxY = limit.upBorder;
+            GameManager.Instance.inputManager.minY = limit.downBorder;
+            
         }
 
         InitializeFocusPoint();

@@ -58,10 +58,10 @@ public class InputManager : MonoBehaviour
     PointerEventData pointerData;
 
     //Map Limits
-    private float minX;
-    private float maxX;
-    private float minY;
-    private float maxY;
+    [HideInInspector] public float minX;
+    [HideInInspector] public float maxX;
+    [HideInInspector] public float minY;
+    [HideInInspector] public float maxY;
 
 
     void Start()
@@ -73,15 +73,6 @@ public class InputManager : MonoBehaviour
         canUseCam = true;
         canZoomCam = true;
         canMoveCam = true;
-
-        if (camController != null)
-        {
-            maxX = camController.limit.rightBorder;
-            minX = camController.limit.leftBorder;
-
-            maxY = camController.limit.upBorder;
-            minY = camController.limit.downBorder;
-        }
      }
 
     void Update()
