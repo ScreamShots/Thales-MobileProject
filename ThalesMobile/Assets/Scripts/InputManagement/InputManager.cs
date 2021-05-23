@@ -74,11 +74,14 @@ public class InputManager : MonoBehaviour
         canZoomCam = true;
         canMoveCam = true;
 
-        maxX = camController.limit.rightBorder;
-        minX = camController.limit.leftBorder;
+        if (camController != null)
+        {
+            maxX = camController.limit.rightBorder;
+            minX = camController.limit.leftBorder;
 
-        maxY = camController.limit.upBorder;
-        minY = camController.limit.downBorder;
+            maxY = camController.limit.upBorder;
+            minY = camController.limit.downBorder;
+        }
      }
 
     void Update()
@@ -124,7 +127,11 @@ public class InputManager : MonoBehaviour
 
                                 if (playerController.currentSelectedEntity == entity)
                                 {
-                                    camController.SetTarget(hit.collider.transform);
+                                    if (camController != null)
+                                    {
+
+                                        camController.SetTarget(hit.collider.transform);
+                                    }
                                 }
                                 else
                                 {
@@ -142,7 +149,11 @@ public class InputManager : MonoBehaviour
                             //If drag then move camera
                             if (touch.deltaPosition.magnitude > 5f && canMoveCam)
                             {
-                                camController.moveDirection = -touch.deltaPosition;
+                                if (camController != null)
+                                {
+
+                                    camController.moveDirection = -touch.deltaPosition;
+                                }
                             }
 
                         }
@@ -169,13 +180,17 @@ public class InputManager : MonoBehaviour
             #region inertie
             if (activateInertie)
             {
-                //Apply inertie
-                camController.moveDirection -= move.normalized * inertialVelocity * 0.135f * Time.deltaTime;
-                inertialVelocity *= 10f * Time.deltaTime;
+                if (camController != null)
+                {
+
+                    //Apply inertie
+                    camController.moveDirection -= move.normalized * inertialVelocity * 0.135f * Time.deltaTime;
+                    inertialVelocity *= 10f * Time.deltaTime;
+                }
             }
             #endregion
 
-            if (touch.deltaPosition.magnitude < 5f)
+            if (touch.deltaPosition.magnitude < 5f && camController != null)
             {
                 camController.moveDirection = Vector2.zero;
             }
@@ -208,22 +223,29 @@ public class InputManager : MonoBehaviour
                 distance = Vector2.Distance(touch0, touch1);
                 float deltaDistance = distance - lastDistance;
 
-                if(deltaDistance > 1 && camController.zoomIntensity <= 1)
+                if (camController != null)
                 {
-                    camController.zoomIntensity -= (0.01f * camController.zoomSpeed) * (1 - Mathf.Clamp01(0.01f * deltaDistance));
-                    camController.zoomIntensity = Mathf.Clamp01(camController.zoomIntensity);
+
+                    if (deltaDistance > 1 && camController.zoomIntensity <= 1)
+                    {
+                        camController.zoomIntensity -= (0.01f * camController.zoomSpeed) * (1 - Mathf.Clamp01(0.01f * deltaDistance));
+                        camController.zoomIntensity = Mathf.Clamp01(camController.zoomIntensity);
+                    }
+                    else if (deltaDistance < -1 && camController.zoomIntensity >= 0)
+                    {
+                        camController.zoomIntensity += (0.01f * camController.zoomSpeed) * (1 - Mathf.Clamp01(0.01f * deltaDistance));
+                        camController.zoomIntensity = Mathf.Clamp01(camController.zoomIntensity);
+                    }
                 }
-                else if(deltaDistance < -1 && camController.zoomIntensity >= 0)
-                {
-                    camController.zoomIntensity += (0.01f * camController.zoomSpeed)* (1 - Mathf.Clamp01(0.01f * deltaDistance));
-                    camController.zoomIntensity = Mathf.Clamp01(camController.zoomIntensity);
-                }  
             }
         }
         //No fingers on screen.
         else if (Input.touchCount == 0)
         {
-            camController.moveDirection = Vector2.zero;
+            if (camController != null)
+            {
+                camController.moveDirection = Vector2.zero;
+            }
             distance = 0;
 
             touchingGame = false;
