@@ -57,6 +57,13 @@ public class InputManager : MonoBehaviour
     EventSystem currentEventSystem;
     PointerEventData pointerData;
 
+    //Map Limits
+    private float minX;
+    private float maxX;
+    private float minY;
+    private float maxY;
+
+
     void Start()
     {
         currentEventSystem = EventSystem.current;
@@ -66,7 +73,13 @@ public class InputManager : MonoBehaviour
         canUseCam = true;
         canZoomCam = true;
         canMoveCam = true;
-    }
+
+        maxX = camController.limit.rightBorder;
+        minX = camController.limit.leftBorder;
+
+        maxY = camController.limit.upBorder;
+        minY = camController.limit.downBorder;
+     }
 
     void Update()
     {
@@ -246,7 +259,24 @@ public class InputManager : MonoBehaviour
         float distance;
         ground.Raycast(touchRay, out distance);
 
-        return Coordinates.ConvertWorldToVector2(touchRay.GetPoint(distance));
+        return ClampToMap(Coordinates.ConvertWorldToVector2(touchRay.GetPoint(distance)));
+    }
+
+    public Vector2 ClampToMap(Vector2 vector)
+    {
+        if (vector.x > maxX)
+            vector.x = maxX;
+
+        if (vector.x < minX)
+            vector.x = minX;
+
+        if (vector.y > maxY)
+            vector.y = maxY;
+
+        if (vector.y < minY)
+            vector.y = minY;
+
+            return vector;
     }
 
 }

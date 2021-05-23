@@ -272,6 +272,7 @@ namespace OceanEntities
             soundHandler.PlaySound(landingSound, audioSource, targetGroup);
 
             inputManager.canUseCam = true;
+            inputManager.canMoveCam = true;
             inputManager.canZoomCam = true;
             camController.SetZoom(1, 1);
         }

@@ -2667,6 +2667,7 @@ GameObject:
   - component: {fileID: 298209129857697407}
   - component: {fileID: 2498422139945803921}
   - component: {fileID: 4863396913377593089}
+  - component: {fileID: 7954615866753475793}
   m_Layer: 5
   m_Name: SubmarineContainerRework
   m_TagString: Untagged
@@ -2826,6 +2827,18 @@ MonoBehaviour:
   canClick: 0
   canDrag: 0
   canHold: 0
+--- !u!225 &7954615866753475793
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5990824007589866274}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &6057373541457610190
 GameObject:
   m_ObjectHideFlags: 0
@@ -3367,7 +3380,7 @@ MonoBehaviour:
   victoryCanvasGroup: {fileID: 7732718581591370976}
   deckCanvasGroup: {fileID: 1616882444781176725}
   entitiesSelectionCanvasGroup: {fileID: 7833214229313797562}
-  submarineCanvasGroup: {fileID: 0}
+  submarineCanvasGroup: {fileID: 7954615866753475793}
   victoryHeader: Victory !
   defeatHeader: Defeat ...
   blur:
