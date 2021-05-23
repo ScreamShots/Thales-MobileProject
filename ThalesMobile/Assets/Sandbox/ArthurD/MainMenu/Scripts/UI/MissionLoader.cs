@@ -108,7 +108,8 @@ public class MissionLoader : MonoBehaviour
 
     public void StartMission()
     {
-        GameManager.Instance.sceneHandler.LoadScene(1);
+        GameManager.Instance.sceneHandler.LoadScene(loadedMission.missionSceneIndex);
+        //GameManager.Instance.sceneHandler.LoadScene(2);
         //SceneManager.LoadScene(loadedMission.missionSceneName);
     }
 }

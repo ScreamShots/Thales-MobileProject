@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-
+using NaughtyAttributes;
 public enum MissionDifficulty { Easy, Medium, Hard };
 
 [System.Serializable]
@@ -16,8 +16,8 @@ public class GlobePoint
     [Tooltip("Niveau de difficulté")]
     public MissionDifficulty missionDifficulty = MissionDifficulty.Easy;
     [Space(5)]
-    [Tooltip("La Scene qui contient le niveau")]
-    public string missionSceneName;
+    [Tooltip("La Scene qui contient le niveau"), Scene]
+    public int missionSceneIndex;
 
     [Header("Globe Visual")]
     public GameObject button;

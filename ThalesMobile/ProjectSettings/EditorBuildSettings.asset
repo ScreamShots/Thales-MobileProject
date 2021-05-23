@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Sandbox/ThomasD/AlphaScene 1.unity
     guid: 070e6b0a67380c441a1ca5117d06226e
+  - enabled: 1
+    path: Assets/_Scenes/LDTwo.unity
+    guid: 7b8c76923124ece4799d5b2e47058ffe
   m_configObjects: {}

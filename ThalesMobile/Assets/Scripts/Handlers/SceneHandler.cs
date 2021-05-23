@@ -8,7 +8,7 @@ public class SceneHandler : MonoBehaviour
     [Header("Transition UI")]
     public GameObject transitionPanel;
     private Animator transitionPanelAnimator;
-    private bool finishedFade = false;
+    private bool finishedFade = true;
 
     void Start()
     {
@@ -26,7 +26,8 @@ public class SceneHandler : MonoBehaviour
 
     public void LoadScene(int sceneIndex)
     {
-        StartCoroutine(SceneTransition(sceneIndex));
+        if(finishedFade)
+            StartCoroutine(SceneTransition(sceneIndex));
     }
 
     public IEnumerator SceneTransition(int sceneToLoadBuildIndex)

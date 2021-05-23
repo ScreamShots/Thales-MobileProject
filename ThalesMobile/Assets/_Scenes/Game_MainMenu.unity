@@ -4641,8 +4641,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1951661758}
   m_HandleRect: {fileID: 1951661757}
   m_Direction: 2
-  m_Value: 0.9999997
-  m_Size: 0.4169571
+  m_Value: 0.99999976
+  m_Size: 0.35675475
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -11778,8 +11778,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17cd211bbfca15a4e961a63c4d471e37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  screenSize: {x: 1080, y: 2244}
-  centerPos: {x: 540, y: 1122, z: 0}
+  screenSize: {x: 1080, y: 1920}
+  centerPos: {x: 540, y: 960, z: 0}
   input: {fileID: 919132149453177770}
   slider: {fileID: 1870064779}
   menu: {fileID: 1820118679}
@@ -27496,7 +27496,7 @@ PrefabInstance:
     - target: {fileID: 3078130106839481975, guid: a7db2cd955db239408cfdcd44bf51cbf,
         type: 3}
       propertyPath: missionPoints.Array.data[2].missionSceneName
-      value: AlphaScene 1
+      value: LDTwo
       objectReference: {fileID: 0}
     - target: {fileID: 3259777627976511691, guid: a7db2cd955db239408cfdcd44bf51cbf,
         type: 3}
