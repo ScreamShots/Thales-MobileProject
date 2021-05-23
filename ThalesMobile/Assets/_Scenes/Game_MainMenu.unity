@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -9456,7 +9456,7 @@ MonoBehaviour:
       CAPTAS 4 et  BLUEMASTER. R\xE9put\xE9e pour sa discretion,elle  s'impose comme
       un pillier de la lutte anti-sous-marine.Elle embarque un h\xE9licopt\xE8re
       ASW lourd le  NH90 \"CAIMAN\". "
-    image: {fileID: 0}
+    image: {fileID: 21300000, guid: bf4389efe600fe243ad6fc0426908513, type: 3}
     linkName: Underwater warfare | Thales Group
     link: 'https://www.thalesgroup.com/en/activities/defence/naval-forces/underwater-warfare '
   - title: CORVETTE
@@ -9474,7 +9474,7 @@ MonoBehaviour:
       dans les missions oc\xE9aniques  longues en autonomie ou en coop\xE9ration.
       l'Atlantique 2 participe \xE0 la lutte anti-sous-marine gr\xE2ce \xE0 son radar
       SEARCHMASTER \xE0 ses bou\xE9es SONOFLASH  . "
-    image: {fileID: 0}
+    image: {fileID: 21300000, guid: 6c664982c260bf245943213e635bb377, type: 3}
     linkName: Underwater warfare | Thales Group
     link: 'https://www.thalesgroup.com/en/activities/defence/naval-forces/underwater-warfare '
   - title: HELO NH 90
@@ -9483,7 +9483,7 @@ MonoBehaviour:
       fr\xE9gate. Dans le cadre de la lutte anti-sous-marine , il  rejoint la position
       du sous-marin \xE0 une vitesse de 150 noeuds pour d\xE9ployer le sonar tremp\xE9
       FLASH."
-    image: {fileID: 0}
+    image: {fileID: 21300000, guid: bdd5dcb41fcd81a4b8335a507719b71c, type: 3}
     linkName: Underwater warfare | Thales Group
     link: 'https://www.thalesgroup.com/en/activities/defence/naval-forces/underwater-warfare '
   - title: CAPTAS 4
@@ -9493,7 +9493,7 @@ MonoBehaviour:
       et une antennelin\xE9aire passive  de r\xE9ception lui permettant de d\xE9tecter,
       localiser et classifier les sous-marins les plus furtifs \xE0 plus de 60 km.
       Le CAPTAS 4 peut \xEAtre utilis\xE9 en passif ou en actif. "
-    image: {fileID: 0}
+    image: {fileID: 21300000, guid: 4d76e7a470029854a826dc83418f4111, type: 3}
     linkName: CAPTAS Family | Thales Group
     link: https://www.thalesgroup.com/en/markets/defence-and-security/naval-forces/underwater-warfare/bluescan/captas-family
   - title: FLASH
@@ -9502,7 +9502,7 @@ MonoBehaviour:
       pour h\xE9licopt\xE8res. Lorsqu'il est utilis\xE9 conjointement avec un CAPTAS,
       il forme un formidable syst\xE8me de lutte anti-sous-marine. Les sonars FLASH
       sont utilis\xE9s par de nombreuses marines dans le monde."
-    image: {fileID: 0}
+    image: {fileID: 21300000, guid: a35ba80c0a0d0eb4797afbb5c80df7c7, type: 3}
     linkName: FLASH Family | Thales Group
     link: https://www.thalesgroup.com/en/markets/defence-and-security/naval-forces/underwater-warfare/bluescan/flash-family
   - title: BLUEMASTER
@@ -9511,7 +9511,7 @@ MonoBehaviour:
       fr\xE9gates de lutte anti-sous-marine. Il s'associe parfaitement avec les autres
       familles de produits Thales tels que les CAPTAS et les FLASH, ce qui constitue
       des syst\xE8mes de lutte anti-sous-marine tr\xE8s performants. "
-    image: {fileID: 0}
+    image: {fileID: 21300000, guid: e8ed635cc6aa9b4488e9622d862ad404, type: 3}
     linkName: "BlueScan \u2013 The Big Picture | Thales Group"
     link: https://www.thalesgroup.com/en/australia/news/bluescan-big-picture
   - title: MAD
@@ -9538,7 +9538,7 @@ MonoBehaviour:
       basse fr\xE9quence aux capacit\xE9s de d\xE9tection importante et qui peut
       \xEAtre utilis\xE9e de mani\xE8re active ou passive. Les syst\xE8mes BlueTracker
       de Thales permettent de traiter les donn\xE9es de ces bou\xE9es."
-    image: {fileID: 0}
+    image: {fileID: 21300000, guid: fafcc09fed64e4943b62421a5f9e7104, type: 3}
     linkName: Sonobuoys and Sonobuoy Processing Systems | Thales Group
     link: https://www.thalesgroup.com/en/markets/defence-and-security/naval-forces/underwater-warfare/bluescan/sonobuoys-and-sonobuoy
   - title: Oreille d'or
