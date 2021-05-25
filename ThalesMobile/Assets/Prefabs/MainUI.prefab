@@ -242,7 +242,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 26.65
+  m_fontSize: 24.65
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1705,7 +1705,7 @@ MonoBehaviour:
   deckCanvasGroup: {fileID: 1616882444781176725}
   descriptionCanvasGroup: {fileID: 7756876014141765704}
   entitiesSelectionCanvasGroup: {fileID: 7833214229313797562}
-  submarineCanvasGroup: {fileID: 0}
+  submarineCanvasGroup: {fileID: 7954615866753475793}
   descriptionContainerAnim:
     anim: {fileID: 11400000, guid: 377dae701012ca94d8097c439a43a97e, type: 2}
     rectTransform: {fileID: 2442366614310615343}
@@ -2931,7 +2931,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 61.1
+  m_fontSize: 71.4
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3289,7 +3289,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 17.7
+  m_fontSize: 16.35
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
