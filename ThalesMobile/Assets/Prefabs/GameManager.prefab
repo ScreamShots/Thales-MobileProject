@@ -587,7 +587,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4478173347079599324
 RectTransform:
   m_ObjectHideFlags: 0
@@ -847,7 +847,6 @@ GameObject:
   - component: {fileID: 3682279617419880169}
   - component: {fileID: 4762022619942076001}
   - component: {fileID: 6818856396595137098}
-  - component: {fileID: 7099064203387492379}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -906,7 +905,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentGameState: 0
-  pauseHandler: {fileID: 7099064203387492379}
+  pauseHandler: {fileID: 7602936853566749405}
   sceneHandler: {fileID: 820579288007411813}
   soundHandler: {fileID: 6818856396595137098}
   inputManager: {fileID: 3682279617419880169}
@@ -1121,6 +1120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pause: 0
+  pauseButton: {fileID: 2428181145610148925}
   pausePanel: {fileID: 8407812348170479379}
   targetGroup: {fileID: -9015305574639715243, guid: 9b41315a36bc40a4ea458016676fd8f1,
     type: 2}

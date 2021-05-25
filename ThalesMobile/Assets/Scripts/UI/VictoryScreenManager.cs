@@ -79,7 +79,7 @@ public class VictoryScreenManager : MonoBehaviour
     {
         //Implement button
         menuButton.interactable = false;
-        GameManager.Instance.sceneHandler.LoadScene(0);
+        GameManager.Instance.sceneHandler.LoadScene(0, false);
     }
 
 }

@@ -6,6 +6,7 @@ using UnityEngine.Audio;
 public class PauseHandler : MonoBehaviour
 {
     public bool pause;
+    public GameObject pauseButton;
     public GameObject pausePanel;
     private SceneHandler sceneHandler;
 
@@ -29,12 +30,6 @@ public class PauseHandler : MonoBehaviour
     {
         sceneHandler = GameManager.Instance.sceneHandler;
         source.ignoreListenerPause = true;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void Pause()
@@ -80,6 +75,11 @@ public class PauseHandler : MonoBehaviour
         source.volume = Mathf.Clamp01(selectSoundVolume);
         GameManager.Instance.soundHandler.PlaySound(selectClick, source, targetGroup);
         Pause();
-        sceneHandler.LoadScene(0);
+        sceneHandler.LoadScene(0, false);
+    }
+
+    public void PauseButtonDisplay(bool state)
+    {
+        pauseButton.SetActive(state);
     }
 }
