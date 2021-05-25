@@ -5,19 +5,13 @@ using UnityEngine;
 public class PauseHandler : MonoBehaviour
 {
     public bool pause;
+    public GameObject pauseButton;
     public GameObject pausePanel;
     private SceneHandler sceneHandler;
 
-    // Start is called before the first frame update
     void Start()
     {
         sceneHandler = GameManager.Instance.sceneHandler;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void Pause()
@@ -53,6 +47,11 @@ public class PauseHandler : MonoBehaviour
     public void ReturnToMenu()
     {
         Pause();
-        sceneHandler.LoadScene(0);
+        sceneHandler.LoadScene(0, false);
+    }
+
+    public void PauseButtonDisplay(bool state)
+    {
+        pauseButton.SetActive(state);
     }
 }
