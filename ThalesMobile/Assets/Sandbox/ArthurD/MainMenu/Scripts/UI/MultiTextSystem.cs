@@ -24,16 +24,17 @@ public class MultiTextSystem : MonoBehaviour
 
     void OnEnable()
     {
-        SlideWindow(0);
+        //SlideWindow(0);
     }
 
-    private void Update()
+    private void LateUpdate()
     {
-
+        /*
         if (!refocusing)
         {
             showWidow = Mathf.RoundToInt(scrollBar.value * (indicator.Length - 1));
         }
+        */
 
         UpdateIndicator();
 
@@ -41,9 +42,16 @@ public class MultiTextSystem : MonoBehaviour
         {
             FieldA_text.text = data.description;
         }
+
         if (data.image != null)
         {
+            fieldB_image.color = Color.white;
             fieldB_image.sprite = data.image;
+        }
+        else
+        {
+            fieldB_image.sprite = null;
+            fieldB_image.color = new Color(0,0,0,0);
         }
         if (data.link != null)
         {

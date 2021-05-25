@@ -14,7 +14,7 @@ public class CodexDataManager : MonoBehaviour
     public TextMeshProUGUI[] codexButtonTitle;
 
     [Header("Parameter")]
-    public CodexData[] loadedMission;
+    public CodexSCO codex;
 
     [ContextMenu("UpdateButton"), Button("UpdateButton")]
     private void Start()
@@ -23,18 +23,18 @@ public class CodexDataManager : MonoBehaviour
         {
             for (int i = 0; i < codexButtonTitle.Length; i++)
             {
-                codexButtonTitle[i].text = loadedMission[i].title;
-                codexButtonTitle[i].gameObject.name = "Titre:" + loadedMission[i].title;
-                codexButtonTitle[i].gameObject.GetParent().name = "Button_" + loadedMission[i].title;
+                codexButtonTitle[i].text = codex.data[i].title;
+                codexButtonTitle[i].gameObject.name = "Titre:" + codex.data[i].title;
+                codexButtonTitle[i].gameObject.GetParent().name = "Button_" + codex.data[i].title;
             }
         }
     }
 
     public void LoadDescription(int number)
     {
-        spriteField.sprite = loadedMission[number].categoIcon;
-        prodTitle.text = loadedMission[number].title;
-        multiText.data = loadedMission[number];
+        spriteField.sprite = codex.data[number].categoIcon;
+        prodTitle.text = codex.data[number].title;
+        multiText.data = codex.data[number];
 
         descriptionCanvas.SetActive(true);
     }
