@@ -30,7 +30,6 @@ public class GlobalPointFeedBack : MonoBehaviour
     Transform tempLookCamTransform;
     CameraController camController;
     public float animDuration;
-    public float revealKeepDuration;
     [SerializeField]
     AnimationCurve revealScaleProgression;
     Vector3 revealBaseScale;
@@ -72,13 +71,13 @@ public class GlobalPointFeedBack : MonoBehaviour
         GameManager.Instance.soundHandler.PlaySound(appearSound, appearSoundSource, targetGroup);
     }
 
-    public void DisplayReveal(Sprite revealIcon, Sprite revealPointer)
+    public void DisplayReveal(Sprite revealIcon, Sprite revealPointer, float revealDuration)
     {
         revealIconImage.sprite = revealIcon;
         revealPointerImage.sprite = revealPointer;
 
         if (currentAnim == null)
-            currentAnim = StartCoroutine(Scale(Vector3.one, animDuration, revealCanvasRT, true, revealKeepDuration));
+            currentAnim = StartCoroutine(Scale(Vector3.one, animDuration, revealCanvasRT, true, revealDuration));
           
         else resetTimer = 0;
     }

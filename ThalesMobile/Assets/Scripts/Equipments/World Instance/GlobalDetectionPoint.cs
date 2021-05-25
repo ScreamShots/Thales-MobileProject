@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using Tweek.FlagAttributes;
 
 public enum ExpirationValue {Fresh, NearExpiration, Expired, Revealed }
 
+
+[TweekClass]
 public class GlobalDetectionPoint : DetectionObject
 {
     public DetectableOceanEntity linkedEntity;
@@ -13,9 +16,13 @@ public class GlobalDetectionPoint : DetectionObject
 
     [Header("Expiration Params")]
     public ExpirationValue expirationState;
+    [TweekFlag(FieldUsage.Gameplay)]
     public float expirationDuration;
     [Range(0,1)]
-    public float expirationWarningTime;
+    [TweekFlag(FieldUsage.Gameplay)]
+    public float expirationWarningRatio;
+    [TweekFlag(FieldUsage.Gameplay)]
+    public float revealDuration;
 
     [Header("Update Params")]
     public bool updateWithMove;
@@ -71,7 +78,7 @@ public class GlobalDetectionPoint : DetectionObject
 
         if(detectionState == DetectionState.revealedDetection)
         {
-            feedbackBehavior.DisplayReveal(linkedEntity.detectFeedback.globalRevealIcon, linkedEntity.detectFeedback.globalRevealPointer);
+            feedbackBehavior.DisplayReveal(linkedEntity.detectFeedback.globalRevealIcon, linkedEntity.detectFeedback.globalRevealPointer, revealDuration);
         }
     }
 
@@ -81,7 +88,7 @@ public class GlobalDetectionPoint : DetectionObject
 
         if (newState == DetectionState.revealedDetection)
         {
-            feedbackBehavior.DisplayReveal(linkedEntity.detectFeedback.globalRevealIcon, linkedEntity.detectFeedback.globalRevealPointer);
+            feedbackBehavior.DisplayReveal(linkedEntity.detectFeedback.globalRevealIcon, linkedEntity.detectFeedback.globalRevealPointer, revealDuration);
             expirationState = ExpirationValue.Revealed;
             feedbackBehavior.UpdateColor(ExpirationValue.Revealed);
         }            
@@ -102,7 +109,7 @@ public class GlobalDetectionPoint : DetectionObject
                 feedbackBehavior.UpdateColor(ExpirationValue.Expired);
             }
 
-            if (expirationTimer >= expirationWarningTime * expirationDuration && expirationState == ExpirationValue.Fresh)
+            if (expirationTimer >= expirationWarningRatio * expirationDuration && expirationState == ExpirationValue.Fresh)
             {
                 expirationState = ExpirationValue.NearExpiration;
                 feedbackBehavior.UpdateColor(ExpirationValue.NearExpiration);

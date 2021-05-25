@@ -48,8 +48,11 @@ MonoBehaviour:
   serializedGuid: e2a3cbbfb1737548918cca96d28a17f1
   thisObjState: 2
   initState: 2
-  instanceID: 62254
-  referencedComponents: []
+  instanceID: 22972
+  referencedComponents:
+  - component: {fileID: 6225348895388417404}
+    serializedGuid: 343ac1b11bfa944d928df3c20266a45c
+    update: 1
 --- !u!114 &6225348895388417404
 MonoBehaviour:
   m_ObjectHideFlags: 0
