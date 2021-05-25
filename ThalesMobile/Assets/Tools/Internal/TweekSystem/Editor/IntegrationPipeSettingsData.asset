@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: IntegrationPipeSettingsData
   m_EditorClassIdentifier: Assembly-CSharp-Editor::IntePipeSettingsData
-  scenesPath: Assets/_Scenes
+  scenesPath: Assets/_PaslesScenesDuTout
   prefabsPath: Assets/Prefabs
   soundScoPath: Assets/Tools/Internal/TweekSystem/SoundTweekScriptableObject.cs
   graphicScoPath: Assets/Tools/Internal/TweekSystem/ArtTweekScriptableObject.cs

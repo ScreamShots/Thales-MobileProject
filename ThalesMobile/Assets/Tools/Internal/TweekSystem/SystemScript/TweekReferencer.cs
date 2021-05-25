@@ -289,22 +289,22 @@ public class TweekReferencer : MonoBehaviour, ISerializationCallbackReceiver
         {
             case ObjectState.PrefabInstance:
                 if (thisObjState == ObjectState.PrefabVariant || thisObjState == ObjectState.PrefabRoot) NewGuid();
-                else if (thisObjState != ObjectState.StandAlone) print("Unsupported exeption for object state transition from: " + initState + " to:" + thisObjState + " - " + gameObject.name);
+                //else if (thisObjState != ObjectState.StandAlone) print("Unsupported exeption for object state transition from: " + initState + " to:" + thisObjState + " - " + gameObject.name);
                 break;
 
             case ObjectState.PrefabRoot:
                 if (thisObjState == ObjectState.PrefabInstance || thisObjState == ObjectState.PrefabVariant) NewGuid();
-                else print("Unsupported exeption for object state transition from: " + initState + " to:" + thisObjState + " - " + gameObject.name);
+                //else print("Unsupported exeption for object state transition from: " + initState + " to:" + thisObjState + " - " + gameObject.name);
                 break;
 
             case ObjectState.PrefabVariant:
                 if (thisObjState == ObjectState.PrefabInstance) NewGuid();
-                else if (thisObjState != ObjectState.PrefabRoot) print("Unsupported exeption for object state transition from: " + initState + " to:" + thisObjState + " - " + gameObject.name);
+                //else if (thisObjState != ObjectState.PrefabRoot) print("Unsupported exeption for object state transition from: " + initState + " to:" + thisObjState + " - " + gameObject.name);
                 break;
 
             case ObjectState.StandAlone:
                 if (thisObjState == ObjectState.PrefabRoot) NewGuid();
-                else if (thisObjState != ObjectState.PrefabInstance) print("Unsupported exeption for object state transition from: " + initState + " to:" + thisObjState + " - " + gameObject.name);
+                //else if (thisObjState != ObjectState.PrefabInstance) print("Unsupported exeption for object state transition from: " + initState + " to:" + thisObjState + " - " + gameObject.name);
                 break;
         }
     }

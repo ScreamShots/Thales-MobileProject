@@ -20,7 +20,7 @@ public class Boat : DetectableOceanEntity
     private Vector2 nextPoint;
     private int currentPoint = 0;
 
-    private void Start()
+    protected override void Start()
     {
         GameManager.Instance.levelManager.submarineEntitiesInScene.Add(this);
 

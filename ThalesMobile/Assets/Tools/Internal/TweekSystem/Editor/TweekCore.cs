@@ -414,7 +414,6 @@ public class TweekCore : UnityEngine.Object
                             if (CompUsagePresence(comp, updateMode))
                             {
                                 tempAttributes = new AttributeBuilder[] { new AttributeBuilder(SupportedAttributes.Comp, comp.componentName + " Component - ID:") };
-                                Debug.Log(obj.serializedGuid.Length + " " + comp.serializedGuid.Length);
                                 outfile.WriteLine(WriteVar(typeof(string), "s" + separatorCount.ToString() + "Comp", tempAttributes, "\"" + new Guid(obj.serializedGuid).ToString() + "_" + new Guid(comp.serializedGuid).ToString() + "\""));
                                 separatorCount += 1;
                                 outfile.WriteLine("");
