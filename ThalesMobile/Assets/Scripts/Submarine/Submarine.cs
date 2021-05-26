@@ -85,6 +85,7 @@ public class Submarine : DetectableOceanEntity
     [HideInInspector] public DecoyInstance decoy2;
     [HideInInspector] public DecoyInstance decoy3;
     public bool isDecoyMoving;
+    [HideInInspector] public bool changeUIDecoy;
 
     private bool decoyIsCreateFlag;
     [TweekFlag(FieldUsage.Gameplay)]
@@ -1020,6 +1021,7 @@ public class Submarine : DetectableOceanEntity
             {
                 //radioSilence.UseCounterMeasure(this);
                 baitDecoy.UseCounterMeasure(this);
+                StartCoroutine(DecoyChangeMatUI());
             }
         }
         /*
@@ -1043,6 +1045,14 @@ public class Submarine : DetectableOceanEntity
             }
         }
         return false;
+    }
+
+    IEnumerator DecoyChangeMatUI()
+    {
+        yield return new WaitForSeconds(baitDecoy.loadingTime);
+        changeUIDecoy = true;
+        yield return new WaitForSeconds(baitDecoy.duration);
+        changeUIDecoy = false;
     }
     #endregion
 }

@@ -13,6 +13,7 @@ public class SubmarineUIManager : MonoBehaviour
     public Material submarineCalmStatusMaterial;
     public Material submarineAlertStatusMaterial;
     public Material submarinePanicStatusMaterial;
+    public Material submarineNoise;
 
     public Canvas submarineCanvas;
     public GameObject nodeContainer;
