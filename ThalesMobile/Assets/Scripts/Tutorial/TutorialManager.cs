@@ -387,7 +387,7 @@ public class TutorialManager : MonoBehaviour
         hand_7.SetActive(false);
         #endregion
 
-        #region Screen 8 : Click on screen to move
+        #region Screen 8 : Click on smcreen to move
         textContainer_8.SetActive(true);
         screenText_8.text = "Puis <b>appuyez</b> sur l'endroit de la zone où vous voulez <b>déplacer</b> votre bâtiment";
         hand_8.SetActive(true);
@@ -477,6 +477,7 @@ public class TutorialManager : MonoBehaviour
         shipMovementCard.canDrag = false;
 
         tutorialShip.linkedButton.SelectEntity();
+        tutorialShip.activeEquipement.Init(tutorialShip);
 
         yield return new WaitUntil(() => tutorialShip.activeEquipement.chargeCount == 0);
 
@@ -517,6 +518,8 @@ public class TutorialManager : MonoBehaviour
 
         planeEquipementCard.gameObject.SetActive(true);
         tutorialPlane.linkedButton.SelectEntity();
+        tutorialPlane.activeEquipement.Init(tutorialPlane);
+
         planeMovementCard.canClick = false;
         planeMovementCard.canDrag = false;
 
@@ -537,30 +540,55 @@ public class TutorialManager : MonoBehaviour
         screenText_15.text = "Le Bluemaster détecte tous les objets immergés dans son rayon d'action.";
         tutorialShip.linkedButton.SelectEntity();
 
-        yield return new WaitForSeconds(5f);
-
         Vector3 tempPostition = pointToDetect.transform.position;
-        pointToDetect.transform.position = tutorialShip.transform.position + new Vector3(0, 0, 1);
+        pointToDetect.transform.position = tutorialShip.transform.position + new Vector3(0, 0, 3);
+        pointToDetect.coords.position = Coordinates.ConvertWorldToVector2(pointToDetect.transform.position);
 
+        yield return new WaitForSeconds(3f);
+
+        tutorialShip.passiveEquipement.Init(tutorialShip);
+        
         yield return new WaitUntil(() => pointToDetect.linkedGlobalDetectionPoint.detectionState == DetectionState.unknownDetection);
 
-        pointToDetect.transform.position = tempPostition;
+        cameraController.SetTarget(pointToDetect.linkedGlobalDetectionPoint.transform);
+        cameraController.SetZoom(0,1f);
+
+        yield return new WaitForSeconds(5f);
+
+        cameraController.SetZoom(1, 1);
+        
+        yield return new WaitForSeconds(1);
+
+
         textContainer_15.SetActive(false);
         #endregion
 
         #region Screen 16 : SearchMaster 
         textContainer_16.SetActive(true);
         screenText_16.text = "Le Searchmaster identifie la nature d'un objet immergé et détecté dans son rayon d'action.";
-        tutorialShip.linkedButton.SelectEntity();
+        tutorialPlane.linkedButton.SelectEntity();
 
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(3f);
 
-        Vector3 tempPostitionReveal = pointToDetect.transform.position;
-        pointToReveal.transform.position = tutorialPlane.transform.position + new Vector3(0, 0, 1);
+        tutorialPlane.passiveEquipement.Init(tutorialPlane);
+        planeMovementCard.canClick = true;
+        planeMovementCard.canDrag = true;
 
         yield return new WaitUntil(() => pointToReveal.linkedGlobalDetectionPoint.detectionState == DetectionState.revealedDetection);
 
-        pointToReveal.transform.position = tempPostitionReveal;
+        cameraController.SetTarget(pointToReveal.linkedGlobalDetectionPoint.transform);
+        cameraController.SetZoom(0, 1f);
+
+        yield return new WaitForSeconds(5f);
+
+        cameraController.SetZoom(1, 1);
+
+        yield return new WaitForSeconds(1);
+
+        planeMovementCard.canClick = false;
+        planeMovementCard.canDrag = false;
+        pointToDetect.transform.position = tempPostition;
+        pointToDetect.coords.position = Coordinates.ConvertWorldToVector2(pointToDetect.transform.position);
         textContainer_16.SetActive(false);
         #endregion
 
@@ -586,20 +614,31 @@ public class TutorialManager : MonoBehaviour
 
         #region Screen 19 : Submarine Apparition
         textContainer_19.SetActive(true);
-        screenText_19.text = "Des informations complémentaires sont disponibles en restant appuyer sur un élément de l'écran";
+        screenText_19.text = "Un sous-marin vient d'entrer dans la zone d'entraînement !";
+
         tutorialSubmarine.gameObject.SetActive(true);
-        tutorialSubmarine.transform.position += new Vector3(0, 1, 0) * 0.5f;
+        tutorialSubmarine.currentSpeed = 0;
+        tutorialSubmarine.maxSpeed = 0;
+
         cameraController.SetTarget(tutorialSubmarine.transform);
         cameraController.SetZoom(0,1);
-
         yield return new WaitForSeconds(1);
 
-        while(tutorialSubmarine.transform.position.y > -0.5f)
+        while (tutorialSubmarine.submarineRenderer.transform.position.y < 0.5f)
         {
-            tutorialSubmarine.transform.position -= new Vector3(0, 1, 0) * Time.deltaTime;
+            tutorialSubmarine.submarineRenderer.transform.position += new Vector3(0, 1, 0) * Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
 
+        yield return new WaitForSeconds(2);
+
+        while(tutorialSubmarine.submarineRenderer.transform.position.y > -0.5f)
+        {
+            tutorialSubmarine.submarineRenderer.transform.position -= new Vector3(0, 1, 0) * Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+
+        yield return new WaitForSeconds(1);
         textContainer_19.SetActive(false);
         #endregion
 
@@ -670,6 +709,16 @@ public class TutorialManager : MonoBehaviour
         tutorialSubmarine.maxSpeed = 0;
         tutorialSubmarine.currentSpeed = 0;
 
+        planeEquipementCard.canClick = true;
+        planeEquipementCard.canDrag = true;
+        planeMovementCard.canClick = true;
+        planeMovementCard.canDrag = true;
+
+        shipEquipementCard.canClick = true;
+        shipEquipementCard.canDrag = true;
+        shipMovementCard.canClick = true;
+        shipMovementCard.canDrag = true;
+
         yield return new WaitForSeconds(5f);
 
         textContainer_25.SetActive(false);
@@ -680,6 +729,8 @@ public class TutorialManager : MonoBehaviour
         #region Screen 26 : Helo Selection
         textContainer_26.SetActive(true);
         screenText_26.text = "Vous avez détecté et identifié le sous-marin  Pour le faire fuir, vous devez utiliser l'hélicoptère : HELO. \nSélectionnez l'HELO";
+
+        uiHandler.entitiesSelectionUI.helicopterSelectionParent.SetActive(true);
 
         yield return new WaitUntil(() => playerController.currentSelectedEntity == tutorialHelicopter);
 
@@ -725,7 +776,7 @@ public class TutorialManager : MonoBehaviour
 
         yield return new WaitUntil(() => victoryCanvasGroup.alpha == 1);
 
-        textContainer_31.SetActive(true);
+        textContainer_31.SetActive(false);
         #endregion
 
         #region Screen 32 : Victory Screen

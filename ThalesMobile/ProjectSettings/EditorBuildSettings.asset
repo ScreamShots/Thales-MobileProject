@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/LDTwo.unity
     guid: 7b8c76923124ece4799d5b2e47058ffe
+  - enabled: 1
+    path: Assets/Sandbox/ThomasD/TutorialScene.unity
+    guid: 661d79446880c7b4ca331c0479b046b4
   m_configObjects: {}
