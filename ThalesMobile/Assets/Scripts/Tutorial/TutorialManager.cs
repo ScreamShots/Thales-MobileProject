@@ -86,6 +86,7 @@ public class TutorialManager : MonoBehaviour
     [Space]
     public GameObject textContainer_13;
     public TextMeshProUGUI screenText_13;
+    public GameObject hand_13;
     [Space]
     public GameObject textContainer_13bis;
     public TextMeshProUGUI screenText_13bis;
@@ -96,16 +97,19 @@ public class TutorialManager : MonoBehaviour
     public TextMeshProUGUI screenText_14a;
     public GameObject textContainer_14b;
     public TextMeshProUGUI screenText_14b;
+    public GameObject hand_14;
 
     [Space]
     public GameObject textContainer_15;
     public TextMeshProUGUI screenText_15;
     public DetectableOceanEntity pointToDetect;
+    public GameObject hand_15;
 
     [Space]
     public GameObject textContainer_16;
     public TextMeshProUGUI screenText_16;
     public DetectableOceanEntity pointToReveal;
+    public GameObject hand_16;
 
     [Space]
     public GameObject textContainer_17;
@@ -115,6 +119,7 @@ public class TutorialManager : MonoBehaviour
     public GameObject textContainer_18;
     public TextMeshProUGUI screenText_18;
     public CanvasGroup descriptionCanvasGroup;
+    public GameObject hand_18;
 
     [Space]
     public GameObject textContainer_19;
@@ -128,18 +133,22 @@ public class TutorialManager : MonoBehaviour
     [Space]
     public GameObject textContainer_21;
     public TextMeshProUGUI screenText_21;
+    public GameObject hand_21;
 
     [Space]
     public GameObject textContainer_22;
     public TextMeshProUGUI screenText_22;
+    public GameObject hand_22;
 
     [Space]
     public GameObject textContainer_23;
     public TextMeshProUGUI screenText_23;
+    public GameObject hand_23;
 
     [Space]
     public GameObject textContainer_24;
     public TextMeshProUGUI screenText_24;
+    public GameObject hand_24;
 
     [Space]
     public GameObject textContainer_25;
@@ -148,10 +157,12 @@ public class TutorialManager : MonoBehaviour
     [Space]
     public GameObject textContainer_26;
     public TextMeshProUGUI screenText_26;
+    public GameObject hand_26;
 
     [Space]
     public GameObject textContainer_27;
     public TextMeshProUGUI screenText_27;
+    public GameObject hand_27;
 
     [Space]
     public GameObject textContainer_29;
@@ -160,6 +171,7 @@ public class TutorialManager : MonoBehaviour
     [Space]
     public GameObject textContainer_30;
     public TextMeshProUGUI screenText_30;
+    public GameObject hand_30;
 
     [Space]
     public GameObject textContainer_31;
@@ -478,12 +490,15 @@ public class TutorialManager : MonoBehaviour
 
         tutorialShip.linkedButton.SelectEntity();
         tutorialShip.activeEquipement.Init(tutorialShip);
+        hand_13.SetActive(true);
 
         yield return new WaitUntil(() => tutorialShip.activeEquipement.chargeCount == 0);
 
+        
         textContainer_13.SetActive(false);
         shipEquipementCard.canClick = false;
         shipEquipementCard.canDrag = false;
+        hand_13.SetActive(false);
 
         yield return new WaitForSeconds(1);
         #endregion
@@ -515,6 +530,8 @@ public class TutorialManager : MonoBehaviour
         textContainer_14b.SetActive(true);
         screenText_14a.text = "La bouée Sonobuy détècte tout les objets immergés se trouvant dans sa portée.";
         screenText_14b.text = "Appuyez et faites glisser la carte bouée jusqu'a l'endroit où vous souhaitez la larguer.";
+        hand_14.SetActive(true);
+
 
         planeEquipementCard.gameObject.SetActive(true);
         tutorialPlane.linkedButton.SelectEntity();
@@ -526,6 +543,7 @@ public class TutorialManager : MonoBehaviour
         planeEquipementCard.canClick = true;
         planeEquipementCard.canDrag = true;
 
+
         yield return new WaitUntil(() => tutorialPlane.activeEquipement.chargeCount == tutorialPlane.activeEquipement.chargeMax - 1);
 
         planeEquipementCard.canClick = false;
@@ -533,6 +551,7 @@ public class TutorialManager : MonoBehaviour
 
         textContainer_14a.SetActive(false);
         textContainer_14b.SetActive(false);
+        hand_14.SetActive(false);
         #endregion
 
         #region Screen 15 : Hull Sonar / BlueMaster
@@ -544,6 +563,8 @@ public class TutorialManager : MonoBehaviour
         pointToDetect.transform.position = tutorialShip.transform.position + new Vector3(0, 0, 3);
         pointToDetect.coords.position = Coordinates.ConvertWorldToVector2(pointToDetect.transform.position);
 
+        hand_15.SetActive(true);
+
         yield return new WaitForSeconds(3f);
 
         tutorialShip.passiveEquipement.Init(tutorialShip);
@@ -552,6 +573,7 @@ public class TutorialManager : MonoBehaviour
 
         cameraController.SetTarget(pointToDetect.linkedGlobalDetectionPoint.transform);
         cameraController.SetZoom(0,1f);
+        hand_15.SetActive(false);
 
         yield return new WaitForSeconds(5f);
 
@@ -567,6 +589,7 @@ public class TutorialManager : MonoBehaviour
         textContainer_16.SetActive(true);
         screenText_16.text = "Le Searchmaster identifie la nature d'un objet immergé et détecté dans son rayon d'action.";
         tutorialPlane.linkedButton.SelectEntity();
+        hand_16.SetActive(true);
 
         yield return new WaitForSeconds(3f);
 
@@ -578,6 +601,7 @@ public class TutorialManager : MonoBehaviour
 
         cameraController.SetTarget(pointToReveal.linkedGlobalDetectionPoint.transform);
         cameraController.SetZoom(0, 1f);
+        hand_16.SetActive(false);
 
         yield return new WaitForSeconds(5f);
 
@@ -604,10 +628,12 @@ public class TutorialManager : MonoBehaviour
         #region Screen 18 : Hold For Information
         textContainer_18.SetActive(true);
         screenText_18.text = "Des informations complémentaires sont disponibles en restant appuyer sur un élément de l'écran";
+        hand_18.SetActive(true);
 
         yield return new WaitUntil(() => descriptionCanvasGroup.alpha == 1);
 
         textContainer_18.SetActive(false);
+        hand_18.SetActive(false);
 
         yield return new WaitUntil(() => descriptionCanvasGroup.alpha == 0);
         #endregion
@@ -661,10 +687,13 @@ public class TutorialManager : MonoBehaviour
         screenText_21.text = "Il y a plusieurs points d'intérêts sur la zone, le sous-marin doit en pirater un certain nombre pour gagner";
 
         cameraController.SetZoom(1f, 1);
-
+        yield return new WaitForSeconds(1);
+        hand_21.SetActive(true);
 
         yield return new WaitUntil(() => Input.touchCount == 1);
         yield return new WaitUntil(() => Input.touchCount == 0);
+
+        hand_21.SetActive(false);
 
         textContainer_21.SetActive(false);
         #endregion
@@ -675,9 +704,12 @@ public class TutorialManager : MonoBehaviour
 
         uiHandler.submarineUI.gameObject.SetActive(true);
 
+        hand_22.SetActive(true);
 
         yield return new WaitUntil(() => Input.touchCount == 1);
         yield return new WaitUntil(() => Input.touchCount == 0);
+
+        hand_22.SetActive(false);
 
         textContainer_22.SetActive(false);
         #endregion
@@ -686,8 +718,12 @@ public class TutorialManager : MonoBehaviour
         textContainer_23.SetActive(true);
         screenText_23.text = "La jauge représente l'avancement du sous-marin dans le piratage des points d'intérêt, ainsi que le nombre de point d'intérêt qu'il doit pirater. Si cette jauge est pleine, le sous-marin gagne la partie.";
 
+        hand_23.SetActive(true);
+
         yield return new WaitUntil(() => Input.touchCount == 1);
         yield return new WaitUntil(() => Input.touchCount == 0);
+
+        hand_23.SetActive(false);
 
         textContainer_23.SetActive(false);
         #endregion
@@ -696,8 +732,12 @@ public class TutorialManager : MonoBehaviour
         textContainer_24.SetActive(true);
         screenText_24.text = "Le cercle représente l'état du sous-marin, quand le cercle devient rouge, c'est que le sous-marin vous a détecté et essaye de fuir. Si le cercle reste rouge pendant trop longtemps, le sous - marin effectuera une manoeuvre spéciale pour vous semer.";
 
+        hand_24.SetActive(true);
+
         yield return new WaitUntil(() => Input.touchCount == 1);
         yield return new WaitUntil(() => Input.touchCount == 0);
+
+        hand_24.SetActive(false);
 
         textContainer_24.SetActive(false);
         #endregion
@@ -731,9 +771,11 @@ public class TutorialManager : MonoBehaviour
         screenText_26.text = "Vous avez détecté et identifié le sous-marin  Pour le faire fuir, vous devez utiliser l'hélicoptère : HELO. \nSélectionnez l'HELO";
 
         uiHandler.entitiesSelectionUI.helicopterSelectionParent.SetActive(true);
+        hand_26.SetActive(true);
 
         yield return new WaitUntil(() => playerController.currentSelectedEntity == tutorialHelicopter);
 
+        hand_26.SetActive(false);
         textContainer_26.SetActive(false);
         #endregion
 
@@ -741,11 +783,19 @@ public class TutorialManager : MonoBehaviour
         textContainer_27.SetActive(true);
         screenText_27.text = "L'HELO a un temps de préparation";
 
+        hand_27.SetActive(true);
+
+        yield return new WaitUntil(() => tutorialHelicopter.operating);
+
+        hand_27.SetActive(false);
+
         yield return new WaitUntil(() => tutorialHelicopter.inAlert);
 
+        hand_27.SetActive(true);
         screenText_27.text = "L'HELO ne reste actif que pendant un temps limité une fois qu'il a été activé";
 
         yield return new WaitUntil(() => tutorialHelicopter.inFlight);
+        hand_27.SetActive(false);
 
         textContainer_27.SetActive(false);
         #endregion
@@ -764,15 +814,17 @@ public class TutorialManager : MonoBehaviour
         #region Screen 30 : Flash Display
         textContainer_30.SetActive(true);
         screenText_30.text = "Le sonar Flash est le seul équipement de l'HELO. Il permet de détecter les objets immergés proches et de faire fuir le sous-marin si vous parvenez à toucher avec.";
+        hand_30.SetActive(true);
 
         yield return new WaitForSeconds(5);
 
+        hand_30.SetActive(false);
         textContainer_30.SetActive(false);
         #endregion
 
         #region Screen 31 : Flash Usage
         textContainer_31.SetActive(true);
-        screenText_31.text = "Utilisez le flash au dessus du sous-marin pour le faire fuir.";
+        screenText_31.text = "Déplacez vous au dessus du sous-marin et utilisez le Flash pour le faire fuir.";
 
         yield return new WaitUntil(() => victoryCanvasGroup.alpha == 1);
 
