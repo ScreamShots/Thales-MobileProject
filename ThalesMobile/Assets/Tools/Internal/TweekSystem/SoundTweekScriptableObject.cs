@@ -1,4 +1,4 @@
-//Random Generatated char value: 95a5c219-3634-48e5-a17e-ed0ea4ec27b9
+//Random Generatated char value: c9d9a485-76fd-4eee-abee-bad30f5c7d93
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -109,14 +109,14 @@ public class SoundTweekScriptableObject : ScriptableObject
 [Path("From")] public string s21_From = "Assets/Prefabs/Assets/Prefabs/Submarine Entities";
 
 [Header("GameObject: Submarine")]
-[Id("Submarine Component - ID:")] public string s22Id = "b37c2e93-aa03-4086-988d-7ac4188c2d2c";
+[Id("Submarine Component - ID:")] public string s22Id = "96749c2f-3e89-4552-ad57-8a253754f207";
 
-[Comp("Submarine Component - ID:")] public string s23Comp = "b37c2e93-aa03-4086-988d-7ac4188c2d2c_bd1bd582-bd2f-42b4-a0c3-15dd959bd187";
+[Comp("Submarine Component - ID:")] public string s23Comp = "96749c2f-3e89-4552-ad57-8a253754f207_bd1bd582-bd2f-42b4-a0c3-15dd959bd187";
 
-[Var("inHackClip")] [Tooltip("inHackClip")] public AudioClip inHackClip_b37c2e93µaa03µ4086µ988dµ7ac4188c2d2c_bd1bd582µbd2fµ42b4µa0c3µ15dd959bd187;
-[Var("doneHackClip")] [Tooltip("doneHackClip")] public AudioClip doneHackClip_b37c2e93µaa03µ4086µ988dµ7ac4188c2d2c_bd1bd582µbd2fµ42b4µa0c3µ15dd959bd187;
-[Var("inHackVolume")] [Tooltip("inHackVolume")] public float inHackVolume_b37c2e93µaa03µ4086µ988dµ7ac4188c2d2c_bd1bd582µbd2fµ42b4µa0c3µ15dd959bd187;
-[Var("doneHackVolume")] [Tooltip("doneHackVolume")] public float doneHackVolume_b37c2e93µaa03µ4086µ988dµ7ac4188c2d2c_bd1bd582µbd2fµ42b4µa0c3µ15dd959bd187;
+[Var("inHackClip")] [Tooltip("inHackClip")] public AudioClip inHackClip_96749c2fµ3e89µ4552µad57µ8a253754f207_bd1bd582µbd2fµ42b4µa0c3µ15dd959bd187;
+[Var("doneHackClip")] [Tooltip("doneHackClip")] public AudioClip doneHackClip_96749c2fµ3e89µ4552µad57µ8a253754f207_bd1bd582µbd2fµ42b4µa0c3µ15dd959bd187;
+[Var("inHackVolume")] [Tooltip("inHackVolume")] public float inHackVolume_96749c2fµ3e89µ4552µad57µ8a253754f207_bd1bd582µbd2fµ42b4µa0c3µ15dd959bd187;
+[Var("doneHackVolume")] [Tooltip("doneHackVolume")] public float doneHackVolume_96749c2fµ3e89µ4552µad57µ8a253754f207_bd1bd582µbd2fµ42b4µa0c3µ15dd959bd187;
 
 [Space]
 [Path("From")] public string s24_From = "Assets/Prefabs/Assets/Prefabs/UI";
