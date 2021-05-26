@@ -21,7 +21,7 @@ namespace OceanEntities
 
 
         [Header("Audio")]
-        private SoundHandler soundHandler;
+        
         public AudioSource audioSource;
         public AudioMixerGroup targetGroup;
         [TweekFlag(FieldUsage.Sound)]
@@ -33,6 +33,16 @@ namespace OceanEntities
         [TweekFlag(FieldUsage.Sound)]
         public float movementSoundVolume;
         bool fading;
+        private SoundHandler soundHandler;
+
+        [Space]
+
+        public AudioSource oceanCalmSource;
+        public AudioClip oceanCalmClip;
+        public AudioMixerGroup oceanCalmTargetMixer;
+        public float oceanCalmVolume;
+        public AnimationCurve oceanCalm3DVolume;
+
         private void Start()
         {
             environment = GameManager.Instance.levelManager.environnement;
@@ -48,6 +58,12 @@ namespace OceanEntities
             //Equipment initialization.
             passiveEquipement.Init(this);
             activeEquipement.Init(this);
+
+            oceanCalmSource.maxDistance = GameManager.Instance.cameraController.camSett.maxHeight;
+            oceanCalmSource.SetCustomCurve(AudioSourceCurveType.CustomRolloff, oceanCalm3DVolume);
+
+            oceanCalmSource.volume = Mathf.Clamp(0, 1, oceanCalmVolume);
+            GameManager.Instance.soundHandler.PlaySound(oceanCalmClip, oceanCalmSource, oceanCalmTargetMixer);
         }
         Vector2 lastValidPos;
         private void Update()

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using Tweek.FlagAttributes;
+using NaughtyAttributes;
 
 [TweekClass]
 public class CameraController : MonoBehaviour
@@ -15,7 +16,7 @@ public class CameraController : MonoBehaviour
     [Header("Zoom Parameter")]
     [Range(0, 1)] public float zoomIntensity;
     [TweekFlag(FieldUsage.Gameplay)] [Range(1, 10)] public float zoomSpeed = 5;
-    [TweekFlag(FieldUsage.Gameplay)] public CameraSettings camSett;
+    [TweekFlag(FieldUsage.Gameplay), Expandable] public CameraSettings camSett;
     private float aimAngle;
     private float aimHeight;
     private float aimPromimity;
