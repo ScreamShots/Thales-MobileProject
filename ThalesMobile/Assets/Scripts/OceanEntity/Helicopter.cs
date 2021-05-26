@@ -344,7 +344,7 @@ namespace OceanEntities
         {
             Coroutine timer = StartCoroutine(FlightTimer());
 
-            camController.target = _transform;
+            camController.SetTarget(_transform);
             camController.SetZoom(0.2f, 1);
             inputManager.canUseCam = false;
             inputManager.canMoveCam = false;

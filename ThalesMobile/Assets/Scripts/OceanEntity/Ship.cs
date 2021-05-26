@@ -4,6 +4,7 @@ using UnityEngine;
 using PlayerEquipement;
 using UnityEngine.Audio;
 using Tweek.FlagAttributes;
+using UnityEngine.SceneManagement;
 
 namespace OceanEntities
 {
@@ -46,8 +47,9 @@ namespace OceanEntities
             coords.direction = Coordinates.ConvertWorldToVector2(_transform.forward);
 
             //Equipment initialization.
-            passiveEquipement.Init(this);
-            activeEquipement.Init(this);
+            if (SceneManager.GetActiveScene().name != "TutorialScene")
+                passiveEquipement.Init(this);
+                activeEquipement.Init(this);
         }
         Vector2 lastValidPos;
         private void Update()
@@ -137,19 +139,12 @@ namespace OceanEntities
                 _transform.forward = Coordinates.ConvertVector2ToWorld(coords.direction);
             }
 
-
-            if ((targetPosition - coords.position).magnitude < 2f)
+            if((targetPosition - coords.position).magnitude < 0.1f)
             {
-                if (currentSpeed > 0.5)
-                {
-                    currentSpeed -= acceleration * 3 * Time.deltaTime;
-                }
-                if((targetPosition - coords.position).magnitude < 0.1f)
-                {
-                    currentSpeed = 0;
-                    currentTargetPoint = nullVector;
-                }
+                currentSpeed = 0;
+                currentTargetPoint = nullVector;
             }
+            
         }
 
         public override void Waiting()

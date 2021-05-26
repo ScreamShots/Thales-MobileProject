@@ -92,7 +92,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40.25
+  m_fontSize: 23.9
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -436,7 +436,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42.45
+  m_fontSize: 25.25
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -846,7 +846,7 @@ MonoBehaviour:
     type: 3}
   launchSprite: {fileID: -5021689961135746624, guid: dc1b3631f20c99846b533da12c4f3cf3,
     type: 3}
-  returnSprite: {fileID: 7110608646313764797, guid: dc1b3631f20c99846b533da12c4f3cf3,
+  returnSprite: {fileID: -4451412799086614443, guid: 3f67bbd660afa4f4c8fd30ac423e4df3,
     type: 3}
   unavailableSprite: {fileID: 7901493621505351598, guid: dc1b3631f20c99846b533da12c4f3cf3,
     type: 3}
