@@ -51,6 +51,13 @@ public class GlobalPointFeedBack : MonoBehaviour
     float appearSoundVolume;
     [SerializeField]
     AudioSource appearSoundSource;
+    [SerializeField]
+    AudioClip submarinDetected;
+    [SerializeField]
+    float submarinDetectedVolume;
+    [SerializeField]
+    AudioSource submarinDetectedSource;
+    bool alreadyPlayedSound;
 
     private void Start()
     {
@@ -75,6 +82,13 @@ public class GlobalPointFeedBack : MonoBehaviour
     {
         revealIconImage.sprite = revealIcon;
         revealPointerImage.sprite = revealPointer;
+
+        if (!alreadyPlayedSound && source.linkedEntity.GetType() == typeof(Submarine))
+        {
+            submarinDetectedSource.volume = Mathf.Clamp01(submarinDetectedVolume);
+            GameManager.Instance.soundHandler.PlaySound(submarinDetected, submarinDetectedSource, targetGroup);
+            //alreadyPlayedSound = true;
+        }        
 
         if (currentAnim == null)
             currentAnim = StartCoroutine(Scale(Vector3.one, animDuration, revealCanvasRT, true, revealDuration));
