@@ -264,7 +264,7 @@ public class Submarine : DetectableOceanEntity
         {
             if (interestPoints.Count > 0)
             {
-                randomNumber = Random.Range(0, interestPoints.Count - 1);
+                randomNumber = Random.Range(0, interestPoints.Count);
                 nextInterestPoint = interestPoints[randomNumber];
                 movingToNextPoint = true;
             }
