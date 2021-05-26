@@ -12,4 +12,220 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb3140746d8f9f9469687115d7cca3c6, type: 3}
   m_Name: Codex
   m_EditorClassIdentifier: 
-  data: []
+  data:
+  - title: FREMM
+    categoIcon: {fileID: 21300000, guid: d1c6079168eb5304e9191a90109038b8, type: 3}
+    description: "La FREMM (fr\xE9gate multi-mission) est \xE9quip\xE9e des sonars
+      CAPTAS 4 et BLUEMASTER. R\xE9put\xE9e pour sa discr\xE9tion, elle s\u2019impose
+      comme un pilier de la lutte anti-sous-marine. Elle embarque un h\xE9licopt\xE8re
+      ASW lourd, le NH90 \u201CCAIMAN\u201D."
+    image: {fileID: 21300000, guid: bf4389efe600fe243ad6fc0426908513, type: 3}
+    linkName: Underwater warfare | Thales Group
+    link: https://www.thalesgroup.com/en/activities/defence/naval-forces/underwater-warfare
+  - title: CORVETTE
+    categoIcon: {fileID: 21300000, guid: d1c6079168eb5304e9191a90109038b8, type: 3}
+    description: "L\u2019OPV (Oceanic Patrol Vessel) ou corvette est un navire de
+      taille moyenne. Il peut \xEAtre \xE9quip\xE9 d\u2019un sonar remorqu\xE9 (CAPTAS
+      2 ou 1), d\u2019un sonar de coque (BLUEWATCHER ou BLUEHUNTER). Il peut embarquer
+      un h\xE9licopt\xE8re l\xE9ger ou un drone. "
+    image: {fileID: 0}
+    linkName: Underwater warfare | Thales Group
+    link: https://www.thalesgroup.com/en/activities/defence/naval-forces/underwater-warfare
+  - title: MPA ATL2
+    categoIcon: {fileID: 21300000, guid: d1c6079168eb5304e9191a90109038b8, type: 3}
+    description: "L\u2019Atlantique 2 est un MPA (Maritime Patrol Aircraft) sp\xE9cialis\xE9
+      dans les missions oc\xE9aniques longues en autonomie ou en coop\xE9ration.
+      L\u2019Atlantique 2 participe \xE0 la lutte anti-sous-marine gr\xE2ce \xE0
+      son radar SEARCHMASTER \xE0 ses bou\xE9es SONOFLASH. "
+    image: {fileID: 21300000, guid: 6c664982c260bf245943213e635bb377, type: 3}
+    linkName: Underwater warfare | Thales Group
+    link: https://www.thalesgroup.com/en/activities/defence/naval-forces/underwater-warfare
+  - title: HELO NH 90
+    categoIcon: {fileID: 21300000, guid: d1c6079168eb5304e9191a90109038b8, type: 3}
+    description: "Le NH90 \u201CCa\xEFman\u201D est un h\xE9licopt\xE8re embarqu\xE9
+      sur fr\xE9gate. Dans le cadre de la lutte anti-sous-marine, il rejoint la position
+      du sous-marin \xE0 une vitesse de 150 n\u0153uds pour d\xE9ployer le sonar
+      tremp\xE9 FLASH."
+    image: {fileID: 21300000, guid: bdd5dcb41fcd81a4b8335a507719b71c, type: 3}
+    linkName: Underwater warfare | Thales Group
+    link: https://www.thalesgroup.com/en/activities/defence/naval-forces/underwater-warfare
+  - title: CAPTAS 4
+    categoIcon: {fileID: 21300000, guid: 12bcbacb843a8b54188226d141fb3d57, type: 3}
+    description: "Le CAPTAS 4 de THALES est un sonar remorqu\xE9 basse fr\xE9quence
+      \xE0 immersion variable (ou VDS). Il poss\xE8de des anneaux d\u2019\xE9mission
+      et une antenne lin\xE9aire passive de r\xE9ception lui permettant de d\xE9tecter,
+      localiser et classifier les sous-marins les plus furtifs \xE0 plus de 60 km.
+      Le CAPTAS 4 peut \xEAtre utilis\xE9 en passif ou en actif. "
+    image: {fileID: 21300000, guid: 4d76e7a470029854a826dc83418f4111, type: 3}
+    linkName: 'CAPTAS Family | Thales Group '
+    link: https://www.thalesgroup.com/en/markets/defence-and-security/naval-forces/underwater-warfare/bluescan/captas-family
+  - title: FLASH
+    categoIcon: {fileID: 21300000, guid: 12bcbacb843a8b54188226d141fb3d57, type: 3}
+    description: "Le FLASH SONICS de THALES est un sonar tremp\xE9 basse fr\xE9quence
+      pour h\xE9licopt\xE8res. Lorsqu'il est utilis\xE9 conjointement avec un CAPTAS,
+      il forme un formidable syst\xE8me de lutte anti-sous-marine. Les sonars FLASH
+      sont utilis\xE9s par de nombreuses marines dans le monde."
+    image: {fileID: 21300000, guid: a35ba80c0a0d0eb4797afbb5c80df7c7, type: 3}
+    linkName: FLASH Family | Thales Group
+    link: https://www.thalesgroup.com/en/markets/defence-and-security/naval-forces/underwater-warfare/bluescan/flash-family
+  - title: BLUEMASTER
+    categoIcon: {fileID: 21300000, guid: 12bcbacb843a8b54188226d141fb3d57, type: 3}
+    description: "Le BLUEMASTER de THALES est un sonar de coque destin\xE9 aux grandes
+      fr\xE9gates de lutte anti-sous-marine. Il s\u2019associe parfaitement avec
+      les autres familles de produits THALES tels que les CAPTAS et le FLASH, ce
+      qui constitue des syst\xE8mes de lutte anti-sous-marine tr\xE8s performants."
+    image: {fileID: 21300000, guid: e8ed635cc6aa9b4488e9622d862ad404, type: 3}
+    linkName: "BlueScan \u2013 The Big Picture | Thales Group "
+    link: https://www.thalesgroup.com/en/australia/news/bluescan-big-picture
+  - title: MAD
+    categoIcon: {fileID: 21300000, guid: 12bcbacb843a8b54188226d141fb3d57, type: 3}
+    description: "Le MAD (ou d\xE9tecteur d'anomalie magn\xE9tique) est un syst\xE8me
+      \xE9lectronique qui permet de d\xE9tecter \xE0 distance des masses m\xE9talliques
+      sous la surface de l'eau. Embarqu\xE9 \xE0 bord d'avions de patrouille maritime
+      tels que l'Atlantique 2, il permet de confirmer la pr\xE9sence de sous-marins. "
+    image: {fileID: 0}
+    linkName: "BlueScan \u2013 The Big Picture | Thales Group "
+    link: https://www.thalesgroup.com/en/australia/news/bluescan-big-picture
+  - title: SEARCHMASTER
+    categoIcon: {fileID: 21300000, guid: 12bcbacb843a8b54188226d141fb3d57, type: 3}
+    description: "Le SEARCHMASTER de THALES  est un radar destin\xE9 aux b\xE2timents
+      a\xE9riens tels que l'Atlantique 2. Il poss\xE8de de nombreuses utilit\xE9s
+      dans la lutte anti-sous-marine, mais aussi dans d'autres domaines tels que
+      la lutte contre les trafics ill\xE9gaux. "
+    image: {fileID: 21300000, guid: 61ca94e4f8186b847802adf55d94a7ef, type: 3}
+    linkName: SEARCHMASTER | Thales Group
+    link: 'https://www.thalesgroup.com/en/searchmaster '
+  - title: SONOFLASH
+    categoIcon: {fileID: 21300000, guid: 12bcbacb843a8b54188226d141fb3d57, type: 3}
+    description: "La bou\xE9e SONOFLASH de THALES est une bou\xE9e acoustique de
+      basse fr\xE9quence aux capacit\xE9s de d\xE9tection importantes et qui peut
+      \xEAtre utilis\xE9e de mani\xE8re active ou passive. Les syst\xE8mes BLUETRACKER
+      de THALES permettent de traiter les donn\xE9es de ces bou\xE9es. "
+    image: {fileID: 21300000, guid: fafcc09fed64e4943b62421a5f9e7104, type: 3}
+    linkName: Sonobuoys and Sonobuoy Processing Systems | Thales Group
+    link: https://www.thalesgroup.com/en/markets/defence-and-security/naval-forces/underwater-warfare/bluescan/sonobuoys-and-sonobuoy
+  - title: Oreille d'or
+    categoIcon: {fileID: 21300000, guid: ceb1446d53eb9ae4aaea5f68f4b0a69f, type: 3}
+    description: "L\u2019oreille d\u2019or est un analyste expert en classification
+      des signaux acoustiques. Embarqu\xE9 \xE0 bord des sous-marins et des fr\xE9gates,
+      il est \xE0 l\u2019\xE9coute des bruits qui environnent son b\xE2timent. Sa
+      mission est de d\xE9tecter et classifier les sous-marins. \r"
+    image: {fileID: 21300000, guid: ceb1446d53eb9ae4aaea5f68f4b0a69f, type: 3}
+    linkName: "BlueScan \u2013 The Big Picture | Thales Group "
+    link: https://www.thalesgroup.com/en/australia/news/bluescan-big-picture
+  - title: TACCO
+    categoIcon: {fileID: 21300000, guid: ceb1446d53eb9ae4aaea5f68f4b0a69f, type: 3}
+    description: "Le tactical coordinator est un officier affect\xE9 au sein des
+      NH90 et des Atlantique 2. Son r\xF4le est de coordonner et diriger les op\xE9rateurs
+      charg\xE9s de l\u2019utilisation des capteurs puis d\u2019analyser les donn\xE9es
+      tactiques obtenues pour assurer le succ\xE8s de la mission. \r"
+    image: {fileID: 21300000, guid: ceb1446d53eb9ae4aaea5f68f4b0a69f, type: 3}
+    linkName: "BlueScan \u2013 The Big Picture | Thales Group "
+    link: https://www.thalesgroup.com/en/australia/news/bluescan-big-picture
+  - title: 'DASBO '
+    categoIcon: {fileID: 21300000, guid: ceb1446d53eb9ae4aaea5f68f4b0a69f, type: 3}
+    description: "Le d\xE9tecteur acoustique de bord est un sp\xE9cialiste qui prend
+      place dans les PATMAR. Il utilise et exploite les syst\xE8mes de d\xE9tection
+      acoustique permettant de rep\xE9rer et pister les sous-marins en plong\xE9e. "
+    image: {fileID: 0}
+    linkName: "BlueScan \u2013 The Big Picture | Thales Group "
+    link: https://www.thalesgroup.com/en/australia/news/bluescan-big-picture
+  - title: SENSO
+    categoIcon: {fileID: 21300000, guid: ceb1446d53eb9ae4aaea5f68f4b0a69f, type: 3}
+    description: "L'op\xE9rateur senseurs est charg\xE9 de l'utilisation des \xE9quipements
+      de d\xE9tection \xE0 bord des h\xE9licopt\xE8res comme le NH90 \"Ca\xEFman\". "
+    image: {fileID: 21300000, guid: ceb1446d53eb9ae4aaea5f68f4b0a69f, type: 3}
+    linkName: "BlueScan \u2013 The Big Picture | Thales Group "
+    link: https://www.thalesgroup.com/en/australia/news/bluescan-big-picture
+  - title: ASWC
+    categoIcon: {fileID: 21300000, guid: ceb1446d53eb9ae4aaea5f68f4b0a69f, type: 3}
+    description: "Le commandant de lutte anti-sous-marine est responsable de la coordination
+      de l'ensemble des b\xE2timents impliqu\xE9s dans une mission de lutte anti-sous-marine."
+    image: {fileID: 0}
+    linkName: "BlueScan \u2013 The Big Picture | Thales Group "
+    link: https://www.thalesgroup.com/en/australia/news/bluescan-big-picture
+  - title: CO
+    categoIcon: {fileID: 21300000, guid: 31538f625d2466b41ab397512ba392c3, type: 3}
+    description: "Commanding officer : C\u2019est le commandant de la fr\xE9gate
+      ou du sous-marin. On l\u2019appelle famili\xE8rement le \u201CPACHA\u201D.\r"
+    image: {fileID: 0}
+    linkName: "BlueScan \u2013 The Big Picture | Thales Group "
+    link: https://www.thalesgroup.com/en/australia/news/bluescan-big-picture
+  - title: DATUM
+    categoIcon: {fileID: 21300000, guid: 31538f625d2466b41ab397512ba392c3, type: 3}
+    description: "Le DATUM est l\u2019heure et la derni\xE8re position observ\xE9es
+      du sous-marin. Il permet de d\xE9ployer tactiquement les unit\xE9s dans une
+      zone en fonction de cette derni\xE8re position et de \u201Cl\u2019\xE2ge\u201D
+      du DATUM. \r"
+    image: {fileID: 0}
+    linkName: "BlueScan \u2013 The Big Picture | Thales Group "
+    link: https://www.thalesgroup.com/en/australia/news/bluescan-big-picture
+  - title: DIP STATION
+    categoIcon: {fileID: 21300000, guid: 31538f625d2466b41ab397512ba392c3, type: 3}
+    description: "Station sonar h\xE9licopt\xE8re. C\u2019est la position ou l\u2019h\xE9licopt\xE8re
+      doit \u201Ctremper\u201D son sonar pour tenter de relocaliser le SM. Il se
+      maintient en stationnaire pendant toute la dur\xE9e de la DIP STATION.\r"
+    image: {fileID: 0}
+    linkName: "BlueScan \u2013 The Big Picture | Thales Group "
+    link: https://www.thalesgroup.com/en/australia/news/bluescan-big-picture
+  - title: No JOY
+    categoIcon: {fileID: 21300000, guid: 31538f625d2466b41ab397512ba392c3, type: 3}
+    description: "Terme tactique utilis\xE9 si pas de contact sonar ou MAD. "
+    image: {fileID: 0}
+    linkName: "BlueScan \u2013 The Big Picture | Thales Group "
+    link: https://www.thalesgroup.com/en/australia/news/bluescan-big-picture
+  - title: CONTACT ATTACK
+    categoIcon: {fileID: 21300000, guid: 31538f625d2466b41ab397512ba392c3, type: 3}
+    description: Contact MAD positif.
+    image: {fileID: 0}
+    linkName: "BlueScan \u2013 The Big Picture | Thales Group "
+    link: https://www.thalesgroup.com/en/australia/news/bluescan-big-picture
+  - title: ALERT 5
+    categoIcon: {fileID: 21300000, guid: 31538f625d2466b41ab397512ba392c3, type: 3}
+    description: "Mise en alerte helo \xE0 cinq minutes sur le pont d\u2019une fr\xE9gate.
+      L\u2019\xE9quipage est dans l\u2019h\xE9licopt\xE8re pr\xEAt \xE0 d\xE9coller
+      en cinq minutes. "
+    image: {fileID: 0}
+    linkName: "BlueScan \u2013 The Big Picture | Thales Group "
+    link: https://www.thalesgroup.com/en/australia/news/bluescan-big-picture
+  - title: COURSE/SPEED
+    categoIcon: {fileID: 21300000, guid: 31538f625d2466b41ab397512ba392c3, type: 3}
+    description: "Route vitesse d\u2019une unit\xE9. S\u2019exprime en cap (degr\xE9
+      de 0 \xE0 360) et n\u0153uds (kts). Un n\u0153ud est un nautique (NM) \xE0
+      l\u2019heure. Un NM mesure 1852 m\xE8tres."
+    image: {fileID: 0}
+    linkName: "BlueScan \u2013 The Big Picture | Thales Group "
+    link: https://www.thalesgroup.com/en/australia/news/bluescan-big-picture
+  - title: CERTSUB
+    categoIcon: {fileID: 21300000, guid: 31538f625d2466b41ab397512ba392c3, type: 3}
+    description: "Contact class\xE9 sous-marin avec certitude. \r\n"
+    image: {fileID: 0}
+    linkName: "BlueScan \u2013 The Big Picture | Thales Group "
+    link: https://www.thalesgroup.com/en/australia/news/bluescan-big-picture
+  - title: PROBSUB
+    categoIcon: {fileID: 21300000, guid: 31538f625d2466b41ab397512ba392c3, type: 3}
+    description: "Contact sous-marin probable.\r"
+    image: {fileID: 0}
+    linkName: "BlueScan \u2013 The Big Picture | Thales Group "
+    link: https://www.thalesgroup.com/en/australia/news/bluescan-big-picture
+  - title: POSSUB 1/2/3/4
+    categoIcon: {fileID: 21300000, guid: 31538f625d2466b41ab397512ba392c3, type: 3}
+    description: "Classification progressive possible sous-marin (de 1 le plus faible
+      \xE0 4 le plus fort). Se situe entre le NONSUB et le PROSUB.\r"
+    image: {fileID: 0}
+    linkName: "BlueScan \u2013 The Big Picture | Thales Group "
+    link: https://www.thalesgroup.com/en/australia/news/bluescan-big-picture
+  - title: NONSUB
+    categoIcon: {fileID: 21300000, guid: 31538f625d2466b41ab397512ba392c3, type: 3}
+    description: "Contact class\xE9 autre que sous-marin avec certitude."
+    image: {fileID: 0}
+    linkName: "BlueScan \u2013 The Big Picture | Thales Group "
+    link: https://www.thalesgroup.com/en/australia/news/bluescan-big-picture
+  - title: JEZPAT
+    categoIcon: {fileID: 21300000, guid: 31538f625d2466b41ab397512ba392c3, type: 3}
+    description: "Dispositif de bou\xE9es acoustiques largu\xE9es par a\xE9ronefs
+      (SONOFLASH). Peut se d\xE9cliner en diff\xE9rentes figures g\xE9om\xE9triques
+      : chevron, lignes, cercles, champs\u2026 "
+    image: {fileID: 0}
+    linkName: "BlueScan \u2013 The Big Picture | Thales Group "
+    link: https://www.thalesgroup.com/en/australia/news/bluescan-big-picture

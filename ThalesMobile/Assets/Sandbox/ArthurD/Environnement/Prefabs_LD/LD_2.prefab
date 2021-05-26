@@ -2370,6 +2370,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 719161853456573329}
     m_Modifications:
+    - target: {fileID: 6278829528073155620, guid: cfafb5b5565ec234682f815453f6883e,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1202159904596226779, guid: 1af6d8d42bf10ea4c892c566e7129da1,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6909696174531460105, guid: 024da1814e9cb24409c3a980eb9b0d17,
         type: 3}
       propertyPath: m_RootOrder
@@ -2584,16 +2594,6 @@ PrefabInstance:
         type: 3}
       propertyPath: serializedGuid.Array.data[15]
       value: 195
-      objectReference: {fileID: 0}
-    - target: {fileID: 1202159904596226779, guid: 1af6d8d42bf10ea4c892c566e7129da1,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6278829528073155620, guid: cfafb5b5565ec234682f815453f6883e,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 024da1814e9cb24409c3a980eb9b0d17, type: 3}
@@ -3205,6 +3205,46 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6138960674683999652}
     m_Modifications:
+    - target: {fileID: 880715453889608284, guid: 2c1a7fc209f0b84428e985bbf3ceccf6,
+        type: 3}
+      propertyPath: initState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5745625645649552660, guid: 2c1a7fc209f0b84428e985bbf3ceccf6,
+        type: 3}
+      propertyPath: pointsToFollow.Array.data[0]
+      value: 
+      objectReference: {fileID: 2730277432672732885}
+    - target: {fileID: 5745625645649552660, guid: 2c1a7fc209f0b84428e985bbf3ceccf6,
+        type: 3}
+      propertyPath: pointsToFollow.Array.data[1]
+      value: 
+      objectReference: {fileID: 3374534449429587410}
+    - target: {fileID: 5745625645649552660, guid: 2c1a7fc209f0b84428e985bbf3ceccf6,
+        type: 3}
+      propertyPath: pointsToFollow.Array.data[2]
+      value: 
+      objectReference: {fileID: 3738620933619102581}
+    - target: {fileID: 5745625645649552660, guid: 2c1a7fc209f0b84428e985bbf3ceccf6,
+        type: 3}
+      propertyPath: pointsToFollow.Array.data[3]
+      value: 
+      objectReference: {fileID: 1312457656482824032}
+    - target: {fileID: 5745625645649552660, guid: 2c1a7fc209f0b84428e985bbf3ceccf6,
+        type: 3}
+      propertyPath: pointsToFollow.Array.data[4]
+      value: 
+      objectReference: {fileID: 8685575375369707975}
+    - target: {fileID: 5745625645649552662, guid: 2c1a7fc209f0b84428e985bbf3ceccf6,
+        type: 3}
+      propertyPath: m_Name
+      value: SpermWhale (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5745625645649552663, guid: 2c1a7fc209f0b84428e985bbf3ceccf6,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1074337076474003645, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
         type: 3}
       propertyPath: instanceID
@@ -3399,46 +3439,6 @@ PrefabInstance:
         type: 3}
       propertyPath: interestPoints.Array.data[3]
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 880715453889608284, guid: 2c1a7fc209f0b84428e985bbf3ceccf6,
-        type: 3}
-      propertyPath: initState
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5745625645649552660, guid: 2c1a7fc209f0b84428e985bbf3ceccf6,
-        type: 3}
-      propertyPath: pointsToFollow.Array.data[0]
-      value: 
-      objectReference: {fileID: 2730277432672732885}
-    - target: {fileID: 5745625645649552660, guid: 2c1a7fc209f0b84428e985bbf3ceccf6,
-        type: 3}
-      propertyPath: pointsToFollow.Array.data[1]
-      value: 
-      objectReference: {fileID: 3374534449429587410}
-    - target: {fileID: 5745625645649552660, guid: 2c1a7fc209f0b84428e985bbf3ceccf6,
-        type: 3}
-      propertyPath: pointsToFollow.Array.data[2]
-      value: 
-      objectReference: {fileID: 3738620933619102581}
-    - target: {fileID: 5745625645649552660, guid: 2c1a7fc209f0b84428e985bbf3ceccf6,
-        type: 3}
-      propertyPath: pointsToFollow.Array.data[3]
-      value: 
-      objectReference: {fileID: 1312457656482824032}
-    - target: {fileID: 5745625645649552660, guid: 2c1a7fc209f0b84428e985bbf3ceccf6,
-        type: 3}
-      propertyPath: pointsToFollow.Array.data[4]
-      value: 
-      objectReference: {fileID: 8685575375369707975}
-    - target: {fileID: 5745625645649552662, guid: 2c1a7fc209f0b84428e985bbf3ceccf6,
-        type: 3}
-      propertyPath: m_Name
-      value: SpermWhale (6)
-      objectReference: {fileID: 0}
-    - target: {fileID: 5745625645649552663, guid: 2c1a7fc209f0b84428e985bbf3ceccf6,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c1a7fc209f0b84428e985bbf3ceccf6, type: 3}

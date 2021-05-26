@@ -4930,7 +4930,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1951661757}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.35675475
+  m_Size: 0.35693312
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -9545,7 +9545,7 @@ MonoBehaviour:
   - {fileID: 998236011}
   - {fileID: 2090000279}
   - {fileID: 1585046435}
-  codex: {fileID: 0}
+  codex: {fileID: 11400000, guid: 02d17e9ff3b2f934c9e3c06b08d5e40c, type: 2}
 --- !u!114 &788405381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11439,8 +11439,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17cd211bbfca15a4e961a63c4d471e37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  screenSize: {x: 720, y: 1280}
-  centerPos: {x: 360, y: 640, z: 0}
+  screenSize: {x: 750, y: 1334}
+  centerPos: {x: 375, y: 667, z: 0}
   input: {fileID: 919132149453177770}
   slider: {fileID: 1870064779}
   menu: {fileID: 1820118679}
