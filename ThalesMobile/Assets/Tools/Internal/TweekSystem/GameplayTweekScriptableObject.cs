@@ -1,4 +1,4 @@
-//Random Generatated char value: 8a4f7479-4c45-4408-879c-ffae464fea1f
+//Random Generatated char value: 689d42ca-8900-4d8b-8141-57fd56c7f4b8
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,17 +14,17 @@ public class GameplayTweekScriptableObject : ScriptableObject
 [Path("From")] public string s0_From = "Assets/Prefabs";
 
 [Header("GameObject: Camera")]
-[Id("Camera Component - ID:")] public string s1Id = "3ca0ac52-a276-4f9f-bafb-784c092e23b0";
+[Id("Camera Component - ID:")] public string s1Id = "7daf19fe-7896-41d7-91af-86e6eb827d7e";
 
-[Comp("CameraController Component - ID:")] public string s2Comp = "3ca0ac52-a276-4f9f-bafb-784c092e23b0_16429c5f-0eb5-411a-8ee1-69f7caa274d1";
+[Comp("CameraController Component - ID:")] public string s2Comp = "7daf19fe-7896-41d7-91af-86e6eb827d7e_16429c5f-0eb5-411a-8ee1-69f7caa274d1";
 
-[Var("zoomSpeed")] [Tooltip("zoomSpeed")] public float zoomSpeed_3ca0ac52µa276µ4f9fµbafbµ784c092e23b0_16429c5fµ0eb5µ411aµ8ee1µ69f7caa274d1;
-[Var("camSett")] [Tooltip("camSett")] public CameraSettings camSett_3ca0ac52µa276µ4f9fµbafbµ784c092e23b0_16429c5fµ0eb5µ411aµ8ee1µ69f7caa274d1;
-[Var("minimalMoveFactor")] [Tooltip("minimalMoveFactor")] public float minimalMoveFactor_3ca0ac52µa276µ4f9fµbafbµ784c092e23b0_16429c5fµ0eb5µ411aµ8ee1µ69f7caa274d1;
-[Var("aimLerpSpeed")] [Tooltip("aimLerpSpeed")] public float aimLerpSpeed_3ca0ac52µa276µ4f9fµbafbµ784c092e23b0_16429c5fµ0eb5µ411aµ8ee1µ69f7caa274d1;
-[Var("moveSpeed")] [Tooltip("moveSpeed")] public float moveSpeed_3ca0ac52µa276µ4f9fµbafbµ784c092e23b0_16429c5fµ0eb5µ411aµ8ee1µ69f7caa274d1;
-[Var("refocusSpeed")] [Tooltip("refocusSpeed")] public float refocusSpeed_3ca0ac52µa276µ4f9fµbafbµ784c092e23b0_16429c5fµ0eb5µ411aµ8ee1µ69f7caa274d1;
-[Var("mouvLerpSpeed")] [Tooltip("mouvLerpSpeed")] public float mouvLerpSpeed_3ca0ac52µa276µ4f9fµbafbµ784c092e23b0_16429c5fµ0eb5µ411aµ8ee1µ69f7caa274d1;
+[Var("zoomSpeed")] [Tooltip("zoomSpeed")] public float zoomSpeed_7daf19feµ7896µ41d7µ91afµ86e6eb827d7e_16429c5fµ0eb5µ411aµ8ee1µ69f7caa274d1;
+[Var("camSett")] [Tooltip("camSett")] public CameraSettings camSett_7daf19feµ7896µ41d7µ91afµ86e6eb827d7e_16429c5fµ0eb5µ411aµ8ee1µ69f7caa274d1;
+[Var("minimalMoveFactor")] [Tooltip("minimalMoveFactor")] public float minimalMoveFactor_7daf19feµ7896µ41d7µ91afµ86e6eb827d7e_16429c5fµ0eb5µ411aµ8ee1µ69f7caa274d1;
+[Var("aimLerpSpeed")] [Tooltip("aimLerpSpeed")] public float aimLerpSpeed_7daf19feµ7896µ41d7µ91afµ86e6eb827d7e_16429c5fµ0eb5µ411aµ8ee1µ69f7caa274d1;
+[Var("moveSpeed")] [Tooltip("moveSpeed")] public float moveSpeed_7daf19feµ7896µ41d7µ91afµ86e6eb827d7e_16429c5fµ0eb5µ411aµ8ee1µ69f7caa274d1;
+[Var("refocusSpeed")] [Tooltip("refocusSpeed")] public float refocusSpeed_7daf19feµ7896µ41d7µ91afµ86e6eb827d7e_16429c5fµ0eb5µ411aµ8ee1µ69f7caa274d1;
+[Var("mouvLerpSpeed")] [Tooltip("mouvLerpSpeed")] public float mouvLerpSpeed_7daf19feµ7896µ41d7µ91afµ86e6eb827d7e_16429c5fµ0eb5µ411aµ8ee1µ69f7caa274d1;
 
 [Space]
 [Path("From")] public string s3_From = "Assets/Prefabs/Assets/Prefabs/Equipement";
@@ -42,15 +42,15 @@ public class GameplayTweekScriptableObject : ScriptableObject
 [Path("From")] public string s6_From = "Assets/Prefabs/Assets/Prefabs/InterestPoints";
 
 [Header("GameObject: InterestPoint(AircraftCarrier)")]
-[Id("InterestPoint(AircraftCarrier) Component - ID:")] public string s7Id = "fa773cb3-fee6-4a5f-84ef-ee10573b67f3";
+[Id("InterestPoint(AircraftCarrier) Component - ID:")] public string s7Id = "3e118160-a893-4445-9441-cc29276b98ec";
 
-[Comp("InterestPoint Component - ID:")] public string s8Comp = "fa773cb3-fee6-4a5f-84ef-ee10573b67f3_c7b033f1-65cc-4b24-919d-f895b16b013e";
+[Comp("InterestPoint Component - ID:")] public string s8Comp = "3e118160-a893-4445-9441-cc29276b98ec_c7b033f1-65cc-4b24-919d-f895b16b013e";
 
-[Var("hackTime")] [Tooltip("hackTime")] public float hackTime_fa773cb3µfee6µ4a5fµ84efµee10573b67f3_c7b033f1µ65ccµ4b24µ919dµf895b16b013e;
-[Var("hackingRange")] [Tooltip("hackingRange")] public float hackingRange_fa773cb3µfee6µ4a5fµ84efµee10573b67f3_c7b033f1µ65ccµ4b24µ919dµf895b16b013e;
-[Var("sendAlert")] [Tooltip("sendAlert")] public bool sendAlert_fa773cb3µfee6µ4a5fµ84efµee10573b67f3_c7b033f1µ65ccµ4b24µ919dµf895b16b013e;
-[Var("detectionAlertRange")] [Tooltip("detectionAlertRange")] public float detectionAlertRange_fa773cb3µfee6µ4a5fµ84efµee10573b67f3_c7b033f1µ65ccµ4b24µ919dµf895b16b013e;
-[Var("timeInRangeBeforeAlert")] [Tooltip("timeInRangeBeforeAlert")] public float timeInRangeBeforeAlert_fa773cb3µfee6µ4a5fµ84efµee10573b67f3_c7b033f1µ65ccµ4b24µ919dµf895b16b013e;
+[Var("hackTime")] [Tooltip("hackTime")] public float hackTime_3e118160µa893µ4445µ9441µcc29276b98ec_c7b033f1µ65ccµ4b24µ919dµf895b16b013e;
+[Var("hackingRange")] [Tooltip("hackingRange")] public float hackingRange_3e118160µa893µ4445µ9441µcc29276b98ec_c7b033f1µ65ccµ4b24µ919dµf895b16b013e;
+[Var("sendAlert")] [Tooltip("sendAlert")] public bool sendAlert_3e118160µa893µ4445µ9441µcc29276b98ec_c7b033f1µ65ccµ4b24µ919dµf895b16b013e;
+[Var("detectionAlertRange")] [Tooltip("detectionAlertRange")] public float detectionAlertRange_3e118160µa893µ4445µ9441µcc29276b98ec_c7b033f1µ65ccµ4b24µ919dµf895b16b013e;
+[Var("timeInRangeBeforeAlert")] [Tooltip("timeInRangeBeforeAlert")] public float timeInRangeBeforeAlert_3e118160µa893µ4445µ9441µcc29276b98ec_c7b033f1µ65ccµ4b24µ919dµf895b16b013e;
 
 [Header("GameObject: InterestPoint(Harbor)")]
 [Id("InterestPoint(Harbor) Component - ID:")] public string s9Id = "8676da00-7e61-42e3-84e4-cd905a3e5e9d";
@@ -75,15 +75,15 @@ public class GameplayTweekScriptableObject : ScriptableObject
 [Var("timeInRangeBeforeAlert")] [Tooltip("timeInRangeBeforeAlert")] public float timeInRangeBeforeAlert_ce0166acµ9827µ4c23µaeadµ513aca45b787_99966c11µ90f3µ4aefµb323µbeff7b8bcfd1;
 
 [Header("GameObject: InterestPoint(OilTanker)")]
-[Id("InterestPoint(OilTanker) Component - ID:")] public string s13Id = "3753620b-6138-48e4-9109-c81739329bf3";
+[Id("InterestPoint(OilTanker) Component - ID:")] public string s13Id = "8eb177a3-aa98-46ea-b416-87f8372d9457";
 
-[Comp("InterestPoint Component - ID:")] public string s14Comp = "3753620b-6138-48e4-9109-c81739329bf3_7e1dbc6e-4348-4762-9233-30a708fa6302";
+[Comp("InterestPoint Component - ID:")] public string s14Comp = "8eb177a3-aa98-46ea-b416-87f8372d9457_7e1dbc6e-4348-4762-9233-30a708fa6302";
 
-[Var("hackTime")] [Tooltip("hackTime")] public float hackTime_3753620bµ6138µ48e4µ9109µc81739329bf3_7e1dbc6eµ4348µ4762µ9233µ30a708fa6302;
-[Var("hackingRange")] [Tooltip("hackingRange")] public float hackingRange_3753620bµ6138µ48e4µ9109µc81739329bf3_7e1dbc6eµ4348µ4762µ9233µ30a708fa6302;
-[Var("sendAlert")] [Tooltip("sendAlert")] public bool sendAlert_3753620bµ6138µ48e4µ9109µc81739329bf3_7e1dbc6eµ4348µ4762µ9233µ30a708fa6302;
-[Var("detectionAlertRange")] [Tooltip("detectionAlertRange")] public float detectionAlertRange_3753620bµ6138µ48e4µ9109µc81739329bf3_7e1dbc6eµ4348µ4762µ9233µ30a708fa6302;
-[Var("timeInRangeBeforeAlert")] [Tooltip("timeInRangeBeforeAlert")] public float timeInRangeBeforeAlert_3753620bµ6138µ48e4µ9109µc81739329bf3_7e1dbc6eµ4348µ4762µ9233µ30a708fa6302;
+[Var("hackTime")] [Tooltip("hackTime")] public float hackTime_8eb177a3µaa98µ46eaµb416µ87f8372d9457_7e1dbc6eµ4348µ4762µ9233µ30a708fa6302;
+[Var("hackingRange")] [Tooltip("hackingRange")] public float hackingRange_8eb177a3µaa98µ46eaµb416µ87f8372d9457_7e1dbc6eµ4348µ4762µ9233µ30a708fa6302;
+[Var("sendAlert")] [Tooltip("sendAlert")] public bool sendAlert_8eb177a3µaa98µ46eaµb416µ87f8372d9457_7e1dbc6eµ4348µ4762µ9233µ30a708fa6302;
+[Var("detectionAlertRange")] [Tooltip("detectionAlertRange")] public float detectionAlertRange_8eb177a3µaa98µ46eaµb416µ87f8372d9457_7e1dbc6eµ4348µ4762µ9233µ30a708fa6302;
+[Var("timeInRangeBeforeAlert")] [Tooltip("timeInRangeBeforeAlert")] public float timeInRangeBeforeAlert_8eb177a3µaa98µ46eaµb416µ87f8372d9457_7e1dbc6eµ4348µ4762µ9233µ30a708fa6302;
 
 [Space]
 [Path("From")] public string s15_From = "Assets/Prefabs/Assets/Prefabs/Player Ocean Entities";

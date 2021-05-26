@@ -155,7 +155,7 @@ class IntePipeSettingsData : ScriptableObject
         if (settings == null)
         {
             settings = ScriptableObject.CreateInstance<IntePipeSettingsData>();
-            settings.scenesPath = "Assets/_Scenes";
+            settings.scenesPath = "Assets/_PaslesScenesDuTout";
             settings.prefabsPath = "Assets/Prefabs";
 
             settings.soundScoPath = "Assets/Tools/Internal/TweekSystem/SoundTweekScriptableObject.cs";
