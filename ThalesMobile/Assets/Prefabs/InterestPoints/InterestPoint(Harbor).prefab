@@ -53,7 +53,7 @@ MonoBehaviour:
   serializedGuid: 00da7686617ee34284e4cd905a3e5e9d
   thisObjState: 2
   initState: 2
-  instanceID: 76722
+  instanceID: 40350
   referencedComponents:
   - component: {fileID: 6909696174531460104}
     serializedGuid: e80189436bfa4542aa3d45df27cb0ad2
@@ -513,17 +513,17 @@ PrefabInstance:
     - target: {fileID: 7049539547567641998, guid: d9d0e817336c3594db4e779e25e17c17,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 3
+      value: 3.0978003
       objectReference: {fileID: 0}
     - target: {fileID: 7049539547567641998, guid: d9d0e817336c3594db4e779e25e17c17,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 3
+      value: 3.0978003
       objectReference: {fileID: 0}
     - target: {fileID: 7049539547567641998, guid: d9d0e817336c3594db4e779e25e17c17,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 3
+      value: 3.0978003
       objectReference: {fileID: 0}
     - target: {fileID: 7049539547567641998, guid: d9d0e817336c3594db4e779e25e17c17,
         type: 3}
@@ -533,12 +533,12 @@ PrefabInstance:
     - target: {fileID: 7049539547567641998, guid: d9d0e817336c3594db4e779e25e17c17,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.014
+      value: 0.48
       objectReference: {fileID: 0}
     - target: {fileID: 7049539547567641998, guid: d9d0e817336c3594db4e779e25e17c17,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.276
+      value: -0.44
       objectReference: {fileID: 0}
     - target: {fileID: 7049539547567641998, guid: d9d0e817336c3594db4e779e25e17c17,
         type: 3}
