@@ -49,6 +49,18 @@ public class CaptasCard : MonoBehaviour
 
         chargeCountText.text = captas.chargeCount.ToString();
 
+        for (int i = 0; i < GameManager.Instance.levelManager.playerOceanEntities.Count; i++)
+        {
+            if (GameManager.Instance.levelManager.playerOceanEntities[i].GetType() == typeof(OceanEntities.Ship))
+            {
+                OceanEntities.Ship temp = (OceanEntities.Ship)GameManager.Instance.levelManager.playerOceanEntities[i];
+
+                captas = (CaptasFour)temp.activeEquipement;
+            }
+        }
+
+
+
         card.abortHandler     += AbortMethod;
         card.clickHandler     += OnClickEvent;
         card.beginDragHandler += OnBeginDragEvent;
