@@ -123,4 +123,23 @@ public class SoundHandler : MonoBehaviour
         mainAudioMixer.SetFloat(targetGroup, value!=0? Mathf.Log10(value) * 20 : -80);
         PlayerPrefs.SetFloat(targetGroup, value);
     }
+
+    static public AnimationCurve Get3DVolumeCurve(AnimationCurve Param3D)
+    {
+        CameraSettings currentSet = GameManager.Instance.cameraController.camSett; 
+        AnimationCurve adaptatedCurve = new AnimationCurve();
+        Keyframe tempKey = new Keyframe();
+
+        adaptatedCurve.AddKey(0, 1);
+
+        for (int i = 0; i < Param3D.length; i++)
+        {
+            tempKey = Param3D.keys[i];
+            tempKey.time = (currentSet.maxHeight - currentSet.minHeight) * tempKey.time + currentSet.minHeight;
+            tempKey.inTangent = 0f; tempKey.outTangent = 0f;
+            adaptatedCurve.AddKey(tempKey);
+        }
+
+        return adaptatedCurve;
+    }
 }

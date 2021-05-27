@@ -55,29 +55,20 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 1
-      inSlope: -2.853906
-      outSlope: 0
-      tangentMode: 65
+      inSlope: -0.65
+      outSlope: -0.65
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.045514952
+      outWeight: 0.33333334
     - serializedVersion: 3
-      time: 10
-      value: 1
-      inSlope: -0
-      outSlope: -0.05642842
-      tangentMode: 5
-      weightedMode: 0
-      inWeight: 0.06969366
-      outWeight: 0.04879793
-    - serializedVersion: 3
-      time: 45.5
+      time: 1
       value: 0.35
-      inSlope: -0.001004204
-      outSlope: -0.015904395
-      tangentMode: 1
+      inSlope: -0.65
+      outSlope: -0.65
+      tangentMode: 34
       weightedMode: 0
-      inWeight: 0.052078675
+      inWeight: 0.33333334
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -237,7 +228,7 @@ MonoBehaviour:
   serializedGuid: fe19af7d9678d74191af86e6eb827d7e
   thisObjState: 2
   initState: 2
-  instanceID: 33404
+  instanceID: 126444
   referencedComponents:
   - component: {fileID: 5630502567233466962}
     serializedGuid: 5f9c4216b50e1a418ee169f7caa274d1

@@ -5,6 +5,7 @@ using PlayerEquipement;
 using UnityEngine.Audio;
 using Tweek.FlagAttributes;
 using UnityEngine.SceneManagement;
+using NaughtyAttributes;
 
 namespace OceanEntities
 {
@@ -33,16 +34,20 @@ namespace OceanEntities
         public AudioClip movementSound;
         [TweekFlag(FieldUsage.Sound)]
         public float movementSoundVolume;
+        [CurveRange(0, 0, 1, 1)]
+        public AnimationCurve sound3DParamsSelected;
+        [CurveRange(0, 0, 1, 1)]
+        public AnimationCurve sound3DParamsUnSelected;
         bool fading;
+
         private SoundHandler soundHandler;
 
-        [Space]
-
-        public AudioSource oceanCalmSource;
-        public AudioClip oceanCalmClip;
-        public AudioMixerGroup oceanCalmTargetMixer;
-        public float oceanCalmVolume;
-        public AnimationCurve oceanCalm3DVolume;
+        public bool _selected;
+        bool selected
+        {
+            get { return _selected; }
+            set { if (value != _selected) _selected = value; Update3DSound(); }
+        }
 
         private void Start()
         {
@@ -60,16 +65,12 @@ namespace OceanEntities
             if (SceneManager.GetActiveScene().name != "TutorialScene")
                 passiveEquipement.Init(this);
                 activeEquipement.Init(this);
-
-            oceanCalmSource.maxDistance = GameManager.Instance.cameraController.camSett.maxHeight;
-            oceanCalmSource.SetCustomCurve(AudioSourceCurveType.CustomRolloff, oceanCalm3DVolume);
-
-            oceanCalmSource.volume = Mathf.Clamp(0, 1, oceanCalmVolume);
-            GameManager.Instance.soundHandler.PlaySound(oceanCalmClip, oceanCalmSource, oceanCalmTargetMixer);
         }
         Vector2 lastValidPos;
         private void Update()
         {
+            selected = GameManager.Instance.playerController.currentSelectedEntity == this;
+
             if (passiveEquipement.readyToUse)
                 passiveEquipement.UseEquipement(this);
 
@@ -111,6 +112,13 @@ namespace OceanEntities
                 Move(currentTargetPoint);
             }
         }
+
+        public void Update3DSound()
+        {
+            if (selected) audioSource.SetCustomCurve(AudioSourceCurveType.CustomRolloff, SoundHandler.Get3DVolumeCurve(sound3DParamsSelected));
+            else audioSource.SetCustomCurve(AudioSourceCurveType.CustomRolloff, SoundHandler.Get3DVolumeCurve(sound3DParamsUnSelected));
+        }
+
         public override void Move(Vector2 targetPosition)
         {
 

@@ -566,7 +566,7 @@ MonoBehaviour:
   serializedGuid: 85045a7240664543aa9d92857d162799
   thisObjState: 2
   initState: 2
-  instanceID: 89310
+  instanceID: 98620
   referencedComponents:
   - component: {fileID: 339487588899374384}
     serializedGuid: ea62e786c0c3de4fb40542694734145d
@@ -615,6 +615,79 @@ MonoBehaviour:
     type: 2}
   movementSound: {fileID: 8300000, guid: ecfcddd4b902f45428acafb17c08f0f1, type: 3}
   movementSoundVolume: 1
+  movement3DSelected:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -0.9843747
+      outSlope: -0.9843747
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.06708595
+    - serializedVersion: 3
+      time: 1
+      value: 0.5
+      inSlope: 0.03629031
+      outSlope: 0.03629031
+      tangentMode: 0
+      weightedMode: 1
+      inWeight: 0.32494766
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  movement3DUnselected:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -3.3046885
+      outSlope: -3.3046885
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.06708595
+    - serializedVersion: 3
+      time: 0.39490464
+      value: 0.49737802
+      inSlope: -1.6530104
+      outSlope: -1.6530104
+      tangentMode: 1
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.7
+      value: 0
+      inSlope: -0.32530108
+      outSlope: 0
+      tangentMode: 65
+      weightedMode: 0
+      inWeight: 0.17400426
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -0
+      outSlope: 0
+      tangentMode: 5
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  test:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _selected: 0
   passiveEquipement: {fileID: 11400000, guid: fdd1a822afff99a479aeca2cfcd71a7e, type: 2}
   activeEquipement: {fileID: 11400000, guid: 8c36fd8269da1a347a940f931d708c6c, type: 2}
 --- !u!82 &8829441465545371547
