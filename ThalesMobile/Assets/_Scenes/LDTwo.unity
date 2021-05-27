@@ -1512,7 +1512,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1967861813
 MonoBehaviour:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 10
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -3538,6 +3538,27 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 5630502567233466962, guid: 1ce6e572ea85ad344b97167bd62129c7,
+        type: 3}
+      propertyPath: camSett
+      value: 
+      objectReference: {fileID: 11400000, guid: 29301910dea81a649ab187627c5c14f0,
+        type: 2}
+    - target: {fileID: 5630502567233466962, guid: 1ce6e572ea85ad344b97167bd62129c7,
+        type: 3}
+      propertyPath: limitDezoom.size.x
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5630502567233466962, guid: 1ce6e572ea85ad344b97167bd62129c7,
+        type: 3}
+      propertyPath: limitDezoom.size.y
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5630502567233466962, guid: 1ce6e572ea85ad344b97167bd62129c7,
+        type: 3}
+      propertyPath: limitDezoom.offSet.y
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 8410120360317386302, guid: 1ce6e572ea85ad344b97167bd62129c7,
         type: 3}
