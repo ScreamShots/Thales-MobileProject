@@ -145,9 +145,9 @@ public class Submarine : DetectableOceanEntity
     public AudioMixerGroup targetGroup;
     public AudioSource soundSource;
     [TweekFlag(FieldUsage.Sound)]
-    public AudioClip inHackClip, doneHackClip;
+    public AudioClip inHackClip, doneHackClip, decoyUseClip;
     [TweekFlag(FieldUsage.Sound)]
-    public float inHackVolume, doneHackVolume;
+    public float inHackVolume, doneHackVolume, decoyUseVolume;
     private bool soundAlreadyPlay;
     private bool alreadyLose;
 
@@ -320,8 +320,8 @@ public class Submarine : DetectableOceanEntity
             {
                 alreadyLose = true;
                 GameManager.Instance.uiHandler.victoryScreenManager.Victory(false);
-                soundSource.volume = doneHackVolume;
-                soundHandler.PlaySound(doneHackClip, soundSource, targetGroup);
+                //soundSource.volume = doneHackVolume;
+                //soundHandler.PlaySound(doneHackClip, soundSource, targetGroup);
             } 
         }
     }
@@ -1029,6 +1029,8 @@ public class Submarine : DetectableOceanEntity
                 //radioSilence.UseCounterMeasure(this);
                 baitDecoy.UseCounterMeasure(this);
                 StartCoroutine(DecoyChangeMatUI());
+                soundSource.volume = decoyUseVolume;
+                soundHandler.PlaySound(decoyUseClip, soundSource, targetGroup);
             }
         }
         /*
