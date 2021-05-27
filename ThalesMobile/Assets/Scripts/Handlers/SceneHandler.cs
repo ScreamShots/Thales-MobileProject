@@ -43,6 +43,9 @@ public class SceneHandler : MonoBehaviour
         yield return new WaitUntil(()=> load.progress == 0.9f && finishedFade);
 
         //Activate the scene and unfade.
+        if (sceneToLoadBuildIndex == GameManager.Instance.pauseHandler.menuScene)
+            GameManager.Instance.pauseHandler.pauseButton.SetActive(false);
+
         load.allowSceneActivation = true;
         transitionPanelAnimator.SetBool("fade", false);
     }

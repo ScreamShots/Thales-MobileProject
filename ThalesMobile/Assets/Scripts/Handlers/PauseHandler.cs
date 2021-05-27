@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
+using NaughtyAttributes;
 
 public class PauseHandler : MonoBehaviour
 {
@@ -9,6 +11,9 @@ public class PauseHandler : MonoBehaviour
     public GameObject pauseButton;
     public GameObject pausePanel;
     private SceneHandler sceneHandler;
+
+    [Tooltip(""), Scene]
+    public int menuScene;
 
     [Header("Sound")]
 
@@ -30,6 +35,9 @@ public class PauseHandler : MonoBehaviour
     {
         sceneHandler = GameManager.Instance.sceneHandler;
         source.ignoreListenerPause = true;
+
+        if (SceneManager.GetActiveScene().buildIndex != menuScene)
+            pauseButton.SetActive(true);
     }
 
     public void Pause()
@@ -78,7 +86,7 @@ public class PauseHandler : MonoBehaviour
         sceneHandler.LoadScene(0, false);
     }
 
-    public void PauseButtonDisplay(bool state)
+    public void PauseButtonDisplay(bool state)
     {
         pauseButton.SetActive(state);
     }
