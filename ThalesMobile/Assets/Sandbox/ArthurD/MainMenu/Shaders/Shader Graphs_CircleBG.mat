@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Shader Graphs_CircleBG
+  m_Shader: {fileID: -6465566751694194690, guid: c82c03d740aadc74f838e8d988adfe6e,
+    type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 9b4ee9260b31f9445858665acd5c4b52, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - Vector1_10633B9F: 0.5
+    - Vector1_33CF90C0: 33
+    - Vector1_5379ED44: 0.3
+    - Vector1_54D94C91: 0.66
+    - Vector1_5A7B924F: 1.2
+    - Vector1_776C5CF: 30
+    - Vector1_7B6EF222: 0.25
+    - Vector1_7F7F23C8: 0.05
+    - Vector1_8F14FBCF: 0.33
+    - Vector1_B63640EF: 64
+    - Vector1_D53D0EC9: 1
+    m_Colors:
+    - Color_ABE653AC: {r: 0, g: 2.6390157, b: 0.6597539, a: 1}
+    - Color_F6E17BD: {r: 0.17254902, g: 0.17254902, b: 2.9960785, a: 1}

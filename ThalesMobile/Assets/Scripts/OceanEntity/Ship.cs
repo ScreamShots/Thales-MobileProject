@@ -4,6 +4,7 @@ using UnityEngine;
 using PlayerEquipement;
 using UnityEngine.Audio;
 using Tweek.FlagAttributes;
+using UnityEngine.SceneManagement;
 
 namespace OceanEntities
 {
@@ -21,7 +22,7 @@ namespace OceanEntities
 
 
         [Header("Audio")]
-        private SoundHandler soundHandler;
+        
         public AudioSource audioSource;
         public AudioMixerGroup targetGroup;
         [TweekFlag(FieldUsage.Sound)]
@@ -33,6 +34,16 @@ namespace OceanEntities
         [TweekFlag(FieldUsage.Sound)]
         public float movementSoundVolume;
         bool fading;
+        private SoundHandler soundHandler;
+
+        [Space]
+
+        public AudioSource oceanCalmSource;
+        public AudioClip oceanCalmClip;
+        public AudioMixerGroup oceanCalmTargetMixer;
+        public float oceanCalmVolume;
+        public AnimationCurve oceanCalm3DVolume;
+
         private void Start()
         {
             environment = GameManager.Instance.levelManager.environnement;
@@ -46,8 +57,15 @@ namespace OceanEntities
             coords.direction = Coordinates.ConvertWorldToVector2(_transform.forward);
 
             //Equipment initialization.
-            passiveEquipement.Init(this);
-            activeEquipement.Init(this);
+            if (SceneManager.GetActiveScene().name != "TutorialScene")
+                passiveEquipement.Init(this);
+                activeEquipement.Init(this);
+
+            oceanCalmSource.maxDistance = GameManager.Instance.cameraController.camSett.maxHeight;
+            oceanCalmSource.SetCustomCurve(AudioSourceCurveType.CustomRolloff, oceanCalm3DVolume);
+
+            oceanCalmSource.volume = Mathf.Clamp(0, 1, oceanCalmVolume);
+            GameManager.Instance.soundHandler.PlaySound(oceanCalmClip, oceanCalmSource, oceanCalmTargetMixer);
         }
         Vector2 lastValidPos;
         private void Update()
@@ -137,19 +155,12 @@ namespace OceanEntities
                 _transform.forward = Coordinates.ConvertVector2ToWorld(coords.direction);
             }
 
-
-            if ((targetPosition - coords.position).magnitude < 2f)
+            if((targetPosition - coords.position).magnitude < 0.1f)
             {
-                if (currentSpeed > 0.5)
-                {
-                    currentSpeed -= acceleration * 3 * Time.deltaTime;
-                }
-                if((targetPosition - coords.position).magnitude < 0.1f)
-                {
-                    currentSpeed = 0;
-                    currentTargetPoint = nullVector;
-                }
+                currentSpeed = 0;
+                currentTargetPoint = nullVector;
             }
+            
         }
 
         public override void Waiting()

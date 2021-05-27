@@ -21,7 +21,15 @@ public class SubmarineFeedback : MonoBehaviour
     {
         GetCurrentValues();
 
-        UpdateVigilanceState();
+        if (submarineScript.changeUIDecoy)
+        {
+            NoiseVigilance();
+        }
+        else
+        {
+            UpdateVigilanceState();
+        }
+        
     }
 
     private void GetCurrentValues()
@@ -45,5 +53,10 @@ public class SubmarineFeedback : MonoBehaviour
                 submarineUI.submarineStatusImage.material = submarineUI.submarinePanicStatusMaterial;
                 break;
         }
+    }
+
+    private void NoiseVigilance()
+    {
+        submarineUI.submarineStatusImage.material = submarineUI.submarineNoise;
     }
 }

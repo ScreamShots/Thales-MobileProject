@@ -49,6 +49,17 @@ public class SonobuyDeployerCard : MonoBehaviour
 
         chargeCountText.text = sonobuyDeployer.chargeCount.ToString();
 
+
+        for (int i = 0; i < GameManager.Instance.levelManager.playerOceanEntities.Count; i++)
+        {
+            if(GameManager.Instance.levelManager.playerOceanEntities[i].GetType() == typeof(OceanEntities.Plane))
+            {
+                OceanEntities.Plane temp = (OceanEntities.Plane) GameManager.Instance.levelManager.playerOceanEntities[i];
+
+                sonobuyDeployer = (SonobuoyDeployer) temp.activeEquipement;
+            }
+        }       
+
         card.abortHandler     += AbortMethod;
         card.clickHandler     += OnClickEvent;
         card.beginDragHandler += OnBeginDragEvent;
@@ -92,7 +103,6 @@ public class SonobuyDeployerCard : MonoBehaviour
                 print("Unavailable feedback click");
                 audioSource.volume = Mathf.Clamp01(outOfChargeSoundVolume);
                 soundHandler.PlaySound(outOfChargeSound, audioSource, targetGroup);
-
             }
         }
         else
@@ -120,7 +130,6 @@ public class SonobuyDeployerCard : MonoBehaviour
         else
         {
             //Unavailable feedbaack
-            print("Unavailable feedback drag");
             audioSource.volume = Mathf.Clamp01(outOfChargeSoundVolume);
             soundHandler.PlaySound(outOfChargeSound, audioSource, targetGroup);
         }

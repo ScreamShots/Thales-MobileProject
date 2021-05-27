@@ -13,6 +13,7 @@ public class GlobeInput : MonoBehaviour
     [Space(5)]
     [SerializeField] bool touchingEarth = false;
     public float rotationSpeed = 0.135f;
+    public float deceleration = 0.5f;
     public Vector2 velocity = Vector2.zero;
 
     //Touch inputs
@@ -154,7 +155,7 @@ public class GlobeInput : MonoBehaviour
         }
 
         camController.aimPos -= move.normalized * inertialVelocity * rotationSpeed * Time.deltaTime;
-        inertialVelocity *= 8f * Time.deltaTime;
+        inertialVelocity = inertialVelocity>0.01f? Mathf.Lerp(inertialVelocity, 0, deceleration * Time.deltaTime) : 0;
 
     }
 }

@@ -146,6 +146,7 @@ MonoBehaviour:
   earth: {fileID: 2771647639198788209}
   touchingEarth: 0
   rotationSpeed: 0.135
+  deceleration: 1.1
   velocity: {x: 0, y: 0}
   inertialVelocity: 0
   isDraging: 0
@@ -177,7 +178,7 @@ MonoBehaviour:
       objectif : le trouver avant qu\u2019il ne remplisse ses missions."
     pointCoord: {x: 172, y: 38}
     missionDifficulty: 0
-    missionSceneName: 
+    missionSceneIndex: 1
     button: {fileID: 0}
     buttonrectTrans: {fileID: 0}
   - missionTitle: 'Protection de HVU '
@@ -188,7 +189,7 @@ MonoBehaviour:
       sur place. Localisez et identifiez le sous-marin avant qu\u2019il ne s\u2019\xE9chappe."
     pointCoord: {x: 302, y: 18}
     missionDifficulty: 1
-    missionSceneName: 
+    missionSceneIndex: 1
     button: {fileID: 0}
     buttonrectTrans: {fileID: 0}
   - missionTitle: Briser le blocus
@@ -199,7 +200,7 @@ MonoBehaviour:
       diff\xE9rentes puissances mondiales qui \u0153uvrent dans la r\xE9gion.\r"
     pointCoord: {x: 221, y: 8.4}
     missionDifficulty: 2
-    missionSceneName: 
+    missionSceneIndex: 2
     button: {fileID: 0}
     buttonrectTrans: {fileID: 0}
 --- !u!1 &4027978960974349820

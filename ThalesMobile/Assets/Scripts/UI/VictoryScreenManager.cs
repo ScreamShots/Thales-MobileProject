@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class VictoryScreenManager : MonoBehaviour
 {
@@ -27,6 +28,12 @@ public class VictoryScreenManager : MonoBehaviour
     public TweeningAnimator leftCorner;
     public TweeningAnimator rightCorner;
 
+    [Header("Sound")]
+    public AudioSource source;
+    public AudioMixerGroup targetGroup;
+    public AudioClip winSound;
+    public AudioClip defeatSound;
+    public float winLooseVolume;
 
     private bool once = false;
     // Start is called before the first frame update
@@ -49,10 +56,14 @@ public class VictoryScreenManager : MonoBehaviour
 
             if (victory)
             {
+                source.volume = Mathf.Clamp01(winLooseVolume);
+                GameManager.Instance.soundHandler.PlaySound(winSound, source, targetGroup);
                 header.text = victoryHeader;
             }
             else
             {
+                source.volume = Mathf.Clamp01(winLooseVolume);
+                GameManager.Instance.soundHandler.PlaySound(defeatSound, source, targetGroup);
                 header.text = defeatHeader;
             }
 
@@ -68,7 +79,7 @@ public class VictoryScreenManager : MonoBehaviour
     {
         //Implement button
         menuButton.interactable = false;
-        GameManager.Instance.sceneHandler.LoadScene(0);
+        GameManager.Instance.sceneHandler.LoadScene(0, false);
     }
 
 }

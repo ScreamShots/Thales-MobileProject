@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 904f1173f6bc37347a26a87b87b0f9a1, type: 3}
   m_Name: Bait Decoy
   m_EditorClassIdentifier: 
-  readyToUse: 0
+  readyToUse: 1
   loadingTime: 3
   duration: 10
   cooldownTime: 10
@@ -23,7 +23,7 @@ MonoBehaviour:
   - 90
   - 180
   - -90
-  randomAngle: 000000000100000002000000
+  randomAnglelistIndex: 01000000
   layerMaskTarget:
     serializedVersion: 2
     m_Bits: 16

@@ -4,6 +4,7 @@ using UnityEngine;
 using PlayerEquipement;
 using UnityEngine.Audio;
 using Tweek.FlagAttributes;
+using UnityEngine.SceneManagement;
 
 namespace OceanEntities
 {
@@ -60,9 +61,11 @@ namespace OceanEntities
             environment = GameManager.Instance.levelManager.environnement;
             soundHandler = GameManager.Instance.soundHandler;
             defaultMaxSpeed = speed;
+
             //Equipment initialization.
-            passiveEquipement.Init(this);
-            activeEquipement.Init(this);
+            if(SceneManager.GetActiveScene().name != "TutorialScene")
+                passiveEquipement.Init(this);
+                activeEquipement.Init(this);
 
             audioSource.volume = Mathf.Clamp(movementSoundVolume, 0, 1);
             soundHandler.PlaySound(movementSound, audioSource, targetGroup);

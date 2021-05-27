@@ -11,10 +11,10 @@ public abstract class CounterMeasure : ScriptableObject
 
     [Header ("Counter Measure Parameters")]
     [SerializeField]
-    protected float loadingTime;
+    public float loadingTime;
 
     [SerializeField]
-    protected float duration;
+    public float duration;
 
     [SerializeField]
     protected float cooldownTime;
