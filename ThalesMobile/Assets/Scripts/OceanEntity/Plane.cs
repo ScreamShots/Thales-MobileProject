@@ -5,6 +5,7 @@ using PlayerEquipement;
 using UnityEngine.Audio;
 using Tweek.FlagAttributes;
 using UnityEngine.SceneManagement;
+using NaughtyAttributes;
 
 namespace OceanEntities
 {
@@ -30,6 +31,17 @@ namespace OceanEntities
         public AudioClip movementSound;
         [TweekFlag(FieldUsage.Sound)]
         public float movementSoundVolume;
+        [CurveRange(0, 0, 1, 1)]
+        public AnimationCurve movement3DSelected;
+        [CurveRange(0, 0, 1, 1)]
+        public AnimationCurve movement3DUnselected;
+
+        public bool _selected;
+        bool selected
+        {
+            get { return _selected; }
+            set { if (value != _selected) _selected = value; Update3DSound();  }
+        }
 
         /*private Vector2 waitingTarget = new Vector2(-9999, -9999);
 
@@ -67,6 +79,7 @@ namespace OceanEntities
                 passiveEquipement.Init(this);
                 activeEquipement.Init(this);
 
+            audioSource.maxDistance = GameManager.Instance.cameraController.camSett.maxHeight;
             audioSource.volume = Mathf.Clamp(movementSoundVolume, 0, 1);
             soundHandler.PlaySound(movementSound, audioSource, targetGroup);
         }
@@ -74,6 +87,8 @@ namespace OceanEntities
 
         private void Update()
         {
+            selected = GameManager.Instance.playerController.currentSelectedEntity == this;
+
            if (passiveEquipement.readyToUse)
                 passiveEquipement.UseEquipement(this);
         }
@@ -93,6 +108,12 @@ namespace OceanEntities
             {
                 Waiting();
             }
+        }
+
+        public void Update3DSound()
+        {
+            if (selected) audioSource.SetCustomCurve(AudioSourceCurveType.CustomRolloff,SoundHandler.Get3DVolumeCurve(movement3DSelected));
+            else audioSource.SetCustomCurve(AudioSourceCurveType.CustomRolloff, SoundHandler.Get3DVolumeCurve(movement3DUnselected));
         }
 
         public override void Move(Vector2 targetPosition)

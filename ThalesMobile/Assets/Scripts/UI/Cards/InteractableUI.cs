@@ -82,7 +82,9 @@ public class InteractableUI : MonoBehaviour
                 deckUI.OpenDescription();
 
             if (holdHandler != null && canHold)
+            {
                 holdHandler();
+            }
         }
     }
 

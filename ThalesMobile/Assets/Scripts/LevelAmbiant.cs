@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using NaughtyAttributes;
 
 public class LevelAmbiant : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class LevelAmbiant : MonoBehaviour
     public AudioClip oceanClip;
     public AudioMixerGroup oceanTargetMixer;
     public float oceanVolume;
+    [CurveRange(0, 0, 1, 1)]
     public AnimationCurve ocean3DVolume;
 
     CameraSettings currentCamSet;
@@ -21,7 +23,7 @@ public class LevelAmbiant : MonoBehaviour
         currentSoundHandler = GameManager.Instance.soundHandler;
         currentCamSet = GameManager.Instance.cameraController.camSett;
         oceanSource.maxDistance = currentCamSet.maxHeight;
-        oceanSource.SetCustomCurve(AudioSourceCurveType.CustomRolloff, ocean3DVolume);
+        oceanSource.SetCustomCurve(AudioSourceCurveType.CustomRolloff, SoundHandler.Get3DVolumeCurve(ocean3DVolume));
 
         oceanSource.volume = Mathf.Clamp(0, 1, oceanVolume);
         currentSoundHandler.PlaySound(oceanClip, oceanSource, oceanTargetMixer);

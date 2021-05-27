@@ -22,6 +22,7 @@ public class Boat : DetectableOceanEntity
 
     protected override void Start()
     {
+        base.Start();
         GameManager.Instance.levelManager.submarineEntitiesInScene.Add(this);
 
         _transform = transform;
