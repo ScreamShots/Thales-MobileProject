@@ -22256,6 +22256,16 @@ PrefabInstance:
       propertyPath: serializedGuid.Array.data[15]
       value: 228
       objectReference: {fileID: 0}
+    - target: {fileID: 7115805257208828613, guid: 8ce1ff0332b8a3d4aaa7198181ee9377,
+        type: 3}
+      propertyPath: instanceID
+      value: -79768
+      objectReference: {fileID: 0}
+    - target: {fileID: 7518581230828426781, guid: 8ce1ff0332b8a3d4aaa7198181ee9377,
+        type: 3}
+      propertyPath: instanceID
+      value: -48542
+      objectReference: {fileID: 0}
     - target: {fileID: 7963437130612364036, guid: 8ce1ff0332b8a3d4aaa7198181ee9377,
         type: 3}
       propertyPath: m_LocalScale.x
