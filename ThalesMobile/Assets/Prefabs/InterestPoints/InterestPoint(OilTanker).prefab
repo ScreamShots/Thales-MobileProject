@@ -389,7 +389,7 @@ MonoBehaviour:
   serializedGuid: a377b18e98aaea46b41687f8372d9457
   thisObjState: 2
   initState: 2
-  instanceID: 117662
+  instanceID: 34214
   referencedComponents:
   - component: {fileID: 1924318757793568704}
     serializedGuid: 6ebc1d7e48436247923330a708fa6302
@@ -478,7 +478,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8d6b9629a70a5e44188d83d4d5656422, type: 2}
+  - {fileID: 2100000, guid: 5f58c29feaa42a9449a37fb70eb47ad3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -988,26 +988,6 @@ MonoBehaviour:
   uiVolume: 0.5
   effectsVolume: 0.5
   musicVolume: 0.5
---- !u!114 &7099064203387492379
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4380208127223655878}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 199f21100553d7b4bb62842e20681d77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pause: 0
-  pausePanel: {fileID: 8407812348170479379}
-  targetGroup: {fileID: 0}
-  gearClick: {fileID: 0}
-  gearClickSoundVolume: 0
-  selectClick: {fileID: 0}
-  selectSoundVolume: 0
-  source: {fileID: 0}
 --- !u!1 &5214703361856801187
 GameObject:
   m_ObjectHideFlags: 0
