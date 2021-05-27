@@ -2870,16 +2870,6 @@ PrefabInstance:
       propertyPath: serializedGuid.Array.data[15]
       value: 228
       objectReference: {fileID: 0}
-    - target: {fileID: 7115805257208828613, guid: 8ce1ff0332b8a3d4aaa7198181ee9377,
-        type: 3}
-      propertyPath: instanceID
-      value: -79768
-      objectReference: {fileID: 0}
-    - target: {fileID: 7518581230828426781, guid: 8ce1ff0332b8a3d4aaa7198181ee9377,
-        type: 3}
-      propertyPath: instanceID
-      value: -48542
-      objectReference: {fileID: 0}
     - target: {fileID: 7963437130612364036, guid: 8ce1ff0332b8a3d4aaa7198181ee9377,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -3201,12 +3191,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: a68c8f6c0f148f844beadd25ad301b10, type: 2}
+      objectReference: {fileID: 2100000, guid: 208cdb99938b7f445af6f27d5792589d, type: 2}
     - target: {fileID: 7186507230702161166, guid: d2920f0b7146b0b40977ad43e92dae40,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: a68c8f6c0f148f844beadd25ad301b10, type: 2}
+      objectReference: {fileID: 2100000, guid: 208cdb99938b7f445af6f27d5792589d, type: 2}
     - target: {fileID: 7186507231143849624, guid: d2920f0b7146b0b40977ad43e92dae40,
         type: 3}
       propertyPath: m_RootOrder
