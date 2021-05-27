@@ -20,7 +20,7 @@ public class DecoyInstance : DetectableOceanEntity
     [HideInInspector] public bool decoyIsActive;
     private bool castRaycast = true;
 
-    private bool dontUpdateCoord;
+    //private bool dontUpdateCoord;
     private Vector2 submarineDirection;
 
     protected override void Start()
@@ -44,7 +44,7 @@ public class DecoyInstance : DetectableOceanEntity
             {
                 currentDetectableState = DetectableState.undetected;
                 CheckIfLandIsClose();
-                dontUpdateCoord = false;
+                //dontUpdateCoord = false;
             }
             else
             {

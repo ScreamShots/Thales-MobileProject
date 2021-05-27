@@ -69,7 +69,7 @@ public class Submarine : DetectableOceanEntity
     public float fregateStationaryVigiIncr;
     [TweekFlag(FieldUsage.Gameplay)]
     public float fregateMoveVigiIncr;
-    private bool submarineDetectFregate;
+    //private bool submarineDetectFregate;
     [HideInInspector] public List<Transform> sonobuoys;
     [HideInInspector] public List<float> sonobuoysDistance;
 
@@ -101,7 +101,7 @@ public class Submarine : DetectableOceanEntity
 
     [Space]
     public List<InterestPoint> interestPoints;
-    private InterestPoint nextInterestPoint;
+    public InterestPoint nextInterestPoint;
     private Vector2 nextInterestPointPosition;
     private int randomNumber;
 
@@ -149,6 +149,7 @@ public class Submarine : DetectableOceanEntity
     [TweekFlag(FieldUsage.Sound)]
     public float inHackVolume, doneHackVolume;
     private bool soundAlreadyPlay;
+    private bool alreadyLose;
 
     protected override void Start()
     {
@@ -315,7 +316,13 @@ public class Submarine : DetectableOceanEntity
         else
         {
             // Player lose.
-            GameManager.Instance.uiHandler.victoryScreenManager.Victory(false);
+            if (!alreadyLose)
+            {
+                alreadyLose = true;
+                GameManager.Instance.uiHandler.victoryScreenManager.Victory(false);
+                soundSource.volume = doneHackVolume;
+                soundHandler.PlaySound(doneHackClip, soundSource, targetGroup);
+            } 
         }
     }
 
@@ -333,8 +340,8 @@ public class Submarine : DetectableOceanEntity
 
         if (hackingTimer >= nextInterestPoint.hackTime)
         {
-            soundSource.volume = doneHackVolume;
-            soundHandler.PlaySound(doneHackClip, soundSource, targetGroup);
+            //soundSource.volume = doneHackVolume;
+            //soundHandler.PlaySound(doneHackClip, soundSource, targetGroup);
             soundAlreadyPlay = false;
             hackingTimer = 0;
             nextInterestPoint.currentHackState = HackState.doneHack;
@@ -931,7 +938,7 @@ public class Submarine : DetectableOceanEntity
         float distanceFromFregate = Vector3.Distance(transform.position, ship.transform.position);
         if (distanceFromFregate < currentRange)
         {
-            submarineDetectFregate = true;
+            //submarineDetectFregate = true;
 
             if (ship.currentTargetPoint != ship.nullVector)
             {
@@ -944,7 +951,7 @@ public class Submarine : DetectableOceanEntity
         }
         else
         {
-            submarineDetectFregate = false;
+            //submarineDetectFregate = false;
         }
 
         float distanceFromFregateVigilanceRange = Vector3.Distance(transform.position, ship.transform.position);
