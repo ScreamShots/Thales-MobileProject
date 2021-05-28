@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -7271,10 +7271,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
-  m_fontSizeBase: 35
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -9946,7 +9946,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 831716611}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -5.5}
+  m_LocalPosition: {x: 0, y: 0, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 413642450}
@@ -9970,8 +9970,8 @@ MonoBehaviour:
   anchorGlobe: {fileID: 2103711656}
   cam: {fileID: 413642449}
   aimPos: {x: 220, y: 25}
-  zoom: 0.5
-  distance: {x: 5, y: 6}
+  zoom: 0
+  distance: {x: 4, y: 8}
 --- !u!1001 &836735401
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19078,7 +19078,7 @@ MonoBehaviour:
   m_fontSize: 50
   m_fontSizeBase: 50
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 33
@@ -23147,7 +23147,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1892383260}
-  m_LocalRotation: {x: -0.013140737, y: 0.98270696, z: 0.16793215, w: 0.076897085}
+  m_LocalRotation: {x: -0.016115675, y: 0.983236, z: 0.14516124, w: 0.10915801}
   m_LocalPosition: {x: 0, y: 0, z: -44.65358}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -23222,7 +23222,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1902299396}
-  m_LocalRotation: {x: 0.009552812, y: 0.9639561, z: 0.26358476, w: -0.0349356}
+  m_LocalRotation: {x: 0.01581716, y: 0.9567343, z: 0.28566256, w: -0.05297446}
   m_LocalPosition: {x: 0, y: 0, z: -106.25183}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -24186,7 +24186,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2015865395}
-  m_LocalRotation: {x: 0.019209674, y: 0.9773934, z: 0.18425447, w: -0.10189933}
+  m_LocalRotation: {x: 0.024280673, y: 0.97526884, z: 0.16962035, w: -0.13960701}
   m_LocalPosition: {x: 0, y: 0, z: -10.804699}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
