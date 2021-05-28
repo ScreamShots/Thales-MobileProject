@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 867da68ead1ec1a41ad74322d465f57d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showDebug: 0
+  showDebug: 1
   showBoundary: 1
   drawWind: 1
   limit:
@@ -177,7 +177,7 @@ MonoBehaviour:
   zones:
   - name: Zone-0
     state: 0
-    windDir: 2
+    windDir: 0
     debugColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     points:
     - {x: -16.109936, y: -24.017263}
@@ -196,8 +196,8 @@ MonoBehaviour:
     - {x: -12.729516, y: -13.024973}
     - {x: -16.117775, y: -12.544161}
   - name: Zone-1
-    state: 0
-    windDir: 1
+    state: 1
+    windDir: 0.3
     debugColor: {r: 0.015686274, g: 0.98111004, b: 1, a: 1}
     points:
     - {x: -16.117775, y: -2.7676108}
@@ -221,8 +221,8 @@ MonoBehaviour:
     - {x: -12.729516, y: -13.024973}
     - {x: -16.117775, y: -12.544161}
   - name: Zone-2
-    state: 0
-    windDir: 1
+    state: 3
+    windDir: 1.7
     debugColor: {r: 0.015686274, g: 0.095324956, b: 1, a: 1}
     points:
     - {x: -16.117775, y: -2.7676108}
@@ -240,7 +240,7 @@ MonoBehaviour:
     - {x: -2.666688, y: -7.231751}
     - {x: -9.490273, y: -3.439968}
   - name: Zone-3
-    state: 0
+    state: 4
     windDir: 1
     debugColor: {r: 0.49441624, g: 0.015686274, b: 1, a: 1}
     points:
@@ -682,7 +682,7 @@ PrefabInstance:
     - target: {fileID: 880715453889608284, guid: 2c1a7fc209f0b84428e985bbf3ceccf6,
         type: 3}
       propertyPath: instanceID
-      value: -113042
+      value: -47502
       objectReference: {fileID: 0}
     - target: {fileID: 880715453889608284, guid: 2c1a7fc209f0b84428e985bbf3ceccf6,
         type: 3}
@@ -897,7 +897,7 @@ PrefabInstance:
     - target: {fileID: 1074337076474003645, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
         type: 3}
       propertyPath: instanceID
-      value: -113060
+      value: -47514
       objectReference: {fileID: 0}
     - target: {fileID: 1074337076474003645, guid: 5ab1c56d117d41d4fac0ab0cc2b6afd2,
         type: 3}
@@ -1263,7 +1263,7 @@ PrefabInstance:
     - target: {fileID: 8586447190497049491, guid: fd410c83deedb5045adf3947711ca1a4,
         type: 3}
       propertyPath: instanceID
-      value: -113092
+      value: -47566
       objectReference: {fileID: 0}
     - target: {fileID: 8586447190497049491, guid: fd410c83deedb5045adf3947711ca1a4,
         type: 3}
@@ -1538,7 +1538,7 @@ PrefabInstance:
     - target: {fileID: 6424129936780335879, guid: 3cf7d05242be80643aad05443721c738,
         type: 3}
       propertyPath: instanceID
-      value: -113174
+      value: -47630
       objectReference: {fileID: 0}
     - target: {fileID: 6424129936780335879, guid: 3cf7d05242be80643aad05443721c738,
         type: 3}
@@ -1808,7 +1808,7 @@ PrefabInstance:
     - target: {fileID: 7616686429338091594, guid: 51b70c199aa8fae418d26a84c7de5076,
         type: 3}
       propertyPath: instanceID
-      value: -113258
+      value: -47736
       objectReference: {fileID: 0}
     - target: {fileID: 7616686429338091594, guid: 51b70c199aa8fae418d26a84c7de5076,
         type: 3}
@@ -1923,7 +1923,7 @@ PrefabInstance:
     - target: {fileID: 471003792134305627, guid: ca19df96a0ab32d42bfeb8f1f0412c85,
         type: 3}
       propertyPath: instanceID
-      value: -113368
+      value: -47800
       objectReference: {fileID: 0}
     - target: {fileID: 471003792134305627, guid: ca19df96a0ab32d42bfeb8f1f0412c85,
         type: 3}
@@ -2138,7 +2138,7 @@ PrefabInstance:
     - target: {fileID: 880715453889608284, guid: e08c480d5fe102c4ba8dd974a8901b2e,
         type: 3}
       propertyPath: instanceID
-      value: -113418
+      value: -47870
       objectReference: {fileID: 0}
     - target: {fileID: 880715453889608284, guid: e08c480d5fe102c4ba8dd974a8901b2e,
         type: 3}

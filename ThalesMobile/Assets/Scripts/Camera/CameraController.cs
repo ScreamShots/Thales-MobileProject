@@ -223,14 +223,11 @@ public class CameraController : MonoBehaviour
                     aimZoomLvlX = Mathf.InverseLerp(limit.rightBorder, limitDezoom.rightBorder, target.position.x);
                 }
 
-                SetZoom(Mathf.Min(aimZoomLvlX, aimZoomLvlY), 4f);
+                zoomIntensity = Mathf.Lerp(zoomIntensity, Mathf.Min(aimZoomLvlX, aimZoomLvlY), 2f * Time.deltaTime);
             }
         }
         else
         {
-            //Sécurité en cas de zoom infini
-            StopAllCoroutines();
-
             toTarget = target.position - focusPoint.position;
 
             lookAtTraget = false;
