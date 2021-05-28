@@ -40,7 +40,19 @@ TextureImporter:
     second: SprSh_IconesMarineObject_11
   - first:
       213: -2709418684195975174
-    second: SprSh_IconesMarineObject_12
+    second: SprSh_IconesMarineObject_8
+  - first:
+      213: -1634019391560892259
+    second: SprSh_IconesMarineObject_9
+  - first:
+      213: -7767873153384931898
+    second: SprSh_IconesMarineObject_15
+  - first:
+      213: -4167116985695323712
+    second: SprSh_IconesMarineObject_10
+  - first:
+      213: -4737642795193518758
+    second: SprSh_IconesMarineObject_11
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -141,12 +153,12 @@ TextureImporter:
       name: SprSh_IconesMarineObject_0
       rect:
         serializedVersion: 2
-        x: 7
-        y: 1472
-        width: 492
-        height: 560
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 46
+        y: 1510
+        width: 456
+        height: 520
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -162,12 +174,12 @@ TextureImporter:
       name: SprSh_IconesMarineObject_1
       rect:
         serializedVersion: 2
-        x: 510
-        y: 1472
-        width: 493
-        height: 560
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 530
+        y: 1510
+        width: 456
+        height: 520
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -183,12 +195,12 @@ TextureImporter:
       name: SprSh_IconesMarineObject_2
       rect:
         serializedVersion: 2
-        x: 1014
-        y: 1467
-        width: 492
-        height: 561
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 1036
+        y: 1506
+        width: 456
+        height: 520
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -204,12 +216,12 @@ TextureImporter:
       name: SprSh_IconesMarineObject_3
       rect:
         serializedVersion: 2
-        x: 1529
-        y: 1464
-        width: 495
-        height: 565
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 1535
+        y: 1502
+        width: 456
+        height: 520
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -225,12 +237,12 @@ TextureImporter:
       name: SprSh_IconesMarineObject_4
       rect:
         serializedVersion: 2
-        x: 13
-        y: 877
-        width: 497
-        height: 564
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 54
+        y: 963
+        width: 456
+        height: 520
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -246,12 +258,12 @@ TextureImporter:
       name: SprSh_IconesMarineObject_5
       rect:
         serializedVersion: 2
-        x: 515
-        y: 871
-        width: 499
-        height: 568
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 544
+        y: 960
+        width: 460
+        height: 520
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -267,12 +279,12 @@ TextureImporter:
       name: SprSh_IconesMarineObject_6
       rect:
         serializedVersion: 2
-        x: 1020
-        y: 871
-        width: 498
-        height: 567
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 1048
+        y: 966
+        width: 460
+        height: 520
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -288,12 +300,12 @@ TextureImporter:
       name: SprSh_IconesMarineObject_7
       rect:
         serializedVersion: 2
-        x: 1528
-        y: 873
-        width: 499
-        height: 565
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 1546
+        y: 964
+        width: 461
+        height: 524
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -306,22 +318,43 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SprSh_IconesMarineObject_9
+      name: SprSh_IconesMarineObject_8
       rect:
         serializedVersion: 2
-        x: 421
-        y: 302
-        width: 371
-        height: 374
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 366
+        y: 432
+        width: 292
+        height: 268
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 382d0407e03054ab0800000000000000
-      internalID: -5024606448714198397
+      spriteID: aff41b4df06366ad0800000000000000
+      internalID: -2709418684195975174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SprSh_IconesMarineObject_9
+      rect:
+        serializedVersion: 2
+        x: 693
+        y: 425
+        width: 292
+        height: 268
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d90c9e1550cc259e0800000000000000
+      internalID: -1634019391560892259
       vertices: []
       indices: 
       edges: []
@@ -330,19 +363,19 @@ TextureImporter:
       name: SprSh_IconesMarineObject_10
       rect:
         serializedVersion: 2
-        x: 825
-        y: 297
-        width: 386
-        height: 383
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 1145
+        y: 443
+        width: 267
+        height: 268
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5815415de3df44c70800000000000000
-      internalID: 8954560405424066949
+      spriteID: 0c9322a0e2d6b26c0800000000000000
+      internalID: -4167116985695323712
       vertices: []
       indices: 
       edges: []
@@ -351,19 +384,19 @@ TextureImporter:
       name: SprSh_IconesMarineObject_11
       rect:
         serializedVersion: 2
-        x: 1271
-        y: 294
-        width: 393
-        height: 441
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 1418
+        y: 426
+        width: 270
+        height: 264
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f28ff88fbced92430800000000000000
-      internalID: 3758780331647301679
+      spriteID: a553dc79af2804eb0800000000000000
+      internalID: -4737642795193518758
       vertices: []
       indices: 
       edges: []

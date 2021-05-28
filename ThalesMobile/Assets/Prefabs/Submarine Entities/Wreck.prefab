@@ -61,13 +61,13 @@ MonoBehaviour:
   detectFeedback:
     hullSonarRevealIcon: {fileID: 2661236777724703074, guid: e3be960e7884a08408c4b04b7011aa24,
       type: 3}
-    hullSonarRevealPointer: {fileID: 3758780331647301679, guid: e3be960e7884a08408c4b04b7011aa24,
+    hullSonarRevealPointer: {fileID: -5024606448714198397, guid: e3be960e7884a08408c4b04b7011aa24,
       type: 3}
     sonobuoyRevealIcon: {fileID: 2661236777724703074, guid: e3be960e7884a08408c4b04b7011aa24,
       type: 3}
     globalRevealIcon: {fileID: 2661236777724703074, guid: e3be960e7884a08408c4b04b7011aa24,
       type: 3}
-    globalRevealPointer: {fileID: 3758780331647301679, guid: e3be960e7884a08408c4b04b7011aa24,
+    globalRevealPointer: {fileID: -5024606448714198397, guid: e3be960e7884a08408c4b04b7011aa24,
       type: 3}
   detectors: []
   globalDetectionPointPrefab: {fileID: 2681307672962359013, guid: 7e5f1705a1388de4398a52a5046e63c4,
