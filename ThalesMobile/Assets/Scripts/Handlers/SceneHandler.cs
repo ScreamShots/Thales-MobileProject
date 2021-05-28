@@ -42,6 +42,10 @@ public class SceneHandler : MonoBehaviour
         //Wait until scene has finished loading and animation has ended.
         yield return new WaitUntil(()=> load.progress == 0.9f && finishedFade);
 
+        GameManager.Instance.inputManager.canMoveCam = true;
+        GameManager.Instance.inputManager.canZoomCam = true;
+        GameManager.Instance.inputManager.canUseCam = true;
+
         //Activate the scene and unfade.
         if (sceneToLoadBuildIndex == GameManager.Instance.pauseHandler.menuScene)
             GameManager.Instance.pauseHandler.pauseButton.SetActive(false);
