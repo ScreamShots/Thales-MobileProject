@@ -19093,7 +19093,7 @@ MonoBehaviour:
   m_charWidthMaxAdj: 0
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
-  m_overflowMode: 3
+  m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
@@ -26748,6 +26748,11 @@ PrefabInstance:
       propertyPath: missionPoints.Array.data[2].button
       value: 
       objectReference: {fileID: 1902299396}
+    - target: {fileID: 3078130106839481975, guid: a7db2cd955db239408cfdcd44bf51cbf,
+        type: 3}
+      propertyPath: missionPoints.Array.data[0].missionTitle
+      value: "CASEX: \nsimulation d\u2019une seaber-attaque "
+      objectReference: {fileID: 0}
     - target: {fileID: 3078130106839481975, guid: a7db2cd955db239408cfdcd44bf51cbf,
         type: 3}
       propertyPath: missionPoints.Array.data[0].pointCoord.x
