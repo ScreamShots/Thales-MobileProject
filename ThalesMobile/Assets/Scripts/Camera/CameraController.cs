@@ -194,45 +194,46 @@ public class CameraController : MonoBehaviour
 
         Vector3 toTarget = (target.position - focusPoint.position);
 
-        if (!limitDezoom.InBoundary(target.position))
-        {
-            float aimZoomLvlY = 1;
-            float aimZoomLvlX = 1;
-            //Top
-            if (target.position.y > limitDezoom.upBorder)
-            {
-                aimZoomLvlY = Mathf.InverseLerp(limit.upBorder, limitDezoom.upBorder, target.position.z);
-            }
-            //Bottom
-            else if (target.position.y < limitDezoom.downBorder)
-            {
-                aimZoomLvlY = Mathf.InverseLerp(limit.downBorder, limitDezoom.downBorder, target.position.z);
-            }
-            //Left
-            if (target.position.x < limitDezoom.leftBorder)
-            {
-                aimZoomLvlX = Mathf.InverseLerp(limit.leftBorder, limitDezoom.leftBorder, target.position.x);
-            }
-            //right
-            else if (limitDezoom.rightBorder < target.position.x)
-            {
-                aimZoomLvlX = Mathf.InverseLerp(limit.rightBorder, limitDezoom.rightBorder, target.position.x);
-            }
-
-            SetZoom(Mathf.Min(aimZoomLvlX, aimZoomLvlY), 2);
-        }
-
-
-        if (toTarget.magnitude > (toTarget.normalized).magnitude * refocusSpeed * Time.deltaTime)
+        if (toTarget.magnitude > 2f)//refocusSpeed * Time.deltaTime)
         {
             toTarget = toTarget.normalized * refocusSpeed * moveZoomLvlFactor * Time.deltaTime;
+
+            if (!limitDezoom.InBoundary(target.position))
+            {
+                float aimZoomLvlY = 1;
+                float aimZoomLvlX = 1;
+                //Top
+                if (target.position.y > limitDezoom.upBorder)
+                {
+                    aimZoomLvlY = Mathf.InverseLerp(limit.upBorder, limitDezoom.upBorder, target.position.z);
+                }
+                //Bottom
+                else if (target.position.y < limitDezoom.downBorder)
+                {
+                    aimZoomLvlY = Mathf.InverseLerp(limit.downBorder, limitDezoom.downBorder, target.position.z);
+                }
+                //Left
+                if (target.position.x < limitDezoom.leftBorder)
+                {
+                    aimZoomLvlX = Mathf.InverseLerp(limit.leftBorder, limitDezoom.leftBorder, target.position.x);
+                }
+                //right
+                else if (limitDezoom.rightBorder < target.position.x)
+                {
+                    aimZoomLvlX = Mathf.InverseLerp(limit.rightBorder, limitDezoom.rightBorder, target.position.x);
+                }
+
+                SetZoom(Mathf.Min(aimZoomLvlX, aimZoomLvlY), 4f);
+            }
         }
         else
         {
-            lookAtTraget = false;
-            toTarget = target.position - focusPoint.position;
             //Sécurité en cas de zoom infini
             StopAllCoroutines();
+
+            toTarget = target.position - focusPoint.position;
+
+            lookAtTraget = false;
         }
 
         Vector3 wantedPos = focusPoint.position + toTarget;
