@@ -55,6 +55,7 @@ public class VictoryScreenManager : MonoBehaviour
             submarineCanvasGroup.blocksRaycasts = false;
 
             GameManager.Instance.levelManager.submarine.gameObject.SetActive(false);
+            GameManager.Instance.playerController.currentSelectedEntity.gameObject.SetActive(false);
 
             if (victory)
             {
