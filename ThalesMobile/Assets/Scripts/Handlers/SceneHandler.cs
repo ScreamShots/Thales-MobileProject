@@ -2,45 +2,47 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SceneHandler : MonoBehaviour
 {
     [Header("Transition UI")]
-    public GameObject transitionPanel;
-    private Animator transitionPanelAnimator;
-    private bool finishedFade = true;
 
-    void Start()
-    {
-        transitionPanelAnimator = GetComponent<Animator>();
-    }
+    public CanvasGroup transitionPanelGroup;
+    public float fadeDuration;
 
-    private void Update()
-    {
-
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            StartCoroutine(SceneTransition(2, true));
-        }
-    }
+    public Image loadingIcon;
+    public Sprite[] framesLoadingIcon;
+    public float iconAnimSpeed;
+    bool animIcon;
 
     public void LoadScene(int sceneIndex, bool pauseButton)
     {
-        if(finishedFade)
             StartCoroutine(SceneTransition(sceneIndex, pauseButton));
     }
 
     public IEnumerator SceneTransition(int sceneToLoadBuildIndex, bool pauseButton)
     {
-        //Start Animation and scene load
-        transitionPanelAnimator.SetBool("fade", true);
-        finishedFade = false;
+        float fadeTimer = 0f;
+
+        animIcon = true;
+        StartCoroutine(LoadIconAnim());
+
+        transitionPanelGroup.interactable = true;
+        transitionPanelGroup.blocksRaycasts = true;
+
+        while (fadeTimer < fadeDuration)
+        {
+            transitionPanelGroup.alpha = (fadeTimer / fadeDuration);
+            yield return null;
+            fadeTimer += Time.deltaTime;             
+        }
+        
         AsyncOperation load = SceneManager.LoadSceneAsync(sceneToLoadBuildIndex, LoadSceneMode.Single);
         load.allowSceneActivation = false;
         GameManager.Instance.pauseHandler.PauseButtonDisplay(pauseButton);
         
-        //Wait until scene has finished loading and animation has ended.
-        yield return new WaitUntil(()=> load.progress == 0.9f && finishedFade);
+        yield return new WaitUntil(()=> load.progress == 0.9f);
 
         GameManager.Instance.inputManager.canMoveCam = true;
         GameManager.Instance.inputManager.canZoomCam = true;
@@ -54,14 +56,31 @@ public class SceneHandler : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
-        transitionPanelAnimator.SetBool("fade", false);
+        while (fadeTimer > 0)
+        {
+            transitionPanelGroup.alpha = (fadeTimer / fadeDuration);
+            yield return null;
+            fadeTimer -= Time.deltaTime;
+        }
+
+        transitionPanelGroup.interactable = false;
+        transitionPanelGroup.blocksRaycasts = false;
+        animIcon = false;
     }
 
-    public void AnimEvent(string paramater)
+    public IEnumerator LoadIconAnim()
     {
-        if (paramater == "fadeEnded")
+        loadingIcon.gameObject.SetActive(true);
+
+        while (animIcon)
         {
-            finishedFade = true;
-        }    
+            for (int i = 0; i < framesLoadingIcon.Length; i++)
+            {
+                loadingIcon.sprite = framesLoadingIcon[i];
+                yield return new WaitForSecondsRealtime(iconAnimSpeed / framesLoadingIcon.Length);
+            }
+        }
+
+        loadingIcon.gameObject.SetActive(false);
     }
 }
