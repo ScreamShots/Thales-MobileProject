@@ -228,10 +228,13 @@ MonoBehaviour:
   serializedGuid: fe19af7d9678d74191af86e6eb827d7e
   thisObjState: 2
   initState: 2
-  instanceID: 27342
+  instanceID: 40468
   referencedComponents:
   - component: {fileID: 5630502567233466962}
     serializedGuid: 5f9c4216b50e1a418ee169f7caa274d1
+    update: 1
+  - component: {fileID: 5596175176877104048}
+    serializedGuid: 94770f2b7b3815489044c4d2f5bb3325
     update: 1
 --- !u!1 &5630502566096653354
 GameObject:

@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using NaughtyAttributes;
+using Tweek.FlagAttributes;
 
+[TweekClass]
 public class OilRigSound : MonoBehaviour
 {
     SoundHandler currentSoundHandler;
@@ -11,8 +13,10 @@ public class OilRigSound : MonoBehaviour
 
     [Header("Ambient")]
     public AudioSource oilRigAmbiantSource;
+    [TweekFlag(FieldUsage.Sound)]
     public AudioClip oilRigAmbiantClip;
     public AudioMixerGroup oilRigAmbiantTargetMixer;
+    [TweekFlag(FieldUsage.Sound)]
     public float oilRigAmbiantVolume;
     [CurveRange(0, 0, 1, 1)]
     public AnimationCurve oilRigAmbiant3DVolume;

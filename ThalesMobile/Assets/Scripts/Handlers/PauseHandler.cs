@@ -4,7 +4,9 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using NaughtyAttributes;
+using Tweek.FlagAttributes;
 
+[TweekClass]
 public class PauseHandler : MonoBehaviour
 {
     public bool pause;
@@ -20,12 +22,16 @@ public class PauseHandler : MonoBehaviour
     [SerializeField]
     AudioMixerGroup targetGroup;
     [SerializeField]
+    [TweekFlag(FieldUsage.Sound)]
     AudioClip gearClick;
     [SerializeField]
+    [TweekFlag(FieldUsage.Sound)]
     float gearClickSoundVolume;
     [SerializeField]
+    [TweekFlag(FieldUsage.Sound)]
     AudioClip selectClick;
     [SerializeField]
+    [TweekFlag(FieldUsage.Sound)]
     float selectSoundVolume;
     [SerializeField]
     AudioSource source;

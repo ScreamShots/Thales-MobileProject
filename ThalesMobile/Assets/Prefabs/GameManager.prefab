@@ -3872,10 +3872,13 @@ MonoBehaviour:
   serializedGuid: 1f8b52a66b4f494b945dcb0befdd9c06
   thisObjState: 2
   initState: 2
-  instanceID: 27444
+  instanceID: 41868
   referencedComponents:
   - component: {fileID: 3682279617419880169}
     serializedGuid: 7b3bbe920b14d245a8496bcec2ae1e5c
+    update: 1
+  - component: {fileID: 7602936853566749405}
+    serializedGuid: 3d8b463fd3d9674fb56d8b5206c7f2d6
     update: 1
 --- !u!114 &7055235982569188505
 MonoBehaviour:

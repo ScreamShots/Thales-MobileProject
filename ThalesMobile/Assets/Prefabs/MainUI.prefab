@@ -242,7 +242,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 26.65
+  m_fontSize: 41
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2011,6 +2011,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4486378914324551324}
+  - component: {fileID: 320896789846568298}
   m_Layer: 0
   m_Name: MainUI
   m_TagString: Untagged
@@ -2034,6 +2035,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &320896789846568298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4486378914324551327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c3cdcb490cdee448a8aedfe8dbf5790, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  guidDisplay: 962023a5-b901-492f-8886-9b83be38995b
+  serializedGuid: a523209601b92f4988869b83be38995b
+  thisObjState: 2
+  initState: 2
+  instanceID: 47224
+  referencedComponents:
+  - component: {fileID: 2498422139945803921}
+    serializedGuid: 80f72e567f639849bbc6ccaf09d9f7f8
+    update: 1
+  - component: {fileID: 4630407533699446078}
+    serializedGuid: 2d26f14fc2e84b43915787bd0634f800
+    update: 1
 --- !u!1 &4486378914687766230
 GameObject:
   m_ObjectHideFlags: 0
@@ -2794,7 +2819,7 @@ MonoBehaviour:
     type: 2}
   descriptionAppearSound: {fileID: 8300000, guid: b6a6058dfd7459844b267d7f06252b96,
     type: 3}
-  descriptionAppearSoundVolume: 0
+  descriptionAppearSoundVolume: 1
 --- !u!114 &4863396913377593089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3029,7 +3054,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 61.1
+  m_fontSize: 25.75
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3515,7 +3540,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 17.7
+  m_fontSize: 27.25
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

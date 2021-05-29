@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using Tweek.FlagAttributes;
 using UnityEngine.Audio;
 
+[TweekClass]
 public class GlobalPointFeedBack : MonoBehaviour
 {
     [Header("References")]
@@ -52,8 +53,10 @@ public class GlobalPointFeedBack : MonoBehaviour
     [SerializeField]
     AudioSource appearSoundSource;
     [SerializeField]
+    [TweekFlag(FieldUsage.Sound)]
     AudioClip submarinDetected;
     [SerializeField]
+    [TweekFlag(FieldUsage.Sound)]
     float submarinDetectedVolume;
     [SerializeField]
     AudioSource submarinDetectedSource;
