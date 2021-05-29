@@ -298,7 +298,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 7991
+    m_Bits: 24375
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -398,7 +398,7 @@ MonoBehaviour:
   focusPoint: {fileID: 5630502567671392402}
   cam: {fileID: 5630502566096653526}
   lookAtTraget: 0
-  target: {fileID: 0}
+  target: {x: 0, y: 0, z: 0}
   zoomIntensity: 1
   zoomSpeed: 5
   camSett: {fileID: 11400000, guid: 81746d5d0ad588340bad41252888c508, type: 2}
