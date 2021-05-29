@@ -76,8 +76,9 @@ Material:
     - Boolean_B8F97FB4: 1
     - DisplaceIntensity: 0
     - NoiseScale: 24.7
-    - Power: 3
+    - Power: 6
     - Vector1_3235DF83: 29.96
+    - Vector1_501B5104: 0.15
     - Vector1_A87B2A77: 0
     - _AlphaClip: 0
     - _Blend: 0
