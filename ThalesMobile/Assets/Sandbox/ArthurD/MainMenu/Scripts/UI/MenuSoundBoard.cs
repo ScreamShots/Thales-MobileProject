@@ -6,13 +6,14 @@ public class MenuSoundBoard : MonoBehaviour
 {
     [Header("Component")]
     public SoundHandler soundHandler;
-    [Space(5)]
+
+    [Header("UI component")]
     public Slider soundSliderMaster;
     public Slider soundSliderUI;
     public Slider soundSliderMusic;
     public Slider soundSliderEffect;
 
-    [Header("UI")]
+    [Header("UI sound")]
     public AudioMixerGroup uiGroup;
     [Space(5)]
     public AudioClip closeWindow;
@@ -32,6 +33,8 @@ public class MenuSoundBoard : MonoBehaviour
 
     void Start()
     {
+        soundHandler = GameManager.Instance.soundHandler;
+
         PlayThalesTheme();
 
         //Place rightly the slider
@@ -41,43 +44,36 @@ public class MenuSoundBoard : MonoBehaviour
         soundSliderEffect.value = PlayerPrefs.GetFloat("effectsVolume", 0.5f);
     }
 
-//UI sound
-public void PlayCloseWindow(AudioSource audioSource)
+    //UI sound
+    public void PlayCloseWindow(AudioSource audioSource)
     {
         soundHandler.PlaySound(closeWindow, audioSource, uiGroup);
-
     }
     public void PlayLauchMission(AudioSource audioSource)
     {
         soundHandler.PlaySound(lauchMission, audioSource, uiGroup);
-
     }
     public void PlayScreenReturn(AudioSource audioSource)
     {
         soundHandler.PlaySound(screenReturn, audioSource, uiGroup);
-
     }
     public void PlaySelectionMission(AudioSource audioSource)
     {
         soundHandler.PlaySound(selectMission, audioSource, uiGroup);
-
     }
     public void PlaySelection(AudioSource audioSource)
     {
         soundHandler.PlaySound(selection, audioSource, uiGroup);
-
     }
     public void PlayOptionSound(AudioSource audioSource)
     {
         soundHandler.PlaySound(optionSound, audioSource, uiGroup);
-
     }
     public void PlayErrorSound(AudioSource audioSource)
     {
         soundHandler.PlaySound(error, audioSource, uiGroup);
-
     }
-    
+
     //Music
     public void PlayThalesTheme()
     {
@@ -88,17 +84,21 @@ public void PlayCloseWindow(AudioSource audioSource)
     public void ChangeMasterVolume(float value)
     {
         soundHandler.ChangeVolume(value, SoundMixerGroup.Master);
+        PlayerPrefs.SetFloat("masterVolume", value);
     }
     public void ChangeUIVolume(float value)
     {
         soundHandler.ChangeVolume(value, SoundMixerGroup.UI);
+        PlayerPrefs.SetFloat("uiVolume", value);
     }
     public void ChangeMusicVolume(float value)
     {
         soundHandler.ChangeVolume(value, SoundMixerGroup.Music);
+        PlayerPrefs.SetFloat("musicVolume", value);
     }
     public void ChangeEffectVolume(float value)
     {
         soundHandler.ChangeVolume(value, SoundMixerGroup.Effect);
+        PlayerPrefs.SetFloat("effectsVolume", value);
     }
 }
