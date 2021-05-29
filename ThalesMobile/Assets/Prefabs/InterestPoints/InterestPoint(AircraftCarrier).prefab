@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 801215152691944893}
   - component: {fileID: 801215152691944895}
   - component: {fileID: 801215152691944892}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: AlertIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,16 +25,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 801215152691944890}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0.7071068, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 5.08}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.005, y: 0.005, z: 0.005}
   m_Children: []
   m_Father: {fileID: 801215153570151179}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.2}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 512, y: 512}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &801215152691944895
@@ -166,7 +166,7 @@ GameObject:
   - component: {fileID: 801215153570151179}
   - component: {fileID: 801215153570151181}
   - component: {fileID: 801215153570151178}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: AlertCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -181,7 +181,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 801215153570151176}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -2.52}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 801215152691944893}
@@ -190,8 +190,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 0, y: 2.3}
+  m_SizeDelta: {x: 2.4233403, y: 2.3485708}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &801215153570151181
 Canvas:
@@ -212,7 +212,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: -58368369
-  m_SortingOrder: 0
+  m_SortingOrder: -5
   m_TargetDisplay: 0
 --- !u!114 &801215153570151178
 MonoBehaviour:
@@ -449,7 +449,7 @@ MonoBehaviour:
   serializedGuid: 6081113e93a845449441cc29276b98ec
   thisObjState: 2
   initState: 2
-  instanceID: 33144
+  instanceID: 39016
   referencedComponents:
   - component: {fileID: 801215153859902935}
     serializedGuid: f133b0c7cc65244b919df895b16b013e

@@ -148,6 +148,8 @@ public class InterestPoint : MonoBehaviour
             }
             else
             {
+                alertIcon.transform.forward = GameManager.Instance.cameraController.cam.transform.forward;
+
                 if (!alertFlag)
                 {
                     alertFlag = true;
