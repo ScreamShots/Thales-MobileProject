@@ -68,21 +68,21 @@ public class BaitDecoy : CounterMeasure
     {
         // Choose if the decoy direction will be left of right.
 
-        Debug.Log(randomAnglelistIndex.Count);
+        //Debug.Log(randomAnglelistIndex.Count);
 
         randomAngleIndex = randomAnglelistIndex[Random.Range(0, randomAnglelistIndex.Count)];
         decoyRef.decoyAngle = decoysAngle[randomAngleIndex];
         randomAnglelistIndex.Remove(randomAngleIndex);
-        Debug.Log(decoysAngle[randomAngleIndex]);
+        //Debug.Log(decoysAngle[randomAngleIndex]);
 
         randomAngleIndex = randomAnglelistIndex[Random.Range(0, randomAnglelistIndex.Count)];
         decoyRef2.decoyAngle = decoysAngle[randomAngleIndex];
         randomAnglelistIndex.Remove(randomAngleIndex);
-        Debug.Log(decoysAngle[randomAngleIndex]);
+        //Debug.Log(decoysAngle[randomAngleIndex]);
 
         randomAngleIndex = randomAnglelistIndex[Random.Range(0, randomAnglelistIndex.Count)];
         decoyRef3.decoyAngle = decoysAngle[randomAngleIndex];
         randomAnglelistIndex.Remove(randomAngleIndex);
-        Debug.Log(decoysAngle[randomAngleIndex]);
+        //Debug.Log(decoysAngle[randomAngleIndex]);
     }
 }

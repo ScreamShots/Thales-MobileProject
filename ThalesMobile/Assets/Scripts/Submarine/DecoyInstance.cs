@@ -17,7 +17,7 @@ public class DecoyInstance : DetectableOceanEntity
     public float decoyAngle;
     [HideInInspector] public int randomDirection;
 
-    [HideInInspector] public bool decoyIsActive;
+    public bool decoyIsActive;
     private bool castRaycast = true;
 
     //private bool dontUpdateCoord;

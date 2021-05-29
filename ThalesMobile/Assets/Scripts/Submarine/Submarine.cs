@@ -299,11 +299,14 @@ public class Submarine : DetectableOceanEntity
             if ((nextInterestPointPosition - coords.position).magnitude < nextInterestPoint.hackingRange)
             {
                 Capture();
+                UpdatePath(nextInterestPointPosition);
+                movingToNextPoint = false;
             }
             else
             {
                 //pathDestination = nextInterestPointPosition;
                 UpdatePath(nextInterestPointPosition);
+                movingToNextPoint = true;
             }
         }
         else
@@ -354,7 +357,7 @@ public class Submarine : DetectableOceanEntity
             dontUpdateCoord = true;
             submarineDirection = coords.direction;
         }
-        
+
         Vector2 decoySubmarineDestination = UpdatePath(coords.position + Coordinates.ConvertWorldToVector2(Quaternion.Euler(0, realBaitDecoy.decoysAngle[realBaitDecoy.randomAnglelistIndex[0]], 0) * Coordinates.ConvertVector2ToWorld(Vector2.right)) * 5);
         coords.direction = pathDirection;
         //coords.direction = Coordinates.ConvertWorldToVector2(Quaternion.Euler(0, realBaitDecoy.decoysAngle[realBaitDecoy.randomAnglelistIndex[0]], 0) * Coordinates.ConvertVector2ToWorld(Vector2.right));
