@@ -4770,7 +4770,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1951661757}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.26756606
+  m_Size: 0.35675475
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5640,7 +5640,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -7218,7 +7218,14 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Description d\xE9taill\xE9 du produit"
+  m_text: Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+    when an unknown printer took a galley of type and scrambled it to make a type
+    specimen book. It has survived not only five centuries, but also the leap into
+    electronic typesetting, remaining essentially unchanged. It was popularised in
+    the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
+    and more recently with desktop publishing software like Aldus PageMaker including
+    versions of Lorem Ipsum.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8044c1eb31509df45bf8b0853d574ab7, type: 2}
   m_sharedMaterial: {fileID: -7948258015538890299, guid: 8044c1eb31509df45bf8b0853d574ab7,
@@ -7264,7 +7271,7 @@ MonoBehaviour:
   m_charWidthMaxAdj: 0
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
+  m_overflowMode: 4
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
@@ -7274,8 +7281,8 @@ MonoBehaviour:
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
-  m_horizontalMapping: 0
-  m_verticalMapping: 0
+  m_horizontalMapping: 1
+  m_verticalMapping: 1
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
   m_IsTextObjectScaleStatic: 0
@@ -9338,7 +9345,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 800.00006, y: 0}
+  m_AnchoredPosition: {x: 800, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &788405380
@@ -9906,6 +9913,7 @@ GameObject:
   m_Component:
   - component: {fileID: 831716612}
   - component: {fileID: 831716613}
+  - component: {fileID: 831716614}
   m_Layer: 0
   m_Name: CameraGlobePoint
   m_TagString: Untagged
@@ -9921,7 +9929,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 831716611}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -4}
+  m_LocalPosition: {x: 0, y: 0, z: -4.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 413642450}
@@ -9946,7 +9954,25 @@ MonoBehaviour:
   cam: {fileID: 413642449}
   aimPos: {x: 220, y: 25}
   zoom: 0
-  distance: {x: 4, y: 8}
+  minDist: 4.8
+  maxDist: 4.8
+--- !u!114 &831716614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 831716611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: 77bd62b4c12a5674c884d67c181d35e2, type: 2}
 --- !u!1001 &836735401
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11279,8 +11305,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17cd211bbfca15a4e961a63c4d471e37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  screenSize: {x: 1536, y: 2048}
-  centerPos: {x: 768, y: 1024, z: 0}
+  screenSize: {x: 675, y: 1200}
+  centerPos: {x: 337.5, y: 600, z: 0}
   input: {fileID: 919132149453177770}
   slider: {fileID: 1870064779}
   menu: {fileID: 1820118679}
@@ -24295,7 +24321,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1892383260}
-  m_LocalRotation: {x: -0.016115675, y: 0.983236, z: 0.14516124, w: 0.10915801}
+  m_LocalRotation: {x: -0.014467255, y: 0.98306984, z: 0.15937777, w: 0.08923656}
   m_LocalPosition: {x: 0, y: 0, z: -44.65358}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -24370,7 +24396,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1902299396}
-  m_LocalRotation: {x: 0.01581716, y: 0.9567343, z: 0.28566256, w: -0.05297446}
+  m_LocalRotation: {x: 0.011747104, y: 0.96137005, z: 0.27185282, w: -0.04154202}
   m_LocalPosition: {x: 0, y: 0, z: -106.25183}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -25334,7 +25360,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2015865395}
-  m_LocalRotation: {x: 0.024280673, y: 0.97526884, z: 0.16962035, w: -0.13960701}
+  m_LocalRotation: {x: 0.021342412, y: 0.9767315, z: 0.17869319, w: -0.116656944}
   m_LocalPosition: {x: 0, y: 0, z: -10.804699}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -28057,7 +28083,7 @@ PrefabInstance:
     - target: {fileID: 4929488482882552531, guid: a7db2cd955db239408cfdcd44bf51cbf,
         type: 3}
       propertyPath: deceleration
-      value: 3
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 4929488482882552531, guid: a7db2cd955db239408cfdcd44bf51cbf,
         type: 3}

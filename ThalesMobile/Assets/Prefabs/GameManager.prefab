@@ -3947,7 +3947,7 @@ MonoBehaviour:
   serializedGuid: 1f8b52a66b4f494b945dcb0befdd9c06
   thisObjState: 2
   initState: 2
-  instanceID: 98054
+  instanceID: 106536
   referencedComponents:
   - component: {fileID: 3682279617419880169}
     serializedGuid: 7b3bbe920b14d245a8496bcec2ae1e5c
@@ -5200,7 +5200,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef2ec47445dfe9b4991d320078f1f931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transitionPanel: {fileID: 6949550513953256557}
   transitionPanelGroup: {fileID: 7542248746449821066}
   fadeDuration: 2
   loadingIcon: {fileID: 1620419898900459762}
@@ -8140,8 +8139,8 @@ CanvasGroup:
   m_GameObject: {fileID: 7482286748157245109}
   m_Enabled: 1
   m_Alpha: 0
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!1 &7510707838708156639
 GameObject:

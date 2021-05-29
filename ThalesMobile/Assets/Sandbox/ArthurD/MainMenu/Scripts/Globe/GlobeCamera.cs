@@ -13,12 +13,15 @@ public class GlobeCamera : MonoBehaviour
     [Header("Globe Parameter")]
     public Vector2 aimPos;
     [Range(0,1)]public float zoom;
-    [MinMaxSlider(0, 10)] public Vector2 distance;
+    public float minDist;
+    public float maxDist;
 
     private void Update()
     {
         //Clear Value Time
-        distance = new Vector2(Mathf.FloorToInt(distance.x), Mathf.CeilToInt(distance.y));
+        maxDist = Mathf.Max(minDist, maxDist);
+        minDist = Mathf.Min(minDist, maxDist);
+
         if (aimPos.x < 0)
         {
             aimPos.x += 360f;
@@ -31,7 +34,7 @@ public class GlobeCamera : MonoBehaviour
         //Set Camera Rotation
         anchorCamera.rotation = Quaternion.Euler(aimPos.y, 0, 0);
         //Set Camera Distance
-        transform.localPosition = new Vector3(0, 0, -Mathf.Lerp(distance.x, distance.y, zoom));
+        transform.localPosition = new Vector3(0, 0, -Mathf.Lerp(minDist, maxDist, zoom));
 
     }
 }
