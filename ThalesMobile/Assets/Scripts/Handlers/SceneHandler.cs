@@ -51,6 +51,9 @@ public class SceneHandler : MonoBehaviour
             GameManager.Instance.pauseHandler.pauseButton.SetActive(false);
 
         load.allowSceneActivation = true;
+
+        yield return new WaitForSeconds(2f);
+
         transitionPanelAnimator.SetBool("fade", false);
     }
 

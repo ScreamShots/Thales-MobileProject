@@ -37,9 +37,26 @@ public class BaitDecoy : CounterMeasure
         ChooseRandomSide();
         
 
-        submarine.decoy.decoyIsActive = true;
+        submarine.decoy.decoyIsActive = true;       
         submarine.decoy2.decoyIsActive = true;
         submarine.decoy3.decoyIsActive = true;
+
+        if (submarine.linkedGlobalDetectionPoint.activated)
+        {
+            if (submarine.decoy.linkedGlobalDetectionPoint.activated) submarine.decoy.linkedGlobalDetectionPoint.UpdatePoint();
+            else submarine.decoy.linkedGlobalDetectionPoint.InitPoint();
+
+            if (submarine.decoy2.linkedGlobalDetectionPoint.activated) submarine.decoy2.linkedGlobalDetectionPoint.UpdatePoint();
+            else submarine.decoy2.linkedGlobalDetectionPoint.InitPoint();
+
+            if (submarine.decoy3.linkedGlobalDetectionPoint.activated) submarine.decoy3.linkedGlobalDetectionPoint.UpdatePoint();
+            else submarine.decoy3.linkedGlobalDetectionPoint.InitPoint();
+        }
+
+        submarine.decoy.linkedGlobalDetectionPoint.detectionState = submarine.linkedGlobalDetectionPoint.detectionState;
+        submarine.decoy2.linkedGlobalDetectionPoint.detectionState = submarine.linkedGlobalDetectionPoint.detectionState;
+        submarine.decoy3.linkedGlobalDetectionPoint.detectionState = submarine.linkedGlobalDetectionPoint.detectionState;
+
         submarine.isDecoyMoving = true;
         if (!decoyRef.levelManager.submarineEntitiesInScene.Contains(decoyRef))
         {
