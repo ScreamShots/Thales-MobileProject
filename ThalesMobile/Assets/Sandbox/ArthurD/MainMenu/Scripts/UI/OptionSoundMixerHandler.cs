@@ -18,6 +18,11 @@ public class OptionSoundMixerHandler : MonoBehaviour
         soundSliderUI.value = PlayerPrefs.GetFloat("uiVolume", 0.5f);
         soundSliderMusic.value = PlayerPrefs.GetFloat("musicVolume", 0.5f);
         soundSliderEffect.value = PlayerPrefs.GetFloat("effectsVolume", 0.5f);
+
+        ChangeEffectVolume(soundSliderEffect.value);
+        ChangeMasterVolume(soundSliderMaster.value);
+        ChangeMusicVolume(soundSliderMusic.value);
+        ChangeUIVolume(soundSliderUI.value);
     }
 
     //Change a specific volume
