@@ -6,9 +6,9 @@ public enum MissionDifficulty { Easy, Medium, Hard };
 public class GlobePoint
 {
     [Header("Mision Data")]
-    public string missionTitle;
-    public string missionEmplacement;
-    [Multiline]
+    [TextArea(1, 2)] public string missionTitle;
+    [TextArea(1, 1)] public string missionEmplacement;
+    [ResizableTextArea]
     public string missionDescription;
 
     [Header("Globe Info")]

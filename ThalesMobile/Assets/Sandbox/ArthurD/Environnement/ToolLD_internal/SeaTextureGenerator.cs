@@ -49,10 +49,17 @@ public static class SeaTextureGenerator
 
 
         //Set les couleurs de chaques zone
-        List<Color> zoneColor = new List<Color>() { Color.black, Color.red, Color.green, Color.blue };
+        List<Color> zoneColor = new List<Color>() {};
         if (map.zones.Length != 0)
         {
-            zoneColor.RemoveRange(1, 3);
+            //Default is Sea Way
+            zoneColor.Add(
+                new Color(
+                        1.6f, //R = direction du vent
+                        0.3f,//G = Wave Height
+                        0.5f, //B = Color Intensity
+                        0));
+
             for (int i = 0; i < map.zones.Length; i++)
             {
                 float waveStrenght = 0;
@@ -63,18 +70,22 @@ public static class SeaTextureGenerator
                         waveStrenght = 0.3f;
                         colorIntensity = 0.5f;
                         break;
+
                     case ZoneState.SeaWay:
                         waveStrenght = 0.5f;
                         colorIntensity = 0.3f;
                         break;
+
                     case ZoneState.SeaTurbulent:
                         waveStrenght = 1f;
                         colorIntensity = 1f;
                         break;
+
                     case ZoneState.WindyZone:
                         waveStrenght = 0.7f;
                         colorIntensity = 0.7f;
                         break;
+
                     default:
                         break;
                 }

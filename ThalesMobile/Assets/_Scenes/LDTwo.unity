@@ -22681,6 +22681,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8677931889905174957, guid: 8ce1ff0332b8a3d4aaa7198181ee9377,
+        type: 3}
+      propertyPath: showDebug
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8677931889905174957, guid: 8ce1ff0332b8a3d4aaa7198181ee9377,
+        type: 3}
+      propertyPath: zones.Array.data[3].windDir
+      value: 1.8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ce1ff0332b8a3d4aaa7198181ee9377, type: 3}
 --- !u!4 &2002019400 stripped
@@ -32762,12 +32772,17 @@ PrefabInstance:
     - target: {fileID: 5630502567233466962, guid: 1ce6e572ea85ad344b97167bd62129c7,
         type: 3}
       propertyPath: limitDezoom.size.x
-      value: 20
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5630502567233466962, guid: 1ce6e572ea85ad344b97167bd62129c7,
         type: 3}
       propertyPath: limitDezoom.size.y
-      value: 20
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 5630502567233466962, guid: 1ce6e572ea85ad344b97167bd62129c7,
+        type: 3}
+      propertyPath: limitDezoom.offSet.x
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 5630502567233466962, guid: 1ce6e572ea85ad344b97167bd62129c7,
         type: 3}

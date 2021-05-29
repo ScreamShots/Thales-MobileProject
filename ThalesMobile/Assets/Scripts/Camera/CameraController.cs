@@ -70,7 +70,7 @@ public class CameraController : MonoBehaviour
             GameManager.Instance.inputManager.minX = limit.leftBorder;
             GameManager.Instance.inputManager.maxY = limit.upBorder;
             GameManager.Instance.inputManager.minY = limit.downBorder;
-            
+
         }
 
         InitializeFocusPoint();
@@ -84,7 +84,6 @@ public class CameraController : MonoBehaviour
             moveDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         }
 
-        ZoomCalcul(zoomIntensity);
         if (lookAtTraget)
         {
             //Go to the focus Point
@@ -95,6 +94,7 @@ public class CameraController : MonoBehaviour
             //Recive Moving Input
             MoveFocusPoint(moveDirection);
         }
+        ZoomCalcul(zoomIntensity);
         ZoomApplication();
     }
 
@@ -147,7 +147,7 @@ public class CameraController : MonoBehaviour
             focusPoint.name = "New_CamFocusPoint";
         }
     }
-    
+
     private void ZoomCalcul(float zoom)
     {
         zoom = Mathf.Clamp01(zoom);
@@ -158,10 +158,10 @@ public class CameraController : MonoBehaviour
         aimFov = camSett.EvalFieldOfView(zoom);
         //Rotation 
         aimAngle = camSett.EvalAngle(zoom);
-        
+
         //Move Factor 
         float mapScaleFactor = Mathf.Min(limitDezoom.size.x / limit.size.x, limitDezoom.size.y / limit.size.y);
-        moveZoomLvlFactor = Mathf.Lerp(1, mapScaleFactor, zoomIntensity) * (1- minimalMoveFactor) + minimalMoveFactor;
+        moveZoomLvlFactor = Mathf.Lerp(1, mapScaleFactor, zoomIntensity) * (1 - minimalMoveFactor) + minimalMoveFactor;
     }
     private void ZoomApplication()
     {
@@ -176,7 +176,7 @@ public class CameraController : MonoBehaviour
         Quaternion aimLook = Quaternion.Euler(aimAngle, transform.rotation.y, transform.rotation.z);
         transform.rotation = Quaternion.Slerp(transform.rotation, aimLook, aimLerpSpeed); //Slerp and not Lerp (https://youtu.be/uNHIPVOnt-Y)
     }
-    
+
     //Mouvement
     private void MoveFocusPoint(Vector2 dir)
     {
@@ -193,12 +193,43 @@ public class CameraController : MonoBehaviour
     {
 
         Vector3 toTarget = (target.position - focusPoint.position);
-        if (toTarget.magnitude > (toTarget.normalized).magnitude * refocusSpeed * Time.deltaTime)
+
+        if (toTarget.magnitude > 2f)//refocusSpeed * Time.deltaTime)
         {
             toTarget = toTarget.normalized * refocusSpeed * moveZoomLvlFactor * Time.deltaTime;
+
+            if (!limitDezoom.InBoundary(target.position))
+            {
+                float aimZoomLvlY = 1;
+                float aimZoomLvlX = 1;
+                //Top
+                if (target.position.y > limitDezoom.upBorder)
+                {
+                    aimZoomLvlY = Mathf.InverseLerp(limit.upBorder, limitDezoom.upBorder, target.position.z);
+                }
+                //Bottom
+                else if (target.position.y < limitDezoom.downBorder)
+                {
+                    aimZoomLvlY = Mathf.InverseLerp(limit.downBorder, limitDezoom.downBorder, target.position.z);
+                }
+                //Left
+                if (target.position.x < limitDezoom.leftBorder)
+                {
+                    aimZoomLvlX = Mathf.InverseLerp(limit.leftBorder, limitDezoom.leftBorder, target.position.x);
+                }
+                //right
+                else if (limitDezoom.rightBorder < target.position.x)
+                {
+                    aimZoomLvlX = Mathf.InverseLerp(limit.rightBorder, limitDezoom.rightBorder, target.position.x);
+                }
+
+                zoomIntensity = Mathf.Lerp(zoomIntensity, Mathf.Min(aimZoomLvlX, aimZoomLvlY), 2f * Time.deltaTime);
+            }
         }
         else
         {
+            toTarget = target.position - focusPoint.position;
+
             lookAtTraget = false;
         }
 
@@ -206,7 +237,7 @@ public class CameraController : MonoBehaviour
 
         wantedPos = ClampInCamZone(wantedPos);
 
-        focusPoint.position = new Vector3(wantedPos.x, 0 , wantedPos.z);
+        focusPoint.position = new Vector3(wantedPos.x, 0, wantedPos.z);
     }
 
     private Vector3 ClampInCamZone(Vector3 pos)
@@ -219,7 +250,7 @@ public class CameraController : MonoBehaviour
         return result;
     }
 
-    //Debug
+    #region Debug
     private void OnDrawGizmos()
     {
         //DebugBoundary(debugSize, debugStep, limit);
@@ -274,7 +305,7 @@ public class CameraController : MonoBehaviour
             Gizmos.color = Color.white;
         }
     }
-    private void DebugCamZone(Boundary limit, Boundary limitDezoom,int step)
+    private void DebugCamZone(Boundary limit, Boundary limitDezoom, int step)
     {
         float height = camSett.maxHeight - camSett.minHeight;
         float ratio = height / step;
@@ -282,17 +313,21 @@ public class CameraController : MonoBehaviour
         if (drawLine)
         {
             Boundary heightBound = limit;
+
             float i = 0;
             for (float tempHeight = camSett.minHeight; tempHeight <= camSett.maxHeight; tempHeight += ratio)
             {
                 heightBound.size = new Vector2(
-                    Mathf.Lerp(limit.size.x, limitDezoom.size.x, i), 
+                    Mathf.Lerp(limit.size.x, limitDezoom.size.x, i),
                     Mathf.Lerp(limit.size.y, limitDezoom.size.y, i));
+
                 heightBound.offSet = new Vector2(
                     Mathf.Lerp(limit.offSet.x, limitDezoom.offSet.x, i),
                     Mathf.Lerp(limit.offSet.y, limitDezoom.offSet.y, i));
 
-                i += (float)1f/step;
+                heightBound.offSet.y += Mathf.Lerp(camSett.minTargetProximity, camSett.maxTargetProximity, i);
+
+                i += (float)1f / step;
 
                 //Draw the rectangle
                 // _  
@@ -313,20 +348,20 @@ public class CameraController : MonoBehaviour
             }
 
             #region Cone Corners
-            Vector3 LeftBottomCornerMin = new Vector3(limit.leftBorder, camSett.minHeight, limit.downBorder);
-            Vector3 LeftBottomCornerMax = new Vector3(limitDezoom.leftBorder, camSett.maxHeight, limitDezoom.downBorder);
+            Vector3 LeftBottomCornerMin = new Vector3(limit.leftBorder, camSett.minHeight, limit.downBorder + camSett.minTargetProximity);
+            Vector3 LeftBottomCornerMax = new Vector3(limitDezoom.leftBorder, camSett.maxHeight, limitDezoom.downBorder + camSett.maxTargetProximity);
             Debug.DrawLine(LeftBottomCornerMin, LeftBottomCornerMax, Color.red);
 
-            Vector3 LeftTopCornerMin = new Vector3(limit.leftBorder, camSett.minHeight, limit.upBorder);
-            Vector3 LeftTopCornerMax = new Vector3(limitDezoom.leftBorder, camSett.maxHeight, limitDezoom.upBorder);
+            Vector3 LeftTopCornerMin = new Vector3(limit.leftBorder, camSett.minHeight, limit.upBorder + camSett.minTargetProximity);
+            Vector3 LeftTopCornerMax = new Vector3(limitDezoom.leftBorder, camSett.maxHeight, limitDezoom.upBorder + camSett.maxTargetProximity);
             Debug.DrawLine(LeftTopCornerMin, LeftTopCornerMax, Color.red);
 
-            Vector3 RightBottomCornerMin = new Vector3(limit.rightBorder, camSett.minHeight, limit.downBorder);
-            Vector3 RightBottomCornerMax = new Vector3(limitDezoom.rightBorder, camSett.maxHeight, limitDezoom.downBorder);
+            Vector3 RightBottomCornerMin = new Vector3(limit.rightBorder, camSett.minHeight, limit.downBorder + camSett.minTargetProximity);
+            Vector3 RightBottomCornerMax = new Vector3(limitDezoom.rightBorder, camSett.maxHeight, limitDezoom.downBorder + camSett.maxTargetProximity);
             Debug.DrawLine(RightBottomCornerMin, RightBottomCornerMax, Color.red);
 
-            Vector3 RightTopCornerMin = new Vector3(limit.rightBorder, camSett.minHeight, limit.upBorder);
-            Vector3 RightTopCornerMax = new Vector3(limitDezoom.rightBorder, camSett.maxHeight, limitDezoom.upBorder);
+            Vector3 RightTopCornerMin = new Vector3(limit.rightBorder, camSett.minHeight, limit.upBorder + camSett.minTargetProximity);
+            Vector3 RightTopCornerMax = new Vector3(limitDezoom.rightBorder, camSett.maxHeight, limitDezoom.upBorder + camSett.maxTargetProximity);
             Debug.DrawLine(RightTopCornerMin, RightTopCornerMax, Color.red);
             #endregion
 
@@ -351,4 +386,5 @@ public class CameraController : MonoBehaviour
 
         }
     }
+    #endregion
 }

@@ -139,12 +139,12 @@ public class GlobeInput : MonoBehaviour
 
             if (deltaDistance > 1 && camController.zoom <= 1)
             {
-                camController.zoom -= 0.01f * (1 - Mathf.Clamp01(0.01f * deltaDistance));
+                camController.zoom -= 0.1f * (1 - Mathf.Clamp01(0.01f * deltaDistance));
                 camController.zoom = Mathf.Clamp01(camController.zoom);
             }
             else if (deltaDistance < -1 && camController.zoom >= 0)
             {
-                camController.zoom += 0.01f * (1 - Mathf.Clamp01(0.01f * deltaDistance));
+                camController.zoom += 0.1f * (1 - Mathf.Clamp01(0.01f * deltaDistance));
                 camController.zoom = Mathf.Clamp01(camController.zoom);
             }
         }
