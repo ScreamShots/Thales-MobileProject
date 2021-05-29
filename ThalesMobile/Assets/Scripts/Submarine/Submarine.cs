@@ -193,14 +193,7 @@ public class Submarine : DetectableOceanEntity
         subZoneAngleWidth12 = 360 / subZone12Subdivision;
         subZoneAngleWidth3 = 360 / (subZone12Subdivision * subZone3SubSubdivision);
 
-
-        for (int i = 0; i < levelManager.submarineEntitiesInScene.Count; i++)
-        {
-            if(levelManager.submarineEntitiesInScene[i].GetType() != typeof(Submarine))
-            {
-                bioElements.Add(levelManager.submarineEntitiesInScene[i].transform);
-            }
-        }
+        StartCoroutine(WaitForAddBio());
 
         allCounterMeasures = new List<CounterMeasure>();
         allCounterMeasures.Add(headingChange);
@@ -1064,4 +1057,17 @@ public class Submarine : DetectableOceanEntity
         changeUIDecoy = false;
     }
     #endregion
+
+    IEnumerator WaitForAddBio()
+    {
+        yield return new WaitForSeconds(0.001f);
+
+        for (int i = 0; i < levelManager.submarineEntitiesInScene.Count; i++)
+        {
+            if (levelManager.submarineEntitiesInScene[i].GetType() != typeof(Submarine))
+            {
+                bioElements.Add(levelManager.submarineEntitiesInScene[i].transform);
+            }
+        }
+    }
 }
