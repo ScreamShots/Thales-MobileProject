@@ -278,7 +278,7 @@ public class TutorialManager : MonoBehaviour
         inputManager.canMoveCam = true;
         textContainer_2.SetActive(true);
         hand_2.SetActive(true);
-        screenText_2.text = "Déplacez la caméra en faisant <b>glisser</b> votre doigt sur l'écran";
+        screenText_2.text = "Déplacez la caméra en faisant <b>glisser</b> votre doigt sur l'écran.";
 
         cameraTargetScreen_2.transform.position = cameraController.focusPoint.position;
 
@@ -370,7 +370,7 @@ public class TutorialManager : MonoBehaviour
         #region Screen 6 : DeckUI Apparition
         textContainer_6a.SetActive(true);
         textContainer_6b.SetActive(true);
-        screenText_6a.text = "Tous les bâtiments ont des <b>équipements</b> pour effectuer des actions";
+        screenText_6a.text = "Tous les bâtiments ont des <b>équipements</b> pour effectuer des actions.";
         screenText_6b.text = "<b>Appuyez</b> et faites <b>glisser</b> la <b>carte déplacement</b> jusqu'à la cible pour déplacer la frégate.";
 
         uiHandler.entityDeckUI.gameObject.SetActive(true);
@@ -445,7 +445,7 @@ public class TutorialManager : MonoBehaviour
 
         #region Screen 10 : Move Plane and Ship to target
         textContainer_10.SetActive(true);
-        screenText_10.text = "<b>Déplacez</b> les deux bâtiments dans la <b>zone indiquée</b> pour chaque bâtiment";
+        screenText_10.text = "<b>Déplacez</b> les deux bâtiments dans la <b>zone indiquée</b> pour chaque bâtiment.";
         planeTargetScreen_10.SetActive(true);
         shipTargetScreen_10.SetActive(true);
 
@@ -519,7 +519,7 @@ public class TutorialManager : MonoBehaviour
 
         #region Screen 13 bis : Information Peremption
         textContainer_13bis.SetActive(true);
-        screenText_13bis.text = "Les objets immergés détectés <b>peuvent se déplacer</b>, l'information de leur position n'est donc valable que pendant un <b>temps limité</b>";
+        screenText_13bis.text = "Les objets immergés détectés <b>peuvent se déplacer</b>, l'information de leur position n'est donc valable que pendant un <b>temps limité</b>.";
 
         float tempDuration = pointToZoom.linkedGlobalDetectionPoint.expirationDuration;
         pointToZoom.linkedGlobalDetectionPoint.expirationDuration = 5;
@@ -542,7 +542,7 @@ public class TutorialManager : MonoBehaviour
         #region Screen 14 : Sonobuy Card Appartion
         textContainer_14a.SetActive(true);
         textContainer_14b.SetActive(true);
-        screenText_14a.text = "La <b>bouée SONOFLASH</b> détecte tous les objets immergés se trouvant dans sa portée.</b>.";
+        screenText_14a.text = "La <b>bouée SONOFLASH</b> détecte tous les objets immergés se trouvant dans sa portée</b>.";
         screenText_14b.text = "Faites glisser <b>la carte bouée</b> jusqu'a l'endroit où vous souhaitez <b>la larguer</b>.";
         hand_14.SetActive(true);
 
@@ -829,7 +829,7 @@ public class TutorialManager : MonoBehaviour
 
         #region Screen 29 : Helo Control
         textContainer_29.SetActive(true);
-        screenText_29.text = "L'HELO se <b>contrôle différemment</b> des bâtiments, il n'est <b>plus possible de zoomer ou de vous déplacer</b> sur la zone. \nDéplacez l'HELO en appuyant sur l'écran";
+        screenText_29.text = "L'HELO se <b>contrôle différemment</b> des bâtiments, il n'est <b>plus possible de zoomer ou de vous déplacer</b> sur la zone. \nDéplacez l'HELO en appuyant sur l'écran.";
 
         yield return new WaitUntil(()=> tutorialHelicopter.currentTargetPoint != tutorialHelicopter.nullVector);
 

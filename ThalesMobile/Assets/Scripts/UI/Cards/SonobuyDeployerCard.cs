@@ -47,7 +47,6 @@ public class SonobuyDeployerCard : MonoBehaviour
         uiHandler = GameManager.Instance.uiHandler;
         soundHandler = GameManager.Instance.soundHandler;
 
-        chargeCountText.text = sonobuyDeployer.chargeCount.ToString();
 
 
         for (int i = 0; i < GameManager.Instance.levelManager.playerOceanEntities.Count; i++)
@@ -60,6 +59,8 @@ public class SonobuyDeployerCard : MonoBehaviour
             }
         }       
 
+        chargeCountText.text = sonobuyDeployer.chargeCount.ToString();
+
         card.abortHandler     += AbortMethod;
         card.clickHandler     += OnClickEvent;
         card.beginDragHandler += OnBeginDragEvent;
@@ -70,6 +71,7 @@ public class SonobuyDeployerCard : MonoBehaviour
     public void AbortMethod()
     {
         card.Deselect();
+        if(sonobuyDeployer)
         sonobuyDeployer.Abort();
         inputManager.currentSelectedCard = null;
     }
@@ -119,15 +121,7 @@ public class SonobuyDeployerCard : MonoBehaviour
             inputManager.currentSelectedCard.abortHandler();
         }
 
-
-        if (sonobuyDeployer.chargeCount > 0)
-        {
-            sonobuyDeployer.UseEquipement(GameManager.Instance.playerController.currentSelectedEntity);
-
-            if (!isCharging)
-                StartCoroutine(RechargeFeedback());
-        }
-        else
+        if(sonobuyDeployer.chargeCount<=0)
         {
             //Unavailable feedbaack
             audioSource.volume = Mathf.Clamp01(outOfChargeSoundVolume);
@@ -141,6 +135,14 @@ public class SonobuyDeployerCard : MonoBehaviour
 
     public void OnEndDragEvent()
     {
+        if (sonobuyDeployer.chargeCount > 0)
+        {
+            sonobuyDeployer.UseEquipement(GameManager.Instance.playerController.currentSelectedEntity);
+
+            if (!isCharging)
+                StartCoroutine(RechargeFeedback());
+        }
+
         inputManager.isDraggingCard = false;
         inputManager.currentSelectedCard = null;
         inputManager.canUseCam = true;
