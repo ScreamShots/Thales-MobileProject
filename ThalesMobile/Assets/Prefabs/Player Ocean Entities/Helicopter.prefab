@@ -107,7 +107,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6286141311459306338}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalPosition: {x: 0, y: 2.2, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 6286141311394589003}
@@ -583,7 +583,7 @@ MonoBehaviour:
   serializedGuid: 0e5e13a5c8b071489721538499ed3b5c
   thisObjState: 2
   initState: 2
-  instanceID: 33850
+  instanceID: 73648
   referencedComponents:
   - component: {fileID: 6286141312136616712}
     serializedGuid: 5e2d654c39c242408a7445e02cce3b57

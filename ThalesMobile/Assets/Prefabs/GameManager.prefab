@@ -98,10 +98,10 @@ RectTransform:
   m_Father: {fileID: 8217586580899270187}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0.24127686}
+  m_AnchorMax: {x: 1, y: 0.813}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1024, y: 1024}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4257514546103151003
 CanvasRenderer:
@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Sprite: {fileID: -5275605650047178854, guid: 39d1616c88f50dc47940be93bc824757,
     type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -3947,7 +3947,7 @@ MonoBehaviour:
   serializedGuid: 1f8b52a66b4f494b945dcb0befdd9c06
   thisObjState: 2
   initState: 2
-  instanceID: 106536
+  instanceID: 59874
   referencedComponents:
   - component: {fileID: 3682279617419880169}
     serializedGuid: 7b3bbe920b14d245a8496bcec2ae1e5c
