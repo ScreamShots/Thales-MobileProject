@@ -210,7 +210,7 @@ namespace OceanEntities
 
             _transform.forward = Coordinates.ConvertVector2ToWorld(coords.direction);
 
-            if ((targetPosition - coords.position).magnitude < 0.1f)
+            if ((targetPosition - coords.position).magnitude < 0.3f)
             {
                 currentTargetPoint = nullVector;
                 currentSpeed = 0;
