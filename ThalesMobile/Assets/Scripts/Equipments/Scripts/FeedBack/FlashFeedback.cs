@@ -103,6 +103,7 @@ namespace PlayerEquipement
             var shape = rangeParticles.shape;
             shape.radius = 0f;
             rangeDisplayObject.SetActive(true);
+            rangeDisplayObject.transform.parent = null;
 
             flashSoundSource.volume = Mathf.Clamp(flashSoundVolume, 0, 1);
             GameManager.Instance.soundHandler.PlaySound(flashSound, flashSoundSource, targetGroup);
@@ -116,6 +117,8 @@ namespace PlayerEquipement
             if (end)
             {
                 rangeDisplayObject.SetActive(false);
+                rangeDisplayObject.transform.parent = transform;
+                rangeDisplayObject.transform.localPosition = new Vector3(0, rangeDisplayObject.transform.position.y,0);
                 return;
             }
 
