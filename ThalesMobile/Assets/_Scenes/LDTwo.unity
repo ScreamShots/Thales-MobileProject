@@ -32771,6 +32771,11 @@ PrefabInstance:
         type: 2}
     - target: {fileID: 5630502567233466962, guid: 1ce6e572ea85ad344b97167bd62129c7,
         type: 3}
+      propertyPath: limit.size.y
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 5630502567233466962, guid: 1ce6e572ea85ad344b97167bd62129c7,
+        type: 3}
       propertyPath: limitDezoom.size.x
       value: 10
       objectReference: {fileID: 0}

@@ -310,7 +310,7 @@ MonoBehaviour:
   serializedGuid: de50a9ea07a9474c8e3b43fcedc9cef6
   thisObjState: 2
   initState: 2
-  instanceID: 115866
+  instanceID: 58706
   referencedComponents:
   - component: {fileID: 516292101046722417}
     serializedGuid: 92efd3d3e1cb4f46a09f4e65bb73f4a5
@@ -851,7 +851,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2217408852648030709}
   m_LocalRotation: {x: 0.5, y: -0.5, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: 1.85, y: 0, z: 0.14}
+  m_LocalPosition: {x: 1.85, y: 0, z: 0.25}
   m_LocalScale: {x: 0.10000004, y: 0.099999994, z: 0.10000004}
   m_Children: []
   m_Father: {fileID: 516292102195037901}
@@ -934,17 +934,17 @@ PrefabInstance:
     - target: {fileID: 5772737848319121935, guid: 9575a1fae49ff5c4f9bf2c43fefd2492,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.3
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 5772737848319121935, guid: 9575a1fae49ff5c4f9bf2c43fefd2492,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.3
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 5772737848319121935, guid: 9575a1fae49ff5c4f9bf2c43fefd2492,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.3
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 5772737848319121935, guid: 9575a1fae49ff5c4f9bf2c43fefd2492,
         type: 3}

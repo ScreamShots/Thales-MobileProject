@@ -116,7 +116,7 @@ namespace OceanEntities
 
             else if(currentTargetPoint != nullVector && inFlight && !isDroppingFlash)
             {
-                camController.lookAtTraget = true;
+                camController.SetTarget(_transform);
 
                 Move(currentTargetPoint);
                 if (!audioSource.isPlaying && audioSource.clip != movementSound)
@@ -131,7 +131,7 @@ namespace OceanEntities
             else if(!inFlight && !onShip)
             {
 
-                camController.lookAtTraget = true;
+                camController.SetTarget(_transform);
 
                 if (!isDroppingFlash)
                 Move(linkedShip.coords.position);

@@ -242,7 +242,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24.65
+  m_fontSize: 26.65
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -337,6 +337,7 @@ MonoBehaviour:
     type: 2}
   submarinePanicStatusMaterial: {fileID: 2100000, guid: 0da6d2343551f924d96fb3ce9d009ede,
     type: 2}
+  submarineNoise: {fileID: 0}
   submarineCanvas: {fileID: 6005230973831850164}
   nodeContainer: {fileID: 5990824007589866274}
   nodeReference: {fileID: 7902819844539085361, guid: 80aa7d65ecd809c43a57eaeafeee1a57,
@@ -3028,7 +3029,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 71.4
+  m_fontSize: 61.1
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3514,7 +3515,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 16.35
+  m_fontSize: 17.7
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3607,8 +3608,8 @@ MonoBehaviour:
   deckCanvasGroup: {fileID: 1616882444781176725}
   entitiesSelectionCanvasGroup: {fileID: 7833214229313797562}
   submarineCanvasGroup: {fileID: 7954615866753475793}
-  victoryHeader: Victory !
-  defeatHeader: Defeat ...
+  victoryHeader: Victoire !
+  defeatHeader: "D\xE9faite..."
   blur:
     anim: {fileID: 11400000, guid: 377dae701012ca94d8097c439a43a97e, type: 2}
     rectTransform: {fileID: 475468224079722578}

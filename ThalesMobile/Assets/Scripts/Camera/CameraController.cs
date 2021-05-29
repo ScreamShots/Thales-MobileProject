@@ -49,12 +49,6 @@ public class CameraController : MonoBehaviour
     [Space(5)]
     public bool drawFocusPoint = false;
 
-
-    private void Awake()
-    {
-        GameManager.Instance.cameraController = this;
-    }
-
     void Start()
     {
         lookAtTraget = false;

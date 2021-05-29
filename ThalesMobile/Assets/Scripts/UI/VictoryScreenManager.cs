@@ -54,6 +54,8 @@ public class VictoryScreenManager : MonoBehaviour
             deckCanvasGroup.blocksRaycasts = false;
             submarineCanvasGroup.blocksRaycasts = false;
 
+            GameManager.Instance.levelManager.submarine.gameObject.SetActive(false);
+
             if (victory)
             {
                 source.volume = Mathf.Clamp01(winLooseVolume);

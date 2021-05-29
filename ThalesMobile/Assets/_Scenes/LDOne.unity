@@ -25323,7 +25323,7 @@ PrefabInstance:
     - target: {fileID: 1476565974339235788, guid: d60eae3b2a074b94d809f42cdacd60ae,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.8
       objectReference: {fileID: 0}
     - target: {fileID: 1476565974339235788, guid: d60eae3b2a074b94d809f42cdacd60ae,
         type: 3}
@@ -32254,6 +32254,11 @@ PrefabInstance:
         type: 3}
       propertyPath: drawLine
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5630502567233466962, guid: 1ce6e572ea85ad344b97167bd62129c7,
+        type: 3}
+      propertyPath: limit.size.y
+      value: 48
       objectReference: {fileID: 0}
     - target: {fileID: 5630502567233466962, guid: 1ce6e572ea85ad344b97167bd62129c7,
         type: 3}
