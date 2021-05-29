@@ -59,6 +59,7 @@ public class GlobalDetectionPoint : DetectionObject
 
     public void UpdatePoint()
     {
+
         feedbackBehavior.UpdatePos(transform.position, Coordinates.ConvertVector2ToWorld(linkedEntity.coords.position));
 
         if (updateWithMove) StartCoroutine(UpdateLerp());
