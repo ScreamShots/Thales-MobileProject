@@ -11,7 +11,7 @@ public class CameraController : MonoBehaviour
     public Camera cam = null;
     [Space(10)]
     public bool lookAtTraget = false;
-    public Transform target = null;
+    public Vector3 target = Vector3.zero;
 
     [Header("Zoom Parameter")]
     [Range(0, 1)] public float zoomIntensity;
@@ -114,7 +114,7 @@ public class CameraController : MonoBehaviour
 
     public void SetTarget(Transform target)
     {
-        this.target = target;
+        this.target = target.position;
         lookAtTraget = true;
     }
     public void SetZoom(float zoomdesired, float speed)
@@ -192,35 +192,35 @@ public class CameraController : MonoBehaviour
     private void FocusOnTarget()
     {
 
-        Vector3 toTarget = (target.position - focusPoint.position);
+        Vector3 toTarget = (target - focusPoint.position);
 
         if (toTarget.magnitude > 2f)//refocusSpeed * Time.deltaTime)
         {
             toTarget = toTarget.normalized * refocusSpeed * moveZoomLvlFactor * Time.deltaTime;
 
-            if (!limitDezoom.InBoundary(target.position))
+            if (!limitDezoom.InBoundary(target))
             {
                 float aimZoomLvlY = 1;
                 float aimZoomLvlX = 1;
                 //Top
-                if (target.position.y > limitDezoom.upBorder)
+                if (target.y > limitDezoom.upBorder)
                 {
-                    aimZoomLvlY = Mathf.InverseLerp(limit.upBorder, limitDezoom.upBorder, target.position.z);
+                    aimZoomLvlY = Mathf.InverseLerp(limit.upBorder, limitDezoom.upBorder, target.z);
                 }
                 //Bottom
-                else if (target.position.y < limitDezoom.downBorder)
+                else if (target.y < limitDezoom.downBorder)
                 {
-                    aimZoomLvlY = Mathf.InverseLerp(limit.downBorder, limitDezoom.downBorder, target.position.z);
+                    aimZoomLvlY = Mathf.InverseLerp(limit.downBorder, limitDezoom.downBorder, target.z);
                 }
                 //Left
-                if (target.position.x < limitDezoom.leftBorder)
+                if (target.x < limitDezoom.leftBorder)
                 {
-                    aimZoomLvlX = Mathf.InverseLerp(limit.leftBorder, limitDezoom.leftBorder, target.position.x);
+                    aimZoomLvlX = Mathf.InverseLerp(limit.leftBorder, limitDezoom.leftBorder, target.x);
                 }
                 //right
-                else if (limitDezoom.rightBorder < target.position.x)
+                else if (limitDezoom.rightBorder < target.x)
                 {
-                    aimZoomLvlX = Mathf.InverseLerp(limit.rightBorder, limitDezoom.rightBorder, target.position.x);
+                    aimZoomLvlX = Mathf.InverseLerp(limit.rightBorder, limitDezoom.rightBorder, target.x);
                 }
 
                 zoomIntensity = Mathf.Lerp(zoomIntensity, Mathf.Min(aimZoomLvlX, aimZoomLvlY), 2f * Time.deltaTime);
@@ -228,7 +228,7 @@ public class CameraController : MonoBehaviour
         }
         else
         {
-            toTarget = target.position - focusPoint.position;
+            toTarget = target - focusPoint.position;
 
             lookAtTraget = false;
         }
