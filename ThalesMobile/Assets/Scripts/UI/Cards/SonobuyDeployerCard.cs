@@ -40,6 +40,8 @@ public class SonobuyDeployerCard : MonoBehaviour
     [TweekFlag(FieldUsage.Sound)]
     public float outOfChargeSoundVolume;
 
+    OceanEntities.Plane temp;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -53,7 +55,7 @@ public class SonobuyDeployerCard : MonoBehaviour
         {
             if(GameManager.Instance.levelManager.playerOceanEntities[i].GetType() == typeof(OceanEntities.Plane))
             {
-                OceanEntities.Plane temp = (OceanEntities.Plane) GameManager.Instance.levelManager.playerOceanEntities[i];
+                temp = (OceanEntities.Plane) GameManager.Instance.levelManager.playerOceanEntities[i];
 
                 sonobuyDeployer = (SonobuoyDeployer) temp.activeEquipement;
             }
@@ -71,8 +73,10 @@ public class SonobuyDeployerCard : MonoBehaviour
     public void AbortMethod()
     {
         card.Deselect();
-        if(sonobuyDeployer)
-        sonobuyDeployer.Abort();
+
+        if(GameManager.Instance.playerController.currentSelectedEntity != temp)
+            sonobuyDeployer.Abort();
+
         inputManager.currentSelectedCard = null;
     }
 

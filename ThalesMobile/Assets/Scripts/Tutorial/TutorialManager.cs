@@ -581,6 +581,8 @@ public class TutorialManager : MonoBehaviour
 
         yield return new WaitForSeconds(3f);
 
+
+        hand_15.SetActive(false);
         tutorialShip.passiveEquipement.Init(tutorialShip);
         
         yield return new WaitUntil(() => pointToDetect.linkedGlobalDetectionPoint.detectionState == DetectionState.unknownDetection);
@@ -601,7 +603,7 @@ public class TutorialManager : MonoBehaviour
 
         #region Screen 16 : SearchMaster 
         textContainer_16.SetActive(true);
-        screenText_16.text = "Le <b>SEARCHMASTER</b> identifie la nature d’un objet immergé et détecté dans son rayon d’action. Déplacez l’avion pour <b>identifier</b> le point détecté par la frégate.";
+        screenText_16.text = "Le <b>SEARCHMASTER</b> identifie la nature d’un objet immergé et détecté dans son rayon d’action. <b>Déplacez l’avion</b> pour <b>identifier</b> le point détecté par la frégate.";
         tutorialPlane.linkedButton.SelectEntity();
         hand_16.SetActive(true);
 
@@ -610,6 +612,8 @@ public class TutorialManager : MonoBehaviour
         tutorialPlane.passiveEquipement.Init(tutorialPlane);
         planeMovementCard.canClick = true;
         planeMovementCard.canDrag = true;
+
+        hand_16.SetActive(false);
 
         yield return new WaitUntil(() => pointToReveal.linkedGlobalDetectionPoint.detectionState == DetectionState.revealedDetection);
 
