@@ -107,7 +107,7 @@ MonoBehaviour:
   linkedEntity: {fileID: 0}
   feedbackBehavior: {fileID: 1583701260782210641}
   expirationState: 0
-  expirationDuration: 10
+  expirationDuration: 8
   expirationWarningRatio: 0.7
   revealDuration: 10
   updateWithMove: 0

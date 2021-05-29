@@ -120,7 +120,7 @@ Transform:
   m_GameObject: {fileID: 3438433755699052722}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0.01, z: 0}
-  m_LocalScale: {x: 8, y: 8, z: 0}
+  m_LocalScale: {x: 6.16, y: 6.16, z: 0}
   m_Children: []
   m_Father: {fileID: 3438433757041613458}
   m_RootOrder: 0
@@ -384,7 +384,7 @@ MonoBehaviour:
   serializedGuid: ac6601ce2798234caead513aca45b787
   thisObjState: 2
   initState: 2
-  instanceID: 44206
+  instanceID: 31376
   referencedComponents:
   - component: {fileID: 3438433757041613459}
     serializedGuid: 116c9699f390ef4ab323beff7b8bcfd1
@@ -406,8 +406,8 @@ MonoBehaviour:
   hackTime: 20
   hackingRange: 0.2
   sendAlert: 1
-  detectionAlertRange: 4
-  timeInRangeBeforeAlert: 10
+  detectionAlertRange: 3.08
+  timeInRangeBeforeAlert: 2
   rangeDisplay: {fileID: 3438433755699052722}
   hackParticles: {fileID: 8321827369150953873}
   alertIcon: {fileID: 3438433756610916283}

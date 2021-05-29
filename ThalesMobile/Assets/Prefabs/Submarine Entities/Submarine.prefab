@@ -133,7 +133,7 @@ MonoBehaviour:
   serializedGuid: 2f9c7496893e5245ad578a253754f207
   thisObjState: 2
   initState: 2
-  instanceID: 29114
+  instanceID: 36062
   referencedComponents:
   - component: {fileID: 7664084496329710959}
     serializedGuid: 82d51bbd2fbdb442a0c315dd959bd187
@@ -180,7 +180,7 @@ MonoBehaviour:
   globalDetectionPointPrefab: {fileID: 2681307672962359013, guid: 7e5f1705a1388de4398a52a5046e63c4,
     type: 3}
   linkedGlobalDetectionPoint: {fileID: 0}
-  maxSpeed: 0.6
+  maxSpeed: 1
   acceleration: 0.2
   currentSpeed: 0
   currentVigilance: 0
@@ -188,14 +188,14 @@ MonoBehaviour:
   calmStateValues: {x: 0, y: 40}
   panickedStateValues: {x: 80, y: 100}
   incraseVigilanceShipRange: 6
-  detectionRangeCalm: 3
-  detectionRangeWorried: 5
-  detectionRangePanicked: 6.5
+  detectionRangeCalm: 3.5
+  detectionRangeWorried: 6
+  detectionRangePanicked: 8
   rangeVisual: {fileID: 7664084495740854194}
   debugVisualRange: 0
-  sonobuoyVigiIncr: 2.5
-  fregateStationaryVigiIncr: 0.3
-  fregateMoveVigiIncr: 1.3
+  sonobuoyVigiIncr: 4
+  fregateStationaryVigiIncr: 5
+  fregateMoveVigiIncr: 5
   sonobuoys: []
   sonobuoysDistance: []
   submarineRenderer: {fileID: 7664084496667251443}
@@ -221,23 +221,23 @@ MonoBehaviour:
   - {fileID: 0}
   nextInterestPoint: {fileID: 0}
   minRange: 1
-  subZone12Subdivision: 12
-  subZone3SubSubdivision: 2
+  subZone12Subdivision: 8
+  subZone3SubSubdivision: 1
   bioElements: []
-  avoidEffectSliceReach: 3
+  avoidEffectSliceReach: 1
   intermediatePosRefreshRate: 3
   distanceToRefrehIntemediatePos: 1
-  benefPointFactorBioCalm: 2
-  benefPointFactorBioPanicked: 2.8
-  beneftPointFactorSonobuoyCalm: -1
-  beneftPointFactorSonobuoyPanicked: -4
+  benefPointFactorBioCalm: 1
+  benefPointFactorBioPanicked: 4
+  beneftPointFactorSonobuoyCalm: 0
+  beneftPointFactorSonobuoyPanicked: 0
   beneftPointFactorSeaWayCalm: 1
   beneftPointFactorSeaWayPanicked: 4
   beneftPointFactorSeaTurbulentCalm: 1
   beneftPointFactorSeaTurbulentPanicked: 4
-  beneftPointFactorWindyZoneCalm: -1
+  beneftPointFactorWindyZoneCalm: -0.5
   beneftPointFactorWindyZonePanicked: -2
-  distanceFactorWeightWhileCalm: 7
+  distanceFactorWeightWhileCalm: 3
   distanceFactorWeightWhilePanicked: 3
   isSubmarineDisplayed: 0
   soundHandler: {fileID: 0}

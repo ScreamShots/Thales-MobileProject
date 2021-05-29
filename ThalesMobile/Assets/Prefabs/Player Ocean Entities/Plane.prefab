@@ -566,7 +566,7 @@ MonoBehaviour:
   serializedGuid: 85045a7240664543aa9d92857d162799
   thisObjState: 2
   initState: 2
-  instanceID: 78006
+  instanceID: 34118
   referencedComponents:
   - component: {fileID: 339487588899374384}
     serializedGuid: ea62e786c0c3de4fb40542694734145d
@@ -597,9 +597,9 @@ MonoBehaviour:
   nextWaypointDistance: 0
   waypointAhead: 0
   pathDestination: {x: 0, y: 0}
-  speed: 6.5
-  acceleration: 1.5
-  rotateSpeed: 150
+  speed: 5
+  acceleration: 0.5
+  rotateSpeed: 100
   movementType: 0
   currentTargetPoint: {x: -9999, y: -9999}
   nullVector: {x: -9999, y: -9999}
@@ -682,8 +682,8 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _selected: 0
-  passiveEquipement: {fileID: 11400000, guid: fdd1a822afff99a479aeca2cfcd71a7e, type: 2}
-  activeEquipement: {fileID: 11400000, guid: 8c36fd8269da1a347a940f931d708c6c, type: 2}
+  passiveEquipement: {fileID: 11400000, guid: 8e370ed29ef7e424f8ecc10427c1a893, type: 2}
+  activeEquipement: {fileID: 11400000, guid: 7b9a11f59b75f954f8ff6eaedd32ddf5, type: 2}
 --- !u!82 &8829441465545371547
 AudioSource:
   m_ObjectHideFlags: 0

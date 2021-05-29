@@ -20,7 +20,7 @@ MonoBehaviour:
     type: 3}
   waveDuration: 1.5
   winningRange: 3
-  extendedRange: 7
+  extendedRange: 20
   dropDuration: 4
   revealDuration: 4
   heightOffset: 0

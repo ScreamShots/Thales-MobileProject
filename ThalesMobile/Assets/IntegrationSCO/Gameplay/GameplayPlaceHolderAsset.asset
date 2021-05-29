@@ -13,30 +13,30 @@ MonoBehaviour:
   m_Name: GameplayPlaceHolderAsset
   m_EditorClassIdentifier: 
   s0_From: Assets/_Scenes/GenericScene.unity
-  s1Id: 3ca0ac52-a276-4f9f-bafb-784c092e23b0
-  s2Comp: 3ca0ac52-a276-4f9f-bafb-784c092e23b0_16429c5f-0eb5-411a-8ee1-69f7caa274d1
-  "zoomSpeed_3ca0ac52\xB5a276\xB54f9f\xB5bafb\xB5784c092e23b0_16429c5f\xB50eb5\xB5411a\xB58ee1\xB569f7caa274d1": 5
-  "camSett_3ca0ac52\xB5a276\xB54f9f\xB5bafb\xB5784c092e23b0_16429c5f\xB50eb5\xB5411a\xB58ee1\xB569f7caa274d1": {fileID: 11400000,
+  s1Id: 7daf19fe-7896-41d7-91af-86e6eb827d7e
+  s2Comp: 7daf19fe-7896-41d7-91af-86e6eb827d7e_16429c5f-0eb5-411a-8ee1-69f7caa274d1
+  "zoomSpeed_7daf19fe\xB57896\xB541d7\xB591af\xB586e6eb827d7e_16429c5f\xB50eb5\xB5411a\xB58ee1\xB569f7caa274d1": 5
+  "camSett_7daf19fe\xB57896\xB541d7\xB591af\xB586e6eb827d7e_16429c5f\xB50eb5\xB5411a\xB58ee1\xB569f7caa274d1": {fileID: 11400000,
     guid: 81746d5d0ad588340bad41252888c508, type: 2}
-  "minimalMoveFactor_3ca0ac52\xB5a276\xB54f9f\xB5bafb\xB5784c092e23b0_16429c5f\xB50eb5\xB5411a\xB58ee1\xB569f7caa274d1": 0.5
-  "aimLerpSpeed_3ca0ac52\xB5a276\xB54f9f\xB5bafb\xB5784c092e23b0_16429c5f\xB50eb5\xB5411a\xB58ee1\xB569f7caa274d1": 0.2
-  "moveSpeed_3ca0ac52\xB5a276\xB54f9f\xB5bafb\xB5784c092e23b0_16429c5f\xB50eb5\xB5411a\xB58ee1\xB569f7caa274d1": 26
-  "refocusSpeed_3ca0ac52\xB5a276\xB54f9f\xB5bafb\xB5784c092e23b0_16429c5f\xB50eb5\xB5411a\xB58ee1\xB569f7caa274d1": 55
-  "mouvLerpSpeed_3ca0ac52\xB5a276\xB54f9f\xB5bafb\xB5784c092e23b0_16429c5f\xB50eb5\xB5411a\xB58ee1\xB569f7caa274d1": 0.16
+  "minimalMoveFactor_7daf19fe\xB57896\xB541d7\xB591af\xB586e6eb827d7e_16429c5f\xB50eb5\xB5411a\xB58ee1\xB569f7caa274d1": 0.5
+  "aimLerpSpeed_7daf19fe\xB57896\xB541d7\xB591af\xB586e6eb827d7e_16429c5f\xB50eb5\xB5411a\xB58ee1\xB569f7caa274d1": 0.2
+  "moveSpeed_7daf19fe\xB57896\xB541d7\xB591af\xB586e6eb827d7e_16429c5f\xB50eb5\xB5411a\xB58ee1\xB569f7caa274d1": 26
+  "refocusSpeed_7daf19fe\xB57896\xB541d7\xB591af\xB586e6eb827d7e_16429c5f\xB50eb5\xB5411a\xB58ee1\xB569f7caa274d1": 55
+  "mouvLerpSpeed_7daf19fe\xB57896\xB541d7\xB591af\xB586e6eb827d7e_16429c5f\xB50eb5\xB5411a\xB58ee1\xB569f7caa274d1": 0.16
   s3_From: Assets/Prefabs/Assets/Prefabs/Equipement
   s4Id: 0fe29d07-2f86-4c84-9e21-362e9843ba29
   s5Comp: 0fe29d07-2f86-4c84-9e21-362e9843ba29_94c1c9f4-5b10-454a-afa5-97abe91fff0c
-  "expirationDuration_0fe29d07\xB52f86\xB54c84\xB59e21\xB5362e9843ba29_94c1c9f4\xB55b10\xB5454a\xB5afa5\xB597abe91fff0c": 10
+  "expirationDuration_0fe29d07\xB52f86\xB54c84\xB59e21\xB5362e9843ba29_94c1c9f4\xB55b10\xB5454a\xB5afa5\xB597abe91fff0c": 8
   "expirationWarningRatio_0fe29d07\xB52f86\xB54c84\xB59e21\xB5362e9843ba29_94c1c9f4\xB55b10\xB5454a\xB5afa5\xB597abe91fff0c": 0.7
   "revealDuration_0fe29d07\xB52f86\xB54c84\xB59e21\xB5362e9843ba29_94c1c9f4\xB55b10\xB5454a\xB5afa5\xB597abe91fff0c": 10
   s6_From: Assets/Prefabs/Assets/Prefabs/InterestPoints
-  s7Id: fa773cb3-fee6-4a5f-84ef-ee10573b67f3
-  s8Comp: fa773cb3-fee6-4a5f-84ef-ee10573b67f3_c7b033f1-65cc-4b24-919d-f895b16b013e
-  "hackTime_fa773cb3\xB5fee6\xB54a5f\xB584ef\xB5ee10573b67f3_c7b033f1\xB565cc\xB54b24\xB5919d\xB5f895b16b013e": 25
-  "hackingRange_fa773cb3\xB5fee6\xB54a5f\xB584ef\xB5ee10573b67f3_c7b033f1\xB565cc\xB54b24\xB5919d\xB5f895b16b013e": 0.2
-  "sendAlert_fa773cb3\xB5fee6\xB54a5f\xB584ef\xB5ee10573b67f3_c7b033f1\xB565cc\xB54b24\xB5919d\xB5f895b16b013e": 1
-  "detectionAlertRange_fa773cb3\xB5fee6\xB54a5f\xB584ef\xB5ee10573b67f3_c7b033f1\xB565cc\xB54b24\xB5919d\xB5f895b16b013e": 2.73
-  "timeInRangeBeforeAlert_fa773cb3\xB5fee6\xB54a5f\xB584ef\xB5ee10573b67f3_c7b033f1\xB565cc\xB54b24\xB5919d\xB5f895b16b013e": 2
+  s7Id: 3e118160-a893-4445-9441-cc29276b98ec
+  s8Comp: 3e118160-a893-4445-9441-cc29276b98ec_c7b033f1-65cc-4b24-919d-f895b16b013e
+  "hackTime_3e118160\xB5a893\xB54445\xB59441\xB5cc29276b98ec_c7b033f1\xB565cc\xB54b24\xB5919d\xB5f895b16b013e": 25
+  "hackingRange_3e118160\xB5a893\xB54445\xB59441\xB5cc29276b98ec_c7b033f1\xB565cc\xB54b24\xB5919d\xB5f895b16b013e": 0.2
+  "sendAlert_3e118160\xB5a893\xB54445\xB59441\xB5cc29276b98ec_c7b033f1\xB565cc\xB54b24\xB5919d\xB5f895b16b013e": 1
+  "detectionAlertRange_3e118160\xB5a893\xB54445\xB59441\xB5cc29276b98ec_c7b033f1\xB565cc\xB54b24\xB5919d\xB5f895b16b013e": 2.73
+  "timeInRangeBeforeAlert_3e118160\xB5a893\xB54445\xB59441\xB5cc29276b98ec_c7b033f1\xB565cc\xB54b24\xB5919d\xB5f895b16b013e": 15
   s9Id: 8676da00-7e61-42e3-84e4-cd905a3e5e9d
   s10Comp: 8676da00-7e61-42e3-84e4-cd905a3e5e9d_438901e8-fa6b-4245-aa3d-45df27cb0ad2
   "hackTime_8676da00\xB57e61\xB542e3\xB584e4\xB5cd905a3e5e9d_438901e8\xB5fa6b\xB54245\xB5aa3d\xB545df27cb0ad2": 40
@@ -51,23 +51,23 @@ MonoBehaviour:
   "sendAlert_ce0166ac\xB59827\xB54c23\xB5aead\xB5513aca45b787_99966c11\xB590f3\xB54aef\xB5b323\xB5beff7b8bcfd1": 1
   "detectionAlertRange_ce0166ac\xB59827\xB54c23\xB5aead\xB5513aca45b787_99966c11\xB590f3\xB54aef\xB5b323\xB5beff7b8bcfd1": 3.08
   "timeInRangeBeforeAlert_ce0166ac\xB59827\xB54c23\xB5aead\xB5513aca45b787_99966c11\xB590f3\xB54aef\xB5b323\xB5beff7b8bcfd1": 2
-  s13Id: 3753620b-6138-48e4-9109-c81739329bf3
-  s14Comp: 3753620b-6138-48e4-9109-c81739329bf3_7e1dbc6e-4348-4762-9233-30a708fa6302
-  "hackTime_3753620b\xB56138\xB548e4\xB59109\xB5c81739329bf3_7e1dbc6e\xB54348\xB54762\xB59233\xB530a708fa6302": 30
-  "hackingRange_3753620b\xB56138\xB548e4\xB59109\xB5c81739329bf3_7e1dbc6e\xB54348\xB54762\xB59233\xB530a708fa6302": 0.2
-  "sendAlert_3753620b\xB56138\xB548e4\xB59109\xB5c81739329bf3_7e1dbc6e\xB54348\xB54762\xB59233\xB530a708fa6302": 1
-  "detectionAlertRange_3753620b\xB56138\xB548e4\xB59109\xB5c81739329bf3_7e1dbc6e\xB54348\xB54762\xB59233\xB530a708fa6302": 2.5
-  "timeInRangeBeforeAlert_3753620b\xB56138\xB548e4\xB59109\xB5c81739329bf3_7e1dbc6e\xB54348\xB54762\xB59233\xB530a708fa6302": 2
+  s13Id: 8eb177a3-aa98-46ea-b416-87f8372d9457
+  s14Comp: 8eb177a3-aa98-46ea-b416-87f8372d9457_7e1dbc6e-4348-4762-9233-30a708fa6302
+  "hackTime_8eb177a3\xB5aa98\xB546ea\xB5b416\xB587f8372d9457_7e1dbc6e\xB54348\xB54762\xB59233\xB530a708fa6302": 20
+  "hackingRange_8eb177a3\xB5aa98\xB546ea\xB5b416\xB587f8372d9457_7e1dbc6e\xB54348\xB54762\xB59233\xB530a708fa6302": 0.2
+  "sendAlert_8eb177a3\xB5aa98\xB546ea\xB5b416\xB587f8372d9457_7e1dbc6e\xB54348\xB54762\xB59233\xB530a708fa6302": 1
+  "detectionAlertRange_8eb177a3\xB5aa98\xB546ea\xB5b416\xB587f8372d9457_7e1dbc6e\xB54348\xB54762\xB59233\xB530a708fa6302": 4
+  "timeInRangeBeforeAlert_8eb177a3\xB5aa98\xB546ea\xB5b416\xB587f8372d9457_7e1dbc6e\xB54348\xB54762\xB59233\xB530a708fa6302": 10
   s15_From: Assets/Prefabs/Assets/Prefabs/Player Ocean Entities
   s16Id: a5135e0e-b0c8-4871-9721-538499ed3b5c
   s17Comp: a5135e0e-b0c8-4871-9721-538499ed3b5c_4c652d5e-c239-4042-8a74-45e02cce3b57
   "preparationDuration_a5135e0e\xB5b0c8\xB54871\xB59721\xB5538499ed3b5c_4c652d5e\xB5c239\xB54042\xB58a74\xB545e02cce3b57": 8
-  "alertDuration_a5135e0e\xB5b0c8\xB54871\xB59721\xB5538499ed3b5c_4c652d5e\xB5c239\xB54042\xB58a74\xB545e02cce3b57": 15
+  "alertDuration_a5135e0e\xB5b0c8\xB54871\xB59721\xB5538499ed3b5c_4c652d5e\xB5c239\xB54042\xB58a74\xB545e02cce3b57": 25
   "flightDuration_a5135e0e\xB5b0c8\xB54871\xB59721\xB5538499ed3b5c_4c652d5e\xB5c239\xB54042\xB58a74\xB545e02cce3b57": 30
   "cooldownDuration_a5135e0e\xB5b0c8\xB54871\xB59721\xB5538499ed3b5c_4c652d5e\xB5c239\xB54042\xB58a74\xB545e02cce3b57": 5
   "activeEquipement_a5135e0e\xB5b0c8\xB54871\xB59721\xB5538499ed3b5c_4c652d5e\xB5c239\xB54042\xB58a74\xB545e02cce3b57": {fileID: 11400000,
     guid: cb188c1c696a12247a2e40f7648ee0d4, type: 2}
-  "speed_a5135e0e\xB5b0c8\xB54871\xB59721\xB5538499ed3b5c_4c652d5e\xB5c239\xB54042\xB58a74\xB545e02cce3b57": 3
+  "speed_a5135e0e\xB5b0c8\xB54871\xB59721\xB5538499ed3b5c_4c652d5e\xB5c239\xB54042\xB58a74\xB545e02cce3b57": 2.75
   "acceleration_a5135e0e\xB5b0c8\xB54871\xB59721\xB5538499ed3b5c_4c652d5e\xB5c239\xB54042\xB58a74\xB545e02cce3b57": 2
   "rotateSpeed_a5135e0e\xB5b0c8\xB54871\xB59721\xB5538499ed3b5c_4c652d5e\xB5c239\xB54042\xB58a74\xB545e02cce3b57": 180
   s18Id: 725a0485-6640-4345-aa9d-92857d162799
@@ -85,19 +85,19 @@ MonoBehaviour:
     guid: 250900d4e08fb76478d097863e660117, type: 2}
   "activeEquipement_eaa950de\xB5a907\xB54c47\xB58e3b\xB543fcedc9cef6_d3d3ef92\xB5cbe1\xB5464f\xB5a09f\xB54e65bb73f4a5": {fileID: 11400000,
     guid: 880ececae2e90c742a35278dce662b63, type: 2}
-  "speed_eaa950de\xB5a907\xB54c47\xB58e3b\xB543fcedc9cef6_d3d3ef92\xB5cbe1\xB5464f\xB5a09f\xB54e65bb73f4a5": 1
+  "speed_eaa950de\xB5a907\xB54c47\xB58e3b\xB543fcedc9cef6_d3d3ef92\xB5cbe1\xB5464f\xB5a09f\xB54e65bb73f4a5": 0.9
   "acceleration_eaa950de\xB5a907\xB54c47\xB58e3b\xB543fcedc9cef6_d3d3ef92\xB5cbe1\xB5464f\xB5a09f\xB54e65bb73f4a5": 0.3
   "rotateSpeed_eaa950de\xB5a907\xB54c47\xB58e3b\xB543fcedc9cef6_d3d3ef92\xB5cbe1\xB5464f\xB5a09f\xB54e65bb73f4a5": 80
   s22_From: Assets/Prefabs/Assets/Prefabs/Submarine Entities
   s23Id: bfcba3e2-73b1-4875-918c-ca96d28a17f1
   s24Comp: bfcba3e2-73b1-4875-918c-ca96d28a17f1_b1c13a34-fa1b-4d94-928d-f3c20266a45c
-  "speed_bfcba3e2\xB573b1\xB54875\xB5918c\xB5ca96d28a17f1_b1c13a34\xB5fa1b\xB54d94\xB5928d\xB5f3c20266a45c": 1
+  "speed_bfcba3e2\xB573b1\xB54875\xB5918c\xB5ca96d28a17f1_b1c13a34\xB5fa1b\xB54d94\xB5928d\xB5f3c20266a45c": 0.6
   s25Id: e8a197d5-188f-4d3e-8f98-3674bfe31ee8
   s26Comp: e8a197d5-188f-4d3e-8f98-3674bfe31ee8_7541256e-ebd4-4b0c-acb5-2dcc28bd16d2
-  "speed_e8a197d5\xB5188f\xB54d3e\xB58f98\xB53674bfe31ee8_7541256e\xB5ebd4\xB54b0c\xB5acb5\xB52dcc28bd16d2": 2
+  "speed_e8a197d5\xB5188f\xB54d3e\xB58f98\xB53674bfe31ee8_7541256e\xB5ebd4\xB54b0c\xB5acb5\xB52dcc28bd16d2": 0.7
   s27Id: bfcba3e2-73b1-4875-918c-ca96d28a17f1
   s28Comp: bfcba3e2-73b1-4875-918c-ca96d28a17f1_7c993a60-b0bf-49f5-9e06-69d66101a1db
-  "speed_bfcba3e2\xB573b1\xB54875\xB5918c\xB5ca96d28a17f1_7c993a60\xB5b0bf\xB549f5\xB59e06\xB569d66101a1db": 1
+  "speed_bfcba3e2\xB573b1\xB54875\xB5918c\xB5ca96d28a17f1_7c993a60\xB5b0bf\xB549f5\xB59e06\xB569d66101a1db": 0.4
   s29Id: 96749c2f-3e89-4552-ad57-8a253754f207
   s30Comp: 96749c2f-3e89-4552-ad57-8a253754f207_bd1bd582-bd2f-42b4-a0c3-15dd959bd187
   "maxSpeed_96749c2f\xB53e89\xB54552\xB5ad57\xB58a253754f207_bd1bd582\xB5bd2f\xB542b4\xB5a0c3\xB515dd959bd187": 1
@@ -107,8 +107,8 @@ MonoBehaviour:
   "detectionRangeWorried_96749c2f\xB53e89\xB54552\xB5ad57\xB58a253754f207_bd1bd582\xB5bd2f\xB542b4\xB5a0c3\xB515dd959bd187": 6
   "detectionRangePanicked_96749c2f\xB53e89\xB54552\xB5ad57\xB58a253754f207_bd1bd582\xB5bd2f\xB542b4\xB5a0c3\xB515dd959bd187": 8
   "sonobuoyVigiIncr_96749c2f\xB53e89\xB54552\xB5ad57\xB58a253754f207_bd1bd582\xB5bd2f\xB542b4\xB5a0c3\xB515dd959bd187": 4
-  "fregateStationaryVigiIncr_96749c2f\xB53e89\xB54552\xB5ad57\xB58a253754f207_bd1bd582\xB5bd2f\xB542b4\xB5a0c3\xB515dd959bd187": 0.5
-  "fregateMoveVigiIncr_96749c2f\xB53e89\xB54552\xB5ad57\xB58a253754f207_bd1bd582\xB5bd2f\xB542b4\xB5a0c3\xB515dd959bd187": 2
+  "fregateStationaryVigiIncr_96749c2f\xB53e89\xB54552\xB5ad57\xB58a253754f207_bd1bd582\xB5bd2f\xB542b4\xB5a0c3\xB515dd959bd187": 5
+  "fregateMoveVigiIncr_96749c2f\xB53e89\xB54552\xB5ad57\xB58a253754f207_bd1bd582\xB5bd2f\xB542b4\xB5a0c3\xB515dd959bd187": 5
   "headingChange_96749c2f\xB53e89\xB54552\xB5ad57\xB58a253754f207_bd1bd582\xB5bd2f\xB542b4\xB5a0c3\xB515dd959bd187": {fileID: 11400000,
     guid: c5625d4f2b46dcc42ab7b5841efdaf59, type: 2}
   "radioSilence_96749c2f\xB53e89\xB54552\xB5ad57\xB58a253754f207_bd1bd582\xB5bd2f\xB542b4\xB5a0c3\xB515dd959bd187": {fileID: 11400000,
@@ -116,20 +116,20 @@ MonoBehaviour:
   "baitDecoy_96749c2f\xB53e89\xB54552\xB5ad57\xB58a253754f207_bd1bd582\xB5bd2f\xB542b4\xB5a0c3\xB515dd959bd187": {fileID: 11400000,
     guid: b23b70fa501456c4d81115c3fde9927c, type: 2}
   "minRange_96749c2f\xB53e89\xB54552\xB5ad57\xB58a253754f207_bd1bd582\xB5bd2f\xB542b4\xB5a0c3\xB515dd959bd187": 1
-  "subZone12Subdivision_96749c2f\xB53e89\xB54552\xB5ad57\xB58a253754f207_bd1bd582\xB5bd2f\xB542b4\xB5a0c3\xB515dd959bd187": 12
-  "subZone3SubSubdivision_96749c2f\xB53e89\xB54552\xB5ad57\xB58a253754f207_bd1bd582\xB5bd2f\xB542b4\xB5a0c3\xB515dd959bd187": 2
-  "avoidEffectSliceReach_96749c2f\xB53e89\xB54552\xB5ad57\xB58a253754f207_bd1bd582\xB5bd2f\xB542b4\xB5a0c3\xB515dd959bd187": 3
+  "subZone12Subdivision_96749c2f\xB53e89\xB54552\xB5ad57\xB58a253754f207_bd1bd582\xB5bd2f\xB542b4\xB5a0c3\xB515dd959bd187": 8
+  "subZone3SubSubdivision_96749c2f\xB53e89\xB54552\xB5ad57\xB58a253754f207_bd1bd582\xB5bd2f\xB542b4\xB5a0c3\xB515dd959bd187": 1
+  "avoidEffectSliceReach_96749c2f\xB53e89\xB54552\xB5ad57\xB58a253754f207_bd1bd582\xB5bd2f\xB542b4\xB5a0c3\xB515dd959bd187": 1
   "intermediatePosRefreshRate_96749c2f\xB53e89\xB54552\xB5ad57\xB58a253754f207_bd1bd582\xB5bd2f\xB542b4\xB5a0c3\xB515dd959bd187": 3
   "distanceToRefrehIntemediatePos_96749c2f\xB53e89\xB54552\xB5ad57\xB58a253754f207_bd1bd582\xB5bd2f\xB542b4\xB5a0c3\xB515dd959bd187": 1
-  "benefPointFactorBioCalm_96749c2f\xB53e89\xB54552\xB5ad57\xB58a253754f207_bd1bd582\xB5bd2f\xB542b4\xB5a0c3\xB515dd959bd187": 2
-  "benefPointFactorBioPanicked_96749c2f\xB53e89\xB54552\xB5ad57\xB58a253754f207_bd1bd582\xB5bd2f\xB542b4\xB5a0c3\xB515dd959bd187": 2.8
-  "beneftPointFactorSonobuoyCalm_96749c2f\xB53e89\xB54552\xB5ad57\xB58a253754f207_bd1bd582\xB5bd2f\xB542b4\xB5a0c3\xB515dd959bd187": -2
-  "beneftPointFactorSonobuoyPanicked_96749c2f\xB53e89\xB54552\xB5ad57\xB58a253754f207_bd1bd582\xB5bd2f\xB542b4\xB5a0c3\xB515dd959bd187": -4
-  "beneftPointFactorSeaWayCalm_96749c2f\xB53e89\xB54552\xB5ad57\xB58a253754f207_bd1bd582\xB5bd2f\xB542b4\xB5a0c3\xB515dd959bd187": 2
+  "benefPointFactorBioCalm_96749c2f\xB53e89\xB54552\xB5ad57\xB58a253754f207_bd1bd582\xB5bd2f\xB542b4\xB5a0c3\xB515dd959bd187": 1
+  "benefPointFactorBioPanicked_96749c2f\xB53e89\xB54552\xB5ad57\xB58a253754f207_bd1bd582\xB5bd2f\xB542b4\xB5a0c3\xB515dd959bd187": 4
+  "beneftPointFactorSonobuoyCalm_96749c2f\xB53e89\xB54552\xB5ad57\xB58a253754f207_bd1bd582\xB5bd2f\xB542b4\xB5a0c3\xB515dd959bd187": 0
+  "beneftPointFactorSonobuoyPanicked_96749c2f\xB53e89\xB54552\xB5ad57\xB58a253754f207_bd1bd582\xB5bd2f\xB542b4\xB5a0c3\xB515dd959bd187": 0
+  "beneftPointFactorSeaWayCalm_96749c2f\xB53e89\xB54552\xB5ad57\xB58a253754f207_bd1bd582\xB5bd2f\xB542b4\xB5a0c3\xB515dd959bd187": 1
   "beneftPointFactorSeaWayPanicked_96749c2f\xB53e89\xB54552\xB5ad57\xB58a253754f207_bd1bd582\xB5bd2f\xB542b4\xB5a0c3\xB515dd959bd187": 4
-  "beneftPointFactorSeaTurbulentCalm_96749c2f\xB53e89\xB54552\xB5ad57\xB58a253754f207_bd1bd582\xB5bd2f\xB542b4\xB5a0c3\xB515dd959bd187": 2
+  "beneftPointFactorSeaTurbulentCalm_96749c2f\xB53e89\xB54552\xB5ad57\xB58a253754f207_bd1bd582\xB5bd2f\xB542b4\xB5a0c3\xB515dd959bd187": 1
   "beneftPointFactorSeaTurbulentPanicked_96749c2f\xB53e89\xB54552\xB5ad57\xB58a253754f207_bd1bd582\xB5bd2f\xB542b4\xB5a0c3\xB515dd959bd187": 4
-  "beneftPointFactorWindyZoneCalm_96749c2f\xB53e89\xB54552\xB5ad57\xB58a253754f207_bd1bd582\xB5bd2f\xB542b4\xB5a0c3\xB515dd959bd187": -1.5
+  "beneftPointFactorWindyZoneCalm_96749c2f\xB53e89\xB54552\xB5ad57\xB58a253754f207_bd1bd582\xB5bd2f\xB542b4\xB5a0c3\xB515dd959bd187": -0.5
   "beneftPointFactorWindyZonePanicked_96749c2f\xB53e89\xB54552\xB5ad57\xB58a253754f207_bd1bd582\xB5bd2f\xB542b4\xB5a0c3\xB515dd959bd187": -2
-  "distanceFactorWeightWhileCalm_96749c2f\xB53e89\xB54552\xB5ad57\xB58a253754f207_bd1bd582\xB5bd2f\xB542b4\xB5a0c3\xB515dd959bd187": 5
+  "distanceFactorWeightWhileCalm_96749c2f\xB53e89\xB54552\xB5ad57\xB58a253754f207_bd1bd582\xB5bd2f\xB542b4\xB5a0c3\xB515dd959bd187": 3
   "distanceFactorWeightWhilePanicked_96749c2f\xB53e89\xB54552\xB5ad57\xB58a253754f207_bd1bd582\xB5bd2f\xB542b4\xB5a0c3\xB515dd959bd187": 3

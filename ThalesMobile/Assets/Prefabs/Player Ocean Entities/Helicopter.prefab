@@ -583,7 +583,7 @@ MonoBehaviour:
   serializedGuid: 0e5e13a5c8b071489721538499ed3b5c
   thisObjState: 2
   initState: 2
-  instanceID: 52522
+  instanceID: 33850
   referencedComponents:
   - component: {fileID: 6286141312136616712}
     serializedGuid: 5e2d654c39c242408a7445e02cce3b57
@@ -614,8 +614,8 @@ MonoBehaviour:
   nextWaypointDistance: 0
   waypointAhead: 0
   pathDestination: {x: 0, y: 0}
-  speed: 3.5
-  acceleration: 1.5
+  speed: 2.75
+  acceleration: 2
   rotateSpeed: 180
   movementType: 0
   currentTargetPoint: {x: -9999, y: -9999}
@@ -629,7 +629,7 @@ MonoBehaviour:
   helicopterFeedback: {fileID: 6286141311459306336}
   deckUI: {fileID: 0}
   preparationDuration: 8
-  alertDuration: 15
+  alertDuration: 25
   flightDuration: 30
   cooldownDuration: 5
   operating: 0
