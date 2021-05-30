@@ -188,7 +188,7 @@ public class CameraController : MonoBehaviour
 
         Vector3 toTarget = (target - focusPoint.position);
 
-        if (toTarget.magnitude > 2f)//refocusSpeed * Time.deltaTime)
+        if (toTarget.magnitude > 3f)//refocusSpeed * Time.deltaTime)
         {
             toTarget = toTarget.normalized * refocusSpeed * moveZoomLvlFactor * Time.deltaTime;
 

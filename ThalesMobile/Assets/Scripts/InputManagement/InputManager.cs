@@ -120,7 +120,6 @@ public class InputManager : MonoBehaviour
                                 {
                                     if (camController != null)
                                     {
-
                                         camController.SetTarget(hit.collider.transform);
                                     }
                                 }
