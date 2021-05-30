@@ -60,7 +60,7 @@ namespace OceanEntities
             coords = new Coordinates(_transform.position, Vector2.up, 0);
 
             coords.direction = Coordinates.ConvertWorldToVector2(_transform.forward);
-
+            audioSource.maxDistance = GameManager.Instance.cameraController.camSett.maxHeight;
             //Equipment initialization.
             if (SceneManager.GetActiveScene().name != "TutorialScene")
                 passiveEquipement.Init(this);
@@ -88,7 +88,7 @@ namespace OceanEntities
                 if (audioSource.clip != movementSound && fading)
                 {
                     fading = false;
-                    soundHandler.CrossFade(audioSource, movementSound, 0.5f, Mathf.Clamp(movementSoundVolume,0,1));
+                    soundHandler.CrossFade(audioSource, movementSound, 0.5f,true, Mathf.Clamp(movementSoundVolume,0,1));
                 }
 
                     
@@ -98,7 +98,7 @@ namespace OceanEntities
                 if(audioSource.clip != waitingSound && !fading)
                 {
                     fading = true;
-                    soundHandler.CrossFade(audioSource, waitingSound,0.5f, Mathf.Clamp(waitingSoundVolume,0,1));
+                    soundHandler.CrossFade(audioSource, waitingSound,0.5f, true, Mathf.Clamp(waitingSoundVolume,0,1));
                 }
             }
 

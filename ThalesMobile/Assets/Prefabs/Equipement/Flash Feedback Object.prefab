@@ -467,7 +467,7 @@ MonoBehaviour:
   serializedGuid: 9637ebc8ac86fb4d8e473c5549d4586e
   thisObjState: 2
   initState: 2
-  instanceID: 76816
+  instanceID: 371634
   referencedComponents:
   - component: {fileID: 1432069829201359980}
     serializedGuid: 708d667433f54441a8dc7d906cd19f06
@@ -496,7 +496,7 @@ MonoBehaviour:
     type: 2}
   flashSoundSource: {fileID: 6472788471879092678}
   flashSound: {fileID: 8300000, guid: 05375ef77436cfe428760f761f6e244c, type: 3}
-  flashSoundVolume: 0.2
+  flashSoundVolume: 1
 --- !u!1001 &2415616080899019391
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -23,12 +23,12 @@ Material:
     m_Floats:
     - BoolRangeCircle: 1
     - Bool_Manual_Control: 1
-    - Float_Manual_Value: 0.9595665
+    - Float_Manual_Value: 0.98211116
     - Thickness: 0.024
     - Vector1_23253283: 0.1
     - Vector1_30272D5B: 0.04
     - Vector1_717B9CF: 0.39
-    - Vector1_AAC87A69: 0.42857143
+    - Vector1_AAC87A69: 0.15
     - Vector1_ABE3C706: 0.0149
     - Vector1_AlphaClipTreshold: 0.586
     - Vector1_C99237BD: 4.35

@@ -384,7 +384,7 @@ MonoBehaviour:
   serializedGuid: ac6601ce2798234caead513aca45b787
   thisObjState: 2
   initState: 2
-  instanceID: 40598
+  instanceID: 373382
   referencedComponents:
   - component: {fileID: 3438433757041613459}
     serializedGuid: 116c9699f390ef4ab323beff7b8bcfd1
@@ -546,7 +546,7 @@ MonoBehaviour:
   oilRigAmbiantClip: {fileID: 8300000, guid: d886a8147f9d214459e04163467ebcf3, type: 3}
   oilRigAmbiantTargetMixer: {fileID: -475553357682887328, guid: 9b41315a36bc40a4ea458016676fd8f1,
     type: 2}
-  oilRigAmbiantVolume: 1
+  oilRigAmbiantVolume: 0.6
   oilRigAmbiant3DVolume:
     serializedVersion: 2
     m_Curve:

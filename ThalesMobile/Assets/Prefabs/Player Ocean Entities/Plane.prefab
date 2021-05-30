@@ -566,7 +566,7 @@ MonoBehaviour:
   serializedGuid: 85045a7240664543aa9d92857d162799
   thisObjState: 2
   initState: 2
-  instanceID: 72852
+  instanceID: 375908
   referencedComponents:
   - component: {fileID: 339487588899374384}
     serializedGuid: ea62e786c0c3de4fb40542694734145d
@@ -614,7 +614,7 @@ MonoBehaviour:
   targetGroup: {fileID: -9015305574639715243, guid: 9b41315a36bc40a4ea458016676fd8f1,
     type: 2}
   movementSound: {fileID: 8300000, guid: ecfcddd4b902f45428acafb17c08f0f1, type: 3}
-  movementSoundVolume: 1
+  movementSoundVolume: 0.6
   movement3DSelected:
     serializedVersion: 2
     m_Curve:
