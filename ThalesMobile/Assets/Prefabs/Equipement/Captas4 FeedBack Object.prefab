@@ -51,7 +51,7 @@ MonoBehaviour:
   serializedGuid: 4afa145961db794795efea095181a348
   thisObjState: 2
   initState: 2
-  instanceID: 371580
+  instanceID: 32230
   referencedComponents:
   - component: {fileID: 5497311822246952093}
     serializedGuid: 1f4cec95ae68f34a8ebc654fba5cc3d3
@@ -203,7 +203,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6409486226928082747}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.4, z: 0}
+  m_LocalPosition: {x: 0, y: 0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1906850249946437919}
