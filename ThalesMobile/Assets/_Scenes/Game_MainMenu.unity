@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -2222,8 +2222,8 @@ RectTransform:
   m_Father: {fileID: 1820118679}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.77550006, y: 0.6925156}
-  m_AnchorMax: {x: 0.9552092, y: 0.80821115}
+  m_AnchorMin: {x: 0.8273995, y: 0.73185384}
+  m_AnchorMax: {x: 0.9687483, y: 0.81709397}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -4770,7 +4770,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1951661757}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.35675475
+  m_Size: 0.3568415
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -11305,8 +11305,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17cd211bbfca15a4e961a63c4d471e37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  screenSize: {x: 675, y: 1200}
-  centerPos: {x: 337.5, y: 600, z: 0}
+  screenSize: {x: 771, y: 1371}
+  centerPos: {x: 385.5, y: 685.5, z: 0}
   input: {fileID: 919132149453177770}
   slider: {fileID: 1870064779}
   menu: {fileID: 1820118679}

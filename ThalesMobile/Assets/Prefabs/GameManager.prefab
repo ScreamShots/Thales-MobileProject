@@ -3947,7 +3947,7 @@ MonoBehaviour:
   serializedGuid: 1f8b52a66b4f494b945dcb0befdd9c06
   thisObjState: 2
   initState: 2
-  instanceID: 59874
+  instanceID: 36130
   referencedComponents:
   - component: {fileID: 3682279617419880169}
     serializedGuid: 7b3bbe920b14d245a8496bcec2ae1e5c
@@ -4452,7 +4452,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 4076194260856159301}
         m_MethodName: ChangeEffectVolume
         m_Mode: 0
         m_Arguments:
@@ -6916,7 +6916,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 4076194260856159301}
         m_MethodName: ChangeMusicVolume
         m_Mode: 0
         m_Arguments:
@@ -9515,7 +9515,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 4076194260856159301}
         m_MethodName: ChangeUIVolume
         m_Mode: 0
         m_Arguments:
@@ -10127,7 +10127,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 4076194260856159301}
         m_MethodName: ChangeMasterVolume
         m_Mode: 0
         m_Arguments:
