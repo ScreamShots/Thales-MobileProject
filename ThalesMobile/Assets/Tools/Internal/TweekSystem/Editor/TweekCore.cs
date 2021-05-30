@@ -165,6 +165,7 @@ public class TweekCore : UnityEngine.Object
         for (int i = 0; i < fieldsToUpdate.Count; i++)
         {
             compFinalCount += fieldsToUpdate.ElementAt(i).Value.Count();
+            if (fieldsToUpdate.ElementAt(i).Value.Count() > 0) Debug.Log(fieldsToUpdate.ElementAt(i).Key);
         }
 
         if (compFinalCount != 0)

@@ -29,7 +29,7 @@ public class LevelAmbiant : MonoBehaviour
         oceanSource.maxDistance = currentCamSet.maxHeight;
         oceanSource.SetCustomCurve(AudioSourceCurveType.CustomRolloff, SoundHandler.Get3DVolumeCurve(ocean3DVolume));
 
-        oceanSource.volume = Mathf.Clamp(0, 1, oceanVolume);
+        oceanSource.volume = Mathf.Clamp01(oceanVolume);
         currentSoundHandler.PlaySound(oceanClip, oceanSource, oceanTargetMixer);
     }
 

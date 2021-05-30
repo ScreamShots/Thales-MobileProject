@@ -1,4 +1,4 @@
-//Random Generatated char value: 704a804e-270d-4105-928f-7441c55c1ce9
+//Random Generatated char value: b624e2bb-62ba-4608-b8b8-23b4baca23f3
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -37,18 +37,18 @@ public class SoundTweekScriptableObject : ScriptableObject
 [Var("selectSoundVolume")] [Tooltip("selectSoundVolume")] public float selectSoundVolume_a6528b1fµ4f6bµ4b49µ945dµcb0befdd9c06_3f468b3dµd9d3µ4f67µb56dµ8b5206c7f2d6;
 
 [Header("GameObject: MainUI")]
-[Id("MainUI Component - ID:")] public string s6Id = "962023a5-b901-492f-8886-9b83be38995b";
+[Id("MainUI Component - ID:")] public string s6Id = "390b4b4c-2643-4991-8668-ad655cfa15ab";
 
-[Comp("PassiveCard Component - ID:")] public string s7Comp = "962023a5-b901-492f-8886-9b83be38995b_562ef780-637f-4998-bbc6-ccaf09d9f7f8";
+[Comp("PassiveCard Component - ID:")] public string s7Comp = "390b4b4c-2643-4991-8668-ad655cfa15ab_562ef780-637f-4998-bbc6-ccaf09d9f7f8";
 
-[Var("descriptionAppearSound")] [Tooltip("descriptionAppearSound")] public AudioClip descriptionAppearSound_962023a5µb901µ492fµ8886µ9b83be38995b_562ef780µ637fµ4998µbbc6µccaf09d9f7f8;
-[Var("descriptionAppearSoundVolume")] [Tooltip("descriptionAppearSoundVolume")] public float descriptionAppearSoundVolume_962023a5µb901µ492fµ8886µ9b83be38995b_562ef780µ637fµ4998µbbc6µccaf09d9f7f8;
+[Var("descriptionAppearSound")] [Tooltip("descriptionAppearSound")] public AudioClip descriptionAppearSound_390b4b4cµ2643µ4991µ8668µad655cfa15ab_562ef780µ637fµ4998µbbc6µccaf09d9f7f8;
+[Var("descriptionAppearSoundVolume")] [Tooltip("descriptionAppearSoundVolume")] public float descriptionAppearSoundVolume_390b4b4cµ2643µ4991µ8668µad655cfa15ab_562ef780µ637fµ4998µbbc6µccaf09d9f7f8;
 
-[Comp("VictoryScreenManager Component - ID:")] public string s8Comp = "962023a5-b901-492f-8886-9b83be38995b_4ff1262d-e8c2-434b-9157-87bd0634f800";
+[Comp("VictoryScreenManager Component - ID:")] public string s8Comp = "390b4b4c-2643-4991-8668-ad655cfa15ab_4ff1262d-e8c2-434b-9157-87bd0634f800";
 
-[Var("winSound")] [Tooltip("winSound")] public AudioClip winSound_962023a5µb901µ492fµ8886µ9b83be38995b_4ff1262dµe8c2µ434bµ9157µ87bd0634f800;
-[Var("defeatSound")] [Tooltip("defeatSound")] public AudioClip defeatSound_962023a5µb901µ492fµ8886µ9b83be38995b_4ff1262dµe8c2µ434bµ9157µ87bd0634f800;
-[Var("winLooseVolume")] [Tooltip("winLooseVolume")] public float winLooseVolume_962023a5µb901µ492fµ8886µ9b83be38995b_4ff1262dµe8c2µ434bµ9157µ87bd0634f800;
+[Var("winSound")] [Tooltip("winSound")] public AudioClip winSound_390b4b4cµ2643µ4991µ8668µad655cfa15ab_4ff1262dµe8c2µ434bµ9157µ87bd0634f800;
+[Var("defeatSound")] [Tooltip("defeatSound")] public AudioClip defeatSound_390b4b4cµ2643µ4991µ8668µad655cfa15ab_4ff1262dµe8c2µ434bµ9157µ87bd0634f800;
+[Var("winLooseVolume")] [Tooltip("winLooseVolume")] public float winLooseVolume_390b4b4cµ2643µ4991µ8668µad655cfa15ab_4ff1262dµe8c2µ434bµ9157µ87bd0634f800;
 
 [Space]
 [Path("From")] public string s9_From = "Assets/Prefabs/Assets/Prefabs/Equipement";

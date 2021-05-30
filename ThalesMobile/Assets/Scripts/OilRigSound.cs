@@ -29,7 +29,7 @@ public class OilRigSound : MonoBehaviour
         oilRigAmbiantSource.maxDistance = currentCamSet.maxHeight;
         oilRigAmbiantSource.SetCustomCurve(AudioSourceCurveType.CustomRolloff, SoundHandler.Get3DVolumeCurve(oilRigAmbiant3DVolume));
 
-        oilRigAmbiantSource.volume = Mathf.Clamp(0, 1, oilRigAmbiantVolume);
+        oilRigAmbiantSource.volume = Mathf.Clamp01(oilRigAmbiantVolume);
         currentSoundHandler.PlaySound(oilRigAmbiantClip, oilRigAmbiantSource, oilRigAmbiantTargetMixer);
 
         transform.position = new Vector3(transform.position.x, currentCamSet.minHeight, transform.position.z);

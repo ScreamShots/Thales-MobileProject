@@ -133,7 +133,7 @@ MonoBehaviour:
   serializedGuid: 2f9c7496893e5245ad578a253754f207
   thisObjState: 2
   initState: 2
-  instanceID: 36062
+  instanceID: 289854
   referencedComponents:
   - component: {fileID: 7664084496329710959}
     serializedGuid: 82d51bbd2fbdb442a0c315dd959bd187
@@ -246,10 +246,10 @@ MonoBehaviour:
   soundSource: {fileID: 822501743381000185}
   inHackClip: {fileID: 8300000, guid: e89b7798b5aeb304596e37e7ee449105, type: 3}
   doneHackClip: {fileID: 8300000, guid: 1096d8c3681a41d409140463b2dbc504, type: 3}
-  decoyUseClip: {fileID: 8300000, guid: 1096d8c3681a41d409140463b2dbc504, type: 3}
+  decoyUseClip: {fileID: 8300000, guid: 8387f0a4d843d8342acc28e51ab9fb9c, type: 3}
   inHackVolume: 1
   doneHackVolume: 1
-  decoyUseVolume: 0.5
+  decoyUseVolume: 1
 --- !u!114 &7664084496245726164
 MonoBehaviour:
   m_ObjectHideFlags: 0
