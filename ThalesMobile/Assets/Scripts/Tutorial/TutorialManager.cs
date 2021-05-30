@@ -109,7 +109,6 @@ public class TutorialManager : MonoBehaviour
     public GameObject textContainer_16;
     public TextMeshProUGUI screenText_16;
     public DetectableOceanEntity pointToReveal;
-    public GameObject hand_16;
 
     [Space]
     public GameObject textContainer_17;
@@ -603,23 +602,18 @@ public class TutorialManager : MonoBehaviour
 
         #region Screen 16 : SearchMaster 
         textContainer_16.SetActive(true);
-        screenText_16.text = "Le <b>SEARCHMASTER</b> identifie la nature d’un objet immergé et détecté dans son rayon d’action. Seuls les points <b>détéctés récemment</b> (vert ou orange) peuvent être identifiés.<b>Déplacez l’avion</b> pour <b>identifier</b> le point détecté par la frégate.";
+        screenText_16.text = "Le <b>SEARCHMASTER</b> identifie la nature d’un objet immergé et détecté dans son rayon d’action. Seuls les points <b>détéctés récemment</b> (vert ou orange) peuvent être identifiés.\n<b>Déplacez l’avion</b> pour <b>identifier</b> le point détecté par la frégate.";
         tutorialPlane.linkedButton.SelectEntity();
-        hand_16.SetActive(true);
 
         yield return new WaitForSeconds(3f);
 
         tutorialPlane.passiveEquipement.Init(tutorialPlane);
         planeMovementCard.canClick = true;
         planeMovementCard.canDrag = true;
-
-        hand_16.SetActive(false);
-
         yield return new WaitUntil(() => pointToReveal.linkedGlobalDetectionPoint.detectionState == DetectionState.revealedDetection);
 
         cameraController.SetTarget(pointToReveal.linkedGlobalDetectionPoint.transform);
         cameraController.SetZoom(0, 1f);
-        hand_16.SetActive(false);
 
         yield return new WaitForSeconds(5f);
 
@@ -812,7 +806,7 @@ public class TutorialManager : MonoBehaviour
 
         #region Screen 27 : Helo Launch
         textContainer_27.SetActive(true);
-        screenText_27.text = "L'HELO doit être préparé avant qu'il puisse décoller";
+        screenText_27.text = "L'HELO doit être <b>préparé</b> avant qu'il puisse décoller";
 
         hand_27.SetActive(true);
 
@@ -823,7 +817,7 @@ public class TutorialManager : MonoBehaviour
         yield return new WaitUntil(() => tutorialHelicopter.inAlert);
 
         hand_27.SetActive(true);
-        screenText_27.text = "L'HELO ne reste actif que pendant un temps limité une fois qu'il a été activé";
+        screenText_27.text = "L'HELO ne reste actif que pendant un <b>temps limité</b> une fois qu'il a été activé";
 
         yield return new WaitUntil(() => tutorialHelicopter.inFlight);
         hand_27.SetActive(false);

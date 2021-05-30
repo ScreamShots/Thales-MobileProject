@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -15825,6 +15825,106 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1787732698}
     m_Modifications:
+    - target: {fileID: 320896789846568298, guid: cd5f21c81995f47428172ef6a78f312b,
+        type: 3}
+      propertyPath: initState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 320896789846568298, guid: cd5f21c81995f47428172ef6a78f312b,
+        type: 3}
+      propertyPath: instanceID
+      value: -8596
+      objectReference: {fileID: 0}
+    - target: {fileID: 320896789846568298, guid: cd5f21c81995f47428172ef6a78f312b,
+        type: 3}
+      propertyPath: guidDisplay
+      value: a3dca17c-68a8-4b21-a48a-4338466e3126
+      objectReference: {fileID: 0}
+    - target: {fileID: 320896789846568298, guid: cd5f21c81995f47428172ef6a78f312b,
+        type: 3}
+      propertyPath: thisObjState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 320896789846568298, guid: cd5f21c81995f47428172ef6a78f312b,
+        type: 3}
+      propertyPath: serializedGuid.Array.data[0]
+      value: 124
+      objectReference: {fileID: 0}
+    - target: {fileID: 320896789846568298, guid: cd5f21c81995f47428172ef6a78f312b,
+        type: 3}
+      propertyPath: serializedGuid.Array.data[1]
+      value: 161
+      objectReference: {fileID: 0}
+    - target: {fileID: 320896789846568298, guid: cd5f21c81995f47428172ef6a78f312b,
+        type: 3}
+      propertyPath: serializedGuid.Array.data[2]
+      value: 220
+      objectReference: {fileID: 0}
+    - target: {fileID: 320896789846568298, guid: cd5f21c81995f47428172ef6a78f312b,
+        type: 3}
+      propertyPath: serializedGuid.Array.data[3]
+      value: 163
+      objectReference: {fileID: 0}
+    - target: {fileID: 320896789846568298, guid: cd5f21c81995f47428172ef6a78f312b,
+        type: 3}
+      propertyPath: serializedGuid.Array.data[4]
+      value: 168
+      objectReference: {fileID: 0}
+    - target: {fileID: 320896789846568298, guid: cd5f21c81995f47428172ef6a78f312b,
+        type: 3}
+      propertyPath: serializedGuid.Array.data[5]
+      value: 104
+      objectReference: {fileID: 0}
+    - target: {fileID: 320896789846568298, guid: cd5f21c81995f47428172ef6a78f312b,
+        type: 3}
+      propertyPath: serializedGuid.Array.data[6]
+      value: 33
+      objectReference: {fileID: 0}
+    - target: {fileID: 320896789846568298, guid: cd5f21c81995f47428172ef6a78f312b,
+        type: 3}
+      propertyPath: serializedGuid.Array.data[7]
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 320896789846568298, guid: cd5f21c81995f47428172ef6a78f312b,
+        type: 3}
+      propertyPath: serializedGuid.Array.data[8]
+      value: 164
+      objectReference: {fileID: 0}
+    - target: {fileID: 320896789846568298, guid: cd5f21c81995f47428172ef6a78f312b,
+        type: 3}
+      propertyPath: serializedGuid.Array.data[9]
+      value: 138
+      objectReference: {fileID: 0}
+    - target: {fileID: 320896789846568298, guid: cd5f21c81995f47428172ef6a78f312b,
+        type: 3}
+      propertyPath: serializedGuid.Array.data[10]
+      value: 67
+      objectReference: {fileID: 0}
+    - target: {fileID: 320896789846568298, guid: cd5f21c81995f47428172ef6a78f312b,
+        type: 3}
+      propertyPath: serializedGuid.Array.data[11]
+      value: 56
+      objectReference: {fileID: 0}
+    - target: {fileID: 320896789846568298, guid: cd5f21c81995f47428172ef6a78f312b,
+        type: 3}
+      propertyPath: serializedGuid.Array.data[12]
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 320896789846568298, guid: cd5f21c81995f47428172ef6a78f312b,
+        type: 3}
+      propertyPath: serializedGuid.Array.data[13]
+      value: 110
+      objectReference: {fileID: 0}
+    - target: {fileID: 320896789846568298, guid: cd5f21c81995f47428172ef6a78f312b,
+        type: 3}
+      propertyPath: serializedGuid.Array.data[14]
+      value: 49
+      objectReference: {fileID: 0}
+    - target: {fileID: 320896789846568298, guid: cd5f21c81995f47428172ef6a78f312b,
+        type: 3}
+      propertyPath: serializedGuid.Array.data[15]
+      value: 38
+      objectReference: {fileID: 0}
     - target: {fileID: 1608692963459070879, guid: cd5f21c81995f47428172ef6a78f312b,
         type: 3}
       propertyPath: m_SizeDelta.x
