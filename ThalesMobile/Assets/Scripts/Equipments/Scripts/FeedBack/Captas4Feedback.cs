@@ -12,6 +12,8 @@ namespace PlayerEquipement
         [SerializeField]
         MeshRenderer captasWaveRenderer;
         [SerializeField]
+        MeshFilter captasMeshFiler;
+        [SerializeField]
         float progressionMin;
         [SerializeField]
         float progressionMax;
@@ -47,8 +49,9 @@ namespace PlayerEquipement
         public void StartWave(float range, float duration)
         {
             captasWaveRenderer.transform.localScale = Vector3.one;
-            float scaleFactor = (2 * range) / captasWaveRenderer.bounds.size.x;
+            float scaleFactor = (2 * range) / captasMeshFiler.sharedMesh.bounds.size.x;
             captasWaveRenderer.transform.localScale *= scaleFactor;
+            captasWaveRenderer.transform.rotation = Quaternion.identity;
 
             waveSoundSource.volume = Mathf.Clamp(waveSoundVolume, 0, 1);
             GameManager.Instance.soundHandler.PlaySound(waveSound, waveSoundSource, waveTargetGroup);

@@ -51,7 +51,7 @@ MonoBehaviour:
   serializedGuid: 4afa145961db794795efea095181a348
   thisObjState: 2
   initState: 2
-  instanceID: 46504
+  instanceID: 95582
   referencedComponents:
   - component: {fileID: 5497311822246952093}
     serializedGuid: 1f4cec95ae68f34a8ebc654fba5cc3d3
@@ -69,6 +69,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   captasWaveRenderer: {fileID: 5001957241987241436}
+  captasMeshFiler: {fileID: 3557329501160032770}
   progressionMin: 0
   progressionMax: 1
   waveTargetGroup: {fileID: 0}
