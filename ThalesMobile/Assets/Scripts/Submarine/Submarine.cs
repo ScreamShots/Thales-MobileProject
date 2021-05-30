@@ -193,14 +193,7 @@ public class Submarine : DetectableOceanEntity
         subZoneAngleWidth12 = 360 / subZone12Subdivision;
         subZoneAngleWidth3 = 360 / (subZone12Subdivision * subZone3SubSubdivision);
 
-
-        for (int i = 0; i < levelManager.submarineEntitiesInScene.Count; i++)
-        {
-            if(levelManager.submarineEntitiesInScene[i].GetType() != typeof(Submarine))
-            {
-                bioElements.Add(levelManager.submarineEntitiesInScene[i].transform);
-            }
-        }
+        StartCoroutine(WaitForAddBio());
 
         allCounterMeasures = new List<CounterMeasure>();
         allCounterMeasures.Add(headingChange);
@@ -306,11 +299,14 @@ public class Submarine : DetectableOceanEntity
             if ((nextInterestPointPosition - coords.position).magnitude < nextInterestPoint.hackingRange)
             {
                 Capture();
+                UpdatePath(nextInterestPointPosition);
+                movingToNextPoint = false;
             }
             else
             {
                 //pathDestination = nextInterestPointPosition;
                 UpdatePath(nextInterestPointPosition);
+                movingToNextPoint = true;
             }
         }
         else
@@ -361,7 +357,7 @@ public class Submarine : DetectableOceanEntity
             dontUpdateCoord = true;
             submarineDirection = coords.direction;
         }
-        
+
         Vector2 decoySubmarineDestination = UpdatePath(coords.position + Coordinates.ConvertWorldToVector2(Quaternion.Euler(0, realBaitDecoy.decoysAngle[realBaitDecoy.randomAnglelistIndex[0]], 0) * Coordinates.ConvertVector2ToWorld(Vector2.right)) * 5);
         coords.direction = pathDirection;
         //coords.direction = Coordinates.ConvertWorldToVector2(Quaternion.Euler(0, realBaitDecoy.decoysAngle[realBaitDecoy.randomAnglelistIndex[0]], 0) * Coordinates.ConvertVector2ToWorld(Vector2.right));
@@ -1064,4 +1060,17 @@ public class Submarine : DetectableOceanEntity
         changeUIDecoy = false;
     }
     #endregion
+
+    IEnumerator WaitForAddBio()
+    {
+        yield return new WaitForSeconds(0.001f);
+
+        for (int i = 0; i < levelManager.submarineEntitiesInScene.Count; i++)
+        {
+            if (levelManager.submarineEntitiesInScene[i].GetType() != typeof(Submarine))
+            {
+                bioElements.Add(levelManager.submarineEntitiesInScene[i].transform);
+            }
+        }
+    }
 }
