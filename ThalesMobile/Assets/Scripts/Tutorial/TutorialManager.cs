@@ -788,11 +788,13 @@ public class TutorialManager : MonoBehaviour
 
         textContainer_25.SetActive(false);
 
+
+        yield return new WaitUntil(()=> tutorialSubmarine.linkedGlobalDetectionPoint.detectionState == DetectionState.revealedDetection);
+
         inputManager.canMoveCam = false;
         inputManager.canZoomCam = false;
         inputManager.canUseCam = false;
 
-        yield return new WaitUntil(()=> tutorialSubmarine.linkedGlobalDetectionPoint.detectionState == DetectionState.revealedDetection);
         #endregion
 
         #region Screen 26 : Helo Selection
