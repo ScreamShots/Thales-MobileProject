@@ -271,7 +271,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1924318757053718706
 Transform:
   m_ObjectHideFlags: 0
@@ -389,7 +389,7 @@ MonoBehaviour:
   serializedGuid: a377b18e98aaea46b41687f8372d9457
   thisObjState: 2
   initState: 2
-  instanceID: 374000
+  instanceID: 36234
   referencedComponents:
   - component: {fileID: 1924318757793568704}
     serializedGuid: 6ebc1d7e48436247923330a708fa6302
@@ -410,7 +410,7 @@ MonoBehaviour:
   hackProgression: 0
   hackTime: 20
   hackingRange: 0.2
-  sendAlert: 1
+  sendAlert: 0
   detectionAlertRange: 4
   timeInRangeBeforeAlert: 10
   rangeDisplay: {fileID: 1924318757053718716}

@@ -384,7 +384,7 @@ MonoBehaviour:
   serializedGuid: ac6601ce2798234caead513aca45b787
   thisObjState: 2
   initState: 2
-  instanceID: 373382
+  instanceID: 33744
   referencedComponents:
   - component: {fileID: 3438433757041613459}
     serializedGuid: 116c9699f390ef4ab323beff7b8bcfd1
@@ -410,7 +410,7 @@ MonoBehaviour:
   hackingRange: 0.2
   sendAlert: 1
   detectionAlertRange: 3.08
-  timeInRangeBeforeAlert: 2
+  timeInRangeBeforeAlert: 15
   rangeDisplay: {fileID: 3438433755699052722}
   hackParticles: {fileID: 8321827369150953873}
   alertIcon: {fileID: 3438433756610916283}
