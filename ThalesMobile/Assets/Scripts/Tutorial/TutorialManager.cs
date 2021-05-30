@@ -152,6 +152,7 @@ public class TutorialManager : MonoBehaviour
     [Space]
     public GameObject textContainer_25;
     public TextMeshProUGUI screenText_25;
+    public GameObject newSubPos;
 
     [Space]
     public GameObject textContainer_26;
@@ -765,6 +766,9 @@ public class TutorialManager : MonoBehaviour
 
         tutorialSubmarine.maxSpeed = 0;
         tutorialSubmarine.currentSpeed = 0;
+
+        tutorialSubmarine.transform.position = newSubPos.transform.position;
+        tutorialSubmarine.coords.position = Coordinates.ConvertWorldToVector2(tutorialSubmarine.transform.position);
 
         planeEquipementCard.canClick = true;
         planeEquipementCard.canDrag = true;
