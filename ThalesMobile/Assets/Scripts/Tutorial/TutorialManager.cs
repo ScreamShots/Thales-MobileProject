@@ -602,7 +602,7 @@ public class TutorialManager : MonoBehaviour
 
         #region Screen 16 : SearchMaster 
         textContainer_16.SetActive(true);
-        screenText_16.text = "Le <b>SEARCHMASTER</b> identifie la nature d’un objet immergé et détecté dans son rayon d’action. Seuls les points <b>détéctés récemment</b> (vert ou orange) peuvent être identifiés.\n<b>Déplacez l’avion</b> pour <b>identifier</b> le point détecté par la frégate.";
+        screenText_16.text = "Le <b>SEARCHMASTER</b> identifie la nature d’un objet immergé et détecté dans son rayon d’action. Seuls les points <b>détéctés récemment</b> (blanc ou orange) peuvent être identifiés.\n<b>Déplacez l’avion</b> pour <b>identifier</b> le point détecté par la frégate.";
         tutorialPlane.linkedButton.SelectEntity();
 
         yield return new WaitForSeconds(3f);

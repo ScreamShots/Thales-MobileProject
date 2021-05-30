@@ -3947,7 +3947,7 @@ MonoBehaviour:
   serializedGuid: 1f8b52a66b4f494b945dcb0befdd9c06
   thisObjState: 2
   initState: 2
-  instanceID: 369186
+  instanceID: 38390
   referencedComponents:
   - component: {fileID: 3682279617419880169}
     serializedGuid: 7b3bbe920b14d245a8496bcec2ae1e5c
@@ -6134,7 +6134,7 @@ GameObject:
   - component: {fileID: 1046695239057817484}
   - component: {fileID: 6025567498606060907}
   m_Layer: 5
-  m_Name: Van Capellen Mathieu
+  m_Name: Van Cappellen Mathieu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6186,7 +6186,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Van Capellen Mathieu
+  m_text: Van Cappellen Mathieu
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9803bda46f516c445a9387d3bca23e67, type: 2}
   m_sharedMaterial: {fileID: -544938766615121476, guid: 9803bda46f516c445a9387d3bca23e67,

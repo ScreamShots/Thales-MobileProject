@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -3547,8 +3547,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 381.71246, y: -3670.8801}
-  m_SizeDelta: {x: 499.16, y: 58.76}
+  m_AnchoredPosition: {x: 381.7125, y: -3670.8801}
+  m_SizeDelta: {x: 524.56, y: 58.76}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &232520694
 MonoBehaviour:
@@ -3569,7 +3569,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Van Capellen Mathieu
+  m_text: Van Cappellen Mathieu
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9803bda46f516c445a9387d3bca23e67, type: 2}
   m_sharedMaterial: {fileID: -544938766615121476, guid: 9803bda46f516c445a9387d3bca23e67,
@@ -4770,7 +4770,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1951661757}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.3568415
+  m_Size: 0.35675475
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -7641,7 +7641,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Credit
+  m_text: "Cr\xE9dits"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5da055348fbde9f4891c59d866f0fd1a, type: 2}
   m_sharedMaterial: {fileID: 1107073868545683195, guid: 5da055348fbde9f4891c59d866f0fd1a,
@@ -7669,12 +7669,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 150
-  m_fontSizeBase: 150
+  m_fontSize: 143.5
+  m_fontSizeBase: 130
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 0
+  m_fontSizeMax: 300
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 1024
@@ -11305,8 +11305,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17cd211bbfca15a4e961a63c4d471e37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  screenSize: {x: 771, y: 1371}
-  centerPos: {x: 385.5, y: 685.5, z: 0}
+  screenSize: {x: 675, y: 1200}
+  centerPos: {x: 337.5, y: 600, z: 0}
   input: {fileID: 919132149453177770}
   slider: {fileID: 1870064779}
   menu: {fileID: 1820118679}
@@ -16263,6 +16263,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3182148566510231655, guid: 33e3eefddf3b00848ac0ac506d6139a8,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 43.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 3182148566510231655, guid: 33e3eefddf3b00848ac0ac506d6139a8,
+        type: 3}
+      propertyPath: m_fontStyle
+      value: 17
+      objectReference: {fileID: 0}
     - target: {fileID: 6919796478959986882, guid: 33e3eefddf3b00848ac0ac506d6139a8,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -16513,7 +16523,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 381.71252, y: -3503.37}
+  m_AnchoredPosition: {x: 381.7125, y: -3503.37}
   m_SizeDelta: {x: 663.425, y: 176.26}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1445674754
@@ -17345,6 +17355,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3182148566510231655, guid: 33e3eefddf3b00848ac0ac506d6139a8,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 43.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 3182148566510231655, guid: 33e3eefddf3b00848ac0ac506d6139a8,
+        type: 3}
+      propertyPath: m_fontStyle
+      value: 33
       objectReference: {fileID: 0}
     - target: {fileID: 6919796478959986882, guid: 33e3eefddf3b00848ac0ac506d6139a8,
         type: 3}
@@ -26327,7 +26347,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 848722766}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.29011318
+  m_Size: 0.2901132
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

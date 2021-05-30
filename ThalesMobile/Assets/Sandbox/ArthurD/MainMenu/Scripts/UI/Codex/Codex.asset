@@ -168,7 +168,7 @@ MonoBehaviour:
     image: {fileID: 0}
     linkName: "BlueScan \u2013 The Big Picture | Thales Group "
     link: https://www.thalesgroup.com/en/australia/news/bluescan-big-picture
-  - title: No JOY
+  - title: NO JOY
     categoIcon: {fileID: 21300000, guid: 31538f625d2466b41ab397512ba392c3, type: 3}
     description: "Terme tactique utilis\xE9 si pas de contact sonar ou MAD. "
     image: {fileID: 0}
