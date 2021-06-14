@@ -29,28 +29,8 @@ public class Environnement : MonoBehaviour
     }
 
 #if UNITY_EDITOR
-    private void Awake()
-    {
-        //zoneCarto = GenerateMapData();
-    }
+
     #region ContextMenue
-    
-    [ContextMenu("Texture Generation Data")]
-    public void GenerateTextureData()
-    {
-        SeaTextureGenerator.GenerateZoneDataTexture(this, "Tex_EnviroData");
-    }
-
-    [ContextMenu("Texture Generation Color")]
-    public void GenerateTextureColor()
-    {
-        SeaTextureGenerator.GenerateSeaColorTexture(this, "Tex_ZoneColor");
-    }
-
-    //          
-    //
-    //
-    //
 
     public void GeneratePointOfZone()
     {
@@ -167,30 +147,6 @@ public class Environnement : MonoBehaviour
             }
         }
     }
-
-    /*  WaitingOptimisation
-        [ContextMenu("Generate Map Data")]
-        public int[,] GenerateMapData()
-        {
-            Vector2Int zoneCartoSize = new Vector2Int((int)limit.size.x * resolution, (int)limit.size.y * resolution);
-
-            int[,] zoneCarto = new int[zoneCartoSize.x, zoneCartoSize.y];
-
-            float inverseDetail = (float)1f / resolution;
-            float textStartPosX = limit.offSet.x + limit.leftBorder;
-            float textStartPosY = limit.offSet.y + limit.downBorder;
-
-            for (int x = 0; x < zoneCartoSize.x; x++)
-            {
-                for (int y = 0; y < zoneCartoSize.y; y++)
-                {
-                    ZoneIn(new Vector2(textStartPosX + (x * inverseDetail), textStartPosY + (y * inverseDetail)));
-                }
-            }
-
-            return zoneCarto;
-        }
-        */
 
     #endregion
 #endif
