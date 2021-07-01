@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
-using Tweek.FlagAttributes;
+ 
 
 namespace PlayerEquipement
 {
-    [TweekClass]
+     
     public class HullSonarPointFeedback : MonoBehaviour
     {
         [Header("References")]
@@ -36,9 +36,9 @@ namespace PlayerEquipement
         [Header("Sound - Appear")]
         [SerializeField]
         AudioMixerGroup targetGroup;
-        [SerializeField, TweekFlag(FieldUsage.Sound)]
+        [SerializeField ]
         AudioClip appearSound;
-        [SerializeField, TweekFlag(FieldUsage.Sound)]
+        [SerializeField ]
         float appearSoundVolume;
         [SerializeField]
         AudioSource appearSoundSource;

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Tweek.FlagAttributes;
+ 
 
 /// <summary>
 /// Antoine Leroux - 28/03/2021 - Hack State is an enum describing the interrest point hacking state.
@@ -18,7 +18,7 @@ public enum HackState
 /// Antoine Leroux - 28/03/2021 - InterrestPoint is the class for every interrest point. 
 /// </summary>
 /// 
-[TweekClass]
+ 
 public class InterestPoint : MonoBehaviour
 {
     private Submarine submarine;
@@ -27,17 +27,17 @@ public class InterestPoint : MonoBehaviour
     public float hackProgression;
 
     [Header("IP Settings")]
-    [TweekFlag(FieldUsage.Gameplay)]
+     
     public float hackTime;
-    [TweekFlag(FieldUsage.Gameplay)]
+     
     public float hackingRange;
 
     [Header("IP Alert")]
-    [TweekFlag(FieldUsage.Gameplay)]
+     
     public bool sendAlert;
-    [TweekFlag(FieldUsage.Gameplay)]
+     
     public float detectionAlertRange;
-    [TweekFlag(FieldUsage.Gameplay)]
+     
     public float timeInRangeBeforeAlert;
     private float currentTimeInRange;
     public GameObject rangeDisplay;

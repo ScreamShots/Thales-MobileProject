@@ -3,11 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
-using Tweek.FlagAttributes;
+ 
 
 namespace PlayerEquipement
 {
-    [TweekClass]
+     
     public class FlashFeedback : EquipementFeedback
     {
         PlayerOceanEntity sourceEntity;
@@ -41,9 +41,9 @@ namespace PlayerEquipement
         AudioMixerGroup targetGroup;
         [SerializeField]
         AudioSource flashSoundSource;
-        [SerializeField, TweekFlag(FieldUsage.Sound)]
+        [SerializeField ]
         AudioClip flashSound;
-        [SerializeField, TweekFlag(FieldUsage.Sound)]
+        [SerializeField ]
         float flashSoundVolume;
 
 

@@ -6,9 +6,9 @@ using PlayerEquipement;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.Audio;
-using Tweek.FlagAttributes;
+ 
 
-[TweekClass]
+ 
 public class SonobuyDeployerCard : MonoBehaviour
 {
     [Header("Elements")]
@@ -27,17 +27,17 @@ public class SonobuyDeployerCard : MonoBehaviour
     private SoundHandler soundHandler;
     public AudioSource audioSource;
     public AudioMixerGroup targetGroup;
-    [TweekFlag(FieldUsage.Sound)]
+     
     public AudioClip descriptionAppearSound;
-    [TweekFlag(FieldUsage.Sound)]
+     
     public float descriptionAppearSoundVolume;
-    [TweekFlag(FieldUsage.Sound)]
+     
     public AudioClip cardSelectionSound;
-    [TweekFlag(FieldUsage.Sound)]
+     
     public float cardSelectionSoundVolume;
-    [TweekFlag(FieldUsage.Sound)]
+     
     public AudioClip outOfChargeSound;
-    [TweekFlag(FieldUsage.Sound)]
+     
     public float outOfChargeSoundVolume;
 
     OceanEntities.Plane temp;

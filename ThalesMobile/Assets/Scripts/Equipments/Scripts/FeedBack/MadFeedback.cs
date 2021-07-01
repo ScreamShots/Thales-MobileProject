@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
-using Tweek.FlagAttributes;
+ 
 
 namespace PlayerEquipement
 {
-    [TweekClass]
+    
+
     public class MadFeedback : EquipementFeedback
     {
         Mad sourceMad;
@@ -16,9 +17,9 @@ namespace PlayerEquipement
         [Header("Sound - Reveal")]
         [SerializeField]
         AudioMixerGroup targetGroup;
-        [SerializeField, TweekFlag(FieldUsage.Sound)]
+        [SerializeField ]
         AudioClip revealSound;
-        [SerializeField, TweekFlag(FieldUsage.Sound)]
+        [SerializeField ]
         float revealSoundVolume;
         [SerializeField]
         AudioSource revealSoundSource;

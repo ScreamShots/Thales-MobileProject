@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using PlayerEquipement;
 using UnityEngine.Audio;
-using Tweek.FlagAttributes;
+ 
 using UnityEngine.SceneManagement;
 using NaughtyAttributes;
 
 namespace OceanEntities
 {
-    [TweekClass]
+     
     public class Plane : PlayerOceanEntity
     {
         private Transform _transform;
@@ -27,9 +27,9 @@ namespace OceanEntities
         private SoundHandler soundHandler;
         public AudioSource audioSource;
         public AudioMixerGroup targetGroup;
-        [TweekFlag(FieldUsage.Sound)]
+         
         public AudioClip movementSound;
-        [TweekFlag(FieldUsage.Sound)]
+         
         public float movementSoundVolume;
         [CurveRange(0, 0, 1, 1)]
         public AnimationCurve movement3DSelected;
@@ -56,9 +56,9 @@ namespace OceanEntities
         */
 
         [Header("Equipment")]
-        [TweekFlag(FieldUsage.Gameplay)]
+         
         public Equipement passiveEquipement;
-        [TweekFlag(FieldUsage.Gameplay)]
+         
         public Equipement activeEquipement;
 
         void Start()

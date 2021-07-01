@@ -403,7 +403,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 801215153859902932}
-  - component: {fileID: 8586447190497049491}
   - component: {fileID: 801215153859902935}
   m_Layer: 0
   m_Name: InterestPoint(AircraftCarrier)
@@ -433,27 +432,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8586447190497049491
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 801215153859902933}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c3cdcb490cdee448a8aedfe8dbf5790, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  guidDisplay: 3e118160-a893-4445-9441-cc29276b98ec
-  serializedGuid: 6081113e93a845449441cc29276b98ec
-  thisObjState: 2
-  initState: 2
-  instanceID: 32694
-  referencedComponents:
-  - component: {fileID: 801215153859902935}
-    serializedGuid: f133b0c7cc65244b919df895b16b013e
-    update: 1
 --- !u!114 &801215153859902935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -768,15 +746,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9d0e817336c3594db4e779e25e17c17, type: 3}
---- !u!198 &6328868375957445413 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 6686390441772988802, guid: d9d0e817336c3594db4e779e25e17c17,
-    type: 3}
-  m_PrefabInstance: {fileID: 801215153220068007}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7695106062537586473 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7049539547567641998, guid: d9d0e817336c3594db4e779e25e17c17,
+    type: 3}
+  m_PrefabInstance: {fileID: 801215153220068007}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &6328868375957445413 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6686390441772988802, guid: d9d0e817336c3594db4e779e25e17c17,
     type: 3}
   m_PrefabInstance: {fileID: 801215153220068007}
   m_PrefabAsset: {fileID: 0}

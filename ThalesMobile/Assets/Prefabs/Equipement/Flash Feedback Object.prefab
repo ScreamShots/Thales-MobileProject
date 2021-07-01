@@ -424,7 +424,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1258711250593260065}
-  - component: {fileID: 1311437376564785232}
   - component: {fileID: 1432069829201359980}
   m_Layer: 0
   m_Name: Flash Feedback Object
@@ -451,27 +450,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1311437376564785232
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6879005350775039052}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c3cdcb490cdee448a8aedfe8dbf5790, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  guidDisplay: c8eb3796-86ac-4dfb-8e47-3c5549d4586e
-  serializedGuid: 9637ebc8ac86fb4d8e473c5549d4586e
-  thisObjState: 2
-  initState: 2
-  instanceID: 371634
-  referencedComponents:
-  - component: {fileID: 1432069829201359980}
-    serializedGuid: 708d667433f54441a8dc7d906cd19f06
-    update: 1
 --- !u!114 &1432069829201359980
 MonoBehaviour:
   m_ObjectHideFlags: 0

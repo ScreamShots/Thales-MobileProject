@@ -469,7 +469,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2326222572911789480}
-  - component: {fileID: 5634726329610016200}
   - component: {fileID: 5758312487408005586}
   m_Layer: 0
   m_Name: Sonobuoy Instance
@@ -493,27 +492,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5634726329610016200
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2607549249886408468}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c3cdcb490cdee448a8aedfe8dbf5790, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  guidDisplay: c0ef1528-81d2-4358-b594-78eba75b8d57
-  serializedGuid: 2815efc0d2815843b59478eba75b8d57
-  thisObjState: 2
-  initState: 2
-  instanceID: 49494
-  referencedComponents:
-  - component: {fileID: 1022033442928307370}
-    serializedGuid: 0dcda219fb674d458c46bf59ceb8ca43
-    update: 1
 --- !u!114 &5758312487408005586
 MonoBehaviour:
   m_ObjectHideFlags: 0

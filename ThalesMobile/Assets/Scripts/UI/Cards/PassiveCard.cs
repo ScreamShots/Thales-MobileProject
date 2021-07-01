@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.Audio;
-using Tweek.FlagAttributes;
+ 
 
-[TweekClass]
+ 
 public class PassiveCard : MonoBehaviour
 {
     public InteractableUI card;
@@ -17,9 +17,9 @@ public class PassiveCard : MonoBehaviour
     private SoundHandler soundHandler;
     public AudioSource audioSource;
     public AudioMixerGroup targetGroup;
-    [TweekFlag(FieldUsage.Sound)]
+     
     public AudioClip descriptionAppearSound;
-    [TweekFlag(FieldUsage.Sound)]
+     
     public float descriptionAppearSoundVolume;
 
     // Start is called before the first frame update

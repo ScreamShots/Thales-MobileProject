@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
-using Tweek.FlagAttributes;
+ 
 
 namespace OceanEntities
 {
@@ -20,7 +20,7 @@ namespace OceanEntities
     /// Thomas Depraz - 25/03/2021 - OceanEntity is the root class for ever other entity.
     /// </summary>
     
-    [TweekClass]
+     
     public abstract class OceanEntity : MonoBehaviour
     {
         public Coordinates coords;

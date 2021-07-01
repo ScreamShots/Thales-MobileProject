@@ -44,7 +44,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2486732044408350716}
-  - component: {fileID: 7664676267549311764}
   - component: {fileID: 4618242819815201495}
   m_Layer: 0
   m_Name: Global DetectionPoint
@@ -68,30 +67,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7664676267549311764
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2681307672962359013}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c3cdcb490cdee448a8aedfe8dbf5790, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  guidDisplay: 0fe29d07-2f86-4c84-9e21-362e9843ba29
-  serializedGuid: 079de20f862f844c9e21362e9843ba29
-  thisObjState: 2
-  initState: 2
-  instanceID: 48262
-  referencedComponents:
-  - component: {fileID: 4618242819815201495}
-    serializedGuid: f4c9c194105b4a45afa597abe91fff0c
-    update: 1
-  - component: {fileID: 1583701260782210641}
-    serializedGuid: 89172a7d1ee2324d864ae91ac71a7dfd
-    update: 1
 --- !u!114 &4618242819815201495
 MonoBehaviour:
   m_ObjectHideFlags: 0

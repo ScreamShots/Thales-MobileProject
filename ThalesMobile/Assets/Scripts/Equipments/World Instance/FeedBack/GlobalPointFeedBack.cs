@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Tweek.FlagAttributes;
+ 
 using UnityEngine.Audio;
 
-[TweekClass]
+ 
 public class GlobalPointFeedBack : MonoBehaviour
 {
     [Header("References")]
@@ -46,17 +46,17 @@ public class GlobalPointFeedBack : MonoBehaviour
     [Header("Sound - Appear")]
     [SerializeField]
     AudioMixerGroup targetGroup;
-    [SerializeField, TweekFlag(FieldUsage.Sound)]
+    [SerializeField ]
     AudioClip appearSound;
-    [SerializeField, TweekFlag(FieldUsage.Sound)]
+    [SerializeField ]
     float appearSoundVolume;
     [SerializeField]
     AudioSource appearSoundSource;
     [SerializeField]
-    [TweekFlag(FieldUsage.Sound)]
+     
     AudioClip submarinDetected;
     [SerializeField]
-    [TweekFlag(FieldUsage.Sound)]
+     
     float submarinDetectedVolume;
     [SerializeField]
     AudioSource submarinDetectedSource;

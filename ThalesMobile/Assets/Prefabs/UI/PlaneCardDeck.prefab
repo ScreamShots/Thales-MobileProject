@@ -936,7 +936,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7347509689460422752}
   - component: {fileID: 7347509689460422766}
-  - component: {fileID: 7871267185038882585}
   - component: {fileID: 7347509689460422753}
   - component: {fileID: 7116977692626245665}
   - component: {fileID: 3499020900896160936}
@@ -978,33 +977,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7347509689460422755}
   m_CullTransparentMesh: 0
---- !u!114 &7871267185038882585
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7347509689460422755}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c3cdcb490cdee448a8aedfe8dbf5790, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  guidDisplay: 92aed549-710c-4b52-af1e-49823502f66d
-  serializedGuid: 49d5ae920c71524baf1e49823502f66d
-  thisObjState: 2
-  initState: 2
-  instanceID: 378554
-  referencedComponents:
-  - component: {fileID: 7283289848943694028}
-    serializedGuid: 642495c3f785594aaf457f462aab49a8
-    update: 1
-  - component: {fileID: 4053100290816700896}
-    serializedGuid: 86c16d876946214d9bc8471f40405807
-    update: 1
-  - component: {fileID: 3695671065206658413}
-    serializedGuid: d791648c858cee4b98912fd50a02d390
-    update: 1
 --- !u!114 &7347509689460422753
 MonoBehaviour:
   m_ObjectHideFlags: 0

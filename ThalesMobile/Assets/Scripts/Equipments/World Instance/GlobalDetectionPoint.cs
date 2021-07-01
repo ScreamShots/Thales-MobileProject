@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-using Tweek.FlagAttributes;
+ 
 
 public enum ExpirationValue {Fresh, NearExpiration, Expired, Revealed }
 
 
-[TweekClass]
+ 
 public class GlobalDetectionPoint : DetectionObject
 {
     public DetectableOceanEntity linkedEntity;
@@ -16,12 +16,12 @@ public class GlobalDetectionPoint : DetectionObject
 
     [Header("Expiration Params")]
     public ExpirationValue expirationState;
-    [TweekFlag(FieldUsage.Gameplay)]
+     
     public float expirationDuration;
     [Range(0,1)]
-    [TweekFlag(FieldUsage.Gameplay)]
+     
     public float expirationWarningRatio;
-    [TweekFlag(FieldUsage.Gameplay)]
+     
     public float revealDuration;
 
     [Header("Update Params")]

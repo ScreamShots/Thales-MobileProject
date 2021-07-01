@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
-using Tweek.FlagAttributes;
+ 
 
 namespace PlayerEquipement
 {
-    [TweekClass]
+     
     public class Captas4Feedback : EquipementFeedback
     {
         [SerializeField]
@@ -21,9 +21,9 @@ namespace PlayerEquipement
         [Header("Sound - Wave Start")]
         [SerializeField]
         AudioMixerGroup waveTargetGroup;
-        [SerializeField, TweekFlag(FieldUsage.Sound)]
+        [SerializeField ]
         AudioClip waveSound;
-        [SerializeField, TweekFlag(FieldUsage.Sound)]
+        [SerializeField ]
         float waveSoundVolume;
         [SerializeField]
         AudioSource waveSoundSource;
@@ -31,9 +31,9 @@ namespace PlayerEquipement
         [Header("Sound - Deep Sea")]
         [SerializeField]
         AudioMixerGroup deepSeaTargetGroup;
-        [SerializeField, TweekFlag(FieldUsage.Sound)]
+        [SerializeField ]
         AudioClip deepSea;
-        [SerializeField, TweekFlag(FieldUsage.Sound)]
+        [SerializeField ]
         float deepSeaSoundVolume;
         [SerializeField]
         AudioSource deepSeaSoundSource;

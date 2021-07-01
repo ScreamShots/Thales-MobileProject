@@ -4,11 +4,11 @@ using UnityEngine;
 using PlayerEquipement;
 using UnityEngine.UI;
 using UnityEngine.Audio;
-using Tweek.FlagAttributes;
+ 
 
 namespace OceanEntities
 {
-    [TweekClass]
+     
     public class Helicopter : PlayerOceanEntity
     {
         private Transform _transform;
@@ -23,13 +23,13 @@ namespace OceanEntities
         private InputManager inputManager;
 
         [Header("Helicopter Flight")]
-        [TweekFlag( FieldUsage.Gameplay)]
+         
         public float preparationDuration;
-        [TweekFlag(FieldUsage.Gameplay)]
+         
         public float alertDuration;
-        [TweekFlag(FieldUsage.Gameplay)]
+         
         public float flightDuration;
-        [TweekFlag(FieldUsage.Gameplay)]
+         
         public float cooldownDuration;
 
         [HideInInspector] public bool operating;  
@@ -45,7 +45,7 @@ namespace OceanEntities
         public Ship linkedShip;
 
         [Header("Equipement")]
-        [TweekFlag(FieldUsage.Gameplay)]
+         
         public Equipement activeEquipement;
         private float time;
         public float flashPreparationTime;
@@ -54,25 +54,25 @@ namespace OceanEntities
         private SoundHandler soundHandler;
         public AudioSource audioSource;
         public AudioMixerGroup targetGroup;
-        [TweekFlag(FieldUsage.Sound)]
+         
         public AudioClip preparationSound;
-        [TweekFlag(FieldUsage.Sound)]
+         
         public float preparationSoundVolume;
-        [TweekFlag(FieldUsage.Sound)]
+         
         public AudioClip takeOffSound;
-        [TweekFlag(FieldUsage.Sound)]
+         
         public float takeOffSoundVolume;
-        [TweekFlag(FieldUsage.Sound)]
+         
         public AudioClip landingSound;
-        [TweekFlag(FieldUsage.Sound)]
+         
         public float landingSoundVolume;
-        [TweekFlag(FieldUsage.Sound)]
+         
         public AudioClip movementSound;
-        [TweekFlag(FieldUsage.Sound)]
+         
         public float movementSoundVolume;
-        [TweekFlag(FieldUsage.Sound)]
+         
         public AudioClip waitingSound;
-        [TweekFlag(FieldUsage.Sound)]
+         
         public float waitingSoundVolume;
 
 

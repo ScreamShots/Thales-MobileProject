@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.Audio;
-using Tweek.FlagAttributes;
+ 
 
-[TweekClass]
+ 
 public class MovementCard : MonoBehaviour
 {
     public InteractableUI card;
@@ -13,13 +13,13 @@ public class MovementCard : MonoBehaviour
     private SoundHandler soundHandler;
     public AudioSource audioSource;
     public AudioMixerGroup targetGroup;
-    [TweekFlag(FieldUsage.Sound)]
+     
     public AudioClip descriptionAppearSound;
-    [TweekFlag(FieldUsage.Sound)]
+     
     public float descriptionAppearSoundVolume;
-    [TweekFlag(FieldUsage.Sound)]
+     
     public AudioClip cardSelectionSound;
-    [TweekFlag(FieldUsage.Sound)]
+     
     public float cardSelectionSoundVolume;
 
 

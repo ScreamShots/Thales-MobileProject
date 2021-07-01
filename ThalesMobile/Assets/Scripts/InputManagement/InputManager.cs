@@ -6,9 +6,9 @@ using Plane = UnityEngine.Plane;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine.Audio;
-using Tweek.FlagAttributes;
+ 
 
-[TweekClass]
+ 
 public class InputManager : MonoBehaviour
 {
 
@@ -30,9 +30,9 @@ public class InputManager : MonoBehaviour
     private SoundHandler soundHandler;
     public AudioSource audioSource;
     public AudioMixerGroup targetGroup;
-    [TweekFlag(FieldUsage.Sound)]
+     
     public AudioClip setTargetSound;
-    [TweekFlag(FieldUsage.Sound)]
+     
     public float setTargetSoundVolume;
 
     //Touch inputs

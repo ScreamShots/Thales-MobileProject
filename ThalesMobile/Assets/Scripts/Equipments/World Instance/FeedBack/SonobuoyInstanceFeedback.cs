@@ -6,11 +6,11 @@ using NaughtyAttributes;
 using System;
 using System.Linq;
 using UnityEngine.Audio;
-using Tweek.FlagAttributes;
+ 
 
 namespace PlayerEquipement
 {    
-    [TweekClass]
+     
     public class SonobuoyInstanceFeedback : MonoBehaviour
     {
         public enum AnimActionType { Add, Remove }
@@ -104,21 +104,21 @@ namespace PlayerEquipement
         AudioMixerGroup targetGroup;
         [SerializeField]
         AudioSource detectionAudioSource;
-        [SerializeField, TweekFlag(FieldUsage.Sound)]
+        [SerializeField ]
         AudioClip detectionSound;
-        [SerializeField, TweekFlag(FieldUsage.Sound)]
+        [SerializeField ]
         float detectionSoundVolume;
         [SerializeField]
         AudioSource dropSoundSource;
-        [SerializeField, TweekFlag(FieldUsage.Sound)]
+        [SerializeField ]
         AudioClip dropSound;
-        [SerializeField, TweekFlag(FieldUsage.Sound)]
+        [SerializeField ]
         float dropSoundVolume;
         [SerializeField]
         AudioSource backgroundSoundSource;
-        [SerializeField, TweekFlag(FieldUsage.Sound)]
+        [SerializeField ]
         AudioClip backgroundSound;
-        [SerializeField, TweekFlag(FieldUsage.Sound)]
+        [SerializeField ]
         float backgroundSoundVolume;
 
         public void Init()

@@ -4,9 +4,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
-using Tweek.FlagAttributes;
+ 
 
-[TweekClass]
+ 
 public class VictoryScreenManager : MonoBehaviour
 {
 
@@ -33,11 +33,11 @@ public class VictoryScreenManager : MonoBehaviour
     [Header("Sound")]
     public AudioSource source;
     public AudioMixerGroup targetGroup;
-    [TweekFlag(FieldUsage.Sound)]
+     
     public AudioClip winSound;
-    [TweekFlag(FieldUsage.Sound)]
+     
     public AudioClip defeatSound;
-    [TweekFlag(FieldUsage.Sound)]
+     
     public float winLooseVolume;
 
     private bool once = false;

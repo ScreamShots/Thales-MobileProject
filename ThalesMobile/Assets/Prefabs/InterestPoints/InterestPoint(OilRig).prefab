@@ -338,7 +338,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3438433757041613458}
-  - component: {fileID: 471003792134305627}
   - component: {fileID: 3438433757041613459}
   m_Layer: 0
   m_Name: InterestPoint(OilRig)
@@ -368,30 +367,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &471003792134305627
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3438433757041613457}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c3cdcb490cdee448a8aedfe8dbf5790, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  guidDisplay: ce0166ac-9827-4c23-aead-513aca45b787
-  serializedGuid: ac6601ce2798234caead513aca45b787
-  thisObjState: 2
-  initState: 2
-  instanceID: 33744
-  referencedComponents:
-  - component: {fileID: 3438433757041613459}
-    serializedGuid: 116c9699f390ef4ab323beff7b8bcfd1
-    update: 1
-  - component: {fileID: 8693691862673019543}
-    serializedGuid: 4299e2d1d0b3db40b22482d206cfa0e2
-    update: 1
 --- !u!114 &3438433757041613459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1000,15 +975,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9d0e817336c3594db4e779e25e17c17, type: 3}
---- !u!198 &8321827369150953873 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 6686390441772988802, guid: d9d0e817336c3594db4e779e25e17c17,
-    type: 3}
-  m_PrefabInstance: {fileID: 3438433757763174419}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5648423875935589789 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7049539547567641998, guid: d9d0e817336c3594db4e779e25e17c17,
+    type: 3}
+  m_PrefabInstance: {fileID: 3438433757763174419}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &8321827369150953873 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6686390441772988802, guid: d9d0e817336c3594db4e779e25e17c17,
     type: 3}
   m_PrefabInstance: {fileID: 3438433757763174419}
   m_PrefabAsset: {fileID: 0}

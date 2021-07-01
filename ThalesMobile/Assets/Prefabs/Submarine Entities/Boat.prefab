@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5745625645649552663}
-  - component: {fileID: 880715453889608284}
   - component: {fileID: 6225348895388417404}
   m_Layer: 0
   m_Name: Boat
@@ -32,27 +31,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &880715453889608284
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5745625645649552662}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c3cdcb490cdee448a8aedfe8dbf5790, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  guidDisplay: bfcba3e2-73b1-4875-918c-ca96d28a17f1
-  serializedGuid: e2a3cbbfb1737548918cca96d28a17f1
-  thisObjState: 2
-  initState: 2
-  instanceID: 377008
-  referencedComponents:
-  - component: {fileID: 6225348895388417404}
-    serializedGuid: 343ac1b11bfa944d928df3c20266a45c
-    update: 1
 --- !u!114 &6225348895388417404
 MonoBehaviour:
   m_ObjectHideFlags: 0

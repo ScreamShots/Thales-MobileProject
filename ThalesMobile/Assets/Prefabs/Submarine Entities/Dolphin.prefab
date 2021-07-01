@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8075168228745564257}
-  - component: {fileID: 5913223313013576754}
   - component: {fileID: 8075168228745564258}
   m_Layer: 0
   m_Name: Dolphin
@@ -32,27 +31,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5913223313013576754
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8075168228745564256}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c3cdcb490cdee448a8aedfe8dbf5790, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  guidDisplay: e8a197d5-188f-4d3e-8f98-3674bfe31ee8
-  serializedGuid: d597a1e88f183e4d8f983674bfe31ee8
-  thisObjState: 2
-  initState: 2
-  instanceID: 377366
-  referencedComponents:
-  - component: {fileID: 8075168228745564258}
-    serializedGuid: 6e254175d4eb0c4bacb52dcc28bd16d2
-    update: 1
 --- !u!114 &8075168228745564258
 MonoBehaviour:
   m_ObjectHideFlags: 0

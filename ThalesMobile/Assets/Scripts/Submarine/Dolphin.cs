@@ -1,17 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Tweek.FlagAttributes;
+ 
 
 /// <summary>
 /// Antoine Leroux - 30/03/2021 - . 
 /// </summary>
 /// 
-[TweekClass]
+ 
 public class Dolphin : DetectableOceanEntity
 {
     [Header("Movement")]
-    [TweekFlag(FieldUsage.Gameplay)]
+     
     public float speed;
     private Transform _transform;
 
