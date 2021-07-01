@@ -261,7 +261,7 @@ public class TutorialManager : MonoBehaviour
         opaquePanel.SetActive(true);
         textContainer_1.SetActive(true);
         hand_1.SetActive(true);
-        screenText_1.text = "Bienvenue dans ce CASEX.";
+        screenText_1.text = "Welcome to this training session.";
         inputManager.canMoveCam = false;
 
         yield return new WaitUntil(() => Input.touchCount == 1);
@@ -278,7 +278,7 @@ public class TutorialManager : MonoBehaviour
         inputManager.canMoveCam = true;
         textContainer_2.SetActive(true);
         hand_2.SetActive(true);
-        screenText_2.text = "Déplacez la caméra en faisant <b>glisser</b> votre doigt sur l'écran.";
+        screenText_2.text = "Move the camera by sliding your finger across the screen.";
 
         cameraTargetScreen_2.transform.position = cameraController.focusPoint.position;
 
@@ -294,7 +294,7 @@ public class TutorialManager : MonoBehaviour
         inputManager.canZoomCam = true;
 
         textContainer_3.SetActive(true);
-        screenText_3.text = "Zoomez et dézoomez sur la zone d'entrainement.";
+        screenText_3.text = "Zoom in and out by pinching the screen.";
         hand_3.SetActive(true);
 
         yield return new WaitUntil(() => cameraController.zoomIntensity < 0.4);
@@ -313,8 +313,8 @@ public class TutorialManager : MonoBehaviour
         textContainer_4a.SetActive(true);
         textContainer_4b.SetActive(true);
 
-        screenText_4a.text = "Voici la <b>frégate</b>, un navire équipé pour la <b>détéction des sous-marins</b>.";
-        screenText_4b.text = "<b>Appuyez</b> sur la frégate pour la sélectionner.";
+        screenText_4a.text = "This is the <b>FREMM</b>, a frigate equipped to detect <b>submarines</b>.";
+        screenText_4b.text = "<b>Press</b> the FREMM to select it.";
         hand_4.SetActive(true);
 
         tutorialShip.gameObject.SetActive(true);
@@ -335,7 +335,7 @@ public class TutorialManager : MonoBehaviour
 
         #region Screen 5 : Ship UI Apparition
         textContainer_5.SetActive(true);
-        screenText_5.text = "Vous pouvez également <b>sélectionner</b> la frégate dans le <b> menu des bâtiments</b>.";
+        screenText_5.text = "You can also <b>select</b> it from the <b> Vehicle Menu</b>.";
 
         uiHandler.entitiesSelectionUI.gameObject.SetActive(true);
         uiHandler.entitiesSelectionUI.currentButton = null;
@@ -353,7 +353,7 @@ public class TutorialManager : MonoBehaviour
 
         #region Screen 5 bis : Double click on UI
         textContainer_5bis.SetActive(true);
-        screenText_5bis.text = "Si le bâtiment sélectionné est hors-champ, vous pouvez <b>centrer la caméra</b> dessus en le sélectionnant à nouveau.";   
+        screenText_5bis.text = "If the selected vehicle is out of range, you can centre the camera <b>centre the camera</b> on it by selecting it again from the Vehicle Menu. ";   
         hand_5bis.SetActive(true);
         playerController.currentSelectedEntity = null;
 
@@ -370,8 +370,8 @@ public class TutorialManager : MonoBehaviour
         #region Screen 6 : DeckUI Apparition
         textContainer_6a.SetActive(true);
         textContainer_6b.SetActive(true);
-        screenText_6a.text = "Tous les bâtiments ont des <b>équipements</b> pour effectuer des actions.";
-        screenText_6b.text = "<b>Appuyez</b> et faites <b>glisser</b> la <b>carte déplacement</b> jusqu'à la cible pour déplacer la frégate.";
+        screenText_6a.text = "Every vehicle uses <b>equipment</b> to perform their actions";
+        screenText_6b.text = "<b>Press</b> and <b>drag</b> the <b>movement Card</b> on the target to move the FREMM accordingly.";
 
         uiHandler.entityDeckUI.gameObject.SetActive(true);
         uiHandler.entityDeckUI.currentDeck = null;
@@ -402,7 +402,7 @@ public class TutorialManager : MonoBehaviour
 
         #region Screen 7 : Click on card
         textContainer_7.SetActive(true);
-        screenText_7.text = "Vous pouvez aussi <b>appuyer</b> sur la carte de déplacement pour que celle-ci soit <b>sélectionnée</b>.";
+        screenText_7.text = "You can also <b>press</b> on the card to <b>select</b> it.";
         hand_7.SetActive(true);
         shipMovementCard.canClick = true;
 
@@ -415,7 +415,7 @@ public class TutorialManager : MonoBehaviour
 
         #region Screen 8 : Click on screen to move
         textContainer_8.SetActive(true);
-        screenText_8.text = "Puis <b>appuyez</b> sur l’endroit de la zone où vous voulez déplacer votre bâtiment.";
+        screenText_8.text = "Then <b>press</b> on the map where you want your vehicle to go.";
         hand_8.SetActive(true);
         yield return new WaitUntil(() => playerController.currentSelectedEntity.currentTargetPoint != playerController.currentSelectedEntity.nullVector);
 
@@ -426,7 +426,7 @@ public class TutorialManager : MonoBehaviour
 
         #region Screen 9 : Plane Apparition
         textContainer_9.SetActive(true);
-        screenText_9.text = "Votre second bâtiment est un <b>avion de patrouille maritime MPA ATL2</b>. Il est bien plus <b>rapide</b> que la frégate. Vous pouvez le sélectionner dans le menu des bâtiments comme la frégate.";
+        screenText_9.text = "Your next vehicle is an <b>MPA Aircraft</b>. It is much <b>faster</b> than the FREMM. You can select it from the Vehicle menu just like the FREMM.";
 
         tutorialPlane.gameObject.SetActive(true);
         uiHandler.entitiesSelectionUI.buttons[0].gameObject.SetActive(true);
@@ -445,7 +445,7 @@ public class TutorialManager : MonoBehaviour
 
         #region Screen 10 : Move Plane and Ship to target
         textContainer_10.SetActive(true);
-        screenText_10.text = "<b>Déplacez</b> les deux bâtiments dans la <b>zone indiquée</b> pour chaque bâtiment.";
+        screenText_10.text = "<b>Move</b> the two vehicles to the area <b>indicated</b>.";
         planeTargetScreen_10.SetActive(true);
         shipTargetScreen_10.SetActive(true);
 
@@ -472,7 +472,7 @@ public class TutorialManager : MonoBehaviour
 
         #region Transition Screen
         textContainer_11.SetActive(true);
-        screenText_11.text = "Votre objectif est de <b>détecter</b> les objets immergés, puis de les <b>identifier</b> pour trouver le sous-marin. Pour enfin le <b>faire fuir</b> grâce aux équipements <b>Thales</b>.";
+        screenText_11.text = "Your objective is to <b>detect</b> submerged objects, then <b>identify</b> them to find the submarine. Finally, you'll have to make it <b>flee</b> using your equipments.";
         opaquePanel.SetActive(true);
         hand_11.SetActive(true);
 
@@ -485,7 +485,7 @@ public class TutorialManager : MonoBehaviour
 
         #region Transition Screen 2
         textContainer_12.SetActive(true);
-        screenText_12.text = "Il est possible de <b>détecter</b> des <b>objets immergés</b> de <b>plusieurs façons</b>.";
+        screenText_12.text = "You can <b>detect submerged objects</b> by <b>several ways</b>.";
 
         yield return new WaitUntil(() => Input.touchCount == 1);
         yield return new WaitUntil(() => Input.touchCount == 0);
@@ -496,7 +496,7 @@ public class TutorialManager : MonoBehaviour
 
         #region Screen 13 : Captas Card Appartition
         textContainer_13.SetActive(true);
-        screenText_13.text = "Le <b>CAPTAS 4</b> de la frégate détecte la position des tous les objets immergés sur la zone.";
+        screenText_13.text = "The FREMM's <b>CAPTAS 4</b> detects the position of all submerged objects in the area in exchange of a long cooldown.";
 
         shipEquipementCard.gameObject.SetActive(true);
         shipMovementCard.canClick = false;
@@ -519,7 +519,7 @@ public class TutorialManager : MonoBehaviour
 
         #region Screen 13 bis : Information Peremption
         textContainer_13bis.SetActive(true);
-        screenText_13bis.text = "Les objets immergés détectés <b>peuvent se déplacer</b>, l'information de leur position n'est donc valable que pendant un <b>temps limité</b>.";
+        screenText_13bis.text = "The submerged objects previously detected <b>can move</b>, so the points will only stay relevant for a <b>period of time</b>.";
 
         float tempDuration = pointToZoom.linkedGlobalDetectionPoint.expirationDuration;
         pointToZoom.linkedGlobalDetectionPoint.expirationDuration = 5;
@@ -542,8 +542,8 @@ public class TutorialManager : MonoBehaviour
         #region Screen 14 : Sonobuy Card Appartion
         textContainer_14a.SetActive(true);
         textContainer_14b.SetActive(true);
-        screenText_14a.text = "La <b>bouée SONOFLASH</b> détecte tous les objets immergés se trouvant dans sa portée</b>.";
-        screenText_14b.text = "Faites glisser <b>la carte bouée</b> jusqu'a l'endroit où vous souhaitez <b>la larguer</b>.";
+        screenText_14a.text = "The <b>SONOFLASH buoy</b> detects all the submerged objects inside its range.";
+        screenText_14b.text = "Drag the <b>SONOFLASH card</b> on the map to <b>drop one</b>.";
         hand_14.SetActive(true);
 
 
@@ -570,7 +570,7 @@ public class TutorialManager : MonoBehaviour
 
         #region Screen 15 : Hull Sonar / BlueMaster
         textContainer_15.SetActive(true);
-        screenText_15.text = "Le <b>BLUEMASTER</b> détecte tous les objets immergés dans son rayon d’action.";
+        screenText_15.text = "The <b>BLUEMASTER</b> detects all submerged objects surrounding the FREMM.";
         tutorialShip.linkedButton.SelectEntity();
 
         Vector3 tempPostition = pointToDetect.transform.position;
@@ -603,7 +603,7 @@ public class TutorialManager : MonoBehaviour
 
         #region Screen 16 : SearchMaster 
         textContainer_16.SetActive(true);
-        screenText_16.text = "Le <b>SEARCHMASTER</b> identifie la nature d’un objet immergé et détecté dans son rayon d’action. Seuls les points <b>détéctés récemment</b> (blanc ou orange) peuvent être identifiés.\n<b>Déplacez l’avion</b> pour <b>identifier</b> le point détecté par la frégate.";
+        screenText_16.text = "The <b>SEARCHMASTER</b> identifies the submerged objects detected by other equipments. Only <b>recently detected</b> points (white or orange) can be identified.\n<b>Move the MPA</b> to <b>identify</b> the point detected by the BLUEMASTER.";
         tutorialPlane.linkedButton.SelectEntity();
 
         yield return new WaitForSeconds(3f);
@@ -631,7 +631,7 @@ public class TutorialManager : MonoBehaviour
 
         #region Screen 17 : Wait
         textContainer_17.SetActive(true);
-        screenText_17.text = "Un objet immergé qui a été identifié le reste pendant toute la partie. Il suffit de le détecter à nouveau pour connaître sa nature.";
+        screenText_17.text = "An identified object remains so throughout the mission. Detecting an object previously identified will automatically display it's identity.";
 
         yield return new WaitForSeconds(5);
 
@@ -640,7 +640,7 @@ public class TutorialManager : MonoBehaviour
 
         #region Screen 18 : Hold For Information
         textContainer_18.SetActive(true);
-        screenText_18.text = "Des <b>informations complémentaires</b> sont disponibles en <b>restant appuyé</b> sur un élément de l'écran.";
+        screenText_18.text = "<b>Additional information</b> can be displayed by <b>pressing and holding</b> any element from the interface.";
         hand_18.SetActive(true);
 
         yield return new WaitUntil(() => descriptionCanvasGroup.alpha == 1);
@@ -653,7 +653,7 @@ public class TutorialManager : MonoBehaviour
 
         #region Screen 19 : Submarine Apparition
         textContainer_19.SetActive(true);
-        screenText_19.text = "Un sous-marin vient d'entrer dans la zone d'entraînement !";
+        screenText_19.text = "A submarine just entered the training area!";
 
         tutorialSubmarine.gameObject.SetActive(true);
         tutorialSubmarine.currentSpeed = 0;
@@ -683,7 +683,7 @@ public class TutorialManager : MonoBehaviour
 
         #region Screen 20 : Submarine Objective
         textContainer_20.SetActive(true);
-        screenText_20.text = "L’objectif du sous-marin est <b>d’espionner des points d’intérêt</b>. Pour cela, il doit rester proche du point qu’il souhaite espionner pendant <b>quelques secondes</b>.";
+        screenText_20.text = "The submarine's goal is to <b>spy on various points of interest</b>. To do this, he must stay close to the point he wishes to spy <b>for a few second</b>.";
 
         for (int i = 0; i < interestPoints.Count; i++)
         {
@@ -702,7 +702,7 @@ public class TutorialManager : MonoBehaviour
 
         #region Screen 21 : Submarine Objective
         textContainer_21.SetActive(true);
-        screenText_21.text = "Il y a plusieurs <b>points d’intérêt</b> dans la zone, le sous-marin doit en <b>espionner un certain nombre</b> pour gagner.";
+        screenText_21.text = "There are several <b>points of interest</b> in the area. The submarine must <b>spy on a number of them</b> in order to win.";
 
         cameraController.SetZoom(1f, 1);
         yield return new WaitForSeconds(1);
@@ -718,7 +718,7 @@ public class TutorialManager : MonoBehaviour
 
         #region Screen 22 : Submarine UI Apparition
         textContainer_22.SetActive(true);
-        screenText_22.text = "L’interface en haut de l’écran concerne les <b>informations</b> que vous détenez sur le <b>sous-marin</b>.";
+        screenText_22.text = "The interface at the top of the screen is <b>everything you know about the submarine</b>.";
 
         uiHandler.submarineUI.gameObject.SetActive(true);
 
@@ -734,7 +734,7 @@ public class TutorialManager : MonoBehaviour
 
         #region Screen 23 : Submarine UI Gauge
         textContainer_23.SetActive(true);
-        screenText_23.text = "Les points représentent <b>l'avancement du sous-marin</b> dans l'espionnage des points d'intérêt, ainsi que le nombre de point d'intérêt qu'il doit espionner. Si <b>tous les points</b> sont remplis, le sous-marin <b>gagne la partie</b>.";
+        screenText_23.text = "The dots represent the <b>submarine's progression</b> in its mission. If <b>every points</b> turns red, you'll <b>fail the mission</b>.";
 
         hand_23.SetActive(true);
 
@@ -748,7 +748,7 @@ public class TutorialManager : MonoBehaviour
 
         #region Screen 24 : Submarine UI Alert
         textContainer_24.SetActive(true);
-        screenText_24.text = "L'oscilloscope représente <b>l'état du sous-marin</b>, quand il devient rouge, c'est que le sous-marin vous a détecté et <b>essaye de fuir</b>. \nSi l'oscilloscope reste rouge pendant <b>trop longtemps</b>, le sous-marin effectuera une <b>manoeuvre spéciale</b> pour vous semer.";
+        screenText_24.text = "The oscilloscope represents the <b>state of the submarine</b>. It turns red when the submarine detects one of your vehicle and <b>he will try to escape</b>. \nIf the oscilloscope stays red for <b>too long</b>, the submarine will perform a <b>special manœuvre</b> to escape.";
 
         hand_24.SetActive(true);
 
@@ -762,7 +762,7 @@ public class TutorialManager : MonoBehaviour
 
         #region Screen 25 : Submarine Detection
         textContainer_25.SetActive(true);
-        screenText_25.text = "Il est temps pour vous de mettre en pratique vos acquis, trouvez le sous-marin ! ";
+        screenText_25.text = "It's time for you to put your knowledge into practice, find the submarine! ";
 
         tutorialSubmarine.maxSpeed = 0;
         tutorialSubmarine.currentSpeed = 0;
@@ -799,7 +799,7 @@ public class TutorialManager : MonoBehaviour
 
         #region Screen 26 : Helo Selection
         textContainer_26.SetActive(true);
-        screenText_26.text = "Vous avez <b>détecté et identifié</b> le sous-marin  Pour le faire fuir, vous devez utiliser <b>l'hélicoptère HELO</b>. \nSélectionnez l'HELO";
+        screenText_26.text = "You have <b>detected and identified</b> the submarine. To make it run away, you must use the <b>HELO helicopter</b>. \nSelect the HELO.";
 
         uiHandler.entitiesSelectionUI.helicopterSelectionParent.SetActive(true);
         hand_26.SetActive(true);
@@ -812,7 +812,7 @@ public class TutorialManager : MonoBehaviour
 
         #region Screen 27 : Helo Launch
         textContainer_27.SetActive(true);
-        screenText_27.text = "L'HELO doit être <b>préparé</b> avant qu'il puisse décoller";
+        screenText_27.text = "The HELO must be <b>prepared</b> before it can take off.";
 
         hand_27.SetActive(true);
 
@@ -823,7 +823,7 @@ public class TutorialManager : MonoBehaviour
         yield return new WaitUntil(() => tutorialHelicopter.inAlert);
 
         hand_27.SetActive(true);
-        screenText_27.text = "L'HELO ne reste actif que pendant un <b>temps limité</b> une fois qu'il a été activé";
+        screenText_27.text = "He only remains active for a <b>limited time</b> once it has been activated.";
 
         yield return new WaitUntil(() => tutorialHelicopter.inFlight);
         hand_27.SetActive(false);
@@ -833,7 +833,7 @@ public class TutorialManager : MonoBehaviour
 
         #region Screen 29 : Helo Control
         textContainer_29.SetActive(true);
-        screenText_29.text = "L'HELO se <b>contrôle différemment</b> des bâtiments, il n'est <b>plus possible de zoomer ou de vous déplacer</b> sur la zone. \nDéplacez l'HELO en appuyant sur l'écran.";
+        screenText_29.text = "The HELO is <b>controlled differently</b> from the other vehicle as <b>it is no longer possible to zoom in or out</b>. \nYou can move the HELO by pressing on the screen.";
 
         yield return new WaitUntil(()=> tutorialHelicopter.currentTargetPoint != tutorialHelicopter.nullVector);
 
@@ -844,7 +844,7 @@ public class TutorialManager : MonoBehaviour
 
         #region Screen 30 : Flash Display
         textContainer_30.SetActive(true);
-        screenText_30.text = "Le sonar Flash est le seul équipement de l'HELO. Il permet de <b>détecter les objets immergés proches</b> et de <b>faire fuir le sous-marin</b> si vous parvenez à le larguer suffisament près.";
+        screenText_30.text = "The FLASH dipping sonar is the only equipment on the HELO. It allows you to <b>detect nearby submerged objects</b> but above all to <b>win the mission</b> if you manage to drop it close enough to the submarine.";
         hand_30.SetActive(true);
 
         yield return new WaitForSeconds(10f);
@@ -855,7 +855,7 @@ public class TutorialManager : MonoBehaviour
 
         #region Screen 31 : Flash Usage
         textContainer_31.SetActive(true);
-        screenText_31.text = "Déplacez vous au dessus du sous-marin et utilisez le Flash pour le faire fuir.";
+        screenText_31.text = "Position the HELO above the submarine and use the FLASH to end the mission.";
 
         yield return new WaitUntil(() => victoryCanvasGroup.alpha == 1);
 
@@ -864,7 +864,7 @@ public class TutorialManager : MonoBehaviour
 
         #region Screen 32 : Victory Screen
         textContainer_32.SetActive(true);
-        screenText_32.text = "Félicitations ! Vous êtes maintenant prêt à partir sur le terrain.";
+        screenText_32.text = "Congratulations, you are now ready to prove yourself on the field.";
         #endregion
     }
 }
