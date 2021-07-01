@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -4770,7 +4770,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1951661757}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.35675475
+  m_Size: 0.11289631
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -7018,7 +7018,7 @@ RectTransform:
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &518907585
 MonoBehaviour:
-  m_ObjectHideFlags: 10
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -11305,8 +11305,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17cd211bbfca15a4e961a63c4d471e37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  screenSize: {x: 675, y: 1200}
-  centerPos: {x: 337.5, y: 600, z: 0}
+  screenSize: {x: 743, y: 418}
+  centerPos: {x: 371.5, y: 209, z: 0}
   input: {fileID: 919132149453177770}
   slider: {fileID: 1870064779}
   menu: {fileID: 1820118679}
@@ -13980,7 +13980,7 @@ GameObject:
   m_IsActive: 1
 --- !u!114 &1237299454
 MonoBehaviour:
-  m_ObjectHideFlags: 10
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -24945,7 +24945,7 @@ RectTransform:
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1962540562
 MonoBehaviour:
-  m_ObjectHideFlags: 10
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -27945,7 +27945,7 @@ PrefabInstance:
     - target: {fileID: 3078130106839481975, guid: a7db2cd955db239408cfdcd44bf51cbf,
         type: 3}
       propertyPath: missionPoints.Array.data[0].missionTitle
-      value: "CASEX: \nsimulation d\u2019une seaber-attaque "
+      value: "TRAINING SESSION: \nsimulation of a seaber-attack"
       objectReference: {fileID: 0}
     - target: {fileID: 3078130106839481975, guid: a7db2cd955db239408cfdcd44bf51cbf,
         type: 3}
@@ -27959,6 +27959,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3078130106839481975, guid: a7db2cd955db239408cfdcd44bf51cbf,
         type: 3}
+      propertyPath: missionPoints.Array.data[1].missionTitle
+      value: 'Protection of HVU '
+      objectReference: {fileID: 0}
+    - target: {fileID: 3078130106839481975, guid: a7db2cd955db239408cfdcd44bf51cbf,
+        type: 3}
       propertyPath: missionPoints.Array.data[1].pointCoord.x
       value: 304
       objectReference: {fileID: 0}
@@ -27966,6 +27971,11 @@ PrefabInstance:
         type: 3}
       propertyPath: missionPoints.Array.data[1].pointCoord.y
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3078130106839481975, guid: a7db2cd955db239408cfdcd44bf51cbf,
+        type: 3}
+      propertyPath: missionPoints.Array.data[2].missionTitle
+      value: Break the Blockade
       objectReference: {fileID: 0}
     - target: {fileID: 3078130106839481975, guid: a7db2cd955db239408cfdcd44bf51cbf,
         type: 3}
@@ -28025,25 +28035,40 @@ PrefabInstance:
     - target: {fileID: 3078130106839481975, guid: a7db2cd955db239408cfdcd44bf51cbf,
         type: 3}
       propertyPath: missionPoints.Array.data[0].missionDescription
-      value: "Un sous-marin fran\xE7ais est lui aussi en entra\xEEnement dans la
-        r\xE9gion. \nIl n\u2019est pas au courant de votre pr\xE9sence. \nVotre objectif
-        : le trouver avant qu\u2019il ne remplisse ses missions."
+      value: "A French submarine is also training in the area and it is not aware
+        of our presence. \nYour objective is to find it before it carries out its
+        missions."
+      objectReference: {fileID: 0}
+    - target: {fileID: 3078130106839481975, guid: a7db2cd955db239408cfdcd44bf51cbf,
+        type: 3}
+      propertyPath: missionPoints.Array.data[0].missionEmplacement
+      value: Atlantic Ocean
       objectReference: {fileID: 0}
     - target: {fileID: 3078130106839481975, guid: a7db2cd955db239408cfdcd44bf51cbf,
         type: 3}
       propertyPath: missionPoints.Array.data[1].missionDescription
-      value: "Un sous-marin non identifi\xE9 s\u2019est infiltr\xE9 au nord des Philippines.
-        \nSes objectifs ne sont pas clairs, mais l'\xE9tat-major suspecte une mission
-        d\u2019espionnage sur les atouts militaires fran\xE7ais sur place. \nLocalisez
-        et identifiez le sous-marin avant qu\u2019il ne s\u2019\xE9chappe."
+      value: "An unidentified submarine has infiltrated the northern Philippines.\nIts
+        motives are unclear, but the general staff suspects their targets are the
+        military assets in the area. \nLocate and identify the submarine before it
+        escapes."
+      objectReference: {fileID: 0}
+    - target: {fileID: 3078130106839481975, guid: a7db2cd955db239408cfdcd44bf51cbf,
+        type: 3}
+      propertyPath: missionPoints.Array.data[1].missionEmplacement
+      value: China Sea
       objectReference: {fileID: 0}
     - target: {fileID: 3078130106839481975, guid: a7db2cd955db239408cfdcd44bf51cbf,
         type: 3}
       propertyPath: missionPoints.Array.data[2].missionDescription
-      value: "Un sous-marin non identifi\xE9 tente actuellement d\u2019\xE9tablir
-        un blocus au nord-est de Djibouti afin de prendre le contr\xF4le du Golf
-        et du trafic commercial maritime. \nEmp\xEAchez-le de semer la discorde entre
-        les diff\xE9rentes puissances mondiales qui \u0153uvrent dans la r\xE9gion.\r"
+      value: "An unidentified submarine is trying to establish a blockade north-east
+        of Djibouti in order to take control of the Gulf and the maritime commerce.
+        \nPrevent it from sowing discord between the various world powers working
+        in the region."
+      objectReference: {fileID: 0}
+    - target: {fileID: 3078130106839481975, guid: a7db2cd955db239408cfdcd44bf51cbf,
+        type: 3}
+      propertyPath: missionPoints.Array.data[2].missionEmplacement
+      value: Gulf of Aden
       objectReference: {fileID: 0}
     - target: {fileID: 3259777627976511691, guid: a7db2cd955db239408cfdcd44bf51cbf,
         type: 3}

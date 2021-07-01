@@ -15,217 +15,226 @@ MonoBehaviour:
   data:
   - title: FREMM
     categoIcon: {fileID: 21300000, guid: d1c6079168eb5304e9191a90109038b8, type: 3}
-    description: "La FREMM (fr\xE9gate multi-mission) est \xE9quip\xE9e des sonars
-      CAPTAS 4 et BLUEMASTER. R\xE9put\xE9e pour sa discr\xE9tion, elle s\u2019impose
-      comme un pilier de la lutte anti-sous-marine. Elle embarque un h\xE9licopt\xE8re
-      ASW lourd, le NH90 \u201CCAIMAN\u201D."
+    description: 'The FREMM (European multi-purpose frigate) is fitted with a CAPTAS
+      4 and Bluemaster sonars.This  is one of the best  asset dedicated to Anti Submarine
+      Warfare in the world. She embark an ASW helo: the NH90.'
     image: {fileID: 21300000, guid: bf4389efe600fe243ad6fc0426908513, type: 3}
     linkName: Underwater warfare | Thales Group
     link: https://www.thalesgroup.com/en/activities/defence/naval-forces/underwater-warfare
   - title: CORVETTE
     categoIcon: {fileID: 21300000, guid: d1c6079168eb5304e9191a90109038b8, type: 3}
-    description: "L\u2019OPV (Oceanic Patrol Vessel) ou corvette est un navire de
-      taille moyenne. Il peut \xEAtre \xE9quip\xE9 d\u2019un sonar remorqu\xE9 (CAPTAS
-      2 ou 1), d\u2019un sonar de coque (BLUEWATCHER ou BLUEHUNTER). Il peut embarquer
-      un h\xE9licopt\xE8re l\xE9ger ou un drone. "
+    description: The "corvette" is a middle size war ship. . She is generally equiped
+      with a VDS ( CAPTAS 2) and a hull monted sonar :BLUEHUNTER or BLUEWATCHER.
+      She can embark a light helo or an UAV (unmanned air Vehicle).
     image: {fileID: 0}
     linkName: Underwater warfare | Thales Group
     link: https://www.thalesgroup.com/en/activities/defence/naval-forces/underwater-warfare
   - title: MPA ATL2
     categoIcon: {fileID: 21300000, guid: d1c6079168eb5304e9191a90109038b8, type: 3}
-    description: "L\u2019Atlantique 2 est un MPA (Maritime Patrol Aircraft) sp\xE9cialis\xE9
-      dans les missions oc\xE9aniques longues en autonomie ou en coop\xE9ration.
-      L\u2019Atlantique 2 participe \xE0 la lutte anti-sous-marine gr\xE2ce \xE0
-      son radar SEARCHMASTER \xE0 ses bou\xE9es SONOFLASH. "
+    description: 'The ATLANTIQUE 2 (or ATL2) is a Maritime Patrol Aircraft (MPA).
+      Able to work alone or in cooperation and  capable of long endurence mission
+      (up to 12 hours). ATL2 perform ASW mission thanks to its radar SEARCHMASTER
+      and to its sonobuoy processer (BLUETRACKER)  compatible with  the new acoustic
+      sonobuoy : the SONOFLASH.'
     image: {fileID: 21300000, guid: 6c664982c260bf245943213e635bb377, type: 3}
     linkName: Underwater warfare | Thales Group
     link: https://www.thalesgroup.com/en/activities/defence/naval-forces/underwater-warfare
   - title: HELO NH 90
     categoIcon: {fileID: 21300000, guid: d1c6079168eb5304e9191a90109038b8, type: 3}
-    description: "Le NH90 \u201CCa\xEFman\u201D est un h\xE9licopt\xE8re embarqu\xE9
-      sur fr\xE9gate. Dans le cadre de la lutte anti-sous-marine, il rejoint la position
-      du sous-marin \xE0 une vitesse de 150 n\u0153uds pour d\xE9ployer le sonar
-      tremp\xE9 FLASH."
+    description: "The NH90 \"Ca\xEFman\" is an ASW Helo embarked on board frigates.
+      During ASW action, this helo is closing rapidly the DATUM (last known position
+      of the submarine) and execute a DIP STATION by maintaining a stationary position
+      to deploy its FLASH sonar in the deep blue."
     image: {fileID: 21300000, guid: bdd5dcb41fcd81a4b8335a507719b71c, type: 3}
     linkName: Underwater warfare | Thales Group
     link: https://www.thalesgroup.com/en/activities/defence/naval-forces/underwater-warfare
   - title: CAPTAS 4
     categoIcon: {fileID: 21300000, guid: 12bcbacb843a8b54188226d141fb3d57, type: 3}
-    description: "Le CAPTAS 4 de THALES est un sonar remorqu\xE9 basse fr\xE9quence
-      \xE0 immersion variable (ou VDS). Il poss\xE8de des anneaux d\u2019\xE9mission
-      et une antenne lin\xE9aire passive de r\xE9ception lui permettant de d\xE9tecter,
-      localiser et classifier les sous-marins les plus furtifs \xE0 plus de 60 km.
-      Le CAPTAS 4 peut \xEAtre utilis\xE9 en passif ou en actif. "
+    description: "\r\n \r\n \r\nTHALES CAPTAS-4 is a is an active passive low frequency
+      VDS (Variable Depth Sonar). Its active body is composed of four FFR (Free Flooding
+      Ring). The passive receiver is an independent linear towed array.. CAPTAS-4
+      is the most powerful sonar in the world capable of submarine detection at more
+      than 30nm (nautical miles)"
     image: {fileID: 21300000, guid: 4d76e7a470029854a826dc83418f4111, type: 3}
     linkName: 'CAPTAS Family | Thales Group '
     link: https://www.thalesgroup.com/en/markets/defence-and-security/naval-forces/underwater-warfare/bluescan/captas-family
   - title: FLASH
     categoIcon: {fileID: 21300000, guid: 12bcbacb843a8b54188226d141fb3d57, type: 3}
-    description: "Le FLASH SONICS de THALES est un sonar tremp\xE9 basse fr\xE9quence
-      pour h\xE9licopt\xE8res. Lorsqu'il est utilis\xE9 conjointement avec un CAPTAS,
-      il forme un formidable syst\xE8me de lutte anti-sous-marine. Les sonars FLASH
-      sont utilis\xE9s par de nombreuses marines dans le monde."
+    description: THALES FLASH is a low frequency dipping sonar designed for helicopter.
+      FLASH is used in collaboration  with CAPTAS-4. This team is  amazing for submarine
+      hunting and prosecution. Flash is in service in many navies, including the
+      US, UK and France.
     image: {fileID: 21300000, guid: a35ba80c0a0d0eb4797afbb5c80df7c7, type: 3}
     linkName: FLASH Family | Thales Group
     link: https://www.thalesgroup.com/en/markets/defence-and-security/naval-forces/underwater-warfare/bluescan/flash-family
   - title: BLUEMASTER
     categoIcon: {fileID: 21300000, guid: 12bcbacb843a8b54188226d141fb3d57, type: 3}
-    description: "Le BLUEMASTER de THALES est un sonar de coque destin\xE9 aux grandes
-      fr\xE9gates de lutte anti-sous-marine. Il s\u2019associe parfaitement avec
-      les autres familles de produits THALES tels que les CAPTAS et le FLASH, ce
-      qui constitue des syst\xE8mes de lutte anti-sous-marine tr\xE8s performants."
+    description: THALES  BLUEMASTER is a bow mounted medium frequency active sonar
+      for ASW frigate such as FREMM or Spanish F110.This powerful sonar is complementary
+      to CAPTAS-4  for self protection against torpedoes or to detect submarine close
+      to the surface when an acoustic channel is active.
     image: {fileID: 21300000, guid: e8ed635cc6aa9b4488e9622d862ad404, type: 3}
     linkName: "BlueScan \u2013 The Big Picture | Thales Group "
     link: https://www.thalesgroup.com/en/australia/news/bluescan-big-picture
   - title: MAD
     categoIcon: {fileID: 21300000, guid: 12bcbacb843a8b54188226d141fb3d57, type: 3}
-    description: "Le MAD (ou d\xE9tecteur d'anomalie magn\xE9tique) est un syst\xE8me
-      \xE9lectronique qui permet de d\xE9tecter \xE0 distance des masses m\xE9talliques
-      sous la surface de l'eau. Embarqu\xE9 \xE0 bord d'avions de patrouille maritime
-      tels que l'Atlantique 2, il permet de confirmer la pr\xE9sence de sous-marins. "
+    description: MAD (Magnetic Anomaly Detector) is a sensor embarked on board MPA
+      aircraft such as ATL2. Able to detect metallic object, MAD is very good for
+      classification. When you get a "CONTACT ATTACK" you are almost sure that you
+      are on top a submarine. THALES research department is looking at this historical
+      non acoustic sensor associated with new processing and augmented intelligence
+      for the future.
     image: {fileID: 0}
     linkName: "BlueScan \u2013 The Big Picture | Thales Group "
     link: https://www.thalesgroup.com/en/australia/news/bluescan-big-picture
   - title: SEARCHMASTER
     categoIcon: {fileID: 21300000, guid: 12bcbacb843a8b54188226d141fb3d57, type: 3}
-    description: "Le SEARCHMASTER de THALES  est un radar destin\xE9 aux b\xE2timents
-      a\xE9riens tels que l'Atlantique 2. Il poss\xE8de de nombreuses utilit\xE9s
-      dans la lutte anti-sous-marine, mais aussi dans d'autres domaines tels que
-      la lutte contre les trafics ill\xE9gaux. "
+    description: THALES SEARCHMASTER is a radar optimised for maritime surveillance.
+      It is a key asset on board Maritime patrol aircraft such as ATL2. SEARCHMASTER
+      is used to elaborate the maritime situation and is able to detect the very
+      tiny periscope head of a submarine at long distance.
     image: {fileID: 21300000, guid: 61ca94e4f8186b847802adf55d94a7ef, type: 3}
     linkName: SEARCHMASTER | Thales Group
     link: 'https://www.thalesgroup.com/en/searchmaster '
   - title: SONOFLASH
     categoIcon: {fileID: 21300000, guid: 12bcbacb843a8b54188226d141fb3d57, type: 3}
-    description: "La bou\xE9e SONOFLASH de THALES est une bou\xE9e acoustique de
-      basse fr\xE9quence aux capacit\xE9s de d\xE9tection importantes et qui peut
-      \xEAtre utilis\xE9e de mani\xE8re active ou passive. Les syst\xE8mes BLUETRACKER
-      de THALES permettent de traiter les donn\xE9es de ces bou\xE9es. "
+    description: THALES SONOFLASH is a brand new active, passive sonobuoy under development.
+      It will be a game changer for submarine detection and prosecution. Acting low
+      frequency like CAPTAS-4 and FLASH, this sonobuoy will allow to build multistatic
+      field of sonobuoys.
     image: {fileID: 21300000, guid: fafcc09fed64e4943b62421a5f9e7104, type: 3}
     linkName: Sonobuoys and Sonobuoy Processing Systems | Thales Group
     link: https://www.thalesgroup.com/en/markets/defence-and-security/naval-forces/underwater-warfare/bluescan/sonobuoys-and-sonobuoy
-  - title: Oreille d'or
+  - title: GOLDEN EAR
     categoIcon: {fileID: 21300000, guid: ceb1446d53eb9ae4aaea5f68f4b0a69f, type: 3}
-    description: "L\u2019oreille d\u2019or est un analyste expert en classification
-      des signaux acoustiques. Embarqu\xE9 \xE0 bord des sous-marins et des fr\xE9gates,
-      il est \xE0 l\u2019\xE9coute des bruits qui environnent son b\xE2timent. Sa
-      mission est de d\xE9tecter et classifier les sous-marins. \r"
+    description: A "GOLDEN EAR" is a very experimented acoustic analyst. His job
+      on board submarine and frigate is to classify all the  acoustic indiscretions
+      surrounding the platform and to identify  the submarine contact.
     image: {fileID: 21300000, guid: ceb1446d53eb9ae4aaea5f68f4b0a69f, type: 3}
     linkName: "BlueScan \u2013 The Big Picture | Thales Group "
     link: https://www.thalesgroup.com/en/australia/news/bluescan-big-picture
   - title: TACCO
     categoIcon: {fileID: 21300000, guid: ceb1446d53eb9ae4aaea5f68f4b0a69f, type: 3}
-    description: "Le tactical coordinator est un officier affect\xE9 au sein des
-      NH90 et des Atlantique 2. Son r\xF4le est de coordonner et diriger les op\xE9rateurs
-      charg\xE9s de l\u2019utilisation des capteurs puis d\u2019analyser les donn\xE9es
-      tactiques obtenues pour assurer le succ\xE8s de la mission. \r"
+    description: TACCO is the nickname of the "TACTICAL COORDINATOR" who is the officer
+      in charge of the tactical aspect of the mission. He synchronizes and lead the
+      team of sensor operators and elaborate the tactic to complete the mission.
+      He is acting like a the conductor of an orchestra.
     image: {fileID: 21300000, guid: ceb1446d53eb9ae4aaea5f68f4b0a69f, type: 3}
     linkName: "BlueScan \u2013 The Big Picture | Thales Group "
     link: https://www.thalesgroup.com/en/australia/news/bluescan-big-picture
   - title: 'DASBO '
     categoIcon: {fileID: 21300000, guid: ceb1446d53eb9ae4aaea5f68f4b0a69f, type: 3}
-    description: "Le d\xE9tecteur acoustique de bord est un sp\xE9cialiste qui prend
-      place dans les PATMAR. Il utilise et exploite les syst\xE8mes de d\xE9tection
-      acoustique permettant de rep\xE9rer et pister les sous-marins en plong\xE9e. "
+    description: DASBO is the nickname of the acoustic specialist in charge of the
+      sonobuoys processing on board the maritime patrol aircraft. He acts as an advisor
+      to the TACCo and is responsible for the acoustic detection and classification
+      of the submarine. On board MPA, such as an ATL2, The acoustic team is composed
+      of three DASBO.
     image: {fileID: 0}
     linkName: "BlueScan \u2013 The Big Picture | Thales Group "
     link: https://www.thalesgroup.com/en/australia/news/bluescan-big-picture
   - title: SENSO
     categoIcon: {fileID: 21300000, guid: ceb1446d53eb9ae4aaea5f68f4b0a69f, type: 3}
-    description: "L'op\xE9rateur senseurs est charg\xE9 de l'utilisation des \xE9quipements
-      de d\xE9tection \xE0 bord des h\xE9licopt\xE8res comme le NH90 \"Ca\xEFman\". "
+    description: 'SENSO is the nickname of the operator on board the NH90 "CAIMAN".
+      He is in charge of operating the sonar FLASH and the sonobuoy processing. '
     image: {fileID: 21300000, guid: ceb1446d53eb9ae4aaea5f68f4b0a69f, type: 3}
     linkName: "BlueScan \u2013 The Big Picture | Thales Group "
     link: https://www.thalesgroup.com/en/australia/news/bluescan-big-picture
   - title: ASWC
     categoIcon: {fileID: 21300000, guid: ceb1446d53eb9ae4aaea5f68f4b0a69f, type: 3}
-    description: "Le commandant de lutte anti-sous-marine est responsable de la coordination
-      de l'ensemble des b\xE2timents impliqu\xE9s dans une mission de lutte anti-sous-marine."
+    description: The Anti Submarine Warfare Commander (ASWC)  is the deputy of the
+      Officer in tactical Command (OTC) of the naval force. He is in charge to plan
+      and conduct the ASW operations of the force. He elaborates the way of action
+      and  assign tasks to all the assets :frigates, MPA, HELO.
     image: {fileID: 0}
     linkName: "BlueScan \u2013 The Big Picture | Thales Group "
     link: https://www.thalesgroup.com/en/australia/news/bluescan-big-picture
   - title: CO
     categoIcon: {fileID: 21300000, guid: 31538f625d2466b41ab397512ba392c3, type: 3}
-    description: "Commanding officer : C\u2019est le commandant de la fr\xE9gate
-      ou du sous-marin. On l\u2019appelle famili\xE8rement le \u201CPACHA\u201D.\r"
+    description: The CO is the commanding officer of the frigate or submarine. In
+      the french navy his nickname is "PACHA".
     image: {fileID: 0}
     linkName: "BlueScan \u2013 The Big Picture | Thales Group "
     link: https://www.thalesgroup.com/en/australia/news/bluescan-big-picture
   - title: DATUM
     categoIcon: {fileID: 21300000, guid: 31538f625d2466b41ab397512ba392c3, type: 3}
-    description: "Le DATUM est l\u2019heure et la derni\xE8re position observ\xE9es
-      du sous-marin. Il permet de d\xE9ployer tactiquement les unit\xE9s dans une
-      zone en fonction de cette derni\xE8re position et de \u201Cl\u2019\xE2ge\u201D
-      du DATUM. \r"
+    description: The DATUM is the last known position of a lost  submarine contact.
+      It comes with a date and time. The DATUM is key to elaborate a tactic to regain
+      the contact. The search tactic depend on the age of the DATUM. To have a chance
+      to regain the contact you have to act as fast as possible.
     image: {fileID: 0}
     linkName: "BlueScan \u2013 The Big Picture | Thales Group "
     link: https://www.thalesgroup.com/en/australia/news/bluescan-big-picture
   - title: DIP STATION
     categoIcon: {fileID: 21300000, guid: 31538f625d2466b41ab397512ba392c3, type: 3}
-    description: "Station sonar h\xE9licopt\xE8re. C\u2019est la position ou l\u2019h\xE9licopt\xE8re
-      doit \u201Ctremper\u201D son sonar pour tenter de relocaliser le SM. Il se
-      maintient en stationnaire pendant toute la dur\xE9e de la DIP STATION.\r"
+    description: The DIP STATION is the position where the NH90 "CAIMAN" will proceed
+      stationary to wet its dipping sonar "FLASH" to gain the contact on a sub. Generally
+      it will be close to the contact gained by the frigate or in the vicinity of
+      the DATUM.
     image: {fileID: 0}
     linkName: "BlueScan \u2013 The Big Picture | Thales Group "
     link: https://www.thalesgroup.com/en/australia/news/bluescan-big-picture
   - title: NO JOY
     categoIcon: {fileID: 21300000, guid: 31538f625d2466b41ab397512ba392c3, type: 3}
-    description: "Terme tactique utilis\xE9 si pas de contact sonar ou MAD. "
+    description: NO JOY means no contact gained during the action.
     image: {fileID: 0}
     linkName: "BlueScan \u2013 The Big Picture | Thales Group "
     link: https://www.thalesgroup.com/en/australia/news/bluescan-big-picture
   - title: CONTACT ATTACK
     categoIcon: {fileID: 21300000, guid: 31538f625d2466b41ab397512ba392c3, type: 3}
-    description: Contact MAD positif.
+    description: CONTACT ATTACK means I have a positive contact on the MAD.
     image: {fileID: 0}
     linkName: "BlueScan \u2013 The Big Picture | Thales Group "
     link: https://www.thalesgroup.com/en/australia/news/bluescan-big-picture
   - title: ALERT 5
     categoIcon: {fileID: 21300000, guid: 31538f625d2466b41ab397512ba392c3, type: 3}
-    description: "Mise en alerte helo \xE0 cinq minutes sur le pont d\u2019une fr\xE9gate.
-      L\u2019\xE9quipage est dans l\u2019h\xE9licopt\xE8re pr\xEAt \xE0 d\xE9coller
-      en cinq minutes. "
+    description: ALERT 5 on the fly deck of the frigate. The HELO will be able to
+      take off in less than 5 minutes. For the crew, that means that you are in the
+      plane ready to start the engines during many hours. The alert rules in the
+      force are under the control of the ASWC. Fasten your seat belt and enjoy ..
     image: {fileID: 0}
     linkName: "BlueScan \u2013 The Big Picture | Thales Group "
     link: https://www.thalesgroup.com/en/australia/news/bluescan-big-picture
   - title: COURSE/SPEED
     categoIcon: {fileID: 21300000, guid: 31538f625d2466b41ab397512ba392c3, type: 3}
-    description: "Route vitesse d\u2019une unit\xE9. S\u2019exprime en cap (degr\xE9
-      de 0 \xE0 360) et n\u0153uds (kts). Un n\u0153ud est un nautique (NM) \xE0
-      l\u2019heure. Un NM mesure 1852 m\xE8tres."
+    description: COURSE and SPEED of a unit in degrees (000 to 359) and knots (kts).
+      One knot is one nautical mile per hour and a nautical mile is 1852 meters long.
     image: {fileID: 0}
     linkName: "BlueScan \u2013 The Big Picture | Thales Group "
     link: https://www.thalesgroup.com/en/australia/news/bluescan-big-picture
   - title: CERTSUB
     categoIcon: {fileID: 21300000, guid: 31538f625d2466b41ab397512ba392c3, type: 3}
-    description: "Contact class\xE9 sous-marin avec certitude. \r\n"
+    description: You have a visual contact on the submarine. It is a CERTSUB.
     image: {fileID: 0}
     linkName: "BlueScan \u2013 The Big Picture | Thales Group "
     link: https://www.thalesgroup.com/en/australia/news/bluescan-big-picture
   - title: PROBSUB
     categoIcon: {fileID: 21300000, guid: 31538f625d2466b41ab397512ba392c3, type: 3}
-    description: "Contact sous-marin probable.\r"
+    description: contact   probable submarine  (with high confidence)
     image: {fileID: 0}
     linkName: "BlueScan \u2013 The Big Picture | Thales Group "
     link: https://www.thalesgroup.com/en/australia/news/bluescan-big-picture
   - title: POSSUB 1/2/3/4
     categoIcon: {fileID: 21300000, guid: 31538f625d2466b41ab397512ba392c3, type: 3}
-    description: "Classification progressive possible sous-marin (de 1 le plus faible
-      \xE0 4 le plus fort). Se situe entre le NONSUB et le PROSUB.\r"
+    description: You progressively increase your classification from POSSUB1 to POSSUB4
+      or above, depending on the value of your contact and the number of sensors
+      in contact. For example a good acoustic contact plus a "contact attack"on MAD
+      will allow you to classify it POSSUB4 for sure.
     image: {fileID: 0}
     linkName: "BlueScan \u2013 The Big Picture | Thales Group "
     link: https://www.thalesgroup.com/en/australia/news/bluescan-big-picture
   - title: NONSUB
     categoIcon: {fileID: 21300000, guid: 31538f625d2466b41ab397512ba392c3, type: 3}
-    description: "Contact class\xE9 autre que sous-marin avec certitude."
+    description: Not a submarine at all. A whale is  NONSUB.
     image: {fileID: 0}
     linkName: "BlueScan \u2013 The Big Picture | Thales Group "
     link: https://www.thalesgroup.com/en/australia/news/bluescan-big-picture
   - title: JEZPAT
     categoIcon: {fileID: 21300000, guid: 31538f625d2466b41ab397512ba392c3, type: 3}
-    description: "Dispositif de bou\xE9es acoustiques largu\xE9es par a\xE9ronefs
-      (SONOFLASH). Peut se d\xE9cliner en diff\xE9rentes figures g\xE9om\xE9triques
-      : chevron, lignes, cercles, champs\u2026 "
+    description: JEZPAT is a  field of  acoustic sonobuoys such as the SONOFLASH.
+      Sonobuoys are launched by the MPA or the HELO.  The geometry of the field is
+      elaborated by the TACCO supported by the DASBO.  It could be a simple line
+      or a sophisticated  pattern.The obvious goal is to build the best trap to catch
+      the submarine.
     image: {fileID: 0}
     linkName: "BlueScan \u2013 The Big Picture | Thales Group "
     link: https://www.thalesgroup.com/en/australia/news/bluescan-big-picture
