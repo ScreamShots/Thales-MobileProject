@@ -48,7 +48,6 @@ public class SceneHandler : MonoBehaviour
         GameManager.Instance.inputManager.canZoomCam = true;
         GameManager.Instance.inputManager.canUseCam = true;
 
-        //Activate the scene and unfade.
         if (sceneToLoadBuildIndex == GameManager.Instance.pauseHandler.menuScene)
             GameManager.Instance.pauseHandler.pauseButton.SetActive(false);
 

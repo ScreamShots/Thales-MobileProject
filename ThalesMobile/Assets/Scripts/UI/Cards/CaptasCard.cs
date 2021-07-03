@@ -80,13 +80,11 @@ public class CaptasCard : MonoBehaviour
     {
         if (!card.isSelected)
         {
-            //Abort and deselect current selected card;
             if (inputManager.currentSelectedCard != null)
             {
                 inputManager.currentSelectedCard.abortHandler();
             }
 
-            //If possible use captas and select card.
             if (captas.readyToUse && captas.chargeCount > 0)
             {
                 card.Select();
@@ -97,7 +95,6 @@ public class CaptasCard : MonoBehaviour
             }
             else
             {
-                //Unavailable feedback;
                 print("Unavailable feedback click");
                 audioSource.volume = Mathf.Clamp01(outOfChargeSoundVolume);
                 soundHandler.PlaySound(outOfChargeSound, audioSource, targetGroup);
@@ -130,7 +127,6 @@ public class CaptasCard : MonoBehaviour
         }
         else
         {
-            //Unavailable feedback;
             print("Unavailable feedback drag");
             audioSource.volume = Mathf.Clamp01(outOfChargeSoundVolume);
             soundHandler.PlaySound(outOfChargeSound, audioSource, targetGroup);

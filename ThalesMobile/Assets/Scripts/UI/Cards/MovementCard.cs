@@ -55,13 +55,11 @@ public class MovementCard : MonoBehaviour
             }
             else
             {
-                //Deselect and abort current selected card.
                 if(inputManager.currentSelectedCard != null)
                 {
                     inputManager.currentSelectedCard.abortHandler();
                 }
 
-            //Select new card and link to input manager.
             card.Select();
             audioSource.volume = Mathf.Clamp01(cardSelectionSoundVolume);
             soundHandler.PlaySound(cardSelectionSound, audioSource, targetGroup);
@@ -72,7 +70,6 @@ public class MovementCard : MonoBehaviour
 
     public void OnBeginDragEvent()
     {
-        //Deselect and abort current selected card.
         if (inputManager.currentSelectedCard != null)
         {
             inputManager.currentSelectedCard.abortHandler();

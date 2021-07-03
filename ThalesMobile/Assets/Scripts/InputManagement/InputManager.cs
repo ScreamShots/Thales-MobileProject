@@ -77,7 +77,6 @@ public class InputManager : MonoBehaviour
 
     void Update()
     {
-        //Tap Input
         if(Input.touchCount == 1)
         {
             touch = Input.GetTouch(0);
@@ -94,10 +93,8 @@ public class InputManager : MonoBehaviour
                 {
                     gettingEntityTarget = true;
                     
-                    //Get the sea position and pass it to the player controller
                     touchedSeaPosition = GetSeaPosition();
 
-                    //Move with gizmo if not dragging a card
                     if(!isDraggingCard)
                         playerController.SetEntityMoveTarget(touchedSeaPosition);
                     
@@ -106,7 +103,6 @@ public class InputManager : MonoBehaviour
                 {
                     if(canUseCam)
                     {
-                        //If touched check if selected a Entity
                         if (touch.phase == TouchPhase.Began)
                         {
                             RaycastHit hit;
@@ -125,7 +121,6 @@ public class InputManager : MonoBehaviour
                                 }
                                 else
                                 {
-                                    //Select Button
                                     entity.linkedButton.SelectEntity();
                                 }
 
@@ -133,10 +128,8 @@ public class InputManager : MonoBehaviour
                                 dragStartPos = touch.position;
                             }
                         }
-                        //If drag then move camera
                         if (touch.phase == TouchPhase.Moved)
                         {
-                            //If drag then move camera
                             if (touch.deltaPosition.magnitude > 5f && canMoveCam)
                             {
                                 if (camController != null)
@@ -185,7 +178,6 @@ public class InputManager : MonoBehaviour
                 camController.moveDirection = Vector2.zero;
             }
         }
-        //Glide Input
         else if (Input.touchCount == 2)
         {
             #region inertie
@@ -229,7 +221,6 @@ public class InputManager : MonoBehaviour
                 }
             }
         }
-        //No fingers on screen.
         else if (Input.touchCount == 0)
         {
             if (camController != null)

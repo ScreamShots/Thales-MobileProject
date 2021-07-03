@@ -84,13 +84,11 @@ public class SonobuyDeployerCard : MonoBehaviour
     {
         if (!card.isSelected)
         {
-            //Abort and deselect current selected card;
             if(inputManager.currentSelectedCard != null)
             {
                 inputManager.currentSelectedCard.abortHandler();
             }
 
-            //If possible use captas and select card.
             if (sonobuyDeployer.readyToUse && sonobuyDeployer.chargeCount > 0)
             {
                 card.Select();
@@ -105,7 +103,6 @@ public class SonobuyDeployerCard : MonoBehaviour
             }
             else
             {
-                //Unavailable feedback;
                 print("Unavailable feedback click");
                 audioSource.volume = Mathf.Clamp01(outOfChargeSoundVolume);
                 soundHandler.PlaySound(outOfChargeSound, audioSource, targetGroup);
@@ -119,7 +116,6 @@ public class SonobuyDeployerCard : MonoBehaviour
 
     public void OnBeginDragEvent()
     {
-        //Abort and deselect current selected card.
         if(inputManager.currentSelectedCard != null)
         {
             inputManager.currentSelectedCard.abortHandler();
@@ -127,7 +123,6 @@ public class SonobuyDeployerCard : MonoBehaviour
 
         if(sonobuyDeployer.chargeCount<=0)
         {
-            //Unavailable feedbaack
             audioSource.volume = Mathf.Clamp01(outOfChargeSoundVolume);
             soundHandler.PlaySound(outOfChargeSound, audioSource, targetGroup);
         }
