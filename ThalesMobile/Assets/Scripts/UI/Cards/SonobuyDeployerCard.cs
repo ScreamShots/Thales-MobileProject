@@ -173,7 +173,7 @@ public class SonobuyDeployerCard : MonoBehaviour
         soundHandler.PlaySound(descriptionAppearSound, audioSource, targetGroup);
 
         uiHandler.entityDeckUI.descriptionHeaderText.text = "Bouées Sonoflash";//Expose string
-        uiHandler.entityDeckUI.descriptionText.text = "Les bouée SONOFLASH <b>détectent</b> les objets immergés dans une <b>zone</b> autour de la bouée sans donner la position précise de l'objet détecté.";//Expose stringS
+        uiHandler.entityDeckUI.descriptionText.text = "SONOFLASH buoys <b> detect </b> submerged  objects in a <b> area</b> around the buoy without giving the precise location of the detected object.";//Expose stringS
     }
 
 }

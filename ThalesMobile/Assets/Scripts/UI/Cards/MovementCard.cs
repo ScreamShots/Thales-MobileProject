@@ -92,7 +92,7 @@ public class MovementCard : MonoBehaviour
         soundHandler.PlaySound(descriptionAppearSound, audioSource, targetGroup);
 
         uiHandler.entityDeckUI.descriptionHeaderText.text = "Déplacement";//Expose string
-        uiHandler.entityDeckUI.descriptionText.text = "<b>Déplace</b> le bâtiment sélectionné jusqu'à l'emplacement indiqué.";
+        uiHandler.entityDeckUI.descriptionText.text = "<b>Moves</b> the selected asset toward the indicated location.";
     }
 
 }

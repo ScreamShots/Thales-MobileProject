@@ -171,6 +171,6 @@ public class CaptasCard : MonoBehaviour
         soundHandler.PlaySound(descriptionAppearSound, audioSource, targetGroup);
 
         uiHandler.entityDeckUI.descriptionHeaderText.text = "CAPTAS-4";//Expose string
-        uiHandler.entityDeckUI.descriptionText.text = "Le CAPTAS-4 projette une onde qui parcourt <b>l'intégralité</b> du terrain en <b>détectant</b> les objets immergés sur son chemin.";//Expose stringS
+        uiHandler.entityDeckUI.descriptionText.text = "The CAPTAS-4 projects a wave that travels <b> the entire </b> board, <b> detecting </b> submerged objects in its path.";//Expose stringS
     }
 }

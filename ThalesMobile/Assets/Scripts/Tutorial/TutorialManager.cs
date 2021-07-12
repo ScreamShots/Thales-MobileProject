@@ -313,7 +313,7 @@ public class TutorialManager : MonoBehaviour
         textContainer_4a.SetActive(true);
         textContainer_4b.SetActive(true);
 
-        screenText_4a.text = "This is the <b>FREMM</b>, a frigate equipped to detect <b>submarines</b>.";
+        screenText_4a.text = "This is the <b>FREMM</b>, a frigate dedicated to anti submarine warfare <b>(ASW)</b>.";
         screenText_4b.text = "<b>Press</b> the FREMM to select it.";
         hand_4.SetActive(true);
 
@@ -335,7 +335,7 @@ public class TutorialManager : MonoBehaviour
 
         #region Screen 5 : Ship UI Apparition
         textContainer_5.SetActive(true);
-        screenText_5.text = "You can also <b>select</b> it from the <b> Vehicle Menu</b>.";
+        screenText_5.text = "You can also <b>select</b> it from the <b> Assets Menu</b>.";
 
         uiHandler.entitiesSelectionUI.gameObject.SetActive(true);
         uiHandler.entitiesSelectionUI.currentButton = null;
@@ -353,7 +353,7 @@ public class TutorialManager : MonoBehaviour
 
         #region Screen 5 bis : Double click on UI
         textContainer_5bis.SetActive(true);
-        screenText_5bis.text = "If the selected vehicle is out of range, you can centre the camera <b>centre the camera</b> on it by selecting it again from the Vehicle Menu. ";   
+        screenText_5bis.text = "If the selected asset is out of range, you can centre the camera <b>centre the camera</b> on it by selecting it again from the Assets Menu. ";   
         hand_5bis.SetActive(true);
         playerController.currentSelectedEntity = null;
 
@@ -370,7 +370,7 @@ public class TutorialManager : MonoBehaviour
         #region Screen 6 : DeckUI Apparition
         textContainer_6a.SetActive(true);
         textContainer_6b.SetActive(true);
-        screenText_6a.text = "Every vehicle uses <b>equipment</b> to perform their actions";
+        screenText_6a.text = "Every asset uses <b>equipment</b> to perform their actions";
         screenText_6b.text = "<b>Press</b> and <b>drag</b> the <b>movement Card</b> on the target to move the FREMM accordingly.";
 
         uiHandler.entityDeckUI.gameObject.SetActive(true);
@@ -415,7 +415,7 @@ public class TutorialManager : MonoBehaviour
 
         #region Screen 8 : Click on screen to move
         textContainer_8.SetActive(true);
-        screenText_8.text = "Then <b>press</b> on the map where you want your vehicle to go.";
+        screenText_8.text = "Then <b>press</b> on the map where you want your asset to go.";
         hand_8.SetActive(true);
         yield return new WaitUntil(() => playerController.currentSelectedEntity.currentTargetPoint != playerController.currentSelectedEntity.nullVector);
 
@@ -426,7 +426,7 @@ public class TutorialManager : MonoBehaviour
 
         #region Screen 9 : Plane Apparition
         textContainer_9.SetActive(true);
-        screenText_9.text = "Your next vehicle is an <b>MPA Aircraft</b>. It is much <b>faster</b> than the FREMM. You can select it from the Vehicle menu just like the FREMM.";
+        screenText_9.text = "Your next asset is an <b>MPA Aircraft</b>. It is much <b>faster</b> than the FREMM. You can select it from the Assets menu just like the FREMM.";
 
         tutorialPlane.gameObject.SetActive(true);
         uiHandler.entitiesSelectionUI.buttons[0].gameObject.SetActive(true);
@@ -445,7 +445,7 @@ public class TutorialManager : MonoBehaviour
 
         #region Screen 10 : Move Plane and Ship to target
         textContainer_10.SetActive(true);
-        screenText_10.text = "<b>Move</b> the two vehicles to the area <b>indicated</b>.";
+        screenText_10.text = "<b>Move</b> both assets to the area <b>indicated</b>.";
         planeTargetScreen_10.SetActive(true);
         shipTargetScreen_10.SetActive(true);
 
@@ -472,7 +472,7 @@ public class TutorialManager : MonoBehaviour
 
         #region Transition Screen
         textContainer_11.SetActive(true);
-        screenText_11.text = "Your objective is to <b>detect</b> submerged objects, then <b>identify</b> them to find the submarine. Finally, you'll have to make it <b>flee</b> using your equipments.";
+        screenText_11.text = "Your objective is to <b>detect</b> submerged objects, then <b>identify</b> them to find the submarine. Finally, you'll have to oblige the submarine to <b>abort</b>her mission.";
         opaquePanel.SetActive(true);
         hand_11.SetActive(true);
 
@@ -496,7 +496,7 @@ public class TutorialManager : MonoBehaviour
 
         #region Screen 13 : Captas Card Appartition
         textContainer_13.SetActive(true);
-        screenText_13.text = "The FREMM's <b>CAPTAS 4</b> detects the position of all submerged objects in the area in exchange of a long cooldown.";
+        screenText_13.text = "The FREMM's <b>CAPTAS 4</b> detects the position of all submerged objects in the area.";
 
         shipEquipementCard.gameObject.SetActive(true);
         shipMovementCard.canClick = false;
@@ -748,7 +748,7 @@ public class TutorialManager : MonoBehaviour
 
         #region Screen 24 : Submarine UI Alert
         textContainer_24.SetActive(true);
-        screenText_24.text = "The oscilloscope represents the <b>state of the submarine</b>. It turns red when the submarine detects one of your vehicle and <b>he will try to escape</b>. \nIf the oscilloscope stays red for <b>too long</b>, the submarine will perform a <b>special manœuvre</b> to escape.";
+        screenText_24.text = "The oscilloscope represents the <b>state of the submarine</b>. It turns red when the submarine detects one of your asset and <b>he will try to escape</b>. \nIf the oscilloscope stays red for <b>too long</b>, the submarine will perform a <b>special manœuvre</b> to escape.";
 
         hand_24.SetActive(true);
 
@@ -833,7 +833,7 @@ public class TutorialManager : MonoBehaviour
 
         #region Screen 29 : Helo Control
         textContainer_29.SetActive(true);
-        screenText_29.text = "The HELO is <b>controlled differently</b> from the other vehicle as <b>it is no longer possible to zoom in or out</b>. \nYou can move the HELO by pressing on the screen.";
+        screenText_29.text = "The HELO is <b>controlled differently</b> from the other assets as <b>it is no longer possible to zoom in or out</b>. \nYou can move the HELO by pressing on the screen.";
 
         yield return new WaitUntil(()=> tutorialHelicopter.currentTargetPoint != tutorialHelicopter.nullVector);
 
@@ -844,7 +844,7 @@ public class TutorialManager : MonoBehaviour
 
         #region Screen 30 : Flash Display
         textContainer_30.SetActive(true);
-        screenText_30.text = "The FLASH dipping sonar is the only equipment on the HELO. It allows you to <b>detect nearby submerged objects</b> but above all to <b>win the mission</b> if you manage to drop it close enough to the submarine.";
+        screenText_30.text = "The FLASH dipping sonar is the key sensor on the HELO. It allows you to <b>detect nearby submerged objects</b> but above all to <b>win the mission</b> if you manage to dip it close enough to the submarine.";
         hand_30.SetActive(true);
 
         yield return new WaitForSeconds(10f);
