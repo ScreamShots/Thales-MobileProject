@@ -2165,15 +2165,15 @@ PrefabInstance:
       propertyPath: serializedGuid.Array.data[15]
       value: 48
       objectReference: {fileID: 0}
-    - target: {fileID: 6278829528073155620, guid: cfafb5b5565ec234682f815453f6883e,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1202159904596226779, guid: 1af6d8d42bf10ea4c892c566e7129da1,
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6278829528073155620, guid: cfafb5b5565ec234682f815453f6883e,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 024da1814e9cb24409c3a980eb9b0d17, type: 3}

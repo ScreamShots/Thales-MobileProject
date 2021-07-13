@@ -994,7 +994,7 @@ MonoBehaviour:
   serializedGuid: 49d5ae920c71524baf1e49823502f66d
   thisObjState: 2
   initState: 2
-  instanceID: 378554
+  instanceID: 31364
   referencedComponents:
   - component: {fileID: 7283289848943694028}
     serializedGuid: 642495c3f785594aaf457f462aab49a8
@@ -1202,8 +1202,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   card: {fileID: 792086653433724056}
   descriptionHeader: Searchmaster
-  descriptionText: "Le Searchmaster <b>identifie</b> les objets immerg\xE9s d\xE9tect\xE9s
-    par les autres \xE9quipements."
+  descriptionText: ' The Searchmaster <b> identifies </b> submerged objects detected
+    by other equipment.'
   audioSource: {fileID: 6457176664410361513}
   targetGroup: {fileID: 7017793297182156295, guid: 9b41315a36bc40a4ea458016676fd8f1,
     type: 2}

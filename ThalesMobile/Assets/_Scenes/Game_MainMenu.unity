@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -4770,7 +4770,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1951661757}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.11289631
+  m_Size: 0.08774264
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -7018,7 +7018,7 @@ RectTransform:
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &518907585
 MonoBehaviour:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 10
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -9345,7 +9345,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 800, y: 0}
+  m_AnchoredPosition: {x: 799.99994, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &788405380
@@ -11305,8 +11305,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17cd211bbfca15a4e961a63c4d471e37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  screenSize: {x: 743, y: 418}
-  centerPos: {x: 371.5, y: 209, z: 0}
+  screenSize: {x: 956, y: 418}
+  centerPos: {x: 478, y: 209, z: 0}
   input: {fileID: 919132149453177770}
   slider: {fileID: 1870064779}
   menu: {fileID: 1820118679}
@@ -13980,7 +13980,7 @@ GameObject:
   m_IsActive: 1
 --- !u!114 &1237299454
 MonoBehaviour:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 10
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -24945,7 +24945,7 @@ RectTransform:
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1962540562
 MonoBehaviour:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 10
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -27945,7 +27945,7 @@ PrefabInstance:
     - target: {fileID: 3078130106839481975, guid: a7db2cd955db239408cfdcd44bf51cbf,
         type: 3}
       propertyPath: missionPoints.Array.data[0].missionTitle
-      value: "TRAINING SESSION: \nsimulation of a seaber-attack"
+      value: "CASEX CHARLIE : \ncooperative training of frigate & MPA against sub"
       objectReference: {fileID: 0}
     - target: {fileID: 3078130106839481975, guid: a7db2cd955db239408cfdcd44bf51cbf,
         type: 3}
@@ -28035,9 +28035,8 @@ PrefabInstance:
     - target: {fileID: 3078130106839481975, guid: a7db2cd955db239408cfdcd44bf51cbf,
         type: 3}
       propertyPath: missionPoints.Array.data[0].missionDescription
-      value: "A French submarine is also training in the area and it is not aware
-        of our presence. \nYour objective is to find it before it carries out its
-        missions."
+      value: "A French submarine is training in the area. \nYour objective is to
+        find it before it carries out its missions."
       objectReference: {fileID: 0}
     - target: {fileID: 3078130106839481975, guid: a7db2cd955db239408cfdcd44bf51cbf,
         type: 3}
@@ -28047,10 +28046,10 @@ PrefabInstance:
     - target: {fileID: 3078130106839481975, guid: a7db2cd955db239408cfdcd44bf51cbf,
         type: 3}
       propertyPath: missionPoints.Array.data[1].missionDescription
-      value: "An unidentified submarine has infiltrated the northern Philippines.\nIts
-        motives are unclear, but the general staff suspects their targets are the
-        military assets in the area. \nLocate and identify the submarine before it
-        escapes."
+      value: "An unidentified submarine has infiltrated the northern Philippines.
+        \nIts motives are unclear, but the joint staff suspects an intelligence mission
+        against  military assets in the area. \nLocate and identify the submarine
+        before she escapes."
       objectReference: {fileID: 0}
     - target: {fileID: 3078130106839481975, guid: a7db2cd955db239408cfdcd44bf51cbf,
         type: 3}
@@ -28060,8 +28059,8 @@ PrefabInstance:
     - target: {fileID: 3078130106839481975, guid: a7db2cd955db239408cfdcd44bf51cbf,
         type: 3}
       propertyPath: missionPoints.Array.data[2].missionDescription
-      value: "An unidentified submarine is trying to establish a blockade north-east
-        of Djibouti in order to take control of the Gulf and the maritime commerce.
+      value: "An unidentified submarine tries to establish a blockade northeast of
+        Djibouti in order to take control of the SLOC (Sea Lines Of Communication).
         \nPrevent it from sowing discord between the various world powers working
         in the region."
       objectReference: {fileID: 0}
